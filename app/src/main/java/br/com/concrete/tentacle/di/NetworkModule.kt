@@ -14,9 +14,11 @@ import java.util.concurrent.TimeUnit
 private const val CONNECTION_TIMEOUT = 15L
 private const val READ_TIMEOUT = 30L
 
+const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
+
 val networkModule = module {
 
-    single {
+    single{
         val httpLoggingInterceptor = HttpLoggingInterceptor()
 
         if (BuildConfig.DEBUG) {
@@ -24,18 +26,20 @@ val networkModule = module {
         } else {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
+    }
 
+    single {
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(httpLoggingInterceptor).build()
+            .addInterceptor(get()).build()
     }
 
     single {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(getProperty<String>(PROPERTY_BASE_URL))
             .client(get())
             .build()
     }
