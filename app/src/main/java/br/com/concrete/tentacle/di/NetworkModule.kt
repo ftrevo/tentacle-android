@@ -18,7 +18,7 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
 
-    single{
+    single(name = "logInterceptor"){
         val httpLoggingInterceptor = HttpLoggingInterceptor()
 
         if (BuildConfig.DEBUG) {
@@ -32,7 +32,7 @@ val networkModule = module {
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(get()).build()
+            .addInterceptor(get(name = "logInterceptor")).build()
     }
 
     single {
