@@ -2,13 +2,13 @@
 
 buildscript {
     //General
-    ext.kotlin_version = '1.3.11'
-    ext.appcompat = '1.1.0-alpha01'
+    ext.kotlinVersion = '1.3.11'
+    ext.appCompat = '1.1.0-alpha01'
     ext.constraitLayout = '2.0.0-alpha2'
     ext.buildGradle = '3.2.1'
 
     //Koin
-    ext.koin_version = '1.0.2'
+    ext.koinVersion = '1.0.2'
 
     //Retrofit
     ext.retrofitVersion = '2.3.0'
@@ -29,7 +29,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$buildGradle"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
