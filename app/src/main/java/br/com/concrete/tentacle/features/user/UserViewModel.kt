@@ -7,7 +7,7 @@ import br.com.concrete.tentacle.data.models.*
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.data.repositories.UserRepositoryContract
 
-class UserViewModel(private val userRepositoryContract: UserRepository) :
+class UserViewModel(private val userRepositoryContract: UserRepositoryContract) :
     ViewModel(), UserViewModelContract {
 
     private val user = MutableLiveData<User>()
@@ -35,7 +35,7 @@ class UserViewModel(private val userRepositoryContract: UserRepository) :
         userRepositoryContract.getCities(stateId, this as UserViewModelContract)
     }
 
-    private fun loadStates(){
+    fun loadStates(){
         userRepositoryContract.getStates(this as UserViewModelContract)
     }
 
