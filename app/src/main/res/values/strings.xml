@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Tentacle</string>
+    <string name="register_email_hint">e-mail</string>
+    <string name="register_name_hint">nome</string>
+    <string name="register_password_hint">password</string>
+    <string name="register_ddd_phone_hint">DDD + telefone</string>
+
+    <string name="create_account">Criar conta</string>
+    <string name="create_account_title">Criar uma conta</string>
+    <string name="state_hint">estado</string>
+    <string name="city_hint">cidade</string>
+
+    <string name="email_error">Digite um e-mail válido</string>
+    <string name="name_error">O campo nome é de preenchimento obrigatório</string>
+    <string name="password_error">O campo password precisa ter no mínimo 6 digitos</string>
+    <string name="phone_error">Forneca um número de telefone válido</string>
+    <string name="state_error">Selecione um estado</string>
+    <string name="city_error">Selecione uma cidade</string>
+
+
+    <string-array name="estados">
+        <item>PE</item>
+        <item>PB</item>
+        <item>RN</item>
+    </string-array>
+
+    <string-array name="cidades">
+        <item>Recife</item>
+        <item>Olinda</item>
+        <item>Jaboatão dos Guararapes</item>
+    </string-array>
 </resources>

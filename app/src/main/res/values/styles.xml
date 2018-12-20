@@ -1,11 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextInputLayoutTheme">
+        <!-- Used for the bottom line when not selected / focused -->
+        <item name="colorControlNormal">@color/textHint</item>
+        <!-- colorControlActivated & colorControlHighlight use the colorAccent color by default -->
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textColorHint">@color/textHint</item>
+
+    </style>
+
+    <style name="TextInputLayoutStyle">
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+        <item name="android:layout_marginEnd">@dimen/margin_default</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_default</item>
+    </style>
+
+    <style name="TextInputLayoutTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="EditTextTheme">
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+
+    <style name="MaterialSpinnerStyle">
+        <item name="android:popupBackground">@color/bgColor</item>
+        <item name="ms_multiline">false</item>
+        <item name="ms_arrowColor">@color/textHint</item>
+        <item name="ms_arrowSize">16dp</item>
+        <item name="ms_floatingLabelColor">@color/textHint</item>
+        <item name="ms_baseColor">@color/textHint</item>
+        <item name="ms_highlightColor">@android:color/white</item>
+    </style>
 </resources>
