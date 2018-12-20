@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="marginBorder">10dp</dimen>
+    <dimen name="marginAllBorder">@dimen/marginBorder</dimen>
+    <dimen name="marginBorderLeft">@dimen/marginBorder</dimen>
+    <dimen name="marginBorderRight">@dimen/marginBorder</dimen>
+    <dimen name="marginBorderTop">@dimen/marginBorder</dimen>
+    <dimen name="marginBorderBottom">@dimen/marginBorder</dimen>
+
+    <dimen name="minHeight">30dp</dimen>
+    <dimen name="imageLogo">50dp</dimen>
+
+
+    <!--TextSize-->
+    <dimen name="sizeLabelOla">20sp</dimen>
+    <dimen name="sizeLabel">11sp</dimen>
+
+    <!--Alpha-->
+    <dimen name="alphaImageLogo">0.3</dimen>
+
+    <!--Padding EditText-->
+    <dimen name="paddingEditText">5dp</dimen>
+
+</resources>

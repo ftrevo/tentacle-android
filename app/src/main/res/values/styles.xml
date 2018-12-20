@@ -1,11 +1,54 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:targetApi="lollipop">
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="TextColorWhite">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextColorWhiteBold">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="StyleLabelOla" parent="TextColorWhiteBold">
+        <item name="android:textSize">@dimen/sizeLabelOla</item>
+        <item name="android:letterSpacing">0.2</item>
+    </style>
+
+    <style name="StyleLabelMessage" parent="TextColorWhite">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">14dp</item>
+    </style>
+
+    <style name="StyleLabel" parent="TextColorWhiteBold">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/sizeLabel</item>
+        <item name="android:layout_margin">@dimen/marginBorder</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="StyleEditText">
+        <item name="android:background">@drawable/shape_border_rounded_white</item>
+        <item name="android:layout_margin">@dimen/marginBorder</item>
+        <item name="android:padding">@dimen/paddingEditText</item>
+    </style>
+
+    <style name="StyleButton" parent="TextColorWhiteBold">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/minHeight</item>
+        <item name="android:background">@drawable/shape_border_rounded_blue</item>
+        <item name="android:layout_margin">@dimen/marginBorder</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
 
 </resources>

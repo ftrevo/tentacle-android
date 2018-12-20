@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Tentacle</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="login">Login</string>
+    <string name="ola_novamente">Olá novamente :)</string>
+    <string name="entre_e_veja_os_novos_jogos_adicionados">Entre e veja os novos jogos adicionados!</string>
 </resources>
