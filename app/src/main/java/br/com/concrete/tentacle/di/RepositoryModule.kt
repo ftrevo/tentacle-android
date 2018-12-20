@@ -6,6 +6,6 @@ import org.koin.dsl.module.module
 
 val repositoryModule = module{
 
-    single { UserRepository(get()) as UserRepositoryContract }
+    factory { UserRepository(get()) }
 
 }

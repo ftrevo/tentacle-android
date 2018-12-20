@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class State(
-    val _id: String,
-    var initials: String,
-    var name: String
-): Parcelable
+    val _id: String = String(),
+    var initials: String = String(),
+    var name: String = String()
+) : Parcelable
