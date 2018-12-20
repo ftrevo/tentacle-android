@@ -13,6 +13,6 @@ interface ApiService {
     fun getStates() : Observable<BaseModel<ResponseState>>
 
     @GET("/states/{id}/cities")
-    fun getCities(@Path("id") id: String) : Observable<BaseModel<ResponseCity>>
+    fun getCities(@Path("id") stateId: String) : Observable<BaseModel<ResponseCity>>
 
 }
