@@ -15,6 +15,10 @@ buildscript {
     ext.retrofitLogging =  '3.9.0'
     ext.retrofitAdapterRxJava = '2.3.0'
 
+    //Observable
+    ext.rxAndroid = "2.1.0"
+    ext.rxJava = "2.2.4"
+
     //Android Architecture
     ext.lifecycle = '2.0.0'
 

@@ -1,7 +1,8 @@
-package br.com.concrete.tentacle
+package br.com.concrete.tentacle.features
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.concrete.tentacle.R
 
 class MainActivity : AppCompatActivity() {
 
