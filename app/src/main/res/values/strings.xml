@@ -7,4 +7,8 @@
     <string name="login">Login</string>
     <string name="ola_novamente">Olá novamente :)</string>
     <string name="entre_e_veja_os_novos_jogos_adicionados">Entre e veja os novos jogos adicionados!</string>
+    <string name="email_invalido">Endereço de e-mail inválido</string>
+    <string name="senha_invalida">A senha deve ter pelo menos 5 caracteres.</string>
+    <string name="verificar_campos_login">Por favor, verifique os campos obrigatórios.</string>
+    <string name="error_login">Ocorreu um erro ao acessar o login. \n Por favor, tente novamente.</string>
 </resources>

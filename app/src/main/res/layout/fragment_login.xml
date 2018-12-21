@@ -45,32 +45,36 @@
 
         <TextView
                 android:id="@+id/tvEmail"
-                style="@style/StyleLabel"
+                style="@style/StyleLabelLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
                 android:textAllCaps="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/txtInEmail"/>
+                app:layout_constraintBottom_toTopOf="@+id/edEmail"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInEmail"
-                android:layout_width="0dp"
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edEmail"
+                style="@style/StyleEditText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:errorEnabled="true"
+                android:inputType="textEmailAddress"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/guideline">
+                app:layout_constraintBottom_toTopOf="@+id/tvErrorEmail"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edEmail"
-                    style="@style/StyleEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+                android:id="@+id/tvErrorEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/email_invalido"
+                style="@style/TextErrorMessage"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"/>
 
         <androidx.constraintlayout.widget.Guideline
                 android:layout_width="wrap_content"
@@ -81,7 +85,7 @@
 
         <TextView
                 android:id="@+id/tvPassword"
-                style="@style/StyleLabel"
+                style="@style/StyleLabelLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/password"
@@ -89,21 +93,26 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInPassword"
-                android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edPassword"
+                android:inputType="textPassword"
+                style="@style/StyleEditText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPassword">
+                app:layout_constraintTop_toBottomOf="@+id/tvPassword"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edPassword"
-                    style="@style/StyleEditText"
-                    android:inputType="textPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+                android:id="@+id/tvErrorPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/senha_invalida"
+                style="@style/TextErrorMessage"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edPassword"/>
 
         <Button
                 android:id="@+id/btLogin"
@@ -111,10 +120,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/login"
-                android:enabled="true"
+                android:enabled="false"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtInPassword"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvErrorPassword"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -126,6 +135,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

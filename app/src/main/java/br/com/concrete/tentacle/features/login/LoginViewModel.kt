@@ -7,7 +7,7 @@ import br.com.concrete.tentacle.data.repositories.LoginRepository
 
 class LoginViewModel(private val repository: LoginRepository): ViewModel(), LifecycleObserver {
 
-    val stateModel: MutableLiveData<ViewStateModel<Session>> = MutableLiveData()
+    private val stateModel: MutableLiveData<ViewStateModel<Session>> = MutableLiveData()
 
     fun loginUser(email: String, password: String) {
         if (stateModel.value == null) {
@@ -22,5 +22,7 @@ class LoginViewModel(private val repository: LoginRepository): ViewModel(), Life
             )
         }
     }
+
+    fun getStateModel(): LiveData<ViewStateModel<Session>> = stateModel
 
 }

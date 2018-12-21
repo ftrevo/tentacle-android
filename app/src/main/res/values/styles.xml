@@ -28,16 +28,19 @@
         <item name="android:layout_marginTop">14dp</item>
     </style>
 
-    <style name="StyleLabel" parent="TextColorWhiteBold">
+    <style name="StyleLabelLogin" parent="TextColorWhiteBold">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/sizeLabel</item>
         <item name="android:layout_margin">@dimen/marginBorder</item>
+        <item name="android:layout_marginEnd">@dimen/marginBorder</item>
+        <item name="android:layout_marginStart">@dimen/marginBorder</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="StyleEditText">
+    <style name="StyleEditText" parent="Widget.Design.TextInputLayout">
         <item name="android:background">@drawable/shape_border_rounded_white</item>
-        <item name="android:layout_margin">@dimen/marginBorder</item>
+        <item name="android:layout_marginEnd">@dimen/marginBorder</item>
+        <item name="android:layout_marginStart">@dimen/marginBorder</item>
         <item name="android:padding">@dimen/paddingEditText</item>
     </style>
 
@@ -49,6 +52,11 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="TextErrorMessage">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/sizeLabelErrorMessage</item>
+        <item name="android:layout_marginEnd">@dimen/marginBorder</item>
+        <item name="android:layout_marginStart">@dimen/marginBorder</item>
 
-
+    </style>
 </resources>

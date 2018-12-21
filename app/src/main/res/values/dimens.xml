@@ -15,6 +15,7 @@
     <!--TextSize-->
     <dimen name="sizeLabelOla">20sp</dimen>
     <dimen name="sizeLabel">11sp</dimen>
+    <dimen name="sizeLabelErrorMessage">11sp</dimen>
 
     <!--Alpha-->
     <dimen name="alphaImageLogo">0.3</dimen>
