@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
@@ -16,10 +17,6 @@ import br.com.concrete.tentacle.extensions.validaEmail
 import br.com.concrete.tentacle.extensions.validaPassword
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.view.*
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.fragment_login.*
-import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(), View.OnClickListener {
@@ -28,6 +25,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private lateinit var views: View
 
     private val viewModel: LoginViewModel by viewModel()
+    private lateinit var progressBar: ProgressBar
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -64,9 +63,13 @@ class LoginFragment : Fragment(), View.OnClickListener {
             }
         })
 
+        configureView()
         init()
 
         return views
+    }
+
+    private fun configureView() {
     }
 
     private fun init() {
