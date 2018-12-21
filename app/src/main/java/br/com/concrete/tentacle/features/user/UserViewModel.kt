@@ -31,7 +31,17 @@ class UserViewModel(private val userRepositoryContract: UserRepositoryContract) 
     fun getError() = listErrors as LiveData<List<String>>
 
     fun registerUser(user: User) {
-        userRepositoryContract.registerUser(user, {base ->
+
+        var userRequest = UserRequest(
+            name = user.name,
+            city = user.city,
+            email = user.email,
+            state = user.state._id,
+            phone = user.phone,
+            password = user.password
+        )
+
+        userRepositoryContract.registerUser(userRequest, {base ->
             if(base.data != null){
                 success.value = true
                 this.user.value = base.data

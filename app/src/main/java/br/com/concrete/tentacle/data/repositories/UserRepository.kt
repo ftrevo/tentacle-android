@@ -1,9 +1,6 @@
 package br.com.concrete.tentacle.data.repositories
 
-import br.com.concrete.tentacle.data.models.BaseModel
-import br.com.concrete.tentacle.data.models.CityResponse
-import br.com.concrete.tentacle.data.models.StateResponse
-import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.*
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,8 +9,8 @@ import io.reactivex.schedulers.Schedulers
 
 
 class UserRepository(private val apiService: ApiService): UserRepositoryContract {
-    override fun registerUser(user: User, success: (BaseModel<User>) -> Unit, error: (Throwable) -> Unit) {
-        val disposable = apiService.registerUser(user)
+    override fun registerUser(userRequest: UserRequest, success: (BaseModel<User>) -> Unit, error: (Throwable) -> Unit) {
+        val disposable = apiService.registerUser(userRequest)
             .flatMap { baseModel ->
                 Observable.just(baseModel)
             }
@@ -22,7 +19,7 @@ class UserRepository(private val apiService: ApiService): UserRepositoryContract
             .subscribe({
                 success(it)
             }, {
-                kotlin.error(it);
+                error(it);
             })
 
         this.disposables.add(disposable)
