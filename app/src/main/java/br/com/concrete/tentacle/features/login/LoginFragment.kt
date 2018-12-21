@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.concrete.tentacle.R
-import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class LoginFragment : Fragment() {
 
@@ -15,11 +14,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_login, container, false)
-
-        view.txtInEmail.error = "ERRO"
-
 
         return view
     }
