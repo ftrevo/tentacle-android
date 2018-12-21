@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "br.com.concrete.tentacle"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -36,6 +36,12 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.appcompat:appcompat:$appCompat"
     implementation "androidx.constraintlayout:constraintlayout:$constraitLayout"
+
+    //UI Components
+    //https://github.com/ganfra/MaterialSpinner
+    implementation ('com.github.ganfra:material-spinner:2.0.0'){
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+    }
 
     //Test
     testImplementation "junit:junit:$junit"
@@ -65,4 +71,8 @@ dependencies {
 
     //AndroidX ViewModel/LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "com.google.android.material:material:$androidMaterial"
+    
+    //Utils
+    implementation "br.com.concrete:canarinho:$canarinho"
 }

@@ -6,6 +6,7 @@ buildscript {
     ext.appCompat = '1.1.0-alpha01'
     ext.constraitLayout = '2.0.0-alpha2'
     ext.buildGradle = '3.2.1'
+    ext.canarinho = '2.0.1'
 
     //Koin
     ext.koinVersion = '1.0.2'
@@ -26,6 +27,9 @@ buildscript {
     ext.junit = '4.12'
     ext.runner = '1.1.1-beta01'
     ext.expresso = '3.1.1-beta01'
+
+    //Android Material
+    ext.androidMaterial = '1.0.0'
 
     repositories {
         google()
