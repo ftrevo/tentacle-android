@@ -10,9 +10,9 @@ interface ApiService {
     fun registerUser(@Body user: User) : Observable<BaseModel<User>>
 
     @GET("/states")
-    fun getStates() : Observable<BaseModel<ResponseState>>
+    fun getStates() : Observable<BaseModel<StateResponse>>
 
     @GET("/states/{id}/cities")
-    fun getCities(@Path("id") stateId: String) : Observable<BaseModel<ResponseCity>>
+    fun getCities(@Path("id") stateId: String) : Observable<BaseModel<CityResponse>>
 
 }

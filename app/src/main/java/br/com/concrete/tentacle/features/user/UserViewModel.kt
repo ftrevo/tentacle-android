@@ -4,11 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.concrete.tentacle.data.models.*
-import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.data.repositories.UserRepositoryContract
+import com.google.gson.Gson
+import retrofit2.HttpException
 
 class UserViewModel(private val userRepositoryContract: UserRepositoryContract) :
-    ViewModel(), UserViewModelContract {
+    ViewModel() {
+
+    private val gson = Gson()
 
     private val user = MutableLiveData<User>()
     private val listStates = MutableLiveData<List<State>>()
@@ -28,42 +31,43 @@ class UserViewModel(private val userRepositoryContract: UserRepositoryContract) 
     fun getError() = listErrors as LiveData<List<String>>
 
     fun registerUser(user: User) {
-        userRepositoryContract.registerUser(user, this as UserViewModelContract)
+        userRepositoryContract.registerUser(user, {base ->
+            if(base.data != null){
+                success.value = true
+                this.user.value = base.data
+            }else{
+                onError(base.message!!)
+            }
+        }, {
+            notKnownError(it)
+        })
     }
 
     fun loadCities(stateId: String){
-        userRepositoryContract.getCities(stateId, this as UserViewModelContract)
+        userRepositoryContract.getCities(stateId, {base ->
+            if(base.data != null){
+                success.value = true
+                this.listCities.value = base.data.cities
+            }else{
+                onError(base.message!!)
+            }
+
+        }, {
+            notKnownError(it)
+        })
     }
 
-    fun loadStates(){
-        userRepositoryContract.getStates(this as UserViewModelContract)
-    }
-
-    override fun callBackUser(base: BaseModel<User>) {
-        if(base.data != null){
-            success.value = true
-            this.user.value = base.data!!
-        }else{
-            onError(base.message!!)
-        }
-    }
-
-    override fun callBackStates(base: BaseModel<ResponseState>) {
-        if(base.data != null){
-            success.value = true
-            this.listStates.value = base.data!!.list
-        }else{
-            onError(base.message!!)
-        }
-    }
-
-    override fun callBackCities(base: BaseModel<ResponseCity>) {
-        if(base.data != null){
-            success.value = true
-            this.listCities.value = base.data!!.cities
-        }else{
-            onError(base.message!!)
-        }
+    private fun loadStates(){
+        userRepositoryContract.getStates({base ->
+            if(base.data != null){
+                success.value = true
+                this.listStates.value = base.data.list
+            }else{
+                onError(base.message!!)
+            }
+        },{
+            notKnownError(it)
+        })
     }
 
     private fun onError(base: List<String>) {
@@ -72,10 +76,22 @@ class UserViewModel(private val userRepositoryContract: UserRepositoryContract) 
         this.listErrors.value = base
     }
 
-    override fun notKnownError(error: Throwable) {
+    private fun notKnownError(error: Throwable) {
         success.value = false
-        errors.add(error.cause.toString())
-        listErrors.value =  errors
+        val er = error as HttpException
+
+        var e: ErrorBodyResponse = gson.fromJson(
+            er.response().errorBody()!!.charStream(),
+            ErrorBodyResponse::class.java)
+
+        errors.addAll(e.message)
+        this.listErrors.value = errors
+
+    }
+
+    override fun onCleared() {
+        userRepositoryContract.disposeAll()
+        super.onCleared()
     }
 
 }

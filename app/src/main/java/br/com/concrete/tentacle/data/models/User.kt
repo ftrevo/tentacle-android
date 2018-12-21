@@ -26,6 +26,6 @@ data class User(
     }
 
     override fun toString(): String {
-        return "Hello $name!!! _id = $_id \n state: ${state_.initials}"
+        return "Hello $name!!! _id = $_id \n state: ${state_.initials} - stateId: $stateId"
     }
 }

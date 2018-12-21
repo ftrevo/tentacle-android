@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ResponseState(
+data class StateResponse(
     val list: List<State>
 ) : Parcelable

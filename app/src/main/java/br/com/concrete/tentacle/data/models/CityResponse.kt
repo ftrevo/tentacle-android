@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ResponseCity(
+data class CityResponse(
     val cities: List<String>,
     val _id: String
 ) : Parcelable
