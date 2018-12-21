@@ -11,21 +11,12 @@ data class User(
     val email: String = String(),
     val phone: String = String(),
     var password: String = String(),
-
-    @SerializedName("state")
-    var stateId: String = String(),
-
-    var state_: State = State(),
+    var state: State = State(),
     var city: String = String(),
     var createdAt: String = String(),
     var updatedAt: String = String()
 ) : Parcelable {
-    fun setState(state: State){
-        this.state_ = state
-        this.stateId = state._id
-    }
-
     override fun toString(): String {
-        return "Hello $name!!! _id = $_id \n state: ${state_.initials} - stateId: $stateId"
+        return "Hello $name!!! _id = $_id \n state: ${state.initials} - stateId: ${state._id}"
     }
 }

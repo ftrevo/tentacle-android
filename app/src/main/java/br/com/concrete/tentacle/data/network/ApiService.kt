@@ -7,7 +7,7 @@ import retrofit2.http.*
 interface ApiService {
 
     @POST("/users")
-    fun registerUser(@Body user: User) : Observable<BaseModel<User>>
+    fun registerUser(@Body userRequest: UserRequest) : Observable<BaseModel<User>>
 
     @GET("/states")
     fun getStates() : Observable<BaseModel<StateResponse>>
