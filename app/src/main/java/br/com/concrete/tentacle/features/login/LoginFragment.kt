@@ -16,12 +16,18 @@ import br.com.concrete.tentacle.extensions.validaEmail
 import br.com.concrete.tentacle.extensions.validaPassword
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.fragment_login.*
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(), View.OnClickListener {
 
     private val loginViewModel: LoginViewModel by viewModel()
     private lateinit var views: View
+
+    private val viewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -67,14 +73,24 @@ class LoginFragment : Fragment(), View.OnClickListener {
         loginViewModel.getStateModel().observe(this, Observer { viewState ->
             viewState?.let {
                 when(viewState.status) {
-                    ViewStateModel.Status.SUCCESS -> callActivity()
-                    ViewStateModel.Status.ERROR -> callSnackbar(getString(R.string.error_login))
+                    ViewStateModel.Status.SUCCESS -> {
+                        Log.d("LOGIN-SUCCESS", "User logged")
+                        // TODO - dismiss progressBar
+                        // TODO - save session (viewStateModel.model)
+                        // TODO - get user
+                    }
                     ViewStateModel.Status.LOADING -> {
-
+                        // TODO - show progressBar
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        // TODO - dismiss progressBar
+                        // TODO - on error
+                        Log.d("LOGIN-ERROR", "User logged")
                     }
                 }
             }
         })
+        lifecycle.addObserver(viewModel)
     }
 
     private fun callActivity() {
