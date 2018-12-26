@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.features.login
 
 import androidx.lifecycle.*
 import br.com.concrete.tentacle.base.fromJson
+import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.LoginRepository
@@ -20,7 +21,7 @@ class LoginViewModel(private val repository: LoginRepository): ViewModel(), Life
                     stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = session))
                 },
                 {
-                    val errors = Gson().fromJson<List<String>>(it)
+                    val errors = Gson().fromJson<ErrorResponse>(it)
                     stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = errors))
                 }
             )
