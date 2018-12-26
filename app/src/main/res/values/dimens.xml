@@ -25,6 +25,7 @@
 
     <!--Padding EditText-->
     <dimen name="paddingEditText">5dp</dimen>
+    <dimen name="paddingClickTextView">7dp</dimen>
 
 </resources>
 

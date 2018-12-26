@@ -143,6 +143,18 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvErrorPassword"/>
+
+            <TextView
+                    android:padding="@dimen/paddingClickTextView"
+                    android:id="@+id/tvRegisterAccount"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="@dimen/margin_top_default"
+                    app:layout_constraintTop_toBottomOf="@id/btLogin"
+                    app:layout_constraintStart_toStartOf="@id/btLogin"
+                    android:text="@string/register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

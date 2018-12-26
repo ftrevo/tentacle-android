@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.features.login
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,6 +17,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
+import br.com.concrete.tentacle.features.register.RegisterFragment
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -34,6 +36,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         views = inflater.inflate(R.layout.fragment_login, container, false)
 
         views.btLogin.setOnClickListener(this)
+        views.tvRegisterAccount.setOnClickListener(this)
 
         views.edEmail.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
@@ -106,7 +109,12 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btLogin -> handleLogin()
+            R.id.tvRegisterAccount -> showRegisterAccount()
         }
+    }
+
+    private fun showRegisterAccount(){
+        startActivity(Intent(context, RegisterFragment::class.java))
     }
 
     private fun handleLogin() {

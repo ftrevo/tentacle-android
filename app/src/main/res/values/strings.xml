@@ -43,5 +43,6 @@
     <string name="verificar_campos_login">Por favor, verifique os campos obrigatórios.</string>
     <string name="error_login">Ocorreu um erro ao acessar o login. \n Por favor, tente novamente.</string>
     <string name="button">Button</string>
+    <string name="register_account">Registrar conta</string>
 
 </resources>
