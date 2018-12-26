@@ -17,6 +17,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
+import br.com.concrete.tentacle.features.register.RegisterActivity
 import br.com.concrete.tentacle.features.register.RegisterFragment
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -114,7 +115,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun showRegisterAccount(){
-        startActivity(Intent(context, RegisterFragment::class.java))
+        startActivity(Intent(context, RegisterActivity::class.java))
     }
 
     private fun handleLogin() {

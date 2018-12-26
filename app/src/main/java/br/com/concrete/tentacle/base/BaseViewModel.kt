@@ -4,30 +4,29 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.concrete.tentacle.data.models.ErrorBodyResponse
-import com.google.gson.Gson
+import br.com.concrete.tentacle.data.models.ErrorResponse
 import com.google.gson.GsonBuilder
 import retrofit2.HttpException
 import java.io.IOException
 
 abstract class BaseViewModel : ViewModel(){
+
     protected val success = MutableLiveData<Boolean>()
 
     protected val listErrors = MutableLiveData<List<String>>()
 
     fun getError() = listErrors as LiveData<List<String>>
 
-    protected fun notKnownError(error: Throwable) {
+    protected fun notKnownError(error: Throwable): ErrorResponse {
 
         val gson = GsonBuilder().create()
-        success.value = false
-        var e = ErrorBodyResponse()
+        var e = ErrorResponse()
 
         when(error){
             is HttpException -> {
                 e = gson.fromJson(
                     error.response().errorBody()!!.charStream(),
-                    ErrorBodyResponse::class.java)
+                    ErrorResponse::class.java)
             }
 
             is IOException -> {
@@ -36,7 +35,7 @@ abstract class BaseViewModel : ViewModel(){
             }
         }
 
-        this.listErrors.value = e.message
+        return e
     }
 }
 

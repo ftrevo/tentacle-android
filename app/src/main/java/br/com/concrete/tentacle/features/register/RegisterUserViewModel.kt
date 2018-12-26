@@ -1,31 +1,27 @@
 package br.com.concrete.tentacle.features.register
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import br.com.concrete.tentacle.base.BaseViewModel
-import br.com.concrete.tentacle.data.models.*
+import br.com.concrete.tentacle.data.models.State
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.UserRequest
+import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.UserRepositoryContract
-import com.google.gson.Gson
-import retrofit2.HttpException
-import java.io.IOException
-import java.lang.Exception
 
 class RegisterUserViewModel(private val userRepositoryContract: UserRepositoryContract) :
     BaseViewModel() {
 
-    private val user = MutableLiveData<User>()
-    private val listStates = MutableLiveData<List<State>>()
-    private val listCities = MutableLiveData<List<String>>()
+    private val viewStateState: MutableLiveData<ViewStateModel<List<State>>> = MutableLiveData()
+    private val viewStateCity: MutableLiveData<ViewStateModel<List<String>>> = MutableLiveData()
+    private val viewStateUser: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
 
     init {
         loadStates()
     }
 
-    fun getUser() = user as LiveData<User>
-    fun getStates() = listStates as LiveData<List<State>>
-    fun getCities() = listCities as LiveData<List<String>>
+    fun getUser() = viewStateUser
+    fun getStates() = viewStateState
+    fun getCities() = viewStateCity
 
 
     fun registerUser(user: User) {
@@ -39,54 +35,34 @@ class RegisterUserViewModel(private val userRepositoryContract: UserRepositoryCo
             password = user.password
         )
 
+        viewStateUser.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         userRepositoryContract.registerUser(userRequest, {base ->
-            if(base.data != null){
-                success.value = true
-                this.user.value = base.data
-            }else{
-                onError(base.message!!)
-            }
+            viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
         }, {
-            notKnownError(it)
+            viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
         })
     }
 
     fun loadCities(stateId: String){
+        viewStateCity.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         userRepositoryContract.getCities(stateId, {base ->
-            if(base.data != null){
-                success.value = true
-                this.listCities.value = base.data.cities
-            }else{
-                onError(base.message!!)
-            }
-
+            viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.cities))
         }, {
-            notKnownError(it)
+            viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
         })
     }
 
     private fun loadStates(){
+        viewStateState.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         userRepositoryContract.getStates({base ->
-            if(base.data != null){
-                success.value = true
-                this.listStates.value = base.data.list
-            }else{
-                onError(base.message!!)
-            }
+            viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list))
         },{
-            notKnownError(it)
+            viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
         })
     }
-
-    private fun onError(base: List<String>) {
-        success.value = false
-        listErrors.value = base
-    }
-
 
     override fun onCleared() {
         userRepositoryContract.disposeAll()
         super.onCleared()
     }
-
 }

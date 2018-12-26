@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.features.register
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,8 @@ import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
-import br.com.concrete.tentacle.digits
+import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.extensions.digits
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.MainActivity
@@ -45,10 +45,20 @@ class RegisterFragment : Fragment() {
 
     private fun init() {
 
-        viewModelRegister.getStates().observe(this, Observer {
-            states = it as ArrayList<State>
+        viewModelRegister.getStates().observe(this, Observer { viewState ->
 
-            spState.adapter = ArrayAdapter<State>(context!!, R.layout.spinner_item_layout, states)
+            when (viewState.status){
+                ViewStateModel.Status.LOADING -> {
+                    //TODO Create loading
+                }
+                ViewStateModel.Status.SUCCESS -> {
+                    states = viewState.model as ArrayList<State>
+                    spState.adapter = ArrayAdapter<State>(context!!, R.layout.spinner_item_layout, states)
+                }
+                ViewStateModel.Status.ERROR -> {
+                    showError(viewState.errors!!.message)
+                }
+            }
 
             spState.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
@@ -68,47 +78,67 @@ class RegisterFragment : Fragment() {
             }
         })
 
-        viewModelRegister.getCities().observe(this, Observer {
-            cities = it as ArrayList<String>
-            spCity.adapter = ArrayAdapter<String>(context!!, R.layout.spinner_item_layout, cities)
-        })
+        viewModelRegister.getCities().observe(this, Observer { viewState ->
 
-        viewModelRegister.getUser().observe(this, Observer {
-            //TODO REFACTOR TO EXACT VIEW
-            val mainActivity = Intent(activity, MainActivity::class.java)
-            mainActivity.putExtra(MainActivity.USER, it)
-            startActivity(mainActivity)
-            fragmentManager!!.beginTransaction().remove(this).commit()
-        })
-
-        viewModelRegister.getError().observe(this, Observer { errors ->
-
-            var message = String()
-            errors.forEach{ eachMessage ->
-                message += ("\n" + eachMessage)
-            }
-
-            val alertDialog: AlertDialog? = activity?.let { fragment ->
-                val builder = AlertDialog.Builder(fragment)
-                builder.setTitle(R.string.error_dialog_title)
-                builder.setMessage(message)
-                builder.apply {
-                    setPositiveButton(R.string.ok
-                    ) { dialog, id ->
-                        dialog.dismiss()
-                    }
+            when(viewState.status){
+                ViewStateModel.Status.LOADING -> {
+                    //TODO Create loading
                 }
-
-                // Create the AlertDialog
-                builder.create()
+                ViewStateModel.Status.SUCCESS -> {
+                    cities = viewState.model as ArrayList<String>
+                    spCity.adapter = ArrayAdapter<String>(context!!, R.layout.spinner_item_layout, cities)
+                }
+                ViewStateModel.Status.ERROR -> {
+                    showError(viewState.errors!!.message)
+                }
             }
+        })
 
-            alertDialog?.show()
+        viewModelRegister.getUser().observe(this, Observer { viewState ->
+            //TODO REFACTOR TO EXACT VIEW
+            when(viewState.status){
+                ViewStateModel.Status.LOADING -> {
+                    //TODO Create loading
+                }
+                ViewStateModel.Status.SUCCESS -> {
+                    val mainActivity = Intent(activity, MainActivity::class.java)
+                    mainActivity.putExtra(MainActivity.USER, viewState.model)
+                    startActivity(mainActivity)
+                    fragmentManager!!.beginTransaction().remove(this).commit()
+                }
+                ViewStateModel.Status.ERROR -> {
+                    showError(viewState.errors!!.message)
+                }
+            }
         })
 
         btnCreateAccount.setOnClickListener {
             performValidation()
         }
+    }
+
+    private fun showError(errors: List<String>){
+        var message = String()
+        errors.forEach{ eachMessage ->
+            message += ("\n" + eachMessage)
+        }
+
+        val alertDialog: AlertDialog? = activity?.let { fragment ->
+            val builder = AlertDialog.Builder(fragment)
+            builder.setTitle(R.string.error_dialog_title)
+            builder.setMessage(message)
+            builder.apply {
+                setPositiveButton(R.string.ok
+                ) { dialog, id ->
+                    dialog.dismiss()
+                }
+            }
+
+            // Create the AlertDialog
+            builder.create()
+        }
+
+        alertDialog?.show()
     }
 
     private fun initPhoneValidate() {
