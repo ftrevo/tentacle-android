@@ -19,7 +19,7 @@ class UserRepository(private val apiService: ApiService): UserRepositoryContract
             .subscribe({
                 success(it)
             }, {
-                error(it);
+                error(it)
             })
 
         this.disposables.add(disposable)

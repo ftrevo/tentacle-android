@@ -17,6 +17,11 @@ data class User(
     var updatedAt: String = String()
 ) : Parcelable {
     override fun toString(): String {
-        return "Hello $name!!! _id = $_id \n state: ${state.initials} - stateId: ${state._id}"
+        return "Name: $name!!! \n" +
+                "State: ${state.initials} \n" +
+                "City: $city \n" +
+                "E-mail: $email \n" +
+                "Password: $password \n" +
+                "Phone: $phone \n"
     }
 }

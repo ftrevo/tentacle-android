@@ -1,5 +1,6 @@
-package br.com.concrete.tentacle.features.user
+package br.com.concrete.tentacle.features.register
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,8 +8,10 @@ import br.com.concrete.tentacle.data.models.*
 import br.com.concrete.tentacle.data.repositories.UserRepositoryContract
 import com.google.gson.Gson
 import retrofit2.HttpException
+import java.io.IOException
+import java.lang.Exception
 
-class UserViewModel(private val userRepositoryContract: UserRepositoryContract) :
+class RegisterUserViewModel(private val userRepositoryContract: UserRepositoryContract) :
     ViewModel() {
 
     private val gson = Gson()
@@ -88,15 +91,23 @@ class UserViewModel(private val userRepositoryContract: UserRepositoryContract) 
 
     private fun notKnownError(error: Throwable) {
         success.value = false
-        val er = error as HttpException
+        var e = ErrorBodyResponse()
 
-        var e: ErrorBodyResponse = gson.fromJson(
-            er.response().errorBody()!!.charStream(),
-            ErrorBodyResponse::class.java)
+        when(error){
+            is HttpException -> {
+                e = gson.fromJson(
+                error.response().errorBody()!!.charStream(),
+                ErrorBodyResponse::class.java)
+            }
+
+            is IOException -> {
+                e.message.add("No Internet Connection.")
+                Log.e("ERROR TAG: ", "No Internet Connection.")
+            }
+        }
 
         errors.addAll(e.message)
         this.listErrors.value = errors
-
     }
 
     override fun onCleared() {

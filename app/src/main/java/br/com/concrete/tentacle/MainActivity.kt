@@ -1,12 +1,7 @@
 package br.com.concrete.tentacle
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ArrayAdapter
-import br.com.concrete.canarinho.watcher.TelefoneTextWatcher
-import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao
-import kotlinx.android.synthetic.main.register_fragment.*
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,4 +9,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    companion object {
+        val USER = "USER"
+    }
+
 }

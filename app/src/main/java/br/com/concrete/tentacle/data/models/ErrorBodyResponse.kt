@@ -5,5 +5,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ErrorBodyResponse(
-    val message: List<String> = ArrayList<String>()
+    var message: ArrayList<String> = ArrayList<String>()
 ): Parcelable

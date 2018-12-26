@@ -29,4 +29,7 @@
         <item>Olinda</item>
         <item>Jaboatão dos Guararapes</item>
     </string-array>
+
+    <string name="ok">Ok</string>
+    <string name="error_dialog_title">Estamos enfrentando alguns problemas!</string>
 </resources>
