@@ -9,7 +9,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
 
-
 class LoginRepository(private val apiRest: ApiService, private val sharedPrefRepository: SharedPrefRepository) {
 
     private val disposableList = ArrayList<Disposable>()

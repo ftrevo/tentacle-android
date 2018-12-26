@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.validaEmail
 import br.com.concrete.tentacle.extensions.validaPassword
 import com.google.android.material.snackbar.Snackbar
@@ -63,13 +64,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
             }
         })
 
-        configureView()
         init()
 
         return views
-    }
-
-    private fun configureView() {
     }
 
     private fun init() {
@@ -81,14 +78,21 @@ class LoginFragment : Fragment(), View.OnClickListener {
                         // TODO - dismiss progressBar
                         // TODO - save session (viewStateModel.model)
                         // TODO - get user
+                        callActivity()
+                        views.btLogin.isLoading(false)
+                        enableField(true)
                     }
                     ViewStateModel.Status.LOADING -> {
-                        // TODO - show progressBar
+                        views.btLogin.isLoading(true)
+                        enableField(false)
                     }
                     ViewStateModel.Status.ERROR -> {
                         // TODO - dismiss progressBar
                         // TODO - on error
                         Log.d("LOGIN-ERROR", "User logged")
+                        views.btLogin.isLoading(false)
+                        enableField(true)
+                        context?.callSnackbar(views, getString(R.string.error_login))
                     }
                 }
             }
@@ -114,12 +118,14 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
         when (isOk) {
             true -> loginViewModel.loginUser(email, password)
-            false -> callSnackbar(getString(R.string.verificar_campos_login))
+            false -> context?.callSnackbar(views, getString(R.string.verificar_campos_login))
         }
     }
 
-    private fun callSnackbar(message: String) {
-        Snackbar.make(views, message, Snackbar.LENGTH_SHORT).show()
+
+    private fun enableField(enableField: Boolean) {
+        views.edEmail.isEnabled = enableField
+        views.edPassword.isEnabled = enableField
     }
 
 }

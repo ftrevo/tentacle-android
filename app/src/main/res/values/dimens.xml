@@ -5,7 +5,7 @@
     <dimen name="marginAllBorder">@dimen/marginBorder</dimen>
     <dimen name="marginBorderLeft">@dimen/marginBorder</dimen>
     <dimen name="marginBorderRight">@dimen/marginBorder</dimen>
-    <dimen name="marginBorderTop">@dimen/marginBorder</dimen>
+    <dimen name="marginBorderTop">35dp</dimen>
     <dimen name="marginBorderBottom">@dimen/marginBorder</dimen>
 
     <dimen name="minHeight">30dp</dimen>

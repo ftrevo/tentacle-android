@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ButtonView">
+        <attr name="buttonName" format="string"/>
+        <attr name="progressBarColor" format="string"/>
+        <attr name="textColorButton" format="string"/>
+    </declare-styleable>
+
+</resources>

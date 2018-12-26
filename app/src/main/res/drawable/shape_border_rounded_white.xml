@@ -6,7 +6,7 @@
             android:startColor="@android:color/white"
             android:angle="270" />
     <corners
-            android:radius="5dp" />
+            android:radius="3dp" />
     <padding
             android:left="5dp"
             android:top="5dp"

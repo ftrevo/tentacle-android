@@ -9,130 +9,142 @@
         tools:context=".features.login.LoginFragment"
         tools:targetApi="lollipop">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="30dp">
-
-        <TextView
-                android:id="@+id/tvOla"
-                style="@style/StyleLabelOla"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/ola_novamente"
-                android:gravity="center"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/guidelineMessage"/>
-
-        <androidx.constraintlayout.widget.Guideline
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/guidelineMessage"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.2"/>
-
-        <TextView
-                android:id="@+id/tvMessage"
-                style="@style/StyleLabelMessage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/entre_e_veja_os_novos_jogos_adicionados"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/guidelineMessage"/>
-
-        <TextView
-                android:id="@+id/tvEmail"
-                style="@style/StyleLabelLogin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/email"
-                android:textAllCaps="true"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/edEmail"/>
-
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edEmail"
-                style="@style/StyleEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/tvErrorEmail"/>
-
-        <TextView
-                android:id="@+id/tvErrorEmail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/email_invalido"
-                style="@style/TextErrorMessage"
-                android:visibility="gone"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/guideline"/>
-
-        <androidx.constraintlayout.widget.Guideline
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/guideline"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5"/>
-
-        <TextView
-                android:id="@+id/tvPassword"
-                style="@style/StyleLabelLogin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/password"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/guideline"/>
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edPassword"
-                android:inputType="textPassword"
-                style="@style/StyleEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPassword"/>
-
-        <TextView
-                android:id="@+id/tvErrorPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/senha_invalida"
-                style="@style/TextErrorMessage"
-                android:visibility="gone"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edPassword"/>
-
-        <Button
-                android:id="@+id/btLogin"
-                style="@style/StyleButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/login"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvErrorPassword"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-            android:layout_width="@dimen/imageLogo"
-            android:layout_height="@dimen/imageLogo"
-            android:src="@drawable/logo"
-            android:alpha="@dimen/alphaImageLogo"
-            app:layout_constraintBottom_toBottomOf="parent"
+    <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                android:alpha="@dimen/alphaImageLogo"
+                android:cropToPadding="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edEmail"
+                android:layout_gravity="bottom|end" android:scrollX="-150dp" android:scrollY="-30dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp">
+
+            <TextView
+                    android:id="@+id/tvOla"
+                    style="@style/StyleLabelOla"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ola_novamente"
+                    android:gravity="center"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/guidelineMessage"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/guidelineMessage"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.2"/>
+
+            <TextView
+                    android:id="@+id/tvMessage"
+                    style="@style/StyleLabelMessage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/entre_e_veja_os_novos_jogos_adicionados"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guidelineMessage"/>
+
+            <TextView
+                    android:id="@+id/tvEmail"
+                    style="@style/StyleLabelLogin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:textAllCaps="true"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/edEmail"/>
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edEmail"
+                    style="@style/StyleEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tvErrorEmail"/>
+
+            <TextView
+                    android:id="@+id/tvErrorEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email_invalido"
+                    style="@style/TextErrorMessage"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/guideline"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.5"/>
+
+            <TextView
+                    android:id="@+id/tvPassword"
+                    style="@style/StyleLabelLogin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPassword"
+                    android:inputType="textPassword"
+                    style="@style/StyleEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPassword"/>
+
+            <TextView
+                    android:id="@+id/tvErrorPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/senha_invalida"
+                    style="@style/TextErrorMessage"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edPassword"/>
+
+            <br.com.concrete.tentacle.custom.ButtonView
+                    android:id="@+id/btLogin"
+                    style="@style/StyleButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:buttonName="@string/login"
+                    app:textColorButton="@android:color/white"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvErrorPassword"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
