@@ -13,7 +13,7 @@ class AppTentacle : Application() {
             listOf(networkModule,
                 viewModelModule,
                 repositoryModule,
-                sharedPresentException),
+                sharedPreferencesModule),
             extraProperties = mapOf(PROPERTY_BASE_URL to BuildConfig.BASE_URL))
     }
 }

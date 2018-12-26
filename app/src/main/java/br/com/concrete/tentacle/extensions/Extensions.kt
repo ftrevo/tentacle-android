@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.base
+package br.com.concrete.tentacle.extensions
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

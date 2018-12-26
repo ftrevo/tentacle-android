@@ -7,5 +7,5 @@ import org.koin.dsl.module.module
 
 val viewModelModule = module {
     //viewModel { RepoViewModel(get()) } //TODO Sample to be replaced
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get(), get()) }
 }
