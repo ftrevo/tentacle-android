@@ -1,9 +1,7 @@
 package br.com.concrete.tentacle.features.register
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -16,15 +14,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.concrete.canarinho.watcher.TelefoneTextWatcher
 import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao
-import br.com.concrete.tentacle.MainActivity
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.digits
+import br.com.concrete.tentacle.features.MainActivity
 import br.com.concrete.tentacle.resError
 import kotlinx.android.synthetic.main.register_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.lang.StringBuilder
 
 
 class RegisterFragment : Fragment() {
