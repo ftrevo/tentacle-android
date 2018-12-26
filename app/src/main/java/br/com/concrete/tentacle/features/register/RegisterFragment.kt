@@ -18,6 +18,8 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.digits
+import br.com.concrete.tentacle.extensions.validateEmail
+import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.MainActivity
 import br.com.concrete.tentacle.resError
 import kotlinx.android.synthetic.main.register_fragment.*
@@ -139,7 +141,7 @@ class RegisterFragment : Fragment() {
         var result = true
         clearErrors()
 
-        if (!edtEmail.text.toString().isValidEmail()) {
+        if (!edtEmail.text.toString().validateEmail()) {
             tilEmail.resError(R.string.email_error)
             result = false
         }
@@ -149,7 +151,7 @@ class RegisterFragment : Fragment() {
             result = false
         }
 
-        if (result && edtPassword.text.toString().length < 6) {
+        if (result && edtPassword.text.toString().validatePassword()) {
             tilPassword.resError(R.string.password_error)
             result = false
         }
@@ -182,11 +184,4 @@ class RegisterFragment : Fragment() {
             viewModelRegister.registerUser(user)
         }
     }
-
-
-    //TODO Refactor this block after merge
-    fun String.isValidEmail(): Boolean = this.isNotEmpty() &&
-            Patterns.EMAIL_ADDRESS.matcher(this).matches()
-
-
 }

@@ -2,6 +2,6 @@ package br.com.concrete.tentacle.extensions
 
 import android.util.Patterns
 
-fun String.validaEmail(email: String): Boolean = !Patterns.EMAIL_ADDRESS.matcher(email).matches()
+fun String.validateEmail(): Boolean = !Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
-fun String.validaPassword(password: String): Boolean = (password.length < 5)
+fun String.validatePassword(): Boolean = (this.length < 5)

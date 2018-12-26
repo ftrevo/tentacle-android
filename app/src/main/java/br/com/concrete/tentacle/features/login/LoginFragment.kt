@@ -14,9 +14,8 @@ import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
-import br.com.concrete.tentacle.extensions.validaEmail
-import br.com.concrete.tentacle.extensions.validaPassword
-import com.google.android.material.snackbar.Snackbar
+import br.com.concrete.tentacle.extensions.validateEmail
+import br.com.concrete.tentacle.extensions.validatePassword
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -43,7 +42,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val email = s.toString()
-                when (email.validaEmail(email)) {
+                when (email.validateEmail()) {
                     true -> views.tvErrorEmail.visibility = View.VISIBLE
                     false -> views.tvErrorEmail.visibility = View.GONE
                 }
@@ -57,7 +56,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val password = s.toString()
-                when (password.validaPassword(password)) {
+                when (password.validatePassword()) {
                     true -> views.tvErrorPassword.visibility = View.VISIBLE
                     false -> views.tvErrorPassword.visibility = View.GONE
                 }
@@ -114,7 +113,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         val email = views.edEmail.text.toString()
         val password = views.edPassword.text.toString()
 
-        val isOk = !email.validaEmail(email) && !password.validaPassword(password)
+        val isOk = !email.validateEmail() && !password.validatePassword()
 
         when (isOk) {
             true -> loginViewModel.loginUser(email, password)
