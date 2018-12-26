@@ -18,16 +18,13 @@
     <string name="city_error">Selecione uma cidade</string>
 
 
-    <string-array name="estados">
-        <item>PE</item>
-        <item>PB</item>
-        <item>RN</item>
+    <string-array name="states">
+        <item>-</item>
     </string-array>
 
-    <string-array name="cidades">
-        <item>Recife</item>
-        <item>Olinda</item>
-        <item>Jaboatão dos Guararapes</item>
+
+    <string-array name="cities">
+        <item>-</item>
     </string-array>
 
     <string name="ok">Ok</string>

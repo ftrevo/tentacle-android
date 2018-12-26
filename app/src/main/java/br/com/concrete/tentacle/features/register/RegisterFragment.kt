@@ -20,6 +20,7 @@ import br.com.concrete.tentacle.MainActivity
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.digits
 import br.com.concrete.tentacle.resError
 import kotlinx.android.synthetic.main.register_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -45,14 +46,10 @@ class RegisterFragment : Fragment() {
 
     private fun init() {
 
-        val statesInitials = ArrayList<String>()
         viewModelRegister.getStates().observe(this, Observer {
             states = it as ArrayList<State>
-            it.forEach { state ->
-                statesInitials.add(state.initials)
-            }
 
-            spState.adapter = ArrayAdapter<String>(context!!, R.layout.spinner_item_layout, statesInitials)
+            spState.adapter = ArrayAdapter<State>(context!!, R.layout.spinner_item_layout, states)
 
             spState.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
@@ -176,16 +173,15 @@ class RegisterFragment : Fragment() {
         }
 
         if (result) {
-            var user = User(
+            val user = User(
                 email = edtEmail.text.toString(),
                 name = edtUserName.text.toString(),
                 password = edtPassword.text.toString(),
-                phone = edtPhone.text.toString(),
+                phone = edtPhone.text.toString().digits(),
                 state = states[spState.selectedItemPosition-1],
                 city = cities[spCity.selectedItemPosition-1]
             )
 
-            Log.d("USER: ", user.toString())
             viewModelRegister.registerUser(user)
         }
     }

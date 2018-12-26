@@ -8,4 +8,8 @@ data class State(
     val _id: String = String(),
     var initials: String = String(),
     var name: String = String()
-) : Parcelable
+) : Parcelable {
+    override fun toString(): String {
+        return initials
+    }
+}
