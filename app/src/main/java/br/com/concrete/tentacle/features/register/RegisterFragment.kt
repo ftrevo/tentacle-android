@@ -25,13 +25,13 @@ import br.com.concrete.tentacle.resError
 import kotlinx.android.synthetic.main.register_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-
 class RegisterFragment : Fragment() {
 
     private var isPhoneValid = false
     private val viewModelRegister: RegisterUserViewModel by viewModel()
     private lateinit var states: ArrayList<State>
     private lateinit var cities: ArrayList<String>
+    private lateinit var views: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.register_fragment, container, false)
@@ -49,14 +49,19 @@ class RegisterFragment : Fragment() {
 
             when (viewState.status){
                 ViewStateModel.Status.LOADING -> {
-                    //TODO Create loading
+                    progressButton(true)
+                    enableField(false)
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     states = viewState.model as ArrayList<State>
                     spState.adapter = ArrayAdapter<State>(context!!, R.layout.spinner_item_layout, states)
+                    progressButton(false)
+                    enableField(true)
                 }
                 ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors!!.message)
+                    showError(viewState.errors!!.toString())
+                    progressButton(false)
+                    enableField(true)
                 }
             }
 
@@ -82,14 +87,19 @@ class RegisterFragment : Fragment() {
 
             when(viewState.status){
                 ViewStateModel.Status.LOADING -> {
-                    //TODO Create loading
+                    progressButton(true)
+                    enableField(false)
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     cities = viewState.model as ArrayList<String>
                     spCity.adapter = ArrayAdapter<String>(context!!, R.layout.spinner_item_layout, cities)
+                    progressButton(false)
+                    enableField(true)
                 }
                 ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors!!.message)
+                    showError(viewState.errors!!.message.toString())
+                    progressButton(false)
+                    enableField(true)
                 }
             }
         })
@@ -98,16 +108,21 @@ class RegisterFragment : Fragment() {
             //TODO REFACTOR TO EXACT VIEW
             when(viewState.status){
                 ViewStateModel.Status.LOADING -> {
-                    //TODO Create loading
+                    progressButton(true)
+                    enableField(false)
                 }
                 ViewStateModel.Status.SUCCESS -> {
+                    progressButton(false)
+                    enableField(true)
                     val mainActivity = Intent(activity, MainActivity::class.java)
                     mainActivity.putExtra(MainActivity.USER, viewState.model)
                     startActivity(mainActivity)
                     fragmentManager!!.beginTransaction().remove(this).commit()
                 }
                 ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors!!.message)
+                    showError(viewState.errors!!.message.toString())
+                    progressButton(false)
+                    enableField(true)
                 }
             }
         })
@@ -117,16 +132,19 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun showError(errors: List<String>){
-        var message = String()
-        errors.forEach{ eachMessage ->
-            message += ("\n" + eachMessage)
-        }
+    private fun enableField(enable: Boolean) {
+        edtEmail.isEnabled = enable
+        edtUserName.isEnabled = enable
+        edtPassword.isEnabled = enable
+        edtPhone.isEnabled = enable
+    }
+
+    private fun showError(errors: String){
 
         val alertDialog: AlertDialog? = activity?.let { fragment ->
             val builder = AlertDialog.Builder(fragment)
             builder.setTitle(R.string.error_dialog_title)
-            builder.setMessage(message)
+            builder.setMessage(errors)
             builder.apply {
                 setPositiveButton(R.string.ok
                 ) { dialog, id ->
@@ -171,7 +189,7 @@ class RegisterFragment : Fragment() {
         var result = true
         clearErrors()
 
-        if (!edtEmail.text.toString().validateEmail()) {
+        if (edtEmail.text.toString().validateEmail()) {
             tilEmail.resError(R.string.email_error)
             result = false
         }
@@ -213,5 +231,9 @@ class RegisterFragment : Fragment() {
 
             viewModelRegister.registerUser(user)
         }
+    }
+
+    private fun progressButton(enable: Boolean) {
+        btnCreateAccount?.isLoading(enable)
     }
 }

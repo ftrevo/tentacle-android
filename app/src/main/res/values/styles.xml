@@ -69,16 +69,14 @@
     <style name="StyleLabelLogin" parent="TextColorWhiteBold">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/sizeLabel</item>
-        <item name="android:layout_margin">@dimen/marginBorder</item>
-        <item name="android:layout_marginEnd">@dimen/marginBorder</item>
-        <item name="android:layout_marginStart">@dimen/marginBorder</item>
+        <item name="android:layout_marginTop">20dp</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="StyleEditText" parent="Widget.Design.TextInputLayout">
         <item name="android:background">@drawable/shape_border_rounded_white</item>
-        <item name="android:layout_marginEnd">@dimen/marginBorder</item>
-        <item name="android:layout_marginStart">@dimen/marginBorder</item>
+        <item name="android:layout_marginEnd">50dp</item>
+        <item name="android:layout_marginStart">50dp</item>
         <item name="android:padding">@dimen/paddingEditText</item>
     </style>
 
@@ -86,18 +84,15 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:minHeight">@dimen/minHeight</item>
         <item name="android:background">@drawable/shape_border_rounded_blue</item>
-        <item name="android:layout_marginEnd">@dimen/marginBorder</item>
-        <item name="android:layout_marginStart">@dimen/marginBorder</item>
+        <item name="android:layout_marginEnd">50dp</item>
+        <item name="android:layout_marginStart">50dp</item>
         <item name="android:layout_marginTop">@dimen/marginBorderTop</item>
-        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="TextErrorMessage">
         <!--<item name="android:textColor">@color/colorAccent</item>-->
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/sizeLabelErrorMessage</item>
-        <item name="android:layout_marginEnd">@dimen/marginBorder</item>
-        <item name="android:layout_marginStart">@dimen/marginBorder</item>
     </style>
 
     <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
