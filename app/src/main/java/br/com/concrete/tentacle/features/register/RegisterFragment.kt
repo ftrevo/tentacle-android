@@ -1,13 +1,11 @@
 package br.com.concrete.tentacle.features.register
 
+import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,8 +19,8 @@ import br.com.concrete.tentacle.extensions.digits
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.MainActivity
-import br.com.concrete.tentacle.resError
 import kotlinx.android.synthetic.main.register_fragment.*
+import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -30,8 +28,14 @@ class RegisterFragment : Fragment() {
 
     private var isPhoneValid = false
     private val viewModelRegister: RegisterUserViewModel by viewModel()
-    private lateinit var states: ArrayList<State>
-    private lateinit var cities: ArrayList<String>
+    private var states: ArrayList<State>? = null
+    private var cities: ArrayList<String>? = null
+
+    private lateinit var dialogState: SpinnerDialog
+    private lateinit var dialogCity: SpinnerDialog
+
+    private var stateSelected: State? = null
+    private var citySelected: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.register_fragment, container, false)
@@ -53,27 +57,28 @@ class RegisterFragment : Fragment() {
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     states = viewState.model as ArrayList<State>
-                    spState.adapter = ArrayAdapter<State>(context!!, R.layout.spinner_item_layout, states)
+                    val statesList = states?.map{
+                        it.initials
+                    }
+                    dialogState = SpinnerDialog(activity!!, statesList as ArrayList<String>,
+                        getString(R.string.state_dialog_text), getString(R.string.dialog_close))
+                    initDialogStateBind()
+
                 }
                 ViewStateModel.Status.ERROR -> {
                     showError(viewState.errors!!.message)
                 }
             }
 
-            spState.onItemSelectedListener = object : OnItemSelectedListener {
-                override fun onItemSelected(
-                    parentView: AdapterView<*>,
-                    selectedItemView: View,
-                    position: Int,
-                    id: Long
-                ) {
-                    if (position != -1) {
-                        viewModelRegister.loadCities(states[position]._id)
-                    }
+            spState.setOnClickListener {
+                states?.let{
+                    dialogState.showSpinerDialog()
                 }
+            }
 
-                override fun onNothingSelected(parentView: AdapterView<*>) {
-
+            spCity.setOnClickListener {
+                cities?.let {
+                    dialogCity.showSpinerDialog()
                 }
             }
         })
@@ -86,7 +91,9 @@ class RegisterFragment : Fragment() {
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     cities = viewState.model as ArrayList<String>
-                    spCity.adapter = ArrayAdapter<String>(context!!, R.layout.spinner_item_layout, cities)
+                    dialogCity = SpinnerDialog(activity!!, cities, getString(R.string.city_dialog_text),
+                        getString(R.string.dialog_close))
+                    initDialogCityBind()
                 }
                 ViewStateModel.Status.ERROR -> {
                     showError(viewState.errors!!.message)
@@ -142,7 +149,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun initPhoneValidate() {
-        edtPhone.addTextChangedListener(TelefoneTextWatcher(object : EventoDeValidacao {
+        edtPhone.edt.addTextChangedListener(TelefoneTextWatcher(object : EventoDeValidacao {
             override fun totalmenteValido(valorAtual: String?) {
                 isPhoneValid = true
             }
@@ -159,59 +166,76 @@ class RegisterFragment : Fragment() {
     }
 
     private fun clearErrors() {
-        tilEmail.error = null
-        tilUserName.error = null
-        tilPassword.error = null
-        tilPhone.error = null
-        spState.error = null
-        spCity.error = null
+        edtEmail.showError(false)
+        edtUserName.showError(false)
+        edtPassword.showError(false)
+        edtPhone.showError(false)
+        spState.showError(false)
+        spCity.showError(false)
     }
 
     private fun performValidation() {
         var result = true
         clearErrors()
 
-        if (!edtEmail.text.toString().validateEmail()) {
-            tilEmail.resError(R.string.email_error)
+        if (!edtEmail.getText().validateEmail()) {
+            edtEmail.showError(true)
             result = false
         }
 
-        if (result && edtUserName.text.toString().isBlank()) {
-            tilUserName.resError(R.string.name_error)
+        if (result && edtUserName.getText().isBlank()) {
+            edtUserName.showError(true)
             result = false
         }
 
-        if (result && edtPassword.text.toString().validatePassword()) {
-            tilPassword.resError(R.string.password_error)
+        if (result && !edtPassword.getText().validatePassword()) {
+            edtPassword.showError(true)
             result = false
         }
 
         if (result && !isPhoneValid) {
-            tilPhone.resError(R.string.phone_error)
+            edtPhone.showError(true)
             result = false
         }
 
-        if (result && spState.selectedItemId == 0L) {
-            spState.setError(R.string.state_error)
+        if (result && stateSelected == null ) {
+            spState.showError(true)
             result = false
         }
 
-        if (result && spCity.selectedItemId == 0L) {
-            spCity.setError(R.string.city_error)
+        if (result && citySelected == null) {
+            spCity.showError(true)
             result = false
         }
 
         if (result) {
             val user = User(
-                email = edtEmail.text.toString(),
-                name = edtUserName.text.toString(),
-                password = edtPassword.text.toString(),
-                phone = edtPhone.text.toString().digits(),
-                state = states[spState.selectedItemPosition-1],
-                city = cities[spCity.selectedItemPosition-1]
+                email = edtEmail.getText(),
+                name = edtUserName.getText(),
+                password = edtPassword.getText(),
+                phone = edtPhone.getText().digits(),
+                state = stateSelected!!,
+                city = citySelected!!
             )
 
             viewModelRegister.registerUser(user)
+        }
+    }
+
+    private fun initDialogStateBind(){
+        dialogState.bindOnSpinerListener { _, position ->
+            stateSelected = states!![position]
+            stateSelected?.let { state->
+                viewModelRegister.loadCities(state._id)
+                spState.setText(state.initials)
+            }
+        }
+    }
+
+    private fun initDialogCityBind(){
+        dialogCity.bindOnSpinerListener { _, position ->
+            citySelected = cities!![position]
+            spCity.setText(citySelected!!)
         }
     }
 }

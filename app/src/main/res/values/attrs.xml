@@ -7,4 +7,11 @@
         <attr name="textColorButton" format="string"/>
     </declare-styleable>
 
+
+    <declare-styleable name="TentacleLabeledWidget">
+        <attr name="label" format="reference"/>
+        <attr name="errorLabel" format="reference"/>
+        <attr name="android:imeOptions"/>
+        <attr name="android:inputType"/>
+    </declare-styleable>
 </resources>

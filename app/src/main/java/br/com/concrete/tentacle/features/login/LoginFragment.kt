@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
@@ -18,8 +18,8 @@ import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.register.RegisterActivity
-import br.com.concrete.tentacle.features.register.RegisterFragment
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(), View.OnClickListener {
@@ -28,7 +28,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private lateinit var views: View
 
     private val viewModel: LoginViewModel by viewModel()
-    private lateinit var progressBar: ProgressBar
 
 
     override fun onCreateView(
@@ -39,30 +38,32 @@ class LoginFragment : Fragment(), View.OnClickListener {
         views.btLogin.setOnClickListener(this)
         views.tvRegisterAccount.setOnClickListener(this)
 
-        views.edEmail.addTextChangedListener(object : TextWatcher {
+        views.edtEmail.edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val email = s.toString()
-                when (email.validateEmail()) {
-                    true -> views.tvErrorEmail.visibility = View.VISIBLE
-                    false -> views.tvErrorEmail.visibility = View.GONE
+                if(email.isNotEmpty()){
+                    views.edtEmail.showError(!email.validateEmail())
+                }else{
+                    views.edtEmail.showError(false)
                 }
             }
         })
 
-        views.edPassword.addTextChangedListener(object : TextWatcher {
+        views.edtPassword.edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val password = s.toString()
-                when (password.validatePassword()) {
-                    true -> views.tvErrorPassword.visibility = View.VISIBLE
-                    false -> views.tvErrorPassword.visibility = View.GONE
+                if(password.isNotEmpty()){
+                    views.edtPassword.showError(!password.validatePassword())
+                }else{
+                    views.edtPassword.showError(false)
                 }
             }
         })
@@ -114,15 +115,15 @@ class LoginFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun showRegisterAccount(){
+    private fun showRegisterAccount(){ val t : EditText
         startActivity(Intent(context, RegisterActivity::class.java))
     }
 
     private fun handleLogin() {
-        val email = views.edEmail.text.toString()
-        val password = views.edPassword.text.toString()
+        val email = views.edtEmail.getText()
+        val password = views.edtPassword.getText()
 
-        val isOk = !email.validateEmail() && !password.validatePassword()
+        val isOk = email.validateEmail() && password.validatePassword()
 
         when (isOk) {
             true -> loginViewModel.loginUser(email, password)
@@ -132,8 +133,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
 
     private fun enableField(enableField: Boolean) {
-        views.edEmail.isEnabled = enableField
-        views.edPassword.isEnabled = enableField
+        views.edtEmail.isEnabled = enableField
+        views.edtPassword.isEnabled = enableField
     }
 
 }

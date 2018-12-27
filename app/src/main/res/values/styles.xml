@@ -34,14 +34,9 @@
     </style>
 
 
-    <style name="MaterialSpinnerStyle">
-        <item name="android:popupBackground">@color/bgColor</item>
-        <item name="ms_multiline">false</item>
-        <item name="ms_arrowColor">@color/textHint</item>
-        <item name="ms_arrowSize">16dp</item>
-        <item name="ms_floatingLabelColor">@color/textHint</item>
-        <item name="ms_baseColor">@color/textHint</item>
-        <item name="ms_highlightColor">@android:color/white</item>
+    <style name="ButtonSpinnerStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/shape_border_rounded_white</item>
+
     </style>
 
     <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -77,8 +72,8 @@
 
     <style name="StyleEditText" parent="Widget.Design.TextInputLayout">
         <item name="android:background">@drawable/shape_border_rounded_white</item>
-        <item name="android:layout_marginEnd">@dimen/marginBorder</item>
-        <item name="android:layout_marginStart">@dimen/marginBorder</item>
+        <!--<item name="android:layout_marginEnd">@dimen/marginBorder</item>-->
+        <!--<item name="android:layout_marginStart">@dimen/marginBorder</item>-->
         <item name="android:padding">@dimen/paddingEditText</item>
     </style>
 
