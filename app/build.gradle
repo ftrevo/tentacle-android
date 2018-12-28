@@ -51,6 +51,9 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
+    androidTestImplementation "androidx.test:runner:$androidxTest"
+    androidTestImplementation "androidx.test:rules:$androidxTest"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"
