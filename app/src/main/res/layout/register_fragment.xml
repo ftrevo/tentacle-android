@@ -118,6 +118,8 @@
                 app:textSizeButton="18"
                 app:buttonName="@string/create_account"
                 app:textColorButton="@android:color/white"
+                android:layout_marginEnd="@dimen/marginBorder"
+                android:layout_marginStart="@dimen/marginBorder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spState"/>
