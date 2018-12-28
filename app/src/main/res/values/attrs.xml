@@ -5,6 +5,7 @@
         <attr name="buttonName" format="string"/>
         <attr name="progressBarColor" format="string"/>
         <attr name="textColorButton" format="string"/>
+        <attr name="textSizeButton" format="float"/>
     </declare-styleable>
 
 
