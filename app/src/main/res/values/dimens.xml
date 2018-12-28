@@ -27,5 +27,8 @@
     <dimen name="paddingEditText">5dp</dimen>
     <dimen name="paddingClickTextView">7dp</dimen>
 
+    <!-- Custom EditText -->
+    <dimen name="paddingTentacleEditText">5dp</dimen>
+
 </resources>
 

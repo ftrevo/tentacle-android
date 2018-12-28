@@ -41,10 +41,8 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraitLayout"
 
     //UI Components
-    //https://github.com/ganfra/MaterialSpinner
-    implementation ('com.github.ganfra:material-spinner:2.0.0'){
-        exclude group: 'androidx.appcompat', module: 'appcompat'
-    }
+    //https://github.com/MdFarhanRaja/SearchableSpinner
+    implementation 'com.github.MdFarhanRaja:SearchableSpinner:1.9'
 
     //Test
     testImplementation "junit:junit:$junit"

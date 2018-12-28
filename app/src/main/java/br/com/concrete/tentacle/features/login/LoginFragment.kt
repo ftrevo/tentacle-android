@@ -18,11 +18,14 @@ import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(), View.OnClickListener {
 
     private val loginViewModel: LoginViewModel by viewModel()
+    private lateinit var views: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -39,30 +42,33 @@ class LoginFragment : Fragment(), View.OnClickListener {
         btLogin.setOnClickListener(this)
         tvRegisterAccount.setOnClickListener(this)
 
-        edEmail.addTextChangedListener(object : TextWatcher {
+        edtEmail.edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val email = s.toString()
-                when (email.validateEmail()) {
-                    true -> tvErrorEmail.visibility = View.VISIBLE
-                    false -> tvErrorEmail.visibility = View.GONE
+                if(email.isNotEmpty()){
+                    views.edtEmail.showError(!email.validateEmail())
+                }else{
+                    views.edtEmail.showError(false)
                 }
             }
         })
 
-        edPassword.addTextChangedListener(object : TextWatcher {
+
+        edtPassword.edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val password = s.toString()
-                when (password.validatePassword()) {
-                    true -> tvErrorPassword.visibility = View.VISIBLE
-                    false -> tvErrorPassword.visibility = View.GONE
+                if(password.isNotEmpty()){
+                    views.edtPassword.showError(!password.validatePassword())
+                }else{
+                    views.edtPassword.showError(false)
                 }
             }
         })
@@ -103,10 +109,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun handleLogin() {
-        val email = edEmail.text.toString()
-        val password = edPassword.text.toString()
 
-        val isOk = !email.validateEmail() && !password.validatePassword()
+        val email = edtEmail.getText()
+        val password = edtPassword.getText()
+
+        val isOk = email.validateEmail() && password.validatePassword()
 
         when (isOk) {
             true -> loginViewModel.loginUser(email, password)
@@ -115,8 +122,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun enableField(enableField: Boolean) {
-        edEmail.isEnabled = enableField
-        edPassword.isEnabled = enableField
+        edtEmail.edt.isEnabled = enableField
+        edtPassword.edt.isEnabled = enableField
     }
 
 }

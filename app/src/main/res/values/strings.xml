@@ -45,4 +45,9 @@
     <string name="button">Button</string>
     <string name="register_account">Registrar conta</string>
 
+    <string name="state_dialog_text">Selecione ou pesquise o estado</string>
+    <string name="city_dialog_text">Selecione ou pesquise a cidade</string>
+    <string name="dialog_close">Fechar</string>
+    <string name="state_city_hint">Selecione</string>
+
 </resources>
