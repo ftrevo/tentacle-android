@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import br.com.concrete.canarinho.watcher.TelefoneTextWatcher
 import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.ViewStateModel
@@ -43,74 +45,83 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        initStatesObservable()
+        initCitiesObservable()
+        initUserObservable()
+        initButtonClicks()
         initPhoneValidate()
     }
 
-    private fun init() {
+    private fun initSpinClick(){
+        spState.setOnClickListener {
+            states?.let{
+                dialogState.showSpinerDialog()
 
+            }
+        }
+
+        spCity.setOnClickListener {
+            cities?.let {
+                dialogCity.showSpinerDialog()
+            }
+        }
+    }
+
+    private fun initStatesObservable(){
         viewModelRegister.getStates().observe(this, Observer { viewState ->
-
             when (viewState.status){
                 ViewStateModel.Status.LOADING -> {
                     progressButton(true)
                     enableField(false)
                 }
                 ViewStateModel.Status.SUCCESS -> {
-                    states = viewState.model as ArrayList<State>
-                    val statesList = states?.map{
-                        it.initials
+                    states = viewState.model
+                    val statesList: ArrayList<String> = ArrayList()
+                    states?.map{
+                        statesList.add(it.initials)
                     }
-                    dialogState = SpinnerDialog(activity!!, statesList as ArrayList<String>,
+                    dialogState = SpinnerDialog(activity!!, statesList,
                         getString(R.string.state_dialog_text), getString(R.string.dialog_close))
                     initDialogStateBind()
                     progressButton(false)
                     enableField(true)
                 }
                 ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors!!.toString())
+                    showError(viewState.errors)
                     progressButton(false)
                     enableField(true)
                 }
             }
 
-            spState.setOnClickListener {
-                states?.let{
-                    dialogState.showSpinerDialog()
-                }
-            }
-
-            spCity.setOnClickListener {
-                cities?.let {
-                    dialogCity.showSpinerDialog()
-                }
-            }
+            initSpinClick()
         })
+    }
 
+    private fun initCitiesObservable(){
         viewModelRegister.getCities().observe(this, Observer { viewState ->
-
             when(viewState.status){
                 ViewStateModel.Status.LOADING -> {
                     progressButton(true)
                     enableField(false)
                 }
                 ViewStateModel.Status.SUCCESS -> {
-                    cities = viewState.model as ArrayList<String>
+                    cities = viewState.model
                     dialogCity = SpinnerDialog(activity!!, cities, getString(R.string.city_dialog_text),
                         getString(R.string.dialog_close))
                     initDialogCityBind()
                     progressButton(false)
                 }
                 ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors!!.message.toString())
+                    showError(viewState.errors)
                     progressButton(false)
                     enableField(true)
                 }
             }
         })
+    }
 
+    private fun initUserObservable() {
         viewModelRegister.getUser().observe(this, Observer { viewState ->
-            //TODO REFACTOR TO EXACT VIEW
             when(viewState.status){
                 ViewStateModel.Status.LOADING -> {
                     progressButton(true)
@@ -119,19 +130,26 @@ class RegisterFragment : Fragment() {
                 ViewStateModel.Status.SUCCESS -> {
                     progressButton(false)
                     enableField(true)
-                    val mainActivity = Intent(activity, MainActivity::class.java)
-                    mainActivity.putExtra(MainActivity.USER, viewState.model)
-                    startActivity(mainActivity)
-                    fragmentManager!!.beginTransaction().remove(this).commit()
+                    goTo(viewState.model!!)
                 }
                 ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors!!.message.toString())
+                    showError(viewState.errors)
                     progressButton(false)
                     enableField(true)
                 }
             }
         })
+    }
 
+    private fun goTo(user: User){
+        //TODO REFACTOR TO EXACT VIEW
+        val mainActivity = Intent(activity, MainActivity::class.java)
+        mainActivity.putExtra(MainActivity.USER, user)
+        startActivity(mainActivity)
+        fragmentManager!!.beginTransaction().remove(this).commit()
+    }
+
+    private fun initButtonClicks(){
         btnCreateAccount.setOnClickListener {
             performValidation()
         }
@@ -144,24 +162,25 @@ class RegisterFragment : Fragment() {
         edtPhone.isEnabled = enable
     }
 
-    private fun showError(errors: String){
-
-        val alertDialog: AlertDialog? = activity?.let { fragment ->
-            val builder = AlertDialog.Builder(fragment)
-            builder.setTitle(R.string.error_dialog_title)
-            builder.setMessage(errors)
-            builder.apply {
-                setPositiveButton(R.string.ok
-                ) { dialog, id ->
-                    dialog.dismiss()
+    private fun showError(errors: ErrorResponse?){
+        if(errors != null){
+            val ers = errors!!.toString()
+            val alertDialog: AlertDialog? = activity?.let { fragment ->
+                val builder = AlertDialog.Builder(fragment)
+                builder.setTitle(R.string.error_dialog_title)
+                builder.setMessage(ers)
+                builder.apply {
+                    setPositiveButton(R.string.ok
+                    ) { dialog, id ->
+                        dialog.dismiss()
+                    }
                 }
+
+                builder.create()
             }
 
-            // Create the AlertDialog
-            builder.create()
+            alertDialog?.show()
         }
-
-        alertDialog?.show()
     }
 
     private fun initPhoneValidate() {
@@ -240,18 +259,22 @@ class RegisterFragment : Fragment() {
 
     private fun initDialogStateBind(){
         dialogState.bindOnSpinerListener { _, position ->
-            stateSelected = states!![position]
-            stateSelected?.let { state->
-                viewModelRegister.loadCities(state._id)
-                spState.setText(state.initials)
+            if(states != null){
+                stateSelected = states!![position]
+                stateSelected?.let { state->
+                    viewModelRegister.loadCities(state._id)
+                    spState.setText(state.initials)
+                }
             }
         }
     }
 
     private fun initDialogCityBind() {
         dialogCity.bindOnSpinerListener { _, position ->
-            citySelected = cities!![position]
-            spCity.setText(citySelected!!)
+            if(cities != null){
+                citySelected = cities!![position]
+                spCity.setText(citySelected!!)
+            }
         }
     }
     private fun progressButton(enable: Boolean) {

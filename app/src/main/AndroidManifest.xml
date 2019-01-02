@@ -2,12 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="br.com.concrete.tentacle">
-
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-
-
     <application
             android:name=".base.AppTentacle"
             android:allowBackup="true"
@@ -23,14 +19,11 @@
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity android:name=".features.register.RegisterActivity"
                   android:theme="@style/AppThemeNoActionBar"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
     </application>
-
 </manifest>

@@ -11,8 +11,8 @@ import br.com.concrete.tentacle.data.repositories.UserRepositoryContract
 class RegisterUserViewModel(private val userRepositoryContract: UserRepositoryContract) :
     BaseViewModel() {
 
-    private val viewStateState: MutableLiveData<ViewStateModel<List<State>>> = MutableLiveData()
-    private val viewStateCity: MutableLiveData<ViewStateModel<List<String>>> = MutableLiveData()
+    private val viewStateState: MutableLiveData<ViewStateModel<ArrayList<State>>> = MutableLiveData()
+    private val viewStateCity: MutableLiveData<ViewStateModel<ArrayList<String>>> = MutableLiveData()
     private val viewStateUser: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
 
     init {
@@ -46,7 +46,7 @@ class RegisterUserViewModel(private val userRepositoryContract: UserRepositoryCo
     fun loadCities(stateId: String){
         viewStateCity.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         userRepositoryContract.getCities(stateId, {base ->
-            viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.cities))
+            viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.cities as ArrayList<String>))
         }, {
             viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
         })
@@ -55,7 +55,7 @@ class RegisterUserViewModel(private val userRepositoryContract: UserRepositoryCo
     private fun loadStates(){
         viewStateState.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         userRepositoryContract.getStates({base ->
-            viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list))
+            viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list as ArrayList<State>))
         },{
             viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
         })
