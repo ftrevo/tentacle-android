@@ -11,6 +11,4 @@ data class UserRequest(
     val password: String = String(),
     val state: String = String(),
     val city: String = String()
-) : Parcelable {
-
-}
+) : Parcelable
