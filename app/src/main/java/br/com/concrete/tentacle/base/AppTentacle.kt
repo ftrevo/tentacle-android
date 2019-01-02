@@ -7,7 +7,7 @@ import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
-import br.com.concrete.tentacle.di.*
+import br.com.concrete.tentacle.di.sharedPreferencesModule
 import org.koin.android.ext.android.startKoin
 
 class AppTentacle : Application() {
