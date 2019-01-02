@@ -1,6 +1,10 @@
 package br.com.concrete.tentacle.data.repositories
 
-import br.com.concrete.tentacle.data.models.*
+import br.com.concrete.tentacle.data.models.BaseModel
+import br.com.concrete.tentacle.data.models.CityResponse
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.UserRequest
+import br.com.concrete.tentacle.data.models.StateResponse
 
 interface UserRepositoryContract {
 
@@ -16,5 +20,4 @@ interface UserRepositoryContract {
                   error: (Throwable) -> Unit)
 
     fun disposeAll()
-
 }

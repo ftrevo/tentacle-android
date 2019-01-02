@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.data.network
 
-
 import br.com.concrete.tentacle.data.models.*
 import io.reactivex.Flowable
 import io.reactivex.Observable

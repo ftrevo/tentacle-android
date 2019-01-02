@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.di
 
 import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.data.network.ApiService
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,16 +17,6 @@ private const val READ_TIMEOUT = 30L
 const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
-
-//    factory {
-//        val httpLoggingInterceptor = HttpLoggingInterceptor()
-//
-//        if (BuildConfig.DEBUG) {
-//            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-//        } else {
-//            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
-//        }
-//    }
 
     single {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
@@ -58,5 +47,4 @@ val networkModule = module {
         val retrofit: Retrofit = get()
         retrofit.create<ApiService>(ApiService::class.java)
     }
-
 }

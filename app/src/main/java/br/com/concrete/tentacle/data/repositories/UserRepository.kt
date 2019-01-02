@@ -4,9 +4,9 @@ import br.com.concrete.tentacle.data.models.*
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-
 
 class UserRepository(private val apiService: ApiService): UserRepositoryContract {
     override fun registerUser(userRequest: UserRequest, success: (BaseModel<User>) -> Unit, error: (Throwable) -> Unit) {
@@ -59,15 +59,10 @@ class UserRepository(private val apiService: ApiService): UserRepositoryContract
         this.disposables.add(disposable)
     }
 
-    private var disposables: ArrayList<Disposable> = ArrayList<Disposable>()
-
+    private var disposables: CompositeDisposable = CompositeDisposable()
 
     override fun disposeAll() {
-        this.disposables.forEach{disposable ->
-            disposable.dispose()
-        }
+        disposables.clear()
     }
-
-
 }
 
