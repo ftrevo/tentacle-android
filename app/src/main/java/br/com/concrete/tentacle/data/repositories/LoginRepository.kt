@@ -4,6 +4,7 @@ import android.util.Log
 import br.com.concrete.tentacle.data.models.RequestLogin
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.network.ApiService
+import br.com.concrete.tentacle.utils.LogWrapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -28,7 +29,7 @@ class LoginRepository(private val apiRest: ApiService) {
                     onError((it as HttpException).response().errorBody()?.string()!!)
                 },
                 {
-                    Log.d("LOGIN-USER", "On login complete")
+                    LogWrapper.log("LOGIN-USER", "On login complete")
                 }
             )
         disposableList.add(disposable)

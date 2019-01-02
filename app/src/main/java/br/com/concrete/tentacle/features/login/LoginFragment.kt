@@ -17,6 +17,7 @@ import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.register.RegisterActivity
+import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
@@ -77,7 +78,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
             viewState?.let {
                 when(viewState.status) {
                     ViewStateModel.Status.SUCCESS -> {
-                        Log.d("LOGIN-SUCCESS", "User logged")
+                        LogWrapper.log("LOGIN-SUCCESS", "User logged")
                         btLogin.isLoading(false)
                         enableField(true)
                     }
@@ -86,7 +87,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                         enableField(false)
                     }
                     ViewStateModel.Status.ERROR -> {
-                        Log.d("LOGIN-ERROR", "User logged")
+                        LogWrapper.log("LOGIN-ERROR", "User logged")
                         btLogin.isLoading(false)
                         enableField(true)
                         context?.callSnackbar(view!!, it.errors.toString())
