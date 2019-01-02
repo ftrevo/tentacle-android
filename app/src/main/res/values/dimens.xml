@@ -30,5 +30,7 @@
     <!-- Custom EditText -->
     <dimen name="paddingTentacleEditText">5dp</dimen>
 
+    <item name="defaultTextSize" format="float"  type="dimen">14F</item>
+
 </resources>
 
