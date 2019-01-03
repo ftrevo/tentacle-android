@@ -2,21 +2,14 @@ package br.com.concrete.tentacle.data.repositories
 
 import br.com.concrete.tentacle.base.BaseTest
 import br.com.concrete.tentacle.data.models.BaseModel
-import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.RequestLogin
 import br.com.concrete.tentacle.data.models.Session
 import io.reactivex.Flowable
-import io.reactivex.observers.TestObserver
 import io.reactivex.subscribers.TestSubscriber
 import junit.framework.Assert.assertEquals
-import okhttp3.MediaType
-import okhttp3.ResponseBody
-import org.junit.Assert
 import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mockito
-import retrofit2.HttpException
-import retrofit2.Response
 
 class LoginRepositoryTest: BaseTest(){
 

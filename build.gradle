@@ -43,7 +43,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$buildGradle"
+        classpath "com.android.tools.build:gradle:3.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:$junit5Dependency"
         classpath "org.jacoco:org.jacoco.core:$jacobVersion"
@@ -56,7 +56,12 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/'
+        }
     }
 }
 

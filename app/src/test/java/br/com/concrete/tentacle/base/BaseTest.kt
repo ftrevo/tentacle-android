@@ -6,7 +6,10 @@ import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
 import br.com.concrete.tentacle.rules.RxImmediateSchedulerRule
-import org.junit.*
+import org.junit.After
+import org.junit.Before
+import org.junit.Ignore
+import org.junit.Rule
 import org.junit.runner.RunWith
 import org.koin.standalone.StandAloneContext
 import org.koin.test.KoinTest
