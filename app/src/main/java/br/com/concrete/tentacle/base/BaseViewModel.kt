@@ -16,11 +16,16 @@ abstract class BaseViewModel : ViewModel(){
 
         when(error){
             is HttpException -> {
-                errorResponse = gson.fromJson(
-                    error.response().errorBody()!!.charStream(),
-                    ErrorResponse::class.java)
+                when(error.code()) {
+                    400 -> errorResponse = gson.fromJson(
+                        error.response().errorBody()!!.charStream(),
+                        ErrorResponse::class.java)
+                    401 -> {
+                        //TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
+                    }
+                    else -> errorResponse.message.add("Not Know Error.")
+                }
             }
-
             is IOException -> {
                 errorResponse.message.add("No Internet Connection.")
                 LogWrapper.log("ERROR TAG: ", "No Internet Connection.")

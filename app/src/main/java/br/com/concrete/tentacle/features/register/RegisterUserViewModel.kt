@@ -6,14 +6,16 @@ import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.repositories.UserRepositoryContract
+import br.com.concrete.tentacle.data.repositories.UserRepository
+import io.reactivex.disposables.CompositeDisposable
 
-class RegisterUserViewModel(private val userRepositoryContract: UserRepositoryContract) :
+class RegisterUserViewModel(private val userRepository: UserRepository) :
     BaseViewModel() {
 
     private val viewStateState: MutableLiveData<ViewStateModel<ArrayList<State>>> = MutableLiveData()
     private val viewStateCity: MutableLiveData<ViewStateModel<ArrayList<String>>> = MutableLiveData()
     private val viewStateUser: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
+    private val disposables = CompositeDisposable()
 
     init {
         loadStates()
@@ -36,33 +38,33 @@ class RegisterUserViewModel(private val userRepositoryContract: UserRepositoryCo
         )
 
         viewStateUser.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        userRepositoryContract.registerUser(userRequest, {base ->
+        disposables.add(userRepository.registerUser(userRequest).subscribe({base ->
             viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
         }, {
             viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
-        })
+        }))
     }
 
     fun loadCities(stateId: String){
         viewStateCity.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        userRepositoryContract.getCities(stateId, {base ->
+        disposables.add(userRepository.getCities(stateId).subscribe({base ->
             viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.cities as ArrayList<String>))
         }, {
             viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
-        })
+        }))
     }
 
     private fun loadStates(){
         viewStateState.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        userRepositoryContract.getStates({base ->
+        disposables.add(userRepository.getStates().subscribe({base ->
             viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list as ArrayList<State>))
         },{
             viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
-        })
+        }))
     }
 
     override fun onCleared() {
-        userRepositoryContract.disposeAll()
+        disposables.dispose()
         super.onCleared()
     }
 }
