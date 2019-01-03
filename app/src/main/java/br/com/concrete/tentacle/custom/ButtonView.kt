@@ -3,13 +3,13 @@ package br.com.concrete.tentacle.custom
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.extensions.getFloatFromRes
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import kotlinx.android.synthetic.main.button_custom.view.*
-
-private const val DEFAULT_SIZE_BUTTON = 14F
 
 class ButtonView(
         context: Context,
@@ -30,7 +30,7 @@ class ButtonView(
         ){
             buttonName = getString(R.styleable.ButtonView_buttonName)
             textColor = getString(R.styleable.ButtonView_textColorButton)
-            textSize = getFloat(R.styleable.ButtonView_textSizeButton, DEFAULT_SIZE_BUTTON)
+            textSize = getFloat(R.styleable.ButtonView_textSizeButton, context.getFloatFromRes(R.dimen.defaultTextSize))
 
             labelCustomView(buttonName, textColor, textSize)
         }
