@@ -10,11 +10,13 @@ import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.LoginRepository
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import br.com.concrete.tentacle.utils.LogWrapper
 import retrofit2.HttpException
 
-class LoginViewModel(private val repository: LoginRepository, private val sharedPrefRepository: SharedPrefRepository) :
-    BaseViewModel(), LifecycleObserver {
+class LoginViewModel(private val repository: LoginRepository,
+                     private val sharedPrefRepository: SharedPrefRepository)
+    : BaseViewModel(), LifecycleObserver {
 
     private val stateModel: MutableLiveData<ViewStateModel<Session>> = MutableLiveData()
 
@@ -23,7 +25,7 @@ class LoginViewModel(private val repository: LoginRepository, private val shared
         stateModel.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         repository.loginUser(email, password).subscribe(
             { base ->
-                sharedPrefRepository.saveSession("USER_SESSION", base.data)
+                sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, base.data)
                 stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
             },
             {

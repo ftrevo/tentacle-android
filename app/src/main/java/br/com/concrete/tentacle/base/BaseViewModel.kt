@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.base
 
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.utils.LogWrapper
@@ -7,7 +8,7 @@ import com.google.gson.GsonBuilder
 import retrofit2.HttpException
 import java.io.IOException
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     protected fun notKnownError(error: Throwable): ErrorResponse {
 

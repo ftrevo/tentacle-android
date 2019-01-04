@@ -14,6 +14,18 @@
     <dimen name="minHeight">30dp</dimen>
     <dimen name="imageLogo">50dp</dimen>
 
+    <dimen name="dp_0">0dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_25">25dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_80">80dp</dimen>
+    <dimen name="dp_160">160dp</dimen>
+
+    <dimen name="sp_22">22sp</dimen>
+
     <!--TextSize-->
     <dimen name="sizeLabelOla">20sp</dimen>
     <dimen name="sizeButton">12sp</dimen>
@@ -21,9 +33,11 @@
     <dimen name="sizeLabelMessage">14sp</dimen>
     <dimen name="sizeLabelErrorMessage">11sp</dimen>
     <dimen name="sizeTextInputLayoutTextAppearance">12sp</dimen>
+    <dimen name="textSizeButton">18</dimen>
 
     <!--Alpha-->
     <dimen name="alphaImageLogo">0.3</dimen>
+    <dimen name="alpha_2">0.2</dimen>
 
     <!--Padding EditText-->
     <dimen name="paddingEditText">5dp</dimen>

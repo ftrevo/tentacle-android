@@ -16,20 +16,20 @@ class UserRepository(private val apiService: ApiService) {
 
         return apiService.registerUser(userRequest)
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
     }
 
     fun getCities(stateId: String): Observable<BaseModel<CityResponse>> {
         return apiService.getCities(stateId)
             .cache()
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
     }
 
     fun getStates(): Observable<BaseModel<StateResponse>> {
         return apiService.getStates()
             .cache()
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
     }
 }

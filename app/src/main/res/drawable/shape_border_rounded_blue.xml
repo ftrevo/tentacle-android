@@ -6,10 +6,10 @@
             android:startColor="@color/colorButtonBlue"
             android:angle="270" />
     <corners
-            android:radius="5dp" />
+            android:radius="@dimen/dp_5" />
     <padding
-            android:left="10dp"
-            android:top="10dp"
-            android:right="10dp"
-            android:bottom="10dp" />
+            android:left="@dimen/dp_10"
+            android:top="@dimen/dp_10"
+            android:right="@dimen/dp_10"
+            android:bottom="@dimen/dp_10" />
 </shape>

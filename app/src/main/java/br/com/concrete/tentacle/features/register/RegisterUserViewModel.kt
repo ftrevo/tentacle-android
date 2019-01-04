@@ -1,6 +1,8 @@
 package br.com.concrete.tentacle.features.register
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
@@ -17,9 +19,9 @@ class RegisterUserViewModel(private val userRepository: UserRepository) :
     private val viewStateUser: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
     private val disposables = CompositeDisposable()
 
-    init {
-        loadStates()
-    }
+//    init {
+//        loadStates()
+//    }
 
     fun getUser() = viewStateUser
     fun getStates() = viewStateState
@@ -53,7 +55,8 @@ class RegisterUserViewModel(private val userRepository: UserRepository) :
         }))
     }
 
-    private fun loadStates() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    fun loadStates() {
         viewStateState.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(userRepository.getStates().subscribe({ base ->
             viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list as ArrayList<State>))
