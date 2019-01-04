@@ -4,6 +4,7 @@ import br.com.concrete.tentacle.base.BaseTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.RequestLogin
 import br.com.concrete.tentacle.data.models.Session
+import br.com.concrete.tentacle.mock.baseModelLoginSuccess
 import io.reactivex.Flowable
 import io.reactivex.subscribers.TestSubscriber
 import junit.framework.Assert.assertEquals
@@ -18,19 +19,9 @@ class LoginRepositoryTest: BaseTest(){
 
     @Test
         fun `when call login it returns the session and with the attributes bellow`(){
-        /**
-         * this block is to mock the apiService result
-         * in order to verify and make a unit test for the repository
-         */
-        val session = Session(accessToken = "ACCESS_TOKEN",
-            refreshToken = "REFRESH_TOKEN",
-            tokenType = "TOKEN_TYPE")
-        val message = listOf(
-            "LOGGIN SUCCESS"
-        )
-        val baseModel = BaseModel(message, session)
+
         Mockito.`when`(apiService.loginUser(RequestLogin("test@test.com", "test")))
-            .thenReturn(Flowable.just(baseModel))
+            .thenReturn(Flowable.just(baseModelLoginSuccess))
         /** block finishes */
 
         val testSubscriber = TestSubscriber<BaseModel<Session>>()
@@ -38,7 +29,7 @@ class LoginRepositoryTest: BaseTest(){
         flowableResult.subscribe(testSubscriber)
         assertCompleteNoErrorCount(testSubscriber)
         val baseModelResult = testSubscriber.values()[0]
-        assertEquals(baseModel, baseModelResult)
+        assertEquals(baseModelLoginSuccess, baseModelResult)
     }
 }
 

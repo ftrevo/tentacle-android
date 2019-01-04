@@ -8,7 +8,7 @@ private val messageError = listOf("error 1", "error 2")
 /**
  * COMMON
  */
-private val baseModelErrorWithMessage = BaseModel(messageError, null)
+val baseModelErrorWithMessage = BaseModel(messageError, null)
 
 /**
  * MOCK USED FOR STATES
@@ -366,3 +366,24 @@ val userRequest = UserRequest(
     city = "Recife"
 )
 val baseModelUserSuccess = BaseModel(messageSuccess, user)
+
+/**
+ * this block is to mock the apiService result
+ * in order to verify and make a unit test for the repository
+ */
+val session = Session(accessToken = "ACCESS_TOKEN",
+    refreshToken = "REFRESH_TOKEN",
+    tokenType = "TOKEN_TYPE")
+val message = listOf(
+    "LOGGIN SUCCESS"
+)
+val baseModelLoginSuccess = BaseModel(message, session)
+
+/**
+ * Mock for shared preferences
+ */
+val stringKey = "KEY"
+val string = "STRING"
+
+val sessionKey = "sessionKey"
+val sessionForPreference = session
