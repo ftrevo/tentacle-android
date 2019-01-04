@@ -6,6 +6,9 @@ import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
 import br.com.concrete.tentacle.rules.RxImmediateSchedulerRule
+import io.reactivex.Flowable
+import io.reactivex.observers.TestObserver
+import io.reactivex.subscribers.TestSubscriber
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
@@ -42,4 +45,19 @@ open class BaseTest: Instrumentation(), KoinTest {
         StandAloneContext.stopKoin()
     }
 
+    fun <T> assertCompleteNoErrorCount(testObserver: TestObserver<T>){
+        verifyCompleteNoErrorCount(testObserver)
+    }
+
+    fun <T> assertCompleteNoErrorCount(testSubscriber: TestSubscriber<T>){
+        verifyCompleteNoErrorCount(testSubscriber)
+    }
+
+    private fun <T> verifyCompleteNoErrorCount(t: T){
+        if( t is TestSubscriber<*> || t is TestSubscriber<*>){
+                t.assertComplete()
+                t.assertNoErrors()
+                t.assertValueCount(1)
+        }
+    }
 }

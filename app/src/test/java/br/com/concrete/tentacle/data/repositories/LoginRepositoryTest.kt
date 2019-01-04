@@ -17,8 +17,7 @@ class LoginRepositoryTest: BaseTest(){
     lateinit var loginRepositoryTest: LoginRepository
 
     @Test
-    fun `when call login it returns the session and with the attributes bellow`(){
-
+        fun `when call login it returns the session and with the attributes bellow`(){
         /**
          * this block is to mock the apiService result
          * in order to verify and make a unit test for the repository
@@ -37,9 +36,7 @@ class LoginRepositoryTest: BaseTest(){
         val testSubscriber = TestSubscriber<BaseModel<Session>>()
         val flowableResult = loginRepositoryTest.loginUser("test@test.com", "test")
         flowableResult.subscribe(testSubscriber)
-        testSubscriber.assertComplete()
-        testSubscriber.assertNoErrors()
-        testSubscriber.assertValueCount(1)
+        assertCompleteNoErrorCount(testSubscriber)
         val baseModelResult = testSubscriber.values()[0]
         assertEquals(baseModel, baseModelResult)
     }

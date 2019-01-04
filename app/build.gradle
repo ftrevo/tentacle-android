@@ -59,7 +59,16 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
         html.enabled = true
     }
 
-    def fileFilter = [ '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*' ]
+    def fileFilter = [ '/br/com/concrete/tentacle/di/*',
+                       '/br/com/concrete/tentacle/extensions/*',
+                       '/br/com/concrete/tentacle/data/models/*',
+                       '/br/com/concrete/tentacle/data/network/*',
+                       '/br/com/concrete/tentacle/custom/*',
+                       '/br/com/concrete/tentacle/utils/*',
+                       '/br/com/concrete/tentacle/base/*',
+                       '/br/com/concrete/tentacle/features/*',
+                       '**/R.class', '**/R$*.class', '**/BuildConfig.*',
+                       '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*' ]
     def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
     def mainSrc = "$project.projectDir/src/main/java"
 

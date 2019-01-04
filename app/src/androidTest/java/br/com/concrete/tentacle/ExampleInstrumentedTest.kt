@@ -1,23 +1,21 @@
 package br.com.concrete.tentacle.tentacle
 
 import androidx.test.InstrumentationRegistry
-import androidx.test.runner.AndroidJUnit4
-
+import org.junit.Assert.assertEquals
+import org.junit.Ignore
 import org.junit.Test
-import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-@RunWith(AndroidJUnit4::class)
+@Ignore
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        assertEquals(1,1)
+        val appContext = InstrumentationRegistry.getTargetContext()
+        assertEquals("br.com.concrete.tentacle.tentacle", appContext.packageName)
     }
 }
