@@ -25,7 +25,6 @@ class RegisterUserViewModel(private val userRepository: UserRepository) :
     fun getStates() = viewStateState
     fun getCities() = viewStateCity
 
-
     fun registerUser(user: User) {
 
         val userRequest = UserRequest(
@@ -38,28 +37,28 @@ class RegisterUserViewModel(private val userRepository: UserRepository) :
         )
 
         viewStateUser.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        disposables.add(userRepository.registerUser(userRequest).subscribe({base ->
+        disposables.add(userRepository.registerUser(userRequest).subscribe({ base ->
             viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
         }, {
-            viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
+            viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
         }))
     }
 
-    fun loadCities(stateId: String){
+    fun loadCities(stateId: String) {
         viewStateCity.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        disposables.add(userRepository.getCities(stateId).subscribe({base ->
+        disposables.add(userRepository.getCities(stateId).subscribe({ base ->
             viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.cities as ArrayList<String>))
         }, {
-            viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
+            viewStateCity.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
         }))
     }
 
-    private fun loadStates(){
+    private fun loadStates() {
         viewStateState.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        disposables.add(userRepository.getStates().subscribe({base ->
+        disposables.add(userRepository.getStates().subscribe({ base ->
             viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list as ArrayList<State>))
-        },{
-            viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors =  notKnownError(it)))
+        }, {
+            viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
         }))
     }
 

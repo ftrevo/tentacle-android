@@ -20,17 +20,17 @@ fun Context.withStyledAttributes(
     @AttrRes defStyleAttr: Int = 0,
     @StyleRes defStyleRes: Int = 0,
     block: TypedArray.() -> Unit
-){
-    val typedArray = obtainStyledAttributes(set, attrs,defStyleAttr, defStyleRes)
-    try{
+) {
+    val typedArray = obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes)
+    try {
         typedArray.block()
-    }finally {
+    } finally {
         typedArray.recycle()
     }
 }
 
-fun Context.getFloatFromRes(resource: Int): Float{
-    val typedValue =  TypedValue()
+fun Context.getFloatFromRes(resource: Int): Float {
+    val typedValue = TypedValue()
     resources.getValue(R.dimen.defaultTextSize, typedValue, true)
     return typedValue.float
 }

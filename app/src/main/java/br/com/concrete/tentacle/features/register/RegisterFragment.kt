@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -38,7 +37,6 @@ class RegisterFragment : Fragment() {
     private var stateSelected: State? = null
     private var citySelected: String? = null
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.register_fragment, container, false)
     }
@@ -52,11 +50,10 @@ class RegisterFragment : Fragment() {
         initPhoneValidate()
     }
 
-    private fun initSpinClick(){
+    private fun initSpinClick() {
         spState.setOnClickListener {
-            states?.let{
+            states?.let {
                 dialogState.showSpinerDialog()
-
             }
         }
 
@@ -67,9 +64,9 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun initStatesObservable(){
+    private fun initStatesObservable() {
         viewModelRegister.getStates().observe(this, Observer { viewState ->
-            when (viewState.status){
+            when (viewState.status) {
                 ViewStateModel.Status.LOADING -> {
                     progressButton(true)
                     enableField(false)
@@ -77,7 +74,7 @@ class RegisterFragment : Fragment() {
                 ViewStateModel.Status.SUCCESS -> {
                     states = viewState.model
                     val statesList: ArrayList<String> = ArrayList()
-                    states?.map{
+                    states?.map {
                         statesList.add(it.initials)
                     }
                     dialogState = SpinnerDialog(activity!!, statesList,
@@ -97,9 +94,9 @@ class RegisterFragment : Fragment() {
         })
     }
 
-    private fun initCitiesObservable(){
+    private fun initCitiesObservable() {
         viewModelRegister.getCities().observe(this, Observer { viewState ->
-            when(viewState.status){
+            when (viewState.status) {
                 ViewStateModel.Status.LOADING -> {
                     progressButton(true)
                     enableField(false)
@@ -122,7 +119,7 @@ class RegisterFragment : Fragment() {
 
     private fun initUserObservable() {
         viewModelRegister.getUser().observe(this, Observer { viewState ->
-            when(viewState.status){
+            when (viewState.status) {
                 ViewStateModel.Status.LOADING -> {
                     progressButton(true)
                     enableField(false)
@@ -141,15 +138,15 @@ class RegisterFragment : Fragment() {
         })
     }
 
-    private fun goTo(user: User){
-        //TODO REFACTOR TO EXACT VIEW
+    private fun goTo(user: User) {
+        // TODO REFACTOR TO EXACT VIEW
         val mainActivity = Intent(activity, MainActivity::class.java)
         mainActivity.putExtra(MainActivity.USER, user)
         startActivity(mainActivity)
         fragmentManager!!.beginTransaction().remove(this).commit()
     }
 
-    private fun initButtonClicks(){
+    private fun initButtonClicks() {
         btnCreateAccount.setOnClickListener {
             performValidation()
         }
@@ -162,8 +159,8 @@ class RegisterFragment : Fragment() {
         edtPhone.isEnabled = enable
     }
 
-    private fun showError(errors: ErrorResponse?){
-        if(errors != null){
+    private fun showError(errors: ErrorResponse?) {
+        if (errors != null) {
             val ers = errors!!.toString()
             val alertDialog: AlertDialog? = activity?.let { fragment ->
                 val builder = AlertDialog.Builder(fragment)
@@ -196,7 +193,6 @@ class RegisterFragment : Fragment() {
             override fun parcialmenteValido(valorAtual: String?) {
                 isPhoneValid = false
             }
-
         }))
     }
 
@@ -233,7 +229,7 @@ class RegisterFragment : Fragment() {
             result = false
         }
 
-        if (result && stateSelected == null ) {
+        if (result && stateSelected == null) {
             spState.showError(true)
             result = false
         }
@@ -257,11 +253,11 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun initDialogStateBind(){
+    private fun initDialogStateBind() {
         dialogState.bindOnSpinerListener { _, position ->
-            if(states != null){
+            if (states != null) {
                 stateSelected = states!![position]
-                stateSelected?.let { state->
+                stateSelected?.let { state ->
                     viewModelRegister.loadCities(state._id)
                     spState.setText(state.initials)
                 }
@@ -271,7 +267,7 @@ class RegisterFragment : Fragment() {
 
     private fun initDialogCityBind() {
         dialogCity.bindOnSpinerListener { _, position ->
-            if(cities != null){
+            if (cities != null) {
                 citySelected = cities!![position]
                 spCity.setText(citySelected!!)
             }

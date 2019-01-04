@@ -3,7 +3,6 @@ package br.com.concrete.tentacle.custom
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import br.com.concrete.tentacle.R
@@ -12,9 +11,9 @@ import br.com.concrete.tentacle.extensions.withStyledAttributes
 import kotlinx.android.synthetic.main.button_custom.view.*
 
 class ButtonView(
-        context: Context,
-        attrs: AttributeSet
-    ): ConstraintLayout(context, attrs) {
+    context: Context,
+    attrs: AttributeSet
+) : ConstraintLayout(context, attrs) {
 
     init {
         View.inflate(context, R.layout.button_custom, this)
@@ -27,7 +26,7 @@ class ButtonView(
             R.styleable.ButtonView,
             0,
             0
-        ){
+        ) {
             buttonName = getString(R.styleable.ButtonView_buttonName)
             textColor = getString(R.styleable.ButtonView_textColorButton)
             textSize = getFloat(R.styleable.ButtonView_textSizeButton, context.getFloatFromRes(R.dimen.defaultTextSize))
@@ -47,7 +46,7 @@ class ButtonView(
 
         button.textSize = textSize
 
-        textColor?.let{
+        textColor?.let {
             val color: Int = if (it.isNotEmpty()) Color.parseColor(it) else Color.GRAY
             button.setTextColor(color)
         }

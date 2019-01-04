@@ -8,7 +8,6 @@ import br.com.concrete.tentacle.extensions.put
 import br.com.concrete.tentacle.extensions.remove
 import com.google.gson.Gson
 
-
 class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
 
     fun saveString(key: String, value: String) = mSharedPref.put(key, value)
@@ -23,5 +22,4 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
     fun getStoreString(key: String): String? = mSharedPref.get(key, "")
 
     fun deleteStoreString(key: String) = mSharedPref.remove(key)
-
 }

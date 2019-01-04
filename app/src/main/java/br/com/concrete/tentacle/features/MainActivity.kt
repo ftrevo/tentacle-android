@@ -14,5 +14,4 @@ class MainActivity : AppCompatActivity() {
     companion object {
         val USER = "USER"
     }
-
 }

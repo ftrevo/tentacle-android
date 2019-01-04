@@ -1,12 +1,16 @@
 package br.com.concrete.tentacle.data.repositories
 
-import br.com.concrete.tentacle.data.models.*
+import br.com.concrete.tentacle.data.models.UserRequest
+import br.com.concrete.tentacle.data.models.BaseModel
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.CityResponse
+import br.com.concrete.tentacle.data.models.StateResponse
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class UserRepository(private val apiService: ApiService){
+class UserRepository(private val apiService: ApiService) {
 
     fun registerUser(userRequest: UserRequest): Observable<BaseModel<User>> {
 
@@ -29,4 +33,3 @@ class UserRepository(private val apiService: ApiService){
             .observeOn(AndroidSchedulers.mainThread())
     }
 }
-
