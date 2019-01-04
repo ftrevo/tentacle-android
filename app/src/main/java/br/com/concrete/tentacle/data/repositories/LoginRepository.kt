@@ -13,6 +13,6 @@ class LoginRepository(private val apiRest: ApiService) {
     fun loginUser(email: String, password: String): Flowable<BaseModel<Session>> {
         return apiRest.loginUser(RequestLogin(email, password))
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
     }
 }

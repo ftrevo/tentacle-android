@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingStart="8dp"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_8"
         android:background="@color/bgColor"
         android:textColor="@color/colorAccent"
         xmlns:android="http://schemas.android.com/apk/res/android"

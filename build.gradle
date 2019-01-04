@@ -9,6 +9,7 @@ buildscript {
     ext.canarinho = '2.0.1'
     ext.searchableSpinner = '1.9'
     ext.material = '1.1.0-alpha02'
+    ext.ktLintVersion = '0.29.0'
 
     //Koin
     ext.koinVersion = '1.0.2'

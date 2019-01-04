@@ -7,6 +7,9 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import kotlinx.android.synthetic.main.tentacle_search_spinner_layout.view.*
 
+
+private const val DEFAULT_VALUE = -1
+
 class TentacleSearchSpinner(context: Context, attrs: AttributeSet) : BaseTentacleLabeledWidget(context, attrs) {
 
     init {
@@ -17,11 +20,11 @@ class TentacleSearchSpinner(context: Context, attrs: AttributeSet) : BaseTentacl
             R.styleable.TentacleLabeledWidget,
             0,
             0) {
-            val labelText = getResourceId(R.styleable.TentacleLabeledWidget_label, -1)
-            val errorText = getResourceId(R.styleable.TentacleLabeledWidget_errorLabel, -1)
+            val labelText = getResourceId(R.styleable.TentacleLabeledWidget_label, DEFAULT_VALUE)
+            val errorText = getResourceId(R.styleable.TentacleLabeledWidget_errorLabel, DEFAULT_VALUE)
 
-            if (labelText > -1) tvLabel.text = context.getString(labelText)
-            if (errorText > -1) tvError.text = context.getString(errorText)
+            if (labelText > DEFAULT_VALUE) tvLabel.text = context.getString(labelText)
+            if (errorText > DEFAULT_VALUE) tvError.text = context.getString(errorText)
         }
 
         showError(false)
