@@ -9,5 +9,5 @@ fun String.validatePassword(): Boolean = this.isNotEmpty() && this.length > 5
 fun String.digits(): String {
     return this.replace("(", "")
         .replace(")", "")
-        .replace("-","")
+        .replace("-", "")
 }

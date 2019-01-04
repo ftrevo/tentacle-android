@@ -7,21 +7,21 @@ import com.google.gson.GsonBuilder
 import retrofit2.HttpException
 import java.io.IOException
 
-abstract class BaseViewModel : ViewModel(){
+abstract class BaseViewModel : ViewModel() {
 
     protected fun notKnownError(error: Throwable): ErrorResponse {
 
         val gson = GsonBuilder().create()
         var errorResponse = ErrorResponse()
 
-        when(error){
+        when (error) {
             is HttpException -> {
-                when(error.code()) {
+                when (error.code()) {
                     400 -> errorResponse = gson.fromJson(
                         error.response().errorBody()!!.charStream(),
                         ErrorResponse::class.java)
                     401 -> {
-                        //TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
+                        // TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
                     }
                     else -> errorResponse.message.add("Not Know Error.")
                 }
@@ -35,5 +35,3 @@ abstract class BaseViewModel : ViewModel(){
         return errorResponse
     }
 }
-
-

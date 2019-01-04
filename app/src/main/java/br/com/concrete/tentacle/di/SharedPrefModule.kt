@@ -17,5 +17,4 @@ val sharedPreferencesModule = module {
         val sharedPrefRepository = SharedPrefRepository(get())
         sharedPrefRepository
     }
-
 }

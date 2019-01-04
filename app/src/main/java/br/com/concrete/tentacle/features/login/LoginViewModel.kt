@@ -13,8 +13,7 @@ import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.utils.LogWrapper
 import retrofit2.HttpException
 
-
-class LoginViewModel(private val repository: LoginRepository, private val sharedPrefRepository: SharedPrefRepository):
+class LoginViewModel(private val repository: LoginRepository, private val sharedPrefRepository: SharedPrefRepository) :
     BaseViewModel(), LifecycleObserver {
 
     private val stateModel: MutableLiveData<ViewStateModel<Session>> = MutableLiveData()
@@ -29,7 +28,7 @@ class LoginViewModel(private val repository: LoginRepository, private val shared
             },
             {
                 stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = errorLogin(it)))
-            },{
+            }, {
                 LogWrapper.log("LOGIN-USER", "On login complete")
             }
         )
@@ -37,16 +36,15 @@ class LoginViewModel(private val repository: LoginRepository, private val shared
 
     fun getStateModel(): LiveData<ViewStateModel<Session>> = stateModel
 
-    private fun errorLogin(error: Throwable): ErrorResponse{
+    private fun errorLogin(error: Throwable): ErrorResponse {
         var errorResponse = ErrorResponse()
 
         if (error is HttpException && error.code() == 401) {
             errorResponse.message.add("Usuário ou senha inválidos!")
-        }else{
+        } else {
             errorResponse = super.notKnownError(error)
         }
 
         return errorResponse
     }
-
 }

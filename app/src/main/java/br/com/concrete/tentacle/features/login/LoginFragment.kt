@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.login
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -26,7 +25,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
@@ -47,14 +48,13 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val email = s.toString()
-                if(email.isNotEmpty()){
+                if (email.isNotEmpty()) {
                     edtEmail.showError(!email.validateEmail())
-                }else{
+                } else {
                     edtEmail.showError(false)
                 }
             }
         })
-
 
         edtPassword.edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
@@ -63,9 +63,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val password = s.toString()
-                if(password.isNotEmpty()){
+                if (password.isNotEmpty()) {
                     edtPassword.showError(!password.validatePassword())
-                }else{
+                } else {
                     edtPassword.showError(false)
                 }
             }
@@ -73,7 +73,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
         loginViewModel.getStateModel().observe(this, Observer { viewState ->
             viewState?.let {
-                when(viewState.status) {
+                when (viewState.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         LogWrapper.log("LOGIN-SUCCESS", "User logged")
                         btLogin.isLoading(false)
@@ -102,7 +102,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun showRegisterAccount(){
+    private fun showRegisterAccount() {
         startActivity(Intent(context, RegisterActivity::class.java))
     }
 
@@ -123,5 +123,4 @@ class LoginFragment : Fragment(), View.OnClickListener {
         edtEmail.edt.isEnabled = enableField
         edtPassword.edt.isEnabled = enableField
     }
-
 }

@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.data.models
 
-
 data class UserRequest(
     val name: String = String(),
     val email: String = String(),

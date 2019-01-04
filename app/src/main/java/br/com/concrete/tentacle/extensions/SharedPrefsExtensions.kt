@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 inline fun <reified T> SharedPreferences.put(key: String, value: T) {
     val editor = this.edit()
 
-    when(T::class) {
+    when (T::class) {
         String::class -> editor.putString(key, value as String)
         Boolean::class -> editor.putBoolean(key, value as Boolean)
     }
@@ -14,7 +14,7 @@ inline fun <reified T> SharedPreferences.put(key: String, value: T) {
 }
 
 inline fun <reified T> SharedPreferences.get(key: String, defaultValue: T): T {
-    when(T::class) {
+    when (T::class) {
         String::class -> return this.getString(key, defaultValue as String) as T
         else -> return defaultValue
     }
