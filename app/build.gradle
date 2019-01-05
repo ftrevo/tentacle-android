@@ -32,6 +32,9 @@ android {
     }
 
     testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
         unitTests.all {
             jacoco {
                 includeNoLocationClasses = true
@@ -101,6 +104,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
+    testImplementation "org.robolectric:robolectric:$robolectric"
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"

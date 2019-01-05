@@ -387,3 +387,5 @@ val string = "STRING"
 
 val sessionKey = "sessionKey"
 val sessionForPreference = session
+
+val stringExpectedWhenThereIsNoOne = ""
