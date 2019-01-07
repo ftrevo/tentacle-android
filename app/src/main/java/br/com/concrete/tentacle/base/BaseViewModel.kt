@@ -7,6 +7,7 @@ import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
 import retrofit2.HttpException
 import java.io.IOException
+import java.net.HttpURLConnection
 
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
@@ -18,10 +19,10 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         when (error) {
             is HttpException -> {
                 when (error.code()) {
-                    400 -> errorResponse = gson.fromJson(
+                    HttpURLConnection.HTTP_BAD_REQUEST -> errorResponse = gson.fromJson(
                         error.response().errorBody()!!.charStream(),
                         ErrorResponse::class.java)
-                    401 -> {
+                    HttpURLConnection.HTTP_UNAUTHORIZED -> {
                         // TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
                     }
                     else -> errorResponse.message.add("Not Know Error.")
