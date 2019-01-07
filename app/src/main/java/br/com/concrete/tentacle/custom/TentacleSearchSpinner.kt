@@ -7,7 +7,6 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import kotlinx.android.synthetic.main.tentacle_search_spinner_layout.view.*
 
-
 private const val DEFAULT_VALUE = -1
 
 class TentacleSearchSpinner(context: Context, attrs: AttributeSet) : BaseTentacleLabeledWidget(context, attrs) {

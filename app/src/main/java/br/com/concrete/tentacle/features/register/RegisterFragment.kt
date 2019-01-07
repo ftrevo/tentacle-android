@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import br.com.concrete.canarinho.watcher.TelefoneTextWatcher
 import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao

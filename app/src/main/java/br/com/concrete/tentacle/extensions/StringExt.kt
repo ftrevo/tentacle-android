@@ -8,4 +8,4 @@ fun String.validatePassword() = this.isNotEmpty() && this.length > 5
 
 fun String.digits() = this.replace("(", "")
     .replace(")", "")
-    .replace("-","")
+    .replace("-", "")

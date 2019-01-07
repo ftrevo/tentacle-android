@@ -14,8 +14,10 @@ import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import br.com.concrete.tentacle.utils.LogWrapper
 import retrofit2.HttpException
 
-class LoginViewModel(private val repository: LoginRepository,
-                     private val sharedPrefRepository: SharedPrefRepository)
+class LoginViewModel(
+    private val repository: LoginRepository,
+    private val sharedPrefRepository: SharedPrefRepository
+)
     : BaseViewModel(), LifecycleObserver {
 
     private val stateModel: MutableLiveData<ViewStateModel<Session>> = MutableLiveData()

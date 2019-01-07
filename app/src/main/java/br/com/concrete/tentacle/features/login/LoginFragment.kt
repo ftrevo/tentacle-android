@@ -67,7 +67,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         lifecycle.addObserver(loginViewModel)
     }
 
-    private fun setLoading(loading: Boolean){
+    private fun setLoading(loading: Boolean) {
         btLogin.isLoading(loading)
         enableField(!loading)
     }
