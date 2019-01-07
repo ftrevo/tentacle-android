@@ -5,9 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.withStyledAttributes
+import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
 import kotlinx.android.synthetic.main.tentacle_search_spinner_layout.view.*
-
-private const val DEFAULT_VALUE = -1
 
 class TentacleSearchSpinner(context: Context, attrs: AttributeSet) : BaseTentacleLabeledWidget(context, attrs) {
 
@@ -19,11 +18,11 @@ class TentacleSearchSpinner(context: Context, attrs: AttributeSet) : BaseTentacl
             R.styleable.TentacleLabeledWidget,
             0,
             0) {
-            val labelText = getResourceId(R.styleable.TentacleLabeledWidget_label, DEFAULT_VALUE)
-            val errorText = getResourceId(R.styleable.TentacleLabeledWidget_errorLabel, DEFAULT_VALUE)
+            val labelText = getResourceId(R.styleable.TentacleLabeledWidget_label, DEFAULT_INVALID_RESOURCE)
+            val errorText = getResourceId(R.styleable.TentacleLabeledWidget_errorLabel, DEFAULT_INVALID_RESOURCE)
 
-            if (labelText > DEFAULT_VALUE) tvLabel.text = context.getString(labelText)
-            if (errorText > DEFAULT_VALUE) tvError.text = context.getString(errorText)
+            if (labelText > DEFAULT_INVALID_RESOURCE) tvLabel.text = context.getString(labelText)
+            if (errorText > DEFAULT_INVALID_RESOURCE) tvError.text = context.getString(errorText)
         }
 
         showError(false)
