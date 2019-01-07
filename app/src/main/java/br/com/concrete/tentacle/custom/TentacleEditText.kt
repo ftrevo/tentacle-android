@@ -8,7 +8,10 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
 
-class TentacleEditText(context: Context, attrs: AttributeSet) : BaseTentacleLabeledWidget(context, attrs) {
+class TentacleEditText(
+    context: Context,
+    attrs: AttributeSet
+) : BaseTentacleLabeledWidget(context, attrs) {
 
     init {
         LayoutInflater.from(context).inflate(R.layout.tentacle_edit_text_layout, this, true)
