@@ -72,7 +72,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
         enableField(!loading)
     }
 
-
     private fun initListeners() {
         edtEmail.edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
