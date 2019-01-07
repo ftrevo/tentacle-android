@@ -34,11 +34,7 @@ class TentacleEditText(
             edt.inputType = inputType
             edt.imeOptions = imeOptions
         }
-
-        showError(false)
     }
 
-    fun getText(): String {
-        return edt.text.toString()
-    }
+    fun getText() = edt.text.toString()
 }
