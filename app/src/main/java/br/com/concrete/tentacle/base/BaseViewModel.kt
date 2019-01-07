@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.base
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
+import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
@@ -25,11 +26,11 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                     HttpURLConnection.HTTP_UNAUTHORIZED -> {
                         // TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
                     }
-                    else -> errorResponse.message.add("Not Know Error.")
+                    else -> errorResponse.messageInt.add(R.string.unknow_error)
                 }
             }
             is IOException -> {
-                errorResponse.message.add("No Internet Connection.")
+                errorResponse.messageInt.add(R.string.no_internet_connection)
                 LogWrapper.log("ERROR TAG: ", "No Internet Connection.")
             }
         }
