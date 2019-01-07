@@ -7,9 +7,9 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.validateEmail
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment(), View.OnClickListener {
+class LoginFragment : BaseFragment(), View.OnClickListener {
 
     private val loginViewModel: LoginViewModel by viewModel()
 
@@ -38,9 +38,41 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun init() {
-        btLogin.setOnClickListener(this)
-        tvRegisterAccount.setOnClickListener(this)
+        initEvents()
 
+        initListeners()
+
+        initViewModel()
+    }
+
+    private fun initViewModel() {
+        loginViewModel.getStateModel().observe(this, Observer { viewState ->
+            viewState?.let {
+                when (viewState.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        LogWrapper.log("LOGIN-SUCCESS", "User logged")
+                        setLoading(false)
+                    }
+                    ViewStateModel.Status.LOADING -> {
+                        setLoading(true)
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        LogWrapper.log("LOGIN-ERROR", "User logged")
+                        setLoading(false)
+                        showError(it.errors)
+                    }
+                }
+            }
+        })
+        lifecycle.addObserver(loginViewModel)
+    }
+
+    private fun setLoading(loading: Boolean) {
+        btLogin.isLoading(loading)
+        enableField(!loading)
+    }
+
+    private fun initListeners() {
         edtEmail.edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -70,29 +102,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+    }
 
-        loginViewModel.getStateModel().observe(this, Observer { viewState ->
-            viewState?.let {
-                when (viewState.status) {
-                    ViewStateModel.Status.SUCCESS -> {
-                        LogWrapper.log("LOGIN-SUCCESS", "User logged")
-                        btLogin.isLoading(false)
-                        enableField(true)
-                    }
-                    ViewStateModel.Status.LOADING -> {
-                        btLogin.isLoading(true)
-                        enableField(false)
-                    }
-                    ViewStateModel.Status.ERROR -> {
-                        LogWrapper.log("LOGIN-ERROR", "User logged")
-                        btLogin.isLoading(false)
-                        enableField(true)
-                        context?.callSnackbar(view!!, it.errors.toString())
-                    }
-                }
-            }
-        })
-        lifecycle.addObserver(loginViewModel)
+    private fun initEvents() {
+        btLogin.setOnClickListener(this)
+        tvRegisterAccount.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
