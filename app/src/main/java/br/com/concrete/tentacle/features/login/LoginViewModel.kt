@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Session
@@ -13,6 +14,7 @@ import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import br.com.concrete.tentacle.utils.LogWrapper
 import retrofit2.HttpException
+import java.net.HttpURLConnection
 
 class LoginViewModel(
     private val repository: LoginRepository,
@@ -43,8 +45,8 @@ class LoginViewModel(
     private fun errorLogin(error: Throwable): ErrorResponse {
         var errorResponse = ErrorResponse()
 
-        if (error is HttpException && error.code() == 401) {
-            errorResponse.message.add("Usuário ou senha inválidos!")
+        if (error is HttpException && error.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
+            errorResponse.messageInt.add(R.string.user_or_password_error)
         } else {
             errorResponse = super.notKnownError(error)
         }
