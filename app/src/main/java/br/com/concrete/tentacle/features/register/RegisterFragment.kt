@@ -141,7 +141,6 @@ class RegisterFragment : BaseFragment() {
     private fun goTo(user: User) {
         // TODO REFACTOR TO EXACT VIEW
         val mainActivity = Intent(activity, MainActivity::class.java)
-        mainActivity.putExtra(MainActivity.USER, user)
         startActivity(mainActivity)
         fragmentManager!!.beginTransaction().remove(this).commit()
     }
