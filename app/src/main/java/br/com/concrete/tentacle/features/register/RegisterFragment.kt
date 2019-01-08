@@ -6,14 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import br.com.concrete.canarinho.watcher.TelefoneTextWatcher
 import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.data.models.ErrorResponse
+import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.ViewStateModel
@@ -25,7 +22,7 @@ import kotlinx.android.synthetic.main.register_fragment.*
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment() {
 
     private var isPhoneValid = false
     private val viewModelRegister: RegisterUserViewModel by viewModel()
@@ -144,7 +141,6 @@ class RegisterFragment : Fragment() {
     private fun goTo(user: User) {
         // TODO REFACTOR TO EXACT VIEW
         val mainActivity = Intent(activity, MainActivity::class.java)
-        mainActivity.putExtra(MainActivity.USER, user)
         startActivity(mainActivity)
         fragmentManager!!.beginTransaction().remove(this).commit()
     }
@@ -160,27 +156,6 @@ class RegisterFragment : Fragment() {
         edtUserName.isEnabled = enable
         edtPassword.isEnabled = enable
         edtPhone.isEnabled = enable
-    }
-
-    private fun showError(errors: ErrorResponse?) {
-        if (errors != null) {
-            val ers = errors!!.toString()
-            val alertDialog: AlertDialog? = activity?.let { fragment ->
-                val builder = AlertDialog.Builder(fragment)
-                builder.setTitle(R.string.error_dialog_title)
-                builder.setMessage(ers)
-                builder.apply {
-                    setPositiveButton(R.string.ok
-                    ) { dialog, id ->
-                        dialog.dismiss()
-                    }
-                }
-
-                builder.create()
-            }
-
-            alertDialog?.show()
-        }
     }
 
     private fun initPhoneValidate() {

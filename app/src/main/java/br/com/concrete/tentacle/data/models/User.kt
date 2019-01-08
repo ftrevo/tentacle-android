@@ -14,4 +14,4 @@ data class User(
     var city: String,
     var createdAt: String = String(),
     var updatedAt: String = String()
-) : Parcelable 
+) : Parcelable

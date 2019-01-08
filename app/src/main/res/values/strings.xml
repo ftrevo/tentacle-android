@@ -49,5 +49,9 @@
     <string name="city_dialog_text">Selecione ou pesquise a cidade</string>
     <string name="dialog_close">Fechar</string>
     <string name="state_city_hint">Selecione</string>
+    <string name="user_or_password_error">Usuário ou senha inválidos!</string>
+
+    <string name="unknow_error">Ocorreu um erro inesperado</string>
+    <string name="no_internet_connection">Ops! Parece que você está sem conexão com a internet</string>
 
 </resources>

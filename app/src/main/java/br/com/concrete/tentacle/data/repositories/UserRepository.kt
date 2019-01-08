@@ -7,7 +7,6 @@ import br.com.concrete.tentacle.data.models.CityResponse
 import br.com.concrete.tentacle.data.models.StateResponse
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class UserRepository(private val apiService: ApiService) {
