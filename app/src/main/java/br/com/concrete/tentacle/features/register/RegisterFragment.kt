@@ -75,7 +75,7 @@ class RegisterFragment : BaseFragment() {
                     states = viewState.model
                     val statesList: ArrayList<String> = ArrayList()
                     states?.map {
-                        statesList.add(it.initials)
+                        statesList.add(it.toString())
                     }
                     dialogState = SpinnerDialog(activity!!, statesList,
                         getString(R.string.state_dialog_text), getString(R.string.dialog_close))
@@ -238,9 +238,15 @@ class RegisterFragment : BaseFragment() {
                 stateSelected?.let { state ->
                     viewModelRegister.loadCities(state._id)
                     spState.setText(state.initials)
+                    resetCity()
                 }
             }
         }
+    }
+
+    private fun resetCity(){
+        spCity.resetValue()
+        citySelected = null
     }
 
     private fun initDialogCityBind() {

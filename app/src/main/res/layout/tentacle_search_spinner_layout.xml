@@ -16,7 +16,7 @@
     <Button
             android:layout_marginTop="4dp"
             android:layout_marginBottom="2dp"
-            android:text="@string/state_city_hint"
+            android:text="@string/select_hint"
             android:drawableEnd="@drawable/ic_arrow_down"
             style="@style/ButtonSpinnerStyle"
             android:id="@+id/button"

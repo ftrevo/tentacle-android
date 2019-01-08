@@ -35,4 +35,8 @@ class TentacleSearchSpinner(context: Context, attrs: AttributeSet) : BaseTentacl
     override fun setOnClickListener(listener: OnClickListener?) {
         button.setOnClickListener(listener)
     }
+
+    fun resetValue(){
+        button.setText(R.string.select_hint)
+    }
 }

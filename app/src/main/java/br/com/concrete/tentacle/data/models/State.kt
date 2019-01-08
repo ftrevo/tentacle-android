@@ -9,5 +9,5 @@ data class State(
     var initials: String,
     var name: String
 ) : Parcelable {
-    override fun toString() = initials
+    override fun toString() = "$initials - $name"
 }
