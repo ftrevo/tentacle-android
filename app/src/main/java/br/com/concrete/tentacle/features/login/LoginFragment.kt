@@ -18,14 +18,12 @@ import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(), View.OnClickListener {
 
     private val loginViewModel: LoginViewModel by viewModel()
-    private lateinit var views: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -50,9 +48,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val email = s.toString()
                 if(email.isNotEmpty()){
-                    views.edtEmail.showError(!email.validateEmail())
+                    edtEmail.showError(!email.validateEmail())
                 }else{
-                    views.edtEmail.showError(false)
+                    edtEmail.showError(false)
                 }
             }
         })
@@ -66,9 +64,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val password = s.toString()
                 if(password.isNotEmpty()){
-                    views.edtPassword.showError(!password.validatePassword())
+                    edtPassword.showError(!password.validatePassword())
                 }else{
-                    views.edtPassword.showError(false)
+                    edtPassword.showError(false)
                 }
             }
         })

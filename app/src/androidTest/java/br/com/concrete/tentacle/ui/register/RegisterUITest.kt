@@ -2,17 +2,14 @@ package br.com.concrete.tentacle.ui.register
 
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseTest
 import br.com.concrete.tentacle.features.register.RegisterActivity
-import br.com.concrete.tentacle.ui.register.custom_actions.TentacleEditTextSetTextViewAction
-import org.hamcrest.Matchers.allOf
+import br.com.concrete.tentacle.ui.custom.TentacleEditTextSetTextViewAction
 import org.hamcrest.Matchers.not
 import org.junit.Rule
 import org.junit.Test
@@ -127,7 +124,11 @@ class RegisterUITest : BaseTest() {
     }
 
     private fun setField(textField: String, id: Int) {
-        Espresso.onView(withId(id)).perform(TentacleEditTextSetTextViewAction(textField))
+        Espresso.onView(withId(id)).perform(
+            TentacleEditTextSetTextViewAction(
+                textField
+            )
+        )
 
         callButtonClick()
     }

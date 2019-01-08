@@ -1,7 +1,5 @@
-package br.com.concrete.tentacle.ui.register.custom_actions
+package br.com.concrete.tentacle.ui.custom
 
-import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
-import android.app.AlertDialog
 import android.view.View
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
