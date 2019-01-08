@@ -8,7 +8,7 @@ import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.repositories.UserRepository
+import br.com.concrete.tentacle.repositories.UserRepository
 import io.reactivex.disposables.CompositeDisposable
 
 class RegisterUserViewModel(private val userRepository: UserRepository) :

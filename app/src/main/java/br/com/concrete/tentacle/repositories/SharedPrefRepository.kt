@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.data.repositories
+package br.com.concrete.tentacle.repositories
 
 import android.content.SharedPreferences
 import br.com.concrete.tentacle.extensions.fromJson
@@ -16,9 +16,9 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
 
     fun getStoredSession(key: String): Session? {
         val sessionJson = mSharedPref.get(key, "")
-        return if(sessionJson != ""){
+        return if (sessionJson != "") {
             Gson().fromJson<Session>(sessionJson)
-        }else{
+        } else {
             null
         }
     }

@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.data.repositories
+package br.com.concrete.tentacle.repositories
 
 import br.com.concrete.tentacle.features.MainActivity
 import br.com.concrete.tentacle.mock.*
@@ -14,14 +14,14 @@ import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class SharedPrefRepositoryTest: KoinTest{
+class SharedPrefRepositoryTest : KoinTest {
 
     private lateinit var activity: MainActivity
 
     private val sharePrefRepository: SharedPrefRepository by inject()
 
     @Before
-    fun createContext(){
+    fun createContext() {
         activity = Robolectric.buildActivity(MainActivity::class.java)
             .create()
             .resume()
@@ -29,12 +29,12 @@ class SharedPrefRepositoryTest: KoinTest{
     }
 
     @After
-    fun destroyContext(){
+    fun destroyContext() {
         StandAloneContext.stopKoin()
     }
 
     @Test
-    fun testRemove(){
+    fun testRemove() {
         sharePrefRepository.saveString(stringKey, string)
         sharePrefRepository.deleteStoreString(stringKey)
         val stored = sharePrefRepository.getStoreString(stringKey)
@@ -42,22 +42,21 @@ class SharedPrefRepositoryTest: KoinTest{
     }
 
     @Test
-    fun testSaveAndRetrieveString(){
+    fun testSaveAndRetrieveString() {
         sharePrefRepository.saveString(stringKey, string)
         val stored = sharePrefRepository.getStoreString(stringKey)
         assertEquals(string, stored)
     }
 
-
     @Test
-    fun testSaveAndRetrieveSession(){
+    fun testSaveAndRetrieveSession() {
         sharePrefRepository.saveSession(sessionKey, sessionForPreference)
         val stored = sharePrefRepository.getStoredSession(sessionKey)
         assertEquals(sessionForPreference, stored)
     }
 
     @Test
-    fun testInvalidKey(){
+    fun testInvalidKey() {
         sharePrefRepository.getStoredSession("wrongKey")
         sharePrefRepository.getStoreString("wrongKey")
         sharePrefRepository.deleteStoreString("wrongKey")

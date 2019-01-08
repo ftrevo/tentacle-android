@@ -4,12 +4,8 @@ import android.app.Instrumentation
 import br.com.concrete.tentacle.data.network.ApiService
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
-import br.com.concrete.tentacle.di.sharedPreferencesModule
 import br.com.concrete.tentacle.di.viewModelModule
 import br.com.concrete.tentacle.rules.RxImmediateSchedulerRule
-import io.reactivex.Flowable
-import io.reactivex.observers.TestObserver
-import io.reactivex.subscribers.TestSubscriber
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
@@ -22,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @Ignore
 @RunWith(MockitoJUnitRunner::class)
-open class BaseTest: Instrumentation(), KoinTest {
+open class BaseRepositoryTest : Instrumentation(), KoinTest {
 
     @Mock
     lateinit var apiService: ApiService
@@ -36,7 +32,6 @@ open class BaseTest: Instrumentation(), KoinTest {
         StandAloneContext.startKoin(
             listOf(
                 networkModule,
-                viewModelModule,
                 repositoryModule
             ))
     }

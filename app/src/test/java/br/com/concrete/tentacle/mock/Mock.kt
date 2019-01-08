@@ -3,8 +3,6 @@ package br.com.concrete.tentacle.mock
 import br.com.concrete.tentacle.data.models.*
 import okhttp3.MediaType
 import okhttp3.ResponseBody
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
 import retrofit2.HttpException
 import retrofit2.Response
 
@@ -13,13 +11,14 @@ private val messageSuccess = listOf("success")
 /**
  * COMMON
  */
+val errorResponse = ErrorResponse()
+
 val errorWithMessage = Throwable("Error",
     HttpException(
         Response.error<HttpException>(400,
             ResponseBody.create(MediaType.parse("application/json"),
-                "{" +
-                            "message: [\"Error Message 01\", \"Error Message 02\"]" +
-                        "}")
+                "{\"message\": [\"Error Message 01\", \"Error Message 02\"]}"
+                )
         ))
 )
 
@@ -402,20 +401,9 @@ val baseModelLoginSuccess = BaseModel(message, session)
 /**
  * Mock for shared preferences
  */
-val stringKey = "KEY"
-val string = "STRING"
+const val stringKey = "KEY"
+const val string = "STRING"
 
-val sessionKey = "sessionKey"
+const val sessionKey = "sessionKey"
 val sessionForPreference = session
-
-val stringExpectedWhenThereIsNoOne = ""
-
-/**
- * Mock for Specific Wrong responses
- */
-val mockWebServer = MockWebServer()
-val unauthorized = MockResponse()
-    .setResponseCode(401)
-    .addHeader("access-control-allow-origin","*")
-    .setBody("")
-
+const val stringExpectedWhenThereIsNoOne = ""

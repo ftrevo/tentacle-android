@@ -1,8 +1,16 @@
-package br.com.concrete.tentacle.data.repositories
+package br.com.concrete.tentacle.repositories
 
-import br.com.concrete.tentacle.base.BaseTest
-import br.com.concrete.tentacle.data.models.*
-import br.com.concrete.tentacle.mock.*
+import br.com.concrete.tentacle.base.BaseRepositoryTest
+import br.com.concrete.tentacle.data.models.BaseModel
+import br.com.concrete.tentacle.data.models.CityResponse
+import br.com.concrete.tentacle.data.models.StateResponse
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.mock.baseModelStateSuccess
+import br.com.concrete.tentacle.mock.baseModelUserSuccess
+import br.com.concrete.tentacle.mock.requestedState
+import br.com.concrete.tentacle.mock.userRequest
+import br.com.concrete.tentacle.mock.baseModelCitiesSuccess
+import br.com.concrete.tentacle.mock.errorWithMessage
 import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
 import org.junit.Assert.assertEquals
@@ -11,14 +19,13 @@ import org.mockito.InjectMocks
 import org.mockito.Mockito
 import retrofit2.HttpException
 
-
-class UserRepositoryTest: BaseTest(){
+class UserRepositoryTest : BaseRepositoryTest() {
 
     @InjectMocks
     private lateinit var userRepository: UserRepository
 
     @Test
-    fun testRepositorySuccessRegister(){
+    fun testRepositorySuccessRegister() {
         Mockito.`when`(apiService.registerUser(userRequest))
             .thenReturn(Observable.just(baseModelUserSuccess))
 
@@ -29,7 +36,7 @@ class UserRepositoryTest: BaseTest(){
     }
 
     @Test
-    fun testRepositorySuccessGetStates(){
+    fun testRepositorySuccessGetStates() {
         Mockito.`when`(apiService.getStates())
             .thenReturn(Observable.just(baseModelStateSuccess))
 
@@ -40,7 +47,7 @@ class UserRepositoryTest: BaseTest(){
     }
 
     @Test
-    fun testRepositorySuccessGetCities(){
+    fun testRepositorySuccessGetCities() {
         Mockito.`when`(apiService.getCities(requestedState))
             .thenReturn(Observable.just(baseModelCitiesSuccess))
 
@@ -51,7 +58,7 @@ class UserRepositoryTest: BaseTest(){
     }
 
     @Test
-    fun testRepositoryRegisterError(){
+    fun testRepositoryRegisterError() {
         Mockito.`when`(apiService.registerUser(userRequest))
             .thenReturn(Observable.error(
                 errorWithMessage
@@ -64,7 +71,7 @@ class UserRepositoryTest: BaseTest(){
     }
 
     @Test
-    fun testRepositoryGetStatesError(){
+    fun testRepositoryGetStatesError() {
         Mockito.`when`(apiService.getStates())
             .thenReturn(Observable.error(errorWithMessage))
 
@@ -75,7 +82,7 @@ class UserRepositoryTest: BaseTest(){
     }
 
     @Test
-    fun testRepositoryGetCitiesError(){
+    fun testRepositoryGetCitiesError() {
         Mockito.`when`(apiService.getCities(requestedState))
             .thenReturn(Observable.error(errorWithMessage))
 
@@ -85,14 +92,14 @@ class UserRepositoryTest: BaseTest(){
         assertError400(testObserver)
     }
 
-    private fun <T> assertSuccess(testObserver: TestObserver<*>, expected: T){
+    private fun <T> assertSuccess(testObserver: TestObserver<*>, expected: T) {
         testObserver.assertComplete()
         testObserver.assertNoErrors()
         testObserver.assertValueCount(1)
         assertEquals(expected, testObserver.values()[0] as T)
     }
 
-    private fun assertError400(testObserver: TestObserver<*>){
+    private fun assertError400(testObserver: TestObserver<*>) {
         testObserver.assertNotComplete()
         testObserver.assertValueCount(0)
         var er = testObserver.errors()[0].cause as HttpException

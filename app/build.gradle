@@ -36,12 +36,18 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
-        }
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
+            returnDefaultValues = true
+            all{
+                jacoco {
+                    includeNoLocationClasses = true
+                }
             }
         }
+//        unitTests.all {
+//            jacoco {
+//                includeNoLocationClasses = true
+//            }
+//        }
     }
 }
 
@@ -107,6 +113,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
     testImplementation "org.robolectric:robolectric:$robolectric"
+    testImplementation "android.arch.core:core-testing:$coreTesting"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServer"
 
     //Koin
