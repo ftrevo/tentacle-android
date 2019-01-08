@@ -1,6 +1,12 @@
 package br.com.concrete.tentacle.mock
 
 import br.com.concrete.tentacle.data.models.*
+import okhttp3.MediaType
+import okhttp3.ResponseBody
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.MockWebServer
+import retrofit2.HttpException
+import retrofit2.Response
 
 private val messageSuccess = listOf("success")
 private val messageError = listOf("error 1", "error 2")
@@ -9,6 +15,12 @@ private val messageError = listOf("error 1", "error 2")
  * COMMON
  */
 val baseModelErrorWithMessage = BaseModel(messageError, null)
+val error401 = Throwable("Error",
+    HttpException(
+        Response.error<HttpException>(401,
+            ResponseBody.create(MediaType.parse("text/plain"), "")
+        ))
+)
 
 /**
  * MOCK USED FOR STATES
@@ -389,3 +401,13 @@ val sessionKey = "sessionKey"
 val sessionForPreference = session
 
 val stringExpectedWhenThereIsNoOne = ""
+
+/**
+ * Mock for Specific Wrong responses
+ */
+val mockWebServer = MockWebServer()
+val unauthorized = MockResponse()
+    .setResponseCode(401)
+    .addHeader("access-control-allow-origin","*")
+    .setBody("")
+
