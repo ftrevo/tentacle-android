@@ -9,13 +9,21 @@ import retrofit2.HttpException
 import retrofit2.Response
 
 private val messageSuccess = listOf("success")
-private val messageError = listOf("error 1", "error 2")
 
 /**
  * COMMON
  */
-val baseModelErrorWithMessage = BaseModel(messageError, null)
-val error401 = Throwable("Error",
+val errorWithMessage = Throwable("Error",
+    HttpException(
+        Response.error<HttpException>(400,
+            ResponseBody.create(MediaType.parse("application/json"),
+                "{" +
+                            "message: [\"Error Message 01\", \"Error Message 02\"]" +
+                        "}")
+        ))
+)
+
+val error401 = Throwable("Error 401",
     HttpException(
         Response.error<HttpException>(401,
             ResponseBody.create(MediaType.parse("text/plain"), "")

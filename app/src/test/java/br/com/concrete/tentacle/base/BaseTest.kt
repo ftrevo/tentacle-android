@@ -45,20 +45,4 @@ open class BaseTest: Instrumentation(), KoinTest {
     fun after() {
         StandAloneContext.stopKoin()
     }
-
-    fun <T> assertCompleteNoErrorCount(testObserver: TestObserver<T>){
-        verifyCompleteNoErrorCount(testObserver)
-    }
-
-    fun <T> assertCompleteNoErrorCount(testSubscriber: TestSubscriber<T>){
-        verifyCompleteNoErrorCount(testSubscriber)
-    }
-
-    private fun <T> verifyCompleteNoErrorCount(t: T){
-        if( t is TestSubscriber<*> || t is TestSubscriber<*>){
-                t.assertComplete()
-                t.assertNoErrors()
-                t.assertValueCount(1)
-        }
-    }
 }

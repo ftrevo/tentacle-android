@@ -16,9 +16,9 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class SharedPrefRepositoryTest: KoinTest{
 
-    lateinit var activity: MainActivity
+    private lateinit var activity: MainActivity
 
-    val sharePrefRepository: SharedPrefRepository by inject()
+    private val sharePrefRepository: SharedPrefRepository by inject()
 
     @Before
     fun createContext(){
@@ -52,7 +52,14 @@ class SharedPrefRepositoryTest: KoinTest{
     @Test
     fun testSaveAndRetrieveSession(){
         sharePrefRepository.saveSession(sessionKey, sessionForPreference)
-        val stored = sharePrefRepository.getStoredSession(stringKey)
+        val stored = sharePrefRepository.getStoredSession(sessionKey)
         assertEquals(sessionForPreference, stored)
+    }
+
+    @Test
+    fun testInvalidKey(){
+        sharePrefRepository.getStoredSession("wrongKey")
+        sharePrefRepository.getStoreString("wrongKey")
+        sharePrefRepository.deleteStoreString("wrongKey")
     }
 }

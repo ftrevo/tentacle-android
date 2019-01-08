@@ -9,6 +9,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mockito
+import retrofit2.HttpException
 
 
 class UserRepositoryTest: BaseTest(){
@@ -24,9 +25,7 @@ class UserRepositoryTest: BaseTest(){
         val testObserver = TestObserver<BaseModel<User>>()
         val observerResult = userRepository.registerUser(userRequest)
         observerResult.subscribe(testObserver)
-        assertCompleteNoErrorCount(testObserver)
-        val baseModelResult = testObserver.values()[0]
-        assertEquals(baseModelUserSuccess, baseModelResult)
+        assertSuccess(testObserver, baseModelUserSuccess)
     }
 
     @Test
@@ -37,9 +36,7 @@ class UserRepositoryTest: BaseTest(){
         val testObserver = TestObserver<BaseModel<StateResponse>>()
         val observerResult = userRepository.getStates()
         observerResult.subscribe(testObserver)
-        assertCompleteNoErrorCount(testObserver)
-        val baseModelResult = testObserver.values()[0]
-        assertEquals(baseModelStateSuccess, baseModelResult)
+        assertSuccess(testObserver, baseModelStateSuccess)
     }
 
     @Test
@@ -50,8 +47,55 @@ class UserRepositoryTest: BaseTest(){
         val testObserver = TestObserver<BaseModel<CityResponse>>()
         val observerResult = userRepository.getCities(requestedState)
         observerResult.subscribe(testObserver)
-        assertCompleteNoErrorCount(testObserver)
-        val baseModelResult = testObserver.values()[0]
-        assertEquals(baseModelCitiesSuccess, baseModelResult)
+        assertSuccess(testObserver, baseModelCitiesSuccess)
+    }
+
+    @Test
+    fun testRepositoryRegisterError(){
+        Mockito.`when`(apiService.registerUser(userRequest))
+            .thenReturn(Observable.error(
+                errorWithMessage
+            ))
+
+        val testObserver = TestObserver<BaseModel<User>>()
+        val observerResult = userRepository.registerUser(userRequest)
+        observerResult.subscribe(testObserver)
+        assertError400(testObserver)
+    }
+
+    @Test
+    fun testRepositoryGetStatesError(){
+        Mockito.`when`(apiService.getStates())
+            .thenReturn(Observable.error(errorWithMessage))
+
+        val testObserver = TestObserver<BaseModel<StateResponse>>()
+        val observerResult = userRepository.getStates()
+        observerResult.subscribe(testObserver)
+        assertError400(testObserver)
+    }
+
+    @Test
+    fun testRepositoryGetCitiesError(){
+        Mockito.`when`(apiService.getCities(requestedState))
+            .thenReturn(Observable.error(errorWithMessage))
+
+        val testObserver = TestObserver<BaseModel<CityResponse>>()
+        val observerResult = userRepository.getCities(requestedState)
+        observerResult.subscribe(testObserver)
+        assertError400(testObserver)
+    }
+
+    private fun <T> assertSuccess(testObserver: TestObserver<*>, expected: T){
+        testObserver.assertComplete()
+        testObserver.assertNoErrors()
+        testObserver.assertValueCount(1)
+        assertEquals(expected, testObserver.values()[0] as T)
+    }
+
+    private fun assertError400(testObserver: TestObserver<*>){
+        testObserver.assertNotComplete()
+        testObserver.assertValueCount(0)
+        var er = testObserver.errors()[0].cause as HttpException
+        assertEquals(400, er.code())
     }
 }

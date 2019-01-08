@@ -31,7 +31,9 @@ class LoginRepositoryTest: BaseTest(){
         val testSubscriber = TestSubscriber<BaseModel<Session>>()
         val flowableResult = loginRepositoryTest.loginUser("test@test.com", "test")
         flowableResult.subscribe(testSubscriber)
-        assertCompleteNoErrorCount(testSubscriber)
+        testSubscriber.assertComplete()
+        testSubscriber.assertNoErrors()
+        testSubscriber.assertValueCount(1)
         val baseModelResult = testSubscriber.values()[0]
         assertEquals(baseModelLoginSuccess, baseModelResult)
     }
@@ -49,7 +51,5 @@ class LoginRepositoryTest: BaseTest(){
         var er = testSubscriber.errors()[0].cause as HttpException
         assertEquals(401, er.code())
     }
-
-
 }
 

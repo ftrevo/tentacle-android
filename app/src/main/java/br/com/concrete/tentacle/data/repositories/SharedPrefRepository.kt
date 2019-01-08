@@ -14,9 +14,13 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
 
     fun saveSession(key: String, session: Session) = mSharedPref.put(key, Gson().toJson(session))
 
-    fun getStoredSession(key: String): Session {
+    fun getStoredSession(key: String): Session? {
         val sessionJson = mSharedPref.get(key, "")
-        return Gson().fromJson<Session>(sessionJson)
+        return if(sessionJson != ""){
+            Gson().fromJson<Session>(sessionJson)
+        }else{
+            null
+        }
     }
 
     fun getStoreString(key: String): String? = mSharedPref.get(key, "")
