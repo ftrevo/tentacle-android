@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"/>
 
     <TextView
+            android:visibility="invisible"
             android:textColor="@color/red"
             tools:text="Label text"
             android:id="@+id/tvError"
