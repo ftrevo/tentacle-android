@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextMedium">
+        <item name="android:fontFamily">@font/avenir_medium</item>
+    </style>
+
+    <style name="TextBlack">
+        <item name="android:fontFamily">@font/avenir_black</item>
+    </style>
+
+    <style name="TextHeavy">
+        <item name="android:fontFamily">@font/avenir_heavy</item>
+    </style>
+
+    <style name="TextMedium.12sp">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextMedium.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextMedium.16sp">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextBlack.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextBlack.16sp">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextBlack.22sp">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+</resources>
