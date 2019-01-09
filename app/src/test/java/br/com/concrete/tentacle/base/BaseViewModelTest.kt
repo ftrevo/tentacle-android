@@ -14,5 +14,4 @@ open class BaseViewModelTest : Instrumentation(), KoinTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-
 }

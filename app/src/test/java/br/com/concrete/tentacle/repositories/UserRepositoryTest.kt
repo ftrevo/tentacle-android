@@ -10,7 +10,7 @@ import br.com.concrete.tentacle.mock.baseModelUserSuccess
 import br.com.concrete.tentacle.mock.requestedState
 import br.com.concrete.tentacle.mock.userRequest
 import br.com.concrete.tentacle.mock.baseModelCitiesSuccess
-import br.com.concrete.tentacle.mock.errorWithMessage
+import br.com.concrete.tentacle.mock.error400
 import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
 import org.junit.Assert.assertEquals
@@ -61,7 +61,7 @@ class UserRepositoryTest : BaseRepositoryTest() {
     fun testRepositoryRegisterError() {
         Mockito.`when`(apiService.registerUser(userRequest))
             .thenReturn(Observable.error(
-                errorWithMessage
+                error400
             ))
 
         val testObserver = TestObserver<BaseModel<User>>()
@@ -73,7 +73,7 @@ class UserRepositoryTest : BaseRepositoryTest() {
     @Test
     fun testRepositoryGetStatesError() {
         Mockito.`when`(apiService.getStates())
-            .thenReturn(Observable.error(errorWithMessage))
+            .thenReturn(Observable.error(error400))
 
         val testObserver = TestObserver<BaseModel<StateResponse>>()
         val observerResult = userRepository.getStates()
@@ -84,7 +84,7 @@ class UserRepositoryTest : BaseRepositoryTest() {
     @Test
     fun testRepositoryGetCitiesError() {
         Mockito.`when`(apiService.getCities(requestedState))
-            .thenReturn(Observable.error(errorWithMessage))
+            .thenReturn(Observable.error(error400))
 
         val testObserver = TestObserver<BaseModel<CityResponse>>()
         val observerResult = userRepository.getCities(requestedState)

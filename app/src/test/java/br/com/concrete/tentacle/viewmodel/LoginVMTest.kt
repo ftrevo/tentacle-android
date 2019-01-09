@@ -6,6 +6,7 @@ import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.features.login.LoginViewModel
 import br.com.concrete.tentacle.mock.baseModelLoginSuccess
+import br.com.concrete.tentacle.mock.error400
 import br.com.concrete.tentacle.mock.error401
 import br.com.concrete.tentacle.mock.errorResponse
 import br.com.concrete.tentacle.repositories.LoginRepository
@@ -17,7 +18,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
 
-class LoginViewModelTest : BaseViewModelTest() {
+class LoginVMTest : BaseViewModelTest() {
 
     @Mock
     lateinit var sharePrefRepository: SharedPrefRepository
@@ -53,7 +54,7 @@ class LoginViewModelTest : BaseViewModelTest() {
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
         Mockito.`when`(loginRepository.loginUser("email@email.com", "123456"))
-            .thenReturn(Flowable.error(br.com.concrete.tentacle.mock.error))
+            .thenReturn(Flowable.error(error400))
 
         val result = loginViewModelTest.getStateModel()
         result.observeForever {

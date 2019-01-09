@@ -21,6 +21,7 @@ class LoginRepositoryTest : BaseRepositoryTest() {
 
     @Test
     fun loginSuccess() {
+        loginRepositoryTest = LoginRepository(apiService)
         Mockito.`when`(apiService.loginUser(RequestLogin("test@test.com", "test")))
             .thenReturn(Flowable.just(baseModelLoginSuccess))
 

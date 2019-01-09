@@ -19,10 +19,6 @@ class RegisterUserViewModel(private val userRepository: UserRepository) :
     private val viewStateUser: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
     private val disposables = CompositeDisposable()
 
-//    init {
-//        loadStates()
-//    }
-
     fun getUser() = viewStateUser
     fun getStates() = viewStateState
     fun getCities() = viewStateCity
