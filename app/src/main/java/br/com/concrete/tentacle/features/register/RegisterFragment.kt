@@ -244,7 +244,7 @@ class RegisterFragment : BaseFragment() {
         }
     }
 
-    private fun resetCity(){
+    private fun resetCity() {
         spCity.resetValue()
         citySelected = null
     }

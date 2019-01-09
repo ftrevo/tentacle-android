@@ -13,6 +13,7 @@
     <dimen name="marginBorderBottom">@dimen/marginBorder</dimen>
     <dimen name="minHeight">30dp</dimen>
     <dimen name="imageLogo">50dp</dimen>
+    <dimen name="defaultButtonTopMargin">22dp</dimen>
 
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_4">4dp</dimen>

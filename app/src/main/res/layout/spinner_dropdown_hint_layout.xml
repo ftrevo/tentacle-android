@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView
+        android:textAppearance="@style/TextMedium.14sp"
         android:paddingTop="@dimen/dp_10"
         android:paddingBottom="@dimen/dp_10"
         android:paddingStart="@dimen/dp_8"

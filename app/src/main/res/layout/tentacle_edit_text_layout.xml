@@ -6,6 +6,7 @@
               xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+            android:textAppearance="@style/TextMedium.12sp"
             android:textColor="@android:color/white"
             android:textAllCaps="true"
             tools:text="Label text"
@@ -14,6 +15,8 @@
             android:layout_height="wrap_content"/>
 
     <com.google.android.material.textfield.TextInputEditText
+            android:textColor="#fff"
+            android:textAppearance="@style/TextMedium.14sp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="2dp"
             tools:text="Teste teste teste"
@@ -23,6 +26,7 @@
             android:layout_height="wrap_content"/>
 
     <TextView
+            android:textAppearance="@style/TextMedium.12sp"
             android:visibility="invisible"
             android:textColor="@color/red"
             tools:text="Label text"

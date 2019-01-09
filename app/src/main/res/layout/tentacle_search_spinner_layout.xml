@@ -6,6 +6,7 @@
               xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+            android:textAppearance="@style/TextMedium.12sp"
             android:textColor="@android:color/white"
             android:textAllCaps="true"
             tools:text="Label text"
@@ -24,6 +25,7 @@
             android:layout_height="40dp"/>
 
     <TextView
+            android:textAppearance="@style/TextMedium.12sp"
             android:textColor="@color/red"
             tools:text="Label text"
             android:id="@+id/tvError"

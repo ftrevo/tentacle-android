@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient
-            android:endColor="@color/colorButtonBlue"
-            android:centerColor="@color/colorButtonBlue"
-            android:startColor="@color/colorButtonBlue"
-            android:angle="270" />
+    <solid
+            android:color="@color/colorButtonBlue"/>
     <corners
-            android:radius="@dimen/dp_5" />
+            android:radius="22dp" />
+
     <padding
             android:left="@dimen/dp_10"
             android:top="@dimen/dp_10"
