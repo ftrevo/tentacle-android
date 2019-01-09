@@ -11,6 +11,16 @@ import org.koin.standalone.StandAloneContext
 @RunWith(AndroidJUnit4::class)
 open class BaseTest {
 
+
+    /*
+    private lateinit var server: MockWebServer
+
+    @Before
+    fun setUp() {
+        server = MockWebServer()
+        server.start()
+    }*/
+
     @Before
     fun before(){
         StandAloneContext.stopKoin()

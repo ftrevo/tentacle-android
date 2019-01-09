@@ -15,7 +15,23 @@ class LoginRobot: BaseTestRobot() {
 
     fun clickButtonLogin() = actionClick(R.id.btLogin)
 
-    fun clickRegisterAccount() = actionClick(R.id.tvRegisterAccount)
+    fun clickRegisterAcc() = actionClick(R.id.tvRegisterAccount)
 
     fun matchesError(message: String) = matchTextError(message)
+
+    fun matchesNotError(message: String) = matchWithoutTextError(message)
+
+    fun matchesNotErrorSnackBar(message: String) = matchWithoutSnackBar(message)
+
+    fun matchDisplayedMessageOla() = matchDisplayed(R.id.tvOla)
+
+    fun matchDisplayedMessage() = matchDisplayed(R.id.tvMessage)
+
+    fun matchDisplayedTentacleEditTextEmail() = matchDisplayed(R.id.edtEmail)
+
+    fun matchDisplayedTentacleEditTextPassword() = matchDisplayed(R.id.edtPassword)
+
+    fun matchDisplayedButtonLogin() = matchDisplayed(R.id.btLogin)
+
+    fun matchDisplayedTextRegisterAccount() = matchDisplayed(R.id.tvRegisterAccount)
 }

@@ -31,6 +31,8 @@ buildscript {
     ext.junit5 = '5.3.1'
     ext.androidxTest = '1.1.1'
     ext.androidxTestExt = '1.1.0'
+    ext.androidxTestMockWebServer = '3.11.0'
+    ext.androidTextMockito = '2.23.4'
 
     //Android Material
     ext.androidMaterial = '1.0.0'
