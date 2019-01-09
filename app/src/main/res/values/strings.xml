@@ -1,3 +1,57 @@
 <resources>
     <string name="app_name">Tentacle</string>
+
+    <string name="register_email_hint">e-mail</string>
+    <string name="register_name_hint">nome</string>
+    <string name="register_password_hint">password</string>
+    <string name="register_ddd_phone_hint">DDD + telefone</string>
+
+    <string name="create_account">Criar conta</string>
+    <string name="create_account_title">Criar uma conta</string>
+    <string name="state_hint">estado</string>
+    <string name="city_hint">cidade</string>
+
+    <string name="email_error">Digite um e-mail válido</string>
+    <string name="name_error">O campo nome é de preenchimento obrigatório</string>
+    <string name="password_error">O campo password precisa ter no mínimo 6 digitos</string>
+    <string name="phone_error">Forneça um número de telefone válido</string>
+    <string name="state_error">Selecione um estado</string>
+    <string name="city_error">Selecione uma cidade</string>
+
+
+    <string-array name="states">
+        <item>-</item>
+    </string-array>
+
+
+    <string-array name="cities">
+        <item>-</item>
+    </string-array>
+
+    <string name="ok">Ok</string>
+    <string name="error_dialog_title">Estamos enfrentando alguns problemas!</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="login">Login</string>
+    <string name="ola_novamente">Olá novamente :)</string>
+    <string name="entre_e_veja_os_novos_jogos_adicionados">Entre e veja os novos jogos adicionados!</string>
+    <string name="email_invalido">Endereço de e-mail inválido</string>
+    <string name="senha_invalida">A senha deve ter pelo menos 5 caracteres.</string>
+    <string name="verificar_campos_login">Por favor, verifique os campos obrigatórios.</string>
+    <string name="error_login">Ocorreu um erro ao acessar o login. \n Por favor, tente novamente.</string>
+    <string name="button">Button</string>
+    <string name="register_account">Registrar conta</string>
+
+    <string name="state_dialog_text">Selecione ou pesquise o estado</string>
+    <string name="city_dialog_text">Selecione ou pesquise a cidade</string>
+    <string name="dialog_close">Fechar</string>
+    <string name="select_hint">Selecione</string>
+    <string name="user_or_password_error">Usuário ou senha inválidos!</string>
+
+    <string name="unknow_error">Ocorreu um erro inesperado</string>
+    <string name="no_internet_connection">Ops! Parece que você está sem conexão com a internet</string>
+
 </resources>

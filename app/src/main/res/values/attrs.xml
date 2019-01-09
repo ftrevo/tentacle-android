@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ButtonView">
+        <attr name="buttonName" format="string"/>
+        <attr name="progressBarColor" format="string"/>
+        <attr name="textColorButton" format="string"/>
+        <attr name="textSizeButton" format="float"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="TentacleLabeledWidget">
+        <attr name="label" format="reference"/>
+        <attr name="errorLabel" format="reference"/>
+        <attr name="android:imeOptions"/>
+        <attr name="android:inputType"/>
+    </declare-styleable>
+</resources>

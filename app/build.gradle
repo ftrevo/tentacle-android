@@ -4,18 +4,22 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: "de.mannodermaus.android-junit5"
+
+apply from: 'tasks.gradle'
+
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "br.com.concrete.tentacle"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        debug{
+        debug {
             buildConfigField "String", "BASE_URL", '"https://tentacle-backend.herokuapp.com/"'
         }
 
@@ -27,16 +31,28 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "com.google.android.material:material:$material"
     implementation "androidx.appcompat:appcompat:$appCompat"
     implementation "androidx.constraintlayout:constraintlayout:$constraitLayout"
 
+    //UI Components
+    //https://github.com/MdFarhanRaja/SearchableSpinner
+    implementation "com.github.MdFarhanRaja:SearchableSpinner:$searchableSpinner"
+
     //Test
     testImplementation "junit:junit:$junit"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5"
     androidTestImplementation "androidx.test:runner:$runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"
@@ -50,6 +66,19 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$retrofitLogging"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterRxJava"
 
+
+    implementation "com.squareup.okhttp3:okhttp:3.10.0"
+
+    //Observable
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJava"
+
     //AndroidX ViewModel/LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "com.google.android.material:material:$androidMaterial"
+    
+    //Utils
+    implementation "br.com.concrete:canarinho:$canarinho"
+
+    ktlint "com.github.shyiko:ktlint:$ktLintVersion"
 }
