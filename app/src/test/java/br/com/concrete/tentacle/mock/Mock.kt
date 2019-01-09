@@ -37,7 +37,7 @@ val errorWithMessage = Throwable("Error",
         ))
 )
 
-val error401 = Throwable("Error 401",
+val error401 = Throwable(
     HttpException(
         Response.error<HttpException>(401,
             ResponseBody.create(MediaType.parse("text/plain"), "")

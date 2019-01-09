@@ -61,8 +61,11 @@ class SharedPrefRepositoryTest : KoinTest {
 
     @Test
     fun testInvalidKey() {
-        sharePrefRepository.getStoredSession("wrongKey")
-        sharePrefRepository.getStoreString("wrongKey")
-        sharePrefRepository.deleteStoreString("wrongKey")
+        val result = sharePrefRepository.getStoredSession("wrongKey")
+        assertEquals(null, result)
+        val result01 = sharePrefRepository.getStoreString("wrongKey")
+        assertEquals("", result01)
+        val result02 = sharePrefRepository.deleteStoreString("wrongKey")
+        assertEquals(Unit, result02)
     }
 }
