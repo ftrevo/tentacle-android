@@ -43,11 +43,6 @@ android {
                 }
             }
         }
-//        unitTests.all {
-//            jacoco {
-//                includeNoLocationClasses = true
-//            }
-//        }
     }
 }
 
@@ -65,33 +60,6 @@ jacoco {
 
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
-}
-
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
-    def fileFilter = [ '/br/com/concrete/tentacle/di/*',
-                       '/br/com/concrete/tentacle/extensions/*',
-                       '/br/com/concrete/tentacle/data/models/*',
-                       '/br/com/concrete/tentacle/data/network/*',
-                       '/br/com/concrete/tentacle/custom/*',
-                       '/br/com/concrete/tentacle/utils/*',
-                       '/br/com/concrete/tentacle/base/*',
-                       '/br/com/concrete/tentacle/features/*',
-                       '**/R.class', '**/R$*.class', '**/BuildConfig.*',
-                       '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*' ]
-    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
-    def mainSrc = "$project.projectDir/src/main/java"
-
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: project.buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
-    ])
 }
 
 dependencies {
@@ -127,9 +95,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$retrofitLogging"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterRxJava"
-
-
-    implementation "com.squareup.okhttp3:okhttp:3.10.0"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3"
 
     //Observable
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"

@@ -4,7 +4,6 @@ import android.app.Instrumentation
 import br.com.concrete.tentacle.data.network.ApiService
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
-import br.com.concrete.tentacle.di.viewModelModule
 import br.com.concrete.tentacle.rules.RxImmediateSchedulerRule
 import org.junit.After
 import org.junit.Before

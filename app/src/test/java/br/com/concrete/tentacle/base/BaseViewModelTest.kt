@@ -12,12 +12,11 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @Ignore
 @RunWith(MockitoJUnitRunner::class)
-open class BaseViewModelTest :  Instrumentation(), KoinTest {
+open class BaseViewModelTest : Instrumentation(), KoinTest {
 
     @Mock
     lateinit var sharePrefRepository: SharedPrefRepository
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-
 }

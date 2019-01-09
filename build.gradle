@@ -18,6 +18,7 @@ buildscript {
     ext.retrofitVersion = '2.3.0'
     ext.retrofitLogging =  '3.9.0'
     ext.retrofitAdapterRxJava = '2.3.0'
+    ext.okhttp3 = "3.12.1"
 
     //Observable
     ext.rxAndroid = "2.1.0"

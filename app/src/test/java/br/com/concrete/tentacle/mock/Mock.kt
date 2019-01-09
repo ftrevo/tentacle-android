@@ -1,6 +1,13 @@
 package br.com.concrete.tentacle.mock
 
-import br.com.concrete.tentacle.data.models.*
+import br.com.concrete.tentacle.data.models.BaseModel
+import br.com.concrete.tentacle.data.models.ErrorResponse
+import br.com.concrete.tentacle.data.models.State
+import br.com.concrete.tentacle.data.models.StateResponse
+import br.com.concrete.tentacle.data.models.CityResponse
+import br.com.concrete.tentacle.data.models.Session
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.UserRequest
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import retrofit2.HttpException
@@ -12,6 +19,14 @@ private val messageSuccess = listOf("success")
  * COMMON
  */
 val errorResponse = ErrorResponse()
+
+var error = Throwable(HttpException(
+    Response.error<HttpException>(400,
+        ResponseBody.create(MediaType.parse("application/json"),
+            "{\"message\": [\"Error Message 01\", \"Error Message 02\"]}"
+        )
+    ))
+)
 
 val errorWithMessage = Throwable("Error",
     HttpException(

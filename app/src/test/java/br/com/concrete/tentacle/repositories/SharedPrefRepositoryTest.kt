@@ -1,7 +1,11 @@
 package br.com.concrete.tentacle.repositories
 
 import br.com.concrete.tentacle.features.MainActivity
-import br.com.concrete.tentacle.mock.*
+import br.com.concrete.tentacle.mock.sessionForPreference
+import br.com.concrete.tentacle.mock.sessionKey
+import br.com.concrete.tentacle.mock.string
+import br.com.concrete.tentacle.mock.stringExpectedWhenThereIsNoOne
+import br.com.concrete.tentacle.mock.stringKey
 import junit.framework.Assert.assertEquals
 import org.junit.After
 import org.junit.Before

@@ -1,13 +1,11 @@
 package br.com.concrete.tentacle.viewmodel
 
 import br.com.concrete.tentacle.base.BaseViewModelTest
-import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.features.login.LoginViewModel
 import br.com.concrete.tentacle.mock.baseModelLoginSuccess
 import br.com.concrete.tentacle.mock.errorResponse
-import br.com.concrete.tentacle.mock.errorWithMessage
 import br.com.concrete.tentacle.repositories.LoginRepository
 import io.reactivex.Flowable
 import junit.framework.Assert.assertEquals
@@ -16,7 +14,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
 
-class LoginViewModelTest: BaseViewModelTest() {
+class LoginViewModelTest : BaseViewModelTest() {
 
     @Mock
     lateinit var loginRepository: LoginRepository
@@ -24,19 +22,19 @@ class LoginViewModelTest: BaseViewModelTest() {
     private lateinit var loginViewModelTest: LoginViewModel
 
     @Before
-    fun before(){
+    fun before() {
         loginViewModelTest = LoginViewModel(loginRepository, sharePrefRepository)
     }
 
     @Test
-    fun loginUserVMTestSuccess(){
+    fun loginUserVMTestSuccess() {
         val expected = ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModelLoginSuccess.data)
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
         Mockito.`when`(loginRepository.loginUser("email@email.com", "123456"))
             .thenReturn(Flowable.just(baseModelLoginSuccess))
         val result = loginViewModelTest.getStateModel()
-        result.observeForever{
+        result.observeForever {
             actual = it
         }
         loginViewModelTest.loginUser("email@email.com", "123456")
@@ -44,22 +42,19 @@ class LoginViewModelTest: BaseViewModelTest() {
     }
 
     @Test
-    fun loginUserVMTestError(){
+    fun testLoginErrorMockito() {
         val expected = ViewStateModel<Session>(status = ViewStateModel.Status.ERROR, errors = errorResponse)
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
         Mockito.`when`(loginRepository.loginUser("email@email.com", "123456"))
-            .thenReturn(Flowable.error(errorWithMessage))
+            .thenReturn(Flowable.error(br.com.concrete.tentacle.mock.error))
 
         val result = loginViewModelTest.getStateModel()
-        result.observeForever{
+        result.observeForever {
             actual = it
         }
 
         loginViewModelTest.loginUser("email@email.com", "123456")
         assertEquals(expected, actual)
     }
-
-
-
 }
