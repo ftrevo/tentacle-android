@@ -15,12 +15,12 @@
         <attr name="android:inputType"/>
     </declare-styleable>
 
-    <declare-styleable name="ListError">
+    <declare-styleable name="ListError"/>
+
+    <declare-styleable name="ListCustom">
         <attr name="icon" format="reference"/>
         <attr name="errorDescription" format="reference"/>
-        <attr name="buttonName" format="reference"/>
+        <attr name="buttonNameError" format="reference"/>
     </declare-styleable>
-
-    <declare-styleable name="ListCustom"/>
 
 </resources>

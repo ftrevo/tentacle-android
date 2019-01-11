@@ -51,6 +51,7 @@
     <dimen name="paddingTentacleEditText">5dp</dimen>
 
     <item name="defaultTextSize" format="float" type="dimen">14.0</item>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>
 

@@ -6,12 +6,15 @@
 
     <br.com.concrete.tentacle.custom.ListError
             android:id="@+id/recyclerListError"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerListView"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+    />
 
 </LinearLayout>

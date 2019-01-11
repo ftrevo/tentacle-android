@@ -19,7 +19,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginBottom="@dimen/componentsMarginDefaultError"
-            android:src="@drawable/ic_arrow_down"
+            android:src="@drawable/il_wow"
             app:layout_constraintBottom_toTopOf="@id/guide"
             app:layout_constraintHorizontal_bias="0.5"/>
 
@@ -48,7 +48,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/errorDescription"
             android:layout_marginTop="@dimen/componentsMarginDefaultError"
-            android:id="@+id/buttonName"
+            android:id="@+id/buttonNameError"
             style="@style/StyleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
