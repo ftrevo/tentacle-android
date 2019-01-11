@@ -67,4 +67,8 @@ class ButtonView(
             frameLayout.isEnabled = !condition
         }
     }
+
+    fun setButtonName(btnName: String?){
+        button.text = btnName
+    }
 }

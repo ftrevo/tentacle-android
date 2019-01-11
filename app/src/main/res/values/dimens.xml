@@ -14,6 +14,9 @@
     <dimen name="minHeight">30dp</dimen>
     <dimen name="imageLogo">50dp</dimen>
     <dimen name="defaultButtonTopMargin">22dp</dimen>
+    <dimen name="errorImageSize">170dp</dimen>
+    <dimen name="componentsMarginDefaultError">20dp</dimen>
+
 
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_4">4dp</dimen>
