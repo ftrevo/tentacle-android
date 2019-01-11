@@ -21,9 +21,6 @@
         <attr name="buttonName" format="reference"/>
     </declare-styleable>
 
-    <declare-styleable name="ListCustom">
-        <attr name="recyclerListView" format="reference"/>
-        <attr name="listError" format="reference"/>
-    </declare-styleable>
+    <declare-styleable name="ListCustom"/>
 
 </resources>

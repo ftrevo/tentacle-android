@@ -21,7 +21,7 @@ class ListError(
 
         context.withStyledAttributes(
             attrs,
-            R.styleable.ButtonView,
+            R.styleable.ListError,
             0,
             0
         ) {
@@ -33,7 +33,7 @@ class ListError(
         }
     }
 
-    fun setUpComponents(iconReference: Int, errorDescriptionReference: Int, buttonNameReference: Int){
+    private fun setUpComponents(iconReference: Int, errorDescriptionReference: Int, buttonNameReference: Int){
         if (iconReference > DEFAULT_INVALID_RESOURCE) icon.setImageResource(iconReference)
         if (errorDescriptionReference > DEFAULT_INVALID_RESOURCE) errorDescription.text = context.getString(errorDescriptionReference)
         if (buttonNameReference > DEFAULT_INVALID_RESOURCE) buttonName.setButtonName(context.getString(buttonNameReference))
