@@ -53,5 +53,7 @@
 
     <string name="unknow_error">Ocorreu um erro inesperado</string>
     <string name="no_internet_connection">Ops! Parece que você está sem conexão com a internet</string>
+    <string name="search">Search</string>
+    <string name="title_activity_host">HostActivity</string>
 
 </resources>

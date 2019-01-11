@@ -1,14 +1,15 @@
 package br.com.concrete.tentacle.features
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.R
 
-class MainActivity : AppCompatActivity() {
+class HostActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_host)
+
     }
+
 }

@@ -47,6 +47,10 @@ dependencies {
     implementation "com.github.MdFarhanRaja:SearchableSpinner:$searchableSpinner"
 
     //Test
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'com.google.android.material:material:1.0.0-alpha1'
     testImplementation "junit:junit:$junit"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5"
     androidTestImplementation "androidx.test:runner:$runner"
@@ -76,7 +80,7 @@ dependencies {
     //AndroidX ViewModel/LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
     implementation "com.google.android.material:material:$androidMaterial"
-    
+
     //Utils
     implementation "br.com.concrete:canarinho:$canarinho"
 

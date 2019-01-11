@@ -9,6 +9,12 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="AppThemeActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="TextInputLayoutTheme">
         <!-- Used for the bottom line when not selected / focused -->
         <item name="colorControlNormal">@color/textHint</item>
@@ -93,5 +99,7 @@
     <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
         <item name="colorAccent">@android:color/white</item>
     </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>
