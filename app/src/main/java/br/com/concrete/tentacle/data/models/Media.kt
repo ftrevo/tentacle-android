@@ -4,10 +4,11 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Game(
+data class Media(
     val _id: String = String(),
-    val title: String = String(),
-    val createdBy: User,
+    val platform: String = String(),
+    val game: Game,
+    val owner: User,
     var createdAt: String,
-    var updateAt: String
+    var updatedAt: String
 ) : Parcelable

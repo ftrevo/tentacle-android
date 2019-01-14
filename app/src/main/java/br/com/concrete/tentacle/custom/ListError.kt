@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 class ListError(
     context: Context,
     attrs: AttributeSet
-): ConstraintLayout(context, attrs){
+) : ConstraintLayout(context, attrs) {
 
     init {
         View.inflate(context, R.layout.list_error_custom, this)
@@ -26,10 +26,9 @@ class ListError(
         ) {}
     }
 
-    fun setUpComponents(iconReference: Int, errorDescriptionReference: Int, buttonNameReference: Int){
+    fun setUpComponents(iconReference: Int, errorDescriptionReference: Int, buttonNameReference: Int) {
         if (iconReference > DEFAULT_INVALID_RESOURCE) icon.setImageResource(iconReference)
         if (errorDescriptionReference > DEFAULT_INVALID_RESOURCE) errorDescription.text = context.getString(errorDescriptionReference)
         if (buttonNameReference > DEFAULT_INVALID_RESOURCE) buttonNameError.setButtonName(context.getString(buttonNameReference))
     }
-
 }

@@ -11,4 +11,6 @@
     <color name="colorAddNewGame">#3b4048</color>
     <color name="red">#ea5858</color>
     <color name="textColor">#FFF</color>
+
+    <color name="textColorErrorButtonName">#757575</color>
 </resources>

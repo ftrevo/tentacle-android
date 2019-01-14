@@ -21,6 +21,7 @@
         <attr name="icon" format="reference"/>
         <attr name="errorDescription" format="reference"/>
         <attr name="buttonNameError" format="reference"/>
+        <attr name="buttonNameAction" format="reference"/>
     </declare-styleable>
 
 </resources>

@@ -19,7 +19,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginBottom="@dimen/componentsMarginDefaultError"
-            android:src="@drawable/il_wow"
+            android:src="@drawable/ic_il_wow"
             app:layout_constraintBottom_toTopOf="@id/guide"
             app:layout_constraintHorizontal_bias="0.5"/>
 
@@ -27,7 +27,7 @@
             android:textAppearance="@style/TextBlack.22sp"
             android:layout_marginTop="@dimen/componentsMarginDefaultError"
             android:id="@+id/errorDescription"
-            android:textColor="@color/textHint"
+            android:textColor="@color/textColor"
             android:gravity="center"
             android:text="@string/no_game_registered"
             android:layout_width="match_parent"
@@ -55,7 +55,8 @@
             android:layout_marginEnd="@dimen/margin_default"
             android:layout_marginStart="@dimen/margin_default"
             app:buttonName="@string/add_new_game"
-            android:backgroundTint="@color/colorAddNewGame"
+            app:textColorButton="@color/textColorErrorButtonName"
+            android:backgroundTint="@color/textColor"
             />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

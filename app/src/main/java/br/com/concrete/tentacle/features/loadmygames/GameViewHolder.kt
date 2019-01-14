@@ -2,17 +2,19 @@ package br.com.concrete.tentacle.features.loadmygames
 
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import br.com.concrete.tentacle.data.models.Media
+import kotlinx.android.synthetic.main.fragment_game_item.view.*
 
 open class GameViewHolder(
     val mLinearLayout: LinearLayout
-): RecyclerView.ViewHolder(mLinearLayout){
+) : RecyclerView.ViewHolder(mLinearLayout)
 
-    fun callBack(holder: GameViewHolder, position: Int) {
-        holder.mLinearLayout
-    }
+fun <T> callBack(holder: RecyclerView.ViewHolder, element: T) {
 
-    fun createHolder(mLinearLayout: LinearLayout) : RecyclerView.ViewHolder{
-        return GameViewHolder(mLinearLayout)
-    }
+    val gameViewHolder = holder as GameViewHolder
+    val media = element as Media
 
+    gameViewHolder.mLinearLayout.game_name.text = media.game.title
+
+    gameViewHolder.mLinearLayout.game_media.text = media.platform
 }
