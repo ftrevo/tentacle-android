@@ -1,5 +1,5 @@
 package br.com.concrete.tentacle.data.models
 
-class GameResponse(
+data class GameResponse(
     val list: List<Game>
 )

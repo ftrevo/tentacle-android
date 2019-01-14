@@ -1,10 +1,11 @@
-package br.com.concrete.tentacle.features.registerGame
+package br.com.concrete.tentacle.features.searchGame
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.Game
+import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
@@ -20,6 +21,7 @@ class SearchGameViewModel(
     LifecycleObserver {
 
     private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
+    private val viewGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
     private val disposables = CompositeDisposable()
 
     fun searchGame(title: String) {
@@ -32,7 +34,18 @@ class SearchGameViewModel(
         }))
     }
 
-    fun getSearchGame(): LiveData<ViewStateModel<ArrayList<Game>>> = viewSearchGame
+    fun registerNewGame(title: String) {
+        viewGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
+        val session: Session = sharedPrefRepository.getStoredSession(PREFS_KEY_USER_SESSION)
+        disposables.add(gameRepository.registerNewGame(GameRequest(title), session.accessToken).subscribe({ base->
+            viewGame.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list as ArrayList<Game>))
+        }, {
+            viewGame.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
+        }))
+    }
+
+    fun getSearchGame() = viewSearchGame
+    fun getGame() = viewGame
 
     override fun onCleared() {
         super.onCleared()

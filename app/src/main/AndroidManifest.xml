@@ -18,7 +18,7 @@
         <activity
                 android:name=".features.MainActivity"
                 android:screenOrientation="portrait"
-                android:theme="@style/AppThemeActionBar"
+                android:theme="@style/AppTheme"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -35,6 +35,10 @@
                 android:label="@string/title_activity_host"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppThemeActionBar">
+        </activity>
+        <activity android:name=".features.searchGame.SearchActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppThemeActionBar">
         </activity>
     </application>
 

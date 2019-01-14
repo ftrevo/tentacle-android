@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.registerGame
+package br.com.concrete.tentacle.features.searchGame
 
 
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import kotlinx.android.synthetic.main.fragment_search_game.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchGameFragment : BaseSearchFragment() {
@@ -30,17 +31,22 @@ class SearchGameFragment : BaseSearchFragment() {
         newText?.let {
             text-> gameViewModel.searchGame(text)
         }
+
         return false
     }
 
     override fun init() {
-        gameViewModel.getSearchGame().observe(this, Observer {stateModel->
-            when(stateModel.status) {
+        gameViewModel.getSearchGame().observe(this, Observer {gameModel->
+            when(gameModel.status) {
                 ViewStateModel.Status.LOADING-> {
 
                 }
                 ViewStateModel.Status.SUCCESS-> {
-                    Log.i("SIZE ", stateModel.model?.size.toString())
+                    if (gameModel.model?.isNotEmpty()!!) {
+
+                    } else {
+                        newGame.visibility = View.VISIBLE
+                    }
                 }
                 ViewStateModel.Status.ERROR-> {
 
@@ -48,6 +54,11 @@ class SearchGameFragment : BaseSearchFragment() {
             }
 
         })
+
+        newGame.setOnClickListener {
+            gameViewModel.registerNewGame(getQuerySearchView())
+        }
+
     }
 
     override fun onMenuItemActionExpand(item: MenuItem?) = true

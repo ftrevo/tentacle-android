@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.data.repositories
 import android.content.SharedPreferences
 import br.com.concrete.tentacle.extensions.fromJson
 import br.com.concrete.tentacle.data.models.Session
+import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.extensions.get
 import br.com.concrete.tentacle.extensions.put
 import br.com.concrete.tentacle.extensions.remove
@@ -18,6 +19,8 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
         val sessionJson = mSharedPref.get(key, "")
         return Gson().fromJson<Session>(sessionJson)
     }
+
+    fun saveUser(key: String, user: User)  = mSharedPref.put(key, Gson().toJson(user))
 
     fun getStoreString(key: String): String? = mSharedPref.get(key, "")
 

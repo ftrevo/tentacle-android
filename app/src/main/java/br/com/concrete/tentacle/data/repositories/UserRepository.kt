@@ -12,7 +12,6 @@ import io.reactivex.schedulers.Schedulers
 class UserRepository(private val apiService: ApiService) {
 
     fun registerUser(userRequest: UserRequest): Observable<BaseModel<User>> {
-
         return apiService.registerUser(userRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())

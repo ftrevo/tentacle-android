@@ -19,10 +19,23 @@ interface ApiService {
     @POST("login")
     fun loginUser(@Body login: RequestLogin): Flowable<BaseModel<Session>>
 
+    @GET("/media")
+    fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean,
+                           @Header("Authorization")
+                           authKey: String): Observable<BaseModel<MediaResponse>>
+
     @GET("/games")
     fun getSearchGames(
         @Query("title")
         title: String,
+        @Header("Authorization")
+        authKey: String
+    ): Observable<BaseModel<GameResponse>>
+
+    @POST("/games")
+    fun registerNewGame(
+        @Body
+        game: GameRequest,
         @Header("Authorization")
         authKey: String
     ): Observable<BaseModel<GameResponse>>

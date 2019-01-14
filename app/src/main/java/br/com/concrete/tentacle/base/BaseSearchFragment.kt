@@ -12,6 +12,8 @@ abstract class BaseSearchFragment: BaseFragment(),
     SearchView.OnQueryTextListener,
     MenuItem.OnActionExpandListener {
 
+    private lateinit var searchView: SearchView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
@@ -21,12 +23,14 @@ abstract class BaseSearchFragment: BaseFragment(),
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search, menu)
         val menuItem: MenuItem = menu.findItem(R.id.action_search)
-        val searchView: SearchView = menuItem.actionView as SearchView
+        searchView = menuItem.actionView as SearchView
         searchView.setOnQueryTextListener(this)
         searchView.queryHint = context!!.getString(R.string.search)
 
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    fun getQuerySearchView() = searchView.query as String
 
     abstract fun init()
 
