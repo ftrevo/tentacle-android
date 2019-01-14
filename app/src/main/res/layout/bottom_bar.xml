@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:orientation="horizontal"
+    android:background="#000"
+    android:paddingStart="@dimen/margin_default"
+    android:paddingEnd="@dimen/margin_default">
+
+    <br.com.concrete.tentacle.custom.IconBottomBar
+        app:icon="@drawable/ic_library"
+        android:id="@+id/action_library"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+    <br.com.concrete.tentacle.custom.IconBottomBar
+        app:icon="@drawable/ic_game"
+        android:id="@+id/action_games"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+    <br.com.concrete.tentacle.custom.IconBottomBar
+        app:icon="@drawable/ic_home"
+        android:id="@+id/action_home"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+    <br.com.concrete.tentacle.custom.IconBottomBar
+        app:icon="@drawable/ic_reservation"
+        android:id="@+id/action_reservation"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+    <br.com.concrete.tentacle.custom.IconBottomBar
+        app:icon="@drawable/ic_events"
+        android:id="@+id/action_events"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

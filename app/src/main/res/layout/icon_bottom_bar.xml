@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:layout_gravity="center">
+
+    <View
+        android:id="@+id/selectedView"
+        android:layout_gravity="center"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circle_bg_icon_bottombar" />
+
+
+    <ImageView
+        android:scaleType="fitCenter"
+        android:id="@+id/ivIcon"
+        android:layout_gravity="center"
+        android:tint="@color/deactivateIcon"
+        android:src="@drawable/ic_game"
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
+
+</FrameLayout>
