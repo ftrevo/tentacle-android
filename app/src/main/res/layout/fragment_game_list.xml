@@ -5,13 +5,19 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        tools:context=".features.loadmygames.GameFragment"
+        tools:context=".features.loadmygames.LoadMyGamesFragment"
 >
 
+    <ImageView
+            android:src="@drawable/logo_tentacle_error_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+    />
 
     <br.com.concrete.tentacle.custom.ListCustom
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:id="@+id/list"
             android:layout_height="0dp"
             android:layout_width="0dp"

@@ -6,13 +6,6 @@
         android:layout_height="match_parent">
 
     <ImageView
-            android:src="@drawable/logo_tentacle_error_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            />
-
-    <ImageView
             android:id="@+id/icon"
             android:layout_height="@dimen/errorImageSize"
             android:layout_width="@dimen/errorImageSize"
@@ -20,6 +13,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginBottom="@dimen/componentsMarginDefaultError"
             android:src="@drawable/ic_il_wow"
+            android:tint="@color/textColor"
             app:layout_constraintBottom_toTopOf="@id/guide"
             app:layout_constraintHorizontal_bias="0.5"/>
 

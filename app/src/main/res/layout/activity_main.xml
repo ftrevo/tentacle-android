@@ -8,10 +8,18 @@
         tools:context=".features.MainActivity">
 
 
+
+    <ImageView
+            android:src="@drawable/logo_tentacle_error_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+    />
+
     <fragment
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:name="br.com.concrete.tentacle.features.loadmygames.GameFragment"
+            android:name="br.com.concrete.tentacle.features.loadmygames.LoadMyGamesFragment"
             android:id="@+id/fragment"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
