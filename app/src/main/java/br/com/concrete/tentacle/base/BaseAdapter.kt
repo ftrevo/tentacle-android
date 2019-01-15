@@ -1,14 +1,14 @@
 package br.com.concrete.tentacle.base
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 
 class BaseAdapter<T>(
     var elements: List<T>,
     val layout: Int,
-    val holder: (mL: LinearLayout) -> RecyclerView.ViewHolder,
+    val holder: (mL: View) -> RecyclerView.ViewHolder,
     val holderCallback: (holder: RecyclerView.ViewHolder, T) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -22,7 +22,7 @@ class BaseAdapter<T>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val v = LayoutInflater.from(parent.context)
-            .inflate(layout, parent, false) as LinearLayout
+            .inflate(layout, parent, false)
 
         return holder(v)
     }
