@@ -8,10 +8,13 @@
     <color name="textHint">#9e9e9e</color>
 
     <color name="colorButtonBlue">#7342e1</color>
+    <color name="colorAddNewGame">#3b4048</color>
     <color name="red">#ea5858</color>
     <color name="textColor">#FFF</color>
-
+    
     <!-- IconBottomBar -->
     <color name="activateIcon">#FFF</color>
     <color name="deactivateIcon">#26FFFFFF</color>
+
+    <color name="textColorErrorButtonName">#757575</color>
 </resources>
