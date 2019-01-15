@@ -18,96 +18,27 @@ import kotlinx.android.synthetic.main.list_custom.view.*
 class LoadMyGamesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_game_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_game_list, container, false)
 
-        v.list.recyclerListView.setHasFixedSize(true)
+        view.list.recyclerListView.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(context)
-        v.list.recyclerListView.layoutManager = layoutManager
+        view.list.recyclerListView.layoutManager = layoutManager
 
-        var medias = populate()
-        //TODO SHOULD BE REPLACED BY OBSERVABLE
+        var medias = ArrayList<Media>()
+        //TODO REPLACE WITH OBSERVABLE
 
-        val recyclerViewAdapter = BaseAdapter<Media>(
+        val recyclerViewAdapter = BaseAdapter(
             medias,
-            R.layout.fragment_game_item,
+            R.layout.item_game,
             {
                 LoadMyGamesViewHolder(it)
             }, { holder, element ->
                 LoadMyGamesViewHolder.callBack(holder = holder, element = element)
             })
 
-        v.list.recyclerListView.adapter = recyclerViewAdapter
-        v.list.updateUi(medias)
-        return v
+        view.list.recyclerListView.adapter = recyclerViewAdapter
+        view.list.updateUi(medias)
+        return view
     }
 
-    /**
-     * Data mock - do not review this :D
-     */
-    private fun populate(): ArrayList<Media> {
-        val user = User("", "", "", "", "", State("", "", ""), "")
-        val game = Game("", "FIFA 2019", user, "", "")
-        var medias = ArrayList<Media>()
-        medias.add(
-            Media(_id = "fhd", platform = "PS3", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS4", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoDS", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoSwitch", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS3", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS4", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoDS", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoSwitch", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS3", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS4", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoDS", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoSwitch", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS3", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS4", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoDS", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoSwitch", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS3", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "PS4", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoDS", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        medias.add(
-            Media(_id = "fhd", platform = "NintendoSwitch", updatedAt = "", createdAt = "", owner = user, game = game)
-        )
-        return medias
-    }
 }

@@ -68,7 +68,7 @@ class ButtonView(
         }
     }
 
-    fun setButtonName(btnName: String?) {
-        button.text = btnName
+    fun setButtonName(btName: String?) {
+        btName?.let { button.text = btName }
     }
 }

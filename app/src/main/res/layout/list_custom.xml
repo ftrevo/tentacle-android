@@ -10,6 +10,9 @@
     <br.com.concrete.tentacle.custom.ListError
             android:id="@+id/recyclerListError"
             android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
@@ -19,15 +22,11 @@
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/fragment_game_item"
+            tools:listitem="@layout/item_game"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
     />
-
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5"/>
 
     <br.com.concrete.tentacle.custom.ButtonView
             android:id="@+id/buttonAction"
@@ -41,8 +40,6 @@
             app:buttonName="@string/add_new_game_compact"
             app:textColorButton="@color/textColorErrorButtonName"
             android:backgroundTint="@color/textColor"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/margin_default"
     />
 

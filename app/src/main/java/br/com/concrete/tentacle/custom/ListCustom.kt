@@ -34,8 +34,8 @@ class ListCustom(
         }
     }
 
-    fun <T> updateUi(elements: T?) {
-        if (elements != null && !(elements as ArrayList<T>).isEmpty()) {
+    fun <T> updateUi(elements: ArrayList<T>?) {
+        if (elements != null && !elements.isEmpty()) {
             recyclerListView.visibility = View.VISIBLE
             recyclerListError.visibility = View.GONE
             if (buttonNameActionReference > DEFAULT_INVALID_RESOURCE) {

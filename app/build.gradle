@@ -47,8 +47,8 @@ dependencies {
     implementation "com.github.MdFarhanRaja:SearchableSpinner:$searchableSpinner"
 
     //Test
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha1'
+    implementation "androidx.legacy:legacy-support-v4:$legacySupport"
+    implementation "androidx.recyclerview:recyclerview:$legacySupport"
     testImplementation "junit:junit:$junit"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5"
     androidTestImplementation "androidx.test:runner:$runner"
@@ -69,7 +69,7 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterRxJava"
 
 
-    implementation "com.squareup.okhttp3:okhttp:3.10.0"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3"
 
     //Observable
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"
