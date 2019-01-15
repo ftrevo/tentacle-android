@@ -24,11 +24,8 @@ class LoadMyGamesFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         v.list.recyclerListView.layoutManager = layoutManager
 
-        val user = User("", "", "", "", "", State("", "", ""), "")
-        val game = Game("", "FIFA 2019", user, "", "")
-        var medias = ArrayList<Media>()
-
-        populate(medias, user, game)
+        var medias = populate()
+        //TODO SHOULD BE REPLACED BY OBSERVABLE
 
         val recyclerViewAdapter = BaseAdapter<Media>(
             medias,
@@ -44,7 +41,13 @@ class LoadMyGamesFragment : Fragment() {
         return v
     }
 
-    private fun populate(medias: ArrayList<Media>, user: User, game: Game) {
+    /**
+     * Data mock - do not review this :D
+     */
+    private fun populate(): ArrayList<Media> {
+        val user = User("", "", "", "", "", State("", "", ""), "")
+        val game = Game("", "FIFA 2019", user, "", "")
+        var medias = ArrayList<Media>()
         medias.add(
             Media(_id = "fhd", platform = "PS3", updatedAt = "", createdAt = "", owner = user, game = game)
         )
@@ -105,5 +108,6 @@ class LoadMyGamesFragment : Fragment() {
         medias.add(
             Media(_id = "fhd", platform = "NintendoSwitch", updatedAt = "", createdAt = "", owner = user, game = game)
         )
+        return medias
     }
 }
