@@ -7,8 +7,6 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.Query
-import retrofit2.http.Header
 
 interface ApiService {
 
@@ -23,9 +21,4 @@ interface ApiService {
 
     @POST("login")
     fun loginUser(@Body login: RequestLogin): Flowable<BaseModel<Session>>
-
-    @GET("/media")
-    fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean,
-                           @Header("Authorization")
-                           authKey: String): Observable<BaseModel<MediaResponse>>
 }
