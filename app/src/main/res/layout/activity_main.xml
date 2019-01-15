@@ -19,12 +19,12 @@
     <fragment
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:name="br.com.concrete.tentacle.features.loadmygames.LoadMyGamesFragment"
+            android:name="br.com.concrete.tentacle.features.login.LoginFragment"
             android:id="@+id/fragment"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout="@layout/fragment_game_list"/>
+            tools:layout="@layout/fragment_login"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
