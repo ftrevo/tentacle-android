@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.MainActivity">
-
-
+        tools:context=".features.loadmygames.LoadMyGamesFragment"
+>
 
     <ImageView
             android:src="@drawable/logo_tentacle_error_list"
@@ -16,15 +15,21 @@
             android:scaleType="centerCrop"
     />
 
-    <fragment
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:name="br.com.concrete.tentacle.features.loadmygames.LoadMyGamesFragment"
-            android:id="@+id/fragment"
+    <br.com.concrete.tentacle.custom.ListCustom
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
+            android:id="@+id/list"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout="@layout/fragment_game_list"/>
+            app:layoutManager="LinearLayoutManager"
+            app:buttonNameError="@string/add_new_game"
+            app:errorDescription="@string/no_game_registered"
+            app:icon="@drawable/il_wow"
+            app:buttonNameAction="@string/add_new_game_compact"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

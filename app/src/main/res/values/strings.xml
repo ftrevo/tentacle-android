@@ -53,5 +53,11 @@
 
     <string name="unknow_error">Ocorreu um erro inesperado</string>
     <string name="no_internet_connection">Ops! Parece que você está sem conexão com a internet</string>
+    <string name="add_new_game">Adicionar novo Jogo</string>
+    <string name="add_new_game_compact">+ Adicionar</string>
+    <string name="no_game_registered">Você ainda não tem nenhum jogo cadastrado :(</string>
+
+    <string name="game_name">Nome do Jogo</string>
+    <string name="media">mídia</string>
 
 </resources>
