@@ -17,18 +17,12 @@ class RegisterUserViewModel(private val userRepository: UserRepository) :
     private val viewStateState: MutableLiveData<ViewStateModel<ArrayList<State>>> = MutableLiveData()
     private val viewStateCity: MutableLiveData<ViewStateModel<ArrayList<String>>> = MutableLiveData()
     private val viewStateUser: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
-    private val disposables = CompositeDisposable()
-
-//    init {
-//        loadStates()
-//    }
 
     fun getUser() = viewStateUser
     fun getStates() = viewStateState
     fun getCities() = viewStateCity
 
     fun registerUser(user: User) {
-
         val userRequest = UserRequest(
             name = user.name,
             city = user.city,
@@ -65,8 +59,4 @@ class RegisterUserViewModel(private val userRepository: UserRepository) :
         }))
     }
 
-    override fun onCleared() {
-        disposables.dispose()
-        super.onCleared()
-    }
 }
