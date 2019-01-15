@@ -36,10 +36,6 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/AppThemeActionBar">
         </activity>
-        <activity android:name=".features.searchGame.SearchActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AppThemeActionBar">
-        </activity>
     </application>
 
 </manifest>
