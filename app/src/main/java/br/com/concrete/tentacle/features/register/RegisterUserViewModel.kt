@@ -10,7 +10,6 @@ import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
-import br.com.concrete.tentacle.utils.PREFS_KEY_USER
 import io.reactivex.disposables.CompositeDisposable
 
 class RegisterUserViewModel(private val userRepository: UserRepository,
@@ -44,7 +43,6 @@ class RegisterUserViewModel(private val userRepository: UserRepository,
 
         viewStateUser.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(userRepository.registerUser(userRequest).subscribe({ base ->
-            sharedPrefRepository.saveUser(PREFS_KEY_USER, base.data)
             viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
         }, {
             viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))

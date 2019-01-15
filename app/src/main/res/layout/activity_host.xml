@@ -10,7 +10,7 @@
     <fragment
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:name="br.com.concrete.tentacle.features.game.MyGameFragment"
+            android:name="br.com.concrete.tentacle.features.searchGame.SearchGameFragment"
             android:id="@+id/fragment"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,7 +1,6 @@
 package br.com.concrete.tentacle.features.searchGame
 
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.Game
@@ -16,8 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 class SearchGameViewModel(
     private val gameRepository: GameRepository,
     private val sharedPrefRepository: SharedPrefRepository
-)
-    : BaseViewModel(),
+) : BaseViewModel(),
     LifecycleObserver {
 
     private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
@@ -25,27 +23,60 @@ class SearchGameViewModel(
     private val disposables = CompositeDisposable()
 
     fun searchGame(title: String) {
-        viewSearchGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         val session: Session = sharedPrefRepository.getStoredSession(PREFS_KEY_USER_SESSION)
-        disposables.add(gameRepository.getSearchGames(title, session.accessToken).subscribe({ base ->
-            viewSearchGame.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list as ArrayList<Game>))
-        }, {
-            viewSearchGame.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
-        }))
+        viewSearchGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
+
+        disposables.add(
+            gameRepository.getSearchGames(
+                title,
+                session.accessToken
+            ).subscribe(
+                { base ->
+                    viewSearchGame.postValue(
+                        ViewStateModel(
+                            status = ViewStateModel.Status.SUCCESS,
+                            model = base.data.list as ArrayList<Game>
+                        )
+                    )
+                }, {
+                    viewSearchGame.postValue(
+                        ViewStateModel(
+                            status = ViewStateModel.Status.ERROR,
+                            errors = notKnownError(it)
+                        )
+                    )
+                })
+        )
     }
 
     fun registerNewGame(title: String) {
-        viewGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         val session: Session = sharedPrefRepository.getStoredSession(PREFS_KEY_USER_SESSION)
-        disposables.add(gameRepository.registerNewGame(GameRequest(title), session.accessToken).subscribe({ base->
-            viewGame.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data.list as ArrayList<Game>))
-        }, {
-            viewGame.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
-        }))
+        viewGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
+
+        disposables.add(gameRepository.registerNewGame(
+            GameRequest(title),
+            session.accessToken
+        ).subscribe(
+            { base ->
+                viewGame.postValue(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.SUCCESS,
+                        model = base.data.list as ArrayList<Game>
+                    )
+                )
+            }, {
+                viewGame.postValue(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.ERROR,
+                        errors = notKnownError(it)
+                    )
+                )
+            })
+        )
     }
 
     fun getSearchGame() = viewSearchGame
-    fun getGame() = viewGame
+    fun getRegisteredGame() = viewGame
 
     override fun onCleared() {
         super.onCleared()

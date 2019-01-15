@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.features.searchGame
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -28,9 +27,7 @@ class SearchGameFragment : BaseSearchFragment() {
     override fun onQueryTextSubmit(query: String?) = true
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        newText?.let {
-            text-> gameViewModel.searchGame(text)
-        }
+        if (newText != null && newText.length > 3) gameViewModel.searchGame(newText)
 
         return false
     }
@@ -38,9 +35,7 @@ class SearchGameFragment : BaseSearchFragment() {
     override fun init() {
         gameViewModel.getSearchGame().observe(this, Observer {gameModel->
             when(gameModel.status) {
-                ViewStateModel.Status.LOADING-> {
-
-                }
+                ViewStateModel.Status.LOADING-> { }
                 ViewStateModel.Status.SUCCESS-> {
                     if (gameModel.model?.isNotEmpty()!!) {
 
@@ -49,16 +44,24 @@ class SearchGameFragment : BaseSearchFragment() {
                     }
                 }
                 ViewStateModel.Status.ERROR-> {
-
+                    showError(gameModel.errors)
                 }
             }
+        })
 
+        gameViewModel.getRegisteredGame().observe(this, Observer { game->
+            when(game.status) {
+                ViewStateModel.Status.LOADING-> { }
+                ViewStateModel.Status.SUCCESS-> { }
+                ViewStateModel.Status.ERROR-> {
+                    showError(game.errors)
+                }
+            }
         })
 
         newGame.setOnClickListener {
             gameViewModel.registerNewGame(getQuerySearchView())
         }
-
     }
 
     override fun onMenuItemActionExpand(item: MenuItem?) = true
