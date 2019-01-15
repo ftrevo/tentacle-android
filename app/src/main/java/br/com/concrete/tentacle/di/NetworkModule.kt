@@ -1,8 +1,8 @@
 package br.com.concrete.tentacle.di
 
 import br.com.concrete.tentacle.BuildConfig
+import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import br.com.concrete.tentacle.data.network.ApiService
-import br.com.concrete.tentacle.data.network.ApiServiceWithToken
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import com.google.gson.Gson
@@ -68,7 +68,7 @@ val networkModule = module {
 
     single(API_WITH_TOKEN){
         val retrofit: Retrofit = get("retrofitWithToken")
-        retrofit.create<ApiServiceWithToken>(ApiServiceWithToken::class.java)
+        retrofit.create<ApiService>(ApiService::class.java)
     }
 
     single("withoutToken"){
@@ -98,6 +98,6 @@ val networkModule = module {
 
     single(API_WITHOUT_TOKEN){
         val retrofit: Retrofit = get("retrofitWithoutToken")
-        retrofit.create<ApiService>(ApiService::class.java)
+        retrofit.create<ApiServiceAuthentication>(ApiServiceAuthentication::class.java)
     }
 }

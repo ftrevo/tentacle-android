@@ -1,8 +1,8 @@
 package br.com.concrete.tentacle.data.repositories
 
-import br.com.concrete.tentacle.data.network.ApiServiceWithToken
+import br.com.concrete.tentacle.data.network.ApiService
 
-class GameRepository(apiServiceWithToken: ApiServiceWithToken){
+class GameRepository(apiService: ApiService){
 
     fun loadMyGames(){
     }
