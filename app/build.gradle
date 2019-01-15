@@ -80,5 +80,9 @@ dependencies {
     //Utils
     implementation "br.com.concrete:canarinho:$canarinho"
 
+    //Navigation
+    implementation "android.arch.navigation:navigation-fragment:$navigation"
+    implementation "android.arch.navigation:navigation-ui:$navigation"
+
     ktlint "com.github.shyiko:ktlint:$ktLintVersion"
 }

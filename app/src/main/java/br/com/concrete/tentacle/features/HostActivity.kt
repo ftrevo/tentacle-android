@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.utils.LogWrapper
-import kotlinx.android.synthetic.main.host_activity.bottomBar
+import kotlinx.android.synthetic.main.activity_host.bottomBar
 
 class HostActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.host_activity)
+        setContentView(R.layout.activity_host)
 
         bottomBar.startListener { action ->
             when (action) {

@@ -10,6 +10,7 @@ buildscript {
     ext.searchableSpinner = '1.9'
     ext.material = '1.1.0-alpha02'
     ext.ktLintVersion = '0.29.0'
+    ext.androidGradlePlugin = '3.2.1'
 
     //Koin
     ext.koinVersion = '1.0.2'
@@ -36,6 +37,9 @@ buildscript {
     //Android Material
     ext.androidMaterial = '1.0.0'
 
+    //Navigation
+    ext.navigation = "1.0.0-alpha09"
+
     repositories {
         google()
         jcenter()
@@ -44,6 +48,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$buildGradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:$junit5Dependency"
+        classpath "com.android.tools.build:gradle:$androidGradlePlugin"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
