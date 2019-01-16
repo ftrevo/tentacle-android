@@ -9,8 +9,8 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import kotlinx.android.synthetic.main.fragment_game_list.view.list
-import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
+import kotlinx.android.synthetic.main.fragment_game_list.list
+import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoadMyGamesFragment : BaseFragment() {
@@ -19,18 +19,22 @@ class LoadMyGamesFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_game_list, container, false)
+        init()
+        return view
+    }
 
-        viewModelLoadMyGames.getMyGames().observe(this, androidx.lifecycle.Observer{ stateModel ->
-
-            when(stateModel.status){
-                ViewStateModel.Status.SUCCESS ->{
-                     stateModel.model?.let { medias ->
-                        view.list.recyclerListView.setHasFixedSize(true)
+    private fun initObserver(){
+        viewModelLoadMyGames.getMyGames().observe(this, androidx.lifecycle.Observer { stateModel ->
+            val medias = stateModel.model
+            when (stateModel.status) {
+                ViewStateModel.Status.SUCCESS -> {
+                    medias?.let {
+                        recyclerListView.setHasFixedSize(true)
                         val layoutManager = LinearLayoutManager(context)
-                        view.list.recyclerListView.layoutManager = layoutManager
+                        recyclerListView.layoutManager = layoutManager
 
                         val recyclerViewAdapter = BaseAdapter(
-                            medias,
+                            medias!!,
                             R.layout.item_game,
                             { view ->
                                 LoadMyGamesViewHolder(view)
@@ -38,19 +42,27 @@ class LoadMyGamesFragment : BaseFragment() {
                                 LoadMyGamesViewHolder.callBack(holder = holder, element = element)
                             })
 
-                        view.list.recyclerListView.adapter = recyclerViewAdapter
-                        view.list.updateUi(medias)
+                        recyclerListView.adapter = recyclerViewAdapter
                     }
+                    list.updateUi(medias)
+                    list.setLoading(false)
                 }
 
                 ViewStateModel.Status.ERROR -> {
                     stateModel.errors?.let {
                         showError(it)
                     }
+                    list.updateUi(medias)
+                    list.setLoading(false)
                 }
             }
         })
 
-        return view
     }
+
+    private fun init(){
+        initObserver()
+        lifecycle.addObserver(viewModelLoadMyGames)
+    }
+
 }

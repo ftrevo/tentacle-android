@@ -27,18 +27,18 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 val networkModule = module {
 
     single{
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        val httpLogInterceptor = HttpLoggingInterceptor()
 
         if (BuildConfig.DEBUG) {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.BODY
         } else {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
 
-        httpLoggingInterceptor
+        httpLogInterceptor
     }
 
-    single{
+    single("tokenInterceptor"){
         Interceptor { chain ->
             val prefs: SharedPrefRepository = get()
             val userSession
@@ -58,7 +58,7 @@ val networkModule = module {
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(get())
-            .addInterceptor(get())
+            .addInterceptor(get("tokenInterceptor"))
             .build()
     }
 
