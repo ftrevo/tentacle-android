@@ -6,6 +6,6 @@ import org.koin.dsl.module.module
 
 val repositoryModule = module {
 
-    factory { UserRepository(get()) }
-    factory { LoginRepository(get()) }
+    factory { UserRepository(get(API_WITHOUT_TOKEN)) }
+    factory { LoginRepository(get(API_WITHOUT_TOKEN)) }
 }
