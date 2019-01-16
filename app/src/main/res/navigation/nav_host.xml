@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:startDestination="@+id/home">
+
+    <fragment
+            android:id="@+id/home"
+            android:name="br.com.concrete.tentacle.features.home.HomeFragment"
+            android:label="fragment_title_screen"
+            tools:layout="@layout/fragment_home"/>
+
+    <fragment
+            android:id="@+id/myGames"
+            android:name="br.com.concrete.tentacle.features.loadmygames.LoadMyGamesFragment"
+            android:label="fragment_title_screen"
+            tools:layout="@layout/fragment_game_list"/>
+
+    <action
+            android:id="@+id/navigate_to_home"
+            app:destination="@+id/home"/>
+
+    <action
+            android:id="@+id/navigate_to_my_games"
+            app:destination="@+id/myGames"/>
+
+</navigation>

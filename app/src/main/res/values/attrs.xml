@@ -16,7 +16,7 @@
     </declare-styleable>
 
     <declare-styleable name="IconBottomBar">
-        <attr name="icon" format="reference"/>
+        <attr name="iconBottomBar" format="reference"/>
         <attr name="selected" format="boolean"/>
     </declare-styleable>
 

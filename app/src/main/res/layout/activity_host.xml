@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/default_background"/>
+    <!--<include layout="@layout/default_background"/>-->
 
     <fragment
         android:id="@+id/host_fragment"
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/navigation"
+        app:navGraph="@navigation/nav_host"
         app:layout_constraintBottom_toTopOf="@+id/bottomBar"/>
 
     <br.com.concrete.tentacle.custom.BottomBar
