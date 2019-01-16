@@ -14,4 +14,7 @@
     <!-- IconBottomBar -->
     <color name="activateIcon">#FFF</color>
     <color name="deactivateIcon">#26FFFFFF</color>
+
+    <!-- BottomBar -->
+    <color name="bgBottomBar">#000</color>
 </resources>

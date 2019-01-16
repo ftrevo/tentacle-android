@@ -8,8 +8,8 @@
     <View
         android:id="@+id/selectedView"
         android:layout_gravity="center"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/bottomBarSelectedView"
+        android:layout_height="@dimen/bottomBarSelectedView"
         android:background="@drawable/circle_bg_icon_bottombar" />
 
 
@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:tint="@color/deactivateIcon"
         android:src="@drawable/ic_game"
-        android:layout_width="24dp"
-        android:layout_height="24dp" />
+        android:layout_width="@dimen/bottomBarIcon"
+        android:layout_height="@dimen/bottomBarIcon" />
 
 </FrameLayout>

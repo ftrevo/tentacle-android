@@ -19,7 +19,7 @@
     <dimen name="dp_4">4dp</dimen>
     <dimen name="dp_5">5dp</dimen>
     <dimen name="dp_8">8dp</dimen>
-    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_10">10dp</dimen>bottom
     <dimen name="dp_25">25dp</dimen>
     <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_80">80dp</dimen>
@@ -48,6 +48,10 @@
     <dimen name="paddingTentacleEditText">5dp</dimen>
 
     <item name="defaultTextSize" format="float" type="dimen">14.0</item>
+
+    <dimen name="bottomBarSelectedView">48dp</dimen>
+    <dimen name="bottomBarIcon">24dp</dimen>
+    <dimen name="bottomBarHeight">56dp</dimen>
 
 </resources>
 
