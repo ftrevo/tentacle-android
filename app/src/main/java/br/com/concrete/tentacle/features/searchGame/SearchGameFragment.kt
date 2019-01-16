@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
-
     private val gameViewModel: SearchGameViewModel by viewModel()
 
     override fun onCreateView(
@@ -29,52 +28,51 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         return inflater.inflate(R.layout.fragment_search_game, container, false)
     }
 
-    override fun onQueryTextSubmit(query: String?) = true
-
-    override fun onQueryTextChange(newText: String?): Boolean {
-        if (newText != null && newText.length > 3) gameViewModel.searchGame(newText)
-        return false
-    }
-
     override fun initViewModel() {
-        gameViewModel.getSearchGame().observe(this, Observer {gameModel->
-            when(gameModel.status) {
-                ViewStateModel.Status.LOADING-> { }
-                ViewStateModel.Status.SUCCESS-> {
+        gameViewModel.getSearchGame().observe(this, Observer { gameModel ->
+            when (gameModel.status) {
+                ViewStateModel.Status.LOADING -> {
+                }
+                ViewStateModel.Status.SUCCESS -> {
                     if (gameModel.model?.isNotEmpty()!!) {
                         val recyclerViewAdapter = BaseAdapter(gameModel.model, R.layout.item_game, {
-                                SearchGameViewHolder(it)
-                            }, { holder, element ->
-                                SearchGameViewHolder.callBack(holder = holder, element = element)
-                            })
+                            SearchGameViewHolder(it)
+                        }, { holder, element ->
+                            SearchGameViewHolder.callBack(holder = holder, game = element)
+                        })
                         listCustom.recyclerListView.adapter = recyclerViewAdapter
                         listCustom.updateUi(gameModel.model)
                     } else {
                         listCustom.updateUi(gameModel.model)
                     }
                 }
-                ViewStateModel.Status.ERROR-> {
+                ViewStateModel.Status.ERROR -> {
                     showError(gameModel.errors)
                 }
             }
         })
 
-        gameViewModel.getRegisteredGame().observe(this, Observer { game->
-            when(game.status) {
-                ViewStateModel.Status.LOADING-> {
+        gameViewModel.getRegisteredGame().observe(this, Observer { game ->
+            when (game.status) {
+                ViewStateModel.Status.LOADING -> {
                     listCustom.buttonAction.isLoading(true)
                 }
-                ViewStateModel.Status.SUCCESS-> {
+                ViewStateModel.Status.SUCCESS -> {
                     listCustom.buttonAction.isLoading(false)
 
                     Log.i("GAME", game.model?.title)
                 }
-                ViewStateModel.Status.ERROR-> {
+                ViewStateModel.Status.ERROR -> {
                     showError(game.errors)
                     listCustom.buttonAction.isLoading(false)
                 }
             }
         })
+
+    }
+
+    override fun getSearchGame(searchGame: String) {
+        gameViewModel.searchGame(searchGame)
     }
 
     override fun initListener() {
@@ -94,7 +92,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     override fun titleToolbar() = getString(R.string.add_new_game)
 
     override fun onClick(v: View?) {
-        when(v?.id) {
+        when (v?.id) {
             R.id.buttonNameError -> registerNewGame()
         }
     }
