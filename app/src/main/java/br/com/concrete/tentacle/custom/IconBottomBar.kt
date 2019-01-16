@@ -29,7 +29,7 @@ class IconBottomBar(
                 0,
                 0
         ) {
-            val icon = getDrawable(R.styleable.IconBottomBar_icon)
+            val icon = getDrawable(R.styleable.IconBottomBar_iconBottomBar)
             val selected = getBoolean(R.styleable.IconBottomBar_selected, false)
 
             setup(icon, selected)

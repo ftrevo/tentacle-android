@@ -8,7 +8,6 @@
         <attr name="textSizeButton" format="float"/>
     </declare-styleable>
 
-
     <declare-styleable name="TentacleLabeledWidget">
         <attr name="label" format="reference"/>
         <attr name="errorLabel" format="reference"/>
@@ -17,11 +16,21 @@
     </declare-styleable>
 
     <declare-styleable name="IconBottomBar">
-        <attr name="icon" format="reference"/>
+        <attr name="iconBottomBar" format="reference"/>
         <attr name="selected" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="BottomBar">
         <attr name="defaultSelectedPosition" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="ListError"/>
+
+    <declare-styleable name="ListCustom">
+        <attr name="icon" format="reference"/>
+        <attr name="errorDescription" format="reference"/>
+        <attr name="buttonNameError" format="reference"/>
+        <attr name="buttonNameAction" format="reference"/>
+    </declare-styleable>
+
 </resources>
