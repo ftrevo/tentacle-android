@@ -38,5 +38,5 @@ interface ApiService {
         game: GameRequest,
         @Header("Authorization")
         authKey: String
-    ): Observable<BaseModel<GameResponse>>
+    ): Observable<BaseModel<Game>>
 }

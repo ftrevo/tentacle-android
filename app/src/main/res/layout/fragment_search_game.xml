@@ -8,15 +8,17 @@
 
     <include layout="@layout/logo_tentacle"/>
 
-    <Button
-        android:id="@+id/newGame"
-        android:text="Adicionar jogo"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <br.com.concrete.tentacle.custom.ListCustom
+            android:id="@+id/listCustom"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_0"
+            android:layout_margin="@dimen/dp_8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="LinearLayoutManager"
+            app:buttonNameError="@string/add_new_game"
+            app:errorDescription="@string/first_game_register"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

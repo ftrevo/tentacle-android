@@ -63,6 +63,6 @@
 
     <string name="game_name">Nome do Jogo</string>
     <string name="media">mídia</string>
->>>>>>> register_game
+    <string name="first_game_register">Parece que você é o primeiro a adicionar esse jogo!</string>
 
 </resources>

@@ -2,18 +2,23 @@ package br.com.concrete.tentacle.features.searchGame
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import kotlinx.android.synthetic.main.fragment_search_game.*
+import kotlinx.android.synthetic.main.list_custom.view.*
+import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SearchGameFragment : BaseSearchFragment() {
+class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     private val gameViewModel: SearchGameViewModel by viewModel()
 
@@ -28,19 +33,24 @@ class SearchGameFragment : BaseSearchFragment() {
 
     override fun onQueryTextChange(newText: String?): Boolean {
         if (newText != null && newText.length > 3) gameViewModel.searchGame(newText)
-
         return false
     }
 
-    override fun init() {
+    override fun initViewModel() {
         gameViewModel.getSearchGame().observe(this, Observer {gameModel->
             when(gameModel.status) {
                 ViewStateModel.Status.LOADING-> { }
                 ViewStateModel.Status.SUCCESS-> {
                     if (gameModel.model?.isNotEmpty()!!) {
-
+                        val recyclerViewAdapter = BaseAdapter(gameModel.model, R.layout.item_game, {
+                                SearchGameViewHolder(it)
+                            }, { holder, element ->
+                                SearchGameViewHolder.callBack(holder = holder, element = element)
+                            })
+                        listCustom.recyclerListView.adapter = recyclerViewAdapter
+                        listCustom.updateUi(gameModel.model)
                     } else {
-                        newGame.visibility = View.VISIBLE
+                        listCustom.updateUi(gameModel.model)
                     }
                 }
                 ViewStateModel.Status.ERROR-> {
@@ -51,20 +61,45 @@ class SearchGameFragment : BaseSearchFragment() {
 
         gameViewModel.getRegisteredGame().observe(this, Observer { game->
             when(game.status) {
-                ViewStateModel.Status.LOADING-> { }
-                ViewStateModel.Status.SUCCESS-> { }
+                ViewStateModel.Status.LOADING-> {
+                    listCustom.buttonAction.isLoading(true)
+                }
+                ViewStateModel.Status.SUCCESS-> {
+                    listCustom.buttonAction.isLoading(false)
+
+                    Log.i("GAME", game.model?.title)
+                }
                 ViewStateModel.Status.ERROR-> {
                     showError(game.errors)
+                    listCustom.buttonAction.isLoading(false)
                 }
             }
         })
+    }
 
-        newGame.setOnClickListener {
-            gameViewModel.registerNewGame(getQuerySearchView())
-        }
+    override fun initListener() {
+        listCustom.recyclerListError.buttonNameError.setOnClickListener(this)
+    }
+
+    override fun initRecyclerView() {
+        listCustom.recyclerListView.setHasFixedSize(true)
+        val layoutManager = LinearLayoutManager(context)
+        listCustom.recyclerListView.layoutManager = layoutManager
     }
 
     override fun onMenuItemActionExpand(item: MenuItem?) = true
 
     override fun onMenuItemActionCollapse(item: MenuItem?) = true
+
+    override fun titleToolbar() = getString(R.string.add_new_game)
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.buttonNameError -> registerNewGame()
+        }
+    }
+
+    private fun registerNewGame() {
+        gameViewModel.registerNewGame(title = getQuerySearchView())
+    }
 }

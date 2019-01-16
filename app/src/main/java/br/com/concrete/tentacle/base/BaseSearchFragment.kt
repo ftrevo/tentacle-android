@@ -5,8 +5,10 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import br.com.concrete.tentacle.R
+
 
 abstract class BaseSearchFragment: BaseFragment(),
     SearchView.OnQueryTextListener,
@@ -17,7 +19,10 @@ abstract class BaseSearchFragment: BaseFragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        init()
+        initViewModel()
+        initListener()
+        initRecyclerView()
+        setupToolbar()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -30,8 +35,15 @@ abstract class BaseSearchFragment: BaseFragment(),
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    fun getQuerySearchView() = searchView.query as String
+    private fun setupToolbar() {
+        (activity as AppCompatActivity).supportActionBar?.title = titleToolbar()
+    }
 
-    abstract fun init()
+    fun getQuerySearchView() = searchView.query.toString()
+
+    abstract fun titleToolbar(): String
+    abstract fun initListener()
+    abstract fun initViewModel()
+    abstract fun initRecyclerView()
 
 }

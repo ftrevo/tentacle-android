@@ -19,7 +19,7 @@ class SearchGameViewModel(
     LifecycleObserver {
 
     private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
-    private val viewGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
+    private val viewGame = MutableLiveData<ViewStateModel<Game>>()
     private val disposables = CompositeDisposable()
 
     fun searchGame(title: String) {
@@ -61,7 +61,7 @@ class SearchGameViewModel(
                 viewGame.postValue(
                     ViewStateModel(
                         status = ViewStateModel.Status.SUCCESS,
-                        model = base.data.list as ArrayList<Game>
+                        model = base.data
                     )
                 )
             }, {
