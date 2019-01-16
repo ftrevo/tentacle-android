@@ -42,11 +42,14 @@ class BottomBar(
 
     private fun updateBottomBar(id: Int) {
         container.asSequence().toList().map { item ->
-            (item as IconBottomBar).setViewSelected(id == item.id)
+            if(item is IconBottomBar){
+                item.setViewSelected(id == item.id)
+            }
         }
     }
 
     private fun updateBottomBarByPosition(position: Int) {
-        (container.asSequence().toList()[position] as IconBottomBar).setViewSelected(true)
+        val item = container.asSequence().toList()[position]
+        if (item is IconBottomBar) item.setViewSelected(true)
     }
 }
