@@ -74,6 +74,8 @@ dependencies {
     implementation "com.github.MdFarhanRaja:SearchableSpinner:$searchableSpinner"
 
     //Test
+    implementation "androidx.legacy:legacy-support-v4:$legacySupport"
+    implementation "androidx.recyclerview:recyclerview:$legacySupport"
     testImplementation "junit:junit:$junit"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5"
     androidTestImplementation "androidx.test:runner:$runner"
@@ -104,7 +106,7 @@ dependencies {
     //AndroidX ViewModel/LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
     implementation "com.google.android.material:material:$androidMaterial"
-    
+
     //Utils
     implementation "br.com.concrete:canarinho:$canarinho"
 

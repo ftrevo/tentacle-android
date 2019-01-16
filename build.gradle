@@ -19,6 +19,7 @@ buildscript {
     ext.retrofitLogging =  '3.9.0'
     ext.retrofitAdapterRxJava = '2.3.0'
     ext.okhttp3 = "3.12.1"
+    ext.okhttp3 = "3.10.0"
 
     //Observable
     ext.rxAndroid = "2.1.0"
@@ -39,6 +40,7 @@ buildscript {
 
     //TestCoverage
     ext.jacobVersion = '0.8.0'
+    ext.legacySupport = "1.0.0"
 
     //Android Material
     ext.androidMaterial = '1.0.0'
@@ -48,7 +50,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:3.2.1"
+        classpath "com.android.tools.build:gradle:$buildGradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:$junit5Dependency"
         classpath "org.jacoco:org.jacoco.core:$jacobVersion"
