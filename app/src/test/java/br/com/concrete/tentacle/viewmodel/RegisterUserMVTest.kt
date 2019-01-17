@@ -12,7 +12,7 @@ import br.com.concrete.tentacle.mock.userRequest
 import br.com.concrete.tentacle.mock.baseModelUserSuccess
 import br.com.concrete.tentacle.mock.error400
 import br.com.concrete.tentacle.mock.errorResponse
-import br.com.concrete.tentacle.repositories.UserRepository
+import br.com.concrete.tentacle.data.repositories.UserRepository
 import io.reactivex.Observable
 import junit.framework.Assert.assertEquals
 import org.junit.Before

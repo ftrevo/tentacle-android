@@ -1,7 +1,7 @@
 package br.com.concrete.tentacle.di
 
 import android.content.Context
-import br.com.concrete.tentacle.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.module
 

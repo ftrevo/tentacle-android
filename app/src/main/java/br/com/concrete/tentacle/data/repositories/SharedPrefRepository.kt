@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.repositories
+package br.com.concrete.tentacle.data.repositories
 
 import android.content.SharedPreferences
 import br.com.concrete.tentacle.extensions.fromJson

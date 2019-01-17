@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.repositories
+package br.com.concrete.tentacle.data.repositories
 
 import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.BaseModel

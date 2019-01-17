@@ -9,8 +9,8 @@ import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.repositories.LoginRepository
-import br.com.concrete.tentacle.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.data.repositories.LoginRepository
+import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.utils.LogWrapper
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import retrofit2.HttpException
