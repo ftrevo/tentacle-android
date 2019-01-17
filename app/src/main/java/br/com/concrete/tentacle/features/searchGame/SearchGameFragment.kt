@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.features.searchGame
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -34,7 +33,9 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                 ViewStateModel.Status.LOADING -> { }
                 ViewStateModel.Status.SUCCESS -> {
                     if (gameModel.model?.isNotEmpty()!!) {
-                        val recyclerViewAdapter = BaseAdapter(gameModel.model, R.layout.item_game, {
+                        val recyclerViewAdapter =
+                            BaseAdapter(gameModel.model,
+                            R.layout.item_game, {
                             SearchGameViewHolder(it)
                         }, { holder, element ->
                             SearchGameViewHolder.callBack(holder = holder, game = element)

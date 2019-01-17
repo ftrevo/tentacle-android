@@ -6,7 +6,8 @@ import br.com.concrete.tentacle.data.repositories.UserRepository
 import org.koin.dsl.module.module
 
 val repositoryModule = module {
-    factory { UserRepository(get()) }
-    factory { LoginRepository(get()) }
-    factory { GameRepository(get()) }
+
+    factory { UserRepository(get(API_WITHOUT_TOKEN)) }
+    factory { LoginRepository(get(API_WITHOUT_TOKEN)) }
+    factory { GameRepository(get(API_WITH_TOKEN)) }
 }

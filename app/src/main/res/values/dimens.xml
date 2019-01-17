@@ -56,6 +56,8 @@
 
     <dimen name="text_margin">16dp</dimen>
 
-
+    <dimen name="bottomBarSelectedView">48dp</dimen>
+    <dimen name="bottomBarIcon">24dp</dimen>
+    <dimen name="bottomBarHeight">56dp</dimen>
 </resources>
 

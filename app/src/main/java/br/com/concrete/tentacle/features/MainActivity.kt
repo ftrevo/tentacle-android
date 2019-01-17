@@ -1,7 +1,6 @@
 package br.com.concrete.tentacle.features
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.R
 

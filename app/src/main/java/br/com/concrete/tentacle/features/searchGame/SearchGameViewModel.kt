@@ -5,11 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
-import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
-import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import io.reactivex.disposables.CompositeDisposable
 
 class SearchGameViewModel(
@@ -23,13 +21,11 @@ class SearchGameViewModel(
     private val disposables = CompositeDisposable()
 
     fun searchGame(title: String) {
-        val session: Session = sharedPrefRepository.getStoredSession(PREFS_KEY_USER_SESSION)
         viewSearchGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
 
         disposables.add(
             gameRepository.getSearchGames(
-                title,
-                session.accessToken
+                title
             ).subscribe(
                 { base ->
                     viewSearchGame.postValue(
@@ -50,12 +46,10 @@ class SearchGameViewModel(
     }
 
     fun registerNewGame(title: String) {
-        val session: Session = sharedPrefRepository.getStoredSession(PREFS_KEY_USER_SESSION)
         viewGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
 
         disposables.add(gameRepository.registerNewGame(
-            GameRequest(title),
-            session.accessToken
+            GameRequest(title)
         ).subscribe(
             { base ->
                 viewGame.postValue(

@@ -62,7 +62,8 @@ abstract class BaseSearchFragment : BaseFragment(),
     }
 
     private fun setupToolbar() {
-        (activity as AppCompatActivity).supportActionBar?.title = titleToolbar()
+        if((activity as AppCompatActivity).supportActionBar != null)
+            (activity as AppCompatActivity).supportActionBar?.title = titleToolbar()
     }
 
     fun getQuerySearchView() = searchView.query.toString()
