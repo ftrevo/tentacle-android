@@ -27,7 +27,7 @@ class LoginViewModel(
     @SuppressLint("CheckResult")
     fun loginUser(email: String, password: String) {
         stateModel.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        repository.loginUser(email, password).subscribe(
+        disposables.add(repository.loginUser(email, password).subscribe(
             { base ->
                 sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, base.data)
                 stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
@@ -37,7 +37,7 @@ class LoginViewModel(
             }, {
                 LogWrapper.log("LOGIN-USER", "On login complete")
             }
-        )
+        ))
     }
 
     fun getStateModel(): LiveData<ViewStateModel<Session>> = stateModel
