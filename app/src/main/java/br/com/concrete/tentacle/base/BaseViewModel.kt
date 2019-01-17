@@ -6,11 +6,14 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
+import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection
 
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
+
+    protected val disposables = CompositeDisposable()
 
     protected fun notKnownError(error: Throwable): ErrorResponse {
 
@@ -36,5 +39,10 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         }
 
         return errorResponse
+    }
+
+    override fun onCleared() {
+        disposables.dispose()
+        super.onCleared()
     }
 }
