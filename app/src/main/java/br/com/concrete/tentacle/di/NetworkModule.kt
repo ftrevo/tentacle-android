@@ -26,8 +26,8 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
 
-    single{
-        val tokenInterceptor = Interceptor { chain ->
+    single {
+        Interceptor { chain ->
             val prefs: SharedPrefRepository = get()
             val userSession = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
             userSession?.let {
@@ -40,7 +40,7 @@ val networkModule = module {
         }
     }
 
-    single("withToken"){
+    single("withToken") {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
 
         if (BuildConfig.DEBUG) {
@@ -49,15 +49,27 @@ val networkModule = module {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
 
+        val tokenInterceptor = Interceptor { chain ->
+            val prefs: SharedPrefRepository = get()
+            val userSession = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+            userSession?.let {
+                val newRequest = chain.request()
+                    .newBuilder()
+                    .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
+                    .build()
+                chain.proceed(newRequest)
+            }
+        }
+
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(get())
+            .addInterceptor(tokenInterceptor)
             .build()
     }
 
-    single("retrofitWithToken"){
+    single("retrofitWithToken") {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -66,12 +78,12 @@ val networkModule = module {
             .build()
     }
 
-    single(API_WITH_TOKEN){
+    single(API_WITH_TOKEN) {
         val retrofit: Retrofit = get("retrofitWithToken")
         retrofit.create<ApiService>(ApiService::class.java)
     }
 
-    single("withoutToken"){
+    single("withoutToken") {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
 
         if (BuildConfig.DEBUG) {
@@ -96,7 +108,7 @@ val networkModule = module {
             .build()
     }
 
-    single(API_WITHOUT_TOKEN){
+    single(API_WITHOUT_TOKEN) {
         val retrofit: Retrofit = get("retrofitWithoutToken")
         retrofit.create<ApiServiceAuthentication>(ApiServiceAuthentication::class.java)
     }

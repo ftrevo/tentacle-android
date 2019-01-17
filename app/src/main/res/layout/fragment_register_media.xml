@@ -8,8 +8,8 @@
     <include layout="@layout/default_background"/>
 
     <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_0"
             android:fillViewport="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -17,28 +17,28 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:paddingStart="16dp"
-                android:paddingTop="19dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="16dp"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingTop="@dimen/dp_19"
+                android:paddingEnd="@dimen/margin_default"
+                android:paddingBottom="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             <ImageView
                     android:id="@+id/mediaImageView"
-                    android:layout_width="44dp"
-                    android:layout_height="58dp"
+                    android:layout_width="@dimen/game_icon_width"
+                    android:layout_height="@dimen/game_icon_height"
                     android:background="#D8D8D8"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                     android:id="@+id/mediaNameTextView"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="40dp"
-                    android:textSize="24sp"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginEnd="@dimen/dp_40"
+                    android:textSize="@dimen/sp_24"
                     android:textColor="@android:color/white"
                     tools:text="Space Invaders"
                     app:layout_constraintStart_toEndOf="@id/mediaImageView"
@@ -47,8 +47,8 @@
 
             <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/barrier"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_0"
                     app:barrierDirection="bottom"
                     app:constraint_referenced_ids="mediaImageView, mediaNameTextView"
                     app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +56,11 @@
 
             <TextView
                     android:id="@+id/radioGroupTitle"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:textSize="24sp"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:textSize="@dimen/sp_24"
                     android:textColor="@android:color/white"
                     android:text="@string/register_media_group_title"
                     app:layout_constraintStart_toStartOf="@id/mediaImageView"
@@ -68,10 +68,10 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
 
             <RadioGroup
-                    android:id="@+id/mediaPlataformRadioGroup"
-                    android:layout_width="0dp"
+                    android:id="@+id/mediaRegisterRadioGroup"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="@dimen/dp_18"
                     app:layout_constraintStart_toStartOf="@id/mediaImageView"
                     app:layout_constraintTop_toBottomOf="@id/radioGroupTitle"
                     app:layout_constraintEnd_toEndOf="parent">
@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
-                        style="@style/StyleRadioButton"
+                        android:theme="@style/StyleRadioButton"
                         android:text="@string/register_media_ps3_radio_button_title"/>
 
                 <RadioButton
@@ -89,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
-                        style="@style/StyleRadioButton"
+                        android:theme="@style/StyleRadioButton"
                         android:text="@string/register_media_ps4_radio_button_title"/>
 
                 <RadioButton
@@ -97,7 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
-                        style="@style/StyleRadioButton"
+                        android:theme="@style/StyleRadioButton"
                         android:text="@string/register_media_xbox360_radio_button_title"/>
 
                 <RadioButton
@@ -105,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
-                        style="@style/StyleRadioButton"
+                        android:theme="@style/StyleRadioButton"
                         android:text="@string/register_media_xboxone_radio_button_title"/>
 
                 <RadioButton
@@ -113,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
-                        style="@style/StyleRadioButton"
+                        android:theme="@style/StyleRadioButton"
                         android:text="@string/register_media_3ds_radio_button_title"/>
 
                 <RadioButton
@@ -121,17 +121,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
-                        style="@style/StyleRadioButton"
+                        android:theme="@style/StyleRadioButton"
                         android:text="@string/register_media_switch_radio_button_title"/>
 
             </RadioGroup>
 
             <br.com.concrete.tentacle.custom.ButtonView
                     android:id="@+id/mediaRegisterButton"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     style="@style/StyleButton"
-                    app:enabled="false"
                     app:buttonName="@string/register_media_button"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

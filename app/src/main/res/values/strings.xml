@@ -68,5 +68,8 @@
     <string name="register_media_switch_radio_button_title">Nintendo Switch</string>
     <string name="register_media_button">Cadastrar</string>
 
+    <string name="register_media_no_selection_error">Necessário escolher a plataforma do jogo</string>
+    <string name="register_media_generic_error">Ocorreu um erro ao cadastrar o jogo. \n Por favor, tente novamente.</string>
+
 
 </resources>

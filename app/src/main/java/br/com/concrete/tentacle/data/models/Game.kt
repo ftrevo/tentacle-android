@@ -10,4 +10,4 @@ data class Game(
     val createdBy: User,
     var createdAt: String,
     var updateAt: String
-): Parcelable
+) : Parcelable

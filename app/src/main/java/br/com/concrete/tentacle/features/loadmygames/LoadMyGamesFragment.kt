@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
-import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.Media
-import br.com.concrete.tentacle.data.models.State
-import br.com.concrete.tentacle.data.models.User
 import kotlinx.android.synthetic.main.fragment_game_list.view.*
 import kotlinx.android.synthetic.main.list_custom.view.*
 
@@ -25,7 +22,7 @@ class LoadMyGamesFragment : Fragment() {
         view.list.recyclerListView.layoutManager = layoutManager
 
         var medias = ArrayList<Media>()
-        //TODO SHOULD BE REPLACED BY OBSERVABLE
+        // TODO SHOULD BE REPLACED BY OBSERVABLE
 
         val recyclerViewAdapter = BaseAdapter<Media>(
             medias,
