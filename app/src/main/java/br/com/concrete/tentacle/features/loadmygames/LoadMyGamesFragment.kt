@@ -12,6 +12,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import org.koin.android.viewmodel.ext.android.viewModel
+import androidx.lifecycle.Observer
 
 class LoadMyGamesFragment : BaseFragment() {
 
@@ -19,12 +20,16 @@ class LoadMyGamesFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_game_list, container, false)
-        init()
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        init()
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     private fun initObserver(){
-        viewModelLoadMyGames.getMyGames().observe(this, androidx.lifecycle.Observer { stateModel ->
+        viewModelLoadMyGames.getMyGames().observe(this, Observer { stateModel ->
             val medias = stateModel.model
             when (stateModel.status) {
                 ViewStateModel.Status.SUCCESS -> {
@@ -34,7 +39,7 @@ class LoadMyGamesFragment : BaseFragment() {
                         recyclerListView.layoutManager = layoutManager
 
                         val recyclerViewAdapter = BaseAdapter(
-                            medias!!,
+                            medias,
                             R.layout.item_game,
                             { view ->
                                 LoadMyGamesViewHolder(view)
