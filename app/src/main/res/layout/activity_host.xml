@@ -7,15 +7,6 @@
         android:layout_height="match_parent"
         tools:context=".features.HostActivity">
 
-    <fragment
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:name="br.com.concrete.tentacle.features.searchGame.SearchGameFragment"
-            android:id="@+id/fragment"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout="@layout/fragment_my_game"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

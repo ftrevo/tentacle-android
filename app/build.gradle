@@ -49,8 +49,6 @@ dependencies {
     //Test
     implementation "androidx.legacy:legacy-support-v4:$legacySupport"
     implementation "androidx.recyclerview:recyclerview:$legacySupport"
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     testImplementation "junit:junit:$junit"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5"
     androidTestImplementation "androidx.test:runner:$runner"

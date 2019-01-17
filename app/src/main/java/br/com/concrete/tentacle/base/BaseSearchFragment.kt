@@ -13,7 +13,7 @@ import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
 
-const val TIME_OUT: Long = 350
+const val TIME_OUT: Long = 300
 const val MINIMAL_CHARACTER: Int = 3
 
 @SuppressLint("CheckResult")
@@ -53,7 +53,7 @@ abstract class BaseSearchFragment : BaseFragment(),
             .map { text -> text.toLowerCase().trim() }
             .debounce(TIME_OUT, TimeUnit.MILLISECONDS)
             .distinct()
-            .filter { text -> text.length > MINIMAL_CHARACTER }
+            .filter { text -> text.trim().length > MINIMAL_CHARACTER }
             .subscribe { text ->
                 getSearchGame(text)
             }

@@ -31,8 +31,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     override fun initViewModel() {
         gameViewModel.getSearchGame().observe(this, Observer { gameModel ->
             when (gameModel.status) {
-                ViewStateModel.Status.LOADING -> {
-                }
+                ViewStateModel.Status.LOADING -> { }
                 ViewStateModel.Status.SUCCESS -> {
                     if (gameModel.model?.isNotEmpty()!!) {
                         val recyclerViewAdapter = BaseAdapter(gameModel.model, R.layout.item_game, {
@@ -59,8 +58,6 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     listCustom.buttonAction.isLoading(false)
-
-                    Log.i("GAME", game.model?.title)
                 }
                 ViewStateModel.Status.ERROR -> {
                     showError(game.errors)
@@ -68,7 +65,6 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                 }
             }
         })
-
     }
 
     override fun getSearchGame(searchGame: String) {
