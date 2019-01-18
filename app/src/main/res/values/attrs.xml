@@ -15,6 +15,15 @@
         <attr name="android:inputType"/>
     </declare-styleable>
 
+    <declare-styleable name="IconBottomBar">
+        <attr name="iconBottomBar" format="reference"/>
+        <attr name="selected" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="BottomBar">
+        <attr name="defaultSelectedPosition" format="integer"/>
+    </declare-styleable>
+
     <declare-styleable name="ListError"/>
 
     <declare-styleable name="ListCustom">

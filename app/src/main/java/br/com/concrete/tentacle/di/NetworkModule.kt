@@ -26,10 +26,23 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
 
-    single {
+    single{
+        val httpLogInterceptor = HttpLoggingInterceptor()
+
+        if (BuildConfig.DEBUG) {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        } else {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
+        }
+
+        httpLogInterceptor
+    }
+
+    single("tokenInterceptor"){
         Interceptor { chain ->
             val prefs: SharedPrefRepository = get()
-            val userSession = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+            val userSession
+                    = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
             userSession?.let {
                 val newRequest = chain.request()
                     .newBuilder()
@@ -40,32 +53,12 @@ val networkModule = module {
         }
     }
 
-    single("withToken") {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-
-        if (BuildConfig.DEBUG) {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
-
-        val tokenInterceptor = Interceptor { chain ->
-            val prefs: SharedPrefRepository = get()
-            val userSession = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
-            userSession?.let {
-                val newRequest = chain.request()
-                    .newBuilder()
-                    .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
-                    .build()
-                chain.proceed(newRequest)
-            }
-        }
-
+    single("withToken"){
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(tokenInterceptor)
+            .addInterceptor(get())
+            .addInterceptor(get("tokenInterceptor"))
             .build()
     }
 
@@ -83,19 +76,11 @@ val networkModule = module {
         retrofit.create<ApiService>(ApiService::class.java)
     }
 
-    single("withoutToken") {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-
-        if (BuildConfig.DEBUG) {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
-
+    single("withoutToken"){
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(get())
             .build()
     }
 

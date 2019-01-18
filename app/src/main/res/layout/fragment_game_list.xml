@@ -7,7 +7,6 @@
         android:layout_height="match_parent"
         tools:context=".features.loadmygames.LoadMyGamesFragment"
 >
-
     <ImageView
             android:src="@drawable/logo_tentacle_error_list"
             android:layout_width="match_parent"
@@ -16,8 +15,6 @@
     />
 
     <br.com.concrete.tentacle.custom.ListCustom
-            android:layout_marginLeft="@dimen/margin_default"
-            android:layout_marginRight="@dimen/margin_default"
             android:id="@+id/list"
             android:layout_height="match_parent"
             android:layout_width="match_parent"

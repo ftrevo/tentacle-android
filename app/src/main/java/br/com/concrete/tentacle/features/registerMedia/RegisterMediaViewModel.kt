@@ -14,7 +14,6 @@ import io.reactivex.disposables.CompositeDisposable
 class RegisterMediaViewModel(private val repository: RegisterMediaRepository) : BaseViewModel() {
 
     val viewStatusModel: StatusLiveData = StatusLiveData()
-    private val disposables = CompositeDisposable()
 
     fun registerMedia(platform: String, game: Game) {
         viewStatusModel.postValue(ViewStateModel(ViewStateModel.Status.LOADING))

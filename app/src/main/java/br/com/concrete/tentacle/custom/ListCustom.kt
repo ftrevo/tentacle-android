@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
-import kotlinx.android.synthetic.main.list_custom.view.*
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_custom.view.buttonAction
+import kotlinx.android.synthetic.main.list_custom.view.progressBarList
 
 class ListCustom(
     context: Context,
@@ -27,6 +30,7 @@ class ListCustom(
             0,
             0
         ) {
+            setLoading(true)
             iconReference = getResourceId(R.styleable.ListCustom_icon, DEFAULT_INVALID_RESOURCE)
             errorDescriptionReference = getResourceId(R.styleable.ListCustom_errorDescription, DEFAULT_INVALID_RESOURCE)
             buttonNameReference = getResourceId(R.styleable.ListCustom_buttonNameError, DEFAULT_INVALID_RESOURCE)
@@ -63,6 +67,14 @@ class ListCustom(
             recyclerListView.visibility = View.GONE
             buttonAction.visibility = View.GONE
             recyclerListError.visibility = View.VISIBLE
+        }
+    }
+
+    fun setLoading(condition: Boolean) {
+        if (condition) {
+            progressBarList.visibility = View.VISIBLE
+        } else {
+            progressBarList.visibility = View.GONE
         }
     }
 }
