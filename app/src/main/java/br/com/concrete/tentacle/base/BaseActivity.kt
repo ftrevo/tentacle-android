@@ -20,8 +20,11 @@ abstract class BaseActivity : AppCompatActivity() {
         setupToolbar(INVALID_TITLE, INVALID_ICON, displayHome)
     }
 
-    fun setupToolbar(title: Int, icon: Int,
-                     displayHome: Boolean = true) {
+    fun setupToolbar(
+        title: Int,
+        icon: Int,
+        displayHome: Boolean = true
+    ) {
 
         supportActionBar?.let { actionBar ->
             if (title != INVALID_TITLE) {
@@ -34,12 +37,11 @@ abstract class BaseActivity : AppCompatActivity() {
                 actionBar.setHomeAsUpIndicator(icon)
             }
         }
-
     }
 
     fun setToolbarTitle(title: Int) {
         supportActionBar?.let {
-            it.title =  getString(title)
+            it.title = getString(title)
         }
     }
 }

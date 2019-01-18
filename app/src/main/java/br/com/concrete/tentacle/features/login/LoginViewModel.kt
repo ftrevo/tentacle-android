@@ -1,7 +1,9 @@
 package br.com.concrete.tentacle.features.login
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
@@ -42,7 +44,7 @@ class LoginViewModel(
 
     fun isUserLogged() = sharedPrefRepository.getStoredSession(PREFS_KEY_USER_SESSION) != null
 
-    private fun sendSession(session: Session){
+    private fun sendSession(session: Session) {
         stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = session))
     }
 

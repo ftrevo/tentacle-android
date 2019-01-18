@@ -10,7 +10,7 @@ import br.com.concrete.tentacle.base.BaseFragment
 class HomeFragment : BaseFragment() {
 
     companion object {
-        fun newInstance(): HomeFragment{
+        fun newInstance(): HomeFragment {
             return HomeFragment()
         }
     }

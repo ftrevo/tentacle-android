@@ -19,7 +19,7 @@ class HostActivity : BaseActivity() {
         setupToolbar(R.drawable.ic_logo_actionbar)
     }
 
-    private fun startNavListener(){
+    private fun startNavListener() {
         bottomBar.startListener { action ->
             when (action) {
                 R.id.action_library -> LogWrapper.log("ACTION", "Library")
@@ -30,5 +30,4 @@ class HostActivity : BaseActivity() {
             }
         }
     }
-
 }

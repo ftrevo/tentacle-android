@@ -142,8 +142,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         edtPassword.edt.isEnabled = enableField
     }
 
-    private fun handleWithSession(){
-        if(loginViewModel.isUserLogged()){
+    private fun handleWithSession() {
+        if (loginViewModel.isUserLogged()) {
             startActivity(Intent(context, HostActivity::class.java))
             activity?.finish()
         }
