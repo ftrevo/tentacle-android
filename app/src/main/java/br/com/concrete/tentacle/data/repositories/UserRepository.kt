@@ -5,28 +5,28 @@ import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.CityResponse
 import br.com.concrete.tentacle.data.models.StateResponse
-import br.com.concrete.tentacle.data.network.ApiService
+import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class UserRepository(private val apiService: ApiService) {
+class UserRepository(private val apiServiceAuthentication: ApiServiceAuthentication) {
 
     fun registerUser(userRequest: UserRequest): Observable<BaseModel<User>> {
 
-        return apiService.registerUser(userRequest)
+        return apiServiceAuthentication.registerUser(userRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
 
     fun getCities(stateId: String): Observable<BaseModel<CityResponse>> {
-        return apiService.getCities(stateId)
+        return apiServiceAuthentication.getCities(stateId)
             .cache()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
 
     fun getStates(): Observable<BaseModel<StateResponse>> {
-        return apiService.getStates()
+        return apiServiceAuthentication.getStates()
             .cache()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())

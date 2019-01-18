@@ -6,6 +6,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 
 abstract class BaseFragment : Fragment() {
+
     protected fun showError(errors: ErrorResponse?) {
         if (errors != null) {
             context?.let { ctx ->

@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:targetApi="lollipop">
+<resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/deactivateIcon</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
-
 
     <style name="TextInputLayoutStyle">
         <item name="android:layout_marginStart">@dimen/margin_default</item>

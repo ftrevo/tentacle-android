@@ -8,14 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
-import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.Media
-import br.com.concrete.tentacle.data.models.State
-import br.com.concrete.tentacle.data.models.User
 import kotlinx.android.synthetic.main.fragment_game_list.view.*
 import kotlinx.android.synthetic.main.list_custom.view.*
 
 class LoadMyGamesFragment : Fragment() {
+
+    companion object {
+        fun newInstance(): LoadMyGamesFragment {
+            return LoadMyGamesFragment()
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_game_list, container, false)
@@ -38,6 +41,7 @@ class LoadMyGamesFragment : Fragment() {
 
         view.list.recyclerListView.adapter = recyclerViewAdapter
         view.list.updateUi<Media>(medias)
+
         return view
     }
 }

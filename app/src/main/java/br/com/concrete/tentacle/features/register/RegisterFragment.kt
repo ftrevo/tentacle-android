@@ -17,7 +17,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.digits
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
-import br.com.concrete.tentacle.features.MainActivity
+import br.com.concrete.tentacle.features.login.LoginActivity
 import kotlinx.android.synthetic.main.register_fragment.*
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -140,7 +140,7 @@ class RegisterFragment : BaseFragment() {
 
     private fun goTo(user: User) {
         // TODO REFACTOR TO EXACT VIEW
-        val mainActivity = Intent(activity, MainActivity::class.java)
+        val mainActivity = Intent(activity, LoginActivity::class.java)
         startActivity(mainActivity)
         fragmentManager!!.beginTransaction().remove(this).commit()
     }
