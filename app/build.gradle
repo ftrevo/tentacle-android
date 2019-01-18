@@ -44,6 +44,8 @@ android {
             }
         }
     }
+
+    sourceSets.test.resources.srcDirs += ["src/main/assets"]
 }
 
 androidExtensions {
@@ -84,7 +86,7 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
     testImplementation "org.robolectric:robolectric:$robolectric"
     testImplementation "android.arch.core:core-testing:$coreTesting"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServer"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3"
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"

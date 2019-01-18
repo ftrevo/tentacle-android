@@ -1,0 +1,19 @@
+{
+  "message": [
+    "Usuário salvo"
+  ],
+  "data": {
+    "_id": "5c40f544a4f92c002367c1e0",
+    "name": "ZÉ PEQUENO",
+    "email": "pequeno.ze@morro.com",
+    "phone": "66 987699876",
+    "state": {
+      "_id": "5a107a691592ca19f7b4a860",
+      "initials": "PE",
+      "name": "Pernambuco"
+    },
+    "city": "Recife",
+    "createdAt": "2019-01-17T21:36:04.584Z",
+    "updatedAt": "2019-01-17T21:36:04.584Z"
+  }
+}

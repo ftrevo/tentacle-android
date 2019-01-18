@@ -2,43 +2,42 @@ package br.com.concrete.tentacle.base
 
 import android.app.Instrumentation
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import br.com.concrete.tentacle.di.networkModule
-import br.com.concrete.tentacle.di.repositoryModule
-import br.com.concrete.tentacle.di.viewModelModule
-import okhttp3.OkHttpClient
+import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
+import br.com.concrete.tentacle.data.repositories.LoginRepository
+import br.com.concrete.tentacle.di.*
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.runner.RunWith
+import org.koin.core.KoinProperties
 import org.koin.standalone.StandAloneContext
+import org.koin.standalone.StandAloneContext.startKoin
 import org.koin.test.KoinTest
 import org.mockito.junit.MockitoJUnitRunner
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 @Ignore
 @RunWith(MockitoJUnitRunner::class)
 open class BaseViewModelTest : Instrumentation(), KoinTest {
 
+    lateinit var mockServer : MockWebServer
+
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    lateinit var mockServer : MockWebServer
 
     @Before
     @Throws fun setUp() {
         mockServer = MockWebServer()
         mockServer.start()
 
-        StandAloneContext.startKoin(
+        startKoin(
             listOf(
                 networkModule,
                 repositoryModule,
+                sharedPreferencesModule,
                 viewModelModule
-            ))
+            ), properties = KoinProperties(extraProperties = mapOf(PROPERTY_BASE_URL to mockServer.url("/").toString())) )
     }
 
     @After
@@ -46,4 +45,5 @@ open class BaseViewModelTest : Instrumentation(), KoinTest {
         StandAloneContext.stopKoin()
         mockServer.shutdown()
     }
+
 }

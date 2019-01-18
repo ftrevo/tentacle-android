@@ -19,7 +19,6 @@ buildscript {
     ext.retrofitLogging =  '3.9.0'
     ext.retrofitAdapterRxJava = '2.3.0'
     ext.okhttp3 = "3.12.1"
-    ext.okhttp3 = "3.10.0"
 
     //Observable
     ext.rxAndroid = "2.1.0"
@@ -35,7 +34,6 @@ buildscript {
     ext.junit5Dependency = '1.3.1.1'
     ext.junit5 = '5.3.1'
     ext.robolectric = "4.1"
-    ext.mockWebServer = "3.12.1"
     ext.coreTesting = "1.1.1"
 
     //TestCoverage
