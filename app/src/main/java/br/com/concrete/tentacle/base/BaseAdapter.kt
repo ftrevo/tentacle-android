@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class BaseAdapter<T>(
-    var elements: List<T>,
+    var elements: ArrayList<T>,
     val layout: Int,
     val holder: (mL: View) -> RecyclerView.ViewHolder,
     val holderCallback: (holder: RecyclerView.ViewHolder, T) -> Unit

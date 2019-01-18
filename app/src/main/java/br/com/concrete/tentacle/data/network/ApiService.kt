@@ -19,9 +19,6 @@ interface ApiService{
     ): Observable<BaseModel<Game>>
 
     @GET("/media")
-    fun getRegisteredGames(
-        @Query("mineOnly")
-        mineOnly: Boolean
-    ): Observable<BaseModel<MediaResponse>>
+    fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean = true): Observable<BaseModel<MediaResponse>>
 
 }

@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.di
 
+import br.com.concrete.tentacle.features.loadmygames.LoadMyGamesViewModel
 import br.com.concrete.tentacle.features.register.RegisterUserViewModel
 import br.com.concrete.tentacle.features.login.LoginViewModel
 import br.com.concrete.tentacle.features.searchGame.SearchGameViewModel
@@ -11,4 +12,5 @@ val viewModelModule = module {
     viewModel { RegisterUserViewModel(get(), get()) }
     viewModel { LoginViewModel(get(), get()) }
     viewModel { SearchGameViewModel(get(), get()) }
+    viewModel { LoadMyGamesViewModel(get()) }
 }
