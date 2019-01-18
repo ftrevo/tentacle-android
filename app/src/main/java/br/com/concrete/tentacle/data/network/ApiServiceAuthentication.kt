@@ -17,7 +17,7 @@ import retrofit2.http.Path
 interface ApiServiceAuthentication {
 
     @POST("/users")
-    fun registerUser(@Body userRequest: UserRequest): Observable<BaseModel<User>>
+    fun registerUser(@Body userRequest: UserRequest): Observable<BaseModel<Session>>
 
     @GET("/states")
     fun getStates(): Observable<BaseModel<StateResponse>>
