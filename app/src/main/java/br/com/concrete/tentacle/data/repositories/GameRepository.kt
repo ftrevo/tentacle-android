@@ -13,5 +13,4 @@ class GameRepository(private val apiService: ApiService){
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
-
 }
