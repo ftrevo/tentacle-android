@@ -9,8 +9,8 @@ import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.LoginRepository
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
-import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import br.com.concrete.tentacle.utils.LogWrapper
+import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import retrofit2.HttpException
 import java.net.HttpURLConnection
 
@@ -25,7 +25,7 @@ class LoginViewModel(
     @SuppressLint("CheckResult")
     fun loginUser(email: String, password: String) {
         stateModel.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        repository.loginUser(email, password).subscribe(
+        disposables.add(repository.loginUser(email, password).subscribe(
             { base ->
                 sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, base.data)
                 stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
@@ -35,7 +35,7 @@ class LoginViewModel(
             }, {
                 LogWrapper.log("LOGIN-USER", "On login complete")
             }
-        )
+        ))
     }
 
     fun getStateModel(): LiveData<ViewStateModel<Session>> = stateModel

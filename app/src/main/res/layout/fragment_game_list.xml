@@ -5,8 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.loadmygames.LoadMyGamesFragment"
-        android:background="@color/colorPrimary">
+        tools:context=".features.loadmygames.LoadMyGamesFragment">
 
     <ImageView
         android:src="@drawable/logo_tentacle_error_list"
@@ -15,10 +14,8 @@
         android:scaleType="centerCrop"/>
 
     <br.com.concrete.tentacle.custom.ListCustom
-        android:layout_marginLeft="@dimen/margin_default"
-        android:layout_marginRight="@dimen/margin_default"
         android:id="@+id/list"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
