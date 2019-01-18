@@ -16,15 +16,26 @@ class HostActivity : BaseActivity() {
         setContentView(R.layout.activity_host)
 
         startNavListener()
+        initHomeFragment()
         setupToolbar(R.drawable.ic_logo_actionbar)
+    }
+
+    private fun initHomeFragment(){
+        navigateTo(R.id.container, HomeFragment.newInstance())
     }
 
     private fun startNavListener() {
         bottomBar.startListener { action ->
             when (action) {
                 R.id.action_library -> LogWrapper.log("ACTION", "Library")
-                R.id.action_games -> navigateTo(R.id.container, LoadMyGamesFragment.newInstance())
-                R.id.action_home -> navigateTo(R.id.container, HomeFragment.newInstance())
+                R.id.action_games -> {
+                    setToolbarTitle(R.string.toolbar_title_my_games)
+                    navigateTo(R.id.container, LoadMyGamesFragment.newInstance())
+                }
+                R.id.action_home -> {
+                    setToolbarTitle(R.string.toolbar_title_home)
+                    navigateTo(R.id.container, HomeFragment.newInstance())
+                }
                 R.id.action_reservation -> LogWrapper.log("ACTION", "Wallet")
                 R.id.action_events -> LogWrapper.log("ACTION", "Calendar")
             }
