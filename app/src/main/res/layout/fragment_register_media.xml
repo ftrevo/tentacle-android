@@ -28,7 +28,7 @@
                     android:id="@+id/mediaImageView"
                     android:layout_width="@dimen/game_icon_width"
                     android:layout_height="@dimen/game_icon_height"
-                    android:background="#D8D8D8"
+                    android:background="@color/bgGameIcon"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 

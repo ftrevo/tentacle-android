@@ -21,4 +21,6 @@
 
     <color name="textColorErrorButtonName">#757575</color>
 
+    <color name="bgGameIcon">#D8D8D8</color>
+
 </resources>
