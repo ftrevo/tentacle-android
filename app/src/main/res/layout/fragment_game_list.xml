@@ -5,7 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.loadmygames.LoadMyGamesFragment">
+        tools:context=".features.loadmygames.LoadMyGamesFragment"
+        android:background="@color/colorPrimary">
 
     <ImageView
         android:src="@drawable/logo_tentacle_error_list"
