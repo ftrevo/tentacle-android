@@ -2,33 +2,50 @@ package br.com.concrete.tentacle.viewmodel
 
 import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
-import br.com.concrete.tentacle.data.models.RequestLogin
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
-import br.com.concrete.tentacle.data.repositories.LoginRepository
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
-import br.com.concrete.tentacle.di.API_WITHOUT_TOKEN
 import br.com.concrete.tentacle.features.login.LoginViewModel
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import io.reactivex.subscribers.TestSubscriber
-import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
-import org.koin.standalone.get
 import org.koin.standalone.inject
-import org.mockito.Mockito.mock
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 class LoginVMTest: BaseViewModelTest(){
 
     private lateinit var loginViewMock: LoginViewModel
+
+    @Test
+    fun testLogin() {
+        val loginViewMock: LoginViewModel by inject()
+
+        val testS = TestSubscriber<BaseModel<Session>>()
+        val responseJson = this::class.java.classLoader?.getResource("mockjson/login/login_success.json")?.readText()
+
+        val responseObject: BaseModel<*> = GsonBuilder().create().fromJson(responseJson, BaseModel::class.java)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = responseObject)
+        var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+
+        loginViewMock.getStateModel().observeForever {
+            actual = it
+        }
+        loginViewMock.loginUser("daivid.v.leal@concrete.com.br", "123456")
+
+        assertEquals(expected, actual)
+
+    }
+
 
 //
 //    @Test
@@ -99,28 +116,17 @@ class LoginVMTest: BaseViewModelTest(){
 //        mockServer.shutdown()
 //    }
 
+
     @Test
-    fun testLogin() {
-        //val sharedPrefRepository = mock(SharedPrefRepository::class.java)
-        //val loginRepository: LoginRepository by inject()
-        val loginViewMock: LoginViewModel by inject()
+    fun testLoginErrorMockito() {
 
-        val testS = TestSubscriber<BaseModel<Session>>()
-        val responseJson = this::class.java.classLoader?.getResource("mockjson/login/login_success.json")?.readText()
+    }
 
-        val responseObject: BaseModel<*> = GsonBuilder().create().fromJson(responseJson, BaseModel::class.java)
+    @Test
+    fun testLoginErrorMockito401() {
 
-        val expected =
-            ViewStateModel(
-                status = ViewStateModel.Status.SUCCESS,
-                model = responseObject)
-        var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(200)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
+    }
+}
 
 //        val api = Retrofit.Builder()
 //            .addConverterFactory(GsonConverterFactory.create(Gson()))
@@ -142,22 +148,3 @@ class LoginVMTest: BaseViewModelTest(){
 //        val result = testS.values()[0]
 //
 //        assertEquals(expected.model, result)
-        loginViewMock.getStateModel().observeForever {
-            actual = it
-        }
-        loginViewMock.loginUser("daivid.v.leal@concrete.com.br", "123456")
-
-        assertEquals(expected, actual)
-
-    }
-
-    @Test
-    fun testLoginErrorMockito() {
-
-    }
-
-    @Test
-    fun testLoginErrorMockito401() {
-
-    }
-}

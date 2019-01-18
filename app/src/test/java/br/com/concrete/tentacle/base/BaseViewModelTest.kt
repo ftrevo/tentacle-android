@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.base
 
+import android.app.Application
 import android.app.Instrumentation
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
@@ -11,10 +12,12 @@ import org.junit.Before
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.runner.RunWith
+import org.koin.android.ext.koin.with
 import org.koin.core.KoinProperties
 import org.koin.standalone.StandAloneContext
 import org.koin.standalone.StandAloneContext.startKoin
 import org.koin.test.KoinTest
+import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @Ignore
@@ -37,7 +40,10 @@ open class BaseViewModelTest : Instrumentation(), KoinTest {
                 repositoryModule,
                 sharedPreferencesModule,
                 viewModelModule
-            ), properties = KoinProperties(extraProperties = mapOf(PROPERTY_BASE_URL to mockServer.url("/").toString())) )
+            ), properties =
+            KoinProperties(
+                extraProperties = mapOf(PROPERTY_BASE_URL to mockServer.url("/").toString()))
+            ) with mock(Application::class.java)
     }
 
     @After
