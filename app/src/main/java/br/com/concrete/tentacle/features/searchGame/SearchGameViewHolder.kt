@@ -12,8 +12,6 @@ class SearchGameViewHolder(private val item: View): RecyclerView.ViewHolder(item
             if (holder is SearchGameViewHolder) {
                 holder.item.game_name.text = game.title
                 holder.item.game_media.visibility = View.GONE
-
-                holder.item.setOnClickListener {}
             }
         }
     }

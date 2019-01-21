@@ -1,5 +1,3 @@
-package br.com.concrete.tentacle.di
-
 import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import br.com.concrete.tentacle.data.network.ApiService
@@ -27,9 +25,22 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 val networkModule = module {
 
     single{
-        val tokenInterceptor = Interceptor { chain ->
+        val httpLogInterceptor = HttpLoggingInterceptor()
+
+        if (BuildConfig.DEBUG) {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        } else {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
+        }
+
+        httpLogInterceptor
+    }
+
+    single("tokenInterceptor"){
+        Interceptor { chain ->
             val prefs: SharedPrefRepository = get()
-            val userSession = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+            val userSession
+                    = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
             userSession?.let {
                 val newRequest = chain.request()
                     .newBuilder()
@@ -41,19 +52,11 @@ val networkModule = module {
     }
 
     single("withToken"){
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-
-        if (BuildConfig.DEBUG) {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
-
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(get())
+            .addInterceptor(get("tokenInterceptor"))
             .build()
     }
 
@@ -72,18 +75,10 @@ val networkModule = module {
     }
 
     single("withoutToken"){
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-
-        if (BuildConfig.DEBUG) {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
-
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(get())
             .build()
     }
 

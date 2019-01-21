@@ -32,10 +32,7 @@ abstract class BaseSearchFragment : BaseFragment(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_search, menu)
-        val menuItem: MenuItem = menu.findItem(R.id.action_search)
-        searchView = menuItem.actionView as SearchView
-        searchView.queryHint = context!!.getString(R.string.search)
+        setupSearchView(menu, inflater)
 
         Observable.create(ObservableOnSubscribe<String> { subscriber ->
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -53,7 +50,9 @@ abstract class BaseSearchFragment : BaseFragment(),
             .map { text -> text.toLowerCase().trim() }
             .debounce(TIME_OUT, TimeUnit.MILLISECONDS)
             .distinct()
-            .filter { text -> text.trim().length > MINIMAL_CHARACTER }
+            .filter { text ->
+                validateSearch(text)
+            }
             .subscribe { text ->
                 getSearchGame(text)
             }
@@ -61,9 +60,21 @@ abstract class BaseSearchFragment : BaseFragment(),
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    private fun setupSearchView(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_search, menu)
+        val menuItem: MenuItem = menu.findItem(R.id.action_search)
+        when (menuItem.actionView) {
+            is SearchView -> searchView = menuItem.actionView as SearchView
+        }
+        searchView.queryHint = context!!.getString(R.string.search)
+    }
+
+    private fun validateSearch(search: String): Boolean {
+        return search.trim().length > MINIMAL_CHARACTER
+    }
+
     private fun setupToolbar() {
-        if((activity as AppCompatActivity).supportActionBar != null)
-            (activity as AppCompatActivity).supportActionBar?.title = titleToolbar()
+        (activity as? AppCompatActivity)?.supportActionBar?.title = titleToolbar()
     }
 
     fun getQuerySearchView() = searchView.query.toString()

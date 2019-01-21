@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
+import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import kotlinx.android.synthetic.main.fragment_search_game.*
 import kotlinx.android.synthetic.main.list_custom.view.*
@@ -32,19 +33,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
             when (gameModel.status) {
                 ViewStateModel.Status.LOADING -> { }
                 ViewStateModel.Status.SUCCESS -> {
-                    if (gameModel.model?.isNotEmpty()!!) {
-                        val recyclerViewAdapter =
-                            BaseAdapter(gameModel.model,
-                            R.layout.item_game, {
-                            SearchGameViewHolder(it)
-                        }, { holder, element ->
-                            SearchGameViewHolder.callBack(holder = holder, game = element)
-                        })
-                        listCustom.recyclerListView.adapter = recyclerViewAdapter
-                        listCustom.updateUi(gameModel.model)
-                    } else {
-                        listCustom.updateUi(gameModel.model)
-                    }
+                    showList(gameModel.model)
                 }
                 ViewStateModel.Status.ERROR -> {
                     showError(gameModel.errors)
@@ -55,17 +44,37 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         gameViewModel.getRegisteredGame().observe(this, Observer { game ->
             when (game.status) {
                 ViewStateModel.Status.LOADING -> {
-                    listCustom.buttonAction.isLoading(true)
+                    enableLoadingButton(true)
                 }
                 ViewStateModel.Status.SUCCESS -> {
-                    listCustom.buttonAction.isLoading(false)
+                    enableLoadingButton(false)
                 }
                 ViewStateModel.Status.ERROR -> {
                     showError(game.errors)
-                    listCustom.buttonAction.isLoading(false)
+                    enableLoadingButton(false)
                 }
             }
         })
+    }
+
+    private fun enableLoadingButton(isEnable: Boolean) {
+        listCustom.buttonAction.isLoading(isEnable)
+    }
+
+    private fun showList(model: ArrayList<Game>?) {
+        if (model?.isNotEmpty()!!) {
+            val recyclerViewAdapter =
+                BaseAdapter(model,
+                    R.layout.item_game, {
+                        SearchGameViewHolder(it)
+                    }, { holder, element ->
+                        SearchGameViewHolder.callBack(holder = holder, game = element)
+                    })
+            listCustom.recyclerListView.adapter = recyclerViewAdapter
+            listCustom.updateUi(model)
+        } else {
+            listCustom.updateUi(model)
+        }
     }
 
     override fun getSearchGame(searchGame: String) {
