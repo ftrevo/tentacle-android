@@ -260,4 +260,8 @@ class RegisterFragment : BaseFragment() {
     private fun progressButton(enable: Boolean) {
         btnCreateAccount?.isLoading(enable)
     }
+
+    override fun getToolbarTitle(): Int {
+        return 0
+    }
 }

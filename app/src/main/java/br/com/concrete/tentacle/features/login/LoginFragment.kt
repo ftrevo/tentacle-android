@@ -148,4 +148,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
             activity?.finish()
         }
     }
+
+    override fun getToolbarTitle(): Int {
+        return 0
+    }
 }
