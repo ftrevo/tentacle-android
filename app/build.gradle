@@ -8,6 +8,8 @@ apply plugin: "de.mannodermaus.android-junit5"
 
 apply from: 'tasks.gradle'
 
+apply plugin: 'io.fabric'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -21,6 +23,7 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "BASE_URL", '"https://tentacle-backend.herokuapp.com/"'
+            applicationIdSuffix ".debug"
         }
 
         release {
@@ -85,6 +88,10 @@ dependencies {
     //Navigation
     implementation "android.arch.navigation:navigation-fragment:$navigation"
     implementation "android.arch.navigation:navigation-ui:$navigation"
+
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion@aar") {
+        transitive = true
+    }
 
     ktlint "com.github.shyiko:ktlint:$ktLintVersion"
 }

@@ -11,6 +11,8 @@ buildscript {
     ext.material = '1.1.0-alpha02'
     ext.ktLintVersion = '0.29.0'
     ext.androidGradlePlugin = '3.2.1'
+    ext.fabricPlugin = '1.25.4'
+    ext.crashlyticsVersion = '2.9.1'
 
     //Koin
     ext.koinVersion = '1.0.2'
@@ -45,12 +47,14 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$buildGradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:$junit5Dependency"
         classpath "com.android.tools.build:gradle:$androidGradlePlugin"
+        classpath "io.fabric.tools:gradle:$fabricPlugin"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
