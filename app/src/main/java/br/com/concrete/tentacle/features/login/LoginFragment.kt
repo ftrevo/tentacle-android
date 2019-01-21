@@ -14,6 +14,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
+import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -52,6 +53,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                     ViewStateModel.Status.SUCCESS -> {
                         LogWrapper.log("LOGIN-SUCCESS", "User logged")
                         setLoading(false)
+                        activity?.finish()
+                            startActivity(Intent(activity, HostActivity::class.java))
                     }
                     ViewStateModel.Status.LOADING -> {
                         setLoading(true)

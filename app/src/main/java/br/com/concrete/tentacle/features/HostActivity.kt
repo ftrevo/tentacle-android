@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.utils.LogWrapper
-import kotlinx.android.synthetic.main.host_activity.bottomBar
+import kotlinx.android.synthetic.main.host_activity.*
 
 class HostActivity : AppCompatActivity() {
 
