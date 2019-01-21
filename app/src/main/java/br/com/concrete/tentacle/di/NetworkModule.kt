@@ -60,7 +60,7 @@ val networkModule = module {
             .build()
     }
 
-    single("retrofitWithToken"){
+    single("retrofitWithToken") {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -69,7 +69,7 @@ val networkModule = module {
             .build()
     }
 
-    single(API_WITH_TOKEN){
+    single(API_WITH_TOKEN) {
         val retrofit: Retrofit = get("retrofitWithToken")
         retrofit.create<ApiService>(ApiService::class.java)
     }
@@ -91,7 +91,7 @@ val networkModule = module {
             .build()
     }
 
-    single(API_WITHOUT_TOKEN){
+    single(API_WITHOUT_TOKEN) {
         val retrofit: Retrofit = get("retrofitWithoutToken")
         retrofit.create<ApiServiceAuthentication>(ApiServiceAuthentication::class.java)
     }

@@ -31,7 +31,6 @@
     <string name="ok">Ok</string>
     <string name="error_dialog_title">Estamos enfrentando alguns problemas!</string>
 
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
@@ -64,5 +63,18 @@
     <string name="game_name">Nome do Jogo</string>
     <string name="media">mídia</string>
     <string name="first_game_register">Parece que você é o primeiro a adicionar esse jogo!</string>
+
+    <string name="register_media_group_title">Selecione a plataforma:</string>
+    <string name="register_media_ps3_radio_button_title">Playstation 3</string>
+    <string name="register_media_ps4_radio_button_title">Playstation 4</string>
+    <string name="register_media_xbox360_radio_button_title">XBox 360</string>
+    <string name="register_media_xboxone_radio_button_title">XBox One</string>
+    <string name="register_media_3ds_radio_button_title">Nintendo 3DS</string>
+    <string name="register_media_switch_radio_button_title">Nintendo Switch</string>
+    <string name="register_media_button">Cadastrar</string>
+
+    <string name="register_media_no_selection_error">Necessário escolher a plataforma do jogo</string>
+    <string name="register_media_generic_error">Ocorreu um erro ao cadastrar o jogo. \n Por favor, tente novamente.</string>
+
 
 </resources>
