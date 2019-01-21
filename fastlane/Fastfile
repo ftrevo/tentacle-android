@@ -24,10 +24,11 @@ platform :android do
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
     gradle(task: "clean assembleDebug")
-    #crashlytics(
-    #  api_token: " 938be7df4916734a793fa34ad87a79af694d54a2",
-    #  build_secret: " ca348cd580e068f0ee2feb5a8cf76d516381b4a7f23ba9efb952ffba23dc98a2"
-    #)
+    crashlytics(
+      api_token: " 938be7df4916734a793fa34ad87a79af694d54a2",
+      build_secret: " ca348cd580e068f0ee2feb5a8cf76d516381b4a7f23ba9efb952ffba23dc98a2",
+      groups: "Concrete"
+    )
 
     sh('./fastlane_delete_build_folder.sh')
   

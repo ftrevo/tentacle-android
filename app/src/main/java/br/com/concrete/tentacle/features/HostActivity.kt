@@ -29,11 +29,9 @@ class HostActivity : BaseActivity() {
             when (action) {
                 R.id.action_library -> LogWrapper.log("ACTION", "Library")
                 R.id.action_games -> {
-                    setToolbarTitle(R.string.toolbar_title_my_games)
                     navigateTo(R.id.container, LoadMyGamesFragment.newInstance())
                 }
                 R.id.action_home -> {
-                    setToolbarTitle(R.string.toolbar_title_home)
                     navigateTo(R.id.container, HomeFragment.newInstance())
                 }
                 R.id.action_reservation -> LogWrapper.log("ACTION", "Wallet")

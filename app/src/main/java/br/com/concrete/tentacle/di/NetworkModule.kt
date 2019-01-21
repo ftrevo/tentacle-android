@@ -54,10 +54,20 @@ val networkModule = module {
     }
 
     single("withToken") {
+
+        val httpLogInterceptor = HttpLoggingInterceptor()
+
+        if (BuildConfig.DEBUG) {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        } else {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
+        }
+
+
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(get())
+            .addInterceptor(httpLogInterceptor)
             .addInterceptor(get("tokenInterceptor"))
             .build()
     }
@@ -77,10 +87,19 @@ val networkModule = module {
     }
 
     single("withoutToken") {
+
+        val httpLogInterceptor = HttpLoggingInterceptor()
+
+        if (BuildConfig.DEBUG) {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        } else {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
+        }
+
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(get())
+            .addInterceptor(httpLogInterceptor)
             .build()
     }
 
