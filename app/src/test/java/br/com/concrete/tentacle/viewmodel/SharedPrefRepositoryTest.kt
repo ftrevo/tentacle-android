@@ -1,39 +1,27 @@
 package br.com.concrete.tentacle.repositories
 
+import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
-import br.com.concrete.tentacle.features.MainActivity
-import org.junit.Assert.assertEquals
 import org.junit.After
-import org.junit.Before
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.standalone.StandAloneContext
+import org.koin.standalone.StandAloneContext.stopKoin
 import org.koin.standalone.inject
 import org.koin.test.KoinTest
-import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
-import br.com.concrete.tentacle.data.models.Session
 
 @RunWith(RobolectricTestRunner::class)
 class SharedPrefRepositoryTest : KoinTest {
 
-    private lateinit var activity: MainActivity
     private val sharePrefRepository: SharedPrefRepository by inject()
     private val stringKey = "stringKey"
     private val string = "string"
     private val stringResponseEmpty = ""
 
-    @Before
-    fun createContext() {
-        activity = Robolectric.buildActivity(MainActivity::class.java)
-            .create()
-            .resume()
-            .get()
-    }
-
     @After
-    fun destroyContext() {
-        StandAloneContext.stopKoin()
+    fun turnOffKoin() {
+        stopKoin()
     }
 
     @Test
@@ -54,7 +42,7 @@ class SharedPrefRepositoryTest : KoinTest {
     @Test
     fun `when save a session should be possible to retrieve it with the same key`() {
         val sessionKey = "sessionKey"
-        val sessionForPreference = Session("","","")
+        val sessionForPreference = Session("", "", "")
         sharePrefRepository.saveSession(sessionKey, sessionForPreference)
         val stored = sharePrefRepository.getStoredSession(sessionKey)
         assertEquals(sessionForPreference, stored)
@@ -67,13 +55,13 @@ class SharedPrefRepositoryTest : KoinTest {
     }
 
     @Test
-    fun `when pass an invalid key to getStoredString should return ""`(){
+    fun `when pass an invalid key to getStoredString should return ""`() {
         val result = sharePrefRepository.getStoreString("wrongKey")
         assertEquals("", result)
     }
 
     @Test
-    fun `when pass an invalid key to deleteStoreString should return Unit`(){
+    fun `when pass an invalid key to deleteStoreString should return Unit`() {
         val result = sharePrefRepository.deleteStoreString("wrongKey")
         assertEquals(Unit, result)
     }

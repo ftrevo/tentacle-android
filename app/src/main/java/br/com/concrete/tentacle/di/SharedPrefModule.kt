@@ -9,11 +9,11 @@ private const val TENTACLE_PREFERENCES_NAME = "TENTACLE_PREFERENCES_NAME"
 
 val sharedPreferencesModule = module {
 
-    factory {
+    single {
         androidContext().getSharedPreferences(TENTACLE_PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
 
-    factory {
+    single {
         val sharedPrefRepository = SharedPrefRepository(get())
         sharedPrefRepository
     }

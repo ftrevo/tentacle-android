@@ -93,9 +93,6 @@ dependencies {
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-viewmodel:$koinVersion"
     testImplementation  "org.koin:koin-test:$koinVersion"
-    testImplementation "org.koin:koin-android:$koinVersion"
-    testImplementation "org.koin:koin-android-viewmodel:$koinVersion"
-    testImplementation "org.koin:koin-core:$koinVersion"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
