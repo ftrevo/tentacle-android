@@ -41,11 +41,9 @@ class LoginVMTest : BaseViewModelTest() {
 
     @Test
     fun `when LoginViewModel calls login should return error message for 400`() {
-        val responseJson = this::class
-            .java
-            .classLoader?.getResource(
+        val responseJson = getJson(
             "mockjson/errors/error_400.json"
-        )?.readText()
+        )
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
@@ -55,11 +53,7 @@ class LoginVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
-        val mockResponse = MockResponse()
-            .setResponseCode(400)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
+        mockResponseError400(responseJson)
 
         loginViewMock.getStateModel().observeForever {
             actual = it
@@ -73,11 +67,9 @@ class LoginVMTest : BaseViewModelTest() {
 
     @Test
     fun `when LoginViewModel calls login should return success`() {
-        val responseJson = this::class
-            .java
-            .classLoader?.getResource(
+        val responseJson = getJson(
             "mockjson/login/login_success.json"
-            )?.readText()
+            )
 
         val collectionType = object : TypeToken<BaseModel<Session>>() {}.type
         val responseObject: BaseModel<Session> =

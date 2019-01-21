@@ -22,9 +22,9 @@ class RegisterUserVMTest : BaseViewModelTest() {
 
     @Test
     fun `when registerUserViewModel calls loadCities should return a list of strings`() {
-        val responseJson = this::class.java.classLoader?.getResource(
+        val responseJson = getJson(
             "mockjson/user/get_cities_success.json"
-        )?.readText()
+        )
 
         val collectionType = object : TypeToken<BaseModel<CityResponse>>() {}.type
         val responseObject: BaseModel<CityResponse> = GsonBuilder()
@@ -57,9 +57,9 @@ class RegisterUserVMTest : BaseViewModelTest() {
 
     @Test
     fun `when registerUserViewModel calls loadStates should return a list of states`() {
-        val responseJson = this::class.java.classLoader?.getResource(
+        val responseJson = getJson(
             "mockjson/user/get_states_success.json"
-        )?.readText()
+        )
 
         val collectionType = object : TypeToken<BaseModel<StateResponse>>() {}.type
         val responseObject: BaseModel<StateResponse> = GsonBuilder()
@@ -90,9 +90,9 @@ class RegisterUserVMTest : BaseViewModelTest() {
 
     @Test
     fun `when registerUserViewModel calls registerUser should return a userRegistered`() {
-        val responseJson = this::class.java.classLoader?.getResource(
+        val responseJson = getJson(
             "mockjson/user/register_user_success.json"
-        )?.readText()
+        )
 
         val collectionType = object : TypeToken<BaseModel<User>>() {}.type
         val responseObject: BaseModel<User> = GsonBuilder()
@@ -132,12 +132,10 @@ class RegisterUserVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun loadCitiesError() {
-        val responseJson = this::class
-            .java
-            .classLoader?.getResource(
+    fun `when registerUserViewModel calls loadCities should error message`() {
+        val responseJson = getJson(
             "mockjson/errors/error_400.json"
-        )?.readText()
+        )
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
@@ -148,11 +146,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
                 errors = responseObject)
         var actual = ViewStateModel<ArrayList<String>>(status = ViewStateModel.Status.LOADING)
 
-        val mockResponse = MockResponse()
-            .setResponseCode(400)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
+        mockResponseError400(responseJson)
 
         registerUserViewModelTest.getCities().observeForever {
             actual = it
@@ -167,12 +161,10 @@ class RegisterUserVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun loadStatesError() {
-        val responseJson = this::class
-            .java
-            .classLoader?.getResource(
+    fun `when registerUserViewModel calls loadStates should return error message`() {
+        val responseJson = getJson(
             "mockjson/errors/error_400.json"
-        )?.readText()
+        )
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
@@ -183,11 +175,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
                 errors = responseObject)
         var actual = ViewStateModel<ArrayList<State>>(status = ViewStateModel.Status.LOADING)
 
-        val mockResponse = MockResponse()
-            .setResponseCode(400)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
+        mockResponseError400(responseJson)
 
         registerUserViewModelTest.getStates().observeForever {
             actual = it
@@ -200,12 +188,10 @@ class RegisterUserVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun getRegisterUserError() {
-        val responseJson = this::class
-            .java
-            .classLoader?.getResource(
+    fun `when registerUserViewModel calls registerUser should return error message`() {
+        val responseJson = getJson(
             "mockjson/errors/error_400.json"
-        )?.readText()
+        )
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
@@ -217,11 +203,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
 
         var actual = ViewStateModel<User>(status = ViewStateModel.Status.LOADING)
 
-        val mockResponse = MockResponse()
-            .setResponseCode(400)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
+        mockResponseError400(responseJson)
 
         registerUserViewModelTest.getUser().observeForever {
             actual = it
