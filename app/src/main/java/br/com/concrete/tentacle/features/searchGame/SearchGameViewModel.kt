@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.features.searchGame
 
+import android.util.Log
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
@@ -27,6 +28,8 @@ class SearchGameViewModel(
 
     private fun obsSearchGames(title: String) =
         gameRepository.getSearchGames(title).subscribe({ base ->
+
+            Log.i("TESTE TESTE", base.data.list[0].title)
             viewSearchGame.postValue(
                 ViewStateModel(
                     status = ViewStateModel.Status.SUCCESS,
@@ -34,6 +37,8 @@ class SearchGameViewModel(
                 )
             )
         }, {
+
+            Log.i("TESTE TESTE", "ERROR")
             viewSearchGame.postValue(
                 ViewStateModel(
                     status = ViewStateModel.Status.ERROR,

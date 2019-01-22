@@ -1,3 +1,5 @@
+package br.com.concrete.tentacle.di
+
 import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import br.com.concrete.tentacle.data.network.ApiService
@@ -24,7 +26,7 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
 
-    single("withToken"){
+    single("withToken") {
 
         val httpLogInterceptor = HttpLoggingInterceptor()
 
@@ -36,17 +38,21 @@ val networkModule = module {
 
         val tokenInterceptor = Interceptor { chain ->
             val prefs: SharedPrefRepository = get()
-            val userSession
-                    = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
-            userSession?.let {
-                val newRequest = chain.request()
-                    .newBuilder()
-                    .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
-                    .build()
-                chain.proceed(newRequest)
+            val userSession =
+                prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+
+            if (userSession != null) {
+                userSession.let {
+                    val newRequest = chain.request()
+                        .newBuilder()
+                        .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
+                        .build()
+                    chain.proceed(newRequest)
+                }
+            } else {
+                chain.proceed(chain.request())
             }
         }
-
 
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
@@ -70,7 +76,7 @@ val networkModule = module {
         retrofit.create<ApiService>(ApiService::class.java)
     }
 
-    single("withoutToken"){
+    single("withoutToken") {
 
         val httpLogInterceptor = HttpLoggingInterceptor()
 
