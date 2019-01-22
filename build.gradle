@@ -39,6 +39,7 @@ buildscript {
     ext.androidxTestMockWebServer = '3.12.1'
     ext.androidTextMockito = '2.23.4'
     ext.robletric = '4.1'
+    ext.coreTesting = "1.1.1"
 
     //Android Material
     ext.androidMaterial = '1.0.0'

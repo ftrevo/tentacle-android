@@ -67,6 +67,8 @@ dependencies {
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$androidxTestMockWebServer"
     androidTestImplementation "androidx.test:runner:$runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
+    testImplementation "org.robolectric:robolectric:$robletric"
+    testImplementation "android.arch.core:core-testing:$coreTesting"
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"

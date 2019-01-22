@@ -1,7 +1,9 @@
 package br.com.concrete.tentacle.base
 
+import PROPERTY_BASE_URL
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import br.com.concrete.tentacle.di.*
+import networkModule
 import org.junit.After
 import org.junit.Before
 import org.junit.runner.RunWith

@@ -1,8 +1,10 @@
 package br.com.concrete.tentacle.rule
 
+import PROPERTY_BASE_URL
 import br.com.concrete.tentacle.di.*
 import android.app.Activity
 import androidx.test.rule.ActivityTestRule
+import networkModule
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.rules.ExternalResource
 import org.junit.rules.RuleChain
