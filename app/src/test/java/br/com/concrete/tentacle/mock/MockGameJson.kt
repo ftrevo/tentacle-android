@@ -1,6 +1,6 @@
 package br.com.concrete.tentacle.mock
 
-object MockGame {
+object MockGameJson {
 
     const val LIST_GAME_SUCCESS = "{\n" +
             "  \"data\": {\n" +
@@ -9,7 +9,7 @@ object MockGame {
             "        \"_id\": \"123456\",\n" +
             "        \"title\": \"FIFA 2019\",\n" +
             "        \"createdBy\": {\n" +
-            "          \"_id\": \"321654\",\n" +
+            "          \"_id\": \"5c1ab15c7c0f4f002272357f\",\n" +
             "          \"name\": \"DAIVID V. LEAL\"\n" +
             "        },\n" +
             "        \"createdAt\": \"2019-01-11T16:17:15.215Z\",\n" +
