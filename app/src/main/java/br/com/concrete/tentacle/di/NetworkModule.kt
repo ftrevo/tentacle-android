@@ -26,33 +26,6 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
 
-    single {
-        val httpLogInterceptor = HttpLoggingInterceptor()
-
-        if (BuildConfig.DEBUG) {
-            httpLogInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
-
-        httpLogInterceptor
-    }
-
-    single("tokenInterceptor") {
-        Interceptor { chain ->
-            val prefs: SharedPrefRepository = get()
-            val userSession =
-                    prefs.getStoredSession(PREFS_KEY_USER_SESSION)
-            userSession?.let {
-                val newRequest = chain.request()
-                    .newBuilder()
-                    .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
-                    .build()
-                chain.proceed(newRequest)
-            }
-        }
-    }
-
     single("withToken") {
 
         val httpLogInterceptor = HttpLoggingInterceptor()
@@ -63,11 +36,29 @@ val networkModule = module {
             httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
 
+        val tokenInterceptor = Interceptor { chain ->
+            val prefs: SharedPrefRepository = get()
+            val userSession =
+                prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+
+            if (userSession != null) {
+                userSession.let {
+                    val newRequest = chain.request()
+                        .newBuilder()
+                        .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
+                        .build()
+                    chain.proceed(newRequest)
+                }
+            } else {
+                chain.proceed(chain.request())
+            }
+        }
+
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(httpLogInterceptor)
-            .addInterceptor(get("tokenInterceptor"))
+            .addInterceptor(tokenInterceptor)
             .build()
     }
 

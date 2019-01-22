@@ -51,10 +51,10 @@ class LoginViewModel(
     private fun errorLogin(error: Throwable): ErrorResponse {
         var errorResponse = ErrorResponse()
 
-        if (error is HttpException && error.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
+        if (error.cause is HttpException && (error.cause as HttpException).code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
             errorResponse.messageInt.add(R.string.user_or_password_error)
         } else {
-            errorResponse = super.notKnownError(error)
+            errorResponse = notKnownError(error)
         }
 
         return errorResponse
