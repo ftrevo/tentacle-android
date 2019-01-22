@@ -47,10 +47,6 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
 
         loadMyGamesViewModel.loadMyGames()
         assertEquals(expected, actual)
-
-        val result = mockServer.takeRequest()
-        val path = "/media?mineOnly=true"
-        assertEquals(path, result.path)
     }
 
     @Test
@@ -79,9 +75,5 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
 
         loadMyGamesViewModel.loadMyGames()
         assertEquals(expected, actual)
-
-        val result = mockServer.takeRequest()
-        val path = "/media?mineOnly=true"
-        assertEquals(path, result.path)
     }
 }
