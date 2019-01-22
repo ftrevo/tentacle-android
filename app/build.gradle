@@ -86,8 +86,8 @@ dependencies {
     implementation "br.com.concrete:canarinho:$canarinho"
 
     //Navigation
-    implementation "android.arch.navigation:navigation-fragment:$navigation"
-    implementation "android.arch.navigation:navigation-ui:$navigation"
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigation"
 
     implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion@aar") {
         transitive = true

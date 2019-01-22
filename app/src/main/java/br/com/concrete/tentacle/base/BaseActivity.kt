@@ -1,7 +1,7 @@
 package br.com.concrete.tentacle.base
 
 
-import androidx.annotation.IdRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 
@@ -15,7 +15,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setupToolbar(INVALID_TITLE, INVALID_ICON, true)
     }
 
-    fun setupToolbar(@IdRes icon: Int) {
+    fun setupToolbar(@DrawableRes icon: Int) {
         setupToolbar(INVALID_TITLE, icon, true)
     }
 

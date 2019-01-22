@@ -7,25 +7,23 @@
         app:startDestination="@+id/home">
 
     <fragment
-            android:id="@+id/home"
-            android:name="br.com.concrete.tentacle.features.home.HomeFragment"
-            android:label="fragment_title_screen"
-            tools:layout="@layout/fragment_home"/>
+        android:id="@+id/home"
+        android:name="br.com.concrete.tentacle.features.home.HomeFragment"
+        android:label="@string/toolbar_title_home"
+        tools:layout="@layout/fragment_home"/>
 
     <fragment
-            android:id="@+id/myGames"
-            android:name="br.com.concrete.tentacle.features.loadmygames.LoadMyGamesFragment"
-            android:label="fragment_title_screen"
-            tools:layout="@layout/fragment_game_list"/>
+        android:id="@+id/myGames"
+        android:name="br.com.concrete.tentacle.features.loadmygames.LoadMyGamesFragment"
+        android:label="@string/toolbar_title_my_games"
+        tools:layout="@layout/fragment_game_list"/>
 
     <action
-            android:id="@+id/navigate_to_home"
-            app:destination="@+id/home"/>
+        android:id="@+id/navigate_to_home"
+        app:destination="@+id/home"/>
 
     <action
-            android:id="@+id/navigate_to_my_games"
-            app:popUpTo="@id/nav_host"
-            app:popUpToInclusive="true"
-            app:destination="@+id/myGames"/>
+        android:id="@+id/navigate_to_my_games"
+        app:destination="@+id/myGames"/>
 
 </navigation>
