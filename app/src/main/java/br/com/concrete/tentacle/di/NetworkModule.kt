@@ -24,7 +24,8 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
 
-    single{
+    single("withToken") {
+
         val httpLogInterceptor = HttpLoggingInterceptor()
 
         if (BuildConfig.DEBUG) {
@@ -33,14 +34,10 @@ val networkModule = module {
             httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
 
-        httpLogInterceptor
-    }
-
-    single("tokenInterceptor"){
-        Interceptor { chain ->
+        val tokenInterceptor = Interceptor { chain ->
             val prefs: SharedPrefRepository = get()
-            val userSession
-                    = prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+            val userSession =
+                    prefs.getStoredSession(PREFS_KEY_USER_SESSION)
             userSession?.let {
                 val newRequest = chain.request()
                     .newBuilder()
@@ -49,14 +46,12 @@ val networkModule = module {
                 chain.proceed(newRequest)
             }
         }
-    }
 
-    single("withToken"){
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(get())
-            .addInterceptor(get("tokenInterceptor"))
+            .addInterceptor(httpLogInterceptor)
+            .addInterceptor(tokenInterceptor)
             .build()
     }
 
@@ -74,11 +69,20 @@ val networkModule = module {
         retrofit.create<ApiService>(ApiService::class.java)
     }
 
-    single("withoutToken"){
+    single("withoutToken") {
+
+        val httpLogInterceptor = HttpLoggingInterceptor()
+
+        if (BuildConfig.DEBUG) {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        } else {
+            httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
+        }
+
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(get())
+            .addInterceptor(httpLogInterceptor)
             .build()
     }
 

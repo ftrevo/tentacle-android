@@ -10,7 +10,6 @@ import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
-import io.reactivex.disposables.CompositeDisposable
 
 class RegisterUserViewModel(private val userRepository: UserRepository,
                             private val sharedPrefRepository: SharedPrefRepository
@@ -61,5 +60,4 @@ class RegisterUserViewModel(private val userRepository: UserRepository,
             viewStateState.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
         }))
     }
-
 }

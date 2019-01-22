@@ -19,3 +19,31 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     main = "com.github.shyiko.ktlint.Main"
     args "-F", "src/**/*.kt"
 }
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = [ '/br/com/concrete/tentacle/di/*',
+                       '/br/com/concrete/tentacle/extensions/*',
+                       '/br/com/concrete/tentacle/data/models/*',
+                       '/br/com/concrete/tentacle/data/network/*',
+                       '/br/com/concrete/tentacle/custom/*',
+                       '/br/com/concrete/tentacle/utils/*',
+                       '/br/com/concrete/tentacle/base/*',
+                       '/br/com/concrete/tentacle/features/MainActivity.*',
+                       '**/R.class', '**/R$*.class', '**/BuildConfig.*',
+                       '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*' ]
+
+    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ])
+}
