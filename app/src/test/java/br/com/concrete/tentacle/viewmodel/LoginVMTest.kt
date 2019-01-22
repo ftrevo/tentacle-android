@@ -33,9 +33,6 @@ class LoginVMTest : BaseViewModelTest() {
             actual = it
         }
         loginViewMock.loginUser("daivid.v.leal@concrete.com.br", "123456")
-
-        var request = mockServer.takeRequest()
-        assertEquals("/login", request.path)
         assertEquals(expected, actual)
     }
 
@@ -59,9 +56,6 @@ class LoginVMTest : BaseViewModelTest() {
             actual = it
         }
         loginViewMock.loginUser("daivid.v.leal@concrete.com.br", "123456")
-
-        var request = mockServer.takeRequest()
-        assertEquals("/login", request.path)
         assertEquals(expected, actual)
     }
 
@@ -91,9 +85,6 @@ class LoginVMTest : BaseViewModelTest() {
             actual = it
         }
         loginViewMock.loginUser("daivid.v.leal@concrete.com.br", "123456")
-
-        var request = mockServer.takeRequest()
-        assertEquals("/login", request.path)
         assertEquals(expected, actual)
     }
 }
