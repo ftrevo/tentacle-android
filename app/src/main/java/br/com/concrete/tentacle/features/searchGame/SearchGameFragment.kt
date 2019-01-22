@@ -38,7 +38,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
             when (gameModel.status) {
                 ViewStateModel.Status.LOADING -> {
                     enableProgress(true)
-                    enableCustonError(false)
+                    enableCustomError(false)
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     enableProgress(false)
@@ -54,12 +54,12 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         gameViewModel.getRegisteredGame().observe(this, Observer { game ->
             when (game.status) {
                 ViewStateModel.Status.LOADING -> {
-                    enableCustonError(false)
+                    enableCustomError(false)
                     enableLoadingButton(true)
                     enableProgress(true)
                 }
                 ViewStateModel.Status.SUCCESS -> {
-                    enableCustonError(false)
+                    enableCustomError(false)
                     enableLoadingButton(false)
                     enableProgress(false)
                 }
@@ -126,8 +126,8 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         listCustom.setLoading(isEnable)
     }
 
-    private fun enableCustonError(isEnable: Boolean) {
-        listCustom.visibleCustonError(isEnable)
+    private fun enableCustomError(isEnable: Boolean) {
+        listCustom.visibleCustomError(isEnable)
     }
 
 }
