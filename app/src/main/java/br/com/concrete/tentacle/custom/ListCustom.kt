@@ -25,7 +25,8 @@ class ListCustom(
 
     init {
         View.inflate(context, R.layout.list_custom, this)
-        context.withStyledAttributes(attrs,
+        context.withStyledAttributes(
+            attrs,
             R.styleable.ListCustom,
             0,
             0
@@ -71,10 +72,10 @@ class ListCustom(
     }
 
     fun setLoading(condition: Boolean) {
-        if (condition) {
-            progressBarList.visibility = View.VISIBLE
-        } else {
-            progressBarList.visibility = View.GONE
-        }
+        progressBarList.visibility = if (condition) View.VISIBLE else View.GONE
+    }
+
+    fun visibleCustomError(visible: Boolean) {
+        recyclerListError.visibility = if (visible) View.VISIBLE else View.GONE
     }
 }

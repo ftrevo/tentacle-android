@@ -25,6 +25,7 @@ abstract class BaseSearchFragment : BaseFragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        initView()
         initViewModel()
         initListener()
         initRecyclerView()
@@ -80,6 +81,7 @@ abstract class BaseSearchFragment : BaseFragment(),
     fun getQuerySearchView() = searchView.query.toString()
 
     abstract fun titleToolbar(): String
+    abstract fun initView()
     abstract fun initListener()
     abstract fun initViewModel()
     abstract fun initRecyclerView()
