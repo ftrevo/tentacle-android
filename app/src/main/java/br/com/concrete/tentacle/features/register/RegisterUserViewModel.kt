@@ -4,7 +4,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
-import br.com.concrete.tentacle.data.models.*
+import br.com.concrete.tentacle.data.models.State
+import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.data.models.Session
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.UserRequest
+
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION

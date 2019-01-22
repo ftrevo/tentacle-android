@@ -11,7 +11,7 @@ abstract class BaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if(activity is BaseActivity){
+        if (activity is BaseActivity) {
             (activity as BaseActivity).setToolbarTitle(getToolbarTitle())
         }
     }

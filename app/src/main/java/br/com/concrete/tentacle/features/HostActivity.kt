@@ -20,7 +20,7 @@ class HostActivity : BaseActivity() {
         setupToolbar(R.drawable.ic_logo_actionbar)
     }
 
-    private fun initHomeFragment(){
+    private fun initHomeFragment() {
         navigateTo(R.id.container, HomeFragment.newInstance())
     }
 

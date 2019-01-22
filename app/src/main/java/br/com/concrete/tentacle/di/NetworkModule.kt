@@ -63,7 +63,6 @@ val networkModule = module {
             httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
 
-
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)

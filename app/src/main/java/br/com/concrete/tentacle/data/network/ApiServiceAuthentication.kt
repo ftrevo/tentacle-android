@@ -5,7 +5,6 @@ import br.com.concrete.tentacle.data.models.CityResponse
 import br.com.concrete.tentacle.data.models.RequestLogin
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.StateResponse
-import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.UserRequest
 import io.reactivex.Flowable
 import io.reactivex.Observable
