@@ -5,10 +5,11 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.network.ApiService
+import br.com.concrete.tentacle.testing.OpenForTesting
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-
+@OpenForTesting
 class GameRepository(private val apiRest: ApiService) {
 
     fun getSearchGames(title: String): Observable<BaseModel<GameResponse>> {

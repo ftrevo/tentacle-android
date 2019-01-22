@@ -8,6 +8,13 @@ apply plugin: "de.mannodermaus.android-junit5"
 
 apply from: 'tasks.gradle'
 
+apply plugin: 'kotlin-allopen'
+
+allOpen {
+    annotation 'br.com.concrete.tentacle.testing.OpenClass'
+}
+
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -49,18 +56,24 @@ dependencies {
     //Test
     implementation "androidx.legacy:legacy-support-v4:$legacySupport"
     implementation "androidx.recyclerview:recyclerview:$legacySupport"
-    testImplementation "junit:junit:$junit"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
+    testImplementation "org.mockito:mockito-core:$androidTextMockito"
+    testImplementation "junit:junit:$junit"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$androidxTestMockWebServer"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
+    androidTestImplementation "androidx.test:rules:$androidxTest"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$androidxTestMockWebServer"
     androidTestImplementation "androidx.test:runner:$runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-viewmodel:$koinVersion"
     testImplementation "org.koin:koin-test:$koinVersion"
+    androidTestImplementation "org.koin:koin-test:$koinVersion"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

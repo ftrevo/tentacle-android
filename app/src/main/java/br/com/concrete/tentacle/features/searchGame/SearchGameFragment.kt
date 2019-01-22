@@ -12,11 +12,13 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.testing.OpenForTesting
 import kotlinx.android.synthetic.main.fragment_search_game.*
 import kotlinx.android.synthetic.main.list_custom.view.*
 import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
+@OpenForTesting
 class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     private val gameViewModel: SearchGameViewModel by viewModel()
 

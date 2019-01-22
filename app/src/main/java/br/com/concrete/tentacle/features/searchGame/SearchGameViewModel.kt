@@ -8,8 +8,10 @@ import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.testing.OpenForTesting
 import io.reactivex.disposables.CompositeDisposable
 
+@OpenForTesting
 class SearchGameViewModel(
     private val gameRepository: GameRepository,
     private val sharedPrefRepository: SharedPrefRepository

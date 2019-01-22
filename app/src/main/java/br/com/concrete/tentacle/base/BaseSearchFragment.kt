@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.testing.OpenForTesting
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit
 const val TIME_OUT: Long = 300
 const val MINIMAL_CHARACTER: Int = 3
 
+@OpenForTesting
 @SuppressLint("CheckResult")
 abstract class BaseSearchFragment : BaseFragment(),
     MenuItem.OnActionExpandListener {

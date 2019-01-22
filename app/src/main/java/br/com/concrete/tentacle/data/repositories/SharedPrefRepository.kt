@@ -7,8 +7,10 @@ import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.extensions.get
 import br.com.concrete.tentacle.extensions.put
 import br.com.concrete.tentacle.extensions.remove
+import br.com.concrete.tentacle.testing.OpenForTesting
 import com.google.gson.Gson
 
+@OpenForTesting
 class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
 
     fun saveString(key: String, value: String) = mSharedPref.put(key, value)
