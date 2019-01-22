@@ -21,6 +21,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 @OpenForTesting
 class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
+
     private val gameViewModel: SearchGameViewModel by viewModel()
 
     override fun onCreateView(
@@ -30,14 +31,23 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         return inflater.inflate(R.layout.fragment_search_game, container, false)
     }
 
+    override fun initView() {
+        enableProgress(false)
+    }
+
     override fun initViewModel() {
         gameViewModel.getSearchGame().observe(this, Observer { gameModel ->
             when (gameModel.status) {
-                ViewStateModel.Status.LOADING -> { }
+                ViewStateModel.Status.LOADING -> {
+                    enableProgress(true)
+                    enableCustomError(false)
+                }
                 ViewStateModel.Status.SUCCESS -> {
+                    enableProgress(false)
                     showList(gameModel.model)
                 }
                 ViewStateModel.Status.ERROR -> {
+                    enableProgress(false)
                     showError(gameModel.errors)
                 }
             }
@@ -46,14 +56,19 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         gameViewModel.getRegisteredGame().observe(this, Observer { game ->
             when (game.status) {
                 ViewStateModel.Status.LOADING -> {
+                    enableCustomError(false)
                     enableLoadingButton(true)
+                    enableProgress(true)
                 }
                 ViewStateModel.Status.SUCCESS -> {
+                    enableCustomError(false)
                     enableLoadingButton(false)
+                    enableProgress(false)
                 }
                 ViewStateModel.Status.ERROR -> {
                     showError(game.errors)
                     enableLoadingButton(false)
+                    enableProgress(false)
                 }
             }
         })
@@ -108,4 +123,13 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     private fun registerNewGame() {
         gameViewModel.registerNewGame(title = getQuerySearchView())
     }
+
+    private fun enableProgress(isEnable: Boolean) {
+        listCustom.setLoading(isEnable)
+    }
+
+    private fun enableCustomError(isEnable: Boolean) {
+        listCustom.visibleCustomError(isEnable)
+    }
+
 }
