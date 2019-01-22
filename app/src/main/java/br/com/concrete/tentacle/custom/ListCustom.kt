@@ -77,4 +77,12 @@ class ListCustom(
             progressBarList.visibility = View.GONE
         }
     }
+
+    fun visibleCustonError(visible: Boolean) {
+        if (visible) {
+            recyclerListError.visibility = View.VISIBLE
+        } else {
+            recyclerListError.visibility = View.GONE
+        }
+    }
 }
