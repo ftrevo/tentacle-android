@@ -9,4 +9,8 @@ object LogWrapper {
             Log.d(tag, msg)
         }
     }
+
+    fun print(throwable: Throwable) {
+        if (BuildConfig.DEBUG) throwable.printStackTrace()
+    }
 }
