@@ -11,6 +11,7 @@ local.properties
 *.apk
 # User-specific configurations
 .idea/
+.idea/codeStyles
 *.iml
 # OS-specific files
 .DS_Store
