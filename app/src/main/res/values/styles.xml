@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:targetApi="lollipop">
+<resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
-    <style name="TextInputLayoutTheme">
-        <!-- Used for the bottom line when not selected / focused -->
-        <item name="colorControlNormal">@color/textHint</item>
-        <!-- colorControlActivated & colorControlHighlight use the colorAccent color by default -->
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textColorHint">@color/textHint</item>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="TextInputLayoutStyle">

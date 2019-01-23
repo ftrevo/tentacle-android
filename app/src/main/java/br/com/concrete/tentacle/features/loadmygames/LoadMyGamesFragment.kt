@@ -68,4 +68,8 @@ class LoadMyGamesFragment : BaseFragment() {
         initObserver()
         lifecycle.addObserver(viewModelLoadMyGames)
     }
+
+    override fun getToolbarTitle(): Int {
+        return R.string.toolbar_title_my_games
+    }
 }
