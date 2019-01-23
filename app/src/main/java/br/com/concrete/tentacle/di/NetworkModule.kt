@@ -38,12 +38,15 @@ val networkModule = module {
             val prefs: SharedPrefRepository = get()
             val userSession =
                     prefs.getStoredSession(PREFS_KEY_USER_SESSION)
-            userSession?.let {
+
+            if (userSession != null) {
                 val newRequest = chain.request()
                     .newBuilder()
                     .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
                     .build()
                 chain.proceed(newRequest)
+            } else {
+                chain.proceed(chain.request())
             }
         }
 

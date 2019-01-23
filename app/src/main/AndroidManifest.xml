@@ -7,19 +7,19 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".base.AppTentacle"
+        android:name="br.com.concrete.tentacle.base.AppTentacle"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".features.MainActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme"
-                android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+            android:name=".features.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -27,15 +27,18 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".features.register.RegisterActivity"
-                android:theme="@style/AppTheme"
-                android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+            android:name=".features.register.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
-                android:name=".features.HostActivity"
-                android:label="@string/title_activity_host"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppThemeActionBar">
-        </activity>
+            android:name=".features.HostActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="938be7df4916734a793fa34ad87a79af694d54a2"
+        />
     </application>
 
 </manifest>

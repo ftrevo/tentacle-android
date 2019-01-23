@@ -16,11 +16,14 @@
     <color name="activateIcon">#FFF</color>
     <color name="deactivateIcon">#26FFFFFF</color>
 
-    <!-- BottomBar -->
-    <color name="bgBottomBar">#000</color>
 
     <color name="textColorErrorButtonName">#757575</color>
 
     <color name="bgGameIcon">#D8D8D8</color>
 
+    <!-- BottomBar -->
+    <color name="bgBottomBar">#191B1F</color>
+
+    <color name="toolbarBackground">@color/colorPrimary</color>
+>>>>>>> develop
 </resources>

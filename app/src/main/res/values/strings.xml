@@ -77,4 +77,7 @@
     <string name="register_media_generic_error">Ocorreu um erro ao cadastrar o jogo. \n Por favor, tente novamente.</string>
 
 
+    <string name="toolbar_title_home">Novos Jogos</string>
+    <string name="toolbar_title_my_games">Meus Jogos</string>
+
 </resources>

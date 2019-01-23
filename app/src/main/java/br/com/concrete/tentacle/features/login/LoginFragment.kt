@@ -39,6 +39,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun init() {
+        handleWithSession()
+
         initEvents()
 
         initListeners()
@@ -52,6 +54,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                 when (viewState.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         LogWrapper.log("LOGIN-SUCCESS", "User logged")
+                        handleWithSession()
                         setLoading(false)
                         activity?.finish()
                             startActivity(Intent(activity, HostActivity::class.java))
@@ -139,5 +142,16 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     private fun enableField(enableField: Boolean) {
         edtEmail.edt.isEnabled = enableField
         edtPassword.edt.isEnabled = enableField
+    }
+
+    private fun handleWithSession() {
+        if (loginViewModel.isUserLogged()) {
+            startActivity(Intent(context, HostActivity::class.java))
+            activity?.finish()
+        }
+    }
+
+    override fun getToolbarTitle(): Int {
+        return 0
     }
 }

@@ -6,27 +6,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".features.loadmygames.LoadMyGamesFragment"
->
+        android:background="@color/colorPrimary">
+
     <ImageView
-            android:src="@drawable/logo_tentacle_error_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-    />
+        android:src="@drawable/logo_tentacle_error_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
 
     <br.com.concrete.tentacle.custom.ListCustom
-            android:id="@+id/list"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layoutManager="LinearLayoutManager"
-            app:buttonNameError="@string/add_new_game"
-            app:errorDescription="@string/no_game_registered"
-            app:icon="@drawable/il_wow"
-            app:buttonNameAction="@string/add_new_game_compact"
-    />
+        android:id="@+id/list"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="LinearLayoutManager"
+        app:buttonNameError="@string/add_new_game"
+        app:errorDescription="@string/no_game_registered"
+        app:icon="@drawable/il_wow"
+        app:buttonNameAction="@string/add_new_game_compact"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

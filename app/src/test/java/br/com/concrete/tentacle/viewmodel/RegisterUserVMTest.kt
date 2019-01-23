@@ -50,9 +50,6 @@ class RegisterUserVMTest : BaseViewModelTest() {
         val stateId = "5a107a691592ca19f7b4a860"
         registerUserViewModelTest.loadCities(stateId)
         assertEquals(expected, actual)
-        val result = mockServer.takeRequest()
-        val path = "/states/" + stateId + "/cities"
-        assertEquals(path, result.path)
     }
 
     @Test
@@ -84,8 +81,6 @@ class RegisterUserVMTest : BaseViewModelTest() {
 
         registerUserViewModelTest.loadStates()
         assertEquals(expected, actual)
-        val result = mockServer.takeRequest()
-        assertEquals("/states", result.path)
     }
 
     @Test
@@ -127,8 +122,6 @@ class RegisterUserVMTest : BaseViewModelTest() {
             )
         )
         assertEquals(expected, actual)
-        val result = mockServer.takeRequest()
-        assertEquals("/users", result.path)
     }
 
     @Test
@@ -155,9 +148,6 @@ class RegisterUserVMTest : BaseViewModelTest() {
         val stateId = "5a107a691592ca19f7b4a860"
         registerUserViewModelTest.loadCities(stateId)
         assertEquals(expected, actual)
-        val result = mockServer.takeRequest()
-        val path = "/states/" + stateId + "/cities"
-        assertEquals(path, result.path)
     }
 
     @Test
@@ -183,8 +173,6 @@ class RegisterUserVMTest : BaseViewModelTest() {
 
         registerUserViewModelTest.loadStates()
         assertEquals(expected, actual)
-        val result = mockServer.takeRequest()
-        assertEquals("/states", result.path)
     }
 
     @Test
@@ -220,7 +208,5 @@ class RegisterUserVMTest : BaseViewModelTest() {
             )
         )
         assertEquals(expected, actual)
-        val result = mockServer.takeRequest()
-        assertEquals("/users", result.path)
     }
 }

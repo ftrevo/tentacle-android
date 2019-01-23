@@ -5,20 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.State
+import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.UserRequest
-import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
+import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
-class RegisterUserViewModel(private val userRepository: UserRepository,
-                            private val sharedPrefRepository: SharedPrefRepository
+class RegisterUserViewModel(
+    private val userRepository: UserRepository,
+    private val sharedPrefRepository: SharedPrefRepository
 ) :
     BaseViewModel() {
 
     private val viewStateState: MutableLiveData<ViewStateModel<ArrayList<State>>> = MutableLiveData()
     private val viewStateCity: MutableLiveData<ViewStateModel<ArrayList<String>>> = MutableLiveData()
-    private val viewStateUser: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
+    private val viewStateUser: MutableLiveData<ViewStateModel<Session>> = MutableLiveData()
 
     fun getUser() = viewStateUser
     fun getStates() = viewStateState
@@ -36,6 +39,7 @@ class RegisterUserViewModel(private val userRepository: UserRepository,
 
         viewStateUser.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(userRepository.registerUser(userRequest).subscribe({ base ->
+            sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, base.data)
             viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
         }, {
             viewStateUser.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
