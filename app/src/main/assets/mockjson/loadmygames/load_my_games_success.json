@@ -1,0 +1,35 @@
+{
+  "data": {
+    "list": [
+      {
+        "_id": "123456",
+        "platform": "PS3 - TESTE",
+        "game": {
+          "_id": "123465",
+          "title": "FIFA 2019"
+        },
+        "owner": {
+          "_id": "64654654",
+          "name": "DAIVID V. LEAL"
+        },
+        "createdAt": "2019-01-14T16:08:06.447Z",
+        "updatedAt": "2019-01-14T16:08:06.447Z"
+      },
+      {
+        "_id": "65464645",
+        "platform": "PS4",
+        "game": {
+          "_id": "65465465",
+          "title": "FIFA 2019"
+        },
+        "owner": {
+          "_id": "65465464",
+          "name": "DAIVID V. LEAL"
+        },
+        "createdAt": "2019-01-14T16:21:35.653Z",
+        "updatedAt": "2019-01-14T16:21:35.653Z"
+      }
+    ],
+    "count": 2
+  }
+}
