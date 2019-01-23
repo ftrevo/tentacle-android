@@ -4,7 +4,6 @@
                                                    android:layout_height="match_parent"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools="http://schemas.android.com/tools">
-
     <include layout="@layout/default_background"/>
 
     <fragment

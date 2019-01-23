@@ -39,16 +39,14 @@ val networkModule = module {
         val tokenInterceptor = Interceptor { chain ->
             val prefs: SharedPrefRepository = get()
             val userSession =
-                prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+                    prefs.getStoredSession(PREFS_KEY_USER_SESSION)
 
             if (userSession != null) {
-                userSession.let {
-                    val newRequest = chain.request()
-                        .newBuilder()
-                        .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
-                        .build()
-                    chain.proceed(newRequest)
-                }
+                val newRequest = chain.request()
+                    .newBuilder()
+                    .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
+                    .build()
+                chain.proceed(newRequest)
             } else {
                 chain.proceed(chain.request())
             }

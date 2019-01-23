@@ -14,8 +14,6 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
-import br.com.concrete.tentacle.features.HostActivity
-import br.com.concrete.tentacle.features.TestActivity
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -40,6 +38,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun init() {
+        handleWithSession()
+
         initEvents()
 
         initListeners()
@@ -53,9 +53,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                 when (viewState.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         LogWrapper.log("LOGIN-SUCCESS", "User logged")
+                        handleWithSession()
                         setLoading(false)
-                        activity?.finish()
-                            startActivity(Intent(activity, HostActivity::class.java))
                     }
                     ViewStateModel.Status.LOADING -> {
                         setLoading(true)
@@ -140,5 +139,16 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     private fun enableField(enableField: Boolean) {
         edtEmail.edt.isEnabled = enableField
         edtPassword.edt.isEnabled = enableField
+    }
+
+    private fun handleWithSession() {
+        if (loginViewModel.isUserLogged()) {
+            startActivity(Intent(context, HostActivity::class.java))
+            activity?.finish()
+        }
+    }
+
+    override fun getToolbarTitle(): Int {
+        return 0
     }
 }

@@ -28,7 +28,7 @@ class LoadMyGamesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun initObserver(){
+    private fun initObserver() {
         viewModelLoadMyGames.getMyGames().observe(this, Observer { stateModel ->
             val medias = stateModel.model
             when (stateModel.status) {
@@ -62,12 +62,14 @@ class LoadMyGamesFragment : BaseFragment() {
                 }
             }
         })
-
     }
 
-    private fun init(){
+    private fun init() {
         initObserver()
         lifecycle.addObserver(viewModelLoadMyGames)
     }
 
+    override fun getToolbarTitle(): Int {
+        return R.string.toolbar_title_my_games
+    }
 }

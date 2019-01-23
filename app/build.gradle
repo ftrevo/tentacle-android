@@ -8,13 +8,6 @@ apply plugin: "de.mannodermaus.android-junit5"
 
 apply from: 'tasks.gradle'
 
-apply plugin: 'kotlin-allopen'
-
-allOpen {
-    annotation 'br.com.concrete.tentacle.testing.OpenClass'
-}
-
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -23,11 +16,13 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "br.com.concrete.tentacle.util.TentacleTestRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
             buildConfigField "String", "BASE_URL", '"https://tentacle-backend.herokuapp.com/"'
+            applicationIdSuffix ".debug"
+            testCoverageEnabled true
         }
 
         release {
@@ -36,10 +31,36 @@ android {
             buildConfigField "String", "BASE_URL", '"https://tentacle-backend.herokuapp.com/"'
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+            all{
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
+        }
+    }
+
+    sourceSets.test.resources.srcDirs += ["src/main/assets"]
 }
 
 androidExtensions {
     experimental = true
+}
+
+configurations {
+    ktlint
+}
+
+jacoco {
+    toolVersion = "$jacobVersion"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
 }
 
 dependencies {
@@ -64,7 +85,6 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
     androidTestImplementation "androidx.test:rules:$androidxTest"
     androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
-    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$androidxTestMockWebServer"
     androidTestImplementation "androidx.test:runner:$runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
     testImplementation "org.robolectric:robolectric:$robletric"
@@ -75,15 +95,12 @@ dependencies {
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-viewmodel:$koinVersion"
     testImplementation "org.koin:koin-test:$koinVersion"
-    androidTestImplementation "org.koin:koin-test:$koinVersion"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$retrofitLogging"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterRxJava"
-
-
     implementation "com.squareup.okhttp3:okhttp:$okhttp3"
 
     //Observable
@@ -96,6 +113,14 @@ dependencies {
 
     //Utils
     implementation "br.com.concrete:canarinho:$canarinho"
+
+    //Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigation"
+
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion@aar") {
+        transitive = true
+    }
 
     ktlint "com.github.shyiko:ktlint:$ktLintVersion"
 }

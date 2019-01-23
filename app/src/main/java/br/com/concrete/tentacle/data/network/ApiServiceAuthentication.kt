@@ -1,12 +1,6 @@
 package br.com.concrete.tentacle.data.network
 
-import br.com.concrete.tentacle.data.models.BaseModel
-import br.com.concrete.tentacle.data.models.CityResponse
-import br.com.concrete.tentacle.data.models.RequestLogin
-import br.com.concrete.tentacle.data.models.Session
-import br.com.concrete.tentacle.data.models.StateResponse
-import br.com.concrete.tentacle.data.models.User
-import br.com.concrete.tentacle.data.models.UserRequest
+import br.com.concrete.tentacle.data.models.*
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -17,7 +11,7 @@ import retrofit2.http.Path
 interface ApiServiceAuthentication {
 
     @POST("/users")
-    fun registerUser(@Body userRequest: UserRequest): Observable<BaseModel<User>>
+    fun registerUser(@Body userRequest: UserRequest): Observable<BaseModel<Session>>
 
     @GET("/states")
     fun getStates(): Observable<BaseModel<StateResponse>>
@@ -27,4 +21,5 @@ interface ApiServiceAuthentication {
 
     @POST("login")
     fun loginUser(@Body login: RequestLogin): Flowable<BaseModel<Session>>
+
 }

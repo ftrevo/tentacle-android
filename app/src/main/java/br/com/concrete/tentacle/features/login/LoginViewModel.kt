@@ -30,7 +30,7 @@ class LoginViewModel(
         disposables.add(repository.loginUser(email, password).subscribe(
             { base ->
                 sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, base.data)
-                stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data))
+                postSession(base.data)
             },
             {
                 stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = errorLogin(it)))
@@ -42,13 +42,19 @@ class LoginViewModel(
 
     fun getStateModel(): LiveData<ViewStateModel<Session>> = stateModel
 
+    fun isUserLogged() = sharedPrefRepository.getStoredSession(PREFS_KEY_USER_SESSION) != null
+
+    private fun postSession(session: Session) {
+        stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = session))
+    }
+
     private fun errorLogin(error: Throwable): ErrorResponse {
         var errorResponse = ErrorResponse()
 
-        if (error is HttpException && error.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
+        if (error.cause is HttpException && (error.cause as HttpException).code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
             errorResponse.messageInt.add(R.string.user_or_password_error)
         } else {
-            errorResponse = super.notKnownError(error)
+            errorResponse = notKnownError(error)
         }
 
         return errorResponse
