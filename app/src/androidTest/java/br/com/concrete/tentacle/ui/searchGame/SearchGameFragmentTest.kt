@@ -1,26 +1,39 @@
 package br.com.concrete.tentacle.ui.searchGame
 
+import java.util.concurrent.TimeUnit
+import android.view.View
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.features.searchGame.SearchGameFragment
+import br.com.concrete.tentacle.features.searchGame.SearchGameViewModel
 import br.com.concrete.tentacle.mock.MockGame
-import br.com.concrete.tentacle.rule.RxImmediateSchedulerRule
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.schedulers.TestScheduler
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import org.hamcrest.Matcher
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.standalone.inject
 import org.koin.test.KoinTest
 
+typealias TimeHandler = (defaultScheduler: Scheduler, tag: String) -> Scheduler
 
 @RunWith(AndroidJUnit4::class)
-class SearchGameFragmentTest {
+class SearchGameFragmentTest : KoinTest {
 
     @get:Rule
     val mActivityTestRule = ActivityTestRule(HostActivity::class.java)
+
+    val searchGameViewModel: SearchGameViewModel by inject()
 
     /*@get:Rule
     var rxImmediateSchedulerRule = RxImmediateSchedulerRule()*/
@@ -44,19 +57,31 @@ class SearchGameFragmentTest {
 
             val path = "/games"
             clickSearchButton()
-            setSearchText("Unch")
 
             val response = MockResponse().setResponseCode(200).setBody(MockGame.LIST_GAME_SUCCESS)
             mockWebServer.enqueue(response)
 
-            /*val takeRequest = mockWebServer.takeRequest()
+            setSearchText("Fifa")
 
-            assertEquals(path, takeRequest.path)*/
+            /*val scheduler = TestScheduler()
+            TimeScheduler.timeSchedulerHandler = { default, tag ->
+                if (tag == "click_debounce") scheduler else default
+            }
 
-            /*mActivityTestRule.mockWebServer.enqueue(MockResponse().setBody(MockGame.LIST_GAME_SUCCESS))
-            val takeRequest = mActivityTestRule.mockWebServer.takeRequest()
+            scheduler.advanceTimeBy(5, TimeUnit.MINUTES)*/
+            isDisplayedRecyclerView()
+            //waitForMatcher(10000)
+            /*isDisplayedRecyclerView()*/
+        }
+    }
 
-            assertEquals(path, takeRequest.path)*/
+
+    object TimeScheduler {
+        @Volatile var timeSchedulerHandler: TimeHandler? = null
+
+        fun time(tag: String): Scheduler {
+            val handler = timeSchedulerHandler ?: return Schedulers.computation()
+            return handler(Schedulers.computation(), tag)
         }
     }
 
@@ -68,4 +93,6 @@ class SearchGameFragmentTest {
         }
 
     }
+
+
 }

@@ -44,10 +44,6 @@ class SearchViewModelTest: BaseViewModelTest() {
 
         searchGameViewModel.searchGame("Fifa")
         assertEquals(expected, actual)
-        val result = mockServer.takeRequest()
-        Log.i("PATH ", result.path)
-
-
     }
 
 }

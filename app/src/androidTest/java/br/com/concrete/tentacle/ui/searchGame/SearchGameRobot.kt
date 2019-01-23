@@ -13,7 +13,11 @@ class SearchGameRobot: BaseTestRobot() {
 
     fun setSearchText(textSearch: String) = fillEditSearchText(textSearch)
 
-    fun isDisplayedGame() = matchDisplayed("Uncharted 4")
+    fun isDisplayedGame() = matchDisplayed("Fifa 2019")
+
+    fun isDisplayedProgress() = matchDisplayed(R.id.progressBarList)
+
+    fun isDisplayedRecyclerView() = matchDisplayedRecyclerView(R.id.recyclerListView, "FIFA 2019")
 
     //fun isDisplayedView() =
 

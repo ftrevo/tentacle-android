@@ -1,16 +1,22 @@
 package br.com.concrete.tentacle.base
 
 import android.app.Activity
+import android.view.View
 import android.widget.EditText
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.ui.custom.TentacleEditTextSetTextViewAction
+import org.hamcrest.Matcher
+import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 
 
@@ -24,6 +30,9 @@ open class BaseTestRobot {
 
     fun matchDisplayed(id: Int): ViewInteraction =
         onView(withId(id)).check(matches(isDisplayed()))
+
+    fun matchDisplayedRecyclerView(id: Int, text: String): ViewInteraction =
+        onView(withId(id)).check(matches(isDisplayed())).perform()
 
     fun matchDisplayed(text: String): ViewInteraction =
         onView(withText(text)).check(matches(isDisplayed()))
@@ -43,5 +52,21 @@ open class BaseTestRobot {
 
     fun fillEditSearchText(text: String): ViewInteraction =
         Espresso.onView(isAssignableFrom(EditText::class.java))
-            .perform(typeText(text))
+            .perform(typeText(text)).perform(waitForMatcher(300))
+
+    private fun waitForMatcher(millis: Long): ViewAction {
+        return object : ViewAction {
+            override fun getDescription(): String {
+                return "Wait for $millis milliseconds."
+            }
+
+            override fun getConstraints(): Matcher<View> {
+                return ViewMatchers.isRoot()
+            }
+
+            override fun perform(uiController: UiController?, view: View?) {
+                uiController?.loopMainThreadForAtLeast(millis)
+            }
+        }
+    }
 }
