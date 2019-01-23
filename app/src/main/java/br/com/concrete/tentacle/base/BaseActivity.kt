@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.base
 
-
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
