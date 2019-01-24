@@ -1,6 +1,8 @@
 package br.com.concrete.tentacle.base
 
 
+import android.content.pm.ActivityInfo
+import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -10,6 +12,11 @@ abstract class BaseActivity : AppCompatActivity() {
     companion object {
         const val INVALID_ICON = -1
         const val INVALID_TITLE = -1
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
     }
 
     fun setupToolbar() {
