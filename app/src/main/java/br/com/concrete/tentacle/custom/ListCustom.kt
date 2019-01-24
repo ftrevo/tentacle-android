@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
-import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
-import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.progressBarList
-import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 
 class ListCustom(
     context: Context,
@@ -92,8 +91,8 @@ class ListCustom(
         errorDescriptionReference = errorCode
     }
 
-    fun setButtonText(errorCode: Int) {
-        errorDescriptionReference = errorCode
+    fun setButtonTextError(errorCode: Int) {
+        buttonNameErrorReference = errorCode
     }
 
     fun setButtonAction(action: () -> Unit) {

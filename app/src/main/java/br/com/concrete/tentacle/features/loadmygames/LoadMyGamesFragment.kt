@@ -57,7 +57,7 @@ class LoadMyGamesFragment : BaseFragment() {
                 ViewStateModel.Status.ERROR -> {
                     stateModel.errors?.let {
                         list.setErrorMessage(R.string.load_games_error_not_know)
-                        list.setButtonText(R.string.load_again)
+                        list.setButtonTextError(R.string.load_again)
                         list.setButtonAction {
                             viewModelLoadMyGames.loadMyGames()
                         }
