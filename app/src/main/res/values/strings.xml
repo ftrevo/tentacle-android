@@ -56,6 +56,7 @@
     <string name="add_new_game">Adicionar novo Jogo</string>
     <string name="add_new_game_compact">+ Adicionar</string>
     <string name="no_game_registered">Você ainda não tem nenhum jogo cadastrado :(</string>
+    <string name="load_games_error_not_know">Ocorreu um erro ao carregar os jogos. Por favor, tente novamente.</string>
 
     <string name="game_name">Nome do Jogo</string>
     <string name="media">mídia</string>

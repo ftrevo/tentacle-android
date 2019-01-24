@@ -77,4 +77,8 @@ class ListCustom(
             progressBarList.visibility = View.GONE
         }
     }
+
+    fun setErrorMessage(errorCode: Int) {
+        errorDescriptionReference = errorCode
+    }
 }

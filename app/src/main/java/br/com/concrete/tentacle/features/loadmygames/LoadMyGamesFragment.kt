@@ -55,7 +55,7 @@ class LoadMyGamesFragment : BaseFragment() {
 
                 ViewStateModel.Status.ERROR -> {
                     stateModel.errors?.let {
-                        showError(it)
+                        list.setErrorMessage(R.string.load_games_error_not_know)
                     }
                     list.updateUi(medias)
                     list.setLoading(false)
