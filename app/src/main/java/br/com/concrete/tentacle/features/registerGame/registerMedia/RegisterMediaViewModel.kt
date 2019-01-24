@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.registerMedia
+package br.com.concrete.tentacle.features.registerGame.registerMedia
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
@@ -9,7 +9,6 @@ import br.com.concrete.tentacle.data.models.StatusLiveData
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.RegisterMediaRepository
 import br.com.concrete.tentacle.utils.LogWrapper
-import io.reactivex.disposables.CompositeDisposable
 
 class RegisterMediaViewModel(private val repository: RegisterMediaRepository) : BaseViewModel() {
 

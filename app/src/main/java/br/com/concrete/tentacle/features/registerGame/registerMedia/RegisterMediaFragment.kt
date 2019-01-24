@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.registerMedia
+package br.com.concrete.tentacle.features.registerGame.registerMedia
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -11,6 +11,7 @@ import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
+import br.com.concrete.tentacle.extensions.toPlatformName
 import br.com.concrete.tentacle.utils.ARGUMENT_GAME
 import br.com.concrete.tentacle.utils.EMPTY_STRING
 import kotlinx.android.synthetic.main.fragment_register_media.*
@@ -30,23 +31,31 @@ class RegisterMediaFragment : BaseFragment() {
         initViews()
     }
 
-    private fun initViews() {
-        game = arguments?.getParcelable<Game>(ARGUMENT_GAME)!!
-        mediaNameTextView.text = game.title
+    override fun getToolbarTitle(): Int {
+        return R.string.toolbar_title_home
+    }
 
-        initListeners()
-        initObservers()
+    private fun initViews() {
+
+
+        arguments?.let { bundle ->
+            game = RegisterMediaFragmentArgs.fromBundle(bundle).gameArgument
+            mediaNameTextView.text = game.title
+
+            initListeners()
+            initObservers()
+        }
     }
 
     private fun initListeners() {
         mediaRegisterRadioGroup.setOnCheckedChangeListener { group, checkedId ->
             selectedPlatform = when (checkedId) {
-                mediaPS3RadioButton.id -> getString(R.string.register_media_ps3_radio_button_title)
-                mediaPS4RadioButton.id -> getString(R.string.register_media_ps4_radio_button_title)
-                mediaXbox360RadioButton.id -> getString(R.string.register_media_xbox360_radio_button_title)
-                mediaXboxOneRadioButton.id -> getString(R.string.register_media_xboxone_radio_button_title)
-                media3DSRadioButton.id -> getString(R.string.register_media_3ds_radio_button_title)
-                mediaSwitchRadioButton.id -> getString(R.string.register_media_switch_radio_button_title)
+                mediaPS3RadioButton.id -> getString(R.string.register_media_ps3_radio_button_title).toPlatformName()
+                mediaPS4RadioButton.id -> getString(R.string.register_media_ps4_radio_button_title).toPlatformName()
+                mediaXbox360RadioButton.id -> getString(R.string.register_media_xbox360_radio_button_title).toPlatformName()
+                mediaXboxOneRadioButton.id -> getString(R.string.register_media_xboxone_radio_button_title).toPlatformName()
+                media3DSRadioButton.id -> getString(R.string.register_media_3ds_radio_button_title).toPlatformName()
+                mediaSwitchRadioButton.id -> getString(R.string.register_media_switch_radio_button_title).toPlatformName()
                 else -> EMPTY_STRING
             }
         }
@@ -66,7 +75,7 @@ class RegisterMediaFragment : BaseFragment() {
                     }
                     ViewStateModel.Status.SUCCESS -> {
                         mediaRegisterButton.isLoading(false)
-                        // TODO - navigate to my games screen
+                        activity?.finish()
                     }
                     ViewStateModel.Status.ERROR -> {
                         mediaRegisterButton.isLoading(false)
@@ -80,4 +89,7 @@ class RegisterMediaFragment : BaseFragment() {
 
     private fun checkField(): Boolean =
         !TextUtils.isEmpty(selectedPlatform)
+
+
+
 }

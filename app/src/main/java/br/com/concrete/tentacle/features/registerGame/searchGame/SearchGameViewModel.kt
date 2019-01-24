@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.searchGame
+package br.com.concrete.tentacle.features.registerGame.searchGame
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
@@ -7,8 +7,6 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
-import io.reactivex.disposables.CompositeDisposable
 
 class SearchGameViewModel(
     private val gameRepository: GameRepository

@@ -12,6 +12,8 @@ apply plugin: 'io.fabric'
 
 apply plugin: 'jacoco'
 
+apply plugin: 'androidx.navigation.safeargs'
+
 
 android {
     compileSdkVersion 28

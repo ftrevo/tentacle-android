@@ -1,5 +1,7 @@
 package br.com.concrete.tentacle.features.loadmygames
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,10 @@ import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import org.koin.android.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
+import kotlinx.android.synthetic.main.list_custom.view.buttonAction
+
+private const val REQUEST_CODE = 1
 
 class LoadMyGamesFragment : BaseFragment() {
 
@@ -62,14 +68,22 @@ class LoadMyGamesFragment : BaseFragment() {
                 }
             }
         })
+        lifecycle.addObserver(viewModelLoadMyGames)
     }
 
     private fun init() {
         initObserver()
-        lifecycle.addObserver(viewModelLoadMyGames)
+        list.buttonAction.setOnClickListener {
+            startActivityForResult(Intent(context, RegisterGameHostActivity::class.java), REQUEST_CODE)
+        }
     }
 
     override fun getToolbarTitle(): Int {
         return R.string.toolbar_title_my_games
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK)
+        else super.onActivityResult(requestCode, resultCode, data)
     }
 }

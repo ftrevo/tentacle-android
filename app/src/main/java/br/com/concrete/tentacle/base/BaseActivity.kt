@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.base
 
 
+import android.view.MenuItem
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +46,16 @@ abstract class BaseActivity : AppCompatActivity() {
     fun setToolbarTitle(@StringRes title: Int) {
         supportActionBar?.let {
             it.title = getString(title)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                super.onBackPressed()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
