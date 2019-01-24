@@ -9,27 +9,14 @@ import br.com.concrete.tentacle.base.BaseActivity
 
 class RegisterGameHostActivity: BaseActivity() {
 
-    private lateinit var navController: NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_game_host)
-
-        startNavController()
     }
 
     override fun onResume() {
         super.onResume()
         setupToolbar()
     }
-
-    private fun startNavController() {
-        navController = Navigation.findNavController(this, R.id.register_game_nav_fragment)
-        setupActionBarWithNavController(navController = navController)
-    }
-
-
-    override fun onSupportNavigateUp() =
-        navController.navigateUp()
 
 }
