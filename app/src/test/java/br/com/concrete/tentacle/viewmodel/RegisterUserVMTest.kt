@@ -1,13 +1,7 @@
 package br.com.concrete.tentacle.viewmodel
 
 import br.com.concrete.tentacle.base.BaseViewModelTest
-import br.com.concrete.tentacle.data.models.BaseModel
-import br.com.concrete.tentacle.data.models.CityResponse
-import br.com.concrete.tentacle.data.models.ErrorResponse
-import br.com.concrete.tentacle.data.models.State
-import br.com.concrete.tentacle.data.models.StateResponse
-import br.com.concrete.tentacle.data.models.User
-import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.data.models.*
 import br.com.concrete.tentacle.features.register.RegisterUserViewModel
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
@@ -99,7 +93,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.SUCCESS,
                 model = responseObject.data)
 
-        var actual = ViewStateModel<User>(status = ViewStateModel.Status.LOADING)
+        var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
             .setResponseCode(200)
@@ -189,7 +183,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.ERROR,
                 errors = responseObject)
 
-        var actual = ViewStateModel<User>(status = ViewStateModel.Status.LOADING)
+        var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
         mockResponseError400(responseJson)
 
