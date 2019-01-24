@@ -17,6 +17,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 
 private const val REQUEST_CODE = 1
 
@@ -73,7 +75,7 @@ class LoadMyGamesFragment : BaseFragment() {
 
     private fun init() {
         initObserver()
-        list.buttonAction.setOnClickListener {
+        list.recyclerListError.buttonNameError.setOnClickListener {
             startActivityForResult(Intent(context, RegisterGameHostActivity::class.java), REQUEST_CODE)
         }
     }
