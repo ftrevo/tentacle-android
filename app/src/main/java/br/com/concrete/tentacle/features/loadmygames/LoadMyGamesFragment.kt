@@ -76,8 +76,16 @@ class LoadMyGamesFragment : BaseFragment() {
     private fun init() {
         initObserver()
         list.recyclerListError.buttonNameError.setOnClickListener {
-            startActivityForResult(Intent(context, RegisterGameHostActivity::class.java), REQUEST_CODE)
+            showRegisterGame()
         }
+
+        list.buttonAction.setOnClickListener {
+            showRegisterGame()
+        }
+    }
+
+    private fun showRegisterGame(){
+        startActivityForResult(Intent(context, RegisterGameHostActivity::class.java), REQUEST_CODE)
     }
 
     override fun getToolbarTitle(): Int {
