@@ -16,7 +16,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "br.com.concrete.tentacle.util.TentacleTestRunner"
     }
     buildTypes {
         debug {
@@ -37,9 +37,9 @@ android {
             includeAndroidResources = true
             returnDefaultValues = true
             all{
-                jacoco {
+                /*jacoco {
                     includeNoLocationClasses = true
-                }
+                }*/
             }
         }
     }
@@ -54,14 +54,14 @@ androidExtensions {
 configurations {
     ktlint
 }
-
+/*
 jacoco {
     toolVersion = "$jacobVersion"
-}
+}*/
 
-tasks.withType(Test) {
+/*tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
-}
+}*/
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
