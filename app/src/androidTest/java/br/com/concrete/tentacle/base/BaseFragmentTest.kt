@@ -29,7 +29,9 @@ abstract class BaseFragmentTest {
         mockWebServer = MockWebServer()
         mockWebServer.start(8080)
 
-        activityRule.activity.setFragment(testFragment)
+        testFragment.let {
+            activityRule.activity.setFragment(it)
+        }
     }
 
     @After
