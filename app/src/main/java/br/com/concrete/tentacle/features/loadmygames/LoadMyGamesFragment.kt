@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import org.koin.android.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import br.com.concrete.tentacle.data.models.Media
 
 class LoadMyGamesFragment : BaseFragment() {
 
@@ -56,8 +57,12 @@ class LoadMyGamesFragment : BaseFragment() {
                 ViewStateModel.Status.ERROR -> {
                     stateModel.errors?.let {
                         list.setErrorMessage(R.string.load_games_error_not_know)
+                        list.setButtonText(R.string.load_again)
+                        list.setButtonAction {
+                            viewModelLoadMyGames.loadMyGames()
+                        }
                     }
-                    list.updateUi(medias)
+                    list.updateUi<Media>(null)
                     list.setLoading(false)
                 }
             }
