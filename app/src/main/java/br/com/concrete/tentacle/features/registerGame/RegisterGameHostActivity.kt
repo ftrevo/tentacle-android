@@ -1,9 +1,6 @@
 package br.com.concrete.tentacle.features.registerGame
 
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.ui.setupActionBarWithNavController
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 

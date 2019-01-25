@@ -26,7 +26,7 @@ class SearchGameViewModel(
             viewSearchGame.postValue(
                 ViewStateModel(
                     status = ViewStateModel.Status.SUCCESS,
-                    model = base.data.list as ArrayList<Game>
+                    model = ArrayList(base.data.list)
                 )
             )
         }, {

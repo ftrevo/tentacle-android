@@ -64,15 +64,15 @@ abstract class BaseSearchFragment : BaseFragment(),
     private fun setupSearchView(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search, menu)
         val menuItem: MenuItem = menu.findItem(R.id.action_search)
-        when (menuItem.actionView) {
-            is SearchView -> searchView = menuItem.actionView as SearchView
+        val view = menuItem.actionView
+        if (view is SearchView) searchView = view
+        activity?.let {
+            searchView.queryHint = activity!!.getString(R.string.search)
         }
-        searchView.queryHint = context!!.getString(R.string.search)
     }
 
-    private fun validateSearch(search: String): Boolean {
-        return search.trim().length > MINIMAL_CHARACTER
-    }
+    private fun validateSearch(search: String):Boolean =
+        search.trim().length > MINIMAL_CHARACTER
 
     private fun setupToolbar() {
         (activity as? AppCompatActivity)?.supportActionBar?.title = titleToolbar()

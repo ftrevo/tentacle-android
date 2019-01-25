@@ -7,18 +7,13 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.R.id.mediaRegisterGame
-import br.com.concrete.tentacle.R.id.navigate_to_register_platform
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.features.registerGame.registerMedia.RegisterMediaFragment
-import br.com.concrete.tentacle.features.registerGame.registerMedia.RegisterMediaFragmentArgs
 import kotlinx.android.synthetic.main.fragment_search_game.*
 import kotlinx.android.synthetic.main.list_custom.view.*
 import kotlinx.android.synthetic.main.list_error_custom.view.*
@@ -39,9 +34,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         enableProgress(false)
     }
 
-    override fun getToolbarTitle(): Int {
-        return R.string.toolbar_title_search_game
-    }
+    override fun getToolbarTitle(): Int = R.string.toolbar_title_search_game
 
     override fun initViewModel() {
         gameViewModel.getSearchGame().observe(this, Observer { gameModel ->
@@ -88,7 +81,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     }
 
     private fun showList(model: ArrayList<Game>?) {
-        if (model?.isNotEmpty()!!) {
+        model?.isNotEmpty()?.let {
             val recyclerViewAdapter =
                 BaseAdapter(model,
                     R.layout.item_game, {
@@ -100,9 +93,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                     })
             listCustom.recyclerListView.adapter = recyclerViewAdapter
             listCustom.updateUi(model)
-        } else {
-            listCustom.updateUi(model)
-        }
+        } ?: listCustom.updateUi(model)
     }
 
     override fun getSearchGame(searchGame: String) {
@@ -126,9 +117,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     override fun titleToolbar() = getString(R.string.add_new_game)
 
     override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.buttonNameError -> registerNewGame()
-        }
+        if (v?.id == R.id.buttonNameError) registerNewGame()
     }
 
     private fun registerNewGame() {
