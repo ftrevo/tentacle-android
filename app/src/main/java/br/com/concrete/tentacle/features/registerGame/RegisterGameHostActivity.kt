@@ -4,7 +4,7 @@ import android.os.Bundle
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 
-class RegisterGameHostActivity: BaseActivity() {
+class RegisterGameHostActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,5 +15,4 @@ class RegisterGameHostActivity: BaseActivity() {
         super.onResume()
         setupToolbar()
     }
-
 }

@@ -37,5 +37,4 @@ abstract class BaseFragmentTest {
     fun after() {
         mockWebServer.shutdown()
     }
-
 }

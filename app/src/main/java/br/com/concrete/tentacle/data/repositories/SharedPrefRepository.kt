@@ -24,7 +24,7 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
         }
     }
 
-    fun saveUser(key: String, user: User)  = mSharedPref.put(key, Gson().toJson(user))
+    fun saveUser(key: String, user: User) = mSharedPref.put(key, Gson().toJson(user))
 
     fun getStoreString(key: String): String? = mSharedPref.get(key, "")
 

@@ -10,7 +10,7 @@ import org.koin.android.ext.android.startKoin
 
 private const val LOCALHOST_URL = "http://localhost:8080/"
 
-class TentacleTestApp: Application() {
+class TentacleTestApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -25,5 +25,4 @@ class TentacleTestApp: Application() {
 
             extraProperties = mapOf(PROPERTY_BASE_URL to LOCALHOST_URL))
     }
-
 }

@@ -71,7 +71,7 @@ abstract class BaseSearchFragment : BaseFragment(),
         }
     }
 
-    private fun validateSearch(search: String):Boolean =
+    private fun validateSearch(search: String): Boolean =
         search.trim().length > MINIMAL_CHARACTER
 
     private fun setupToolbar() {
@@ -86,5 +86,4 @@ abstract class BaseSearchFragment : BaseFragment(),
     abstract fun initViewModel()
     abstract fun initRecyclerView()
     abstract fun getSearchGame(searchGame: String)
-
 }

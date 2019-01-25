@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.registerGame.searchGame
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -24,7 +23,8 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     private val gameViewModel: SearchGameViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_search_game, container, false)
@@ -87,7 +87,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                     R.layout.item_game, {
                         SearchGameViewHolder(it)
                     }, { holder, element ->
-                        SearchGameViewHolder.callBack(holder = holder, game = element, listener =  { gameSelected ->
+                        SearchGameViewHolder.callBack(holder = holder, game = element, listener = { gameSelected ->
                             navigateToRegisterPlatform(gameSelected)
                         })
                     })
@@ -136,5 +136,4 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         val directions = SearchGameFragmentDirections.NavigateToRegisterPlatform(game)
         findNavController().navigate(directions)
     }
-
 }

@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.di
 
-
 import br.com.concrete.tentacle.features.loadmygames.LoadMyGamesViewModel
 import br.com.concrete.tentacle.features.login.LoginViewModel
 import br.com.concrete.tentacle.features.register.RegisterUserViewModel
