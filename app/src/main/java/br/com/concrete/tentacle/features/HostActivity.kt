@@ -39,4 +39,11 @@ class HostActivity : BaseActivity() {
             }
         }
     }
+
+
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
 }

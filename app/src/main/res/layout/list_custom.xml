@@ -7,13 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
-            android:src="@drawable/logo_tentacle_error_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-    />
-
     <br.com.concrete.tentacle.custom.ListError
             android:id="@+id/recyclerListError"
             android:visibility="gone"
@@ -32,8 +25,7 @@
             tools:listitem="@layout/item_game"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-    />
+            app:layout_constraintLeft_toLeftOf="parent" />
 
     <ProgressBar
             android:id="@+id/progressBarList"
@@ -59,8 +51,7 @@
             app:buttonName="@string/add_new_game_compact"
             app:textColorButton="@color/textColorErrorButtonName"
             android:backgroundTint="@color/textColor"
-            android:layout_marginBottom="@dimen/margin_default"
-    />
+            android:layout_marginBottom="@dimen/margin_default" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,11 @@
 package br.com.concrete.tentacle.base
 
-import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 
 abstract class BaseFragment : Fragment() {
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        if (activity is BaseActivity) {
-            (activity as BaseActivity).setToolbarTitle(getToolbarTitle())
-        }
-    }
 
     protected fun showError(errors: ErrorResponse?) {
         if (errors != null) {
