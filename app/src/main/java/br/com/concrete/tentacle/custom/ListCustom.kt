@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.withStyledAttributes
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.progressBarList
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
+import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 
 class ListCustom(
     context: Context,
@@ -25,7 +27,8 @@ class ListCustom(
 
     init {
         View.inflate(context, R.layout.list_custom, this)
-        context.withStyledAttributes(attrs,
+        context.withStyledAttributes(
+            attrs,
             R.styleable.ListCustom,
             0,
             0
@@ -39,21 +42,37 @@ class ListCustom(
     }
 
     fun <T> updateUi(elements: ArrayList<T>?) {
-        if(elements == null){
+        if (elements == null) {
             recyclerListError.setUpComponents(iconReference, errorDescriptionReference, buttonNameErrorReference)
-            showError()
-        }else{
-            if(elements.isEmpty()) {
+            showViewError()
+        } else {
+            if (elements.isEmpty()) {
                 recyclerListError.setUpComponents(iconReference, errorDescriptionReference, buttonNameActionReference)
-                showError()
-            }else{
-                recyclerListView.visibility = View.VISIBLE
-                recyclerListError.visibility = View.GONE
-                if (buttonNameActionReference > DEFAULT_INVALID_RESOURCE) {
-                    buttonAction.setButtonName(context.getString(buttonNameActionReference))
-                    buttonAction.visibility = View.VISIBLE
-                    recyclerListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                showViewError()
+            } else {
+                showViewSuccess()
+            }
+        }
+    }
+
+    private fun showViewSuccess() {
+        recyclerListView.visibility = View.VISIBLE
+        recyclerListError.visibility = View.GONE
+
+        if (buttonNameActionReference > DEFAULT_INVALID_RESOURCE) {
+            buttonAction.setButtonName(context.getString(buttonNameActionReference))
+            buttonAction.visibility = View.VISIBLE
+            setButtonEffect()
+        }
+    }
+
+    private fun setButtonEffect() {
+        val layoutManager = recyclerListView.layoutManager
+        if (layoutManager is LinearLayoutManager) {
+            recyclerListView.adapter?.let {
+                recyclerListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                        if (layoutManager.findLastCompletelyVisibleItemPosition() < it.itemCount - 1) {
                             when (newState) {
                                 View.SCROLL_INDICATOR_BOTTOM -> {
                                     buttonAction.visibility = View.GONE
@@ -65,18 +84,26 @@ class ListCustom(
                                     buttonAction.visibility = View.VISIBLE
                                 }
                             }
-                            super.onScrollStateChanged(recyclerView, newState)
+                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == it.itemCount - 1) {
+                            buttonAction.visibility = View.VISIBLE
                         }
-                    })
-                }
+                        super.onScrollStateChanged(recyclerView, newState)
+                    }
+                })
             }
         }
     }
 
-    private fun showError(){
+    private fun showViewError() {
         recyclerListView.visibility = View.GONE
         buttonAction.visibility = View.GONE
         recyclerListError.visibility = View.VISIBLE
+    }
+
+    private fun showLoading() {
+        recyclerListError.visibility = View.GONE
+        recyclerListView.visibility = View.GONE
+        progressBarList.visibility = View.VISIBLE
     }
 
     fun setLoading(condition: Boolean) {
@@ -95,7 +122,10 @@ class ListCustom(
         buttonNameErrorReference = errorCode
     }
 
-    fun setButtonAction(action: () -> Unit) {
-        buttonAction.setOnClickListener { action() }
+    fun setActionError(action: () -> Unit) {
+        showLoading()
+        recyclerListError.buttonNameError.setOnClickListener {
+            action()
+        }
     }
 }

@@ -7,13 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
-            android:src="@drawable/logo_tentacle_error_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-    />
-
     <br.com.concrete.tentacle.custom.ListError
             android:id="@+id/recyclerListError"
             android:visibility="gone"

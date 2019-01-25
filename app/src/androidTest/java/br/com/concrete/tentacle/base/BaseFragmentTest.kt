@@ -8,9 +8,11 @@ import br.com.concrete.tentacle.testing.SingleFragmentTestActivity
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.runner.RunWith
 
+@Ignore
 @RunWith(AndroidJUnit4::class)
 abstract class BaseFragmentTest {
 

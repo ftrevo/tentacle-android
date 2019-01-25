@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
+import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import org.koin.android.viewmodel.ext.android.viewModel
-import androidx.lifecycle.Observer
-import br.com.concrete.tentacle.data.models.Media
 
 class LoadMyGamesFragment : BaseFragment() {
 
@@ -58,7 +58,7 @@ class LoadMyGamesFragment : BaseFragment() {
                     stateModel.errors?.let {
                         list.setErrorMessage(R.string.load_games_error_not_know)
                         list.setButtonTextError(R.string.load_again)
-                        list.setButtonAction {
+                        list.setActionError {
                             viewModelLoadMyGames.loadMyGames()
                         }
                     }
