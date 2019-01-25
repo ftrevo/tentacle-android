@@ -67,11 +67,11 @@ class ListCustom(
     }
 
     private fun setButtonEffect() {
-        val layoutManager = recyclerListView.layoutManager
-        if (layoutManager is LinearLayoutManager) {
-            recyclerListView.adapter?.let {
-                recyclerListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        recyclerListView.adapter?.let {
+            recyclerListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    val layoutManager = recyclerListView.layoutManager
+                    if (layoutManager is LinearLayoutManager) {
                         if (layoutManager.findLastCompletelyVisibleItemPosition() < it.itemCount - 1) {
                             when (newState) {
                                 View.SCROLL_INDICATOR_BOTTOM -> {
@@ -87,10 +87,10 @@ class ListCustom(
                         } else if (layoutManager.findLastCompletelyVisibleItemPosition() == it.itemCount - 1) {
                             buttonAction.visibility = View.VISIBLE
                         }
-                        super.onScrollStateChanged(recyclerView, newState)
                     }
-                })
-            }
+                    super.onScrollStateChanged(recyclerView, newState)
+                }
+            })
         }
     }
 
@@ -123,8 +123,8 @@ class ListCustom(
     }
 
     fun setActionError(action: () -> Unit) {
-        showLoading()
         recyclerListError.buttonNameError.setOnClickListener {
+            showLoading()
             action()
         }
     }
