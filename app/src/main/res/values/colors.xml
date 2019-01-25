@@ -25,5 +25,4 @@
     <color name="bgBottomBar">#191B1F</color>
 
     <color name="toolbarBackground">@color/colorPrimary</color>
->>>>>>> develop
 </resources>

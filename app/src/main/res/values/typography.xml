@@ -32,6 +32,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="TextMedium.20sp">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="TextBlack.22sp">
         <item name="android:textSize">22sp</item>
     </style>
