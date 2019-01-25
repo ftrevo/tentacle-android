@@ -3,7 +3,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:src="@drawable/logo_tentacle_02"
+        android:src="@drawable/logo_bg"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

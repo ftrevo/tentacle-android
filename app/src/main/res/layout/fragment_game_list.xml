@@ -9,7 +9,7 @@
         android:background="@color/colorPrimary">
 
     <ImageView
-        android:src="@drawable/logo_tentacle_error_list"
+        android:src="@drawable/logo_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>

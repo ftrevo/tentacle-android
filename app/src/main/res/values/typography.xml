@@ -8,10 +8,6 @@
         <item name="android:fontFamily">@font/avenir_black</item>
     </style>
 
-    <style name="TextHeavy">
-        <item name="android:fontFamily">@font/avenir_heavy</item>
-    </style>
-
     <style name="TextMedium.12sp">
         <item name="android:textSize">12sp</item>
     </style>
