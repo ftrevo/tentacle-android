@@ -1,13 +1,12 @@
 package br.com.concrete.tentacle.base
 
+import PROPERTY_BASE_URL
 import android.app.Application
 import br.com.concrete.tentacle.BuildConfig
-
-import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
-import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
-import br.com.concrete.tentacle.di.viewModelModule
 import br.com.concrete.tentacle.di.sharedPreferencesModule
+import br.com.concrete.tentacle.di.viewModelModule
+import networkModule
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.answers.Answers
 import io.fabric.sdk.android.Fabric

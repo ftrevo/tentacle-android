@@ -13,7 +13,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     private val viewStateGame: MutableLiveData<ViewStateModel<ArrayList<Media>>> = MutableLiveData()
     fun getMyGames() = viewStateGame
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun loadMyGames() {
         viewStateGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(gameRepository.loadMyGames()

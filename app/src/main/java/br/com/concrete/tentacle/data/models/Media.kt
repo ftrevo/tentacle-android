@@ -1,10 +1,10 @@
 package br.com.concrete.tentacle.data.models
 
 data class Media(
-    val _id: String = String(),
-    val platform: String = String(),
+    val _id: String,
+    val platform: String,
     val game: Game,
-    val owner: User,
-    var createdAt: String,
-    var updatedAt: String
+    val owner: Owner,
+    val createdAt: String,
+    val updatedAt: String
 )

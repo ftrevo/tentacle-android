@@ -107,11 +107,11 @@ class ListCustom(
     }
 
     fun setLoading(condition: Boolean) {
-        if (condition) {
-            progressBarList.visibility = View.VISIBLE
-        } else {
-            progressBarList.visibility = View.GONE
-        }
+        progressBarList.visibility = if (condition) View.VISIBLE else View.GONE
+    }
+
+    fun visibleCustomError(visible: Boolean) {
+        recyclerListError.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     fun setErrorMessage(errorCode: Int) {

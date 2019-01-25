@@ -89,5 +89,12 @@
     <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar">
         <item name="colorAccent">@android:color/white</item>
     </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="StyleRadioButton">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:colorControlActivated">@color/colorAccent</item>
+    </style>
 
 </resources>

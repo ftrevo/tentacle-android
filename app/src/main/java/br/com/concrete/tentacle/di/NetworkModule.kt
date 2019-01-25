@@ -1,5 +1,3 @@
-package br.com.concrete.tentacle.di
-
 import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import br.com.concrete.tentacle.data.network.ApiService

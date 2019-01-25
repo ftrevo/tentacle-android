@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="br.com.concrete.tentacle">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="br.com.concrete.tentacle">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="br.com.concrete.tentacle.base.AppTentacle"
@@ -21,8 +21,9 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
@@ -33,10 +34,14 @@
             android:name=".features.HostActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity
+                android:name=".features.registerGame.RegisterGameHostActivity"
+                android:theme="@style/AppTheme"/>
 
         <meta-data
                 android:name="io.fabric.ApiKey"
                 android:value="938be7df4916734a793fa34ad87a79af694d54a2"
         />
     </application>
+
 </manifest>
