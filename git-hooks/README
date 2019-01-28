@@ -1,0 +1,15 @@
+#########################################################
+#####   Install instructions for Linux/Mac Os users #####
+#########################################################
+
+1 - Copy file to .git/hooks at root directory of the project
+2- Hooks need to be executable, so you may need to change the file permissions
+of the script. Run the following command: chmod +x <filename>
+
+#font: https://br.atlassian.com/git/tutorials/git-hooks
+
+#########################################################
+#####   Install instructions for Windows users #####
+#########################################################
+
+//TODO
