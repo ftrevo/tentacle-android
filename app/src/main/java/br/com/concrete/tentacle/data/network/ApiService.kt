@@ -32,5 +32,4 @@ interface ApiService {
 
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Completable
-
 }

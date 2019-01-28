@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.data.network
 
-
 import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.Session

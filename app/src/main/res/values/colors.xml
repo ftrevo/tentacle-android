@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">#191b1f</color>
     <color name="colorAccent">#7342e1</color>
 
-    <color name="bgColor">#1e1e1e</color>
     <color name="textHint">#9e9e9e</color>
 
     <color name="colorButtonBlue">#7342e1</color>
@@ -24,5 +23,7 @@
     <!-- BottomBar -->
     <color name="bgBottomBar">#191B1F</color>
 
+
     <color name="toolbarBackground">@color/colorPrimary</color>
+
 </resources>

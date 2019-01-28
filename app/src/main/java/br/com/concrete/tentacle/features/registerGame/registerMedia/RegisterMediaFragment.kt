@@ -94,7 +94,4 @@ class RegisterMediaFragment : BaseFragment() {
 
     private fun checkField(): Boolean =
         !TextUtils.isEmpty(selectedPlatform)
-
-
-
 }

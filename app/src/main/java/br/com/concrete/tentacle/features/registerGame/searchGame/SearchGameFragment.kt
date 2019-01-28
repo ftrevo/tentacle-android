@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.registerGame.searchGame
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -14,6 +13,7 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.features.registerGame.searchGame.SearchGameFragmentDirections.navigateToRegisterPlatform
 import kotlinx.android.synthetic.main.fragment_search_game.*
 import kotlinx.android.synthetic.main.list_custom.*
 import kotlinx.android.synthetic.main.list_custom.view.*
@@ -25,7 +25,8 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     private val gameViewModel: SearchGameViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_search_game, container, false)
@@ -82,6 +83,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     }
 
     private fun showList(model: ArrayList<Game>?) {
+
         if (model?.isNotEmpty()!!) {
             fillRecyclerView(model)
         } else {
@@ -95,7 +97,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                 R.layout.item_game_search, {
                     SearchGameViewHolder(it)
                 }, { holder, element ->
-                    SearchGameViewHolder.callBack(holder = holder, game = element, listener =  { gameSelected ->
+                    SearchGameViewHolder.callBack(holder = holder, game = element, listener = { gameSelected ->
                         navigateToRegisterPlatform(gameSelected)
                     })
                 })

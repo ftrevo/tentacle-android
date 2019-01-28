@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.base
 
-
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.MenuItem
@@ -57,7 +56,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 super.onBackPressed()
                 return true

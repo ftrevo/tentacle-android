@@ -84,7 +84,7 @@ class LoadMyGamesFragment : BaseFragment() {
         }
     }
 
-    private fun showRegisterGame(){
+    private fun showRegisterGame() {
         startActivityForResult(Intent(context, RegisterGameHostActivity::class.java), REQUEST_CODE)
     }
 
