@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Tentacle</string>
 
-    <string name="register_email_hint">e-mail</string>
     <string name="register_name_hint">nome</string>
-    <string name="register_password_hint">password</string>
     <string name="register_ddd_phone_hint">DDD + telefone</string>
 
     <string name="create_account">Criar conta</string>
@@ -19,28 +17,15 @@
     <string name="city_error">Selecione uma cidade</string>
 
 
-    <string-array name="states">
-        <item>-</item>
-    </string-array>
-
-
-    <string-array name="cities">
-        <item>-</item>
-    </string-array>
-
     <string name="ok">Ok</string>
     <string name="error_dialog_title">Estamos enfrentando alguns problemas!</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
     <string name="login">Login</string>
     <string name="ola_novamente">Olá novamente :)</string>
     <string name="entre_e_veja_os_novos_jogos_adicionados">Entre e veja os novos jogos adicionados!</string>
-    <string name="email_invalido">Endereço de e-mail inválido</string>
-    <string name="senha_invalida">A senha deve ter pelo menos 5 caracteres.</string>
     <string name="verificar_campos_login">Por favor, verifique os campos obrigatórios.</string>
-    <string name="error_login">Ocorreu um erro ao acessar o login. \n Por favor, tente novamente.</string>
     <string name="button">Button</string>
     <string name="register_account">Registrar conta</string>
 
@@ -54,7 +39,6 @@
     <string name="no_internet_connection">Ops! Parece que você está sem conexão com a internet</string>
 
     <string name="search">Pesquisar</string>
-    <string name="title_activity_host">HostActivity</string>
 
     <string name="add_new_game">Adicionar novo Jogo</string>
     <string name="add_new_game_compact">+ Adicionar</string>
@@ -74,7 +58,6 @@
     <string name="register_media_button">Cadastrar</string>
 
     <string name="register_media_no_selection_error">Necessário escolher a plataforma do jogo</string>
-    <string name="register_media_generic_error">Ocorreu um erro ao cadastrar o jogo. \n Por favor, tente novamente.</string>
 
 
     <string name="toolbar_title_home">Novos Jogos</string>
