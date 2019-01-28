@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.extensions.callSnackbar
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
@@ -53,13 +54,17 @@ abstract class BaseSearchFragment : BaseFragment(),
         searchView = menuItem.actionView as SearchView
         searchView.queryHint = context!!.getString(R.string.search)
 
+        searchView.isIconified = false
+        searchView.setIconifiedByDefault(true)
+
         val closeButton = searchView.findViewById<ImageView>(R.id.search_close_btn)
         val editText = searchView.findViewById<EditText>(R.id.search_src_text)
 
         closeButton.setOnClickListener {
             clearListGame()
             editText.setText("")
-            searchView
+            searchView.isIconified = true
+            searchView.setIconifiedByDefault(true)
         }
 
         Observable.create(ObservableOnSubscribe<String> { subscriber ->
@@ -88,6 +93,10 @@ abstract class BaseSearchFragment : BaseFragment(),
     }
 
     fun getQuerySearchView() = searchView.query.toString()
+
+    fun callSnackBar(message: String) {
+        context?.callSnackbar(view!!, message)
+    }
 
     abstract fun titleToolbar(): String
     abstract fun initView()

@@ -15,6 +15,7 @@ import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import kotlinx.android.synthetic.main.fragment_search_game.*
+import kotlinx.android.synthetic.main.list_custom.*
 import kotlinx.android.synthetic.main.list_custom.view.*
 import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -127,13 +128,14 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.buttonNameError -> if (validateSearch(getQuerySearchView())) registerNewGame()
-            R.id.buttonAction -> if (validateSearch(getQuerySearchView())) registerNewGame()
+            R.id.buttonNameError -> registerNewGame()
+            R.id.buttonAction -> registerNewGame()
         }
     }
 
     private fun registerNewGame() {
-        gameViewModel.registerNewGame(title = getQuerySearchView())
+        if (validateSearch(getQuerySearchView())) gameViewModel.registerNewGame(title = getQuerySearchView())
+        else callSnackBar(getString(R.string.field_search_no_empty))
     }
 
     private fun enableProgress(isEnable: Boolean) {
@@ -152,6 +154,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     override fun clearListGame() {
         listCustom.recyclerListView.visibility = View.GONE
         listCustom.buttonAction.visibility = View.GONE
+        recyclerListError.visibility = View.GONE
     }
 
 }

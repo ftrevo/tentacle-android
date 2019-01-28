@@ -81,5 +81,6 @@
     <string name="toolbar_title_my_games">Meus Jogos</string>
     <string name="toolbar_title_search_game">Cadastrar jogo</string>
     <string name="did_not_find_what_you_wanted">Não encontrou o que queria?</string>
+    <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
 
 </resources>
