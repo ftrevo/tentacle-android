@@ -35,9 +35,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         enableProgress(false)
     }
 
-    override fun getToolbarTitle(): Int {
-        return R.string.toolbar_title_search_game
-    }
+    override fun getToolbarTitle(): Int = R.string.toolbar_title_search_game
 
     override fun initViewModel() {
         gameViewModel.getSearchGame().observe(this, Observer { gameModel ->

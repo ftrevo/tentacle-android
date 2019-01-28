@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: "de.mannodermaus.android-junit5"
 
+apply plugin: 'kotlin-allopen'
+
 apply from: 'tasks.gradle'
 
 apply plugin: 'io.fabric'
@@ -14,6 +16,10 @@ apply plugin: 'jacoco'
 
 apply plugin: 'androidx.navigation.safeargs'
 
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'br.com.concrete.tentacle.testing.OpenClass'
+}
 
 android {
     compileSdkVersion 28
@@ -23,7 +29,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "br.com.concrete.tentacle.util.TentacleTestRunner"
     }
     buildTypes {
         debug {
@@ -87,12 +93,16 @@ dependencies {
     testImplementation "junit:junit:$junit"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5"
     androidTestImplementation "androidx.test:runner:$runner"
+    androidTestImplementation "androidx.test:rules:$androidxTest"
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
     testImplementation "org.robolectric:robolectric:$robolectric"
     testImplementation "android.arch.core:core-testing:$coreTesting"
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoAndroid"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTest"
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"

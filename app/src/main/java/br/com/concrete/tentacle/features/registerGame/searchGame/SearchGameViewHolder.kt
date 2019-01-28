@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.registerGame.searchGame
 
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.data.models.Game
