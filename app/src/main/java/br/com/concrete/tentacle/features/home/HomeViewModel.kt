@@ -8,7 +8,7 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
 
-class HomeViewModel(private val gameRepository: GameRepository) : BaseViewModel(){
+class HomeViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
     private val viewStateGame: MutableLiveData<ViewStateModel<ArrayList<Game>>> = MutableLiveData()
     fun getHomeGames() = viewStateGame
@@ -24,5 +24,4 @@ class HomeViewModel(private val gameRepository: GameRepository) : BaseViewModel(
             })
         )
     }
-
 }
