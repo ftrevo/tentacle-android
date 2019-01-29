@@ -4,6 +4,7 @@ import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.CityResponse
 import br.com.concrete.tentacle.data.models.ErrorResponse
+import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.StateResponse
 import br.com.concrete.tentacle.data.models.User
@@ -89,17 +90,15 @@ class RegisterUserVMTest : BaseViewModelTest() {
             "mockjson/user/register_user_success.json"
         )
 
-        val collectionType = object : TypeToken<BaseModel<User>>() {}.type
-        val responseObject: BaseModel<User> = GsonBuilder()
-            .create()
-            .fromJson(responseJson, collectionType)
+        val collectionType = object : TypeToken<BaseModel<Session>>() {}.type
+        val responseObject: BaseModel<Session> =
+            GsonBuilder().create().fromJson(responseJson, collectionType)
 
         val expected =
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
                 model = responseObject.data)
-
-        var actual = ViewStateModel<User>(status = ViewStateModel.Status.LOADING)
+        var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
             .setResponseCode(200)
@@ -185,11 +184,9 @@ class RegisterUserVMTest : BaseViewModelTest() {
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
 
         val expected =
-            ViewStateModel<User>(
-                status = ViewStateModel.Status.ERROR,
-                errors = responseObject)
-
-        var actual = ViewStateModel<User>(status = ViewStateModel.Status.LOADING)
+            ViewStateModel<Session>(
+                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
+        var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
         mockResponseError400(responseJson)
 

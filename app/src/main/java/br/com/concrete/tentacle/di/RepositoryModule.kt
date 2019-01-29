@@ -1,7 +1,5 @@
 package br.com.concrete.tentacle.di
 
-import API_WITHOUT_TOKEN
-import API_WITH_TOKEN
 import br.com.concrete.tentacle.data.repositories.GameRepository
 import br.com.concrete.tentacle.data.repositories.LoginRepository
 import br.com.concrete.tentacle.data.repositories.RegisterMediaRepository
