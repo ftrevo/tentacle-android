@@ -75,7 +75,7 @@ class HomeFragment : BaseFragment() {
             listHome.recyclerListView.adapter = recyclerViewAdapter
         }
 
-        listHome.updateUi<Game>(null)
+        listHome.updateUi(model)
         listHome.setLoading(false)
     }
 
