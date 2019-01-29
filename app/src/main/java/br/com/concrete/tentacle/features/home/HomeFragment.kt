@@ -13,11 +13,10 @@ import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.interfaces.CallBack
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import kotlinx.android.synthetic.main.fragment_game_list.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.list_custom.*
-import kotlinx.android.synthetic.main.list_custom.view.*
-import kotlinx.android.synthetic.main.list_error_custom.view.*
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment() {

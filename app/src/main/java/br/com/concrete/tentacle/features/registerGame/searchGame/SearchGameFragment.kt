@@ -13,9 +13,7 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.features.registerGame.searchGame.SearchGameFragmentDirections.navigateToRegisterPlatform
 import kotlinx.android.synthetic.main.fragment_search_game.*
-import kotlinx.android.synthetic.main.list_custom.*
 import kotlinx.android.synthetic.main.list_custom.view.*
 import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -154,7 +152,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     override fun clearListGame() {
         listCustom.recyclerListView.visibility = View.GONE
         listCustom.buttonAction.visibility = View.GONE
-        recyclerListError.visibility = View.GONE
+        listCustom.recyclerListError.visibility = View.GONE
     }
 
 }
