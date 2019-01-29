@@ -21,6 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="LinearLayoutManager"
         app:buttonNameError="@string/add_new_game"
-        app:errorDescription="@string/first_game_register"/>
+        app:errorDescription="@string/first_game_register"
+        app:buttonNameAction="@string/did_not_find_what_you_wanted"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

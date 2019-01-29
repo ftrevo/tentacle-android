@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
             android:id="@+id/icon"
             android:layout_height="@dimen/errorImageSize"
             android:layout_width="@dimen/errorImageSize"
@@ -17,7 +22,7 @@
             app:layout_constraintBottom_toTopOf="@id/guide"
             app:layout_constraintHorizontal_bias="0.5"/>
 
-    <TextView
+        <TextView
             android:textAppearance="@style/TextBlack.22sp"
             android:layout_marginTop="@dimen/componentsMarginDefaultError"
             android:id="@+id/errorDescription"
@@ -30,18 +35,19 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon"/>
 
-    <androidx.constraintlayout.widget.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5"/>
 
-    <br.com.concrete.tentacle.custom.ButtonView
+        <br.com.concrete.tentacle.custom.ButtonView
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/errorDescription"
             android:layout_marginTop="@dimen/componentsMarginDefaultError"
+            android:focusable="true"
             android:id="@+id/buttonNameError"
             style="@style/StyleButton"
             android:layout_width="match_parent"
@@ -50,7 +56,7 @@
             android:layout_marginStart="@dimen/margin_default"
             app:buttonName="@string/add_new_game"
             app:textColorButton="@color/textColorErrorButtonName"
-            android:backgroundTint="@color/textColor"
-            />
+            android:backgroundTint="@color/textColor"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

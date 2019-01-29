@@ -13,7 +13,9 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.features.registerGame.searchGame.SearchGameFragmentDirections.navigateToRegisterPlatform
 import kotlinx.android.synthetic.main.fragment_search_game.*
+import kotlinx.android.synthetic.main.list_custom.*
 import kotlinx.android.synthetic.main.list_custom.view.*
 import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -81,19 +83,26 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     }
 
     private fun showList(model: ArrayList<Game>?) {
-        model?.isNotEmpty()?.let {
-            val recyclerViewAdapter =
-                BaseAdapter(model,
-                    R.layout.item_game, {
-                        SearchGameViewHolder(it)
-                    }, { holder, element ->
-                        SearchGameViewHolder.callBack(holder = holder, game = element, listener = { gameSelected ->
-                            navigateToRegisterPlatform(gameSelected)
-                        })
-                    })
-            listCustom.recyclerListView.adapter = recyclerViewAdapter
+
+        if (model?.isNotEmpty()!!) {
+            fillRecyclerView(model)
+        } else {
             listCustom.updateUi(model)
-        } ?: listCustom.updateUi(model)
+        }
+    }
+
+    private fun fillRecyclerView(model: ArrayList<Game>) {
+        val recyclerViewAdapter =
+            BaseAdapter(model,
+                R.layout.item_game_search, {
+                    SearchGameViewHolder(it)
+                }, { holder, element ->
+                    SearchGameViewHolder.callBack(holder = holder, game = element, listener = { gameSelected ->
+                        navigateToRegisterPlatform(gameSelected)
+                    })
+                })
+        listCustom.recyclerListView.adapter = recyclerViewAdapter
+        listCustom.updateUi(model)
     }
 
     override fun getSearchGame(searchGame: String) {
@@ -102,6 +111,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     override fun initListener() {
         listCustom.recyclerListError.buttonNameError.setOnClickListener(this)
+        listCustom.buttonAction.setOnClickListener(this)
     }
 
     override fun initRecyclerView() {
@@ -117,11 +127,15 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     override fun titleToolbar() = getString(R.string.add_new_game)
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.buttonNameError) registerNewGame()
+        when (v?.id) {
+            R.id.buttonNameError -> registerNewGame()
+            R.id.buttonAction -> registerNewGame()
+        }
     }
 
     private fun registerNewGame() {
-        gameViewModel.registerNewGame(title = getQuerySearchView())
+        if (validateSearch(getQuerySearchView())) gameViewModel.registerNewGame(title = getQuerySearchView())
+        else callSnackBar(getString(R.string.field_search_no_empty))
     }
 
     private fun enableProgress(isEnable: Boolean) {
@@ -136,4 +150,11 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         val directions = SearchGameFragmentDirections.NavigateToRegisterPlatform(game)
         findNavController().navigate(directions)
     }
+
+    override fun clearListGame() {
+        listCustom.recyclerListView.visibility = View.GONE
+        listCustom.buttonAction.visibility = View.GONE
+        recyclerListError.visibility = View.GONE
+    }
+
 }

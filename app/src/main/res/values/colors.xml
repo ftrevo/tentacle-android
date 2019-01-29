@@ -25,4 +25,7 @@
 
     <color name="starColor">#ffec1a</color>
     <color name="backgroundColorCardHome">#3b4048</color>
+
+    <color name="toolbarBackground">@color/colorPrimary</color>
+
 </resources>
