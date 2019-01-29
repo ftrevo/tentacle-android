@@ -3,8 +3,7 @@ package br.com.concrete.tentacle.features.home
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.data.models.Game
-import kotlinx.android.synthetic.main.item_home_game.view.descriptionItemHome
-import kotlinx.android.synthetic.main.item_home_game.view.titleItemHome
+import kotlinx.android.synthetic.main.item_home_game.view.*
 
 class HomeViewHolder(private val mLinearLayout: View
 ) : RecyclerView.ViewHolder(mLinearLayout) {
@@ -12,7 +11,7 @@ class HomeViewHolder(private val mLinearLayout: View
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, element: Game) {
             if (holder is HomeViewHolder) {
-                holder.mLinearLayout.titleItemHome.text = element.title
+                holder.mLinearLayout.tvTitleGame.text = element.title
             }
         }
     }
