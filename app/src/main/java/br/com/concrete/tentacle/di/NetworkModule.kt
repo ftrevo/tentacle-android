@@ -1,9 +1,12 @@
 import br.com.concrete.tentacle.BuildConfig
+import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import br.com.concrete.tentacle.data.network.ApiService
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
+import br.com.concrete.tentacle.utils.deserializer.LibraryDeserializer
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -59,7 +62,12 @@ val networkModule = module {
     }
 
     single("retrofitWithToken") {
+        val customGson = GsonBuilder()
+            .registerTypeAdapter(LibraryResponse::class.java, LibraryDeserializer())
+            .create()
+
         Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create(customGson))
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl(getProperty<String>(PROPERTY_BASE_URL))
