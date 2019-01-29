@@ -50,7 +50,7 @@ class LoginVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
-        mockResponseError400(responseJson)
+        mockResponseError400()
 
         loginViewMock.getStateModel().observeForever {
             actual = it
