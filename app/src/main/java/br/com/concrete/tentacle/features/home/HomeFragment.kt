@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.features.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
+import br.com.concrete.tentacle.data.interfaces.CallBack
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import kotlinx.android.synthetic.main.fragment_game_list.*
@@ -21,6 +23,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : BaseFragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+    private lateinit var callback: CallBack
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,8 +85,13 @@ class HomeFragment : BaseFragment() {
         listHome.recyclerListView.layoutManager = layoutManager
 
         listHome.recyclerListError.buttonNameError.setOnClickListener {
-
+            callback.changeBottomBar(R.id.action_games, R.id.navigate_to_my_games)
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is CallBack) callback = context
     }
 
     override fun getToolbarTitle() = R.string.toolbar_title_home
