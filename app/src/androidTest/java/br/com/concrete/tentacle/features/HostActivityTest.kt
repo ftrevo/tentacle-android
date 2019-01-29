@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.features
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
@@ -27,7 +28,7 @@ class HostActivityTest {
 
     @Test
     fun bottomBarNavigationHome() {
-        Espresso.onView(ViewMatchers.withId(R.id.bottomBar)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(ViewMatchers.withId(R.id.bottomBar)).check(matches(isDisplayed()))
 
         selectedView(R.id.action_home, true)
         selectedView(R.id.action_library, false)
@@ -39,7 +40,7 @@ class HostActivityTest {
     @Test
     fun bottomBarNavigationLibrary() {
 
-        onView(withId(R.id.action_library)).perform(ViewActions.click())
+        onView(withId(R.id.action_library)).perform(click())
 
         selectedView(R.id.action_home, false)
         selectedView(R.id.action_library, true)
@@ -51,7 +52,7 @@ class HostActivityTest {
     @Test
     fun bottomBarNavigationGames() {
 
-        onView(withId(R.id.action_games)).perform(ViewActions.click())
+        onView(withId(R.id.action_games)).perform(click())
 
         selectedView(R.id.action_home, false)
         selectedView(R.id.action_library, false)
@@ -63,7 +64,7 @@ class HostActivityTest {
     @Test
     fun bottomBarNavigationReservation() {
 
-        onView(withId(R.id.action_reservation)).perform(ViewActions.click())
+        onView(withId(R.id.action_reservation)).perform(click())
 
         selectedView(R.id.action_home, false)
         selectedView(R.id.action_library, false)
@@ -75,7 +76,7 @@ class HostActivityTest {
     @Test
     fun bottomBarNavigationEvents() {
 
-        onView(withId(R.id.action_events)).perform(ViewActions.click())
+        onView(withId(R.id.action_events)).perform(click())
 
         selectedView(R.id.action_home, false)
         selectedView(R.id.action_library, false)
@@ -86,6 +87,6 @@ class HostActivityTest {
 
     private fun selectedView(viewId: Int, shouldBeVisible: Boolean) {
         val assertion = if (shouldBeVisible) matches(isDisplayed()) else matches(not(isDisplayed()))
-        Espresso.onView(allOf(withId(R.id.selectedView), isDescendantOfA(withId(viewId)))).check(assertion)
+        onView(allOf(withId(R.id.selectedView), isDescendantOfA(withId(viewId)))).check(assertion)
     }
 }
