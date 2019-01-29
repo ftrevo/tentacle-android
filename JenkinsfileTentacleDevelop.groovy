@@ -19,7 +19,7 @@ node('master') {
     }*/
 
     stage('Build APK') {
-        utils.buildApk('Homolog')
+        utils.buildApk('Debug')
     }
 
     stage('Release') {
