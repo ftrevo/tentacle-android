@@ -32,4 +32,7 @@ interface ApiService {
 
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Completable
+
+    @GET("/games")
+    fun loadHomeGames(): Observable<BaseModel<GameResponse>>
 }
