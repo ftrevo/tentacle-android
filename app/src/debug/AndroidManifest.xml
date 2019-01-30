@@ -3,7 +3,6 @@
           package="br.com.concrete.tentacle">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
             tools:ignore="GoogleAppIndexingWarning"
             android:usesCleartextTraffic="true" tools:targetApi="m">
