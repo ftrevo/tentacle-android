@@ -22,9 +22,9 @@ node('master') {
         utils.buildApk('Debug')
     }
 
-    stage('Release') {
+    /*stage('Release') {
         utils.releaseAndroidAPKToCrashlytics('Debug')
-    }
+    }*/
 
     stage('Inform Build OK') {
         utils.sendSucessNotify('Job success')
