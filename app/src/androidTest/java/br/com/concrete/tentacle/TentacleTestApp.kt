@@ -1,11 +1,11 @@
 package br.com.concrete.tentacle
 
-import PROPERTY_BASE_URL
 import android.app.Application
+import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
+import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.sharedPreferencesModule
 import br.com.concrete.tentacle.di.viewModelModule
-import networkModule
 import org.koin.android.ext.android.startKoin
 
 private const val LOCALHOST_URL = "http://localhost:8080/"

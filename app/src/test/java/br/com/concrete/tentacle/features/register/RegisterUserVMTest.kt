@@ -87,7 +87,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
     @Test
     fun `when registerUserViewModel calls registerUser should return a userRegistered`() {
         val responseJson = getJson(
-            "mockjson/user/register_user_success.json"
+            "mockjson/login/login_success.json"
         )
 
         val collectionType = object : TypeToken<BaseModel<Session>>() {}.type
@@ -138,7 +138,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
                 errors = responseObject)
         var actual = ViewStateModel<ArrayList<String>>(status = ViewStateModel.Status.LOADING)
 
-        mockResponseError400(responseJson)
+        mockResponseError400()
 
         registerUserViewModelTest.getCities().observeForever {
             actual = it
@@ -164,7 +164,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
                 errors = responseObject)
         var actual = ViewStateModel<ArrayList<State>>(status = ViewStateModel.Status.LOADING)
 
-        mockResponseError400(responseJson)
+        mockResponseError400()
 
         registerUserViewModelTest.getStates().observeForever {
             actual = it
@@ -188,7 +188,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
-        mockResponseError400(responseJson)
+        mockResponseError400()
 
         registerUserViewModelTest.getUser().observeForever {
             actual = it

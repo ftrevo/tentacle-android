@@ -55,9 +55,13 @@ class HomeFragment : BaseFragment() {
 
     private fun callError(base: ViewStateModel<ArrayList<Game>>) {
         base.errors?.let {
-            showError(it)
+            listHome.setErrorMessage(R.string.load_games_error_not_know)
+            listHome.setButtonTextError(R.string.load_again)
+            listHome.setActionError {
+                homeViewModel.loadHomeGames()
+            }
         }
-        listHome.updateUi(base.model)
+        listHome.updateUi<Game>(null)
         listHome.setLoading(false)
     }
 
