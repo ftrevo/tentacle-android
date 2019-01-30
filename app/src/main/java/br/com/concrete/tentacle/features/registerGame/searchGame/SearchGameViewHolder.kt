@@ -11,7 +11,6 @@ class SearchGameViewHolder(private val item: View) : RecyclerView.ViewHolder(ite
         fun callBack(holder: RecyclerView.ViewHolder, game: Game, listener: (Game) -> Unit) {
             if (holder is SearchGameViewHolder) {
                 holder.item.game_name.text = game.title
-                holder.item.game_media.visibility = View.GONE
             }
 
             holder.itemView.setOnClickListener {

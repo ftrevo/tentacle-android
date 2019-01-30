@@ -21,8 +21,12 @@
     <color name="bgGameIcon">#D8D8D8</color>
 
     <!-- BottomBar -->
-    <color name="bgBottomBar">#191B1F</color><![CDATA[
+    <color name="bgBottomBar">#191B1F</color>
 
-    >>>>>>> develop
-]]>
+    <color name="starColor">#ffec1a</color>
+    <color name="backgroundColorCardHome">#3b4048</color>
+
+    <color name="toolbarBackground">@color/colorPrimary</color>
+    <color name="lineColor">#3b4048</color>
+
 </resources>
