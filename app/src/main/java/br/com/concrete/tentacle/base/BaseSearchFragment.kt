@@ -96,8 +96,10 @@ abstract class BaseSearchFragment : BaseFragment(),
     fun getQuerySearchView() = searchView.query.toString()
 
     fun callSnackBar(message: String) {
-        context?.let {
-            it.callSnackbar(view!!, message)
+        context?.let { context ->
+            view?.let {
+                context.callSnackbar(it, message)
+            }
         }
     }
 
