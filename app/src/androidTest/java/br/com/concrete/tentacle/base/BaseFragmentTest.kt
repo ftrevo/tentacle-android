@@ -2,14 +2,17 @@ package br.com.concrete.tentacle.base
 
 import androidx.fragment.app.Fragment
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.testing.SingleFragmentTestActivity
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.runner.RunWith
 
+@Ignore
 @RunWith(AndroidJUnit4::class)
 abstract class BaseFragmentTest {
 
@@ -36,5 +39,14 @@ abstract class BaseFragmentTest {
     @After
     fun after() {
         mockWebServer.shutdown()
+    }
+
+    fun getJson(path: String): String {
+        val json = getInstrumentation()
+            .targetContext
+            .assets
+            .open(path).bufferedReader().use { it.readText() }
+
+        return json
     }
 }
