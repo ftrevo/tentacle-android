@@ -58,14 +58,14 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
             .setBody(getJson("mockjson/errors/error_400.json"))
             .setResponseCode(400))
 
-        onView(withId(R.id.recyclerListError))
-            .check(matches(isDisplayed()))
         onView(withId(R.id.recyclerListView))
             .check(matches(not(isDisplayed())))
-        onView(withId(R.id.errorDescription))
-            .check(matches(withText(R.string.load_games_error_not_know)))
         onView(withId(R.id.progressBarList))
             .check(matches(not(isDisplayed())))
+        onView(withId(R.id.recyclerListError))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.errorDescription))
+            .check(matches(withText(R.string.load_games_error_not_know)))
     }
 
     @Test
