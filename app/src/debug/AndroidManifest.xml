@@ -6,7 +6,9 @@
 
     <application tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".testing.SingleFragmentTestActivity"
-                  android:theme="@style/AppTheme"/>
+                  android:theme="@style/AppTheme"
+                  android:usesCleartextTraffic="true" tools:targetApi="m">
+        <activity android:name=".testing.SingleFragmentTestActivity"/>
         <activity android:name=".testing.BottomBarTestActivity"/>
     </application>
 </manifest>
