@@ -1,6 +1,6 @@
 package br.com.concrete.tentacle.base
 
-import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
+import PROPERTY_BASE_URL
 import br.com.concrete.tentacle.rules.RxImmediateSchedulerRule
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
