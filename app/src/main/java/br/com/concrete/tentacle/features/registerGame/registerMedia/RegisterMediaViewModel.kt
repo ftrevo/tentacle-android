@@ -9,10 +9,8 @@ import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.RegisteredMediaResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.RegisterMediaRepository
-import br.com.concrete.tentacle.testing.OpenForTesting
 import br.com.concrete.tentacle.utils.LogWrapper
 
-@OpenForTesting
 class RegisterMediaViewModel(private val repository: RegisterMediaRepository) : BaseViewModel() {
 
     val viewStatusModel = MutableLiveData<ViewStateModel<RegisteredMediaResponse>>()

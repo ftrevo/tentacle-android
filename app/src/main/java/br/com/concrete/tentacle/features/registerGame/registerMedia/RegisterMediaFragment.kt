@@ -12,20 +12,10 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.toPlatformName
-import br.com.concrete.tentacle.testing.OpenForTesting
 import br.com.concrete.tentacle.utils.EMPTY_STRING
-import kotlinx.android.synthetic.main.fragment_register_media.media3DSRadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaPS3RadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaPS4RadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaRegisterButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaRegisterNameTextView
-import kotlinx.android.synthetic.main.fragment_register_media.mediaRegisterRadioGroup
-import kotlinx.android.synthetic.main.fragment_register_media.mediaSwitchRadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaXbox360RadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaXboxOneRadioButton
+import kotlinx.android.synthetic.main.fragment_register_media.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-@OpenForTesting
 class RegisterMediaFragment : BaseFragment() {
 
     private val viewModel: RegisterMediaViewModel by viewModel()
