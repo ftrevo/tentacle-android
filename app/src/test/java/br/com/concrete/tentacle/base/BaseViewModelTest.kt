@@ -49,4 +49,20 @@ open class BaseViewModelTest : KoinTest {
             .setBody(getJson("mockjson/errors/error_400.json"))
         mockServer.enqueue(mockResponse)
     }
+
+    fun mockResponse200(responseJson: String?) {
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+    }
+
+    fun mockResponse201(responseJson: String?) {
+        val mockResponse = MockResponse()
+            .setResponseCode(201)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+    }
 }
