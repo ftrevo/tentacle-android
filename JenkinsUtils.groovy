@@ -135,8 +135,6 @@ def lintDebug() {
 def buildApk(String buildType) {
     try {
         def lowercaseBuidtype = buildType.toLowerCase()
-        mkdir "${ANDROID_HOME}/licenses" || true
-        echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "${ANDROID_HOME}/licenses/android-sdk-license"
         sh "./gradlew :app:assemble${buildType} --stacktrace --info --profile"
         archivesProject("app/build/outputs/apk/${lowercaseBuidtype}/app-${lowercaseBuidtype}.apk")
     } catch(err) {
