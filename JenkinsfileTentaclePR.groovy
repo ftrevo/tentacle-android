@@ -14,9 +14,9 @@ node('vv-macmini-recife') {
          utils.gradleClean()
     }
 
-    stage('Version') {
+    /*stage('Version') {
         utils.upgradeVersionName()
-    }
+    }*/
 
     stage('Sintaxe Code') {
         utils.testsKtlint()
