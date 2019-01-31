@@ -1,5 +1,5 @@
 #!groovy
-node('vv-macmini-recife') {
+node('master') {
 
     println "\u2756 ${env.JOB_NAME} \u2756"
 
