@@ -27,11 +27,11 @@ node('vv-macmini-recife') {
     }
 
     stage('Build APK') {
-        utils.buildApk('Homolog')
+        utils.buildApk('Debug')
     }
 
      stage('Unit Tests') {
-         utils.unitTests('Homolog')
+         utils.unitTests('Debug')
      }
 
     stage('Instruments Tests') {
