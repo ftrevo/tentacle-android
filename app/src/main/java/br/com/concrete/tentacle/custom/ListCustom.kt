@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.list_custom.view.progressBarList
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
+import kotlinx.android.synthetic.main.list_error_custom.view.errorDescription
 
 class ListCustom(
     context: Context,
@@ -116,6 +117,10 @@ class ListCustom(
 
     fun setErrorMessage(errorCode: Int) {
         errorDescriptionReference = errorCode
+    }
+
+    fun setButtonNameAction(action: Int) {
+        buttonNameActionReference = action
     }
 
     fun setButtonTextError(errorCode: Int) {

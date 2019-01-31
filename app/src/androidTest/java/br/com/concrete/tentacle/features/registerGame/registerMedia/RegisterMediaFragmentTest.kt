@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.registerMedia
+package br.com.concrete.tentacle.features.registerGame.registerMedia
 
 import android.os.Bundle
 import androidx.test.espresso.Espresso.onView
@@ -11,7 +11,6 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.extensions.fromJson
-import br.com.concrete.tentacle.features.registerGame.registerMedia.RegisterMediaFragment
 import com.google.gson.Gson
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Test
@@ -33,7 +32,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun showRegistredGameName() {
+    fun showRegisteredGameName() {
         onView(withId(R.id.mediaRegisterNameTextView))
             .check(matches(withText(expectedGame.title)))
     }
