@@ -54,7 +54,6 @@ open class BaseViewModelTest : KoinTest {
         val mockResponse = MockResponse()
             .setResponseCode(200)
             .setBody(responseJson)
-
         mockServer.enqueue(mockResponse)
     }
 
@@ -62,7 +61,6 @@ open class BaseViewModelTest : KoinTest {
         val mockResponse = MockResponse()
             .setResponseCode(201)
             .setBody(responseJson)
-
         mockServer.enqueue(mockResponse)
     }
 }
