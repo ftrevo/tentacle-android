@@ -6,7 +6,9 @@ import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.NoActivityResumedException
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.data.models.Game
@@ -76,7 +78,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun registerMediaPlatformSuccess()  {
+    fun registerMediaPlatformSuccess() {
         try {
             onView(withId(R.id.mediaPS4RadioButton))
                 .perform(click())
@@ -94,8 +96,8 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
             onView(withId(com.google.android.material.R.id.snackbar_text))
                 .check(matches(withText(R.string.register_media_success_test)))
-        }catch (ex: NoActivityResumedException){
-            //do nothing
+        } catch (ex: NoActivityResumedException) {
+            // do nothing
         }
     }
 }
