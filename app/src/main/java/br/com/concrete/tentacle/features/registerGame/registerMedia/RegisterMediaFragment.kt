@@ -13,15 +13,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.toPlatformName
 import br.com.concrete.tentacle.utils.EMPTY_STRING
-import kotlinx.android.synthetic.main.fragment_register_media.media3DSRadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaNameTextView
-import kotlinx.android.synthetic.main.fragment_register_media.mediaPS3RadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaPS4RadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaRegisterButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaRegisterRadioGroup
-import kotlinx.android.synthetic.main.fragment_register_media.mediaSwitchRadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaXbox360RadioButton
-import kotlinx.android.synthetic.main.fragment_register_media.mediaXboxOneRadioButton
+import kotlinx.android.synthetic.main.fragment_register_media.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class RegisterMediaFragment : BaseFragment() {
@@ -45,7 +37,7 @@ class RegisterMediaFragment : BaseFragment() {
     private fun initViews() {
         arguments?.let { bundle ->
             game = RegisterMediaFragmentArgs.fromBundle(bundle).gameArgument
-            mediaNameTextView.text = game.title
+            mediaRegisterNameTextView.text = game.title
 
             initListeners()
             initObservers()
@@ -80,11 +72,13 @@ class RegisterMediaFragment : BaseFragment() {
                     }
                     ViewStateModel.Status.SUCCESS -> {
                         mediaRegisterButton.isLoading(false)
+                        showMessageForTest(R.string.register_media_success_test)
                         activity?.finish()
                     }
                     ViewStateModel.Status.ERROR -> {
                         mediaRegisterButton.isLoading(false)
                         showError(viewStatus.errors)
+                        showMessageForTest(R.string.register_media_generic_error_test)
                     }
                 }
             }

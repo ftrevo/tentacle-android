@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content">
 
             <ImageView
-                    android:id="@+id/mediaImageView"
+                    android:id="@+id/mediaRegisterImageView"
                     android:layout_width="@dimen/game_icon_width"
                     android:layout_height="@dimen/game_icon_height"
                     android:background="@color/bgGameIcon"
@@ -35,7 +35,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                    android:id="@+id/mediaNameTextView"
+                    android:id="@+id/mediaRegisterNameTextView"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default"
@@ -43,8 +43,8 @@
                     android:textSize="@dimen/sp_24"
                     android:textColor="@android:color/white"
                     tools:text="Space Invaders"
-                    app:layout_constraintStart_toEndOf="@id/mediaImageView"
-                    app:layout_constraintTop_toTopOf="@id/mediaImageView"
+                    app:layout_constraintStart_toEndOf="@id/mediaRegisterImageView"
+                    app:layout_constraintTop_toTopOf="@id/mediaRegisterImageView"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
             <androidx.constraintlayout.widget.Barrier
@@ -52,7 +52,7 @@
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="@dimen/dp_0"
                     app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="mediaImageView, mediaNameTextView"
+                    app:constraint_referenced_ids="mediaRegisterImageView, mediaRegisterNameTextView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -65,7 +65,7 @@
                     android:textSize="@dimen/sp_24"
                     android:textColor="@android:color/white"
                     android:text="@string/register_media_group_title"
-                    app:layout_constraintStart_toStartOf="@id/mediaImageView"
+                    app:layout_constraintStart_toStartOf="@id/mediaRegisterImageView"
                     app:layout_constraintTop_toBottomOf="@id/barrier"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -74,7 +74,7 @@
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_18"
-                    app:layout_constraintStart_toStartOf="@id/mediaImageView"
+                    app:layout_constraintStart_toStartOf="@id/mediaRegisterImageView"
                     app:layout_constraintTop_toBottomOf="@id/radioGroupTitle"
                     app:layout_constraintEnd_toEndOf="parent">
 
