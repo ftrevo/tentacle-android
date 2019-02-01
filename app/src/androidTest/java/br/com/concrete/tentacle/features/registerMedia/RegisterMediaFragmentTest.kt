@@ -79,7 +79,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun registerMediaPlatformSuccess()  {
+    fun registerMediaPlatformSuccess() {
         try {
             onView(withId(R.id.mediaPS4RadioButton))
                 .perform(click())
@@ -97,8 +97,8 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
             onView(withId(com.google.android.material.R.id.snackbar_text))
                 .check(matches(withText(R.string.register_media_success_test)))
-        }catch (ex: NoActivityResumedException){
-            //do nothing
+        } catch (ex: NoActivityResumedException) {
+            // do nothing
         }
     }
 }
