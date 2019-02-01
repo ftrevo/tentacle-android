@@ -1,11 +1,14 @@
 package br.com.concrete.tentacle.base
 
-import androidx.fragment.app.Fragment
+import android.app.Fragment
+import android.view.View
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.testing.SingleFragmentTestActivity
+import br.com.concrete.tentacle.util.LayoutChangeCallback
 import okhttp3.mockwebserver.MockWebServer
+import org.hamcrest.Matcher
+import org.hamcrest.StringDescription
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
@@ -48,5 +51,33 @@ abstract class BaseFragmentTest {
             .open(path).bufferedReader().use { it.readText() }
 
         return json
+    }
+
+    fun waitUntil(matcher: Matcher<View>): ViewAction {
+        return ViewActions.actionWithAssertions(object : ViewAction {
+            override fun getConstraints(): Matcher<View> {
+                return ViewMatchers.isAssignableFrom(View::class.java)
+            }
+
+            override fun getDescription(): String {
+                val description = StringDescription()
+                matcher.describeTo(description)
+                return String.format("wait until: %s", description)
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                if (!matcher.matches(view)) {
+                    val callback = LayoutChangeCallback(matcher)
+                    try {
+                        IdlingRegistry.getInstance().register(callback)
+                        view.addOnLayoutChangeListener(callback)
+                        uiController.loopMainThreadUntilIdle()
+                    } finally {
+                        view.removeOnLayoutChangeListener(callback)
+                        IdlingRegistry.getInstance().unregister(callback)
+                    }
+                }
+            }
+        })
     }
 }
