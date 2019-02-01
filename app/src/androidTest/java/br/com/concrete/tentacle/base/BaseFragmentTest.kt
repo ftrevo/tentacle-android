@@ -1,7 +1,7 @@
 package br.com.concrete.tentacle.base
 
-import android.os.AsyncTask
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.UiController
@@ -13,11 +13,11 @@ import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.testing.SingleFragmentTestActivity
 import br.com.concrete.tentacle.util.LayoutChangeCallback
-import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
 import okhttp3.mockwebserver.MockWebServer
+import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.StringDescription
+import org.hamcrest.TypeSafeMatcher
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
@@ -46,7 +46,6 @@ abstract class BaseFragmentTest {
         testFragment.let {
             activityRule.activity.setFragment(it)
         }
-
     }
 
     @After
@@ -89,5 +88,23 @@ abstract class BaseFragmentTest {
                 }
             }
         })
+    }
+
+    fun childAtPosition(
+        parentMatcher: Matcher<View>, position: Int
+    ): Matcher<View> {
+
+        return object : TypeSafeMatcher<View>() {
+            override fun describeTo(description: Description) {
+                description.appendText("Child at position $position in parent ")
+                parentMatcher.describeTo(description)
+            }
+
+            public override fun matchesSafely(view: View): Boolean {
+                val parent = view.parent
+                return parent is ViewGroup && parentMatcher.matches(parent)
+                        && view == parent.getChildAt(position)
+            }
+        }
     }
 }
