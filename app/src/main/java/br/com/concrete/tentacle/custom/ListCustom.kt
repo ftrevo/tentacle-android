@@ -118,6 +118,10 @@ class ListCustom(
         errorDescriptionReference = errorCode
     }
 
+    fun setButtonNameAction(action: Int) {
+        buttonNameActionReference = action
+    }
+
     fun setButtonTextError(errorCode: Int) {
         buttonNameErrorReference = errorCode
     }

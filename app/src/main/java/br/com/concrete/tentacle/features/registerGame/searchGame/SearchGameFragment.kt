@@ -13,11 +13,12 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.features.registerGame.searchGame.SearchGameFragmentDirections.navigateToRegisterPlatform
-import kotlinx.android.synthetic.main.fragment_search_game.*
-import kotlinx.android.synthetic.main.list_custom.*
-import kotlinx.android.synthetic.main.list_custom.view.*
-import kotlinx.android.synthetic.main.list_error_custom.view.*
+import kotlinx.android.synthetic.main.fragment_search_game.listCustom
+import kotlinx.android.synthetic.main.list_custom.recyclerListError
+import kotlinx.android.synthetic.main.list_custom.view.buttonAction
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
+import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
@@ -51,7 +52,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                 }
                 ViewStateModel.Status.ERROR -> {
                     enableProgress(false)
-                    showError(gameModel.errors)
+                    loadMessageErrorLoading(gameModel)
                 }
             }
         })
@@ -78,6 +79,18 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         })
     }
 
+    private fun loadMessageErrorLoading(gameModel: ViewStateModel<ArrayList<Game>>) {
+        gameModel.errors?.let {
+            listCustom.setErrorMessage(R.string.load_games_error_not_know)
+            listCustom.setButtonTextError(R.string.load_again)
+            listCustom.setActionError {
+                getSearchGame(getQuerySearchView())
+            }
+        }
+        listCustom.updateUi<Game>(null)
+        listCustom.setLoading(false)
+    }
+
     private fun enableLoadingButton(isEnable: Boolean) {
         listCustom.buttonAction.isLoading(isEnable)
     }
@@ -87,6 +100,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         if (model?.isNotEmpty()!!) {
             fillRecyclerView(model)
         } else {
+            listCustom.setButtonNameAction(R.string.add_new_game)
             listCustom.updateUi(model)
         }
     }
