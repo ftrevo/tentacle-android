@@ -110,5 +110,4 @@ abstract class BaseSearchFragment : BaseFragment(),
     abstract fun initRecyclerView()
     abstract fun getSearchGame(searchGame: String)
     abstract fun clearListGame()
-
 }

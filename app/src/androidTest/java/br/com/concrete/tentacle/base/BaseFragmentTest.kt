@@ -49,5 +49,4 @@ abstract class BaseFragmentTest {
 
         return json
     }
-
 }

@@ -154,5 +154,4 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         listCustom.buttonAction.visibility = View.GONE
         listCustom.recyclerListError.visibility = View.GONE
     }
-
 }

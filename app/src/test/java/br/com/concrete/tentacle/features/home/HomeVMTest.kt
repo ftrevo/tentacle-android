@@ -14,7 +14,7 @@ import org.junit.Test
 
 import org.koin.standalone.inject
 
-class HomeVMTest: BaseViewModelTest(){
+class HomeVMTest : BaseViewModelTest() {
 
     val homeViewModel: HomeViewModel by inject()
 
@@ -89,5 +89,4 @@ class HomeVMTest: BaseViewModelTest(){
         homeViewModel.loadHomeGames()
         assertEquals(expected, actual)
     }
-    
 }

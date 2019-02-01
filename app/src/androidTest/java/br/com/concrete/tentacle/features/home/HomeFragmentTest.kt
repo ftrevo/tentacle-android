@@ -1,17 +1,18 @@
 package br.com.concrete.tentacle.features.home
 
-
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
 
-class HomeFragmentTest: BaseFragmentTest(){
+class HomeFragmentTest : BaseFragmentTest() {
 
     override fun setupFragment() {
         testFragment = HomeFragment()
@@ -90,8 +91,8 @@ class HomeFragmentTest: BaseFragmentTest(){
         onView(withId(R.id.recyclerListError))
         onView(withId(R.id.recyclerListView))
             .check(matches(not(isDisplayed())))
-        onView(withText(R.string.load_again)).
-            check(matches(isDisplayed()))
+        onView(withText(R.string.load_again))
+            .check(matches(isDisplayed()))
         onView(withId(R.id.errorDescription))
             .check(matches(withText(R.string.load_games_error_not_know)))
         onView(withId(R.id.progressBarList))
@@ -133,5 +134,4 @@ class HomeFragmentTest: BaseFragmentTest(){
         onView(withId(R.id.progressBarList))
             .check(matches(not(isDisplayed())))
     }
-
 }

@@ -5,7 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.data.models.Game
 import kotlinx.android.synthetic.main.item_home_game.view.*
 
-class HomeViewHolder(private val mLinearLayout: View
+class HomeViewHolder(
+    private val mLinearLayout: View
 ) : RecyclerView.ViewHolder(mLinearLayout) {
 
     companion object {
