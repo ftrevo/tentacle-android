@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import br.com.concrete.tentacle.R
@@ -106,5 +105,4 @@ abstract class BaseSearchFragment : BaseFragment(),
     abstract fun initRecyclerView()
     abstract fun getSearchGame(searchGame: String)
     abstract fun clearListGame()
-
 }
