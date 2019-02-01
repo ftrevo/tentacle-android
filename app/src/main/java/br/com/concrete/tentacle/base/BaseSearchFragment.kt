@@ -14,7 +14,6 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.callSnackbar
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
-import java.util.Locale.filter
 import java.util.concurrent.TimeUnit
 
 const val TIME_OUT: Long = 300

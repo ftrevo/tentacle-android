@@ -1,0 +1,19 @@
+{
+  "message": [
+    "Mídia salva"
+  ],
+  "data": {
+    "_id": "5c51bb39ad29c90023fe1c69",
+    "platform": "PS3",
+    "game": {
+      "_id": "5c48dd54e07db9002375d5ab",
+      "title": "Contra III"
+    },
+    "owner": {
+      "_id": "5c1ab12e7c0f4f002272357e",
+      "name": "JOAO DAS NEVES"
+    },
+    "createdAt": "2019-01-30T14:56:57.321Z",
+    "updatedAt": "2019-01-30T14:56:57.321Z"
+  }
+}
