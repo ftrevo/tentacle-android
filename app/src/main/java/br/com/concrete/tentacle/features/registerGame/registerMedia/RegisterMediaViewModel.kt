@@ -1,18 +1,19 @@
 package br.com.concrete.tentacle.features.registerGame.registerMedia
 
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.MediaRequest
-import br.com.concrete.tentacle.data.models.StatusLiveData
+import br.com.concrete.tentacle.data.models.RegisteredMediaResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.RegisterMediaRepository
 import br.com.concrete.tentacle.utils.LogWrapper
 
 class RegisterMediaViewModel(private val repository: RegisterMediaRepository) : BaseViewModel() {
 
-    val viewStatusModel: StatusLiveData = StatusLiveData()
+    val viewStatusModel = MutableLiveData<ViewStateModel<RegisteredMediaResponse>>()
 
     fun registerMedia(platform: String, game: Game) {
         viewStatusModel.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
@@ -22,7 +23,7 @@ class RegisterMediaViewModel(private val repository: RegisterMediaRepository) : 
         disposables.add(
             repository.registerMedia(mediaRequest)
                 .subscribe({
-                    viewStatusModel.postValue(ViewStateModel(ViewStateModel.Status.SUCCESS))
+                    viewStatusModel.postValue(ViewStateModel(ViewStateModel.Status.SUCCESS, it.data))
                 },
                 {
                     viewStatusModel.postValue(ViewStateModel(
