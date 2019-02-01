@@ -79,7 +79,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         })
     }
 
-    private fun loadMessageErrorLoading(gameModel: ViewStateModel<ArrayList<Game>>){
+    private fun loadMessageErrorLoading(gameModel: ViewStateModel<ArrayList<Game>>) {
         gameModel.errors?.let {
             listCustom.setErrorMessage(R.string.load_games_error_not_know)
             listCustom.setButtonTextError(R.string.load_again)

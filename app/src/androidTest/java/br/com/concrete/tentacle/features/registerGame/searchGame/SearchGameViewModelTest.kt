@@ -18,8 +18,7 @@ import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers
 import org.junit.Test
 
-
-class SearchGameViewModelTest: BaseFragmentTest(){
+class SearchGameViewModelTest : BaseFragmentTest() {
 
     override fun setupFragment() {
         testFragment = SearchGameFragment()
@@ -27,7 +26,7 @@ class SearchGameViewModelTest: BaseFragmentTest(){
     }
 
     @Test
-    fun showListWhenTypeFourLetters(){
+    fun showListWhenTypeFourLetters() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(200)
             .setBody(getJson("mockjson/searchgame/list_game_success.json")))
@@ -42,7 +41,7 @@ class SearchGameViewModelTest: BaseFragmentTest(){
     }
 
     @Test
-    fun showProgressBar(){
+    fun showProgressBar() {
         onView(isAssignableFrom(EditText::class.java))
             .perform(typeText("FIFA"))
 
@@ -55,7 +54,7 @@ class SearchGameViewModelTest: BaseFragmentTest(){
     }
 
     @Test
-    fun showButtonWhenListIsEmpty(){
+    fun showButtonWhenListIsEmpty() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(200)
             .setBody(getJson("mockjson/searchgame/list_game_empty_success.json")))
@@ -72,7 +71,7 @@ class SearchGameViewModelTest: BaseFragmentTest(){
     }
 
     @Test
-    fun showProblemWithConnection(){
+    fun showProblemWithConnection() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(400)
             .setBody(getJson("mockjson/errors/error_400.json")))
@@ -89,7 +88,7 @@ class SearchGameViewModelTest: BaseFragmentTest(){
     }
 
     @Test
-    fun afterClickLoadAgainShouldMakeAnotherRequestAndShowList(){
+    fun afterClickLoadAgainShouldMakeAnotherRequestAndShowList() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(400)
             .setBody(getJson("mockjson/errors/error_400.json")))
@@ -116,7 +115,7 @@ class SearchGameViewModelTest: BaseFragmentTest(){
     }
 
     @Test
-    fun afterSearchAndVerifyItemIsOk(){
+    fun afterSearchAndVerifyItemIsOk() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(200)
             .setBody(getJson("mockjson/searchgame/list_game_success.json")))
@@ -132,5 +131,4 @@ class SearchGameViewModelTest: BaseFragmentTest(){
         onView(withRecyclerViewAndViewId(R.id.recyclerListView, 0, R.id.game_name))
             .check(matches(withText("JOGO 1")))
     }
-
 }

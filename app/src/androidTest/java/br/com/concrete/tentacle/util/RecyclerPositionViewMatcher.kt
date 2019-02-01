@@ -28,7 +28,6 @@ class RecyclerPositionViewMatcher private constructor(private val recyclerViewId
                     } catch (var4: Resources.NotFoundException) {
                         idDescription = String.format("%s (resource printerName not found)", recyclerViewId)
                     }
-
                 }
 
                 description.appendText("with id: $idDescription")
@@ -55,7 +54,6 @@ class RecyclerPositionViewMatcher private constructor(private val recyclerViewId
                     val targetView = childView!!.findViewById<View>(targetViewId)
                     return view === targetView
                 }
-
             }
         }
     }
