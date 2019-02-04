@@ -10,7 +10,7 @@ apply plugin: 'kotlin-allopen'
 
 apply from: 'tasks.gradle'
 
-//apply plugin: 'io.fabric'
+apply plugin: 'io.fabric'
 
 apply plugin: 'jacoco'
 
