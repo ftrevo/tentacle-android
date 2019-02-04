@@ -1,10 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="br.com.concrete.tentacle">
-
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application>
-        <activity android:name=".testing.SingleFragmentTestActivity"></activity>
+    <application tools:ignore="GoogleAppIndexingWarning">
+        <activity
+                android:name=".testing.SingleFragmentTestActivity"
+                android:theme="@style/AppTheme"
+                tools:ignore="GoogleAppIndexingWarning"
+                android:usesCleartextTraffic="true" tools:targetApi="m"/>
+        <activity android:name=".testing.BottomBarTestActivity"/>
     </application>
 </manifest>

@@ -63,11 +63,7 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
         var actual = ViewStateModel<ArrayList<Media>>(status = ViewStateModel.Status.LOADING)
 
-        val mockResponse = MockResponse()
-            .setResponseCode(400)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
+        mockResponseError400()
 
         loadMyGamesViewModel.getMyGames().observeForever {
             actual = it

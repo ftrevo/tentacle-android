@@ -40,9 +40,11 @@
 
     <string name="search">Pesquisar</string>
 
-    <string name="add_new_game">Adicionar novo Jogo</string>
+    <string name="add_new_game">Adicionar novo jogo</string>
     <string name="add_new_game_compact">+ Adicionar</string>
     <string name="no_game_registered">Você ainda não tem nenhum jogo cadastrado :(</string>
+    <string name="load_games_error_not_know">Ocorreu um erro ao carregar os jogos. Por favor, tente novamente.</string>
+    <string name="load_again">Carregar Novamente</string>
 
     <string name="game_name">Nome do Jogo</string>
     <string name="media">mídia</string>
@@ -57,12 +59,20 @@
     <string name="register_media_switch_radio_button_title">Nintendo Switch</string>
     <string name="register_media_button">Cadastrar</string>
 
+    <string name="register_media_success_test">Jogo cadastrado com sucesso</string>
+    <string name="register_media_generic_error_test">Ocorreu um erro</string>
     <string name="register_media_no_selection_error">Necessário escolher a plataforma do jogo</string>
-
 
     <string name="toolbar_title_home">Novos Jogos</string>
     <string name="toolbar_title_my_games">Meus Jogos</string>
     <string name="toolbar_title_search_game">Cadastrar jogo</string>
     <string name="toolbar_title_library">Biblioteca</string>
+
+    <string name="red_dead_redemption">Red Dead Redemption 2</string>
+    <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles aparecerem aqui!</string>
+
+    <string name="did_not_find_what_you_wanted">Não encontrou o que queria?</string>
+    <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
+
 
 </resources>

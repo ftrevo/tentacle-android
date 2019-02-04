@@ -12,6 +12,7 @@ import org.junit.runner.RunWith
 import org.koin.standalone.StandAloneContext
 import org.koin.test.KoinTest
 import org.robolectric.RobolectricTestRunner
+import java.net.HttpURLConnection
 
 @Ignore
 @RunWith(RobolectricTestRunner::class)
@@ -42,11 +43,24 @@ open class BaseViewModelTest : KoinTest {
         )?.readText()
     }
 
-    fun mockResponseError400(responseJson: String?) {
+    fun mockResponseError400() {
         val mockResponse = MockResponse()
-            .setResponseCode(400)
-            .setBody(responseJson)
+            .setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST)
+            .setBody(getJson("mockjson/errors/error_400.json"))
+        mockServer.enqueue(mockResponse)
+    }
 
+    fun mockResponse200(responseJson: String?) {
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+        mockServer.enqueue(mockResponse)
+    }
+
+    fun mockResponse201(responseJson: String?) {
+        val mockResponse = MockResponse()
+            .setResponseCode(201)
+            .setBody(responseJson)
         mockServer.enqueue(mockResponse)
     }
 }

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
+import br.com.concrete.tentacle.extensions.callSnackbar
+import org.jetbrains.annotations.TestOnly
 
 abstract class BaseFragment : Fragment() {
 
@@ -34,4 +36,9 @@ abstract class BaseFragment : Fragment() {
     }
 
     abstract fun getToolbarTitle(): Int
+
+    @TestOnly
+    protected fun showMessageForTest(resMsg: Int) {
+        context?.callSnackbar(view!!, getString(resMsg))
+    }
 }

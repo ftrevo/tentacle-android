@@ -1,15 +1,19 @@
 package br.com.concrete.tentacle.features
 
 import android.os.Bundle
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
+import br.com.concrete.tentacle.data.interfaces.CallBack
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.activity_host.*
 
-class HostActivity : BaseActivity() {
+class HostActivity : BaseActivity(), CallBack {
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +24,7 @@ class HostActivity : BaseActivity() {
     }
 
     private fun startNavListener() {
-        val navController = Navigation.findNavController(this, R.id.garden_nav_fragment)
+        navController = Navigation.findNavController(this, R.id.garden_nav_fragment)
         val topLevelDestinations = setOf(R.id.home, R.id.myGames)
         val appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
@@ -40,6 +44,11 @@ class HostActivity : BaseActivity() {
                 R.id.action_events -> LogWrapper.log("ACTION", "Calendar")
             }
         }
+    }
+
+    override fun changeBottomBar(actionNameId: Int, navigateId: Int) {
+        bottomBar.updateBottomBar(actionNameId)
+        navController.navigate(navigateId)
     }
 
     override fun onBackPressed() {
