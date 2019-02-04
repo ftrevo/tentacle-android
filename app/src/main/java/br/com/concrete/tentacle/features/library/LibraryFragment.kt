@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import kotlinx.android.synthetic.main.fragment_game_list.*
+import kotlinx.android.synthetic.main.list_custom.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LibraryFragment : BaseFragment() {
@@ -35,6 +39,21 @@ class LibraryFragment : BaseFragment() {
             when (stateModel.status) {
                 ViewStateModel.Status.SUCCESS -> {
                     library?.let {
+
+                        val recyclerViewAdapter = BaseAdapter(
+                            library,
+                            R.layout.library_item_layout,
+                            { view ->
+                                LibraryViewHolder(view)
+                            }, { holder, element ->
+                                LibraryViewHolder.callBack(holder = holder, element = element)
+                            })
+
+                        recyclerListView.layoutManager =  LinearLayoutManager(context)
+                        recyclerListView.adapter = recyclerViewAdapter
+
+                        list.updateUi(it)
+                        list.setLoading(false)
                     }
                 }
                 ViewStateModel.Status.LOADING -> {

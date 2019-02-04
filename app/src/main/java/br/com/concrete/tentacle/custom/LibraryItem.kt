@@ -2,11 +2,13 @@ package br.com.concrete.tentacle.custom
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.constraintlayout.widget.ConstraintLayout
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.data.models.library.Library
 import kotlinx.android.synthetic.main.library_item_layout.view.ivArrow
 import kotlinx.android.synthetic.main.library_item_layout.view.tv360
 import kotlinx.android.synthetic.main.library_item_layout.view.tv3DS
@@ -18,17 +20,18 @@ import kotlinx.android.synthetic.main.library_item_layout.view.tvNS
 
 
 class LibraryItem(
-    context: Context,
-    attrs: AttributeSet
-) : ConstraintLayout(context, attrs) {
+    context: Context
+) : ConstraintLayout(context) {
 
     private var viewStateOpen = false
     private var ctx: Context = context
+    private val view =  LayoutInflater.from(context).inflate(R.layout.library_item_layout, this, false)
 
     init {
-        View.inflate(context, R.layout.library_item_layout, this)
+//        View.inflate(context, R.layout.library_item_layout, this )
 
-        ivArrow.setOnClickListener {
+
+        view.ivArrow.setOnClickListener {
             if(viewStateOpen) animateOpen() else animateClose()
             viewStateOpen = !viewStateOpen
         }
@@ -52,7 +55,7 @@ class LibraryItem(
 
         })
 
-        ivArrow.startAnimation(anim)
+        view.ivArrow.startAnimation(anim)
     }
 
     private fun animateClose(){
@@ -76,11 +79,15 @@ class LibraryItem(
     }
 
     private fun showBullets(show: Boolean){
-        tvNS.visibility = if(show) View.VISIBLE else View.GONE
-        tv3DS.visibility = if(show) View.VISIBLE else View.GONE
-        tvONE.visibility = if(show) View.VISIBLE else View.GONE
-        tv360.visibility = if(show) View.VISIBLE else View.GONE
-        tvPS4.visibility = if(show) View.VISIBLE else View.GONE
-        tvPS3.visibility = if(show) View.VISIBLE else View.GONE
+        view.tvNS.visibility = if(show) View.VISIBLE else View.GONE
+        view.tv3DS.visibility = if(show) View.VISIBLE else View.GONE
+        view.visibility = if(show) View.VISIBLE else View.GONE
+        view.tv360.visibility = if(show) View.VISIBLE else View.GONE
+        view.tvPS4.visibility = if(show) View.VISIBLE else View.GONE
+        view.tvPS3.visibility = if(show) View.VISIBLE else View.GONE
+    }
+
+    fun setLibrary(library: Library){
+        view.tvGameName.text = library.title
     }
 }
