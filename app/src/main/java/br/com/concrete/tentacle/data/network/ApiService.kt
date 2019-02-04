@@ -32,7 +32,7 @@ interface ApiService {
     fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean = true): Observable<BaseModel<MediaResponse>>
 
     @POST("/media")
-    fun registerMedia(@Body media: MediaRequest): Completable
+    fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<RegisteredMediaResponse>>
 
     @GET("/games")
     fun loadHomeGames(): Observable<BaseModel<GameResponse>>
