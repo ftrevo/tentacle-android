@@ -21,12 +21,8 @@ class LibraryFragment : BaseFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        init()
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun init() {
         initObserver()
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun initObserver() {
