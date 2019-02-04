@@ -2,8 +2,9 @@
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_40"
         android:layout_marginTop="@dimen/dp_4"
         android:layout_marginBottom="@dimen/dp_4"
         android:layout_marginLeft="@dimen/dp_8"
@@ -13,28 +14,36 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:padding="@dimen/dp_8"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
             <TextView
                     android:id="@+id/game_name"
                     android:textAppearance="@style/TextBlack.16sp"
                     android:textColor="@color/textColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/game_name"
-                    android:gravity="center"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_0"
+                    tools:text="nome do jogo"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    app:layout_constraintWidth_percent="@dimen/itemGameNamePercent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/game_media"
+                    app:layout_constraintBottom_toBottomOf="parent"
             />
 
             <TextView
                     android:id="@+id/game_media"
                     android:textAppearance="@style/TextBlack.14sp"
                     android:textColor="@color/textColor"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
-                    android:text="@string/media"
-                    android:gravity="center"
-                    app:layout_constraintRight_toRightOf="parent"
+                    tools:text="midia"
+                    android:gravity="end"
+                    app:layout_constraintWidth_percent="@dimen/itemGamePlatformPercent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
             />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

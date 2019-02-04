@@ -9,7 +9,6 @@
     <dimen name="errorImageSize">170dp</dimen>
     <dimen name="componentsMarginDefaultError">20dp</dimen>
 
-
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_4">4dp</dimen>
@@ -29,6 +28,11 @@
 
     <dimen name="game_icon_width">44dp</dimen>
     <dimen name="game_icon_height">58dp</dimen>
+
+    <dimen name="itemGameNamePercent">0.75</dimen>
+    <dimen name="itemGamePlatformPercent">0.25</dimen>
+
+    <dimen name="tentacleLogoOpacity">0.1</dimen>
 
     <!--TextSize-->
     <dimen name="sizeButton">12sp</dimen>
