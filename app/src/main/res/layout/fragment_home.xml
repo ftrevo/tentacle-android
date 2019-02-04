@@ -6,15 +6,19 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
 
-    <TextView
-        android:text="HOME"
-        android:textColor="#fff"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <include layout="@layout/logo_tentacle"/>
+
+    <br.com.concrete.tentacle.custom.ListCustom
+            android:id="@+id/listHome"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_0"
+            app:layoutManager="LinearLayoutManager"
+            app:buttonNameError="@string/add_new_game"
+            app:errorDescription="@string/no_game_in_home"
+            app:icon="@drawable/il_wow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

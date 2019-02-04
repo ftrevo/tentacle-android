@@ -7,6 +7,7 @@ import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.RegisteredMediaResponse
+import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -32,4 +33,8 @@ interface ApiService {
 
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<RegisteredMediaResponse>>
+
+    @GET("/games")
+    fun loadHomeGames(): Observable<BaseModel<GameResponse>>
+
 }
