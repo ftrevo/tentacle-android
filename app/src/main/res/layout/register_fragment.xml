@@ -86,7 +86,7 @@
                 app:errorLabel="@string/city_error"
                 app:label="@string/city_hint"
                 android:layout_marginEnd="@dimen/margin_default"
-                android:layout_marginStart="@dimen/dp_4"
+                android:layout_marginStart="@dimen/dp_8"
                 android:id="@+id/spCity"
                 app:layout_constraintTop_toTopOf="@+id/spState"
                 android:layout_width="@dimen/dp_0"

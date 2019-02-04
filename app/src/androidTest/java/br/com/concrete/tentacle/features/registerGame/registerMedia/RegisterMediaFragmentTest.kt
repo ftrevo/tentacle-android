@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.registerMedia
+package br.com.concrete.tentacle.features.registerGame.registerMedia
 
 import android.os.Bundle
 import androidx.test.espresso.Espresso.onView
@@ -6,12 +6,13 @@ import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.NoActivityResumedException
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.extensions.fromJson
-import br.com.concrete.tentacle.features.registerGame.registerMedia.RegisterMediaFragment
 import com.google.gson.Gson
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Test
@@ -33,7 +34,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun showRegistredGameName() {
+    fun showRegisteredGameName() {
         onView(withId(R.id.mediaRegisterNameTextView))
             .check(matches(withText(expectedGame.title)))
     }
@@ -77,7 +78,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun registerMediaPlatformSuccess()  {
+    fun registerMediaPlatformSuccess() {
         try {
             onView(withId(R.id.mediaPS4RadioButton))
                 .perform(click())
@@ -95,8 +96,8 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
             onView(withId(com.google.android.material.R.id.snackbar_text))
                 .check(matches(withText(R.string.register_media_success_test)))
-        }catch (ex: NoActivityResumedException){
-            //do nothing
+        } catch (ex: NoActivityResumedException) {
+            // do nothing
         }
     }
 }
