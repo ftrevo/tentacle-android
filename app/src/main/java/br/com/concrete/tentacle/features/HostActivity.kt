@@ -20,7 +20,7 @@ class HostActivity : BaseActivity() {
     }
 
     private fun startNavListener() {
-        val navController = Navigation.findNavController(this, R.id.garden_nav_fragment)
+        val navController = Navigation.findNavController(this, R.id.nav_fragment)
         val topLevelDestinations = setOf(R.id.home, R.id.myGames)
         val appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 

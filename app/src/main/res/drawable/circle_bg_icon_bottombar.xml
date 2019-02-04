@@ -2,8 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
 
-    <size android:height="30dp" android:width="30dp"/>
+    <size android:height="28dp" android:width="28dp"/>
 
-    <solid android:color="@color/colorButtonBlue"/>
+    <solid android:color="@color/bgBottomBar"/>
 
 </shape>
