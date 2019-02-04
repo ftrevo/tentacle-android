@@ -31,7 +31,9 @@ class HostActivity : BaseActivity(), CallBack {
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomBar.startListener { action ->
             when (action) {
-                R.id.action_library -> LogWrapper.log("ACTION", "Library")
+                R.id.action_library -> {
+                    navController.navigate(R.id.navigate_to_library)
+                }
                 R.id.action_games -> {
                     navController.navigate(R.id.navigate_to_my_games)
                 }
