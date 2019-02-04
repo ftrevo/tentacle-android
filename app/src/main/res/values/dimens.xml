@@ -22,6 +22,8 @@
     <dimen name="dp_40">40dp</dimen>
     <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_80">80dp</dimen>
+    <dimen name="dp_87">87dp</dimen>
+    <dimen name="dp_95">95dp</dimen>
 
     <dimen name="sp_24">24sp</dimen>
 
@@ -45,5 +47,6 @@
     <dimen name="bottomBarSelectedView">48dp</dimen>
     <dimen name="bottomBarIcon">24dp</dimen>
     <dimen name="bottomBarHeight">56dp</dimen>
+    <dimen name="heightCardHome">215dp</dimen>
 </resources>
 

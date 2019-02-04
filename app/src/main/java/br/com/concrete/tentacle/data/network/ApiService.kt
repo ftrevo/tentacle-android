@@ -6,6 +6,7 @@ import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.RegisteredMediaResponse
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -32,8 +33,12 @@ interface ApiService {
     fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean = true): Observable<BaseModel<MediaResponse>>
 
     @POST("/media")
-    fun registerMedia(@Body media: MediaRequest): Completable
+    fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<RegisteredMediaResponse>>
+
+    @GET("/games")
+    fun loadHomeGames(): Observable<BaseModel<GameResponse>>
 
     @GET("library")
     fun getLibrary(): Observable<BaseModel<LibraryResponse>>
+
 }
