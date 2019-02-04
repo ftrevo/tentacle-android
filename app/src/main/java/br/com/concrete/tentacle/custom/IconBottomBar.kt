@@ -34,12 +34,12 @@ class IconBottomBar(
 
             setup(icon, selected)
         }
-        setOnTouchListener { v, event ->
-            if (event.action == MotionEvent.ACTION_UP) {
-                setViewSelected(!isViewSelected)
-            }
-            return@setOnTouchListener false
-        }
+//        setOnTouchListener { v, event ->
+//            if (event.action == MotionEvent.ACTION_UP) {
+//                setViewSelected(!isViewSelected)
+//            }
+//            return@setOnTouchListener false
+//        }
     }
 
     private fun setup(icon: Drawable?, selected: Boolean) {
