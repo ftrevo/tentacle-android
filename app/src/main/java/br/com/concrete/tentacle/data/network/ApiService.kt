@@ -6,6 +6,7 @@ import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.RegisteredMediaResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -35,4 +36,5 @@ interface ApiService {
 
     @GET("/games")
     fun loadHomeGames(): Observable<BaseModel<GameResponse>>
+
 }

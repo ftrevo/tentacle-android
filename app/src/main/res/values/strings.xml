@@ -59,6 +59,8 @@
     <string name="register_media_switch_radio_button_title">Nintendo Switch</string>
     <string name="register_media_button">Cadastrar</string>
 
+    <string name="register_media_success_test">Jogo cadastrado com sucesso</string>
+    <string name="register_media_generic_error_test">Ocorreu um erro</string>
     <string name="register_media_no_selection_error">Necessário escolher a plataforma do jogo</string>
 
     <string name="toolbar_title_home">Novos Jogos</string>
