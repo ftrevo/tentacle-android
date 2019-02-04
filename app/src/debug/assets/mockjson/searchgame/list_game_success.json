@@ -3,7 +3,17 @@
     "list": [
       {
         "_id": "5c460f9df2cb790023617ab6",
-        "title": "FIFA",
+        "title": "JOGO 1",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-21T18:29:49.058Z",
+        "updatedAt": "2019-01-21T18:29:49.058Z"
+      },
+      {
+        "_id": "5c460f9df2cb790023617ab6",
+        "title": "TOPZERAAA JOGO",
         "createdBy": {
           "_id": "5c1ab12e7c0f4f002272357e",
           "name": "JOAO DAS NEVES"

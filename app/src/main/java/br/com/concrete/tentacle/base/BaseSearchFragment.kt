@@ -14,7 +14,6 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.callSnackbar
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
-import java.util.Locale.filter
 import java.util.concurrent.TimeUnit
 
 const val TIME_OUT: Long = 300
@@ -52,7 +51,9 @@ abstract class BaseSearchFragment : BaseFragment(),
 
     private fun initSearchView(menuItem: MenuItem) {
         searchView = menuItem.actionView as SearchView
-        searchView.queryHint = context!!.getString(R.string.search)
+        context?.let {
+            searchView.queryHint = it.getString(R.string.search)
+        }
 
         searchView.isIconified = false
         searchView.setIconifiedByDefault(true)
@@ -95,7 +96,11 @@ abstract class BaseSearchFragment : BaseFragment(),
     fun getQuerySearchView() = searchView.query.toString()
 
     fun callSnackBar(message: String) {
-        context?.callSnackbar(view!!, message)
+        context?.let { context ->
+            view?.let {
+                context.callSnackbar(it, message)
+            }
+        }
     }
 
     abstract fun titleToolbar(): String

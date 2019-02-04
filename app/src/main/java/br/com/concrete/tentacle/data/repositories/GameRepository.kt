@@ -28,4 +28,10 @@ class GameRepository(private val apiRest: ApiService) {
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
+
+    fun loadHomeGames(): Observable<BaseModel<GameResponse>> {
+        return apiRest.loadHomeGames()
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
 }
