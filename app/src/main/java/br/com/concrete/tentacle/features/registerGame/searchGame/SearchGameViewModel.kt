@@ -1,12 +1,14 @@
 package br.com.concrete.tentacle.features.registerGame.searchGame
 
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
+import br.com.concrete.tentacle.utils.Event
 
 class SearchGameViewModel(
     private val gameRepository: GameRepository
@@ -14,7 +16,11 @@ class SearchGameViewModel(
     LifecycleObserver {
 
     private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
-    private val viewGame = MutableLiveData<ViewStateModel<Game>>()
+    private val viewGame = MutableLiveData<Event<ViewStateModel<Game>>>()
+
+    val game: LiveData<Event<ViewStateModel<Game>>>
+        get() = viewGame
+
 
     fun searchGame(title: String) {
         viewSearchGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
@@ -39,26 +45,30 @@ class SearchGameViewModel(
         })
 
     fun registerNewGame(title: String) {
-        viewGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
+        viewGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(obsRegisterGame(title))
     }
 
     private fun obsRegisterGame(title: String) =
         gameRepository.registerNewGame(GameRequest(title)).subscribe({ base ->
-                viewGame.postValue(
+            viewGame.postValue(
+                Event(
                     ViewStateModel(
                         status = ViewStateModel.Status.SUCCESS,
                         model = base.data
                     )
                 )
-            }, {
-                viewGame.postValue(
+            )
+        }, {
+            viewGame.postValue(
+                Event(
                     ViewStateModel(
                         status = ViewStateModel.Status.ERROR,
                         errors = notKnownError(it)
                     )
                 )
-            })
+            )
+        })
 
     fun getSearchGame() = viewSearchGame
     fun getRegisteredGame() = viewGame

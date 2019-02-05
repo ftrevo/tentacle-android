@@ -56,23 +56,25 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
             }
         })
 
-        gameViewModel.getRegisteredGame().observe(this, Observer { game ->
-            when (game.status) {
-                ViewStateModel.Status.LOADING -> {
-                    enableCustomError(false)
-                    enableLoadingButton(true)
-                    enableProgress(true)
-                }
-                ViewStateModel.Status.SUCCESS -> {
-                    enableCustomError(false)
-                    enableLoadingButton(false)
-                    enableProgress(false)
-                    navigateToRegisterPlatform(game.model!!)
-                }
-                ViewStateModel.Status.ERROR -> {
-                    showError(game.errors)
-                    enableLoadingButton(false)
-                    enableProgress(false)
+        gameViewModel.getRegisteredGame().observe(this, Observer { it ->
+            it.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.LOADING -> {
+                        enableCustomError(false)
+                        enableLoadingButton(true)
+                        enableProgress(true)
+                    }
+                    ViewStateModel.Status.SUCCESS -> {
+                        enableCustomError(false)
+                        enableLoadingButton(false)
+                        enableProgress(false)
+                        navigateToRegisterPlatform(it.model!!)
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        showError(it.errors)
+                        enableLoadingButton(false)
+                        enableProgress(false)
+                    }
                 }
             }
         })
