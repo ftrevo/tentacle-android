@@ -52,7 +52,7 @@ class HomeVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
         var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
 
-        mockResponseError400(responseJson)
+        mockResponseError400()
 
         homeViewModel.getHomeGames().observeForever {
             actual = it

@@ -4,7 +4,7 @@ import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Game
-import br.com.concrete.tentacle.data.models.RegisteredMediaResponse
+import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -17,7 +17,7 @@ import org.koin.standalone.inject
 class RegisterMediaViewModelTest : BaseViewModelTest() {
 
     private val regMediaviewModel: RegisterMediaViewModel by inject()
-    private lateinit var actual: ViewStateModel<RegisteredMediaResponse>
+    private lateinit var actual: ViewStateModel<Media>
 
     private lateinit var requestGame: Game
 
@@ -33,8 +33,8 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
     fun `when viewmodel successfully register a game should change status to SUCCESS`() {
         val responseJson = getJson("mockjson/registerMedia/register_media_success.json")
 
-        val klass = object : TypeToken<BaseModel<RegisteredMediaResponse>>() {}.type
-        val baseResponse: BaseModel<RegisteredMediaResponse> = GsonBuilder()
+        val klass = object : TypeToken<BaseModel<Media>>() {}.type
+        val baseResponse: BaseModel<Media> = GsonBuilder()
             .create()
             .fromJson(responseJson, klass)
 
@@ -44,7 +44,7 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         regMediaviewModel.viewStatusModel.observeForever {
-            actual = it
+            actual = it.peekContent()
         }
 
         regMediaviewModel.registerMedia(
@@ -78,7 +78,7 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
 
         regMediaviewModel.viewStatusModel.observeForever {
-            actual = it
+            actual = it.peekContent()
         }
 
         regMediaviewModel.registerMedia(
