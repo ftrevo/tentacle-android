@@ -13,6 +13,7 @@
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_7">7dp</dimen>
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_11">11dp</dimen>
@@ -48,5 +49,8 @@
     <dimen name="bottomBarIcon">24dp</dimen>
     <dimen name="bottomBarHeight">56dp</dimen>
     <dimen name="heightCardHome">215dp</dimen>
+
+    <dimen name="library_icon_arrow">28dp</dimen>
+    <dimen name="library_bullet">28dp</dimen>
 </resources>
 
