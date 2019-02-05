@@ -1,11 +1,16 @@
 package br.com.concrete.tentacle.features.register
 
-import androidx.test.espresso.Espresso
+import android.app.Activity
+import android.app.Instrumentation
+import androidx.navigation.NavHost
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.Intents.intending
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -14,6 +19,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentNoActionBar
 import okhttp3.mockwebserver.MockResponse
+import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matchers
 import org.junit.Before
@@ -187,7 +193,11 @@ class RegisterFragmentTest: BaseFragmentNoActionBar(){
         selectState()
         selectCity()
         callButtonClick()
-        matchesNotIsDisplayed(R.id.recyclerListError)
+
+        Intents.init()
+        val matcher = allOf(hasComponent(NavHost::class.java.name))
+        val result = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
+        intending(matcher).respondWith(result)
     }
 
     private fun selectState(){
