@@ -4,10 +4,9 @@ import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
+import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
-import br.com.concrete.tentacle.data.models.RegisteredMediaResponse
-import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -32,9 +31,8 @@ interface ApiService {
     fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean = true): Observable<BaseModel<MediaResponse>>
 
     @POST("/media")
-    fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<RegisteredMediaResponse>>
+    fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>
 
     @GET("/games")
     fun loadHomeGames(): Observable<BaseModel<GameResponse>>
-
 }
