@@ -22,7 +22,6 @@
             app:layoutManager="LinearLayoutManager"
             app:buttonNameError="@string/add_new_game"
             app:errorDescription="@string/no_library_error"
-            app:icon="@drawable/il_wow"
-            app:buttonNameAction="@string/add_new_game_compact"/>
+            app:icon="@drawable/il_wow"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

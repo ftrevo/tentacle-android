@@ -8,7 +8,6 @@ import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.RegisteredMediaResponse
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
-import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -40,5 +39,4 @@ interface ApiService {
 
     @GET("library")
     fun getLibrary(): Observable<BaseModel<LibraryResponse>>
-
 }

@@ -54,4 +54,9 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="LibraryBullets">
+        <item name="android:layout_marginTop">@dimen/dp_7</item>
+        <item name="android:layout_marginEnd">@dimen/dp_4</item>
+    </style>
+
 </resources>

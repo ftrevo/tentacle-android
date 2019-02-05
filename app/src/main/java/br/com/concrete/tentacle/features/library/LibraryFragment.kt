@@ -45,7 +45,7 @@ class LibraryFragment : BaseFragment() {
                                 LibraryViewHolder.callBack(holder = holder, element = element)
                             })
 
-                        recyclerListView.layoutManager =  LinearLayoutManager(context)
+                        recyclerListView.layoutManager = LinearLayoutManager(context)
                         recyclerListView.adapter = recyclerViewAdapter
 
                         list.updateUi(it)
@@ -53,7 +53,7 @@ class LibraryFragment : BaseFragment() {
                     }
                 }
                 ViewStateModel.Status.LOADING -> {
-                    // TODO
+                    list.setLoading(true)
                 }
 
                 ViewStateModel.Status.ERROR -> {
