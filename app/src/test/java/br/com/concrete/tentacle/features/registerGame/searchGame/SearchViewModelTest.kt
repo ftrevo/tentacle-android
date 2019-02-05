@@ -107,16 +107,20 @@ class SearchViewModelTest : BaseViewModelTest() {
             .fromJson(responseJson, collectionType)
 
         val expected =
-            ViewStateModel(
-                status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data
+                ViewStateModel(
+                    status = ViewStateModel.Status.SUCCESS,
+                    model = responseObject.data
+                )
+
+        var actual =
+            ViewStateModel<Game>(
+                status = ViewStateModel.Status.LOADING
             )
-        var actual = ViewStateModel<Game>(status = ViewStateModel.Status.LOADING)
 
         mockResponse201(responseJson)
 
         searchGameViewModel.getRegisteredGame().observeForever {
-            actual = it
+            actual = it.peekContent()
         }
 
         searchGameViewModel.registerNewGame("Fallout 76")
@@ -136,12 +140,16 @@ class SearchViewModelTest : BaseViewModelTest() {
             ViewStateModel<Game>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject
             )
-        var actual = ViewStateModel<Game>(status = ViewStateModel.Status.LOADING)
+
+        var actual =
+            ViewStateModel<Game>(
+                status = ViewStateModel.Status.LOADING
+            )
 
         mockResponseError400()
 
         searchGameViewModel.getRegisteredGame().observeForever {
-            actual = it
+            actual = it.peekContent()
         }
 
         searchGameViewModel.registerNewGame("Fallout 76")
