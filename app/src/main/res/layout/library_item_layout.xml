@@ -47,78 +47,79 @@
             android:layout_height="wrap_content">
 
         <TextView
-                style="@style/LibraryBullets"
-                android:textColor="#FFF"
-                android:gravity="center"
-                android:textAppearance="@style/TextBlack.9dp"
-                android:text="PS3"
-                android:id="@+id/tvPS3"
-                android:visibility="gone"
-                android:background="@drawable/circle_bg_icon_library"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"/>
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_ps3"
+            android:id="@+id/tvPS3"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-                style="@style/LibraryBullets"
-                android:textColor="#FFF"
-                android:gravity="center"
-                android:textAppearance="@style/TextBlack.9dp"
-                android:text="PS4"
-                android:id="@+id/tvPS4"
-                android:visibility="gone"
-                android:background="@drawable/circle_bg_icon_library"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_ps4"
+            android:id="@+id/tvPS4"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <TextView
-                style="@style/LibraryBullets"
-                android:textColor="#FFF"
-                android:gravity="center"
-                android:textAppearance="@style/TextBlack.9dp"
-                android:text="360"
-                android:id="@+id/tv360"
-                android:visibility="gone"
-                android:background="@drawable/circle_bg_icon_library"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_360"
+            android:id="@+id/tv360"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <TextView
-                style="@style/LibraryBullets"
-                android:textColor="#FFF"
-                android:gravity="center"
-                android:textAppearance="@style/TextBlack.9dp"
-                android:text="ONE"
-                android:id="@+id/tvONE"
-                android:visibility="gone"
-                android:background="@drawable/circle_bg_icon_library"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_ONE"
+            android:id="@+id/tvONE"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
         <TextView
-                style="@style/LibraryBullets"
-                android:textColor="#FFF"
-                android:gravity="center"
-                android:textAppearance="@style/TextBlack.9dp"
-                android:text="3DS"
-                android:id="@+id/tv3DS"
-                android:visibility="gone"
-                android:background="@drawable/circle_bg_icon_library"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_3DS"
+            android:id="@+id/tv3DS"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <TextView
-                style="@style/LibraryBullets"
-                android:textColor="#FFF"
-                android:gravity="center"
-                android:textAppearance="@style/TextBlack.9dp"
-                android:text="NS"
-                android:id="@+id/tvNS"
-                android:visibility="gone"
-                android:background="@drawable/circle_bg_icon_library"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_NS"
+            android:id="@+id/tvNS"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tvNS, tv3DS, tvONE, tv360, tvPS4, tvPS3"/>
 
     </LinearLayout>
 

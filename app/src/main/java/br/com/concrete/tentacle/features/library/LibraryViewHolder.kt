@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.MediaLibrary
+import br.com.concrete.tentacle.extensions.animation
 import kotlinx.android.synthetic.main.library_item_layout.view.*
 
 class LibraryViewHolder(
@@ -31,37 +32,15 @@ class LibraryViewHolder(
         }
 
         private fun animateOpen(view: View, element: Library) {
-            val anim = AnimationUtils.loadAnimation(view.context, R.anim.rotate_open)
-            anim.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationRepeat(animation: Animation?) {
-                }
-
-                override fun onAnimationEnd(animation: Animation?) {
-                }
-
-                override fun onAnimationStart(animation: Animation?) {
-                    showBullets(view, element)
-                }
-            })
-
-            view.ivArrow.startAnimation(anim)
+            view.ivArrow.animation(R.anim.rotate_open) {
+                showBullets(view, element)
+            }
         }
 
         private fun animateClose(view: View) {
-            val anim = AnimationUtils.loadAnimation(view.context, R.anim.rotate_close)
-            anim.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationRepeat(animation: Animation?) {
-                }
-
-                override fun onAnimationEnd(animation: Animation?) {
-                }
-
-                override fun onAnimationStart(animation: Animation?) {
-                    hideBullets(view)
-                }
-            })
-
-            view.ivArrow.startAnimation(anim)
+            view.ivArrow.animation(R.anim.rotate_close) {
+                hideBullets(view)
+            }
         }
 
         private fun showBullets(view: View, element: Library) {
@@ -74,12 +53,7 @@ class LibraryViewHolder(
         }
 
         private fun hideBullets(view: View) {
-            view.tvNS.visibility = View.GONE
-            view.tv3DS.visibility = View.GONE
-            view.tvONE.visibility = View.GONE
-            view.tv360.visibility = View.GONE
-            view.tvPS4.visibility = View.GONE
-            view.tvPS3.visibility = View.GONE
+            view.group.visibility = View.GONE
         }
     }
 }
