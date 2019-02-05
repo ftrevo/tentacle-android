@@ -7,7 +7,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
-import br.com.concrete.tentacle.util.waitUntil
+import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.extensions.waitUntil
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
@@ -19,7 +20,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
 
     @Test
     fun showEmptyErrorCustomLayout() {
-        val response = getJson("mockjson/loadmygames/load_my_games_empty_list_success.json")
+        val response = "mockjson/loadmygames/load_my_games_empty_list_success.json".getJson()
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -38,7 +39,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
 
     @Test
     fun showRecycleViewWithItems() {
-        val response = getJson("mockjson/loadmygames/load_my_games_success.json")
+        val response = "mockjson/loadmygames/load_my_games_success.json".getJson()
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -56,7 +57,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
     @Test
     fun showErrorMessageAndButtonLoadAgain() {
         mockWebServer.enqueue(MockResponse()
-            .setBody(getJson("mockjson/errors/error_400.json"))
+            .setBody("mockjson/errors/error_400.json".getJson())
             .setResponseCode(400))
 
         onView(withId(R.id.recyclerListView))
@@ -71,7 +72,9 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
 
     @Test
     fun showLoadingWhileDoNotCharge() {
+        onView(withId(R.id.recyclerListView))
+            .check(matches(not(isDisplayed())))
         onView(withId(R.id.progressBarList))
-            .check(matches(isDisplayed()))
+            .check(matches(not(isDisplayed())))
     }
 }

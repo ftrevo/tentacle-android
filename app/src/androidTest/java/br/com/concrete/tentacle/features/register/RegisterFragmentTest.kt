@@ -18,6 +18,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentNoActionBarNoBottomBarTest
+import br.com.concrete.tentacle.extensions.childAtPosition
+import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -38,21 +40,21 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/register/get_states_success.json"))
+                .setBody("mockjson/register/get_states_success.json".getJson())
         )
     }
 
     @Test
     fun checkInvalidEmail() {
         presetValidForm()
-        setFieldAndClickRegister("teste@teste", R.id.edtEmail)
+        setField("teste@teste", R.id.edtEmail)
         callButtonClick()
         matchesIsDisplayed(R.string.email_error)
     }
     @Test
     fun checkValidEmail() {
         presetValidForm()
-        setFieldAndClickRegister("teste@teste.com", R.id.edtEmail)
+        setField("teste@teste.com", R.id.edtEmail)
         callButtonClick()
         matchesNotIsDisplayed(R.string.email_error)
     }
@@ -60,21 +62,21 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
     @Test
     fun checkEmptyName() {
         presetValidForm()
-        setFieldAndClickRegister("", R.id.edtUserName)
+        setField("", R.id.edtUserName)
         callButtonClick()
         matchesIsDisplayed(R.string.name_error)
     }
     @Test
     fun checkInvalidName() {
         presetValidForm()
-        setFieldAndClickRegister("", R.id.edtUserName)
+        setField("", R.id.edtUserName)
         callButtonClick()
         matchesIsDisplayed(R.string.name_error)
     }
     @Test
     fun checkValidName() {
         presetValidForm()
-        setFieldAndClickRegister("Teste Teste", R.id.edtUserName)
+        setField("Teste Teste", R.id.edtUserName)
         callButtonClick()
         matchesNotIsDisplayed(R.string.name_error)
     }
@@ -82,21 +84,21 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
     @Test
     fun checkEmptyPassword() {
         presetValidForm()
-        setFieldAndClickRegister("", R.id.edtPassword)
+        setField("", R.id.edtPassword)
         callButtonClick()
         matchesIsDisplayed(R.string.password_error)
     }
     @Test
     fun checkInvalidPassword() {
         presetValidForm()
-        setFieldAndClickRegister("123", R.id.edtPassword)
+        setField("123", R.id.edtPassword)
         callButtonClick()
         matchesIsDisplayed(R.string.password_error)
     }
     @Test
     fun checkValidPassword() {
         presetValidForm()
-        setFieldAndClickRegister("123456", R.id.edtPassword)
+        setField("123456", R.id.edtPassword)
         callButtonClick()
         matchesNotIsDisplayed(R.string.password_error)
     }
@@ -104,21 +106,21 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
     @Test
     fun checkEmptyPhone() {
         presetValidForm()
-        setFieldAndClickRegister("", R.id.edtPhone)
+        setField("", R.id.edtPhone)
         callButtonClick()
         matchesIsDisplayed(R.string.phone_error)
     }
     @Test
     fun checkInvalidPhone() {
         presetValidForm()
-        setFieldAndClickRegister("999999999", R.id.edtPhone)
+        setField("999999999", R.id.edtPhone)
         callButtonClick()
         matchesIsDisplayed(R.string.phone_error)
     }
     @Test
     fun checkValidPhone() {
         presetValidForm()
-        setFieldAndClickRegister("99 999999999", R.id.edtPhone)
+        setField("99 999999999", R.id.edtPhone)
         callButtonClick()
         matchesNotIsDisplayed(R.string.phone_error)
     }
@@ -128,7 +130,7 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/register/get_cities_success.json"))
+                .setBody("mockjson/register/get_cities_success.json".getJson())
         )
 
         presetValidForm()
@@ -141,7 +143,7 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/register/get_cities_success.json"))
+                .setBody("mockjson/register/get_cities_success.json".getJson())
         )
 
         presetValidForm()
@@ -155,7 +157,7 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/register/get_cities_success.json"))
+                .setBody("mockjson/register/get_cities_success.json".getJson())
         )
 
         presetValidForm()
@@ -169,19 +171,19 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/register/get_cities_success.json"))
+                .setBody("mockjson/register/get_cities_success.json".getJson())
         )
 
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/login/login_success.json"))
+                .setBody("mockjson/login/login_success.json".getJson())
         )
 
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/home/load_home_games_success.json"))
+                .setBody("mockjson/home/load_home_games_success.json".getJson())
         )
 
         presetValidForm()
@@ -199,65 +201,52 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         onView(
             Matchers.allOf(
                 withId(R.id.button), withText("Selecione"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.spState),
-                        0
-                    ),
-                    1
-                )
+                withId(R.id.spState)
+                    .childAtPosition(0)
+                    .childAtPosition(1)
             )
         ).perform(ViewActions.scrollTo(), click())
+
         onData(Matchers.anything())
             .inAdapterView(
                 Matchers.allOf(
                     withId(R.id.list),
-                    childAtPosition(
-                        ViewMatchers.withClassName(Matchers.`is`("android.widget.LinearLayout")),
-                        3
-                    )
+                    ViewMatchers.withClassName(
+                        Matchers.`is`("android.widget.LinearLayout"))
+                            .childAtPosition(3)
                 )
-            )
-            .atPosition(16).perform(click())
+            ).atPosition(16).perform(click())
     }
 
     private fun selectCity(){
         onView(
             Matchers.allOf(
                 withId(R.id.button), withText("Selecione"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.spCity),
-                        0
-                    ),
-                    1
-                )
+                withId(R.id.spCity)
+                    .childAtPosition(0)
+                    .childAtPosition(1)
             )
         ).perform(ViewActions.scrollTo(), click())
+
         onData(Matchers.anything())
             .inAdapterView(
                 Matchers.allOf(
                     withId(R.id.list),
-                    childAtPosition(
-                        ViewMatchers.withClassName(Matchers.`is`("android.widget.LinearLayout")),
-                        3
-                    )
+                    ViewMatchers.withClassName(
+                        Matchers.`is`("android.widget.LinearLayout"))
+                            .childAtPosition(3)
                 )
             )
             .atPosition(0).perform(click())
     }
 
-    private fun setFieldAndClickRegister(textField: String, id: Int) {
+    private fun setField(textField: String, id: Int) {
         val textInputEditText = onView(
             Matchers.allOf(
                 withId(R.id.edt),
-                childAtPosition(
-                    childAtPosition(
-                        withId(id),
-                        0
-                    ),
-                    1
-                )
+                withId(id)
+                    .childAtPosition(0)
+                    .childAtPosition(1)
             )
         )
         textInputEditText.perform(
@@ -267,10 +256,10 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
     }
 
     private fun presetValidForm() {
-        setFieldAndClickRegister("teste@teste.com", R.id.edtEmail)
-        setFieldAndClickRegister("Teste Teste", R.id.edtUserName)
-        setFieldAndClickRegister("123456", R.id.edtPassword)
-        setFieldAndClickRegister("99 999999999", R.id.edtPhone)
+        setField("teste@teste.com", R.id.edtEmail)
+        setField("Teste Teste", R.id.edtUserName)
+        setField("123456", R.id.edtPassword)
+        setField("99 999999999", R.id.edtPhone)
     }
 
     private fun callButtonClick() {

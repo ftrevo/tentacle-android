@@ -8,6 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
+import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
@@ -21,7 +22,7 @@ class HomeFragmentTest : BaseFragmentTest() {
     @Test
     fun showErrorMessageAndButtonAgainOnClickReturnSuccess() {
         mockWebServer.enqueue(MockResponse()
-            .setBody(getJson("mockjson/errors/error_400.json"))
+            .setBody("mockjson/errors/error_400.json".getJson())
             .setResponseCode(400))
 
         onView(withId(R.id.recyclerListError))
@@ -38,7 +39,7 @@ class HomeFragmentTest : BaseFragmentTest() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/home/load_home_games_success.json"))
+                .setBody("mockjson/home/load_home_games_success.json".getJson())
         )
 
         onView(withId(R.id.buttonNameError))
@@ -56,7 +57,7 @@ class HomeFragmentTest : BaseFragmentTest() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/home/load_home_games_success_empty.json"))
+                .setBody("mockjson/home/load_home_games_success_empty.json".getJson())
         )
 
         onView(withId(R.id.recyclerListError))
@@ -73,7 +74,7 @@ class HomeFragmentTest : BaseFragmentTest() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(getJson("mockjson/home/load_home_games_success.json"))
+                .setBody("mockjson/home/load_home_games_success.json".getJson())
         )
 
         onView(withId(R.id.recyclerListView))
@@ -85,7 +86,7 @@ class HomeFragmentTest : BaseFragmentTest() {
     @Test
     fun showErrorMessageAndButtonAgain() {
         mockWebServer.enqueue(MockResponse()
-            .setBody(getJson("mockjson/errors/error_400.json"))
+            .setBody("mockjson/errors/error_400.json".getJson())
             .setResponseCode(400))
 
         onView(withId(R.id.recyclerListError))
@@ -102,7 +103,7 @@ class HomeFragmentTest : BaseFragmentTest() {
     @Test
     fun showErrorMessageAndButtonAgainOnClickReturnError() {
         mockWebServer.enqueue(MockResponse()
-            .setBody(getJson("mockjson/errors/error_400.json"))
+            .setBody("mockjson/errors/error_400.json".getJson())
             .setResponseCode(400))
 
         onView(withId(R.id.recyclerListError))
@@ -117,7 +118,7 @@ class HomeFragmentTest : BaseFragmentTest() {
             .check(matches(not(isDisplayed())))
 
         mockWebServer.enqueue(MockResponse()
-            .setBody(getJson("mockjson/errors/error_400.json"))
+            .setBody("mockjson/errors/error_400.json".getJson())
             .setResponseCode(400))
 
         onView(withId(R.id.buttonNameError))

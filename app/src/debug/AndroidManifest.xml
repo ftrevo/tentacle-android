@@ -10,6 +10,6 @@
                 tools:ignore="GoogleAppIndexingWarning"
                 android:usesCleartextTraffic="true" tools:targetApi="m"/>
         <activity android:name=".testing.BottomBarTestActivity"/>
-        <activity android:name=".testing.SingleFragmentTestActivityNoActionBar"/>
+        <activity android:name=".testing.SingleFragmentTestActivityNoActionBarNoBottomBar"/>
     </application>
 </manifest>
