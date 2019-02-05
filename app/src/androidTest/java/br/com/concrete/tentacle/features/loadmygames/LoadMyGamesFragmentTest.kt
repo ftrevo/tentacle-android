@@ -7,6 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
+import br.com.concrete.tentacle.util.waitUntil
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
@@ -44,8 +45,8 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
                 .setBody(response)
         )
 
-        onView(withId(R.id.progressBarList))
-            .check(matches(not(isDisplayed())))
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListView))
             .check(matches(isDisplayed()))
         onView(withId(R.id.recyclerListError))

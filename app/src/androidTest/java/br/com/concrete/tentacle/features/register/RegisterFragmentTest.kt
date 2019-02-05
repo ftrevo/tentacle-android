@@ -17,7 +17,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.base.BaseFragmentNoActionBar
+import br.com.concrete.tentacle.base.BaseFragmentNoActionBarNoBottomBarTest
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -27,7 +27,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class RegisterFragmentTest: BaseFragmentNoActionBar(){
+class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
 
     override fun setupFragment() {
         testFragment = RegisterFragment()
@@ -57,7 +57,6 @@ class RegisterFragmentTest: BaseFragmentNoActionBar(){
         matchesNotIsDisplayed(R.string.email_error)
     }
 
-    //NAME
     @Test
     fun checkEmptyName() {
         presetValidForm()
@@ -80,7 +79,6 @@ class RegisterFragmentTest: BaseFragmentNoActionBar(){
         matchesNotIsDisplayed(R.string.name_error)
     }
 
-    //PASSWORD
     @Test
     fun checkEmptyPassword() {
         presetValidForm()
@@ -103,7 +101,6 @@ class RegisterFragmentTest: BaseFragmentNoActionBar(){
         matchesNotIsDisplayed(R.string.password_error)
     }
 
-    //PHONE
     @Test
     fun checkEmptyPhone() {
         presetValidForm()
@@ -126,7 +123,6 @@ class RegisterFragmentTest: BaseFragmentNoActionBar(){
         matchesNotIsDisplayed(R.string.phone_error)
     }
 
-    //State Spinner
     @Test
     fun checkEmptyStateSelection() {
         mockWebServer.enqueue(
@@ -154,7 +150,6 @@ class RegisterFragmentTest: BaseFragmentNoActionBar(){
         matchesNotIsDisplayed(R.string.state_error)
     }
 
-    //City Spinner
     @Test
     fun checkEmptyCitySelection() {
         mockWebServer.enqueue(

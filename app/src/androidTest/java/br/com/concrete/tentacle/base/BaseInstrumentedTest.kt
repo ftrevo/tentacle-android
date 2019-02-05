@@ -23,7 +23,7 @@ import org.junit.runner.RunWith
 
 @Ignore
 @RunWith(AndroidJUnit4::class)
-abstract class BaseTest {
+abstract class BaseInstrumentedTest {
 
     lateinit var mockWebServer: MockWebServer
     lateinit var testFragment: Fragment
@@ -48,39 +48,10 @@ abstract class BaseTest {
         return json
     }
 
-    fun waitUntil(matcher: Matcher<View>): ViewAction {
-        return ViewActions.actionWithAssertions(object : ViewAction {
-            override fun getConstraints(): Matcher<View> {
-                return ViewMatchers.isAssignableFrom(View::class.java)
-            }
-
-            override fun getDescription(): String {
-                val description = StringDescription()
-                matcher.describeTo(description)
-                return String.format("wait until: %s", description)
-            }
-
-            override fun perform(uiController: UiController, view: View) {
-                if (!matcher.matches(view)) {
-                    val callback = LayoutChangeCallback(matcher)
-                    try {
-                        IdlingRegistry.getInstance().register(callback)
-                        view.addOnLayoutChangeListener(callback)
-                        uiController.loopMainThreadUntilIdle()
-                    } finally {
-                        view.removeOnLayoutChangeListener(callback)
-                        IdlingRegistry.getInstance().unregister(callback)
-                    }
-                }
-            }
-        })
-    }
-
     fun childAtPosition(
         parentMatcher: Matcher<View>,
         position: Int
     ): Matcher<View> {
-
         return object : TypeSafeMatcher<View>() {
             override fun describeTo(description: Description) {
                 description.appendText("Child at position $position in parent ")
@@ -94,5 +65,4 @@ abstract class BaseTest {
             }
         }
     }
-
 }

@@ -14,6 +14,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.util.RecyclerPositionViewMatcher.Companion.withRecyclerViewAndViewId
+import br.com.concrete.tentacle.util.waitUntil
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers
 import org.junit.Test
@@ -35,7 +36,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.recyclerListView))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListError))
             .check(matches(CoreMatchers.not(isDisplayed())))
     }
@@ -46,7 +47,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.progressBarList))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListError))
             .check(matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.recyclerListView))
@@ -63,7 +64,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.recyclerListError))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListView))
             .check(matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
@@ -80,7 +81,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.recyclerListError))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListView))
             .check(matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
@@ -97,7 +98,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.buttonNameError))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
 
         pressBack()
 
@@ -109,7 +110,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
             .perform(click())
 
         onView(withId(R.id.recyclerListView))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListError))
             .check(matches(CoreMatchers.not(isDisplayed())))
     }
@@ -126,7 +127,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
         pressBack()
 
         onView(withId(R.id.recyclerListView))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
 
         onView(withRecyclerViewAndViewId(R.id.recyclerListView, 0, R.id.game_name))
             .check(matches(withText("JOGO 1")))
