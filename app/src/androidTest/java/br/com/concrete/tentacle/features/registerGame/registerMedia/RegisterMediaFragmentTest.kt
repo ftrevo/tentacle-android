@@ -13,15 +13,15 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.extensions.fromJson
+import br.com.concrete.tentacle.extensions.getJson
 import com.google.gson.Gson
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Test
 
 class RegisterMediaFragmentTest : BaseFragmentTest() {
 
-    private val responseJson = getJson(
-        "mockjson/loadmygames/game_register_media_success.json"
-    )
+    private val responseJson =
+        "mockjson/loadmygames/game_register_media_success.json".getJson()
 
     private val expectedGame = Gson().fromJson<Game>(responseJson)
 
@@ -56,7 +56,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.mediaRegisterButton))
             .perform(click())
 
-        onView(withId(R.id.progressBar))
+        onView(withId(R.id.progressBarList))
             .check(matches(isDisplayed()))
     }
 
@@ -83,9 +83,9 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
             onView(withId(R.id.mediaPS4RadioButton))
                 .perform(click())
 
-            val response = getJson(
-                "mockjson/loadmygames/register_media_success.json"
-            )
+            val response =
+                "mockjson/loadmygames/register_media_success.json".getJson()
+
 
             mockWebServer.enqueue(MockResponse()
                 .setBody(response)
