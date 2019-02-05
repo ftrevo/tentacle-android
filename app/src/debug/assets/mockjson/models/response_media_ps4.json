@@ -1,0 +1,21 @@
+{
+  "message": [
+    "Mídia salva"
+  ],
+  "data": {
+    "_id": "5c5348d8906fb50023e5072e",
+    "game": {
+      "_id": "5c5348d1906fb50023e5072d",
+      "title": "Doom"
+    },
+    "platform": "PS4",
+    "owner": {
+      "_id": "5c1ab12e7c0f4f002272357e",
+      "name": "JOAO DAS NEVES"
+    },
+    "createdAt": "2019-01-31T19:13:28.644Z",
+    "updatedAt": "2019-01-31T19:13:28.644Z"
+  }
+}
+
+
