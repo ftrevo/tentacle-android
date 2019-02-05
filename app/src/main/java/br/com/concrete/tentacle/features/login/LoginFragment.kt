@@ -56,8 +56,6 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                         LogWrapper.log("LOGIN-SUCCESS", "User logged")
                         handleWithSession()
                         setLoading(false)
-                        activity?.finish()
-                            startActivity(Intent(activity, HostActivity::class.java))
                     }
                     ViewStateModel.Status.LOADING -> {
                         setLoading(true)
