@@ -30,9 +30,9 @@ node('master') {
         utils.buildApk('Debug')
     }
 
-     stage('Unit Tests') {
+     /*stage('Unit Tests') {
          utils.unitTests('Debug')
-     }
+     }*/
 
     stage('Instruments Tests') {
         utils.instrumentTests()
