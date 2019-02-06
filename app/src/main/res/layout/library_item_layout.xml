@@ -44,8 +44,10 @@
 
     <LinearLayout
             android:animateLayoutChanges="true"
-            app:layout_constraintTop_toBottomOf="@+id/ivArrow"
+            android:id="@+id/groupLayout"
+            app:layout_constraintTop_toBottomOf="@id/ivArrow"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -116,13 +118,6 @@
             android:background="@drawable/circle_bg_icon_library"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:constraint_referenced_ids="tvNS, tv3DS, tvONE, tv360, tvPS4, tvPS3"/>
 
     </LinearLayout>
 
