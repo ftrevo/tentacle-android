@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.base
 
 import androidx.fragment.app.Fragment
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
@@ -17,7 +16,7 @@ abstract class BaseInstrumentedTest {
     lateinit var testFragment: Fragment
 
     @Before
-    fun setUp(){
+    fun setUp() {
         mockWebServer = MockWebServer()
         mockWebServer.start(8080)
     }

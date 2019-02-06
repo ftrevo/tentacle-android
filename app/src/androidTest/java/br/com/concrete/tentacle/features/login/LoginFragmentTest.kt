@@ -1,7 +1,6 @@
 package br.com.concrete.tentacle.features.login
 
 import android.app.Activity
-import android.app.Dialog
 import android.app.Instrumentation
 import androidx.navigation.NavHost
 import androidx.test.espresso.Espresso
@@ -12,7 +11,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -24,7 +22,6 @@ import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.allOf
 import org.junit.Test
 import java.io.File
-
 
 class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
@@ -65,7 +62,7 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
     }
 
     @Test
-    fun loginSuccess(){
+    fun loginSuccess() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -86,7 +83,7 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
     }
 
     @Test
-    fun loginError400(){
+    fun loginError400() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(400)
@@ -97,12 +94,11 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         setField("123456", R.id.edtPassword)
         callButtonClick()
         onView(withId(android.R.id.message))
-            .check(matches(allOf(withText("ERROR MESSAGE.")
-                , isDisplayed())))
+            .check(matches(allOf(withText("ERROR MESSAGE."), isDisplayed())))
     }
 
     @Test
-    fun loginError401(){
+    fun loginError401() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(401)
@@ -112,8 +108,7 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         setField("123456", R.id.edtPassword)
         callButtonClick()
         onView(withId(android.R.id.message))
-            .check(matches(allOf(withText(R.string.user_or_password_error)
-                , isDisplayed())))
+            .check(matches(allOf(withText(R.string.user_or_password_error), isDisplayed())))
     }
 
     @Test
@@ -143,8 +138,7 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         Espresso.onView(ViewMatchers.withText(idMessageError)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-
-    private fun checkIfGoesToHome(){
+    private fun checkIfGoesToHome() {
         Intents.init()
         val matcher = CoreMatchers.allOf(IntentMatchers.hasComponent(NavHost::class.java.name))
         val result = Instrumentation.ActivityResult(Activity.RESULT_OK, null)

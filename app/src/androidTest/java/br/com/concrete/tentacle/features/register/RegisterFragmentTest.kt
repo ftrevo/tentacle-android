@@ -29,14 +29,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
+class RegisterFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
     override fun setupFragment() {
         testFragment = RegisterFragment()
     }
 
     @Before
-    fun setMock(){
+    fun setMock() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -194,7 +194,7 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
     }
 
     @Test
-    fun registerError400(){
+    fun registerError400() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -212,18 +212,17 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         selectCity()
         callButtonClick()
         onView(withId(android.R.id.message))
-            .check(matches(allOf(withText("ERROR MESSAGE.")
-                , isDisplayed())))
+            .check(matches(allOf(withText("ERROR MESSAGE."), isDisplayed())))
     }
 
-    private fun checkIfGoesToHome(){
+    private fun checkIfGoesToHome() {
         Intents.init()
         val matcher = allOf(hasComponent(NavHost::class.java.name))
         val result = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
         intending(matcher).respondWith(result)
     }
 
-    private fun selectState(){
+    private fun selectState() {
         onView(
             Matchers.allOf(
                 withId(R.id.button), withText("Selecione"),
@@ -244,7 +243,7 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
             ).atPosition(16).perform(click())
     }
 
-    private fun selectCity(){
+    private fun selectCity() {
         onView(
             Matchers.allOf(
                 withId(R.id.button), withText("Selecione"),

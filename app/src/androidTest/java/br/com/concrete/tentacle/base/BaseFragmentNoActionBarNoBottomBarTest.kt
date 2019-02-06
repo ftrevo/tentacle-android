@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.base
 
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -14,7 +13,7 @@ import org.junit.Ignore
 import org.junit.Rule
 
 @Ignore
-abstract class BaseFragmentNoActionBarNoBottomBarTest: BaseInstrumentedTest() {
+abstract class BaseFragmentNoActionBarNoBottomBarTest : BaseInstrumentedTest() {
 
     @get:Rule
     val activityRule = ActivityTestRule(SingleFragmentTestActivityNoActionBarNoBottomBar::class.java)
