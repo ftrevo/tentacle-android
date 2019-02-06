@@ -3,7 +3,6 @@ package br.com.concrete.tentacle.features.library
 import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
-import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
@@ -91,5 +90,4 @@ class LibraryVMTest : BaseViewModelTest() {
         libraryViewModel.loadLibrary()
         Assert.assertEquals(expected, actual)
     }
-
 }

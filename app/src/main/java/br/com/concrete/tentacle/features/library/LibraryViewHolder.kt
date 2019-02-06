@@ -1,8 +1,6 @@
 package br.com.concrete.tentacle.features.library
 
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.library.Library
