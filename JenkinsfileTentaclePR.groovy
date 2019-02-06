@@ -18,9 +18,9 @@ node('master') {
         utils.upgradeVersionName()
     }
 
-    stage('Sintaxe Code') {
+    /*stage('Sintaxe Code') {
         utils.testsKtlint()
-    }
+    }*/
 
     /*stage('Lint Debug') {
         utils.lintDebug()
