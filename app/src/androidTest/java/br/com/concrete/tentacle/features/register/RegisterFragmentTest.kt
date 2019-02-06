@@ -167,7 +167,7 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
     }
 
     @Test
-    fun checkValidCitySelection() {
+    fun registerSuccess() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -190,7 +190,33 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         selectState()
         selectCity()
         callButtonClick()
+        checkIfGoesToHome()
+    }
 
+    @Test
+    fun registerError400(){
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody("mockjson/register/get_cities_success.json".getJson())
+        )
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(400)
+                .setBody("mockjson/errors/error_400.json".getJson())
+        )
+
+        presetValidForm()
+        selectState()
+        selectCity()
+        callButtonClick()
+        onView(withId(android.R.id.message))
+            .check(matches(allOf(withText("ERROR MESSAGE.")
+                , isDisplayed())))
+    }
+
+    private fun checkIfGoesToHome(){
         Intents.init()
         val matcher = allOf(hasComponent(NavHost::class.java.name))
         val result = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
@@ -238,21 +264,6 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
                 )
             )
             .atPosition(0).perform(click())
-    }
-
-    private fun setField(textField: String, id: Int) {
-        val textInputEditText = onView(
-            Matchers.allOf(
-                withId(R.id.edt),
-                withId(id)
-                    .childAtPosition(0)
-                    .childAtPosition(1)
-            )
-        )
-        textInputEditText.perform(
-            ViewActions.scrollTo(),
-            ViewActions.replaceText(textField)
-        )
     }
 
     private fun presetValidForm() {
