@@ -22,9 +22,9 @@ node('master') {
         utils.testsKtlint()
     }
 
-    stage('Lint Debug') {
+    /*stage('Lint Debug') {
         utils.lintDebug()
-    }
+    }*/
 
     stage('Build APK') {
         utils.buildApk('Debug')
