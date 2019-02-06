@@ -14,17 +14,17 @@ node('master') {
          utils.gradleClean()
     }
 
-    /*stage('Version') {
+    stage('Version') {
         utils.upgradeVersionName()
-    }*/
+    }
 
     stage('Build APK') {
         utils.buildApk('Debug')
     }
 
-    /*stage('Release') {
+    stage('Release') {
         utils.releaseAndroidAPKToCrashlytics('Debug')
-    }*/
+    }
 
     stage('Inform Build OK') {
         utils.sendSucessNotify('Job success')
