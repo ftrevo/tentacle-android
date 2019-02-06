@@ -7,8 +7,13 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.R.id.btLogin
+import br.com.concrete.tentacle.R.id.edtEmail
+import br.com.concrete.tentacle.R.id.edtPassword
+import br.com.concrete.tentacle.R.id.tvRegisterAccount
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
@@ -50,8 +55,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
 
     private fun initViewModel() {
         loginViewModel.getStateModel().observe(this, Observer { viewState ->
-            viewState?.let {
-                when (viewState.status) {
+            viewState.getContentIfNotHandler()?.let {
+                when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         LogWrapper.log("LOGIN-SUCCESS", "User logged")
                         handleWithSession()

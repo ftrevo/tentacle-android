@@ -44,7 +44,7 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         regMediaviewModel.viewStatusModel.observeForever {
-            actual = it
+            actual = it.peekContent()
         }
 
         regMediaviewModel.registerMedia(
@@ -78,7 +78,7 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
 
         regMediaviewModel.viewStatusModel.observeForever {
-            actual = it
+            actual = it.peekContent()
         }
 
         regMediaviewModel.registerMedia(
