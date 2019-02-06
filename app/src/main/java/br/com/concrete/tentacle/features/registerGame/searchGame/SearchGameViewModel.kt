@@ -18,6 +18,9 @@ class SearchGameViewModel(
     private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
     private val viewGame = MutableLiveData<Event<ViewStateModel<Game>>>()
 
+    val game: LiveData<Event<ViewStateModel<Game>>>
+        get() = viewGame
+
     fun searchGame(title: String) {
         viewSearchGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(obsSearchGames(title))
