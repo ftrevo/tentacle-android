@@ -18,10 +18,6 @@ class SearchGameViewModel(
     private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
     private val viewGame = MutableLiveData<Event<ViewStateModel<Game>>>()
 
-    val game: LiveData<Event<ViewStateModel<Game>>>
-        get() = viewGame
-
-
     fun searchGame(title: String) {
         viewSearchGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(obsSearchGames(title))
@@ -70,8 +66,8 @@ class SearchGameViewModel(
             )
         })
 
-    fun getSearchGame() = viewSearchGame
-    fun getRegisteredGame() = viewGame
+    fun getSearchGame(): LiveData<ViewStateModel<ArrayList<Game>>> = viewSearchGame
+    fun getRegisteredGame(): LiveData<Event<ViewStateModel<Game>>> = viewGame
 
     override fun onCleared() {
         super.onCleared()

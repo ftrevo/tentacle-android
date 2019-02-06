@@ -7,7 +7,7 @@ import org.junit.Ignore
 import org.junit.Rule
 
 @Ignore
-abstract class BaseFragmentNoActionBarNoBottomBarTest: BaseInstrumentedTest() {
+abstract class BaseFragmentNoActionBarNoBottomBarTest : BaseInstrumentedTest() {
 
     @get:Rule
     val activityRule = ActivityTestRule(SingleFragmentTestActivityNoActionBarNoBottomBar::class.java)
