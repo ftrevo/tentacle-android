@@ -14,9 +14,9 @@ node('master') {
          utils.gradleClean()
     }
 
-    stage('Version') {
+    /*stage('Version') {
         utils.upgradeVersionName()
-    }
+    }*/
 
     stage('Build APK') {
         utils.buildApk('Debug')
@@ -26,7 +26,7 @@ node('master') {
         utils.releaseAndroidAPKToCrashlytics('Debug')
     }
 
-    stage('Inform Build OK') {
+    /*stage('Inform Build OK') {
         utils.sendSucessNotify('Job success')
-    }
+    }*/
 }
