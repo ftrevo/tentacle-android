@@ -69,8 +69,8 @@ class SearchGameViewModel(
             )
         })
 
-    fun getSearchGame() = viewSearchGame
-    fun getRegisteredGame() = viewGame
+    fun getSearchGame(): LiveData<ViewStateModel<ArrayList<Game>>> = viewSearchGame
+    fun getRegisteredGame(): LiveData<Event<ViewStateModel<Game>>> = viewGame
 
     override fun onCleared() {
         super.onCleared()

@@ -77,8 +77,10 @@ class RegisterFragment : BaseFragment() {
                     states?.map {
                         statesList.add(it.toString())
                     }
-                    dialogState = SpinnerDialog(activity!!, statesList,
-                        getString(R.string.state_dialog_text), getString(R.string.dialog_close))
+                    dialogState = SpinnerDialog(
+                        activity!!, statesList,
+                        getString(R.string.state_dialog_text), getString(R.string.dialog_close)
+                    )
                     initDialogStateBind()
                     progressButton(false)
                     enableField(true)
@@ -103,8 +105,10 @@ class RegisterFragment : BaseFragment() {
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     cities = viewState.model
-                    dialogCity = SpinnerDialog(activity!!, cities, getString(R.string.city_dialog_text),
-                        getString(R.string.dialog_close))
+                    dialogCity = SpinnerDialog(
+                        activity!!, cities, getString(R.string.city_dialog_text),
+                        getString(R.string.dialog_close)
+                    )
                     initDialogCityBind()
                     progressButton(false)
                 }
@@ -119,20 +123,22 @@ class RegisterFragment : BaseFragment() {
 
     private fun initUserObservable() {
         viewModelRegister.getUser().observe(this, Observer { viewState ->
-            when (viewState.status) {
-                ViewStateModel.Status.LOADING -> {
-                    progressButton(true)
-                    enableField(false)
-                }
-                ViewStateModel.Status.SUCCESS -> {
-                    progressButton(false)
-                    enableField(true)
-                    showHomeScreen()
-                }
-                ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors)
-                    progressButton(false)
-                    enableField(true)
+            viewState.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.LOADING -> {
+                        progressButton(true)
+                        enableField(false)
+                    }
+                    ViewStateModel.Status.SUCCESS -> {
+                        progressButton(false)
+                        enableField(true)
+                        showHomeScreen()
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        showError(it.errors)
+                        progressButton(false)
+                        enableField(true)
+                    }
                 }
             }
         })
@@ -257,6 +263,7 @@ class RegisterFragment : BaseFragment() {
             }
         }
     }
+
     private fun progressButton(enable: Boolean) {
         btnCreateAccount?.isLoading(enable)
     }
