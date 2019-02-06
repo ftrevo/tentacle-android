@@ -24,7 +24,7 @@ class HostActivity : BaseActivity(), CallBack {
     }
 
     private fun startNavListener() {
-        val navController = Navigation.findNavController(this, R.id.nav_fragment)
+        navController = Navigation.findNavController(this, R.id.nav_fragment)
         val topLevelDestinations = setOf(R.id.home, R.id.myGames)
         val appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
