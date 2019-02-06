@@ -1,16 +1,19 @@
-Unstaged changes after reset:
-M	app/com.crashlytics.settings.json
-D	app/session_analytics.tap
-D	app/session_analytics_to_send/sa_e3ac28d0-3f18-4dc0-b249-7d50be32d0ec_1548264751389.tap
-M	app/src/debug/assets/mockjson/home/load_home_games_success.json
-M	app/src/debug/assets/mockjson/home/load_home_games_success_empty.json
-M	app/src/debug/assets/mockjson/models/response_media_3ds.json
-M	app/src/debug/assets/mockjson/models/response_media_ps4.json
-M	app/src/debug/assets/mockjson/models/response_media_switch.json
-M	app/src/debug/assets/mockjson/models/response_media_x360.json
-D	app/src/main/assets/mockjson/home/load_home_games_success.json
-D	app/src/main/assets/mockjson/home/load_home_games_success_empty.json
-D	app/src/main/assets/mockjson/models/response_media_3ds.json
-D	app/src/main/assets/mockjson/models/response_media_ps4.json
-D	app/src/main/assets/mockjson/models/response_media_switch.json
-D	app/src/main/assets/mockjson/models/response_media_x360.json
+{
+  "message": [
+    "Mídia salva"
+  ],
+  "data": {
+    "_id": "5c5348f4906fb50023e50730",
+    "game": {
+      "_id": "5c5348ef906fb50023e5072f",
+      "title": "Space Invaders"
+    },
+    "platform": "XBOX360",
+    "owner": {
+      "_id": "5c1ab12e7c0f4f002272357e",
+      "name": "JOAO DAS NEVES"
+    },
+    "createdAt": "2019-01-31T19:13:56.491Z",
+    "updatedAt": "2019-01-31T19:13:56.491Z"
+  }
+}

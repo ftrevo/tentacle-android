@@ -1,8 +1,6 @@
-Unstaged changes after reset:
-M	app/com.crashlytics.settings.json
-D	app/session_analytics.tap
-D	app/session_analytics_to_send/sa_e3ac28d0-3f18-4dc0-b249-7d50be32d0ec_1548264751389.tap
-M	app/src/debug/assets/mockjson/home/load_home_games_success.json
-M	app/src/debug/assets/mockjson/home/load_home_games_success_empty.json
-D	app/src/main/assets/mockjson/home/load_home_games_success.json
-D	app/src/main/assets/mockjson/home/load_home_games_success_empty.json
+{
+  "data": {
+    "list": [],
+    "count": 0
+  }
+}

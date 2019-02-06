@@ -1,6 +1,107 @@
-Unstaged changes after reset:
-M	app/com.crashlytics.settings.json
-D	app/session_analytics.tap
-D	app/session_analytics_to_send/sa_e3ac28d0-3f18-4dc0-b249-7d50be32d0ec_1548264751389.tap
-M	app/src/debug/assets/mockjson/home/load_home_games_success.json
-D	app/src/main/assets/mockjson/home/load_home_games_success.json
+{
+  "data": {
+    "list": [
+      {
+        "_id": "1",
+        "title": "Jogo 1",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-14T16:27:45.355Z",
+        "updatedAt": "2019-01-14T16:27:45.355Z"
+      },
+      {
+        "_id": "2",
+        "title": "Jogo 2",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-23T21:32:04.829Z",
+        "updatedAt": "2019-01-23T21:32:04.829Z"
+      },
+      {
+        "_id": "5c49f7c86d40b70023ca6319",
+        "title": "Jogo 3",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-24T17:37:12.180Z",
+        "updatedAt": "2019-01-24T17:37:12.180Z"
+      },
+      {
+        "_id": "5c49b33a0124e4002334b1bc",
+        "title": "Jogo 4",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-24T12:44:42.081Z",
+        "updatedAt": "2019-01-24T12:44:42.081Z"
+      },
+      {
+        "_id": "5c460f9df2cb790023617ab6",
+        "title": "Jogo 5",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-21T18:29:49.058Z",
+        "updatedAt": "2019-01-21T18:29:49.058Z"
+      },
+      {
+        "_id": "5c38c18bdd09c90023fad1a7",
+        "title": "Jogo 6",
+        "createdBy": {
+          "_id": "5c1ab15c7c0f4f002272357f",
+          "name": "DAIVID V. LEAL"
+        },
+        "createdAt": "2019-01-11T16:17:15.215Z",
+        "updatedAt": "2019-01-11T16:17:15.215Z"
+      },
+      {
+        "_id": "5c48ca7ae07db9002375d5a6",
+        "title": "Jogo 7",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-23T20:11:38.515Z",
+        "updatedAt": "2019-01-23T20:11:38.515Z"
+      },
+      {
+        "_id": "5c40aac1576d4d00237448f5",
+        "title": "Jogo 8",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-17T16:18:09.328Z",
+        "updatedAt": "2019-01-17T16:18:09.328Z"
+      },
+      {
+        "_id": "5c38d24bef33b700234351dd",
+        "title": "Jogo 9",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-11T17:28:43.975Z",
+        "updatedAt": "2019-01-11T17:28:43.975Z"
+      },
+      {
+        "_id": "5c4b67c6c0221400235b5226",
+        "title": "Jogo 10 ",
+        "createdBy": {
+          "_id": "5c1ab12e7c0f4f002272357e",
+          "name": "JOAO DAS NEVES"
+        },
+        "createdAt": "2019-01-25T19:47:18.810Z",
+        "updatedAt": "2019-01-25T19:47:18.810Z"
+      }
+    ],
+    "count": 45
+  }
+}

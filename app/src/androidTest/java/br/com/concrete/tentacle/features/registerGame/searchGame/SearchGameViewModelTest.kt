@@ -13,7 +13,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.base.BaseSearchFragment
+import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.util.RecyclerPositionViewMatcher.Companion.withRecyclerViewAndViewId
+import br.com.concrete.tentacle.extensions.waitUntil
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers
 import org.junit.Test
@@ -29,13 +31,13 @@ class SearchGameViewModelTest : BaseFragmentTest() {
     fun showListWhenTypeFourLetters() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(200)
-            .setBody(getJson("mockjson/searchgame/list_game_success.json")))
+            .setBody("mockjson/searchgame/list_game_success.json".getJson()))
 
         onView(isAssignableFrom(EditText::class.java))
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.recyclerListView))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListError))
             .check(matches(CoreMatchers.not(isDisplayed())))
     }
@@ -45,8 +47,6 @@ class SearchGameViewModelTest : BaseFragmentTest() {
         onView(isAssignableFrom(EditText::class.java))
             .perform(typeText("FIFA"))
 
-        onView(withId(R.id.progressBarList))
-            .perform(waitUntil(isDisplayed()))
         onView(withId(R.id.recyclerListError))
             .check(matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.recyclerListView))
@@ -57,13 +57,13 @@ class SearchGameViewModelTest : BaseFragmentTest() {
     fun showButtonWhenListIsEmpty() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(200)
-            .setBody(getJson("mockjson/searchgame/list_game_empty_success.json")))
+            .setBody("mockjson/searchgame/list_game_empty_success.json".getJson()))
 
         onView(isAssignableFrom(EditText::class.java))
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.recyclerListError))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListView))
             .check(matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
@@ -74,13 +74,13 @@ class SearchGameViewModelTest : BaseFragmentTest() {
     fun showProblemWithConnection() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(400)
-            .setBody(getJson("mockjson/errors/error_400.json")))
+            .setBody("mockjson/errors/error_400.json".getJson()))
 
         onView(isAssignableFrom(EditText::class.java))
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.recyclerListError))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListView))
             .check(matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
@@ -91,25 +91,25 @@ class SearchGameViewModelTest : BaseFragmentTest() {
     fun afterClickLoadAgainShouldMakeAnotherRequestAndShowList() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(400)
-            .setBody(getJson("mockjson/errors/error_400.json")))
+            .setBody("mockjson/errors/error_400.json".getJson()))
 
         onView(isAssignableFrom(EditText::class.java))
             .perform(typeText("FIFA"))
 
         onView(withId(R.id.buttonNameError))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
 
         pressBack()
 
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(200)
-            .setBody(getJson("mockjson/searchgame/list_game_success.json")))
+            .setBody("mockjson/searchgame/list_game_success.json".getJson()))
 
         onView(withId(R.id.buttonNameError))
             .perform(click())
 
         onView(withId(R.id.recyclerListView))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
         onView(withId(R.id.recyclerListError))
             .check(matches(CoreMatchers.not(isDisplayed())))
     }
@@ -118,7 +118,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
     fun afterSearchAndVerifyItemIsOk() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(200)
-            .setBody(getJson("mockjson/searchgame/list_game_success.json")))
+            .setBody("mockjson/searchgame/list_game_success.json".getJson()))
 
         onView(isAssignableFrom(EditText::class.java))
             .perform(typeText("FIFA"))
@@ -126,7 +126,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
         pressBack()
 
         onView(withId(R.id.recyclerListView))
-            .perform(waitUntil(isDisplayed()))
+            .perform(isDisplayed().waitUntil())
 
         onView(withRecyclerViewAndViewId(R.id.recyclerListView, 0, R.id.game_name))
             .check(matches(withText("JOGO 1")))

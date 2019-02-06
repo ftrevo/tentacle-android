@@ -34,6 +34,7 @@ buildscript {
     ext.junit = '4.12'
     ext.runner = '1.1.1-beta01'
     ext.expresso = '3.1.1-beta01'
+    ext.espressoIntent = "3.1.0"
     ext.junit5Dependency = '1.3.1.1'
     ext.junit5 = '5.3.1'
     ext.robolectric = "4.1"
