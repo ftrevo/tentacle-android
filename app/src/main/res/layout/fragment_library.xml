@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/colorPrimary">
+
+    <ImageView
+            android:src="@drawable/logo_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+
+    <br.com.concrete.tentacle.custom.ListCustom
+            android:id="@+id/list"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="LinearLayoutManager"
+            app:buttonNameError="@string/add_new_game"
+            app:errorDescription="@string/no_library_error"
+            app:icon="@drawable/il_wow"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,14 +24,16 @@ class HostActivity : BaseActivity(), CallBack {
     }
 
     private fun startNavListener() {
-        navController = Navigation.findNavController(this, R.id.garden_nav_fragment)
+        val navController = Navigation.findNavController(this, R.id.nav_fragment)
         val topLevelDestinations = setOf(R.id.home, R.id.myGames)
         val appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomBar.startListener { action ->
             when (action) {
-                R.id.action_library -> LogWrapper.log("ACTION", "Library")
+                R.id.action_library -> {
+                    navController.navigate(R.id.navigate_to_library)
+                }
                 R.id.action_games -> {
                     navController.navigate(R.id.navigate_to_my_games)
                 }
