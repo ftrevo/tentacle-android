@@ -2,8 +2,10 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="br.com.concrete.tentacle">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <application tools:ignore="GoogleAppIndexingWarning">
+    <application tools:ignore="GoogleAppIndexingWarning"
+                 android:usesCleartextTraffic="true" tools:targetApi="m">
         <activity
                 android:name=".testing.SingleFragmentTestActivity"
                 android:theme="@style/AppTheme"

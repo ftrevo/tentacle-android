@@ -75,6 +75,7 @@
     <string name="toolbar_title_library">Biblioteca</string>
 
     <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a cadastrar</string>
+    <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente novamente.</string>
 
     <string name="bullet_ps3">PS3</string>
     <string name="bullet_ps4">PS4</string>
