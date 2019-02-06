@@ -29,14 +29,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
+class RegisterFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
     override fun setupFragment() {
         testFragment = RegisterFragment()
     }
 
     @Before
-    fun setMock(){
+    fun setMock() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -197,7 +197,7 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
         intending(matcher).respondWith(result)
     }
 
-    private fun selectState(){
+    private fun selectState() {
         onView(
             Matchers.allOf(
                 withId(R.id.button), withText("Selecione"),
@@ -218,7 +218,7 @@ class RegisterFragmentTest: BaseFragmentNoActionBarNoBottomBarTest(){
             ).atPosition(16).perform(click())
     }
 
-    private fun selectCity(){
+    private fun selectCity() {
         onView(
             Matchers.allOf(
                 withId(R.id.button), withText("Selecione"),

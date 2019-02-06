@@ -86,7 +86,6 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
             val response =
                 "mockjson/loadmygames/register_media_success.json".getJson()
 
-
             mockWebServer.enqueue(MockResponse()
                 .setBody(response)
                 .setResponseCode(201))
