@@ -27,8 +27,8 @@ android {
         applicationId "br.com.concrete.tentacle"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 101
-        versionName "1.0.1"
+        versionCode 102
+        versionName "1.0.2"
         testInstrumentationRunner "br.com.concrete.tentacle.util.TentacleTestRunner"
     }
     buildTypes {
@@ -103,6 +103,7 @@ dependencies {
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3"
     androidTestImplementation "org.mockito:mockito-android:$mockitoAndroid"
     androidTestImplementation "androidx.test.ext:junit:$androidxTest"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoIntent"
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"

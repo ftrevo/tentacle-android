@@ -13,6 +13,8 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import kotlinx.android.synthetic.main.fragment_game_list.*
 import kotlinx.android.synthetic.main.list_custom.*
+import kotlinx.android.synthetic.main.list_custom.view.*
+import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LibraryFragment : BaseFragment() {
@@ -26,8 +28,15 @@ class LibraryFragment : BaseFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        init()
         initObserver()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun init(){
+        list.recyclerListError.buttonNameError.setOnClickListener {
+            callback?.changeBottomBar(R.id.action_games, R.id.navigate_to_my_games)
+        }
     }
 
     private fun initObserver() {

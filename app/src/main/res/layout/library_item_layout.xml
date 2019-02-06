@@ -10,7 +10,9 @@
         android:paddingEnd="@dimen/componentsMarginDefaultError"
         android:paddingBottom="@dimen/dp_10"
         android:paddingTop="@dimen/dp_10"
-        android:layout_margin="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
         android:animateLayoutChanges="true">
 
     <TextView
@@ -113,13 +115,6 @@
             android:background="@drawable/circle_bg_icon_library"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:constraint_referenced_ids="tvNS, tv3DS, tvONE, tv360, tvPS4, tvPS3"/>
 
     </LinearLayout>
 

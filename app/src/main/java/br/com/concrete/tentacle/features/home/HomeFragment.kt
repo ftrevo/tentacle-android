@@ -22,7 +22,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : BaseFragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
-    private lateinit var callback: CallBack
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -88,13 +87,8 @@ class HomeFragment : BaseFragment() {
         listHome.recyclerListView.layoutManager = layoutManager
 
         listHome.recyclerListError.buttonNameError.setOnClickListener {
-            callback.changeBottomBar(R.id.action_games, R.id.navigate_to_my_games)
+            callback?.changeBottomBar(R.id.action_games, R.id.navigate_to_my_games)
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is CallBack) callback = context
     }
 
     override fun getToolbarTitle() = R.string.toolbar_title_home
