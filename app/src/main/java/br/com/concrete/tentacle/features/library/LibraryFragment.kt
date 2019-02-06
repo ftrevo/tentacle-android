@@ -57,10 +57,9 @@ class LibraryFragment : BaseFragment() {
 
                         recyclerListView.layoutManager = LinearLayoutManager(context)
                         recyclerListView.adapter = recyclerViewAdapter
-
-                        list.updateUi(it)
-                        list.setLoading(false)
                     }
+                    list.updateUi(library)
+                    list.setLoading(false)
                 }
                 ViewStateModel.Status.LOADING -> {
                     list.setLoading(true)
@@ -68,8 +67,14 @@ class LibraryFragment : BaseFragment() {
 
                 ViewStateModel.Status.ERROR -> {
                     stateModel.errors?.let {
-                        showError(it)
+                        list.setErrorMessage(R.string.load_library_error_not_know)
+                        list.setButtonTextError(R.string.load_again)
+                        list.setActionError {
+                            viewModelLibrary.loadLibrary()
+                        }
                     }
+                    list.updateUi<Library>(null)
+                    list.setLoading(false)
                 }
             }
         })
