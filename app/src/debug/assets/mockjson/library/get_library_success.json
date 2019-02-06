@@ -1,0 +1,209 @@
+{
+  "data": {
+    "list": [
+      {
+        "_id": "5c599091ffa7d80023b3a6fe",
+        "title": "Mario Kart 8",
+        "createdBy": "5c505219aa9b7a00236f58e0",
+        "createdAt": "2019-02-05T13:33:05.196Z",
+        "updatedAt": "2019-02-05T13:33:05.196Z",
+        "mediaPs3": [],
+        "mediaPs4": [],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c599098ffa7d80023b3a6ff",
+            "owner": "5c505219aa9b7a00236f58e0",
+            "ownerName": "MAHERBSON DANTAS"
+          }
+        ]
+      },
+      {
+        "_id": "5c589ed4f8e6ef002376a5ef",
+        "title": "PES 2019",
+        "createdBy": "5c2d129dd957060023385a1b",
+        "createdAt": "2019-02-04T20:21:40.216Z",
+        "updatedAt": "2019-02-04T20:21:40.216Z",
+        "mediaPs3": [],
+        "mediaPs4": [],
+        "mediaXbox360": [],
+        "mediaXboxOne": [
+          {
+            "_id": "5c589edbf8e6ef002376a5f0",
+            "owner": "5c2d129dd957060023385a1b",
+            "ownerName": "RWYEG"
+          }
+        ],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": []
+      },
+      {
+        "_id": "5c589e6df8e6ef002376a5ed",
+        "title": "Resident evil 2",
+        "createdBy": "5c2d129dd957060023385a1b",
+        "createdAt": "2019-02-04T20:19:57.878Z",
+        "updatedAt": "2019-02-04T20:19:57.878Z",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c589e79f8e6ef002376a5ee",
+            "owner": "5c2d129dd957060023385a1b",
+            "ownerName": "RWYEG"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": []
+      },
+      {
+        "_id": "5c5886bef8e6ef002376a5e6",
+        "title": "tiop",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-04T18:38:54.343Z",
+        "updatedAt": "2019-02-04T18:38:54.343Z",
+        "mediaPs3": [],
+        "mediaPs4": [],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c5886c3f8e6ef002376a5e7",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES"
+          }
+        ]
+      },
+      {
+        "_id": "5c584a0e8b9dac0023853a1a",
+        "title": "Shadow of the colossus",
+        "createdBy": "5c2d129dd957060023385a1b",
+        "createdAt": "2019-02-04T14:19:58.307Z",
+        "updatedAt": "2019-02-04T14:19:58.307Z",
+        "mediaPs3": [],
+        "mediaPs4": [],
+        "mediaXbox360": [],
+        "mediaXboxOne": [
+          {
+            "_id": "5c584a158b9dac0023853a1b",
+            "owner": "5c2d129dd957060023385a1b",
+            "ownerName": "RWYEG"
+          }
+        ],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": []
+      },
+      {
+        "_id": "5c5843fe8b9dac0023853a19",
+        "title": "teste1",
+        "createdBy": "5c505219aa9b7a00236f58e0",
+        "createdAt": "2019-02-04T13:54:06.625Z",
+        "updatedAt": "2019-02-04T13:54:06.625Z",
+        "mediaPs3": [
+          {
+            "_id": "5c587536f8e6ef002376a5de",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES"
+          }
+        ],
+        "mediaPs4": [
+          {
+            "_id": "5c587551f8e6ef002376a5df",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c587624f8e6ef002376a5e0",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES"
+          }
+        ]
+      },
+      {
+        "_id": "5c5843898b9dac0023853a18",
+        "title": "teste",
+        "createdBy": "5c505219aa9b7a00236f58e0",
+        "createdAt": "2019-02-04T13:52:09.203Z",
+        "updatedAt": "2019-02-04T13:52:09.203Z",
+        "mediaPs3": [],
+        "mediaPs4": [],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c58763ff8e6ef002376a5e1",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES"
+          }
+        ]
+      },
+      {
+        "_id": "5c534a9d906fb50023e50736",
+        "title": "Gran Turismo 6",
+        "createdBy": "5c2d129dd957060023385a1b",
+        "createdAt": "2019-01-31T19:21:01.395Z",
+        "updatedAt": "2019-01-31T19:21:01.395Z",
+        "mediaPs3": [],
+        "mediaPs4": [],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [
+          {
+            "_id": "5c534aa3906fb50023e50737",
+            "owner": "5c2d129dd957060023385a1b",
+            "ownerName": "RWYEG"
+          }
+        ],
+        "mediaNintendoSwitch": []
+      },
+      {
+        "_id": "5c534a6c906fb50023e50734",
+        "title": "Grand Thief Auto - San Andreas",
+        "createdBy": "5c2d129dd957060023385a1b",
+        "createdAt": "2019-01-31T19:20:12.991Z",
+        "updatedAt": "2019-01-31T19:20:12.991Z",
+        "mediaPs3": [
+          {
+            "_id": "5c534a73906fb50023e50735",
+            "owner": "5c2d129dd957060023385a1b",
+            "ownerName": "RWYEG"
+          }
+        ],
+        "mediaPs4": [],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": []
+      },
+      {
+        "_id": "5c5348ef906fb50023e5072f",
+        "title": "Space Invaders",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-01-31T19:13:51.638Z",
+        "updatedAt": "2019-01-31T19:13:51.638Z",
+        "mediaPs3": [],
+        "mediaPs4": [],
+        "mediaXbox360": [
+          {
+            "_id": "5c5348f4906fb50023e50730",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES"
+          }
+        ],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": []
+      }
+    ],
+    "count": 34
+  }
+}

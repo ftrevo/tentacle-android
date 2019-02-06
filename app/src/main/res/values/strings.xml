@@ -72,6 +72,15 @@
 
     <string name="did_not_find_what_you_wanted">Não encontrou o que queria?</string>
     <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
+    <string name="toolbar_title_library">Biblioteca</string>
 
+    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a cadastrar</string>
+
+    <string name="bullet_ps3">PS3</string>
+    <string name="bullet_ps4">PS4</string>
+    <string name="bullet_360">360</string>
+    <string name="bullet_ONE">ONE</string>
+    <string name="bullet_3DS">3DS</string>
+    <string name="bullet_NS">NS</string>
 
 </resources>
