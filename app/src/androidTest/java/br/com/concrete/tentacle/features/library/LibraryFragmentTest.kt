@@ -18,7 +18,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
 
     @Test
     fun showEmptyErrorCustomLayout() {
-        val response = "mockjson/library/load_library_empty_list_success.json".getJson()
+        val response = "mockjson/common/common_empty_list_success.json".getJson()
 
         mockWebServer.enqueue(
             MockResponse()

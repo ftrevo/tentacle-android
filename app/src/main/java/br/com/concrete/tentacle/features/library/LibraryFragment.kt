@@ -11,10 +11,10 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
-import kotlinx.android.synthetic.main.fragment_game_list.*
-import kotlinx.android.synthetic.main.list_custom.*
-import kotlinx.android.synthetic.main.list_custom.view.*
-import kotlinx.android.synthetic.main.list_error_custom.view.*
+import kotlinx.android.synthetic.main.fragment_library.list
+import kotlinx.android.synthetic.main.list_custom.recyclerListView
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LibraryFragment : BaseFragment() {
