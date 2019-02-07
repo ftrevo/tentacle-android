@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.features
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
@@ -54,5 +55,9 @@ class HostActivity : BaseActivity(), CallBack {
 
     override fun onBackPressed() {
         finish()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return false
     }
 }
