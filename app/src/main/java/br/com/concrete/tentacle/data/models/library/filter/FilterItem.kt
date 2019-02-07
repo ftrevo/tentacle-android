@@ -8,4 +8,4 @@ data class FilterItem(
     val title: String,
     val icon: String,
     val subitems: List<SubItem>
-): Parcelable
+) : Parcelable

@@ -24,7 +24,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 const val TAG = "FilterDialogFragment"
 private const val TYPE_DRAWABLE = "drawable"
 
-class FilterDialogFragment: DialogFragment() {
+class FilterDialogFragment : DialogFragment() {
 
     private val viewModelFilter: FilterViewModel by viewModel()
 
@@ -76,7 +76,7 @@ class FilterDialogFragment: DialogFragment() {
 
     private fun initObservers() {
         viewModelFilter.viewStateFilters.observe(this, Observer {
-            when(it.status) {
+            when (it.status) {
                 ViewStateModel.Status.SUCCESS -> {
                     filterList = it.model!!
                     createViewsOnSuccess()
@@ -105,18 +105,17 @@ class FilterDialogFragment: DialogFragment() {
                 val drawableRes = resources.getIdentifier(item.icon, TYPE_DRAWABLE, it.packageName)
                 itemView.itemFilterImageView
                     .loadImage(drawableRes)
-
             }
             filterContent.addView(itemView)
 
-            item.subitems.forEach {subitem ->
+            item.subitems.forEach { subitem ->
                 val subItemView = LayoutInflater
                     .from(activity)
                     .inflate(R.layout.item_filter_checkbox, filterContent, false)
 
                 subItemView.subitemFilterTextView.text = subitem.name
 
-                //Populate view
+                // Populate view
                 filtersSelected.firstOrNull { it.key == subitem.key }?.let {
                     subitem.isChecked = it.isChecked
                 }
@@ -129,7 +128,6 @@ class FilterDialogFragment: DialogFragment() {
 
                 filterContent.addView(subItemView)
             }
-
         }
     }
 
@@ -149,5 +147,4 @@ class FilterDialogFragment: DialogFragment() {
     interface OnFilterListener {
         fun onFilterListener(filters: List<SubItem>)
     }
-
 }

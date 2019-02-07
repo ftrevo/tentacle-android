@@ -8,4 +8,4 @@ data class SubItem(
     val key: String,
     val name: String,
     var isChecked: Boolean = false
-): Parcelable
+) : Parcelable

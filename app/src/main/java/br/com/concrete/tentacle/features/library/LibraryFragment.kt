@@ -105,7 +105,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if(item.itemId == R.id.filterMenuId) {
+        return if (item.itemId == R.id.filterMenuId) {
             FilterDialogFragment.showDialog(this, selectedFilterItems)
             true
         } else super.onOptionsItemSelected(item)

@@ -8,7 +8,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.filter.FilterItem
 import br.com.concrete.tentacle.data.repositories.FilterRepository
 
-class FilterViewModel(private val filterRepository: FilterRepository): BaseViewModel() {
+class FilterViewModel(private val filterRepository: FilterRepository) : BaseViewModel() {
 
     val viewStateFilters: MutableLiveData<ViewStateModel<List<FilterItem>>> = MutableLiveData()
 
@@ -34,5 +34,4 @@ class FilterViewModel(private val filterRepository: FilterRepository): BaseViewM
 
         )
     }
-
 }

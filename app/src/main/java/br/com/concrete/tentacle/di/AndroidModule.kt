@@ -15,5 +15,4 @@ val androidModule = module {
     single {
         androidContext().resources
     }
-
 }
