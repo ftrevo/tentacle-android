@@ -6,6 +6,7 @@
     <dimen name="marginBorderLogin">20dp</dimen>
     <dimen name="minHeight">30dp</dimen>
     <dimen name="defaultButtonTopMargin">22dp</dimen>
+    <dimen name="defaultButtonBottomMargin">22dp</dimen>
     <dimen name="errorImageSize">170dp</dimen>
     <dimen name="componentsMarginDefaultError">20dp</dimen>
 
@@ -58,5 +59,7 @@
     <dimen name="library_bullet">28dp</dimen>
 
     <dimen name="corner_radius">3dp</dimen>
+    <dimen name="itemFilterStart">24dp</dimen>
+>>>>>>> Stashed changes
 </resources>
 

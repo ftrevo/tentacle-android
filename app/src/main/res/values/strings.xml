@@ -16,7 +16,6 @@
     <string name="state_error">Selecione um estado</string>
     <string name="city_error">Selecione uma cidade</string>
 
-
     <string name="ok">Ok</string>
     <string name="error_dialog_title">Estamos enfrentando alguns problemas!</string>
 
@@ -84,4 +83,11 @@
     <string name="bullet_3DS">3DS</string>
     <string name="bullet_NS">NS</string>
 
+    <string name="filter_toolbar_title">Filtro</string>
+    <string name="filter_button_text">Filtrar</string>
+    <!-- These strings below will no longer needed once all the data starts to come from the api -->
+    <string name="filter_item_platforms">Plataformas</string>
+    <string name="filter_item_status">Status do jogo</string>
+    <string name="filter_subitem_games_availability">Mostrar jogos indisponíveis</string>
+    <!-- end here -->
 </resources>

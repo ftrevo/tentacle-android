@@ -44,6 +44,11 @@
         <item name="android:colorControlActivated">@color/colorAccent</item>
     </style>
 
+    <style name="StyleCheckbox">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:colorControlActivated">@color/colorAccent</item>
+    </style>
+
     <style name="StyleTextCardHome">
         <item name="android:layout_marginTop">@dimen/dp_95</item>
         <item name="android:layout_marginBottom">@dimen/dp_87</item>
@@ -58,6 +63,13 @@
         <item name="android:layout_marginTop">@dimen/dp_7</item>
         <item name="android:layout_marginEnd">@dimen/dp_4</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="StyleDialogFragment" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <!-- Set this to true if you want Full Screen without status bar -->
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
     </style>
 
 </resources>
