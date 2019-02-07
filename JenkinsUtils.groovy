@@ -168,7 +168,7 @@ def killEmulator() {
 def instrumentTests() {
     try {
         sh '''
-        ${HOME}/Library/Java/AndroidSDK/emulator/emulator -avd Nexus_5X_API_28 -netdelay none -netspeed full &
+        /Library/Java/AndroidSDK/emulator/emulator -avd Nexus_5X_API_28 -netdelay none -netspeed full &
         sleep 120
 
         ./gradlew uninstallAll
