@@ -158,7 +158,7 @@ def killEmulator() {
     /Users/macmini-recife/homebrew/bin/adb devices -l |grep emulator-5554
     if [[ $? -eq 0 ]]; then
         PROCESS=$(ps -ef |grep -v grep |grep Nexus_5X_API_28 |awk '{print $2}')
-        sudo kill -9 ${PROCESS}
+        kill -9 ${PROCESS}
 
         sleep 5
     fi
