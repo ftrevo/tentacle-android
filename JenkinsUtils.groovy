@@ -155,7 +155,7 @@ def unitTests(String buildType) {
 
 def killEmulator() {
     sh '''
-    adb devices -l |grep emulator-5554
+    /Users/macmini-recife/homebrew/bin/adb devices -l |grep emulator-5554
     if [[ $? -eq 0 ]]; then
         PROCESS=$(ps -ef |grep -v grep |grep Nexus_5X_API_28 |awk '{print $2}')
         kill -9 ${PROCESS}
