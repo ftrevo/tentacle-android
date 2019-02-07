@@ -10,8 +10,11 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import kotlinx.android.synthetic.main.fragment_game_list.*
-import kotlinx.android.synthetic.main.list_custom.*
+import br.com.concrete.tentacle.data.models.library.Library
+import kotlinx.android.synthetic.main.fragment_library.list
+import kotlinx.android.synthetic.main.list_custom.recyclerListView
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LibraryFragment : BaseFragment() {
@@ -25,8 +28,15 @@ class LibraryFragment : BaseFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        init()
         initObserver()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun init() {
+        list.recyclerListError.buttonNameError.setOnClickListener {
+            callback?.changeBottomBar(R.id.action_games, R.id.navigate_to_my_games)
+        }
     }
 
     private fun initObserver() {
@@ -47,10 +57,9 @@ class LibraryFragment : BaseFragment() {
 
                         recyclerListView.layoutManager = LinearLayoutManager(context)
                         recyclerListView.adapter = recyclerViewAdapter
-
-                        list.updateUi(it)
-                        list.setLoading(false)
                     }
+                    list.updateUi(library)
+                    list.setLoading(false)
                 }
                 ViewStateModel.Status.LOADING -> {
                     list.setLoading(true)
@@ -58,8 +67,14 @@ class LibraryFragment : BaseFragment() {
 
                 ViewStateModel.Status.ERROR -> {
                     stateModel.errors?.let {
-                        showError(it)
+                        list.setErrorMessage(R.string.load_library_error_not_know)
+                        list.setButtonTextError(R.string.load_again)
+                        list.setActionError {
+                            viewModelLibrary.loadLibrary()
+                        }
                     }
+                    list.updateUi<Library>(null)
+                    list.setLoading(false)
                 }
             }
         })
