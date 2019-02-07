@@ -25,7 +25,7 @@ class HostActivity : BaseActivity(), CallBack {
 
     private fun startNavListener() {
         navController = Navigation.findNavController(this, R.id.nav_fragment)
-        val topLevelDestinations = setOf(R.id.home, R.id.myGames)
+        val topLevelDestinations = setOf(R.id.home, R.id.myGames, R.id.library)
         val appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -54,6 +54,5 @@ class HostActivity : BaseActivity(), CallBack {
 
     override fun onBackPressed() {
         finish()
-        super.onBackPressed()
     }
 }

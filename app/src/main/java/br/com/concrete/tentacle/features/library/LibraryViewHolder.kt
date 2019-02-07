@@ -59,12 +59,7 @@ class LibraryViewHolder(
         }
 
         private fun hideBullets(view: View) {
-            view.tv360.visibility = View.GONE
-            view.tv3DS.visibility = View.GONE
-            view.tvNS.visibility = View.GONE
-            view.tvONE.visibility = View.GONE
-            view.tvPS3.visibility = View.GONE
-            view.tvPS4.visibility = View.GONE
+            view.groupLayout.visibility = View.GONE
         }
     }
 }
