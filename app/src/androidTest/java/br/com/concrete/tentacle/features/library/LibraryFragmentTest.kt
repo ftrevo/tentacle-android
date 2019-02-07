@@ -5,6 +5,7 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
+import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers
 import org.junit.Test
@@ -17,7 +18,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
 
     @Test
     fun showEmptyErrorCustomLayout() {
-        val response = getJson("mockjson/library/load_library_empty_list_success.json")
+        val response = "mockjson/library/load_library_empty_list_success.json".getJson()
 
         mockWebServer.enqueue(
             MockResponse()
@@ -37,7 +38,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
 
     @Test
     fun showRecycleViewWithItems() {
-        val response = getJson("mockjson/library/get_library_success.json")
+        val response = "mockjson/library/get_library_success.json".getJson()
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -55,7 +56,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
     @Test
     fun showErrorMessageAndButtonLoadAgain() {
         mockWebServer.enqueue(MockResponse()
-            .setBody(getJson("mockjson/errors/error_400.json"))
+            .setBody("mockjson/errors/error_400.json".getJson())
             .setResponseCode(400))
 
         Espresso.onView(ViewMatchers.withId(R.id.recyclerListView))

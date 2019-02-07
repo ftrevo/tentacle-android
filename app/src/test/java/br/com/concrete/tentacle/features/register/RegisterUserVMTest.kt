@@ -107,7 +107,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         registerUserViewModelTest.getUser().observeForever {
-            actual = it
+            actual = it.peekContent()
         }
 
         registerUserViewModelTest.registerUser(
@@ -191,7 +191,7 @@ class RegisterUserVMTest : BaseViewModelTest() {
         mockResponseError400()
 
         registerUserViewModelTest.getUser().observeForever {
-            actual = it
+            actual = it.peekContent()
         }
 
         registerUserViewModelTest.registerUser(

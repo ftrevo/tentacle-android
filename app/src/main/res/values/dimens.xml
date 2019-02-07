@@ -56,5 +56,7 @@
 
     <dimen name="library_icon_arrow">28dp</dimen>
     <dimen name="library_bullet">28dp</dimen>
+
+    <dimen name="corner_radius">3dp</dimen>
 </resources>
 

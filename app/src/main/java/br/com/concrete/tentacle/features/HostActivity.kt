@@ -43,6 +43,7 @@ class HostActivity : BaseActivity(), CallBack {
                 R.id.action_reservation -> LogWrapper.log("ACTION", "Wallet")
                 R.id.action_events -> LogWrapper.log("ACTION", "Calendar")
             }
+            setupToolbar(R.drawable.ic_logo_actionbar)
         }
     }
 

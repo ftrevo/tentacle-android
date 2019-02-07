@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAddNewGame"
+        android:background="@drawable/shape_border_rounded_gray"
         android:paddingStart="@dimen/componentsMarginDefaultError"
         android:paddingEnd="@dimen/componentsMarginDefaultError"
         android:paddingBottom="@dimen/dp_10"
@@ -43,8 +43,10 @@
 
     <LinearLayout
             android:animateLayoutChanges="true"
-            app:layout_constraintTop_toBottomOf="@+id/ivArrow"
+            android:id="@+id/groupLayout"
+            app:layout_constraintTop_toBottomOf="@id/ivArrow"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

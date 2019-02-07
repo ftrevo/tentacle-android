@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import br.com.concrete.tentacle.R
 
-class SingleFragmentTestActivityNoActionBarNoBottomBar: AppCompatActivity() {
+class SingleFragmentTestActivityNoActionBarNoBottomBar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val content = FrameLayout(this).apply {
