@@ -27,7 +27,7 @@ class ScreenshotTestRule : TestWatcher() {
 
             try {
                 capture.process(processors)
-            }catch (ex: IOException){
+            } catch (ex: IOException) {
                 ex.printStackTrace()
             }
         }

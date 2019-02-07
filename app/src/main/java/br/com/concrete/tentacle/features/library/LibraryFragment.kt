@@ -33,7 +33,7 @@ class LibraryFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun init(){
+    private fun init() {
         list.recyclerListError.buttonNameError.setOnClickListener {
             callback?.changeBottomBar(R.id.action_games, R.id.navigate_to_my_games)
         }

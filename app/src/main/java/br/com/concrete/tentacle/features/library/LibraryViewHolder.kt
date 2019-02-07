@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.library_item_layout.view.tvPS4
 
 class LibraryViewHolder(
     private val mLinearLayout: View,
-    var viewStateOpen: Boolean  = false
+    var viewStateOpen: Boolean = false
 ) : RecyclerView.ViewHolder(mLinearLayout) {
 
     companion object {

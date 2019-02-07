@@ -18,7 +18,6 @@ abstract class BaseFragment : Fragment() {
         if (context is CallBack) callback = context
     }
 
-
     protected fun showError(errors: ErrorResponse?) {
         if (errors != null) {
             context?.let { ctx ->

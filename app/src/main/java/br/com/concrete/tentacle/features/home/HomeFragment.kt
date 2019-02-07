@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
-import br.com.concrete.tentacle.data.interfaces.CallBack
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import kotlinx.android.synthetic.main.fragment_home.*
