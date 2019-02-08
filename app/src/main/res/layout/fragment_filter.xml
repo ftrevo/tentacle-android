@@ -2,22 +2,61 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".features.library.filter.FilterActivity">
+    android:background="@color/colorPrimary">
 
-    <include
-        layout="@layout/logo_tentacle"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/filterToolbar"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/filterToolbarHeight"
+        android:paddingStart="@dimen/margin_default"
+        android:paddingEnd="@dimen/margin_default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_marginStart="56dp"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextHeavy.20sp"
+            android:textColor="@android:color/white"
+            android:text="@string/filter_toolbar_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/subitemFilterCheckBox"/>
+
+        <ImageView
+            android:id="@+id/filterCloseButton"
+            android:layout_width="@dimen/filterCloseButtonWidth"
+            android:layout_height="@dimen/filterCloseButtonHeight"
+            android:padding="@dimen/dp_14"
+            android:src="@drawable/ic_close"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/dp_0"
+       android:src="@drawable/logo_bg"
+       android:scaleType="centerCrop"
+       android:alpha="@dimen/tentacleLogoOpacity"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/filterToolbar"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ScrollView
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_0"
         android:paddingBottom="@dimen/dp_10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filterToolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/filterButtonView"
         android:fillViewport="true">

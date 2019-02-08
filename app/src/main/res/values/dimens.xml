@@ -17,6 +17,7 @@
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_11">11dp</dimen>
+    <dimen name="dp_14">14dp</dimen>
     <dimen name="dp_18">18dp</dimen>
     <dimen name="dp_19">19dp</dimen>
     <dimen name="dp_25">25dp</dimen>
@@ -60,6 +61,12 @@
 
     <dimen name="corner_radius">3dp</dimen>
     <dimen name="itemFilterStart">24dp</dimen>
->>>>>>> Stashed changes
+
+    <dimen name="filterToolbarHeight">56dp</dimen>
+    <dimen name="filterItemHeight">40dp</dimen>
+    <dimen name="filterItemIconWidth">24dp</dimen>
+    <dimen name="filterItemIconHeight">40dp</dimen>
+    <dimen name="filterCloseButtonWidth">40dp</dimen>
+    <dimen name="filterCloseButtonHeight">40dp</dimen>
 </resources>
 

@@ -31,7 +31,7 @@
   },
   {
     "title":"Status do jogo",
-    "icon":"ic_library",
+    "icon":"ic_filter_status",
     "subitems":[
       {
         "key":"status",

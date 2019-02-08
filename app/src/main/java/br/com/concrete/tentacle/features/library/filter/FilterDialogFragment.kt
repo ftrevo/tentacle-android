@@ -14,6 +14,7 @@ import br.com.concrete.tentacle.data.models.library.filter.SubItem
 import br.com.concrete.tentacle.extensions.loadImage
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_filter.filterButtonView
+import kotlinx.android.synthetic.main.fragment_filter.filterCloseButton
 import kotlinx.android.synthetic.main.fragment_filter.filterContent
 import kotlinx.android.synthetic.main.item_filter_checkbox.view.subitemFilterCheckBox
 import kotlinx.android.synthetic.main.item_filter_checkbox.view.subitemFilterTextView
@@ -23,6 +24,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 const val TAG = "FilterDialogFragment"
 private const val TYPE_DRAWABLE = "drawable"
+private const val FILTER_BUNDLE_ARGS = "filter_items"
 
 class FilterDialogFragment : DialogFragment() {
 
@@ -38,7 +40,7 @@ class FilterDialogFragment : DialogFragment() {
             fragment?.fragmentManager?.let {
                 val dialog = FilterDialogFragment()
                 val args = Bundle()
-                args.putParcelableArrayList("filter_items", elements)
+                args.putParcelableArrayList(FILTER_BUNDLE_ARGS, elements)
 
                 dialog.arguments = args
                 dialog.setTargetFragment(fragment, 0)
@@ -90,7 +92,7 @@ class FilterDialogFragment : DialogFragment() {
     }
 
     private fun createViewsOnSuccess() {
-        arguments?.getParcelableArrayList<SubItem>("filter_items")?.let {
+        arguments?.getParcelableArrayList<SubItem>(FILTER_BUNDLE_ARGS)?.let {
             filtersSelected.addAll(it)
         }
 
@@ -126,6 +128,10 @@ class FilterDialogFragment : DialogFragment() {
                     subItemView.subitemFilterCheckBox.isChecked = subitem.isChecked
                 }
 
+                subItemView.subitemFilterCheckBox.setOnCheckedChangeListener { _, isChecked ->
+                    subitem.isChecked = isChecked
+                }
+
                 filterContent.addView(subItemView)
             }
         }
@@ -140,6 +146,10 @@ class FilterDialogFragment : DialogFragment() {
                 })
             }
             callback.onFilterListener(filtersSelected)
+            dismiss()
+        }
+
+        filterCloseButton.setOnClickListener {
             dismiss()
         }
     }

@@ -99,8 +99,8 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         menu.findItem(R.id.filterMenuId).let {
-            if (selectedFilterItems.isEmpty()) it.setIcon(R.drawable.ic_filter_off)
-            else it.setIcon(R.drawable.ic_filter_on)
+            val iconRes = if (selectedFilterItems.isEmpty()) R.drawable.ic_filter_off else R.drawable.ic_filter_on
+            it.setIcon(iconRes)
         }
     }
 
