@@ -30,7 +30,7 @@ class LoginVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         loginViewMock.getStateModel().observeForever {
-            actual = it
+            actual = it.peekContent()
         }
         loginViewMock.loginUser("daivid.v.leal@concrete.com.br", "123456")
         assertEquals(expected, actual)
@@ -53,7 +53,7 @@ class LoginVMTest : BaseViewModelTest() {
         mockResponseError400()
 
         loginViewMock.getStateModel().observeForever {
-            actual = it
+            actual = it.peekContent()
         }
         loginViewMock.loginUser("daivid.v.leal@concrete.com.br", "123456")
         assertEquals(expected, actual)
@@ -82,7 +82,7 @@ class LoginVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         loginViewMock.getStateModel().observeForever {
-            actual = it
+            actual = it.peekContent()
         }
         loginViewMock.loginUser("daivid.v.leal@concrete.com.br", "123456")
         assertEquals(expected, actual)

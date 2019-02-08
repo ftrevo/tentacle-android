@@ -20,7 +20,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
 
     @Test
     fun showEmptyErrorCustomLayout() {
-        val response = "mockjson/loadmygames/load_my_games_empty_list_success.json".getJson()
+        val response = "mockjson/common/common_empty_list_success.json".getJson()
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)

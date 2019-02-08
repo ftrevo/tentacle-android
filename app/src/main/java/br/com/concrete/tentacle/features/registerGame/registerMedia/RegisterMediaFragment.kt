@@ -64,9 +64,9 @@ class RegisterMediaFragment : BaseFragment() {
     }
 
     private fun initObservers() {
-        viewModel.viewStatusModel.observe(this, Observer { viewStatus ->
-            viewStatus?.let {
-                when (viewStatus.status) {
+        viewModel.getRegisterMedia().observe(this, Observer { viewStatus ->
+            viewStatus.getContentIfNotHandler()?.let {
+                when (it.status) {
                     ViewStateModel.Status.LOADING -> {
                         mediaRegisterButton.isLoading(true)
                     }
@@ -77,7 +77,7 @@ class RegisterMediaFragment : BaseFragment() {
                     }
                     ViewStateModel.Status.ERROR -> {
                         mediaRegisterButton.isLoading(false)
-                        showError(viewStatus.errors)
+                        showError(it.errors)
                         showMessageForTest(R.string.register_media_generic_error_test)
                     }
                 }

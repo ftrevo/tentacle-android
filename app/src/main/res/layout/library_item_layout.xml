@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_border_rounded_gray"
+        android:paddingStart="@dimen/componentsMarginDefaultError"
+        android:paddingEnd="@dimen/componentsMarginDefaultError"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:animateLayoutChanges="true">
+
+    <TextView
+            android:textAppearance="@style/TextHeavy.16sp"
+            android:id="@+id/tvGameName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/textColor"
+            tools:text="Nome do jogo"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="@dimen/componentsMarginDefaultError"
+            app:layout_constraintEnd_toStartOf="@+id/ivArrow"
+            android:ellipsize="end"
+            android:lines="1"/>
+
+    <ImageView
+            android:id="@+id/ivArrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvGameName"
+            app:layout_constraintBottom_toBottomOf="@+id/tvGameName"
+            android:src="@drawable/ic_arrow_down"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/library_icon_arrow"
+            android:layout_height="@dimen/library_icon_arrow"/>
+
+    <LinearLayout
+            android:animateLayoutChanges="true"
+            android:id="@+id/groupLayout"
+            app:layout_constraintTop_toBottomOf="@id/ivArrow"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_ps3"
+            android:id="@+id/tvPS3"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_ps4"
+            android:id="@+id/tvPS4"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_360"
+            android:id="@+id/tv360"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_ONE"
+            android:id="@+id/tvONE"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_3DS"
+            android:id="@+id/tv3DS"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/LibraryBullets"
+            android:gravity="center"
+            android:textAppearance="@style/TextBlack.9dp"
+            android:text="@string/bullet_NS"
+            android:id="@+id/tvNS"
+            android:visibility="gone"
+            android:background="@drawable/circle_bg_icon_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

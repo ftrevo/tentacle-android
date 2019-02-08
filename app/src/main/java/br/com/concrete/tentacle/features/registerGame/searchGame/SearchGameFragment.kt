@@ -98,7 +98,8 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     private fun showList(model: ArrayList<Game?>) {
 
-        if (model.isNotEmpty()) {
+        if (model?.isNotEmpty()!!) {
+            listCustom.setButtonNameAction(R.string.did_not_find_what_you_wanted)
             fillRecyclerView(model)
         } else {
             listCustom.setButtonNameAction(R.string.add_new_game)

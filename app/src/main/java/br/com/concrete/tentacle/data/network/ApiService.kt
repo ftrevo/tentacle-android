@@ -7,6 +7,7 @@ import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.utils.LIMIT_PAGE
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -43,4 +44,7 @@ interface ApiService {
 
     @GET("/games")
     fun loadHomeGames(): Observable<BaseModel<GameResponse>>
+
+    @GET("library")
+    fun getLibrary(): Observable<BaseModel<LibraryResponse>>
 }

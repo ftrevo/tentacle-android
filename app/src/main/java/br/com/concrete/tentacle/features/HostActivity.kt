@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.features
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
@@ -24,14 +25,16 @@ class HostActivity : BaseActivity(), CallBack {
     }
 
     private fun startNavListener() {
-        navController = Navigation.findNavController(this, R.id.garden_nav_fragment)
-        val topLevelDestinations = setOf(R.id.home, R.id.myGames)
+        navController = Navigation.findNavController(this, R.id.nav_fragment)
+        val topLevelDestinations = setOf(R.id.home, R.id.myGames, R.id.library)
         val appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomBar.startListener { action ->
             when (action) {
-                R.id.action_library -> LogWrapper.log("ACTION", "Library")
+                R.id.action_library -> {
+                    navController.navigate(R.id.navigate_to_library)
+                }
                 R.id.action_games -> {
                     navController.navigate(R.id.navigate_to_my_games)
                 }
@@ -41,6 +44,7 @@ class HostActivity : BaseActivity(), CallBack {
                 R.id.action_reservation -> LogWrapper.log("ACTION", "Wallet")
                 R.id.action_events -> LogWrapper.log("ACTION", "Calendar")
             }
+            setupToolbar(R.drawable.ic_logo_actionbar)
         }
     }
 
@@ -51,6 +55,9 @@ class HostActivity : BaseActivity(), CallBack {
 
     override fun onBackPressed() {
         finish()
-        super.onBackPressed()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return false
     }
 }
