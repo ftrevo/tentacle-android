@@ -3,9 +3,9 @@ package br.com.concrete.tentacle.base
 import android.app.Application
 import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
+import br.com.concrete.tentacle.di.androidModule
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
-import br.com.concrete.tentacle.di.sharedPreferencesModule
 import br.com.concrete.tentacle.di.viewModelModule
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.answers.Answers
@@ -20,10 +20,10 @@ class AppTentacle : Application() {
         Fabric.with(this, Answers(), Crashlytics())
 
         startKoin(this,
-            listOf(networkModule,
+            listOf(androidModule,
+                networkModule,
                 viewModelModule,
-                repositoryModule,
-                sharedPreferencesModule),
+                repositoryModule),
 
             extraProperties = mapOf(PROPERTY_BASE_URL to BuildConfig.BASE_URL))
     }

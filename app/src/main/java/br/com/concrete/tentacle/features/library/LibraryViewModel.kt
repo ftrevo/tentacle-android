@@ -12,7 +12,7 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
     private val viewStateLibray: MutableLiveData<ViewStateModel<ArrayList<Library>>> = MutableLiveData()
     fun getLibrary() = viewStateLibray
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadLibrary() {
         viewStateLibray.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(libraryRepository.getLibrary()
