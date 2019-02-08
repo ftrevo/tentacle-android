@@ -47,7 +47,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     enableProgress(false)
-                    showList(gameModel.model)
+                    showList(gameModel.model!!)
                 }
                 ViewStateModel.Status.ERROR -> {
                     enableProgress(false)
@@ -80,7 +80,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         })
     }
 
-    private fun loadMessageErrorLoading(gameModel: ViewStateModel<ArrayList<Game>>) {
+    private fun loadMessageErrorLoading(gameModel: ViewStateModel<ArrayList<Game?>>) {
         gameModel.errors?.let {
             listCustom.setErrorMessage(R.string.load_games_error_not_know)
             listCustom.setButtonTextError(R.string.load_again)
@@ -96,9 +96,9 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         listCustom.buttonAction.isLoading(isEnable)
     }
 
-    private fun showList(model: ArrayList<Game>?) {
+    private fun showList(model: ArrayList<Game?>) {
 
-        if (model?.isNotEmpty()!!) {
+        if (model.isNotEmpty()) {
             fillRecyclerView(model)
         } else {
             listCustom.setButtonNameAction(R.string.add_new_game)
@@ -106,11 +106,11 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         }
     }
 
-    private fun fillRecyclerView(model: ArrayList<Game>) {
+    private fun fillRecyclerView(model: ArrayList<Game?>) {
         val recyclerViewAdapter =
             BaseAdapter(model,
                 R.layout.item_game_search, {
-                    SearchGameViewHolder(it)
+                    it?.let { it1 -> SearchGameViewHolder(it1) }
                 }, { holder, element ->
                     SearchGameViewHolder.callBack(holder = holder, game = element, listener = { gameSelected ->
                         navigateToRegisterPlatform(gameSelected)

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
+import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE_BOOLEAN
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.progressBarList
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
@@ -24,9 +25,17 @@ class ListCustom(
     private var errorDescriptionReference: Int = DEFAULT_INVALID_RESOURCE
     private var buttonNameErrorReference: Int = DEFAULT_INVALID_RESOURCE
     private var buttonNameActionReference: Int = DEFAULT_INVALID_RESOURCE
+    private var endLessScroll: Boolean = DEFAULT_INVALID_RESOURCE_BOOLEAN
+
+    var pastVisibleItems: Int = 0
+    var visibleItemCount: Int = 0
+    var totalItemCount: Int = 0
+
+    private lateinit var mOnScrollListener: OnScrollListener
 
     init {
         View.inflate(context, R.layout.list_custom, this)
+
         context.withStyledAttributes(
             attrs,
             R.styleable.ListCustom,
@@ -38,6 +47,7 @@ class ListCustom(
             errorDescriptionReference = getResourceId(R.styleable.ListCustom_errorDescription, DEFAULT_INVALID_RESOURCE)
             buttonNameErrorReference = getResourceId(R.styleable.ListCustom_buttonNameError, DEFAULT_INVALID_RESOURCE)
             buttonNameActionReference = getResourceId(R.styleable.ListCustom_buttonNameAction, DEFAULT_INVALID_RESOURCE)
+            endLessScroll = getBoolean(R.styleable.ListCustom_endLessScroll, DEFAULT_INVALID_RESOURCE_BOOLEAN)
         }
     }
 
@@ -90,6 +100,28 @@ class ListCustom(
                     }
                     super.onScrollStateChanged(recyclerView, newState)
                 }
+
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    if (endLessScroll) {
+                        val layoutManager = recyclerView.layoutManager
+                        if (layoutManager is LinearLayoutManager) {
+                            visibleItemCount = layoutManager.childCount
+                            totalItemCount = layoutManager.itemCount
+                            pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition()
+                        }
+
+                        if (dy > 0) {
+                            if (mOnScrollListener.loadPage && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                                if (mOnScrollListener.count() > mOnScrollListener.sizeElements()) {
+                                    mOnScrollListener.loadPage(true)
+                                    mOnScrollListener.loadPage = false
+                                }
+                            }
+                        }
+                    }
+                }
             })
         }
     }
@@ -131,5 +163,16 @@ class ListCustom(
             showLoading()
             action()
         }
+    }
+
+    fun setOnScrollListener(onScrollListener: OnScrollListener) {
+        this.mOnScrollListener = onScrollListener
+    }
+
+    interface OnScrollListener {
+        fun count(): Int
+        fun sizeElements(): Int
+        fun loadPage(loadPage: Boolean)
+        var loadPage: Boolean
     }
 }

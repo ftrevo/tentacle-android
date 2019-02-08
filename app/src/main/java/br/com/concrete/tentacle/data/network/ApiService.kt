@@ -7,6 +7,7 @@ import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.utils.LIMIT_PAGE
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -28,7 +29,14 @@ interface ApiService {
     ): Observable<BaseModel<Game>>
 
     @GET("/media")
-    fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean = true): Observable<BaseModel<MediaResponse>>
+    fun getRegisteredGames(
+        @Query("mineOnly")
+        mineOnly: Boolean = true,
+        @Query("limit")
+        limit: Int = LIMIT_PAGE,
+        @Query("page")
+        page: Int
+    ): Observable<BaseModel<MediaResponse>>
 
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>

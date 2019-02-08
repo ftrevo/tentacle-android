@@ -7,7 +7,7 @@ import org.junit.Ignore
 import org.junit.Rule
 
 @Ignore
-abstract class BaseFragmentTest: BaseInstrumentedTest() {
+abstract class BaseFragmentTest : BaseInstrumentedTest() {
 
     @get:Rule
     val activityRule = ActivityTestRule(SingleFragmentTestActivity::class.java)

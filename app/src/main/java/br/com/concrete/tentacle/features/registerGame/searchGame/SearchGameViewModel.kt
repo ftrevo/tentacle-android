@@ -15,7 +15,7 @@ class SearchGameViewModel(
 ) : BaseViewModel(),
     LifecycleObserver {
 
-    private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
+    private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game?>>>()
     private val viewGame = MutableLiveData<Event<ViewStateModel<Game>>>()
 
     val game: LiveData<Event<ViewStateModel<Game>>>

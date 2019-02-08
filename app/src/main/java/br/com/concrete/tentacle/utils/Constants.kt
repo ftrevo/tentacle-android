@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.utils
 const val EMPTY_STRING = ""
 const val PREFS_KEY_USER_SESSION = "USER_SESSION"
 const val DEFAULT_INVALID_RESOURCE = -1
+const val DEFAULT_INVALID_RESOURCE_BOOLEAN = false
 const val BLANk_SPACE_STRING = " "
 
 const val PLATFORM_PS3_ABBREV = "PS3"
@@ -11,3 +12,5 @@ const val PLATFORM_XBOX_ONE_ABBREV = "XONE"
 const val PLATFORM_XBOX_360_ABBREV = "X360"
 const val PLATFORM_NINTENDO_SWITCH_ABBREV = "SWITCH"
 const val PLATFORM_NINTENDO_3DS_ABBREV = "3DS"
+
+const val LIMIT_PAGE = 15
