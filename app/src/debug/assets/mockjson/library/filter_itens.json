@@ -1,0 +1,21 @@
+[
+  {
+    "title":"Plataformas",
+    "icon":"",
+    "subitems":[
+      "Playstation 3",
+      "Playstation 4",
+      "XBox 360",
+      "XBox One",
+      "Nintendo 3DS",
+      "Nintendo Switch"
+    ]
+  },
+  {
+    "title":"Status do jogo",
+    "icon":"",
+    "subitems":[
+      "Mostrar jogos indisponíveis"
+    ]
+  }
+]

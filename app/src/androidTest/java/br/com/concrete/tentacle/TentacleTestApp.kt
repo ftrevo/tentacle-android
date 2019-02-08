@@ -3,9 +3,9 @@ package br.com.concrete.tentacle
 import android.app.Application
 import android.os.AsyncTask
 import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
+import br.com.concrete.tentacle.di.androidModule
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
-import br.com.concrete.tentacle.di.sharedPreferencesModule
 import br.com.concrete.tentacle.di.viewModelModule
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
@@ -22,11 +22,10 @@ class TentacleTestApp : Application() {
         RxJavaPlugins.setInitIoSchedulerHandler { Schedulers.from(AsyncTask.THREAD_POOL_EXECUTOR) }
 
         startKoin(this,
-            listOf(
+            listOf(androidModule,
                 networkModule,
                 viewModelModule,
-                repositoryModule,
-                sharedPreferencesModule
+                repositoryModule
             ),
 
             extraProperties = mapOf(PROPERTY_BASE_URL to LOCALHOST_URL))

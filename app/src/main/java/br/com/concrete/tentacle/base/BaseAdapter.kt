@@ -6,18 +6,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class BaseAdapter<T>(
-    var elements: ArrayList<T>,
+    elements: ArrayList<T>,
     val layout: Int,
     val holder: (mL: View) -> RecyclerView.ViewHolder,
     val holderCallback: (holder: RecyclerView.ViewHolder, T) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private val list = ArrayList<T>()
+
+    init {
+        list.addAll(elements)
+    }
+
     override fun getItemCount(): Int {
-        return elements.size
+        return list.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holderCallback(holder, elements[position])
+        holderCallback(holder, list[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -25,5 +31,11 @@ class BaseAdapter<T>(
             .inflate(layout, parent, false)
 
         return holder(v)
+    }
+
+    fun updateList(newElements: ArrayList<T>) {
+        list.clear()
+        list.addAll(newElements)
+        notifyDataSetChanged()
     }
 }
