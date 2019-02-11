@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
@@ -51,6 +52,31 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
         val layoutManager = LinearLayoutManager(context)
         list.recyclerListView.layoutManager = layoutManager
 
+        viewModelLoadMyGames.getMyGamesPage().observe(this, Observer { stateModel ->
+            stateModel.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        val mediaResponse = it.model
+                        val medias = mediaResponse?.list as ArrayList<Media?>
+                        medias.let {
+                            lMedia.add(null)
+                            recyclerViewAdapter.notifyItemInserted(lMedia.size - 1)
+
+                            Handler().postDelayed({
+                                lMedia.removeAt(lMedia.size - 1)
+                                recyclerViewAdapter.notifyItemRemoved(lMedia.size)
+                                lMedia.addAll(medias)
+                                loadMore = true
+                                recyclerViewAdapter.setNewList(lMedia)
+                            }, 1000)
+                        }
+                    }
+                    ViewStateModel.Status.LOADING -> {}
+                    ViewStateModel.Status.ERROR -> { loadMore = true }
+                }
+            }
+        })
+
         viewModelLoadMyGames.getMyGames().observe(this, Observer { stateModel ->
             stateModel.getContentIfNotHandler()?.let {
                 when (it.status) {
@@ -72,17 +98,6 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                                 lMedia = medias
                                 list.updateUi(medias)
                                 list.setLoading(false)
-                            } else {
-                                lMedia.add(null)
-                                recyclerViewAdapter.notifyItemInserted(lMedia.size - 1)
-
-                                Handler().postDelayed({
-                                    lMedia.removeAt(lMedia.size - 1)
-                                    recyclerViewAdapter.notifyItemRemoved(lMedia.size)
-                                    lMedia.addAll(medias)
-                                    loadMore = true
-                                    recyclerViewAdapter.setNewList(lMedia)
-                                }, 1000)
                             }
                         }
                     }

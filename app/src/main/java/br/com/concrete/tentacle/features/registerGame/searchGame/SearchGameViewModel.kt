@@ -69,7 +69,7 @@ class SearchGameViewModel(
             )
         })
 
-    fun getSearchGame(): LiveData<ViewStateModel<ArrayList<Game>>> = viewSearchGame
+    fun getSearchGame(): LiveData<ViewStateModel<ArrayList<Game?>>> = viewSearchGame
     fun getRegisteredGame(): LiveData<Event<ViewStateModel<Game>>> = viewGame
 
     override fun onCleared() {

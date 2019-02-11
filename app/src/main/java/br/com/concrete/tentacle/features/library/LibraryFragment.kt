@@ -50,7 +50,7 @@ class LibraryFragment : BaseFragment() {
                             library,
                             R.layout.library_item_layout,
                             { view ->
-                                LibraryViewHolder(view)
+                                view?.let { it1 -> LibraryViewHolder(it1) }
                             }, { holder, element ->
                                 LibraryViewHolder.callBack(holder = holder, element = element)
                             })

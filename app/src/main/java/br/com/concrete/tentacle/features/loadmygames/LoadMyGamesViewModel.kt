@@ -13,7 +13,9 @@ import br.com.concrete.tentacle.utils.Event
 class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
     private val viewStateGame: MutableLiveData<Event<ViewStateModel<MediaResponse>>> = MutableLiveData()
+    private val viewStateGamePage: MutableLiveData<Event<ViewStateModel<MediaResponse>>> = MutableLiveData()
     fun getMyGames(): LiveData<Event<ViewStateModel<MediaResponse>>> = viewStateGame
+    fun getMyGamesPage(): LiveData<Event<ViewStateModel<MediaResponse>>> = viewStateGamePage
 
     var page: Int = 1
 
@@ -32,11 +34,10 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     fun loadGamePage() {
         disposables.add(gameRepository.loadMyGames(page)
             .subscribe({ baseModel ->
-                viewStateGame.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
+                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
                 page += 1
             }, {
-                viewStateGame.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
-                page -= 1
+                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
             })
         )
     }
