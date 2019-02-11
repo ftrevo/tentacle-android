@@ -3,10 +3,10 @@ package br.com.concrete.tentacle.features
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers
+import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.R
@@ -85,5 +85,19 @@ class HostActivityTest {
     private fun selectedView(viewId: Int, shouldBeVisible: Boolean) {
         val assertion = if (shouldBeVisible) matches(isDisplayed()) else matches(not(isDisplayed()))
         onView(allOf(withId(R.id.selectedView), isDescendantOfA(withId(viewId)))).check(assertion)
+    }
+
+    @Test
+    fun logout(){
+        onView(withId(R.id.logout)).perform(click())
+
+        val titleId = activityTestRule.activity.resources.getIdentifier("alertTitle", "id", "android")
+
+        onView(withId(titleId))
+            .inRoot(isDialog())
+            .check(matches(withText("Logout")))
+            .check(matches(isDisplayed()))
+
+
     }
 }
