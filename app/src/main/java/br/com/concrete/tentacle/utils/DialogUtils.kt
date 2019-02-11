@@ -6,15 +6,19 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 
 object DialogUtils {
-    fun showDialog(context: Context, title: String? = null, message: String?,
-                   positiveText: String,
-                   positiveListener: DialogInterface.OnClickListener? = null,
-                   negativeText: String? = null,
-                   negativeListener: DialogInterface.OnClickListener? = null,
-                   dismissListener: DialogInterface.OnDismissListener? = null,
-                   contentView: Any? = null,
-                   neutralText: String? = null,
-                   neutralListener: DialogInterface.OnClickListener? = null): AlertDialog {
+    fun showDialog(
+        context: Context,
+        title: String? = null,
+        message: String?,
+        positiveText: String,
+        positiveListener: DialogInterface.OnClickListener? = null,
+        negativeText: String? = null,
+        negativeListener: DialogInterface.OnClickListener? = null,
+        dismissListener: DialogInterface.OnDismissListener? = null,
+        contentView: Any? = null,
+        neutralText: String? = null,
+        neutralListener: DialogInterface.OnClickListener? = null
+    ): AlertDialog {
 
         val builder = AlertDialog.Builder(context)
 
@@ -47,7 +51,6 @@ object DialogUtils {
             } else {
                 dialog.setContentView(contentView as Int)
             }
-
         }
 
         dialog.setCanceledOnTouchOutside(false)

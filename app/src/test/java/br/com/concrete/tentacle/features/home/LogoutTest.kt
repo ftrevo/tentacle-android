@@ -12,12 +12,12 @@ import org.koin.test.KoinTest
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class LogoutTest : KoinTest{
+class LogoutTest : KoinTest {
 
     private val sharePrefRepository: SharedPrefRepository by inject()
 
     @Before
-    fun createSession(){
+    fun createSession() {
         sharePrefRepository.saveSession(PREFS_KEY_USER_SESSION, Session("qualquer token", "qualquer refresh token", "qualquer token type"))
     }
 
@@ -28,8 +28,5 @@ class LogoutTest : KoinTest{
         val actual = sharePrefRepository.getStoredSession(PREFS_KEY_USER_SESSION)
         val expected = null
         assertEquals(actual, expected)
-
     }
-
-
 }

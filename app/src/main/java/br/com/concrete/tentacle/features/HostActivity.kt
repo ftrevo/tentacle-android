@@ -19,7 +19,6 @@ import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.activity_host.bottomBar
 import org.koin.android.ext.android.inject
 
-
 class HostActivity : BaseActivity(), CallBack {
 
     private lateinit var navController: NavController
@@ -81,7 +80,7 @@ class HostActivity : BaseActivity(), CallBack {
         finish()
     }
 
-    private fun checkLogout(){
+    private fun checkLogout() {
         DialogUtils.showDialog(
             context = this@HostActivity,
             title = getString(R.string.logout_title),

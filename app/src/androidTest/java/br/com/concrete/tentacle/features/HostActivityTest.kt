@@ -3,7 +3,6 @@ package br.com.concrete.tentacle.features
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -88,7 +87,7 @@ class HostActivityTest {
     }
 
     @Test
-    fun logout(){
+    fun logout() {
         onView(withId(R.id.logout)).perform(click())
 
         val titleId = activityTestRule.activity.resources.getIdentifier("alertTitle", "id", "android")
@@ -97,7 +96,5 @@ class HostActivityTest {
             .inRoot(isDialog())
             .check(matches(withText("Logout")))
             .check(matches(isDisplayed()))
-
-
     }
 }
