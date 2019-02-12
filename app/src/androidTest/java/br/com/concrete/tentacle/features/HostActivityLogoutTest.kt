@@ -22,14 +22,13 @@ class HostActivityLogoutTest {
 
     @Test
     fun logout() {
+
         onView(withId(R.id.logout)).perform(click())
 
-        // TODO Figure out how to check dialog title. This approach does not work
-//        val titleId = activityTestRule.activity.resources.getIdentifier("alertTitle", "id", "android")
-//        onView(withId(titleId))
-//            .inRoot(isDialog())
-//            .check(matches(withText("Logout")))
-//            .check(matches(isDisplayed()))
+        onView(withId(androidx.appcompat.R.id.alertTitle))
+            .inRoot(isDialog())
+            .check(matches(withText("Logout")))
+            .check(matches(isDisplayed()))
 
         onView(withId(android.R.id.message))
             .inRoot(isDialog())
