@@ -110,7 +110,9 @@ class FilterDialogFragment : DialogFragment() {
             }
             filterContent.addView(itemView)
 
-            item.subitems.forEach { subitem ->
+            item.subItems.forEach { subitem ->
+                subitem.key = item.title
+
                 val subItemView = LayoutInflater
                     .from(activity)
                     .inflate(R.layout.item_filter_checkbox, filterContent, false)
@@ -118,7 +120,7 @@ class FilterDialogFragment : DialogFragment() {
                 subItemView.subitemFilterTextView.text = subitem.name
 
                 // Populate view
-                filtersSelected.firstOrNull { it.key == subitem.key }?.let {
+                filtersSelected.firstOrNull { it.keyValue == subitem.keyValue }?.let {
                     subitem.isChecked = it.isChecked
                 }
                 subItemView.subitemFilterCheckBox.isChecked = subitem.isChecked
@@ -141,10 +143,11 @@ class FilterDialogFragment : DialogFragment() {
         filterButtonView.setOnClickListener {
             filtersSelected.clear()
             filterList.forEach { item ->
-                filtersSelected.addAll(item.subitems.filter { subItem ->
+                filtersSelected.addAll(item.subItems.filter { subItem ->
                     subItem.isChecked
                 })
             }
+
             callback.onFilterListener(filtersSelected)
             dismiss()
         }

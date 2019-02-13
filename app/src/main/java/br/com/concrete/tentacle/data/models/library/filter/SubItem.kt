@@ -5,7 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class SubItem(
-    val key: String,
+    var key: String,
+    val keyValue: String,
     val name: String,
     var isChecked: Boolean = false
 ) : Parcelable
