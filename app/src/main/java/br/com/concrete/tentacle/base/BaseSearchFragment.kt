@@ -62,9 +62,7 @@ abstract class BaseSearchFragment : BaseFragment(),
         val editText = searchView.findViewById<EditText>(R.id.search_src_text)
 
         closeButton.setOnClickListener {
-            clearListGame()
             editText.setText("")
-            searchView.isIconified = true
             searchView.setIconifiedByDefault(true)
         }
 
