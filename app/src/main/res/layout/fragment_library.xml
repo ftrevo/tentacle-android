@@ -5,11 +5,8 @@
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorPrimary">
 
-    <ImageView
-            android:src="@drawable/logo_bg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+    <include
+        layout="@layout/logo_tentacle"/>
 
     <br.com.concrete.tentacle.custom.ListCustom
             android:id="@+id/list"
