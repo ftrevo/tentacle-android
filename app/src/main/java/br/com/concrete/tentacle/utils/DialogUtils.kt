@@ -55,7 +55,6 @@ object DialogUtils {
 
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
-//        dialog.applyUnidasStyle()
 
         return dialog
     }
