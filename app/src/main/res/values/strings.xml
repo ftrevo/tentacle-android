@@ -90,4 +90,7 @@
     <string name="filter_item_status">Status do jogo</string>
     <string name="filter_subitem_games_availability">Mostrar jogos indisponíveis</string>
     <!-- end here -->
+
+    <string name="logout_title">Logout</string>
+    <string name="logout_question">Tem certeza que deseja efetuar o logout?</string>
 </resources>
