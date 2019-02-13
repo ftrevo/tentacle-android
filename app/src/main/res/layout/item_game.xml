@@ -4,11 +4,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_4"
         android:layout_marginBottom="@dimen/dp_4"
-        android:layout_marginLeft="@dimen/dp_8"
-        android:layout_marginRight="@dimen/dp_8"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:animateLayoutChanges="true"
         android:backgroundTint="@color/colorAddNewGame">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,34 +18,33 @@
                 android:layout_height="match_parent">
 
             <TextView
-                    android:id="@+id/game_name"
                     android:textAppearance="@style/TextBlack.16sp"
+                    android:id="@+id/game_name"
                     android:textColor="@color/textColor"
-                    android:layout_width="@dimen/dp_0"
-                    android:layout_height="@dimen/dp_0"
-                    tools:text="nome do jogo"
-                    android:ellipsize="end"
                     android:lines="1"
-                    app:layout_constraintWidth_percent="@dimen/itemGameNamePercent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:ellipsize="end"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/game_media"
-                    app:layout_constraintBottom_toBottomOf="parent"
-            />
+                    tools:text="Nome do jogo" />
 
             <TextView
                     android:id="@+id/game_media"
                     android:textAppearance="@style/TextBlack.14sp"
                     android:textColor="@color/textColor"
-                    android:layout_width="@dimen/dp_0"
+                    android:lines="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    tools:text="midia"
                     android:gravity="end"
+                    android:ellipsize="end"
                     app:layout_constraintWidth_percent="@dimen/itemGamePlatformPercent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-            />
+                    tools:text="midia" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
