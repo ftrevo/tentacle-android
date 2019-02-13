@@ -38,5 +38,13 @@ interface ApiService {
     fun loadHomeGames(): Observable<BaseModel<GameResponse>>
 
     @GET("library")
-    fun getLibrary(): Observable<BaseModel<LibraryResponse>>
+    fun getLibrary(
+        @Query("_id") id: String? = null,
+        @Query("title") title: String? = null,
+        @Query("mediaOwner") mediaOwner: String? = null,
+        @Query("mediaId") mediaId: String? = null,
+        @Query("mediaPlatform") mediaPlatform: List<String>? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("page") page: Int? = null
+    ): Observable<BaseModel<LibraryResponse>>
 }

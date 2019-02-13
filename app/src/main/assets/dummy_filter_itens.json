@@ -2,29 +2,29 @@
   {
     "title":"Plataformas",
     "icon":"ic_game",
-    "subitems":[
+    "subItems":[
       {
-        "key":"mediaPs3",
+        "keyValue":"PS3",
         "name":"Playstation 3"
       },
       {
-        "key":"mediaPs4",
+        "keyValue":"PS4",
         "name":"Playstation 4"
       },
       {
-        "key":"mediaXbox360",
+        "keyValue":"XBOX360",
         "name":"XBox 360"
       },
       {
-        "key":"mediaXboxOne",
+        "keyValue":"XBOXONE",
         "name":"XBox One"
       },
       {
-        "key":"mediaNintendo3ds",
+        "keyValue":"NINTENDO3DS",
         "name":"Nintendo 3DS"
       },
       {
-        "key":"mediaNintendoSwitch",
+        "keyValue":"NINTENDOSWITCH",
         "name":"Nintendo Switch"
       }
     ]
@@ -32,9 +32,9 @@
   {
     "title":"Status do jogo",
     "icon":"ic_filter_status",
-    "subitems":[
+    "subItems":[
       {
-        "key":"status",
+        "keyValue":"UNAVAILABLE",
         "name":"Mostrar jogos indisponíveis"
       }
     ]
