@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.base
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.InputType
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -60,6 +61,7 @@ abstract class BaseSearchFragment : BaseFragment(),
 
         val closeButton = searchView.findViewById<ImageView>(R.id.search_close_btn)
         val editText = searchView.findViewById<EditText>(R.id.search_src_text)
+        editText.inputType =  InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
 
         closeButton.setOnClickListener {
             editText.setText("")
