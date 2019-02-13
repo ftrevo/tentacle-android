@@ -15,7 +15,7 @@ class BottomBar(
     attrs: AttributeSet
 ) : LinearLayout(context, attrs) {
 
-    var iconBottomBarSelected = R.id.action_home
+    private var iconBottomBarSelected = R.id.action_home
 
     init {
         View.inflate(context, R.layout.bottom_bar, this)
