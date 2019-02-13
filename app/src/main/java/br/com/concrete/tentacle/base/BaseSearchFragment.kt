@@ -16,8 +16,8 @@ import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
 
-const val TIME_OUT: Long = 300
-const val MINIMAL_CHARACTER: Int = 3
+const val TIME_OUT: Long = 550
+const val MINIMAL_CHARACTER: Int = 2
 
 @SuppressLint("CheckResult")
 abstract class BaseSearchFragment : BaseFragment(),
@@ -85,7 +85,7 @@ abstract class BaseSearchFragment : BaseFragment(),
             .subscribe { text -> getSearchGame(text) }
     }
 
-    fun validateSearch(search: String) = search.trim().length > MINIMAL_CHARACTER
+    fun validateSearch(search: String) = search.trim().length >= MINIMAL_CHARACTER
 
     private fun setupToolbar() {
         (activity as? AppCompatActivity)?.supportActionBar?.title = titleToolbar()
