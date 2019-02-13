@@ -70,11 +70,4 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
             .check(matches(withText(R.string.load_games_error_not_know)))
     }
 
-    @Test
-    fun showLoadingWhileDoNotCharge() {
-        onView(withId(R.id.recyclerListView))
-            .check(matches(not(isDisplayed())))
-        onView(withId(R.id.progressBarList))
-            .check(matches(not(isDisplayed())))
-    }
 }
