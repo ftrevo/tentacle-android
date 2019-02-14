@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="speedSlideAnim" type="integer">150</item>
+    <item name="line_1" type="integer">1</item>
 </resources>

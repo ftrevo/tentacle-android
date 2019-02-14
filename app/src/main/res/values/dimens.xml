@@ -23,6 +23,7 @@
     <dimen name="dp_19">19dp</dimen>
     <dimen name="dp_25">25dp</dimen>
     <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
     <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_87">87dp</dimen>
