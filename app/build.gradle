@@ -143,4 +143,7 @@ dependencies {
 
     ktlint "com.github.shyiko:ktlint:$ktLintVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinReflection"
+
+    //https://github.com/jaredrummler/MaterialSpinner
+    implementation "com.jaredrummler:material-spinner:$materialSpinner"
 }

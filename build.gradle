@@ -49,7 +49,7 @@ buildscript {
     ext.androidxTest = "1.1.0"
 
     //Android Material
-    ext.androidMaterial = '1.0.0'
+    ext.androidMaterial = '1.1.0-alpha03'
 
     //Navigation
     ext.navigation = "1.0.0-alpha09"

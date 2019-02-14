@@ -28,5 +28,6 @@
 
     <color name="toolbarBackground">@color/colorPrimary</color>
     <color name="lineColor">#3b4048</color>
-
+    <color name="chipIconTint">#3b4048</color>
+    <color name="disableTextButton">#696f7a</color>
 </resources>

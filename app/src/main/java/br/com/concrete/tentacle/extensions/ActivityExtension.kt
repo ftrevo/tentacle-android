@@ -11,8 +11,10 @@ enum class ActivityAnimation {
     TRANSLATE_LEFT, TRANSLATE_RIGHT, TRANSLATE_UP, TRANSLATE_DOWN, TRANSLATE_FADE
 }
 
-inline fun <reified T : Activity> Activity.launchActivity(animation: ActivityAnimation? =
-                                                                  ActivityAnimation.TRANSLATE_LEFT) {
+inline fun <reified T : Activity> Activity.launchActivity(
+    animation: ActivityAnimation? =
+            ActivityAnimation.TRANSLATE_LEFT
+) {
     val intent = Intent(this, T::class.java)
     startActivity(intent)
 
@@ -20,9 +22,11 @@ inline fun <reified T : Activity> Activity.launchActivity(animation: ActivityAni
     overridePendingTransition(animations[0], animations[1])
 }
 
-inline fun <reified T : Activity> Activity.launchActivity(extras: Bundle? = null,
-                                                          animation: ActivityAnimation? =
-                                                                  ActivityAnimation.TRANSLATE_LEFT) {
+inline fun <reified T : Activity> Activity.launchActivity(
+    extras: Bundle? = null,
+    animation: ActivityAnimation? =
+            ActivityAnimation.TRANSLATE_LEFT
+) {
     val intent = Intent(this, T::class.java)
 
     extras?.let {
@@ -35,10 +39,12 @@ inline fun <reified T : Activity> Activity.launchActivity(extras: Bundle? = null
     overridePendingTransition(animations[0], animations[1])
 }
 
-inline fun <reified T : Activity> Activity.launchActivity(extras: Bundle? = null,
-                                                          intentFlags: Int,
-                                                          animation: ActivityAnimation? =
-                                                                  ActivityAnimation.TRANSLATE_LEFT) {
+inline fun <reified T : Activity> Activity.launchActivity(
+    extras: Bundle? = null,
+    intentFlags: Int,
+    animation: ActivityAnimation? =
+            ActivityAnimation.TRANSLATE_LEFT
+) {
     val intent = Intent(this, T::class.java)
     intent.flags = intentFlags
 
@@ -53,9 +59,11 @@ inline fun <reified T : Activity> Activity.launchActivity(extras: Bundle? = null
 }
 
 inline fun <reified T : Activity> Activity.launchActivity(
-    extras: Bundle? = null, activityOptions: ActivityOptionsCompat,
+    extras: Bundle? = null,
+    activityOptions: ActivityOptionsCompat,
     animation: ActivityAnimation? =
-                ActivityAnimation.TRANSLATE_LEFT) {
+                ActivityAnimation.TRANSLATE_LEFT
+) {
 
     val intent = Intent(this, T::class.java)
 
@@ -70,8 +78,10 @@ inline fun <reified T : Activity> Activity.launchActivity(
 }
 
 inline fun <reified T : Activity> Activity.launchActivityForResult(
-        requestCode: Int, animation: ActivityAnimation? =
-                ActivityAnimation.TRANSLATE_LEFT) {
+    requestCode: Int,
+    animation: ActivityAnimation? =    
+                    ActivityAnimation.TRANSLATE_LEFT
+) {
 
     val intent = Intent(this, T::class.java)
 
@@ -82,8 +92,11 @@ inline fun <reified T : Activity> Activity.launchActivityForResult(
 }
 
 inline fun <reified T : Activity> Activity.launchActivityForResult(
-        requestCode: Int, extras: Bundle? = null, animation: ActivityAnimation? =
-                ActivityAnimation.TRANSLATE_LEFT) {
+    requestCode: Int,
+    extras: Bundle? = null,
+    animation: ActivityAnimation? =    
+                    ActivityAnimation.TRANSLATE_LEFT
+) {
 
     val intent = Intent(this, T::class.java)
 
@@ -98,10 +111,12 @@ inline fun <reified T : Activity> Activity.launchActivityForResult(
 }
 
 inline fun <reified T : Activity> Activity.launchActivityForResult(
-        requestCode: Int, extras: Bundle? = null,
-        activityOptions: ActivityOptionsCompat,
-        animation: ActivityAnimation? =
-                ActivityAnimation.TRANSLATE_LEFT) {
+    requestCode: Int,
+    extras: Bundle? = null,
+    activityOptions: ActivityOptionsCompat,
+    animation: ActivityAnimation? =
+            ActivityAnimation.TRANSLATE_LEFT
+) {
 
     val intent = Intent(this, T::class.java)
 

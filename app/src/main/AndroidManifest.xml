@@ -34,8 +34,13 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <activity
-                android:name=".features.registerGame.RegisterGameHostActivity"
-                android:theme="@style/AppTheme"/>
+            android:name=".features.registerGame.RegisterGameHostActivity"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:label="@string/toolbar_title_loan_game"
+            android:name=".features.library.LoanActivity"
+            android:theme="@style/AppTheme"/>
 
         <meta-data
                 android:name="io.fabric.ApiKey"

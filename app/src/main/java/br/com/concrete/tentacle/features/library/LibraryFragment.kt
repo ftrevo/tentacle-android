@@ -19,6 +19,8 @@ import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import br.com.concrete.tentacle.data.models.library.filter.SubItem
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.library.filter.FilterDialogFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.reflect.full.declaredMemberProperties
@@ -60,7 +62,11 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                             libraries,
                             R.layout.library_item_layout,
                             { view ->
-                                LibraryViewHolder(view)
+                                LibraryViewHolder(view) { library ->
+                                    val extras = Bundle()
+                                    extras.putParcelable(LoanActivity.MEDIA_LIBRARY_EXTRA, library)
+                                    activity?.launchActivity<LoanActivity>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
+                                }
                             }, { holder, element ->
                                 LibraryViewHolder.callBack(holder = holder, element = element)
                             })

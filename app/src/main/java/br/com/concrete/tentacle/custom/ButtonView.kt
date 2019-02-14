@@ -10,7 +10,7 @@ import br.com.concrete.tentacle.extensions.getFloatFromRes
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import kotlinx.android.synthetic.main.button_custom.view.*
 
-class ButtonView(
+open class ButtonView(
     context: Context,
     attrs: AttributeSet
 ) : ConstraintLayout(context, attrs) {

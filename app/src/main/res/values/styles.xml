@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -65,11 +65,22 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="StyleDialogFragment" parent="Theme.AppCompat.Dialog">
+    <style name="StyleDialogFragment" parent="Theme.MaterialComponents.Dialog">
         <item name="android:windowNoTitle">true</item>
         <!-- Set this to true if you want Full Screen without status bar -->
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowIsFloating">false</item>
     </style>
 
+    <style name="Chip">
+        <item name="chipSurfaceColor">@android:color/transparent</item>
+        <item name="android:checkable">true</item>
+        <item name="chipBackgroundColor">@color/color_chip_state</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="android:width">@dimen/chipWidth</item>
+        <item name="android:height">@dimen/chipHeight</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>
