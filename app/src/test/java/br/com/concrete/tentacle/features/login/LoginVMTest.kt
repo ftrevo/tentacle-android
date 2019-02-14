@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.viewmodel
 
+import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
@@ -19,9 +20,11 @@ class LoginVMTest : BaseViewModelTest() {
 
     @Test
     fun `when LoginViewModel calls login should return error message for 401`() {
+        val error = ErrorResponse()
+        error.messageInt.add(R.string.user_or_password_error)
         val expected =
             ViewStateModel<Session>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse())
+                status = ViewStateModel.Status.ERROR, model = null, errors = error)
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
