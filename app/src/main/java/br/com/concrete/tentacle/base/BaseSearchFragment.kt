@@ -61,7 +61,7 @@ abstract class BaseSearchFragment : BaseFragment(),
 
         val closeButton = searchView.findViewById<ImageView>(R.id.search_close_btn)
         val editText = searchView.findViewById<EditText>(R.id.search_src_text)
-        editText.inputType =  InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        editText.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
 
         closeButton.setOnClickListener {
             editText.setText("")
