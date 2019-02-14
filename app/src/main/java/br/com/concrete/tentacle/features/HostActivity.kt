@@ -1,6 +1,9 @@
 package br.com.concrete.tentacle.features
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -9,12 +12,17 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.data.interfaces.CallBack
+import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.features.login.LoginActivity
+import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
-import kotlinx.android.synthetic.main.activity_host.*
+import kotlinx.android.synthetic.main.activity_host.bottomBar
+import org.koin.android.ext.android.inject
 
 class HostActivity : BaseActivity(), CallBack {
 
     private lateinit var navController: NavController
+    private val sharePrefRepository: SharedPrefRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +30,21 @@ class HostActivity : BaseActivity(), CallBack {
 
         startNavListener()
         setupToolbar(R.drawable.ic_logo_actionbar)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_home, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout -> {
+                checkLogout()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun startNavListener() {
@@ -57,7 +80,24 @@ class HostActivity : BaseActivity(), CallBack {
         finish()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return false
+    private fun checkLogout() {
+        DialogUtils.showDialog(
+            context = this@HostActivity,
+            title = getString(R.string.logout_title),
+            message = getString(R.string.logout_question),
+            positiveText = getString(android.R.string.ok),
+            positiveListener = DialogInterface.OnClickListener { _, _ ->
+                performLogout()
+            },
+            negativeText = getString(android.R.string.no)
+        )
+    }
+
+    private fun performLogout() {
+        sharePrefRepository.removeSession()
+        val login = Intent(this, LoginActivity::class.java)
+        login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(login)
+        finish()
     }
 }
