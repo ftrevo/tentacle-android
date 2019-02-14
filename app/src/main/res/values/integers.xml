@@ -2,4 +2,5 @@
 <resources>
     <item name="speedSlideAnim" type="integer">150</item>
     <item name="maxLines_5" type="integer">5</item>
+    <item name="line_1" type="integer">1</item>
 </resources>

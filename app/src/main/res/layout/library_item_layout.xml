@@ -21,29 +21,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/textColor"
-            tools:text="Nome do jogo"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            tools:text="@string/game_name"
+            android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:layout_marginEnd="@dimen/dp_10"
             app:layout_constraintEnd_toStartOf="@+id/ivArrow"
             android:ellipsize="end"
-            android:lines="1"/>
+            android:lines="@integer/line_1" />
 
     <ImageView
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
             android:id="@+id/ivArrow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvGameName"
+            app:layout_constraintStart_toEndOf="@+id/tvGameName"
             app:layout_constraintBottom_toBottomOf="@+id/tvGameName"
-            android:src="@drawable/ic_arrow_down"
+            app:srcCompat="@drawable/ic_arrow_down"
+            android:layout_marginEnd="@dimen/dp_12"
             android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/dp_12"
-            android:paddingTop="@dimen/dp_4"
-            android:paddingBottom="@dimen/dp_4"
-            android:paddingEnd="@dimen/dp_12"/>
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_0" />
 
     <LinearLayout
             android:animateLayoutChanges="true"
