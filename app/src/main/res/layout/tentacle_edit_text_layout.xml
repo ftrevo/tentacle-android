@@ -17,8 +17,8 @@
     <com.google.android.material.textfield.TextInputEditText
             android:textColor="#fff"
             android:textAppearance="@style/TextMedium.14sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginBottom="@dimen/dp_2"
             tools:text="Teste teste teste"
             android:background="@drawable/shape_border_rounded_white_alpha_10"
             android:id="@+id/edt"
