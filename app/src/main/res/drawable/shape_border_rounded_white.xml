@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid
-            android:color="#10ffffff"/>
+            android:color="@android:color/white"/>
     <corners
-            android:radius="3dp" />
+            android:radius="22dp" />
+
     <padding
-            android:left="@dimen/paddingTentacleEditText"
-            android:top="@dimen/paddingTentacleEditText"
-            android:right="@dimen/paddingTentacleEditText"
-            android:bottom="@dimen/paddingTentacleEditText" />
+            android:left="@dimen/dp_10"
+            android:top="@dimen/dp_10"
+            android:right="@dimen/dp_10"
+            android:bottom="@dimen/dp_10" />
 </shape>

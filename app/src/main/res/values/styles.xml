@@ -21,7 +21,7 @@
 
 
     <style name="ButtonSpinnerStyle" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@drawable/shape_border_rounded_white</item>
+        <item name="android:background">@drawable/shape_border_rounded_white_alpha_10</item>
         <item name="android:textAppearance">@style/TextMedium.14sp</item>
         <item name="android:textColor">@color/textColor</item>
 
@@ -37,6 +37,12 @@
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/shape_border_rounded_blue</item>
         <item name="android:textSize">@dimen/sizeButton</item>
+    </style>
+
+    <style name="StyleCLearFilterButton" parent="StyleButton">
+        <item name="textColorButton">@color/colorButtonBlue</item>
+        <item name="android:textColor">@color/colorButtonBlue</item>
+        <item name="android:background">@drawable/shape_border_rounded_white</item>
     </style>
 
     <style name="StyleRadioButton">
