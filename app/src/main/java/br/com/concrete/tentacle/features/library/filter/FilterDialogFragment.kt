@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_filter.filterButtonView
 import kotlinx.android.synthetic.main.fragment_filter.filterClearButtonView
 import kotlinx.android.synthetic.main.fragment_filter.filterCloseButton
 import kotlinx.android.synthetic.main.fragment_filter.filterContent
+import kotlinx.android.synthetic.main.item_filter_checkbox.view.subItemFilter
 import kotlinx.android.synthetic.main.item_filter_checkbox.view.subitemFilterCheckBox
 import kotlinx.android.synthetic.main.item_filter_checkbox.view.subitemFilterTextView
 import kotlinx.android.synthetic.main.item_filter_title.view.itemFilterImageView
@@ -129,24 +130,11 @@ class FilterDialogFragment : DialogFragment() {
                 }
                 subItemView.subitemFilterCheckBox.isChecked = subitem.isChecked
 
-                subItemView.setOnClickListener {
+                subItemView.subItemFilter.setOnClickListener {
                     subitem.isChecked = !subitem.isChecked
                     subItemView.subitemFilterCheckBox.isChecked = subitem.isChecked
 
-                    if (subitem.isChecked) {
-                        filtersSelected.add(subitem)
-                    } else {
-                        val preSelectedItem = filtersSelected.first { listItem ->
-                            listItem.queryParameter == subitem.queryParameter
-                        }
-                        filtersSelected.remove(preSelectedItem)
-                    }
-
-                    setClearButtonVisibility()
-                }
-
-                subItemView.subitemFilterCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                    subitem.isChecked = isChecked
+                    onCheckItem(subitem)
                 }
 
                 filterContent.addView(subItemView)
@@ -172,6 +160,19 @@ class FilterDialogFragment : DialogFragment() {
     private fun onDismiss() {
         callback.onFilterListener(filtersSelected)
         dismiss()
+    }
+
+    private fun onCheckItem(subItem: SubItem) {
+        if (subItem.isChecked) {
+            filtersSelected.add(subItem)
+        } else {
+            val preSelectedItem = filtersSelected.first { listItem ->
+                listItem.queryParameter == subItem.queryParameter
+            }
+            filtersSelected.remove(preSelectedItem)
+        }
+
+        setClearButtonVisibility()
     }
 
     private fun setClearButtonVisibility() {
