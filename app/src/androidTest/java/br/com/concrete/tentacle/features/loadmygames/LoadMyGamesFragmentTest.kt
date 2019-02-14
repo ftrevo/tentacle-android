@@ -69,5 +69,4 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.errorDescription))
             .check(matches(withText(R.string.load_games_error_not_know)))
     }
-
 }

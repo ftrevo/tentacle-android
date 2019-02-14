@@ -25,8 +25,8 @@ abstract class BaseFragmentNoActionBarNoBottomBarTest : BaseInstrumentedTest() {
     companion object {
         var intentsInitialized = false
 
-        fun init(){
-            if (!intentsInitialized){
+        fun init() {
+            if (!intentsInitialized) {
                 Intents.init()
                 intentsInitialized = true
             }

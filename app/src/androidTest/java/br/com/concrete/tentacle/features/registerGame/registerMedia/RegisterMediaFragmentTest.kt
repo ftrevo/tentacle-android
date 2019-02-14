@@ -7,7 +7,6 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.data.models.Game
@@ -80,7 +79,6 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         onView(withId(R.id.mediaRegisterButton))
             .perform(click())
-
 
         assertTrue(activityRule.activity.isFinishing)
     }
