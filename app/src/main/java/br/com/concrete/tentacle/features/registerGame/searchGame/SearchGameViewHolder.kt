@@ -4,18 +4,29 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.data.models.Game
 import kotlinx.android.synthetic.main.item_game.view.*
+import kotlinx.android.synthetic.main.item_game_search.view.horizontalLine
+import kotlinx.android.synthetic.main.item_game_search.view.mediaImageView
 
 class SearchGameViewHolder(private val item: View) : RecyclerView.ViewHolder(item) {
 
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, game: Game, listener: (Game) -> Unit) {
             if (holder is SearchGameViewHolder) {
-                holder.item.game_name.text = game.title
-            }
+                if (game._id != "-1") {
+                    holder.item.game_name.text = game.title
+                    holder.itemView.setOnClickListener {
+                        listener(game)
+                    }
 
-            holder.itemView.setOnClickListener {
-                listener(game)
+                    visibleViews(holder)
+                }
             }
+        }
+
+        private fun visibleViews(holder: SearchGameViewHolder) {
+            holder.item.game_name.visibility = View.VISIBLE
+            holder.item.horizontalLine.visibility = View.VISIBLE
+            holder.item.mediaImageView.visibility = View.VISIBLE
         }
     }
 }
