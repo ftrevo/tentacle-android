@@ -176,10 +176,13 @@ def instrumentTests() {
         '''
         killEmulator()
         publishHtmlProject('app/build/reports/androidTests/connected', 'Instrument Tests')
+        archivesProject("app/build/reports/androidTests/connected/index.html")
+
     }
     catch(err) {
         killEmulator()
         publishHtmlProject('app/build/reports/androidTests/connected', 'Instrument Tests')
+        archivesProject("app/build/reports/androidTests/connected/index.html")
         sendFailedNotify('Instrument Tests', err)
     }   
 }
