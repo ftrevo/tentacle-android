@@ -119,7 +119,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
         selectedFilterItems.clear()
         selectedFilterItems.addAll(filters)
 
-        queryParameters = QueryUtils.filterQuery(selectedFilterItems)
+        queryParameters = QueryUtils.assemblefilterQuery(selectedFilterItems)
         viewModelLibrary.loadLibrary(queryParameters)
     }
 }

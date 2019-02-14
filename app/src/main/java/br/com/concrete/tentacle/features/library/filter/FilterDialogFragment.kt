@@ -115,7 +115,7 @@ class FilterDialogFragment : DialogFragment() {
             filterContent.addView(itemView)
 
             item.subItems.forEach { subitem ->
-                subitem.key = item.title
+                subitem.queryType = item.title
 
                 val subItemView = LayoutInflater
                     .from(activity)
@@ -124,7 +124,7 @@ class FilterDialogFragment : DialogFragment() {
                 subItemView.subitemFilterTextView.text = subitem.name
 
                 // Populate view
-                filtersSelected.firstOrNull { it.keyValue == subitem.keyValue }?.let {
+                filtersSelected.firstOrNull { it.queryParameter == subitem.queryParameter }?.let {
                     subitem.isChecked = it.isChecked
                 }
                 subItemView.subitemFilterCheckBox.isChecked = subitem.isChecked
@@ -137,7 +137,7 @@ class FilterDialogFragment : DialogFragment() {
                         filtersSelected.add(subitem)
                     } else {
                         val preSelectedItem = filtersSelected.first { listItem ->
-                            listItem.keyValue == subitem.keyValue
+                            listItem.queryParameter == subitem.queryParameter
                         }
                         filtersSelected.remove(preSelectedItem)
                     }

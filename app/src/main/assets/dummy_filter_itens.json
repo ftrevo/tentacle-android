@@ -4,27 +4,27 @@
     "icon":"ic_game",
     "subItems":[
       {
-        "keyValue":"PS3",
+        "queryParameter":"PS3",
         "name":"Playstation 3"
       },
       {
-        "keyValue":"PS4",
+        "queryParameter":"PS4",
         "name":"Playstation 4"
       },
       {
-        "keyValue":"XBOX360",
+        "queryParameter":"XBOX360",
         "name":"XBox 360"
       },
       {
-        "keyValue":"XBOXONE",
+        "queryParameter":"XBOXONE",
         "name":"XBox One"
       },
       {
-        "keyValue":"NINTENDO3DS",
+        "queryParameter":"NINTENDO3DS",
         "name":"Nintendo 3DS"
       },
       {
-        "keyValue":"NINTENDOSWITCH",
+        "queryParameter":"NINTENDOSWITCH",
         "name":"Nintendo Switch"
       }
     ]
@@ -34,7 +34,7 @@
     "icon":"ic_filter_status",
     "subItems":[
       {
-        "keyValue":"UNAVAILABLE",
+        "queryParameter":"UNAVAILABLE",
         "name":"Mostrar jogos indisponíveis"
       }
     ]
