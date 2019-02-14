@@ -5,18 +5,18 @@ import br.com.concrete.tentacle.data.models.library.filter.SubItem
 
 object QueryUtils {
 
-    fun filterQuery(filters: ArrayList<SubItem>): QueryParameters {
+    fun assemblefilterQuery(filters: ArrayList<SubItem>): QueryParameters {
         val queries = QueryParameters()
         filters.forEach { subItem ->
-            when (subItem.key) {
+            when (subItem.queryType) {
                 "Plataformas" -> {
-                    queries.mediaPlatform?.add(subItem.keyValue) ?: run {
+                    queries.mediaPlatform?.add(subItem.queryParameter) ?: run {
                         queries.mediaPlatform = ArrayList<String>()
-                        queries.mediaPlatform!!.add(subItem.keyValue)
+                        queries.mediaPlatform!!.add(subItem.queryParameter)
                     }
                 }
                 "Status do jogo" -> {
-                    queries.status = subItem.keyValue
+                    queries.status = subItem.queryParameter
                 }
             }
         }

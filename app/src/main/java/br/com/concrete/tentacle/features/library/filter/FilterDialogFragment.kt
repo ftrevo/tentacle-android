@@ -3,6 +3,8 @@ package br.com.concrete.tentacle.features.library.filter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -14,8 +16,10 @@ import br.com.concrete.tentacle.data.models.library.filter.SubItem
 import br.com.concrete.tentacle.extensions.loadImage
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_filter.filterButtonView
+import kotlinx.android.synthetic.main.fragment_filter.filterClearButtonView
 import kotlinx.android.synthetic.main.fragment_filter.filterCloseButton
 import kotlinx.android.synthetic.main.fragment_filter.filterContent
+import kotlinx.android.synthetic.main.item_filter_checkbox.view.subItemFilter
 import kotlinx.android.synthetic.main.item_filter_checkbox.view.subitemFilterCheckBox
 import kotlinx.android.synthetic.main.item_filter_checkbox.view.subitemFilterTextView
 import kotlinx.android.synthetic.main.item_filter_title.view.itemFilterImageView
@@ -94,6 +98,7 @@ class FilterDialogFragment : DialogFragment() {
     private fun createViewsOnSuccess() {
         arguments?.getParcelableArrayList<SubItem>(FILTER_BUNDLE_ARGS)?.let {
             filtersSelected.addAll(it)
+            setClearButtonVisibility()
         }
 
         filterList.forEach { item ->
@@ -111,7 +116,7 @@ class FilterDialogFragment : DialogFragment() {
             filterContent.addView(itemView)
 
             item.subItems.forEach { subitem ->
-                subitem.key = item.title
+                subitem.queryType = item.title
 
                 val subItemView = LayoutInflater
                     .from(activity)
@@ -120,18 +125,16 @@ class FilterDialogFragment : DialogFragment() {
                 subItemView.subitemFilterTextView.text = subitem.name
 
                 // Populate view
-                filtersSelected.firstOrNull { it.keyValue == subitem.keyValue }?.let {
+                filtersSelected.firstOrNull { it.queryParameter == subitem.queryParameter }?.let {
                     subitem.isChecked = it.isChecked
                 }
                 subItemView.subitemFilterCheckBox.isChecked = subitem.isChecked
 
-                subItemView.setOnClickListener {
+                subItemView.subItemFilter.setOnClickListener {
                     subitem.isChecked = !subitem.isChecked
                     subItemView.subitemFilterCheckBox.isChecked = subitem.isChecked
-                }
 
-                subItemView.subitemFilterCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                    subitem.isChecked = isChecked
+                    onCheckItem(subitem)
                 }
 
                 filterContent.addView(subItemView)
@@ -141,20 +144,39 @@ class FilterDialogFragment : DialogFragment() {
 
     private fun initListeners() {
         filterButtonView.setOnClickListener {
-            filtersSelected.clear()
-            filterList.forEach { item ->
-                filtersSelected.addAll(item.subItems.filter { subItem ->
-                    subItem.isChecked
-                })
-            }
+            onDismiss()
+        }
 
-            callback.onFilterListener(filtersSelected)
-            dismiss()
+        filterClearButtonView.setOnClickListener {
+            filtersSelected.clear()
+            onDismiss()
         }
 
         filterCloseButton.setOnClickListener {
             dismiss()
         }
+    }
+
+    private fun onDismiss() {
+        callback.onFilterListener(filtersSelected)
+        dismiss()
+    }
+
+    private fun onCheckItem(subItem: SubItem) {
+        if (subItem.isChecked) {
+            filtersSelected.add(subItem)
+        } else {
+            val preSelectedItem = filtersSelected.first { listItem ->
+                listItem.queryParameter == subItem.queryParameter
+            }
+            filtersSelected.remove(preSelectedItem)
+        }
+
+        setClearButtonVisibility()
+    }
+
+    private fun setClearButtonVisibility() {
+        filterClearButtonView.visibility = if (filtersSelected.isNotEmpty()) VISIBLE else GONE
     }
 
     interface OnFilterListener {

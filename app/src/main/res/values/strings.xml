@@ -85,6 +85,7 @@
 
     <string name="filter_toolbar_title">Filtro</string>
     <string name="filter_button_text">Filtrar</string>
+    <string name="filter_clear_button_text">Limpar filtro</string>
     <!-- These strings below will no longer needed once all the data starts to come from the api -->
     <string name="filter_item_platforms">Plataformas</string>
     <string name="filter_item_status">Status do jogo</string>
