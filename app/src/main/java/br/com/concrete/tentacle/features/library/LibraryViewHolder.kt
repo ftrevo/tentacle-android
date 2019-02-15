@@ -18,7 +18,8 @@ import kotlinx.android.synthetic.main.library_item_layout.view.tvPS4
 
 class LibraryViewHolder(
     private val mLinearLayout: View,
-    var viewStateOpen: Boolean = false
+    var viewStateOpen: Boolean = false,
+    val listener: (library: Library) -> Unit
 ) : RecyclerView.ViewHolder(mLinearLayout) {
 
     companion object {
@@ -28,6 +29,9 @@ class LibraryViewHolder(
                 holder.mLinearLayout.ivArrow.setOnClickListener {
                     if (holder.viewStateOpen) animateClose(holder.mLinearLayout) else animateOpen(holder.mLinearLayout, element)
                     holder.viewStateOpen = !holder.viewStateOpen
+                }
+                holder.itemView.setOnClickListener {
+                    holder.listener(element)
                 }
             }
         }

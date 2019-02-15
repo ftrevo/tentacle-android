@@ -1,5 +1,9 @@
 package br.com.concrete.tentacle.data.models.library
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Library(
     val _id: String,
     val createdAt: String,
@@ -12,4 +16,4 @@ data class Library(
     val mediaXboxOne: List<MediaLibrary>,
     val title: String,
     val updatedAt: String
-)
+) : Parcelable

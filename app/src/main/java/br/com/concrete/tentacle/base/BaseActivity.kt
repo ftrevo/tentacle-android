@@ -22,6 +22,10 @@ abstract class BaseActivity : AppCompatActivity() {
         setupToolbar(INVALID_TITLE, INVALID_ICON, true)
     }
 
+    fun setupToolbar(@StringRes title: Int, @DrawableRes icon: Int) {
+        setupToolbar(title, icon, true)
+    }
+
     fun setupToolbar(@DrawableRes icon: Int) {
         setupToolbar(INVALID_TITLE, icon, true)
     }
