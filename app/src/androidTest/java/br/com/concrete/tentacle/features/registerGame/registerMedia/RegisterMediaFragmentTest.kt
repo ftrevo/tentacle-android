@@ -3,10 +3,8 @@ package br.com.concrete.tentacle.features.registerGame.registerMedia
 import android.os.Bundle
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
-import androidx.test.espresso.NoActivityResumedException
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
@@ -16,6 +14,7 @@ import br.com.concrete.tentacle.extensions.fromJson
 import br.com.concrete.tentacle.extensions.getJson
 import com.google.gson.Gson
 import okhttp3.mockwebserver.MockResponse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class RegisterMediaFragmentTest : BaseFragmentTest() {
@@ -49,18 +48,6 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun loading() {
-        onView(withId(R.id.mediaPS4RadioButton))
-            .perform(click())
-
-        onView(withId(R.id.mediaRegisterButton))
-            .perform(click())
-
-        onView(withId(R.id.progressBarList))
-            .check(matches(isDisplayed()))
-    }
-
-    @Test
     fun registerMediaPlatformError() {
         onView(withId(R.id.mediaPS4RadioButton))
             .perform(click())
@@ -79,24 +66,20 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
     @Test
     fun registerMediaPlatformSuccess() {
-        try {
-            onView(withId(R.id.mediaPS4RadioButton))
-                .perform(click())
 
-            val response =
-                "mockjson/loadmygames/register_media_success.json".getJson()
+        onView(withId(R.id.mediaPS4RadioButton))
+            .perform(click())
 
-            mockWebServer.enqueue(MockResponse()
-                .setBody(response)
-                .setResponseCode(201))
+        val response =
+            "mockjson/loadmygames/register_media_success.json".getJson()
 
-            onView(withId(R.id.mediaRegisterButton))
-                .perform(click())
+        mockWebServer.enqueue(MockResponse()
+            .setBody(response)
+            .setResponseCode(201))
 
-            onView(withId(com.google.android.material.R.id.snackbar_text))
-                .check(matches(withText(R.string.register_media_success_test)))
-        } catch (ex: NoActivityResumedException) {
-            // do nothing
-        }
+        onView(withId(R.id.mediaRegisterButton))
+            .perform(click())
+
+        assertTrue(activityRule.activity.isFinishing)
     }
 }
