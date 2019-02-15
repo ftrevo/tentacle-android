@@ -5,7 +5,12 @@ import android.os.Bundle
 import android.view.View
 import br.com.concrete.tentacle.R
 
+
 class LendGameActivity : AppCompatActivity(), View.OnClickListener {
+
+    companion object {
+        const val MEDIA_OBJECT = "MEDIA"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

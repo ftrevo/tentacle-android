@@ -15,6 +15,7 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.features.lendGame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
 import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
@@ -65,7 +66,9 @@ class LoadMyGamesFragment : BaseFragment() {
                             { view ->
                                 LoadMyGamesViewHolder(view)
                             }, { holder, element ->
-                                LoadMyGamesViewHolder.callBack(holder = holder, element = element)
+                                LoadMyGamesViewHolder.callBack(holder = holder, element = element, listener =  {
+                                    media ->  callActivity(media)
+                                })
                             })
 
                         recyclerListView.adapter = recyclerViewAdapter
@@ -88,6 +91,12 @@ class LoadMyGamesFragment : BaseFragment() {
             }
         })
         lifecycle.addObserver(viewModelLoadMyGames)
+    }
+
+    private fun callActivity(media: Media) {
+        val intent = Intent(context, LendGameActivity::class.java)
+        intent.putExtra(LendGameActivity.MEDIA_OBJECT, media)
+        startActivity(intent)
     }
 
     private fun init() {
