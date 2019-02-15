@@ -180,9 +180,4 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         listCustom.recyclerListError.visibility = View.GONE
     }
 
-    override fun onResume() {
-        super.onResume()
-        tempList.clear()
-    }
-
 }
