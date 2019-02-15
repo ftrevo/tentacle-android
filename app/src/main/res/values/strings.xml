@@ -112,4 +112,6 @@
     <string name="tempo_reserva">Tempo de reserva</string>
     <string name="_1_semana">1 semana</string>
     <string name="lendGame">Jogo entregue</string>
+
+    <string name="cancel">Cancelar</string>
 </resources>
