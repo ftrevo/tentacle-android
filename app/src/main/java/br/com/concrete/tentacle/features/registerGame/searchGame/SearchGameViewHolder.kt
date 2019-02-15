@@ -10,7 +10,7 @@ class SearchGameViewHolder(private val item: View) : RecyclerView.ViewHolder(ite
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, game: Game, listener: (Game) -> Unit) {
             if (holder is SearchGameViewHolder) {
-                holder.item.game_name.text = game.title
+                holder.item.game_name.text = game.name
             }
 
             holder.itemView.setOnClickListener {

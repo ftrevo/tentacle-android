@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.data.models.ErrorResponse
 
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
@@ -66,6 +69,29 @@ abstract class BaseActivity : AppCompatActivity() {
                 return true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    protected fun showError(errors: ErrorResponse?) {
+        if (errors != null) {
+            errors.messageInt.map { error ->
+                errors.message.add(getString(error))
+            }
+
+            val ers = errors.toString()
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.error_dialog_title)
+            builder.setMessage(ers)
+            builder.apply {
+                setPositiveButton(
+                    R.string.ok
+                ) { dialog, _ ->
+                    dialog.dismiss()
+                }
+            }
+
+            builder.create().show()
         }
     }
 }

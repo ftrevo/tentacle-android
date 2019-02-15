@@ -33,7 +33,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", '"https://tentacle-backend.herokuapp.com/"'
+            buildConfigField "String", "BASE_URL", '"https://tentacle-backend-dev.herokuapp.com/"'
             applicationIdSuffix ".debug"
             testCoverageEnabled true
         }

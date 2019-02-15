@@ -64,7 +64,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                             { view ->
                                 LibraryViewHolder(view) { library ->
                                     val extras = Bundle()
-                                    extras.putParcelable(LoanActivity.MEDIA_LIBRARY_EXTRA, library)
+                                    extras.putString(LoanActivity.ID_LIBRARY_EXTRA, library._id)
                                     activity?.launchActivity<LoanActivity>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
                                 }
                             }, { holder, element ->
