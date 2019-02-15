@@ -64,7 +64,11 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                             { view ->
                                 LibraryViewHolder(view)
                             }, { holder, element ->
-                                LibraryViewHolder.callBack(holder = holder, element = element)
+                                LibraryViewHolder.callBack(
+                                    holder = holder,
+                                    element = element,
+                                    selectedFilters = selectedFilterItems
+                                )
                             })
 
                         recyclerListView.layoutManager = LinearLayoutManager(context)
