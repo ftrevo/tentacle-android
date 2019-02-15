@@ -12,8 +12,7 @@ enum class ActivityAnimation {
 }
 
 inline fun <reified T : Activity> Activity.launchActivity(
-    animation: ActivityAnimation? =
-            ActivityAnimation.TRANSLATE_LEFT
+    animation: ActivityAnimation = ActivityAnimation.TRANSLATE_LEFT
 ) {
     val intent = Intent(this, T::class.java)
     startActivity(intent)
@@ -24,8 +23,7 @@ inline fun <reified T : Activity> Activity.launchActivity(
 
 inline fun <reified T : Activity> Activity.launchActivity(
     extras: Bundle? = null,
-    animation: ActivityAnimation? =
-            ActivityAnimation.TRANSLATE_LEFT
+    animation: ActivityAnimation = ActivityAnimation.TRANSLATE_LEFT
 ) {
     val intent = Intent(this, T::class.java)
 
@@ -42,8 +40,7 @@ inline fun <reified T : Activity> Activity.launchActivity(
 inline fun <reified T : Activity> Activity.launchActivity(
     extras: Bundle? = null,
     intentFlags: Int,
-    animation: ActivityAnimation? =
-            ActivityAnimation.TRANSLATE_LEFT
+    animation: ActivityAnimation = ActivityAnimation.TRANSLATE_LEFT
 ) {
     val intent = Intent(this, T::class.java)
     intent.flags = intentFlags
@@ -61,8 +58,7 @@ inline fun <reified T : Activity> Activity.launchActivity(
 inline fun <reified T : Activity> Activity.launchActivity(
     extras: Bundle? = null,
     activityOptions: ActivityOptionsCompat,
-    animation: ActivityAnimation? =
-                ActivityAnimation.TRANSLATE_LEFT
+    animation: ActivityAnimation = ActivityAnimation.TRANSLATE_LEFT
 ) {
 
     val intent = Intent(this, T::class.java)
@@ -79,8 +75,7 @@ inline fun <reified T : Activity> Activity.launchActivity(
 
 inline fun <reified T : Activity> Activity.launchActivityForResult(
     requestCode: Int,
-    animation: ActivityAnimation? =    
-                    ActivityAnimation.TRANSLATE_LEFT
+    animation: ActivityAnimation = ActivityAnimation.TRANSLATE_LEFT
 ) {
 
     val intent = Intent(this, T::class.java)
@@ -94,8 +89,7 @@ inline fun <reified T : Activity> Activity.launchActivityForResult(
 inline fun <reified T : Activity> Activity.launchActivityForResult(
     requestCode: Int,
     extras: Bundle? = null,
-    animation: ActivityAnimation? =    
-                    ActivityAnimation.TRANSLATE_LEFT
+    animation: ActivityAnimation = ActivityAnimation.TRANSLATE_LEFT
 ) {
 
     val intent = Intent(this, T::class.java)
@@ -114,8 +108,7 @@ inline fun <reified T : Activity> Activity.launchActivityForResult(
     requestCode: Int,
     extras: Bundle? = null,
     activityOptions: ActivityOptionsCompat,
-    animation: ActivityAnimation? =
-            ActivityAnimation.TRANSLATE_LEFT
+    animation: ActivityAnimation = ActivityAnimation.TRANSLATE_LEFT
 ) {
 
     val intent = Intent(this, T::class.java)
@@ -131,7 +124,7 @@ inline fun <reified T : Activity> Activity.launchActivityForResult(
     overridePendingTransition(animations[0], animations[1])
 }
 
-fun Activity.finishActivity(animation: ActivityAnimation? = ActivityAnimation.TRANSLATE_RIGHT) {
+fun Activity.finishActivity(animation: ActivityAnimation = ActivityAnimation.TRANSLATE_RIGHT) {
     finish()
     val animations = getAnimation(animation)
     overridePendingTransition(animations[0], animations[1])

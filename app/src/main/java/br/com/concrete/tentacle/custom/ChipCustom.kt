@@ -10,8 +10,6 @@ import com.google.android.material.chip.Chip
 
 class ChipCustom(context: Context?, attrs: AttributeSet?) : Chip(context, attrs) {
 
-    constructor(context: Context?) : this(context, null)
-
     init {
         context?.let {
             chipBackgroundColor = ContextCompat.getColorStateList(it, R.color.color_chip_state)
