@@ -14,20 +14,23 @@ class SearchGameViewHolder(private val item: View) : RecyclerView.ViewHolder(ite
 
             if (holder is SearchGameViewHolder) {
                 if (game._id == Game.ID_EMPTY_GAME) {
-                    visibleViews(holder)
+                    visibleViews(holder, false)
                 } else {
                     holder.item.game_name.text = game.title
                     holder.itemView.setOnClickListener {
                         listener(game)
                     }
+                    visibleViews(holder, true)
                 }
             }
         }
 
-        private fun visibleViews(holder: SearchGameViewHolder) {
-            holder.item.game_name.visibility = View.INVISIBLE
-            holder.item.horizontalLine.visibility = View.INVISIBLE
-            holder.item.mediaImageView.visibility = View.INVISIBLE
+        private fun visibleViews(holder: SearchGameViewHolder, isVisible: Boolean) {
+            val state = if (isVisible) View.VISIBLE else View.INVISIBLE
+
+            holder.item.game_name.visibility = state
+            holder.item.horizontalLine.visibility = state
+            holder.item.mediaImageView.visibility = state
         }
     }
 }
