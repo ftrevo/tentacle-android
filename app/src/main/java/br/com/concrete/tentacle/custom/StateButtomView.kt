@@ -15,7 +15,7 @@ class StateButtomView(
 
     fun enable() {
         isEnabled = true
-        context?.let {
+        context.let {
             backgroundColor(R.drawable.shape_border_rounded_blue)
             textColor(R.color.textColor)
         }
@@ -28,13 +28,13 @@ class StateButtomView(
     }
 
     private fun backgroundColor(@DrawableRes drawable: Int) {
-        context?.let {
+        context.let {
             background = ContextCompat.getDrawable(it, drawable)
         }
     }
 
     private fun textColor(@ColorRes color: Int) {
-        context?.let {
+        context.let {
             button.setTextColor(ContextCompat.getColor(it, color))
         }
     }
