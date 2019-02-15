@@ -12,8 +12,6 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.Game
-import br.com.concrete.tentacle.data.models.State
-import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import kotlinx.android.synthetic.main.fragment_search_game.listCustom
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
@@ -26,7 +24,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     private val gameViewModel: SearchGameViewModel by viewModel()
 
-    private var lModelTemp: ArrayList<Game>? = ArrayList()
+    private var tempList: ArrayList<Game> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -111,41 +109,26 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     }
 
     private fun fillRecyclerView(model: ArrayList<Game>) {
-        if (lModelTemp?.isEmpty()!!) {
+        if (tempList.isEmpty()) {
             model.add(
-                Game(
-                    "-1",
-                    "",
-                    User(
-                        city = "",
-                        name = "",
-                        password = "",
-                        state = State(
-                            "",
-                            "",
-                            ""
-                        )
-                    ),
-                    "",
-                    ""
-                )
+                Game.getEmptyGame()
             )
         }
 
-            val recyclerViewAdapter =
-                BaseAdapter(model,
-                    R.layout.item_game_search, {
-                        SearchGameViewHolder(it)
-                    }, { holder, element ->
-                        SearchGameViewHolder.callBack(holder = holder, game = element, listener = { gameSelected ->
-                            navigateToRegisterPlatform(gameSelected)
-                        })
+        val recyclerViewAdapter =
+            BaseAdapter(model,
+                R.layout.item_game_search, {
+                    SearchGameViewHolder(it)
+                }, { holder, element ->
+                    SearchGameViewHolder.callBack(holder = holder, game = element, listener = { gameSelected ->
+                        navigateToRegisterPlatform(gameSelected)
                     })
-            listCustom.recyclerListView.setItemViewCacheSize(model.size)
-            listCustom.recyclerListView.adapter = recyclerViewAdapter
-            listCustom.updateUi(model)
+                })
+        listCustom.recyclerListView.setItemViewCacheSize(model.size)
+        listCustom.recyclerListView.adapter = recyclerViewAdapter
+        listCustom.updateUi(model)
 
-        lModelTemp = model
+        tempList = model
     }
 
     override fun getSearchGame(searchGame: String) {

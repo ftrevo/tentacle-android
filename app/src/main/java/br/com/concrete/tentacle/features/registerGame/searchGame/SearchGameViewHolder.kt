@@ -11,22 +11,23 @@ class SearchGameViewHolder(private val item: View) : RecyclerView.ViewHolder(ite
 
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, game: Game, listener: (Game) -> Unit) {
+
             if (holder is SearchGameViewHolder) {
-                if (game._id != "-1") {
+                if (game._id == Game.ID_EMPTY_GAME) {
+                    visibleViews(holder)
+                } else {
                     holder.item.game_name.text = game.title
                     holder.itemView.setOnClickListener {
                         listener(game)
                     }
-
-                    visibleViews(holder)
                 }
             }
         }
 
         private fun visibleViews(holder: SearchGameViewHolder) {
-            holder.item.game_name.visibility = View.VISIBLE
-            holder.item.horizontalLine.visibility = View.VISIBLE
-            holder.item.mediaImageView.visibility = View.VISIBLE
+            holder.item.game_name.visibility = View.INVISIBLE
+            holder.item.horizontalLine.visibility = View.INVISIBLE
+            holder.item.mediaImageView.visibility = View.INVISIBLE
         }
     }
 }

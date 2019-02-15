@@ -10,4 +10,27 @@ data class Game(
     val createdBy: User,
     var createdAt: String,
     var updateAt: String
-) : Parcelable
+) : Parcelable {
+
+    companion object {
+
+        const val ID_EMPTY_GAME = "-1"
+
+        fun getEmptyGame(): Game = Game(
+            ID_EMPTY_GAME,
+            "",
+            User(
+                city = "",
+                name = "",
+                password = "",
+                state = State(
+                    "",
+                    "",
+                    ""
+                )
+            ),
+            "",
+            ""
+        )
+    }
+}
