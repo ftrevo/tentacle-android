@@ -95,16 +95,21 @@ class LibraryVMTest : BaseViewModelTest() {
 
     @Test
     fun `when libraryViewModel calls loadlibrary should return a list of Library after filter`() {
+        val responseJson = getJson(
+            "mockjson/library/get_library_after_filter_success.json"
+        )
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+
         val filtersSelected = ArrayList<SubItem>()
         filtersSelected.add(SubItem("Plataformas", "PS4", "Playstation 4", true))
 
         val queryParameters = QueryUtils.assemblefilterQuery(filtersSelected)
 
         libraryViewModel.loadLibrary(queryParameters)
-
-        val responseJson = getJson(
-            "mockjson/library/get_library_after_filter_success.json"
-        )
 
         val collectionType = object : TypeToken<BaseModel<LibraryResponse>>() {}.type
         val responseObject: BaseModel<LibraryResponse> = GsonBuilder()
@@ -117,17 +122,46 @@ class LibraryVMTest : BaseViewModelTest() {
                 model = responseObject.data.list)
         var actual = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
 
+        libraryViewModel.getLibrary().observeForever {
+            actual = it
+        }
+
+        Assert.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when libraryViewModel calls loadlibrary should return a list of Library after filter without items`() {
+        val responseJson = getJson(
+            "mockjson/library/get_library_error.json"
+        )
         val mockResponse = MockResponse()
             .setResponseCode(200)
             .setBody(responseJson)
 
         mockServer.enqueue(mockResponse)
 
+        val filtersSelected = ArrayList<SubItem>()
+        filtersSelected.add(SubItem("Plataformas", "PS4", "Playstation 4", true))
+
+        val queryParameters = QueryUtils.assemblefilterQuery(filtersSelected)
+
+        libraryViewModel.loadLibrary(queryParameters)
+
+        val collectionType = object : TypeToken<BaseModel<LibraryResponse>>() {}.type
+        val responseObject: BaseModel<LibraryResponse> = GsonBuilder()
+            .create()
+            .fromJson(responseJson, collectionType)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = responseObject.data.list)
+        var actual = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
+
         libraryViewModel.getLibrary().observeForever {
             actual = it
         }
 
-        libraryViewModel.loadLibrary()
         Assert.assertEquals(expected, actual)
     }
 }
