@@ -12,7 +12,7 @@ class LoadMyGamesViewHolder(
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, element: Media) {
             if (holder is LoadMyGamesViewHolder) {
-                holder.mLinearLayout.game_name.text = element.game?.title
+                holder.mLinearLayout.game_name.text = element.game?.name
                 holder.mLinearLayout.game_media.text = element.platform?.platformName
             }
         }

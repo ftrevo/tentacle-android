@@ -4,7 +4,6 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.library.Library
-import br.com.concrete.tentacle.data.models.library.MediaLibrary
 import br.com.concrete.tentacle.extensions.animation
 import kotlinx.android.synthetic.main.library_item_layout.view.groupLayout
 import kotlinx.android.synthetic.main.library_item_layout.view.ivArrow
@@ -25,7 +24,7 @@ class LibraryViewHolder(
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, element: Library) {
             if (holder is LibraryViewHolder) {
-                holder.mLinearLayout.tvGameName.text = element.title
+                holder.mLinearLayout.tvGameName.text = element.name
                 holder.mLinearLayout.ivArrow.setOnClickListener {
                     if (holder.viewStateOpen) animateClose(holder.mLinearLayout) else animateOpen(holder.mLinearLayout, element)
                     holder.viewStateOpen = !holder.viewStateOpen
@@ -36,8 +35,8 @@ class LibraryViewHolder(
             }
         }
 
-        private fun checkPlatform(view: View, list: List<MediaLibrary>) {
-            view.visibility = if (list.isNotEmpty()) View.VISIBLE else View.GONE
+        private fun checkPlatform(view: View, hasMedia: Int) {
+            view.visibility = if (hasMedia > 0) View.VISIBLE else View.GONE
         }
 
         private fun animateOpen(view: View, element: Library) {
@@ -54,12 +53,12 @@ class LibraryViewHolder(
 
         private fun showBullets(view: View, element: Library) {
             view.groupLayout.visibility = View.VISIBLE
-            checkPlatform(view.tv360, element.mediaXbox360)
-            checkPlatform(view.tv3DS, element.mediaNintendo3ds)
-            checkPlatform(view.tvNS, element.mediaNintendoSwitch)
-            checkPlatform(view.tvONE, element.mediaXboxOne)
-            checkPlatform(view.tvPS3, element.mediaPs3)
-            checkPlatform(view.tvPS4, element.mediaPs4)
+            checkPlatform(view.tv360, element.mediaXbox360Count)
+            checkPlatform(view.tv3DS, element.mediaNintendo3dsCount)
+            checkPlatform(view.tvNS, element.mediaNintendoSwitchCount)
+            checkPlatform(view.tvONE, element.mediaXboxOneCount)
+            checkPlatform(view.tvPS3, element.mediaPs3Count)
+            checkPlatform(view.tvPS4, element.mediaPs4Count)
         }
 
         private fun hideBullets(view: View) {
