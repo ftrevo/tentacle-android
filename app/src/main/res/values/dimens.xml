@@ -18,11 +18,13 @@
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_11">11dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
     <dimen name="dp_14">14dp</dimen>
     <dimen name="dp_18">18dp</dimen>
     <dimen name="dp_19">19dp</dimen>
     <dimen name="dp_25">25dp</dimen>
     <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
     <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_87">87dp</dimen>

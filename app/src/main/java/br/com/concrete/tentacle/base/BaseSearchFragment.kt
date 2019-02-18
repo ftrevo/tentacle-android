@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.base
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.InputType
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -16,8 +17,8 @@ import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
 
-const val TIME_OUT: Long = 300
-const val MINIMAL_CHARACTER: Int = 3
+const val TIME_OUT: Long = 550
+const val MINIMAL_CHARACTER: Int = 2
 
 @SuppressLint("CheckResult")
 abstract class BaseSearchFragment : BaseFragment(),
@@ -60,11 +61,10 @@ abstract class BaseSearchFragment : BaseFragment(),
 
         val closeButton = searchView.findViewById<ImageView>(R.id.search_close_btn)
         val editText = searchView.findViewById<EditText>(R.id.search_src_text)
+        editText.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
 
         closeButton.setOnClickListener {
-            clearListGame()
             editText.setText("")
-            searchView.isIconified = true
             searchView.setIconifiedByDefault(true)
         }
 
@@ -87,7 +87,7 @@ abstract class BaseSearchFragment : BaseFragment(),
             .subscribe { text -> getSearchGame(text) }
     }
 
-    fun validateSearch(search: String) = search.trim().length > MINIMAL_CHARACTER
+    fun validateSearch(search: String) = search.trim().length >= MINIMAL_CHARACTER
 
     private fun setupToolbar() {
         (activity as? AppCompatActivity)?.supportActionBar?.title = titleToolbar()

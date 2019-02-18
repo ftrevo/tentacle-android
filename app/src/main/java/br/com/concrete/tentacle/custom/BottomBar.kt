@@ -15,6 +15,8 @@ class BottomBar(
     attrs: AttributeSet
 ) : LinearLayout(context, attrs) {
 
+    private var iconBottomBarSelected = R.id.action_home
+
     init {
         View.inflate(context, R.layout.bottom_bar, this)
 
@@ -34,8 +36,11 @@ class BottomBar(
     fun startListener(listener: (Int) -> Unit) {
         container.asSequence().toList().map { item ->
             item.setOnClickListener {
-                updateBottomBar(item.id)
-                listener(item.id)
+                if (item.id != iconBottomBarSelected) {
+                    updateBottomBar(item.id)
+                    listener(item.id)
+                }
+                iconBottomBarSelected = item.id
             }
         }
     }
