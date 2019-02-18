@@ -8,10 +8,11 @@ import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.repositories.LibraryRepository
+import br.com.concrete.tentacle.utils.Event
 
 class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseViewModel() {
 
-    private val viewStateLibrary: MutableLiveData<ViewStateModel<ArrayList<Library>>> = MutableLiveData()
+    private val viewStateLibrary: MutableLiveData<Event<ViewStateModel<ArrayList<Library>>>> = MutableLiveData()
     fun getLibrary() = viewStateLibrary
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -19,24 +20,28 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
         loadLibrary()
     }
 
-    fun loadLibrary(queryParameters: QueryParameters? = null) {
+    fun loadLibrary(queryParameters: QueryParameters? = null, search: String? = null) {
         val query = queryParameters ?: QueryParameters()
 
-        viewStateLibrary.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
+        viewStateLibrary.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(
-            libraryRepository.getLibrary(query)
+            libraryRepository.getLibrary(query, search)
                 .subscribe({ baseModel ->
                     viewStateLibrary.postValue(
-                        ViewStateModel(
-                            status = ViewStateModel.Status.SUCCESS,
-                            model = baseModel.data.list as ArrayList<Library>
+                        Event(
+                            ViewStateModel(
+                                status = ViewStateModel.Status.SUCCESS,
+                                model = baseModel.data.list as ArrayList<Library>
+                            )
                         )
                     )
                 }, {
                     viewStateLibrary.postValue(
-                        ViewStateModel(
-                            status = ViewStateModel.Status.ERROR,
-                            errors = notKnownError(it)
+                        Event(
+                            ViewStateModel(
+                                status = ViewStateModel.Status.ERROR,
+                                errors = notKnownError(it)
+                            )
                         )
                     )
                 })
