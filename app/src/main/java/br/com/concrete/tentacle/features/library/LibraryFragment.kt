@@ -22,6 +22,7 @@ import br.com.concrete.tentacle.data.models.library.filter.SubItem
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.library.filter.FilterDialogFragment
+import br.com.concrete.tentacle.features.library.loan.LoanActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.reflect.full.declaredMemberProperties
 

@@ -72,7 +72,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun showError(errors: ErrorResponse?) {
+    protected open fun showError(errors: ErrorResponse?) {
         if (errors != null) {
             errors.messageInt.map { error ->
                 errors.message.add(getString(error))
