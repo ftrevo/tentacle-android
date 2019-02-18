@@ -24,6 +24,8 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     private val gameViewModel: SearchGameViewModel by viewModel()
 
+    private var tempList: ArrayList<Game> = ArrayList()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -97,7 +99,6 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     }
 
     private fun showList(model: ArrayList<Game>?) {
-
         if (model?.isNotEmpty()!!) {
             listCustom.setButtonNameAction(R.string.did_not_find_what_you_wanted)
             fillRecyclerView(model)
@@ -108,6 +109,12 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     }
 
     private fun fillRecyclerView(model: ArrayList<Game>) {
+        if (tempList.isEmpty()) {
+            model.add(
+                Game.getEmptyGame()
+            )
+        }
+
         val recyclerViewAdapter =
             BaseAdapter(model,
                 R.layout.item_game_search, {
@@ -117,8 +124,11 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
                         navigateToRegisterPlatform(gameSelected)
                     })
                 })
+        listCustom.recyclerListView.setItemViewCacheSize(model.size)
         listCustom.recyclerListView.adapter = recyclerViewAdapter
         listCustom.updateUi(model)
+
+        tempList = model
     }
 
     override fun getSearchGame(searchGame: String) {

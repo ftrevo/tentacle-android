@@ -6,10 +6,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_border_rounded_gray"
-        android:paddingStart="@dimen/componentsMarginDefaultError"
-        android:paddingEnd="@dimen/componentsMarginDefaultError"
         android:paddingBottom="@dimen/dp_10"
         android:paddingTop="@dimen/dp_10"
+        android:paddingStart="@dimen/componentsMarginDefaultError"
+        android:paddingEnd="@dimen/dp_0"
         android:layout_marginTop="@dimen/dp_8"
         android:layout_marginStart="@dimen/dp_8"
         android:layout_marginEnd="@dimen/dp_8"
@@ -21,25 +21,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/textColor"
-            tools:text="Nome do jogo"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            tools:text="@string/game_name"
+            android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_marginEnd="@dimen/componentsMarginDefaultError"
+            android:layout_marginEnd="@dimen/dp_10"
             app:layout_constraintEnd_toStartOf="@+id/ivArrow"
             android:ellipsize="end"
-            android:lines="1"/>
+            android:lines="@integer/line_1" />
 
     <ImageView
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
             android:id="@+id/ivArrow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvGameName"
+            app:layout_constraintStart_toEndOf="@+id/tvGameName"
             app:layout_constraintBottom_toBottomOf="@+id/tvGameName"
-            android:src="@drawable/ic_arrow_down"
+            app:srcCompat="@drawable/ic_arrow_down"
+            android:layout_marginEnd="@dimen/dp_12"
             android:layout_gravity="center_vertical"
-            android:layout_width="@dimen/library_icon_arrow"
-            android:layout_height="@dimen/library_icon_arrow"/>
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_0" />
 
     <LinearLayout
             android:animateLayoutChanges="true"
@@ -51,72 +54,72 @@
             android:layout_height="wrap_content">
 
         <TextView
-            style="@style/LibraryBullets"
-            android:gravity="center"
-            android:textAppearance="@style/TextBlack.9dp"
-            android:text="@string/bullet_ps3"
-            android:id="@+id/tvPS3"
-            android:visibility="gone"
-            android:background="@drawable/circle_bg_icon_library"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"/>
+                style="@style/LibraryBullets"
+                android:gravity="center"
+                android:textAppearance="@style/TextBlack.9dp"
+                android:text="@string/bullet_ps3"
+                android:id="@+id/tvPS3"
+                android:visibility="gone"
+                android:background="@drawable/circle_bg_icon_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            style="@style/LibraryBullets"
-            android:gravity="center"
-            android:textAppearance="@style/TextBlack.9dp"
-            android:text="@string/bullet_ps4"
-            android:id="@+id/tvPS4"
-            android:visibility="gone"
-            android:background="@drawable/circle_bg_icon_library"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                style="@style/LibraryBullets"
+                android:gravity="center"
+                android:textAppearance="@style/TextBlack.9dp"
+                android:text="@string/bullet_ps4"
+                android:id="@+id/tvPS4"
+                android:visibility="gone"
+                android:background="@drawable/circle_bg_icon_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         <TextView
-            style="@style/LibraryBullets"
-            android:gravity="center"
-            android:textAppearance="@style/TextBlack.9dp"
-            android:text="@string/bullet_360"
-            android:id="@+id/tv360"
-            android:visibility="gone"
-            android:background="@drawable/circle_bg_icon_library"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                style="@style/LibraryBullets"
+                android:gravity="center"
+                android:textAppearance="@style/TextBlack.9dp"
+                android:text="@string/bullet_360"
+                android:id="@+id/tv360"
+                android:visibility="gone"
+                android:background="@drawable/circle_bg_icon_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         <TextView
-            style="@style/LibraryBullets"
-            android:gravity="center"
-            android:textAppearance="@style/TextBlack.9dp"
-            android:text="@string/bullet_ONE"
-            android:id="@+id/tvONE"
-            android:visibility="gone"
-            android:background="@drawable/circle_bg_icon_library"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                style="@style/LibraryBullets"
+                android:gravity="center"
+                android:textAppearance="@style/TextBlack.9dp"
+                android:text="@string/bullet_ONE"
+                android:id="@+id/tvONE"
+                android:visibility="gone"
+                android:background="@drawable/circle_bg_icon_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
 
         <TextView
-            style="@style/LibraryBullets"
-            android:gravity="center"
-            android:textAppearance="@style/TextBlack.9dp"
-            android:text="@string/bullet_3DS"
-            android:id="@+id/tv3DS"
-            android:visibility="gone"
-            android:background="@drawable/circle_bg_icon_library"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                style="@style/LibraryBullets"
+                android:gravity="center"
+                android:textAppearance="@style/TextBlack.9dp"
+                android:text="@string/bullet_3DS"
+                android:id="@+id/tv3DS"
+                android:visibility="gone"
+                android:background="@drawable/circle_bg_icon_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         <TextView
-            style="@style/LibraryBullets"
-            android:gravity="center"
-            android:textAppearance="@style/TextBlack.9dp"
-            android:text="@string/bullet_NS"
-            android:id="@+id/tvNS"
-            android:visibility="gone"
-            android:background="@drawable/circle_bg_icon_library"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                style="@style/LibraryBullets"
+                android:gravity="center"
+                android:textAppearance="@style/TextBlack.9dp"
+                android:text="@string/bullet_NS"
+                android:id="@+id/tvNS"
+                android:visibility="gone"
+                android:background="@drawable/circle_bg_icon_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
