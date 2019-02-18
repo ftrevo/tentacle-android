@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import kotlinx.android.synthetic.main.fragment_library.list
@@ -20,8 +21,8 @@ import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import br.com.concrete.tentacle.data.models.library.filter.SubItem
 import br.com.concrete.tentacle.features.library.filter.FilterDialogFragment
+import br.com.concrete.tentacle.utils.QueryUtils
 import org.koin.android.viewmodel.ext.android.viewModel
-import kotlin.reflect.full.declaredMemberProperties
 
 class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
 
@@ -29,6 +30,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
     private var recyclerViewAdapter: BaseAdapter<Library>? = null
     private val libraries = ArrayList<Library>()
     private val selectedFilterItems = ArrayList<SubItem>()
+    private lateinit var queryParameters: QueryParameters
 
     override fun getToolbarTitle() = R.string.toolbar_title_library
 
@@ -62,7 +64,11 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                             { view ->
                                 LibraryViewHolder(view)
                             }, { holder, element ->
-                                LibraryViewHolder.callBack(holder = holder, element = element)
+                                LibraryViewHolder.callBack(
+                                    holder = holder,
+                                    element = element,
+                                    selectedFilters = selectedFilterItems
+                                )
                             })
 
                         recyclerListView.layoutManager = LinearLayoutManager(context)
@@ -80,7 +86,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                         list.setErrorMessage(R.string.load_library_error_not_know)
                         list.setButtonTextError(R.string.load_again)
                         list.setActionError {
-                            viewModelLibrary.loadLibrary()
+                            viewModelLibrary.loadLibrary(queryParameters)
                         }
                     }
                     list.updateUi<Library>(null)
@@ -112,28 +118,12 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
     }
 
     override fun onFilterListener(filters: List<SubItem>) {
+        activity?.invalidateOptionsMenu()
+        libraries.clear()
         selectedFilterItems.clear()
         selectedFilterItems.addAll(filters)
-        activity?.invalidateOptionsMenu()
 
-        val filteredList = ArrayList<Library>()
-        if (selectedFilterItems.isEmpty()) {
-            filteredList.addAll(libraries)
-        } else {
-            filters.forEach { subitem ->
-                libraries.forEach { library ->
-                    val element =
-                        library.javaClass.kotlin.declaredMemberProperties.firstOrNull { it.name == subitem.key }
-                    element?.let {
-                        val mediaList = it.get(library) as ArrayList<*>
-                        if (mediaList.isNotEmpty()) {
-                            if (!filteredList.contains(library)) filteredList.add(library)
-                        }
-                    }
-                }
-            }
-        }
-
-        recyclerViewAdapter?.updateList(filteredList)
+        queryParameters = QueryUtils.assemblefilterQuery(selectedFilterItems)
+        viewModelLibrary.loadLibrary(queryParameters)
     }
 }
