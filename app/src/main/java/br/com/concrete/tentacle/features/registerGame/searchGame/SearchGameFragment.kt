@@ -105,16 +105,13 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         } else {
             listCustom.setButtonNameAction(R.string.add_new_game)
             listCustom.updateUi(model)
+            if (tempList.isNotEmpty()) {
+                tempList = ArrayList()
+            }
         }
     }
 
     private fun fillRecyclerView(model: ArrayList<Game>) {
-        if (tempList.isEmpty()) {
-            model.add(
-                Game.getEmptyGame()
-            )
-        }
-
         val recyclerViewAdapter =
             BaseAdapter(model,
                 R.layout.item_game_search, {
@@ -182,4 +179,5 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
         listCustom.buttonAction.visibility = View.GONE
         listCustom.recyclerListError.visibility = View.GONE
     }
+
 }
