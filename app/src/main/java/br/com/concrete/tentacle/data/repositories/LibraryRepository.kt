@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 
 class LibraryRepository(private val apiRest: ApiService) {
 
-    fun getLibrary(queries: QueryParameters): Observable<BaseModel<LibraryResponse>> {
+    fun getLibrary(queries: QueryParameters, search: String?): Observable<BaseModel<LibraryResponse>> {
         return apiRest.getLibrary(
             queries.id,
             queries.title,
@@ -17,7 +17,8 @@ class LibraryRepository(private val apiRest: ApiService) {
             queries.mediaId,
             queries.mediaPlatform,
             queries.limit,
-            queries.page
+            queries.page,
+            search
         )
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())

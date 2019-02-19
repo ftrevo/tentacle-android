@@ -45,6 +45,7 @@ interface ApiService {
         @Query("mediaId") mediaId: String? = null,
         @Query("mediaPlatform") mediaPlatform: List<String>? = null,
         @Query("limit") limit: Int? = null,
-        @Query("page") page: Int? = null
+        @Query("page") page: Int? = null,
+        @Query("title") search: String? = null
     ): Observable<BaseModel<LibraryResponse>>
 }
