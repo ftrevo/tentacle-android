@@ -9,7 +9,9 @@ import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
+import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
 import io.reactivex.Observable
+import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -44,4 +46,7 @@ interface ApiService {
 
     @GET("library/{id}")
     fun getLibrary(@Path("id") id: String): Observable<BaseModel<Library>>
+
+    @POST("loans")
+    fun performLoan(@Body loanRequest: LoanRequest): Observable<ResponseBody>
 }

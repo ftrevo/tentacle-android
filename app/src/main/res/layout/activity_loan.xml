@@ -6,11 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:padding="@dimen/margin_default">
+        android:paddingStart="@dimen/margin_default"
+        android:paddingEnd="@dimen/margin_default"
+        android:paddingBottom="@dimen/margin_default">
 
     <include layout="@layout/logo_tentacle"/>
 
     <ImageView
+            android:layout_marginTop="@dimen/loan_image_margin_top"
             android:background="@color/bgGameIcon"
             android:id="@+id/ivGame"
             app:layout_constraintStart_toStartOf="parent"
@@ -20,16 +23,17 @@
 
     <TextView
             android:id="@+id/tvGameName"
-            android:maxLines="3"
+            android:maxLines="2"
             android:ellipsize="end"
             android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
             android:textColor="@color/textColor"
             android:textAppearance="@style/TextHeavy.24sp"
             tools:text="Nome do jogo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/loan_text_margin_top"
             app:layout_constraintStart_toEndOf="@id/ivGame"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
@@ -114,7 +118,7 @@
             android:textColor="@color/textColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/library_loan_text1"
+            android:text="@string/library_loan_text2"
             android:textAppearance="@style/TextHeavy.16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chipContainer"/>

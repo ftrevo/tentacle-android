@@ -1,13 +1,16 @@
-package br.com.concrete.tentacle.features.library
+package br.com.concrete.tentacle.features.library.loan
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
+import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.MediaLibrary
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.visible
 import kotlinx.android.synthetic.main.activity_loan.btPerformLoan
 import kotlinx.android.synthetic.main.activity_loan.chip360
@@ -25,6 +28,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class LoanActivity : BaseActivity() {
 
     private val viewModel: LoanViewModel by viewModel()
+    private var mediaLibrary: MediaLibrary? = null
+    private var library: Library? = null
 
     companion object {
         const val ID_LIBRARY_EXTRA = "mediaLibraryExtra"
@@ -49,12 +54,15 @@ class LoanActivity : BaseActivity() {
                     viewModel.loadLibrary(id)
                 }
 
-                spOwners.setOnItemSelectedListener { view, position, id, item ->
+                spOwners.setOnItemSelectedListener { _, position, _, _ ->
+                    mediaLibrary = spOwners.getItems<MediaLibrary>()[position]
                     btPerformLoan.enable()
                 }
 
                 btPerformLoan.setOnClickListener {
-                    // TODO perform loan
+                    mediaLibrary?.let { media ->
+                        viewModel.performLoad(media._id)
+                    }
                 }
             }
         }
@@ -68,6 +76,23 @@ class LoanActivity : BaseActivity() {
                 ViewStateModel.Status.ERROR -> showError(viewStateModel.errors)
             }
         })
+
+        viewModel.getLoan().observe(this, Observer { viewStateModel ->
+            when (viewStateModel.status) {
+                ViewStateModel.Status.LOADING -> showLoading(true)
+                ViewStateModel.Status.SUCCESS -> showLoanSuccess()
+                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors)
+            }
+        })
+    }
+
+    private fun showLoanSuccess() {
+        library?.let {
+            val extras = Bundle()
+            extras.putString(LoanActivitySuccess.GAME_NAME_EXTRA, it.name)
+            launchActivity<LoanActivitySuccess>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
+            finish()
+        }
     }
 
     private fun showLoading(show: Boolean) {
@@ -75,6 +100,7 @@ class LoanActivity : BaseActivity() {
     }
 
     private fun populateScreen(library: Library?) {
+        this.library = library
         showLoading(false)
         library?.let {
             tvGameName.text = library.name
@@ -108,5 +134,10 @@ class LoanActivity : BaseActivity() {
     private fun setOwners(list: List<MediaLibrary>) {
         spOwners.setItems(list)
         spOwners.isEnabled = list.isNotEmpty()
+    }
+
+    override fun showError(errors: ErrorResponse?) {
+        showLoading(false)
+        super.showError(errors)
     }
 }

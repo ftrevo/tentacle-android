@@ -1,15 +1,18 @@
-package br.com.concrete.tentacle.features.library
+package br.com.concrete.tentacle.features.library.loan
 
 import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.repositories.LibraryRepository
+import okhttp3.ResponseBody
 
 class LoanViewModel(private val libraryRepository: LibraryRepository) : BaseViewModel() {
     private val viewStateLibrary: MutableLiveData<ViewStateModel<Library>> = MutableLiveData()
+    private val viewStateLoan: MutableLiveData<ViewStateModel<ResponseBody>> = MutableLiveData()
 
     fun getLibrary() = viewStateLibrary
+    fun getLoan() = viewStateLoan
 
     fun loadLibrary(id: String) {
         viewStateLibrary.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
@@ -18,6 +21,17 @@ class LoanViewModel(private val libraryRepository: LibraryRepository) : BaseView
                 viewStateLibrary.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data))
             }, {
                 viewStateLibrary.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
+            })
+        )
+    }
+
+    fun performLoad(mediaId: String) {
+        viewStateLoan.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
+        disposables.add(libraryRepository.performLoan(mediaId)
+            .subscribe({ baseModel ->
+                viewStateLoan.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS))
+            }, {
+                viewStateLoan.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
             })
         )
     }

@@ -39,8 +39,12 @@
 
         <activity
             android:label="@string/toolbar_title_loan_game"
-            android:name=".features.library.LoanActivity"
+            android:name=".features.library.loan.LoanActivity"
             android:theme="@style/AppTheme"/>
+
+        <activity
+            android:name=".features.library.loan.LoanActivitySuccess"
+            android:theme="@style/AppTheme.FullScreen"/>
 
         <meta-data
                 android:name="io.fabric.ApiKey"
