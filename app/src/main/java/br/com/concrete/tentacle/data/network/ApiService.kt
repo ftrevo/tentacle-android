@@ -28,7 +28,7 @@ interface ApiService {
         game: GameRequest
     ): Observable<BaseModel<Game>>
 
-    @GET("/media")
+    @GET("/media-loan")
     fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean = true): Observable<BaseModel<MediaResponse>>
 
     @POST("/media")

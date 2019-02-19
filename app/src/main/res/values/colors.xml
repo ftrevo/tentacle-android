@@ -28,5 +28,7 @@
 
     <color name="toolbarBackground">@color/colorPrimary</color>
     <color name="lineColor">#3b4048</color>
+    <color name="loanRequested">#58ea7a</color>
+    <color name="loanPerformed">#FF00</color>
 
 </resources>

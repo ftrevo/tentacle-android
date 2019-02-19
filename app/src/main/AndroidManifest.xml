@@ -15,8 +15,6 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".features.lendGame.LendGameActivity">
-        </activity>
         <activity
                 android:name=".features.login.LoginActivity"
                 android:screenOrientation="portrait"
@@ -40,6 +38,12 @@
                 android:name=".features.registerGame.RegisterGameHostActivity"
                 android:theme="@style/AppTheme"
                 android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+                android:name=".features.lendGame.LendGameActivity"
+                android:theme="@style/AppTheme"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+
 
         <meta-data
                 android:name="io.fabric.ApiKey"

@@ -10,6 +10,9 @@
         android:background="@color/colorPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:paddingStart="@dimen/margin_default"
             android:paddingTop="@dimen/dp_19"
             android:paddingEnd="@dimen/margin_default"
@@ -17,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <include layout="@layout/logo_tentacle" android:id="@+id/include" tools:layout_editor_absoluteY="19dp"
-                 tools:layout_editor_absoluteX="16dp"/>
+        <include layout="@layout/logo_tentacle"/>
 
         <ImageView
                 android:id="@+id/mediaRegisterImageView"

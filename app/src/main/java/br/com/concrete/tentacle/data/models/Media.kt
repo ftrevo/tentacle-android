@@ -8,8 +8,6 @@ import kotlinx.android.parcel.Parcelize
 data class Media(
     val _id: String,
     val platform: Platform,
-    val game: Game,
-    val owner: Owner,
-    val createdAt: String,
-    val updatedAt: String
+    val activeLoan: ActiveLoan?,
+    val gameData: GameData?
 ): Parcelable

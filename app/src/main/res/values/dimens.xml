@@ -38,7 +38,7 @@
     <dimen name="game_icon_height">58dp</dimen>
 
     <dimen name="itemGameNamePercent">0.75</dimen>
-    <dimen name="itemGamePlatformPercent">0.25</dimen>
+    <dimen name="itemGamePlatformPercent">0.20</dimen>
 
     <dimen name="tentacleLogoOpacity">0.1</dimen>
 
