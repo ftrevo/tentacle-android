@@ -25,28 +25,33 @@ import kotlinx.android.synthetic.main.library_item_layout.view.tvPS4
 
 class LibraryViewHolder(
     private val mLinearLayout: View,
-    var viewStateOpen: Boolean = false
+    var viewStateOpen: Boolean = false,
+    val listener: (library: Library) -> Unit
 ) : RecyclerView.ViewHolder(mLinearLayout) {
 
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, element: Library, selectedFilters: List<SubItem>) {
             if (holder is LibraryViewHolder) {
-                holder.mLinearLayout.tvGameName.text = element.title
+                holder.mLinearLayout.tvGameName.text = element.name
                 holder.mLinearLayout.ivArrow.setOnClickListener {
                     if (holder.viewStateOpen) animateClose(holder.mLinearLayout)
                     else animateOpen(holder.mLinearLayout, element, selectedFilters)
                     holder.viewStateOpen = !holder.viewStateOpen
                 }
+                holder.itemView.setOnClickListener {
+                    holder.listener(element)
+                }
             }
         }
 
-        private fun checkPlatform(view: View, list: List<MediaLibrary>, filter: SubItem?, hasAnyFilters: Boolean) {
-            view.visibility = if (list.isNotEmpty()) View.VISIBLE else View.GONE
+        private fun checkPlatform(view: View, hasMedia: Int, filter: SubItem?, hasAnyFilters: Boolean) {
+            view.visibility = if (hasMedia > 0) View.VISIBLE else View.GONE
 
             if (hasAnyFilters) {
                 view.visibility = if (filter != null) View.VISIBLE else View.GONE
             }
         }
+
 
         private fun animateOpen(view: View, element: Library, selectedFilters: List<SubItem>) {
             view.ivArrow.animation(R.anim.rotate_open) {
@@ -66,32 +71,32 @@ class LibraryViewHolder(
             val hasAnyFiltersSelected = selectedFilters.isNotEmpty()
             checkPlatform(
                 view.tv360,
-                element.mediaXbox360,
+                element.mediaXbox360Count,
                 selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_XBOX_360 },
                 hasAnyFiltersSelected)
             checkPlatform(
                 view.tv3DS,
-                element.mediaNintendo3ds,
+                element.mediaNintendo3dsCount,
                 selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_NINTENDO_3DS },
                 hasAnyFiltersSelected)
             checkPlatform(
                 view.tvNS,
-                element.mediaNintendoSwitch,
+                element.mediaNintendoSwitchCount,
                 selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_NINTENDO_SWITCH },
                 hasAnyFiltersSelected)
             checkPlatform(
                 view.tvONE,
-                element.mediaXboxOne,
+                element.mediaXboxOneCount,
                 selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_XBOX_ONE },
                 hasAnyFiltersSelected)
             checkPlatform(
                 view.tvPS3,
-                element.mediaPs3,
+                element.mediaPs3Count,
                 selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_PS3_ABBREV },
                 hasAnyFiltersSelected)
             checkPlatform(
                 view.tvPS4,
-                element.mediaPs4,
+                element.mediaPs4Count,
                 selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_PS4_ABBREV },
                 hasAnyFiltersSelected)
         }

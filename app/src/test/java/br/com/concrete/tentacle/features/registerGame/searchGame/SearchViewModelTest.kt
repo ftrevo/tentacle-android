@@ -26,6 +26,8 @@ class SearchViewModelTest : BaseViewModelTest() {
         val responseObject: BaseModel<GameResponse> = GsonBuilder().create().fromJson(responseJson, collectionType)
         responseObject.data.list.add(Game.getEmptyGame())
 
+        responseObject.data.list.add(Game.getEmptyGame())
+
         val expected =
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,

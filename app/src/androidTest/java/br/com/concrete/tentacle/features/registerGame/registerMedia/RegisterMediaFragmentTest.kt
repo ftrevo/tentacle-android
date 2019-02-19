@@ -35,7 +35,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     @Test
     fun showRegisteredGameName() {
         onView(withId(R.id.mediaRegisterNameTextView))
-            .check(matches(withText(expectedGame.title)))
+            .check(matches(withText(expectedGame.name)))
     }
 
     @Test

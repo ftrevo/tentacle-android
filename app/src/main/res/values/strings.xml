@@ -65,6 +65,7 @@
     <string name="toolbar_title_home">Novos jogos</string>
     <string name="toolbar_title_my_games">Meus jogos</string>
     <string name="toolbar_title_search_game">Cadastrar jogo</string>
+    <string name="toolbar_title_loan_game">Reservar jogo</string>
 
     <string name="red_dead_redemption">Red Dead Redemption 2</string>
     <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles aparecerem aqui!</string>
@@ -82,6 +83,13 @@
     <string name="bullet_ONE">ONE</string>
     <string name="bullet_3DS">3DS</string>
     <string name="bullet_NS">NS</string>
+
+    <string name="chip_ps3">PS3</string>
+    <string name="chip_ps4">PS4</string>
+    <string name="chip_360">X360</string>
+    <string name="chip_one">XOne</string>
+    <string name="chip_3ds">3DS</string>
+    <string name="chip_ns">Switch</string>
 
     <string name="filter_toolbar_title">Filtro</string>
     <string name="filter_button_text">Filtrar</string>
@@ -106,4 +114,13 @@
     </string>
 
     <string name="cancel">Cancelar</string>
+
+    <string name="library_loan_text1">Qual a plataforma que voce quer reservar?</string>
+    <string name="library_loan_text2">Escolha de quem você quer emprestado</string>
+
+    <string name="library_loan_user_list_hint">Selecione</string>
+    <string name="library_loan_perform_loan">Reservar</string>
+
+    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!</string>
+    <string name="loan_button_success">Acompanhar suas reservas</string>
 </resources>

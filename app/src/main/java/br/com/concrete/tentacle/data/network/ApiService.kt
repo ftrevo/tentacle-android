@@ -7,18 +7,22 @@ import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
+import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
+import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
 
     @GET("/games")
     fun getSearchGames(
-        @Query("title")
+        @Query("name")
         title: String
     ): Observable<BaseModel<GameResponse>>
 
@@ -40,12 +44,17 @@ interface ApiService {
     @GET("library")
     fun getLibrary(
         @Query("_id") id: String? = null,
-        @Query("title") title: String? = null,
-        @Query("mediaOwner") mediaOwner: String? = null,
-        @Query("mediaId") mediaId: String? = null,
+        @Query("name") search: String? = null,
         @Query("mediaPlatform") mediaPlatform: List<String>? = null,
         @Query("limit") limit: Int? = null,
-        @Query("page") page: Int? = null,
-        @Query("title") search: String? = null
+        @Query("page") page: Int? = null
     ): Observable<BaseModel<LibraryResponse>>
+
+    fun getLibraryList(): Observable<BaseModel<LibraryResponse>>
+
+    @GET("library/{id}")
+    fun getLibrary(@Path("id") id: String): Observable<BaseModel<Library>>
+
+    @POST("loans")
+    fun performLoan(@Body loanRequest: LoanRequest): Observable<BaseModel<LoanResponse>>
 }

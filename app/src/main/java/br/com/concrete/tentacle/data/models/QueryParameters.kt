@@ -2,7 +2,7 @@ package br.com.concrete.tentacle.data.models
 
 data class QueryParameters(
     var id: String? = null,
-    var title: String? = null,
+    var name: String? = null,
     var status: String? = null,
     var mediaOwner: String? = null,
     var mediaId: String? = null,
