@@ -157,7 +157,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     }
 
     private fun registerNewGame() {
-        if (validateSearch(getQuerySearchView())) gameViewModel.registerNewGame(title = getQuerySearchView())
+        if (validateSearch(getQuerySearchView())) gameViewModel.registerNewGame(name = getQuerySearchView())
         else callSnackBar(getString(R.string.field_search_no_empty))
     }
 

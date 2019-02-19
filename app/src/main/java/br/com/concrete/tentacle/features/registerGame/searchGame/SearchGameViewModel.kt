@@ -26,8 +26,8 @@ class SearchGameViewModel(
         disposables.add(obsSearchGames(title))
     }
 
-    private fun obsSearchGames(title: String) =
-        gameRepository.getSearchGames(title).subscribe({ base ->
+    private fun obsSearchGames(name: String) =
+        gameRepository.getSearchGames(name).subscribe({ base ->
             if (base.data.list.isNotEmpty()) {
                 base.data.list.add(Game.getEmptyGame())
             } else {
@@ -49,13 +49,13 @@ class SearchGameViewModel(
             )
         })
 
-    fun registerNewGame(title: String) {
+    fun registerNewGame(name: String) {
         viewGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
-        disposables.add(obsRegisterGame(title))
+        disposables.add(obsRegisterGame(name))
     }
 
-    private fun obsRegisterGame(title: String) =
-        gameRepository.registerNewGame(GameRequest(title)).subscribe({ base ->
+    private fun obsRegisterGame(name: String) =
+        gameRepository.registerNewGame(GameRequest(name)).subscribe({ base ->
             viewGame.postValue(
                 Event(
                     ViewStateModel(
