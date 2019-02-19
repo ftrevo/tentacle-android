@@ -8,7 +8,6 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.ResponseBody
 
 class LibraryRepository(private val apiRest: ApiService) {
 

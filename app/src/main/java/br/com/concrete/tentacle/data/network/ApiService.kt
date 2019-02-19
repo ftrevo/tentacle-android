@@ -12,7 +12,6 @@ import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import io.reactivex.Observable
-import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
