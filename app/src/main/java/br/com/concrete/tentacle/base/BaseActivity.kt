@@ -73,12 +73,12 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected open fun showError(errors: ErrorResponse?) {
-        if (errors != null) {
-            errors.messageInt.map { error ->
-                errors.message.add(getString(error))
+        errors?.let{ errorResponse ->
+            errorResponse.messageInt.map { error ->
+                errorResponse.message.add(getString(error))
             }
 
-            val ers = errors.toString()
+            val ers = errorResponse.toString()
 
             val builder = AlertDialog.Builder(this)
             builder.setTitle(R.string.error_dialog_title)

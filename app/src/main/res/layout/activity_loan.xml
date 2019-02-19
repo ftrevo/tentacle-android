@@ -20,16 +20,16 @@
 
     <TextView
             android:id="@+id/tvGameName"
-            android:maxLines="3"
+            android:maxLines="2"
             android:ellipsize="end"
             android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
             android:textColor="@color/textColor"
             android:textAppearance="@style/TextHeavy.24sp"
             tools:text="Nome do jogo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/ivGame"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
@@ -114,7 +114,7 @@
             android:textColor="@color/textColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/library_loan_text1"
+            android:text="@string/library_loan_text2"
             android:textAppearance="@style/TextHeavy.16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chipContainer"/>

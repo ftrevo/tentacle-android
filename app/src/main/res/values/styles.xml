@@ -20,7 +20,6 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="actionModeBackground">@color/colorPrimary</item>
-        <!--<item name="android:windowBackground">@color/colorScreenBackground</item>-->
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:screenOrientation">portrait</item>
     </style>

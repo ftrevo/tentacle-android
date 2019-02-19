@@ -105,6 +105,6 @@
     <string name="library_loan_user_list_hint">Selecione</string>
     <string name="library_loan_perform_loan">Reservar</string>
 
-    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar  para começar a curtir o game!</string>
+    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!</string>
     <string name="loan_button_success">Acompanhar suas reservas</string>
 </resources>
