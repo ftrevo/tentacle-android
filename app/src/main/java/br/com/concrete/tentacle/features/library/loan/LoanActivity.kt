@@ -5,6 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
+import br.com.concrete.tentacle.custom.ChipCustom
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
@@ -128,6 +129,23 @@ class LoanActivity : BaseActivity() {
                     }
                 }
             }
+        }
+
+        var count = 0
+        var position = 0
+        for (i in 0.. chipContainer.childCount) {
+            val view = chipContainer.getChildAt(i)
+            if (view is ChipCustom) {
+                if (view.visibility == View.VISIBLE) {
+                    position = i
+                    count++
+                }
+            }
+        }
+        if (count == 1) {
+            val view = chipContainer.getChildAt(position)
+            view.performClick()
+            view.isPressed = true
         }
     }
 

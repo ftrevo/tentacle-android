@@ -59,6 +59,7 @@
         <br.com.concrete.tentacle.custom.ChipCustom
                 android:id="@+id/chipPs3"
                 app:chipSurfaceColor="@null"
+                android:visibility="gone"
                 android:text="@string/chip_ps3"
                 android:minWidth="@dimen/chipWidth"
                 android:minHeight="@dimen/chipHeight"
@@ -68,6 +69,7 @@
         <br.com.concrete.tentacle.custom.ChipCustom
                 android:id="@+id/chipPs4"
                 app:chipSurfaceColor="@null"
+                android:visibility="gone"
                 android:text="@string/chip_ps4"
                 android:minWidth="@dimen/chipWidth"
                 android:minHeight="@dimen/chipHeight"
@@ -77,6 +79,7 @@
         <br.com.concrete.tentacle.custom.ChipCustom
                 android:id="@+id/chip360"
                 app:chipSurfaceColor="@null"
+                android:visibility="gone"
                 android:text="@string/chip_360"
                 android:minWidth="@dimen/chipWidth"
                 android:minHeight="@dimen/chipHeight"
@@ -86,6 +89,7 @@
         <br.com.concrete.tentacle.custom.ChipCustom
                 android:id="@+id/chipOne"
                 app:chipSurfaceColor="@null"
+                android:visibility="gone"
                 android:text="@string/chip_one"
                 android:minWidth="@dimen/chipWidth"
                 android:minHeight="@dimen/chipHeight"
@@ -95,6 +99,7 @@
         <br.com.concrete.tentacle.custom.ChipCustom
                 android:id="@+id/chip3ds"
                 app:chipSurfaceColor="@null"
+                android:visibility="gone"
                 android:text="@string/chip_3ds"
                 android:minWidth="@dimen/chipWidth"
                 android:minHeight="@dimen/chipHeight"
@@ -104,6 +109,7 @@
         <br.com.concrete.tentacle.custom.ChipCustom
                 android:id="@+id/chipSwitch"
                 app:chipSurfaceColor="@null"
+                android:visibility="gone"
                 android:text="@string/chip_ns"
                 android:minWidth="@dimen/chipWidth"
                 android:minHeight="@dimen/chipHeight"
