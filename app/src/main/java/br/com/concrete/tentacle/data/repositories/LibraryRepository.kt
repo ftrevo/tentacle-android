@@ -15,20 +15,11 @@ class LibraryRepository(private val apiRest: ApiService) {
     fun getLibrary(queries: QueryParameters, search: String?): Observable<BaseModel<LibraryResponse>> {
         return apiRest.getLibrary(
             queries.id,
-            queries.title,
-            queries.mediaOwner,
-            queries.mediaId,
+            search,
             queries.mediaPlatform,
             queries.limit,
-            queries.page,
-            search
+            queries.page
         )
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-    }
-
-    fun getLibraryList(): Observable<BaseModel<LibraryResponse>> {
-        return apiRest.getLibraryList()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
