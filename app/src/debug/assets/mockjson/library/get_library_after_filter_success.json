@@ -1,0 +1,311 @@
+{
+  "data": {
+    "list": [
+      {
+        "_id": "5c65d598860df20023ec8489",
+        "title": "culpa de yara",
+        "createdBy": "5c1ab15c7c0f4f002272357f",
+        "createdAt": "2019-02-14T20:54:48.896Z",
+        "updatedAt": "2019-02-15T03:04:59.608Z",
+        "name": "culpa de yara",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c65d5a8860df20023ec848a",
+            "owner": "5c1ab15c7c0f4f002272357f",
+            "ownerName": "DAIVID V. LEAL",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c65d298860df20023ec8484",
+        "title": "o jogo da vida",
+        "createdBy": "5c1ab15c7c0f4f002272357f",
+        "createdAt": "2019-02-14T20:42:00.187Z",
+        "updatedAt": "2019-02-15T03:04:59.608Z",
+        "name": "o jogo da vida",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c65d38c860df20023ec8486",
+            "owner": "5c1ab15c7c0f4f002272357f",
+            "ownerName": "DAIVID V. LEAL",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c64438f352d58002358f362",
+        "title": "Fifa 2015",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-13T16:19:27.658Z",
+        "updatedAt": "2019-02-15T03:04:59.593Z",
+        "name": "Fifa 2015",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c644392352d58002358f363",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c64437e352d58002358f35e",
+        "title": "Fifa 2018",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-13T16:19:10.059Z",
+        "updatedAt": "2019-02-15T03:04:59.593Z",
+        "name": "Fifa 2018",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c644380352d58002358f35f",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c644374352d58002358f35c",
+        "title": "Fifa 2017",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-13T16:19:00.173Z",
+        "updatedAt": "2019-02-15T03:04:59.593Z",
+        "name": "Fifa 2017",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c644376352d58002358f35d",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c61733d2da00d00231f99c5",
+        "title": "jogo 11",
+        "createdBy": "5c505219aa9b7a00236f58e0",
+        "createdAt": "2019-02-11T13:06:05.595Z",
+        "updatedAt": "2019-02-15T03:04:59.592Z",
+        "name": "jogo 11",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c6173402da00d00231f99c6",
+            "owner": "5c505219aa9b7a00236f58e0",
+            "ownerName": "MAHERBSON DANTAS",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c6173202da00d00231f99c3",
+        "title": "jogo 8",
+        "createdBy": "5c505219aa9b7a00236f58e0",
+        "createdAt": "2019-02-11T13:05:36.411Z",
+        "updatedAt": "2019-02-15T03:04:59.592Z",
+        "name": "jogo 8",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c6173222da00d00231f99c4",
+            "owner": "5c505219aa9b7a00236f58e0",
+            "ownerName": "MAHERBSON DANTAS",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c5dbabbcc06180023fd7df9",
+        "title": "Fifa 19",
+        "createdBy": "5c5dba8ccc06180023fd7df7",
+        "createdAt": "2019-02-08T17:22:03.801Z",
+        "updatedAt": "2019-02-15T03:04:59.592Z",
+        "name": "Fifa 19",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c5dbac2cc06180023fd7dfa",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [
+          {
+            "_id": "5c5dbf6ecc06180023fd7e0c",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaNintendo3ds": [
+          {
+            "_id": "5c5dbf63cc06180023fd7e0b",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c5dbf59cc06180023fd7e09",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 1,
+        "mediaNintendo3dsCount": 1,
+        "mediaNintendoSwitchCount": 1
+      },
+      {
+        "_id": "5c5c9239838e5a0023986fc3",
+        "title": "Motorola",
+        "createdBy": "5c58603ff8e6ef002376a5d2",
+        "createdAt": "2019-02-07T20:16:57.109Z",
+        "updatedAt": "2019-02-15T03:04:59.591Z",
+        "name": "Motorola",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c5c923a838e5a0023986fc4",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c5c66d143371d0023bbb35a",
+        "title": "game 5",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-07T17:11:45.322Z",
+        "updatedAt": "2019-02-15T03:04:59.591Z",
+        "name": "game 5",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c5c66d343371d0023bbb35b",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      }
+    ],
+    "count": 33
+  }
+}

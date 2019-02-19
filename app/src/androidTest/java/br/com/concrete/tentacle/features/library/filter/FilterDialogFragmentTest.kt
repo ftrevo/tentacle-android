@@ -17,20 +17,20 @@ import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Test
 
-class FilterDialogFragmentTest: BaseFragmentTest() {
+class FilterDialogFragmentTest : BaseFragmentTest() {
 
     override fun setupFragment() {
         testFragment = LibraryFragment()
     }
 
     @Before
-    fun setFragment(){
+    fun setFragment() {
         mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody("mockjson/library/get_library_success.json".getJson()))
         onView(withId(R.id.filterMenuId)).perform(click())
     }
 
     @Test
-    fun btnClearFilterIsDisplayed(){
+    fun btnClearFilterIsDisplayed() {
         mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody("mockjson/library/get_library_success.json".getJson()))
         onView(
             withId(R.id.filterContent)
@@ -44,11 +44,10 @@ class FilterDialogFragmentTest: BaseFragmentTest() {
 
         onView(withId(R.id.filterClearButtonView))
             .check(matches(isDisplayed()))
-
     }
 
     @Test
-    fun btnClearFilterDisappear(){
+    fun btnClearFilterDisappear() {
         onView(
             withId(R.id.filterContent)
         ).perform(isDisplayed().waitUntil())
@@ -70,12 +69,10 @@ class FilterDialogFragmentTest: BaseFragmentTest() {
 
         onView(withId(R.id.filterClearButtonView))
             .check(matches(not(isDisplayed())))
-
     }
 
-
     @Test
-    fun btnClearFilterSuccess(){
+    fun btnClearFilterSuccess() {
         mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody("mockjson/library/get_library_success.json".getJson()))
         onView(
             withId(R.id.filterContent)
@@ -98,7 +95,7 @@ class FilterDialogFragmentTest: BaseFragmentTest() {
     }
 
     @Test
-    fun btnFilterSuccess(){
+    fun btnFilterSuccess() {
         mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody("mockjson/library/get_library_success.json".getJson()))
         onView(
             withId(R.id.filterContent)
@@ -119,5 +116,4 @@ class FilterDialogFragmentTest: BaseFragmentTest() {
         onView(withId(R.id.filterButtonView)).perform(click())
         onView(withId(R.id.list)).check(matches(isDisplayed()))
     }
-
 }
