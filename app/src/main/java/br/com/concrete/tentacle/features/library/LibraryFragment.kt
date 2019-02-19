@@ -150,6 +150,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
 
             searchView.isIconified = true
             searchView.setIconifiedByDefault(true)
+            viewModelLibrary.loadLibrary(null, null)
         }
 
         Observable.create(ObservableOnSubscribe<String> { subscriber ->
