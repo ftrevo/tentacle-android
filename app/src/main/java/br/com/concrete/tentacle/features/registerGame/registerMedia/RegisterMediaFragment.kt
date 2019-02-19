@@ -37,7 +37,7 @@ class RegisterMediaFragment : BaseFragment() {
     private fun initViews() {
         arguments?.let { bundle ->
             game = RegisterMediaFragmentArgs.fromBundle(bundle).gameArgument
-            mediaRegisterNameTextView.text = game.title
+            mediaRegisterNameTextView.text = game.name
 
             initListeners()
             initObservers()

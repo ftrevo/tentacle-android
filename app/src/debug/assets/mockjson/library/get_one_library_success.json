@@ -1,0 +1,34 @@
+{
+  "data": {
+    "_id": "5c65e161860df20023ec848e",
+    "title": "jogo test",
+    "createdBy": "5c2d129dd957060023385a1b",
+    "createdAt": "2019-02-14T21:45:05.379Z",
+    "updatedAt": "2019-02-15T03:04:59.605Z",
+    "name": "jogo test",
+    "mediaPs3": [],
+    "mediaPs4": [],
+    "mediaXbox360": [],
+    "mediaXboxOne": [],
+    "mediaNintendo3ds": [],
+    "mediaNintendoSwitch": [
+      {
+        "_id": "5c65e16c860df20023ec848f",
+        "owner": "5c2d129dd957060023385a1b",
+        "ownerName": "RWYEG",
+        "ownerState": "5a107a681592ca19f7b4a854",
+        "ownerCity": "Cutias"
+      }
+    ],
+    "mediaPs3Count": 0,
+    "mediaPs4Count": 0,
+    "mediaXbox360Count": 0,
+    "mediaXboxOneCount": 0,
+    "mediaNintendo3dsCount": 0,
+    "mediaNintendoSwitchCount": 1,
+    "game_modes": [],
+    "genres": [],
+    "screenshots": [],
+    "videos": []
+  }
+}

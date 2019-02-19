@@ -25,17 +25,21 @@ import kotlinx.android.synthetic.main.library_item_layout.view.tvPS4
 
 class LibraryViewHolder(
     private val mLinearLayout: View,
-    var viewStateOpen: Boolean = false
+    var viewStateOpen: Boolean = false,
+    val listener: (library: Library) -> Unit
 ) : RecyclerView.ViewHolder(mLinearLayout) {
 
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, element: Library, selectedFilters: List<SubItem>) {
             if (holder is LibraryViewHolder) {
-                holder.mLinearLayout.tvGameName.text = element.title
+                holder.mLinearLayout.tvGameName.text = element.name
                 holder.mLinearLayout.ivArrow.setOnClickListener {
                     if (holder.viewStateOpen) animateClose(holder.mLinearLayout)
                     else animateOpen(holder.mLinearLayout, element, selectedFilters)
                     holder.viewStateOpen = !holder.viewStateOpen
+                }
+                holder.itemView.setOnClickListener {
+                    holder.listener(element)
                 }
             }
         }
@@ -46,6 +50,10 @@ class LibraryViewHolder(
             if (hasAnyFilters) {
                 view.visibility = if (filter != null) View.VISIBLE else View.GONE
             }
+        }
+
+        private fun checkPlatform(view: View, hasMedia: Int) {
+            view.visibility = if (hasMedia > 0) View.VISIBLE else View.GONE
         }
 
         private fun animateOpen(view: View, element: Library, selectedFilters: List<SubItem>) {
