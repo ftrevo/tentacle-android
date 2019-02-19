@@ -23,7 +23,7 @@ interface ApiService {
     @GET("/games")
     fun getSearchGames(
         @Query("name")
-        title: String
+        name: String
     ): Observable<BaseModel<GameResponse>>
 
     @POST("/games")
