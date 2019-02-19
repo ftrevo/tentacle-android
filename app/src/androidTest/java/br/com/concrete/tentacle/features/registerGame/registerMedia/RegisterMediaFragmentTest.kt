@@ -27,7 +27,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     override fun setupFragment() {
         testFragment = RegisterMediaFragment().apply {
             val args = Bundle()
-            args.putParcelable("game_argument", expectedGame)
+            args.putSerializable("game_argument", expectedGame)
             arguments = args
         }
     }
@@ -35,7 +35,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     @Test
     fun showRegisteredGameName() {
         onView(withId(R.id.mediaRegisterNameTextView))
-            .check(matches(withText(expectedGame.title)))
+            .check(matches(withText(expectedGame.name)))
     }
 
     @Test

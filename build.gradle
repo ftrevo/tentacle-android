@@ -5,12 +5,12 @@ buildscript {
     ext.kotlinVersion = '1.3.11'
     ext.appCompat = '1.1.0-alpha01'
     ext.constraitLayout = '2.0.0-alpha3'
-    ext.buildGradle = '3.3.0'
+    ext.buildGradle = '3.3.1'
     ext.canarinho = '2.0.1'
     ext.searchableSpinner = '1.9'
     ext.material = '1.1.0-alpha02'
     ext.ktLintVersion = '0.29.0'
-    ext.androidGradlePlugin = '3.3.0'
+    ext.androidGradlePlugin = '3.3.1'
     ext.fabricPlugin = '1.25.4'
     ext.crashlyticsVersion = '2.9.1'
     ext.glide = '4.8.0'
@@ -49,7 +49,8 @@ buildscript {
     ext.androidxTest = "1.1.0"
 
     //Android Material
-    ext.androidMaterial = '1.0.0'
+    ext.androidMaterial = '1.1.0-alpha03'
+    ext.materialSpinner = "1.3.1"
 
     //Navigation
     ext.navigation = "1.0.0-alpha09"

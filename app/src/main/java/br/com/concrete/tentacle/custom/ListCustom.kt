@@ -12,10 +12,10 @@ import br.com.concrete.tentacle.extensions.hideKeyboard
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
-import kotlinx.android.synthetic.main.list_custom.view.progressBarList
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
+import kotlinx.android.synthetic.main.progress_include.view.progressBarList
 
 class ListCustom(
     context: Context,

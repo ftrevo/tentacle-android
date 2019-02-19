@@ -15,7 +15,7 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadLibrary() {
         viewStateLibray.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        disposables.add(libraryRepository.getLibrary()
+        disposables.add(libraryRepository.getLibraryList()
             .subscribe({ baseModel ->
                 viewStateLibray.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data.list as ArrayList<Library>))
             }, {

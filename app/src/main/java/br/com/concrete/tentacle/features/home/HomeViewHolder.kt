@@ -12,7 +12,7 @@ class HomeViewHolder(
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, element: Game) {
             if (holder is HomeViewHolder) {
-                holder.mLinearLayout.tvTitleGame.text = element.title
+                holder.mLinearLayout.tvTitleGame.text = element.name
             }
         }
     }

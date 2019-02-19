@@ -1,10 +1,12 @@
 package br.com.concrete.tentacle.data.models
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Game(
     val _id: String = String(),
-    val title: String = String(),
+    @SerializedName("name", alternate = ["title"])
+    val name: String = String(),
     val createdBy: User,
     var createdAt: String,
     var updateAt: String

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+    <include layout="@layout/logo_tentacle" android:id="@+id/include"/>
+
+    <!-- This container is used in order to keep touch area according to the patterns -->
+    <FrameLayout
+        android:id="@+id/btClose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_width="48dp"
+        android:layout_height="48dp">
+
+        <ImageButton
+            android:layout_gravity="center"
+            android:src="@drawable/ic_close"
+            android:background="@drawable/circle_bg_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+    <ImageView
+        android:layout_marginTop="@dimen/loan_success_margin_top"
+        android:background="@color/activateIcon"
+        android:id="@+id/ivCover"
+        android:layout_width="@dimen/loan_success_width"
+        android:layout_height="@dimen/loan_success_height"
+        app:layout_constraintTop_toBottomOf="@+id/btClose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:lineSpacingExtra="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_marginEnd="@dimen/dp_40"
+        android:layout_marginStart="@dimen/dp_40"
+        android:textAppearance="@style/TextHeavy.16sp"
+        android:textColor="@color/textColor"
+        android:gravity="center"
+        android:text="@string/loan_success"
+        android:id="@+id/tvText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ivCover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <br.com.concrete.tentacle.custom.ButtonView
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        style="@style/StyleButton"
+        app:layout_constraintTop_toBottomOf="@+id/tvText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/btOk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:buttonName="@string/loan_button_success"
+        app:textColorButton="@color/textColorErrorButtonName"
+        android:backgroundTint="@color/textColor"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
