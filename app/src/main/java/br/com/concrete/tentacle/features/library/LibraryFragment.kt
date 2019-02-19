@@ -31,6 +31,9 @@ import kotlinx.android.synthetic.main.fragment_library.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.features.library.loan.LoanActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
@@ -74,18 +77,22 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                             libraries.clear()
                             libraries.addAll(list)
 
-                            recyclerViewAdapter = BaseAdapter(
-                                libraries,
-                                R.layout.library_item_layout,
-                                { view ->
-                                    LibraryViewHolder(view)
-                                }, { holder, element ->
-                                    LibraryViewHolder.callBack(
-                                        holder = holder,
-                                        element = element,
-                                        selectedFilters = selectedFilterItems
-                                    )
-                                })
+                        recyclerViewAdapter = BaseAdapter(
+                            libraries,
+                            R.layout.library_item_layout,
+                            { view ->
+                                LibraryViewHolder(view) { library ->
+                                    val extras = Bundle()
+                                    extras.putString(LoanActivity.ID_LIBRARY_EXTRA, library._id)
+                                    activity?.launchActivity<LoanActivity>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
+                                }
+                            }, { holder, element ->
+                                LibraryViewHolder.callBack(
+                                    holder = holder,
+                                    element = element,
+                                    selectedFilters = selectedFilterItems
+                                )
+                            })
 
                             recyclerListView.layoutManager = LinearLayoutManager(context)
                             recyclerListView.adapter = recyclerViewAdapter
