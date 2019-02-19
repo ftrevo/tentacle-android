@@ -27,7 +27,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
     override fun setupFragment() {
         testFragment = RegisterMediaFragment().apply {
             val args = Bundle()
-            args.putParcelable("game_argument", expectedGame)
+            args.putSerializable("game_argument", expectedGame)
             arguments = args
         }
     }
