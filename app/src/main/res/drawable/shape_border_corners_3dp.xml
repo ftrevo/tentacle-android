@@ -3,7 +3,7 @@
     <solid
             android:color="@color/chipIconTint"/>
     <corners
-            android:radius="3dp" />
+            android:radius="@dimen/dp_3" />
 
     <padding
             android:left="@dimen/dp_10"
