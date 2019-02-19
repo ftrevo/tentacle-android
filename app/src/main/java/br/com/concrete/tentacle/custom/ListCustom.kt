@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.custom
 
 import android.app.Activity
 import android.content.Context
-import android.content.ContextWrapper
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -106,7 +105,7 @@ class ListCustom(
 
     private fun hideSoftKeyboard() {
         context?.let {
-            if(it is Activity){
+            if (it is Activity) {
                 it.hideKeyboard()
             }
         }

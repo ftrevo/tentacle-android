@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
-import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
 import br.com.concrete.tentacle.utils.Event
@@ -29,9 +28,9 @@ class SearchGameViewModel(
 
     private fun obsSearchGames(title: String) =
         gameRepository.getSearchGames(title).subscribe({ base ->
-            if(base.data.list.isNotEmpty()) {
+            if (base.data.list.isNotEmpty()) {
                 base.data.list.add(Game.getEmptyGame())
-            } else  {
+            } else {
                 base.data.list
             }
 
