@@ -5,7 +5,7 @@ import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
-import br.com.concrete.tentacle.features.library.LoanViewModel
+import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
 import okhttp3.mockwebserver.MockResponse
@@ -90,6 +90,82 @@ class LoanVMTest : BaseViewModelTest() {
             actual = it
         }
         loanViewModel.loadLibrary("someId")
+        Assert.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loanViewModel calls performLoan should return a LoanResponse`() {
+
+        val responseJson = getJson(
+            "mockjson/library/loan/perform_loan_success.json"
+        )
+
+        val collectionType = object : TypeToken<BaseModel<LoanResponse>>() {}.type
+        val responseObject: BaseModel<LoanResponse> = GsonBuilder()
+            .create()
+            .fromJson(responseJson, collectionType)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = responseObject.data)
+
+        var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+
+        loanViewModel.getLoan().observeForever {
+            actual = it
+        }
+
+        loanViewModel.performLoad("someId")
+        Assert.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loanViewModel calls performLoan should return error message for 401`() {
+        val expected =
+            ViewStateModel<LoanResponse>(
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+            )
+        var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
+
+        val mockResponse = MockResponse()
+            .setResponseCode(401)
+
+        mockServer.enqueue(mockResponse)
+
+        loanViewModel.getLoan().observeForever {
+            actual = it
+        }
+        loanViewModel.performLoad("someId")
+        Assert.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loanViewModel calls performLoan should return error message for 400`() {
+        val responseJson = getJson(
+            "mockjson/errors/error_400.json"
+        )
+
+        val responseObject: ErrorResponse =
+            GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
+
+        val expected =
+            ViewStateModel<LoanResponse>(
+                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
+        var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
+
+        mockResponseError400()
+
+        loanViewModel.getLoan().observeForever {
+            actual = it
+        }
+        loanViewModel.performLoad("someId")
         Assert.assertEquals(expected, actual)
     }
 }

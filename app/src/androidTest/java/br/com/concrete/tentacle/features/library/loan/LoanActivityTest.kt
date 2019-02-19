@@ -44,24 +44,23 @@ class LoanActivityTest {
     }
 
     @Before
-    fun setupExtras(){
+    fun setupExtras() {
         val intent = Intent()
         intent.putExtra(LoanActivity.ID_LIBRARY_EXTRA, "someId")
         activityRule.launchActivity(intent)
     }
 
     @Test
-    fun testLoadLibrary(){
+    fun testLoadLibrary() {
         setResponse()
 
         onView(withId(R.id.tvGameName)).check(matches(isDisplayed()))
         onView(withId(R.id.tvGameName)).check(matches(withText("Jogo XPTO")))
         onView(withId(R.id.btPerformLoan)).check(matches(not(isEnabled())))
-
     }
 
     @Test
-    fun checkVisibleChips(){
+    fun checkVisibleChips() {
         setResponse()
 
         onView(withId(R.id.chipPs4)).check(matches(isDisplayed()))
@@ -70,22 +69,21 @@ class LoanActivityTest {
         onView(withId(R.id.chip3ds)).check(matches(not(isDisplayed())))
         onView(withId(R.id.chipOne)).check(matches(not(isDisplayed())))
         onView(withId(R.id.chipSwitch)).check(matches(not(isDisplayed())))
-
     }
 
     @Test
-    fun checkButtonState(){
+    fun checkButtonState() {
 
         setResponse()
 
         onView(withId(R.id.chipPs4)).perform(click())
         onView(withId(R.id.spOwners)).perform(click())
-        onView(withId(R.id.tv_tinted_spinner)).perform(click()) //Clicking on the first item on list
+        onView(withId(R.id.tv_tinted_spinner)).perform(click()) // Clicking on the first item on list
         onView(withId(R.id.spOwners)).check(matches(withText("John Doe")))
         onView(withId(R.id.btPerformLoan)).check(matches(isEnabled()))
     }
 
-    private fun setResponse(){
+    private fun setResponse() {
         val response = "mockjson/library/loan/library_response_success.json".getJson()
 
         mockWebServer.enqueue(
