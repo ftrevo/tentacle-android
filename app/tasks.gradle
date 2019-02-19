@@ -20,25 +20,23 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     args "-F", "src/**/*.kt"
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport,
+        dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
 
     reports {
         xml.enabled = true
         html.enabled = true
     }
 
-    def fileFilter = [ '/br/com/concrete/tentacle/di/*',
-                       '/br/com/concrete/tentacle/extensions/*',
-                       '/br/com/concrete/tentacle/data/models/*',
-                       '/br/com/concrete/tentacle/data/network/*',
-                       '/br/com/concrete/tentacle/custom/*',
-                       '/br/com/concrete/tentacle/utils/*',
-                       '/br/com/concrete/tentacle/base/*',
-                       '/br/com/concrete/tentacle/features/MainActivity.*',
+    def fileFilter = [ '/br/com/concrete/tentacle/*',
                        '**/R.class', '**/R$*.class', '**/BuildConfig.*',
                        '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*' ]
 
-    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def debugTree =
+            fileTree(
+                    dir: "$project.buildDir/tmp/kotlin-classes/debug",
+                    excludes: fileFilter)
+
     def mainSrc = "$project.projectDir/src/main/java"
 
     sourceDirectories = files([mainSrc])
