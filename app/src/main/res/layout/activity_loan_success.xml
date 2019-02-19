@@ -8,16 +8,23 @@
 
     <include layout="@layout/logo_tentacle" android:id="@+id/include"/>
 
-    <ImageButton
+    <!-- This container is used in order to keep touch area according to the patterns -->
+    <FrameLayout
         android:id="@+id/btClose"
-        android:src="@drawable/ic_close"
-        android:background="@drawable/circle_bg_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/dp_40"
         android:layout_marginEnd="@dimen/margin_default"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_width="48dp"
+        android:layout_height="48dp">
+
+        <ImageButton
+            android:layout_gravity="center"
+            android:src="@drawable/ic_close"
+            android:background="@drawable/circle_bg_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
 
     <ImageView
         android:layout_marginTop="@dimen/loan_success_margin_top"
