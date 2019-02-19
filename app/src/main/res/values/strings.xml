@@ -62,8 +62,8 @@
     <string name="register_media_generic_error_test">Ocorreu um erro</string>
     <string name="register_media_no_selection_error">Necessário escolher a plataforma do jogo</string>
 
-    <string name="toolbar_title_home">Novos Jogos</string>
-    <string name="toolbar_title_my_games">Meus Jogos</string>
+    <string name="toolbar_title_home">Novos jogos</string>
+    <string name="toolbar_title_my_games">Meus jogos</string>
     <string name="toolbar_title_search_game">Cadastrar jogo</string>
     <string name="toolbar_title_loan_game">Reservar jogo</string>
 
@@ -98,6 +98,18 @@
     <string name="filter_item_status">Status do jogo</string>
     <string name="filter_subitem_games_availability">Mostrar jogos indisponíveis</string>
     <!-- end here -->
+
+    <string name="logout_title">Logout</string>
+    <string name="logout_question">Tem certeza que deseja efetuar o logout?</string>
+    <string name="loremText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+        been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
+    </string>
+
+    <string name="cancel">Cancelar</string>
 
     <string name="library_loan_text1">Qual a plataforma que voce quer reservar?</string>
     <string name="library_loan_text2">Escolha de quem você quer emprestado</string>
