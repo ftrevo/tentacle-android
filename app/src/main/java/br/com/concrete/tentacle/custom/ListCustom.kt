@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.custom
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.extensions.hideKeyboard
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
@@ -98,6 +100,15 @@ class ListCustom(
         recyclerListView.visibility = View.GONE
         buttonAction.visibility = View.GONE
         recyclerListError.visibility = View.VISIBLE
+        hideSoftKeyboard()
+    }
+
+    private fun hideSoftKeyboard() {
+        context?.let {
+            if (it is Activity) {
+                it.hideKeyboard()
+            }
+        }
     }
 
     private fun showLoading() {
