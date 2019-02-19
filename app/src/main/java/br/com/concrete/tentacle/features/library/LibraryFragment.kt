@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.features.library
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -71,7 +70,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
             stateModel.getContentIfNotHandler()?.let {
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
-                        it.model?.let {list->
+                        it.model?.let { list ->
                             libraries.clear()
                             libraries.addAll(list)
 
