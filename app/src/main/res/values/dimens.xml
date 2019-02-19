@@ -74,5 +74,17 @@
     <dimen name="filterCloseButtonWidth">40dp</dimen>
     <dimen name="filterCloseButtonHeight">40dp</dimen>
     <dimen name="lineSpacingExtra">8sp</dimen>
+
+    <dimen name="chipWidth">78dp</dimen>
+    <dimen name="chipHeight">54dp</dimen>
+    <dimen name="chipCornerRadius">20dp</dimen>
+
+    <dimen name="loan_success_height">146dp</dimen>
+    <dimen name="loan_success_width">115dp</dimen>
+    <dimen name="loan_success_margin_top">87dp</dimen>
+
+    <dimen name="loan_image_margin_top">20dp</dimen>
+    <dimen name="loan_text_margin_top">22dp</dimen>
+
 </resources>
 
