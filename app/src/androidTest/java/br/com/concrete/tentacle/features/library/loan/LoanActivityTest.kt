@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.isEnabled
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
@@ -16,8 +16,7 @@ import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.features.library.LoanActivity
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.Matchers
-import org.hamcrest.core.IsNot.not
+import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -52,12 +51,12 @@ class LoanActivityTest {
     }
 
     @Test
-    fun checkResponse(){
+    fun testLoadLibrary(){
         setResponse()
 
         onView(withId(R.id.tvGameName)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvGameName)).check(matches(ViewMatchers.withText("Jogo XPTO")))
-        onView(withId(R.id.btPerformLoan)).check(matches(not(ViewMatchers.isEnabled())))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Jogo XPTO")))
+        onView(withId(R.id.btPerformLoan)).check(matches(not(isEnabled())))
 
     }
 
@@ -66,11 +65,11 @@ class LoanActivityTest {
         setResponse()
 
         onView(withId(R.id.chipPs4)).check(matches(isDisplayed()))
-        onView(withId(R.id.chipPs3)).check(matches(Matchers.not(isDisplayed())))
-        onView(withId(R.id.chip360)).check(matches(Matchers.not(isDisplayed())))
-        onView(withId(R.id.chip3ds)).check(matches(Matchers.not(isDisplayed())))
-        onView(withId(R.id.chipOne)).check(matches(Matchers.not(isDisplayed())))
-        onView(withId(R.id.chipSwitch)).check(matches(Matchers.not(isDisplayed())))
+        onView(withId(R.id.chipPs3)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.chip360)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.chip3ds)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.chipOne)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.chipSwitch)).check(matches(not(isDisplayed())))
 
     }
 
@@ -83,7 +82,7 @@ class LoanActivityTest {
         onView(withId(R.id.spOwners)).perform(click())
         onView(withId(R.id.tv_tinted_spinner)).perform(click()) //Clicking on the first item on list
         onView(withId(R.id.spOwners)).check(matches(withText("John Doe")))
-        onView(withId(R.id.btPerformLoan)).check(matches(ViewMatchers.isEnabled()))
+        onView(withId(R.id.btPerformLoan)).check(matches(isEnabled()))
     }
 
     private fun setResponse(){
