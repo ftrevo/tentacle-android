@@ -85,11 +85,11 @@ class HostActivity : BaseActivity(), CallBack {
             context = this@HostActivity,
             title = getString(R.string.logout_title),
             message = getString(R.string.logout_question),
-            positiveText = getString(android.R.string.ok),
+            positiveText = getString(R.string.ok),
             positiveListener = DialogInterface.OnClickListener { _, _ ->
                 performLogout()
             },
-            negativeText = getString(android.R.string.no)
+            negativeText = getString(R.string.cancel)
         )
     }
 
