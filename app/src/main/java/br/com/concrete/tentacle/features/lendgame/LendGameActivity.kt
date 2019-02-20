@@ -1,9 +1,11 @@
-package br.com.concrete.tentacle.features.lendGame
+package br.com.concrete.tentacle.features.lendgame
 
 import android.os.Bundle
 import android.view.View
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.finishActivity
 
 
 class LendGameActivity : BaseActivity(), View.OnClickListener {
@@ -27,5 +29,9 @@ class LendGameActivity : BaseActivity(), View.OnClickListener {
 
     private fun lendGame() {
 
+    }
+
+    override fun getFinishActivityTransition(): ActivityAnimation {
+        return ActivityAnimation.TRANSLATE_DOWN
     }
 }

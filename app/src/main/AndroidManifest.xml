@@ -49,7 +49,7 @@
             android:theme="@style/AppTheme.FullScreen"/>
 
         <activity
-                android:name=".features.lendGame.LendGameActivity"
+                android:name=".features.lendgame.LendGameActivity"
                 android:theme="@style/AppTheme"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 

@@ -15,7 +15,9 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.features.lendGame.LendGameActivity
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.features.lendgame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
 import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
@@ -94,9 +96,9 @@ class LoadMyGamesFragment : BaseFragment() {
     }
 
     private fun callActivity(media: Media) {
-        val intent = Intent(context, LendGameActivity::class.java)
-        intent.putExtra(LendGameActivity.MEDIA_OBJECT, media)
-        startActivity(intent)
+        val bundle = Bundle()
+        bundle.putParcelable(LendGameActivity.MEDIA_OBJECT, media)
+        activity?.launchActivity<LendGameActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
     }
 
     private fun init() {

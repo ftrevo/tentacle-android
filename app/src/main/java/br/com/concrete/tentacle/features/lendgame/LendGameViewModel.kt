@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.lendGame
+package br.com.concrete.tentacle.features.lendgame
 
 import br.com.concrete.tentacle.base.BaseViewModel
 
