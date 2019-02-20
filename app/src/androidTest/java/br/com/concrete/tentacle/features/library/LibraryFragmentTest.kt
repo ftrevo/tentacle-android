@@ -39,7 +39,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
-            .check(ViewAssertions.matches(withText(R.string.no_library_error)))
+            .check(ViewAssertions.matches(withText("Parece que você é o primeiro a buscar esse jogo!")))
         onView(withId(R.id.progressBarList))
             .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
     }
@@ -74,7 +74,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListError))
             .check(ViewAssertions.matches(isDisplayed()))
         onView(withId(R.id.errorDescription))
-            .check(ViewAssertions.matches(withText(R.string.load_library_error_not_know)))
+            .check(ViewAssertions.matches(withText("Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente novamente.")))
     }
 
     @Test
@@ -118,7 +118,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
-            .check(ViewAssertions.matches(withText(R.string.first_game_register)))
+            .check(ViewAssertions.matches(withText("Parece que você é o primeiro a buscar esse jogo!")))
     }
 
     @Test
@@ -141,7 +141,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
-            .check(ViewAssertions.matches(withText(R.string.load_library_error_not_know)))
+            .check(ViewAssertions.matches(withText("Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente novamente.")))
     }
 
     @Test
