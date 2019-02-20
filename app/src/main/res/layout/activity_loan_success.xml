@@ -15,10 +15,10 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/dp_40"
         android:layout_marginEnd="@dimen/margin_default"
-        android:layout_width="48dp"
-        android:layout_height="48dp">
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48">
 
-        <ImageButton
+        <ImageView
             android:layout_gravity="center"
             android:src="@drawable/ic_close"
             android:background="@drawable/circle_bg_close"
