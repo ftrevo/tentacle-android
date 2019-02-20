@@ -31,9 +31,9 @@
 
         <ImageView
             android:id="@+id/filterCloseButton"
-            android:layout_width="@dimen/filterCloseButtonWidth"
-            android:layout_height="@dimen/filterCloseButtonHeight"
-            android:padding="@dimen/dp_14"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:padding="@dimen/dp_12"
             android:src="@drawable/ic_close"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
