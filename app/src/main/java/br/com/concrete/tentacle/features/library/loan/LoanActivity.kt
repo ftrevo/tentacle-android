@@ -26,6 +26,9 @@ import kotlinx.android.synthetic.main.activity_loan.tvGameName
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 
+private const val ONLY_ONE_MEDIA = 1
+private const val ONLY_ONE_OWNER = 1
+
 class LoanActivity : BaseActivity() {
 
     private val viewModel: LoanViewModel by viewModel()
@@ -141,7 +144,7 @@ class LoanActivity : BaseActivity() {
     }
 
     private fun autoSelectIfUniqueOwner(list: List<MediaLibrary>) {
-        if (list.size == 1) {
+        if (list.size == ONLY_ONE_OWNER) {
             spOwners.selectedIndex = 0
             spOwners.isSelected = true
             mediaLibrary = spOwners.getItems<MediaLibrary>()[0]
@@ -161,7 +164,7 @@ class LoanActivity : BaseActivity() {
                 }
             }
         }
-        if (count == 1) {
+        if (count == ONLY_ONE_MEDIA) {
             val view = chipContainer.getChildAt(position)
             view.performClick()
             view.isPressed = true
