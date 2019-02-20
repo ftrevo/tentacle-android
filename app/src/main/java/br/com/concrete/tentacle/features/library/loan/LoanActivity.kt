@@ -140,8 +140,8 @@ class LoanActivity : BaseActivity() {
         spOwners.isEnabled = list.isNotEmpty()
     }
 
-    private fun autoSelectIfUniqueOwner(list: List<MediaLibrary>){
-        if(list.size == 1){
+    private fun autoSelectIfUniqueOwner(list: List<MediaLibrary>) {
+        if (list.size == 1) {
             spOwners.selectedIndex = 0
             spOwners.isSelected = true
             mediaLibrary = spOwners.getItems<MediaLibrary>()[0]
@@ -149,10 +149,10 @@ class LoanActivity : BaseActivity() {
         }
     }
 
-    private fun autoSelectIfUniqueMedia(){
+    private fun autoSelectIfUniqueMedia() {
         var count = 0
         var position = 0
-        for (i in 0.. chipContainer.childCount) {
+        for (i in 0..chipContainer.childCount) {
             val view = chipContainer.getChildAt(i)
             if (view is ChipCustom) {
                 if (view.visibility == View.VISIBLE) {

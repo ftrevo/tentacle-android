@@ -16,7 +16,7 @@ class LibraryRepository(private val apiRest: ApiService) {
         return apiRest.getLibrary(
             queries.id,
             search,
-            if(queries.toString() == "") null else queries.toString(),
+            if (queries.toString() == "") null else queries.toString(),
             queries.limit,
             queries.page
         )

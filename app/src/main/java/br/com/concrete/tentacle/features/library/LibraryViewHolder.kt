@@ -4,7 +4,6 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.library.Library
-import br.com.concrete.tentacle.data.models.library.MediaLibrary
 import br.com.concrete.tentacle.data.models.library.filter.SubItem
 import br.com.concrete.tentacle.extensions.animation
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS
@@ -51,7 +50,6 @@ class LibraryViewHolder(
                 view.visibility = if (filter != null) View.VISIBLE else View.GONE
             }
         }
-
 
         private fun animateOpen(view: View, element: Library, selectedFilters: List<SubItem>) {
             view.ivArrow.animation(R.anim.rotate_open) {
