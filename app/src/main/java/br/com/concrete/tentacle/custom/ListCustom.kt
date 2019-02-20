@@ -49,7 +49,7 @@ class ListCustom(
             showViewError()
         } else {
             if (elements.isEmpty()) {
-                recyclerListError.setUpComponents(iconReference, errorDescriptionReference, buttonNameActionReference)
+                recyclerListError.setUpComponents(iconReference, R.string.first_game_register, buttonNameActionReference)
                 showViewError()
             } else {
                 showViewSuccess()

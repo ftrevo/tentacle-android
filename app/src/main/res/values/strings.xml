@@ -47,7 +47,7 @@
 
     <string name="game_name">Nome do Jogo</string>
     <string name="media">mídia</string>
-    <string name="first_game_register">Parece que você é o primeiro a adicionar esse jogo!</string>
+    <string name="first_game_register">Parece que você é o primeiro a buscar esse jogo!</string>
 
     <string name="register_media_group_title">Selecione a plataforma:</string>
     <string name="register_media_ps3_radio_button_title">Playstation 3</string>
