@@ -9,6 +9,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.finishActivity
 
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
@@ -65,7 +67,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                super.onBackPressed()
+                onBackPressed()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -93,5 +95,14 @@ abstract class BaseActivity : AppCompatActivity() {
 
             builder.create().show()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishActivity(animation = getFinishActivityTransition())
+    }
+
+    open fun getFinishActivityTransition(): ActivityAnimation {
+        return ActivityAnimation.TRANSLATE_RIGHT
     }
 }

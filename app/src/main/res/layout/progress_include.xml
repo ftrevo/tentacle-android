@@ -5,5 +5,5 @@
     android:layout_width="@dimen/dp_80"
     android:layout_height="@dimen/dp_80"
     android:layout_gravity="center"
-    android:visibility="visible"
+    android:visibility="gone"
     android:indeterminateDrawable="@drawable/progress"/>

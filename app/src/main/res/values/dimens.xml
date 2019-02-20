@@ -12,16 +12,22 @@
 
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
     <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
     <dimen name="dp_7">7dp</dimen>
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_11">11dp</dimen>
     <dimen name="dp_12">12dp</dimen>
     <dimen name="dp_14">14dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
     <dimen name="dp_18">18dp</dimen>
     <dimen name="dp_19">19dp</dimen>
     <dimen name="dp_25">25dp</dimen>
+    <dimen name="dp_24">24dp</dimen>
+    <dimen name="dp_26">26dp</dimen>
     <dimen name="dp_40">40dp</dimen>
     <dimen name="dp_48">48dp</dimen>
     <dimen name="dp_50">50dp</dimen>
@@ -35,7 +41,7 @@
     <dimen name="game_icon_height">58dp</dimen>
 
     <dimen name="itemGameNamePercent">0.75</dimen>
-    <dimen name="itemGamePlatformPercent">0.25</dimen>
+    <dimen name="itemGamePlatformPercent">0.20</dimen>
 
     <dimen name="tentacleLogoOpacity">0.1</dimen>
 
@@ -70,6 +76,7 @@
     <dimen name="filterItemIconHeight">40dp</dimen>
     <dimen name="filterCloseButtonWidth">40dp</dimen>
     <dimen name="filterCloseButtonHeight">40dp</dimen>
+    <dimen name="lineSpacingExtra">8sp</dimen>
 
     <dimen name="chipWidth">78dp</dimen>
     <dimen name="chipHeight">54dp</dimen>

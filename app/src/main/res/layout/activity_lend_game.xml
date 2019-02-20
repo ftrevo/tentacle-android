@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context="br.com.concrete.tentacle.features.lendgame.LendGameActivity"
+        android:background="@color/colorPrimary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:paddingStart="@dimen/margin_default"
+            android:paddingTop="@dimen/dp_19"
+            android:paddingEnd="@dimen/margin_default"
+            android:paddingBottom="@dimen/margin_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include layout="@layout/logo_tentacle"/>
+
+        <ImageView
+                android:id="@+id/mediaRegisterImageView"
+                android:layout_width="@dimen/game_icon_width"
+                android:layout_height="@dimen/game_icon_height"
+                android:background="@color/bgGameIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/tvGameName"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:textSize="@dimen/sp_24"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@android:color/white"
+                tools:text="@string/loremText"
+                app:layout_constraintStart_toEndOf="@id/mediaRegisterImageView"
+                app:layout_constraintTop_toTopOf="@id/mediaRegisterImageView"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="@dimen/dp_0"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="mediaRegisterImageView, tvGameName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+                android:id="@+id/tvReservado"
+                style="@style/StyleTextViewLendGame.UserTextHeavy.Label"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:text="@string/reservado_por"
+                app:layout_constraintTop_toBottomOf="@+id/barrier"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+                android:paddingStart="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_8"
+                android:id="@+id/tvRequestedBy"
+                style="@style/StyleTextViewLendGame.UserTextHeavy.WithShape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                tools:text="Nome do Solicitante"
+                app:layout_constraintTop_toBottomOf="@+id/tvReservado"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+                android:id="@+id/tvTempoReservaLabel"
+                style="@style/StyleTextViewLendGame.UserTextHeavy.Label"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:text="@string/tempo_reserva"
+                app:layout_constraintTop_toBottomOf="@+id/tvRequestedBy"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        <!--TODO-->
+        <!-- In this first release the return date always be set to 2 weeks-->
+        <TextView
+                android:paddingStart="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_8"
+                android:id="@+id/tvTempoReserva"
+                style="@style/StyleTextViewLendGame.UserTextHeavy.WithShape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/two_weeks"
+                app:layout_constraintTop_toBottomOf="@+id/tvTempoReservaLabel"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+                android:lines="1"
+                android:id="@+id/tvDate"
+                style="@style/StyleTextViewLendGame.UserTextMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="@string/date_return_prefix"
+                app:layout_constraintLeft_toRightOf="@+id/tvRequestedBy"
+                app:layout_constraintTop_toTopOf="@+id/tvTempoReserva"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTempoReserva"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/dp_8"/>
+
+        <br.com.concrete.tentacle.custom.ButtonView
+                android:id="@+id/btLendGame"
+                style="@style/StyleButton"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                app:buttonName="@string/lendGame"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <include
+                layout="@layout/progress_include"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_80"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -140,4 +140,8 @@ class LoanActivity : BaseActivity() {
         showLoading(false)
         super.showError(errors)
     }
+
+    override fun getFinishActivityTransition(): ActivityAnimation {
+        return ActivityAnimation.TRANSLATE_DOWN
+    }
 }
