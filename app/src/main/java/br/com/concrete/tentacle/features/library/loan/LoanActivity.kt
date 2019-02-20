@@ -5,6 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
+import br.com.concrete.tentacle.custom.ChipCustom
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
@@ -24,6 +25,9 @@ import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.activity_loan.tvGameName
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
+
+private const val ONLY_ONE_MEDIA = 1
+private const val ONLY_ONE_OWNER = 1
 
 class LoanActivity : BaseActivity() {
 
@@ -128,12 +132,43 @@ class LoanActivity : BaseActivity() {
                     }
                 }
             }
+
+            autoSelectIfUniqueMedia()
         }
     }
 
     private fun setOwners(list: List<MediaLibrary>) {
         spOwners.setItems(list)
+        autoSelectIfUniqueOwner(list)
         spOwners.isEnabled = list.isNotEmpty()
+    }
+
+    private fun autoSelectIfUniqueOwner(list: List<MediaLibrary>) {
+        if (list.size == ONLY_ONE_OWNER) {
+            spOwners.selectedIndex = 0
+            spOwners.isSelected = true
+            mediaLibrary = spOwners.getItems<MediaLibrary>()[0]
+            btPerformLoan.enable()
+        }
+    }
+
+    private fun autoSelectIfUniqueMedia() {
+        var count = 0
+        var position = 0
+        for (i in 0..chipContainer.childCount) {
+            val view = chipContainer.getChildAt(i)
+            if (view is ChipCustom) {
+                if (view.visibility == View.VISIBLE) {
+                    position = i
+                    count++
+                }
+            }
+        }
+        if (count == ONLY_ONE_MEDIA) {
+            val view = chipContainer.getChildAt(position)
+            view.performClick()
+            view.isPressed = true
+        }
     }
 
     override fun showError(errors: ErrorResponse?) {

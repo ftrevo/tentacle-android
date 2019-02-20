@@ -45,7 +45,7 @@ interface ApiService {
     fun getLibrary(
         @Query("_id") id: String? = null,
         @Query("name") search: String? = null,
-        @Query("mediaPlatform") mediaPlatform: List<String>? = null,
+        @Query("mediaPlatform") mediaPlatform: String? = null,
         @Query("limit") limit: Int? = null,
         @Query("page") page: Int? = null
     ): Observable<BaseModel<LibraryResponse>>

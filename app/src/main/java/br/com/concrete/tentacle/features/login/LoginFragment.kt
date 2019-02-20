@@ -7,13 +7,8 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.R.id.btLogin
-import br.com.concrete.tentacle.R.id.edtEmail
-import br.com.concrete.tentacle.R.id.edtPassword
-import br.com.concrete.tentacle.R.id.tvRegisterAccount
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
@@ -22,8 +17,11 @@ import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import br.com.concrete.tentacle.utils.LogWrapper
-import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
+import kotlinx.android.synthetic.main.fragment_login.btLogin
+import kotlinx.android.synthetic.main.fragment_login.edtEmail
+import kotlinx.android.synthetic.main.fragment_login.edtPassword
+import kotlinx.android.synthetic.main.fragment_login.tvRegisterAccount
+import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment(), View.OnClickListener {

@@ -46,7 +46,7 @@ class LibraryViewHolder(
         private fun checkPlatform(view: View, hasMedia: Int, filter: SubItem?, hasAnyFilters: Boolean) {
             view.visibility = if (hasMedia > 0) View.VISIBLE else View.GONE
 
-            if (hasAnyFilters) {
+            if (hasAnyFilters && hasMedia > 0) {
                 view.visibility = if (filter != null) View.VISIBLE else View.GONE
             }
         }
