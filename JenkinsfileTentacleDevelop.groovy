@@ -26,7 +26,7 @@ node('master') {
         utils.releaseAndroidAPKToCrashlytics('Debug')
     }
 
-    /*stage('Inform Build OK') {
+    stage('Inform Build OK') {
         utils.sendSucessNotify('Job success')
-    }*/
+    }
 }
