@@ -129,8 +129,27 @@ class LoanActivity : BaseActivity() {
                     }
                 }
             }
-        }
 
+            autoSelectIfUniqueMedia()
+        }
+    }
+
+    private fun setOwners(list: List<MediaLibrary>) {
+        spOwners.setItems(list)
+        autoSelectIfUniqueOwner(list)
+        spOwners.isEnabled = list.isNotEmpty()
+    }
+
+    private fun autoSelectIfUniqueOwner(list: List<MediaLibrary>){
+        if(list.size == 1){
+            spOwners.selectedIndex = 0
+            spOwners.isSelected = true
+            mediaLibrary = spOwners.getItems<MediaLibrary>()[0]
+            btPerformLoan.enable()
+        }
+    }
+
+    private fun autoSelectIfUniqueMedia(){
         var count = 0
         var position = 0
         for (i in 0.. chipContainer.childCount) {
@@ -147,11 +166,6 @@ class LoanActivity : BaseActivity() {
             view.performClick()
             view.isPressed = true
         }
-    }
-
-    private fun setOwners(list: List<MediaLibrary>) {
-        spOwners.setItems(list)
-        spOwners.isEnabled = list.isNotEmpty()
     }
 
     override fun showError(errors: ErrorResponse?) {
