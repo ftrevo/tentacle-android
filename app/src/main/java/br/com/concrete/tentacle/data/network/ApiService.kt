@@ -4,6 +4,7 @@ import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
+import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
@@ -14,6 +15,7 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -52,4 +54,10 @@ interface ApiService {
 
     @GET("media-loan/{id}")
     fun getMediaLoan(@Path("id") id: String): Observable<BaseModel<Media>>
+
+    @PATCH("loans/{activeLoanId}")
+    fun updateMedia(
+        @Path("activeLoanId") activeLoanId: String,
+        @Body loanAction: LoanActionRequest
+    ): Observable<BaseModel<LoanResponse>>
 }

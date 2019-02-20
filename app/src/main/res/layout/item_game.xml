@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_4"
-        android:layout_marginBottom="@dimen/dp_4"
-        android:layout_marginStart="@dimen/dp_8"
-        android:layout_marginEnd="@dimen/dp_8"
         android:animateLayoutChanges="true"
-        android:backgroundTint="@color/colorAddNewGame">
+        android:backgroundTint="@android:color/transparent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@color/colorAddNewGame"
+                android:layout_marginTop="@dimen/dp_4"
+                android:layout_marginBottom="@dimen/dp_4"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
                 android:layout_width="match_parent"
                 android:padding="@dimen/dp_8"
                 android:layout_height="match_parent">
@@ -28,20 +29,19 @@
                     android:ellipsize="end"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivLoanRequested"
                     android:layout_marginEnd="@dimen/dp_8"
                     tools:text="@string/game_name" />
 
-            <ImageView
-                    android:id="@+id/ivLoanRequested"
-                    android:tint="@color/loanRequested"
-                    android:src="@drawable/loan_bullet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@+id/game_name"
-                    app:layout_constraintBottom_toBottomOf="@+id/game_name"
-                    app:layout_constraintEnd_toStartOf="@id/game_media"
-                    android:layout_marginEnd="@dimen/dp_8"/>
+            <!--<ImageView-->
+                    <!--android:id="@+id/ivLoanRequested"-->
+                    <!--android:tint="@color/loanRequested"-->
+                    <!--android:src="@drawable/loan_bullet"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--app:layout_constraintTop_toTopOf="@+id/game_name"-->
+                    <!--app:layout_constraintBottom_toBottomOf="@+id/game_name"-->
+                    <!--app:layout_constraintEnd_toStartOf="@id/game_media"-->
+                    <!--android:layout_marginEnd="@dimen/dp_8"/>-->
 
             <TextView
                     android:id="@+id/game_media"
@@ -59,4 +59,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+    <ImageView
+            android:id="@+id/ivLoanRequested"
+            android:layout_gravity="end"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bookmark_lend"/>
+
+</FrameLayout>

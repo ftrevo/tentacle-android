@@ -21,7 +21,7 @@ class LoadMyGamesViewHolder(
                     holder.mLinearLayout.ivLoanRequested.visibility = View.VISIBLE
 
                     val color = if (element.activeLoan.loanDate == null) { // Loan was requested
-                        ContextCompat.getColor(holder.mLinearLayout.context, R.color.loanRequested)
+                        ContextCompat.getColor(holder.mLinearLayout.context, R.color.colorAccent)
                     } else {
                         ContextCompat.getColor(holder.mLinearLayout.context, R.color.loanPerformed)
                     }

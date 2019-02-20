@@ -5,13 +5,16 @@ import android.view.View
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
+import br.com.concrete.tentacle.data.models.ActiveLoan
 import br.com.concrete.tentacle.data.models.ErrorResponse
+import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.DEFAULT_RETURN_DATE_IN_WEEKS
+import br.com.concrete.tentacle.utils.LOAN_ACTION_LEND
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
 import kotlinx.android.synthetic.main.activity_lend_game.tvDate
 import kotlinx.android.synthetic.main.activity_lend_game.tvGameName
@@ -27,6 +30,7 @@ class LendGameActivity : BaseActivity(), View.OnClickListener {
     }
 
     private val viewModelLendGame: LendGameViewModel by viewModel()
+    private var activeLoan: ActiveLoan? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +57,25 @@ class LendGameActivity : BaseActivity(), View.OnClickListener {
                 ViewStateModel.Status.ERROR -> showError(stateModel.errors)
             }
         })
+
+        viewModelLendGame.getUpdateLoanViewState().observe(this, Observer { stateModel ->
+            when (stateModel.status) {
+                ViewStateModel.Status.SUCCESS -> lendSuccess()
+                ViewStateModel.Status.LOADING -> showLoading(true)
+                ViewStateModel.Status.ERROR -> showError(stateModel.errors)
+            }
+        })
+    }
+
+    private fun lendSuccess() {
+
     }
 
     private fun fillData(media: Media?) {
         showLoading(false)
+
         media?.let { m ->
+            activeLoan = m.activeLoan
             tvGameName.text = m.gameData?.name ?: ""
             tvRequestedBy.text = m.activeLoan?.requestedByName ?: ""
             val currentDate = Calendar.getInstance()
@@ -73,7 +91,9 @@ class LendGameActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun lendGame() {
-        // TODO Sprint 5
+        activeLoan?.let {
+            viewModelLendGame.updateMediaLoan(it._id, LoanActionRequest(LOAN_ACTION_LEND))
+        }
     }
 
     override fun getFinishActivityTransition(): ActivityAnimation {

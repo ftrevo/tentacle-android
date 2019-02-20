@@ -8,5 +8,7 @@ data class LoanResponse(
     val media: Media,
     val mediaOwner: MediaOwner,
     val requestedAt: String,
-    val requestedBy: RequestedBy
+    val requestedBy: RequestedBy,
+    val estimatedReturnDate: String?,
+    val loanDate: String?
 )
