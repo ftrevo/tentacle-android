@@ -4,6 +4,7 @@ import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
+import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
@@ -31,6 +32,12 @@ class GameRepository(private val apiRest: ApiService) {
 
     fun loadHomeGames(): Observable<BaseModel<GameResponse>> {
         return apiRest.loadHomeGames()
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
+
+    fun getMediaLoan(id: String): Observable<BaseModel<Media>> {
+        return apiRest.getMediaLoan(id)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

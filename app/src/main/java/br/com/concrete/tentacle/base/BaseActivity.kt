@@ -99,7 +99,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        finishActivity( animation = getFinishActivityTransition())
+        finishActivity(animation = getFinishActivityTransition())
     }
 
     open fun getFinishActivityTransition(): ActivityAnimation {

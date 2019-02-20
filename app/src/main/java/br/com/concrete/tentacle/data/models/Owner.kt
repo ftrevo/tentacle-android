@@ -7,4 +7,4 @@ import kotlinx.android.parcel.Parcelize
 data class Owner(
     private val _id: String,
     private val name: String
-): Parcelable
+) : Parcelable

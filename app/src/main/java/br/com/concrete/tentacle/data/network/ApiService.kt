@@ -49,4 +49,7 @@ interface ApiService {
 
     @POST("loans")
     fun performLoan(@Body loanRequest: LoanRequest): Observable<BaseModel<LoanResponse>>
+
+    @GET("media-loan/{id}")
+    fun getMediaLoan(@Path("id") id: String): Observable<BaseModel<Media>>
 }

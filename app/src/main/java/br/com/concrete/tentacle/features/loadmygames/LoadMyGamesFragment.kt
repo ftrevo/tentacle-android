@@ -68,8 +68,8 @@ class LoadMyGamesFragment : BaseFragment() {
                             { view ->
                                 LoadMyGamesViewHolder(view)
                             }, { holder, element ->
-                                LoadMyGamesViewHolder.callBack(holder = holder, element = element, listener =  {
-                                    media ->  callActivity(media)
+                                LoadMyGamesViewHolder.callBack(holder = holder, element = element, listener = {
+                                    media -> callActivity(media)
                                 })
                             })
 
@@ -97,7 +97,7 @@ class LoadMyGamesFragment : BaseFragment() {
 
     private fun callActivity(media: Media) {
         val bundle = Bundle()
-        bundle.putParcelable(LendGameActivity.MEDIA_OBJECT, media)
+        bundle.putString(LendGameActivity.MEDIA_ID_EXTRA, media._id)
         activity?.launchActivity<LendGameActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
     }
 

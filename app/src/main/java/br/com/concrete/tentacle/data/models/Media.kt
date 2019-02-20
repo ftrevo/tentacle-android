@@ -10,4 +10,4 @@ data class Media(
     val platform: Platform,
     val activeLoan: ActiveLoan?,
     val gameData: GameData?
-): Parcelable
+) : Parcelable

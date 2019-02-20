@@ -117,9 +117,8 @@
     </string>
     <string name="reservado_por">Reservado por</string>
     <string name="nome_sobrenome">Nome Sobrenome</string>
-    <string name="ate_14_01_2019">até 14/01/2019</string>
+    <string name="date_return_prefix">até %1$s</string>
     <string name="tempo_reserva">Tempo de reserva</string>
-    <string name="_1_semana">1 semana</string>
     <string name="lendGame">Jogo entregue</string>
 
     <string name="cancel">Cancelar</string>
