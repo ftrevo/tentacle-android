@@ -47,7 +47,7 @@
 
     <string name="game_name">Nome do Jogo</string>
     <string name="media">mídia</string>
-    <string name="first_game_register">Parece que você é o primeiro a adicionar esse jogo!</string>
+    <string name="first_game_register">Parece que você é o primeiro a buscar esse jogo!</string>
 
     <string name="register_media_group_title">Selecione a plataforma:</string>
     <string name="register_media_ps3_radio_button_title">Playstation 3</string>
@@ -100,6 +100,7 @@
 
     <string name="filter_toolbar_title">Filtro</string>
     <string name="filter_button_text">Filtrar</string>
+    <string name="filter_clear_button_text">Limpar filtro</string>
     <!-- These strings below will no longer needed once all the data starts to come from the api -->
     <string name="filter_item_platforms">Plataformas</string>
     <string name="filter_item_status">Status do jogo</string>
@@ -108,6 +109,9 @@
 
     <string name="logout_title">Logout</string>
     <string name="logout_question">Tem certeza que deseja efetuar o logout?</string>
+
+    <string name="filter">Filtro</string>
+
     <string name="loremText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
         been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
         scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into

@@ -4,7 +4,14 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.library.Library
+import br.com.concrete.tentacle.data.models.library.filter.SubItem
 import br.com.concrete.tentacle.extensions.animation
+import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS
+import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH
+import br.com.concrete.tentacle.utils.PLATFORM_PS3_ABBREV
+import br.com.concrete.tentacle.utils.PLATFORM_PS4_ABBREV
+import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360
+import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE
 import kotlinx.android.synthetic.main.library_item_layout.view.groupLayout
 import kotlinx.android.synthetic.main.library_item_layout.view.ivArrow
 import kotlinx.android.synthetic.main.library_item_layout.view.tv360
@@ -22,11 +29,12 @@ class LibraryViewHolder(
 ) : RecyclerView.ViewHolder(mLinearLayout) {
 
     companion object {
-        fun callBack(holder: RecyclerView.ViewHolder, element: Library) {
+        fun callBack(holder: RecyclerView.ViewHolder, element: Library, selectedFilters: List<SubItem>) {
             if (holder is LibraryViewHolder) {
                 holder.mLinearLayout.tvGameName.text = element.name
                 holder.mLinearLayout.ivArrow.setOnClickListener {
-                    if (holder.viewStateOpen) animateClose(holder.mLinearLayout) else animateOpen(holder.mLinearLayout, element)
+                    if (holder.viewStateOpen) animateClose(holder.mLinearLayout)
+                    else animateOpen(holder.mLinearLayout, element, selectedFilters)
                     holder.viewStateOpen = !holder.viewStateOpen
                 }
                 holder.itemView.setOnClickListener {
@@ -35,13 +43,17 @@ class LibraryViewHolder(
             }
         }
 
-        private fun checkPlatform(view: View, hasMedia: Int) {
+        private fun checkPlatform(view: View, hasMedia: Int, filter: SubItem?, hasAnyFilters: Boolean) {
             view.visibility = if (hasMedia > 0) View.VISIBLE else View.GONE
+
+            if (hasAnyFilters && hasMedia > 0) {
+                view.visibility = if (filter != null) View.VISIBLE else View.GONE
+            }
         }
 
-        private fun animateOpen(view: View, element: Library) {
+        private fun animateOpen(view: View, element: Library, selectedFilters: List<SubItem>) {
             view.ivArrow.animation(R.anim.rotate_open) {
-                showBullets(view, element)
+                showBullets(view, element, selectedFilters)
             }
         }
 
@@ -51,14 +63,40 @@ class LibraryViewHolder(
             }
         }
 
-        private fun showBullets(view: View, element: Library) {
+        private fun showBullets(view: View, element: Library, selectedFilters: List<SubItem>) {
             view.groupLayout.visibility = View.VISIBLE
-            checkPlatform(view.tv360, element.mediaXbox360Count)
-            checkPlatform(view.tv3DS, element.mediaNintendo3dsCount)
-            checkPlatform(view.tvNS, element.mediaNintendoSwitchCount)
-            checkPlatform(view.tvONE, element.mediaXboxOneCount)
-            checkPlatform(view.tvPS3, element.mediaPs3Count)
-            checkPlatform(view.tvPS4, element.mediaPs4Count)
+
+            val hasAnyFiltersSelected = selectedFilters.isNotEmpty()
+            checkPlatform(
+                view.tv360,
+                element.mediaXbox360Count,
+                selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_XBOX_360 },
+                hasAnyFiltersSelected)
+            checkPlatform(
+                view.tv3DS,
+                element.mediaNintendo3dsCount,
+                selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_NINTENDO_3DS },
+                hasAnyFiltersSelected)
+            checkPlatform(
+                view.tvNS,
+                element.mediaNintendoSwitchCount,
+                selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_NINTENDO_SWITCH },
+                hasAnyFiltersSelected)
+            checkPlatform(
+                view.tvONE,
+                element.mediaXboxOneCount,
+                selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_XBOX_ONE },
+                hasAnyFiltersSelected)
+            checkPlatform(
+                view.tvPS3,
+                element.mediaPs3Count,
+                selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_PS3_ABBREV },
+                hasAnyFiltersSelected)
+            checkPlatform(
+                view.tvPS4,
+                element.mediaPs4Count,
+                selectedFilters.firstOrNull { subItem -> subItem.queryParameter == PLATFORM_PS4_ABBREV },
+                hasAnyFiltersSelected)
         }
 
         private fun hideBullets(view: View) {

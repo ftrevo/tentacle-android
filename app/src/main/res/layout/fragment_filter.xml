@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:animateLayoutChanges="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/filterToolbar"
@@ -30,9 +31,9 @@
 
         <ImageView
             android:id="@+id/filterCloseButton"
-            android:layout_width="@dimen/filterCloseButtonWidth"
-            android:layout_height="@dimen/filterCloseButtonHeight"
-            android:padding="@dimen/dp_14"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:padding="@dimen/dp_12"
             android:src="@drawable/ic_close"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,15 +84,30 @@
     </ScrollView>
 
     <br.com.concrete.tentacle.custom.ButtonView
-            android:id="@+id/filterButtonView"
+            android:id="@+id/filterClearButtonView"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/defaultButtonBottomMargin"
+            style="@style/StyleCLearFilterButton"
+            app:buttonName="@string/filter_clear_button_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/filterButtonView"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:visibility="gone"/>
+
+    <br.com.concrete.tentacle.custom.ButtonView
+            android:id="@+id/filterButtonView"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
             android:layout_marginEnd="@dimen/margin_default"
             android:layout_marginBottom="@dimen/defaultButtonBottomMargin"
             style="@style/StyleButton"
             app:buttonName="@string/filter_button_text"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/filterClearButtonView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 

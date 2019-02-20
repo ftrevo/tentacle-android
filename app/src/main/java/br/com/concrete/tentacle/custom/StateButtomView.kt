@@ -15,10 +15,8 @@ class StateButtomView(
 
     fun enable() {
         isEnabled = true
-        context.let {
-            backgroundColor(R.drawable.shape_border_rounded_blue)
-            textColor(R.color.textColor)
-        }
+        backgroundColor(R.drawable.shape_border_rounded_blue)
+        textColor(R.color.textColor)
     }
 
     fun disable() {
@@ -28,14 +26,10 @@ class StateButtomView(
     }
 
     private fun backgroundColor(@DrawableRes drawable: Int) {
-        context.let {
-            background = ContextCompat.getDrawable(it, drawable)
-        }
+        background = ContextCompat.getDrawable(context, drawable)
     }
 
     private fun textColor(@ColorRes color: Int) {
-        context.let {
-            button.setTextColor(ContextCompat.getColor(it, color))
-        }
+        button.setTextColor(ContextCompat.getColor(context, color))
     }
 }

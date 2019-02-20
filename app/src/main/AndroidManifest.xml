@@ -22,7 +22,6 @@
                 android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -33,7 +32,7 @@
         <activity
                 android:name=".features.HostActivity"
                 android:theme="@style/AppTheme"
-                android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+                android:windowSoftInputMode="adjustPan"/>
         <activity
                 android:name=".features.registerGame.RegisterGameHostActivity"
                 android:theme="@style/AppTheme"
@@ -52,7 +51,6 @@
                 android:name=".features.lendgame.LendGameActivity"
                 android:theme="@style/AppTheme"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
-
 
         <meta-data
                 android:name="io.fabric.ApiKey"
