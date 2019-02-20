@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.data.repositories
 
 import br.com.concrete.tentacle.data.models.BaseModel
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
@@ -11,8 +12,14 @@ import io.reactivex.schedulers.Schedulers
 
 class LibraryRepository(private val apiRest: ApiService) {
 
-    fun getLibraryList(): Observable<BaseModel<LibraryResponse>> {
-        return apiRest.getLibraryList()
+    fun getLibrary(queries: QueryParameters, search: String?): Observable<BaseModel<LibraryResponse>> {
+        return apiRest.getLibrary(
+            queries.id,
+            search,
+            if (queries.toString() == "") null else queries.toString(),
+            queries.limit,
+            queries.page
+        )
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
