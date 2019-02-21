@@ -24,8 +24,8 @@ interface ApiService {
 
     @GET("/games")
     fun getSearchGames(
-        @Query("name")
-        name: String
+        @Query("name") name: String,
+        @Query("limit") limit: Int = 99
     ): Observable<BaseModel<GameResponse>>
 
     @POST("/games")
@@ -35,7 +35,10 @@ interface ApiService {
     ): Observable<BaseModel<Game>>
 
     @GET("/media-loan")
-    fun getRegisteredGames(@Query("mineOnly") mineOnly: Boolean = true, @Query("limit") limit: Int = 99): Observable<BaseModel<MediaResponse>>
+    fun getRegisteredGames(
+        @Query("mineOnly") mineOnly: Boolean = true,
+        @Query("limit") limit: Int = 99
+    ): Observable<BaseModel<MediaResponse>>
 
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>
@@ -48,8 +51,8 @@ interface ApiService {
         @Query("_id") id: String? = null,
         @Query("name") search: String? = null,
         @Query("mediaPlatform") mediaPlatform: String? = null,
-        @Query("limit") limit: Int? = null,
-        @Query("page") page: Int? = null
+        @Query("limit") limit: Int = 99,
+        @Query("page") page: Int = 0
     ): Observable<BaseModel<LibraryResponse>>
 
     fun getLibraryList(): Observable<BaseModel<LibraryResponse>>
