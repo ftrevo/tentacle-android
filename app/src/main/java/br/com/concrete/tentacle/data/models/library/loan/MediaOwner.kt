@@ -5,4 +5,4 @@ import java.io.Serializable
 data class MediaOwner(
     val _id: String,
     val name: String
-): Serializable
+) : Serializable

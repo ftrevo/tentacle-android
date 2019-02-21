@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.lendgame
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -24,7 +23,7 @@ import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
-class LendGameActivity : BaseActivity(){
+class LendGameActivity : BaseActivity() {
 
     companion object {
         const val MEDIA_ID_EXTRA = "mediaIdExtra"
@@ -95,10 +94,10 @@ class LendGameActivity : BaseActivity(){
                 }
             }
 
-            if(activeLoan?.loanDate != null){
+            if (activeLoan?.loanDate != null) {
                 tvReservado.text = getString(R.string.reserved_by)
                 btLendGame.visibility = View.GONE
-            }else{
+            } else {
                 btLendGame.visibility = View.VISIBLE
             }
         }

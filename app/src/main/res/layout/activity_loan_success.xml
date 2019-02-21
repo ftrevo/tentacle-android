@@ -22,20 +22,18 @@
         android:background="@drawable/circle_bg_close"/>
 
     <ImageView
-        android:layout_marginTop="@dimen/loan_success_margin_top"
         android:background="@color/activateIcon"
         android:id="@+id/ivCover"
         android:layout_width="@dimen/loan_success_width"
         android:layout_height="@dimen/loan_success_height"
-        app:layout_constraintTop_toBottomOf="@+id/btClose"
+        app:layout_constraintBottom_toTopOf="@id/tvText"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/margin_default"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:lineSpacingExtra="@dimen/dp_4"
-        android:layout_marginTop="@dimen/dp_25"
-        android:layout_marginEnd="@dimen/dp_40"
-        android:layout_marginStart="@dimen/dp_40"
+        android:layout_margin="@dimen/margin_default"
         android:textAppearance="@style/TextHeavy.16sp"
         android:textColor="@color/textColor"
         android:gravity="center"
@@ -43,7 +41,8 @@
         android:id="@+id/tvText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/ivCover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
