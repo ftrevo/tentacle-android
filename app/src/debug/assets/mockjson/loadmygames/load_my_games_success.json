@@ -3,7 +3,7 @@
     "list": [
       {
         "_id": "123456",
-        "platform": "PS3 - TESTE",
+        "platform": "PS3",
         "game": {
           "_id": "123465",
           "title": "FIFA 2019"
