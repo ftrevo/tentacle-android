@@ -1,0 +1,25 @@
+{
+  "message": [
+    "Mídia encontrada"
+  ],
+  "data": {
+    "_id": "5c644392352d58002358f363",
+    "game": "5c64438f352d58002358f362",
+    "platform": "PS4",
+    "owner": "5c1ab12e7c0f4f002272357e",
+    "createdAt": "2019-02-13T16:19:30.125Z",
+    "updatedAt": "2019-02-13T16:19:30.125Z",
+    "activeLoan": {
+      "_id": "5c6d7e6618cdb9002399cfe2",
+      "requestedAt": "2019-02-20T16:03:42.647Z",
+      "requestedBy": "5c2d129dd957060023385a1b",
+      "requestedByName": "RWYEG",
+      "requestedByState": "5a107a681592ca19f7b4a854",
+      "requestedByCity": "Cutias"
+    },
+    "gameData": {
+      "_id": "5c64438f352d58002358f362",
+      "name": "Fifa 2015"
+    }
+  }
+}
