@@ -10,14 +10,17 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.Calendar
 
 
 @RunWith(AndroidJUnit4::class)
@@ -29,10 +32,15 @@ class LendGameActivityTest {
     lateinit var mockWebServer: MockWebServer
     lateinit var testFragment: Fragment
 
+    lateinit var date: String
+
     @Before
     fun setUp() {
         mockWebServer = MockWebServer()
         mockWebServer.start(8080)
+        val currentDate = Calendar.getInstance()
+        currentDate.add(Calendar.WEEK_OF_MONTH, 2)
+        date = "até ${currentDate.format("dd/MM/yy")}"
     }
 
     @After
@@ -48,30 +56,38 @@ class LendGameActivityTest {
     }
 
     @Test
-    fun testLoadLendSuccess() {
-        setResponse()
+    fun testLoadLendSuccessWithoutReservation() {
+        setResponse("mockjson/library/loan/lend_response_success.json".getJson())
+
         onView(withId(R.id.mediaRegisterImageView)).check(matches(isDisplayed()))
         onView(withId(R.id.tvGameName)).check(matches(withText("Fifa 2015")))
         onView(withId(R.id.tvReservado)).check(matches(withText("Solicitado por")))
         onView(withId(R.id.tvRequestedBy)).check(matches(withText("RWYEG")))
         onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
         onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
-        onView(withId(R.id.tvDate)).check(matches(withText("até 07/03/19")))
-        onView(withId(R.id.btLendGame)).check(matches(withText("Entregar Jogo")))
+        onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun testLoadLendClickButtonSuccess() {
-        setResponse()
+    fun testLoadLendSuccessWithReservation() {
+        setResponse("mockjson/library/loan/lend_response_success_with_reservation.json".getJson())
+
+        onView(withId(R.id.mediaRegisterImageView)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Fifa 2015")))
+        onView(withId(R.id.tvReservado)).check(matches(withText("Reservado por")))
+        onView(withId(R.id.tvRequestedBy)).check(matches(withText("RWYEG")))
+        onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
+        onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
+        onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.btLendGame)).check(matches(not(isDisplayed())))
     }
 
-    private fun setResponse() {
-        val response = "mockjson/library/loan/lend_response_success.json".getJson()
-
+    private fun setResponse(json: String) {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(response)
+                .setBody(json)
         )
     }
 }
