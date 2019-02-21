@@ -15,21 +15,13 @@
         "ownerCity": "Campinas do Piauí"
       }
     ],
-    "mediaXbox360": [
-      {
-        "_id": "5c66f81d9321750023d99988",
-        "owner": "5c58603ff8e6ef002376a5d2",
-        "ownerName": "John Doe",
-        "ownerState": "5a107a691592ca19f7b4a861",
-        "ownerCity": "Campinas do Piauí"
-      }
-    ],
+    "mediaXbox360": [],
     "mediaXboxOne": [],
     "mediaNintendo3ds": [],
     "mediaNintendoSwitch": [],
     "mediaPs3Count": 0,
     "mediaPs4Count": 1,
-    "mediaXbox360Count": 2,
+    "mediaXbox360Count": 0,
     "mediaXboxOneCount": 0,
     "mediaNintendo3dsCount": 0,
     "mediaNintendoSwitchCount": 0,
