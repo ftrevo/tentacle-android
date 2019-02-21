@@ -28,7 +28,9 @@
         "name":"Nintendo Switch"
       }
     ]
-  },
+  }
+  //TODO UNCOMMMENT WHEN THIS FILTER START TO WORK
+  /*,
   {
     "title":"Status do jogo",
     "icon":"ic_filter_status",
@@ -38,5 +40,5 @@
         "name":"Mostrar jogos indisponíveis"
       }
     ]
-  }
+  }*/
 ]
