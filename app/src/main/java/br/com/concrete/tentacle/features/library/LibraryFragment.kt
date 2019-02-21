@@ -81,7 +81,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                             libraries,
                             R.layout.library_item_layout,
                             { view ->
-                                LibraryViewHolder(view) { library ->
+                                LibraryViewHolder(view, viewStateOpen = false) { library ->
                                     val extras = Bundle()
                                     extras.putString(LoanActivity.ID_LIBRARY_EXTRA, library._id)
                                     activity?.launchActivity<LoanActivity>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
@@ -95,6 +95,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                             })
 
                             recyclerListView.layoutManager = LinearLayoutManager(context)
+                            recyclerListView.setItemViewCacheSize(libraries.size)
                             recyclerListView.adapter = recyclerViewAdapter
                         }
                         list.updateUi(libraries)
@@ -153,6 +154,8 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
         closeButton.setOnClickListener {
             editText.setText("")
             (activity as BaseActivity).setupToolbar(R.drawable.ic_logo_actionbar)
+            selectedFilterItems.clear()
+            activity?.invalidateOptionsMenu()
 
             searchView.isIconified = true
             searchView.setIconifiedByDefault(true)
