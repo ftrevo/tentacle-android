@@ -67,9 +67,6 @@ abstract class BaseSearchFragment : BaseFragment(),
         closeButton.setOnClickListener {
             editText.setText("")
             searchView.setIconifiedByDefault(true)
-            activity?.let {
-                it.showKeyboard()
-            }
         }
 
         Observable.create(ObservableOnSubscribe<String> { subscriber ->
