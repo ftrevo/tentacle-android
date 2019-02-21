@@ -1,3 +1,3 @@
 package br.com.concrete.tentacle.data.models
 
-data class LoanActionRequest (private val action: String)
+data class LoanActionRequest(private val action: String)

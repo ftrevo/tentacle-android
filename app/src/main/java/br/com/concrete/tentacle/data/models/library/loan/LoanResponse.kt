@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.data.models.library.loan
 
 import br.com.concrete.tentacle.data.models.Game
+import java.io.Serializable
 
 data class LoanResponse(
     val _id: String,
@@ -11,4 +12,4 @@ data class LoanResponse(
     val requestedBy: RequestedBy,
     val estimatedReturnDate: String?,
     val loanDate: String?
-)
+) : Serializable
