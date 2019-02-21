@@ -112,6 +112,7 @@
                 android:id="@+id/btLendGame"
                 style="@style/StyleButton"
                 android:layout_width="@dimen/dp_0"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 app:buttonName="@string/lendGame"
                 app:layout_constraintLeft_toLeftOf="parent"
