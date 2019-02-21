@@ -124,7 +124,7 @@
     <string name="nome_sobrenome">Nome Sobrenome</string>
     <string name="date_return_prefix">até %1$s</string>
     <string name="tempo_reserva">Tempo de reserva</string>
-    <string name="lendGame">Entregar Jogo</string>
+    <string name="lendGame">Jogo entregue</string>
 
     <string name="cancel">Cancelar</string>
 
