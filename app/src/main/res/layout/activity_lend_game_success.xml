@@ -8,7 +8,6 @@
 
     <include layout="@layout/logo_tentacle" android:id="@+id/include"/>
 
-    <!-- This container is used in order to keep touch area according to the patterns -->
     <ImageView
             android:id="@+id/btCloseLend"
             app:layout_constraintEnd_toEndOf="parent"

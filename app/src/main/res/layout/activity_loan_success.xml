@@ -7,8 +7,7 @@
         android:background="@color/colorPrimary">
 
     <include layout="@layout/logo_tentacle" android:id="@+id/include"/>
-
-    <!-- This container is used in order to keep touch area according to the patterns -->
+    
     <ImageView
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

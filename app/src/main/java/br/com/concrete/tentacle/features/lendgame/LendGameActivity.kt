@@ -14,6 +14,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.format
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.DEFAULT_RETURN_DATE_IN_WEEKS
 import br.com.concrete.tentacle.utils.LOAN_ACTION_LEND
@@ -70,9 +71,9 @@ class LendGameActivity : BaseActivity(){
     private fun lendSuccess(loanResponse: LoanResponse?) {
         loanResponse?.let {
             showLoading(false)
-            val i = Intent(this, LendGameActivitySuccess::class.java)
-            i.putExtra(LendGameActivitySuccess.LOAN_EXTRA, it)
-            startActivity(i)
+            val bundle = Bundle()
+            bundle.putSerializable(LendGameActivitySuccess.LOAN_EXTRA, it)
+            launchActivity<LendGameActivitySuccess>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
             finish()
         }
     }

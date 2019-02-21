@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.features.lendgame
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.finishActivity
@@ -11,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_lend_game_success.btOk
 import kotlinx.android.synthetic.main.activity_lend_game_success.tvText
 
 
-class LendGameActivitySuccess : AppCompatActivity() {
+class LendGameActivitySuccess : BaseActivity() {
 
     companion object {
         const val LOAN_EXTRA = "loanExtra"
@@ -32,15 +33,15 @@ class LendGameActivitySuccess : AppCompatActivity() {
         }
 
         btCloseLend.setOnClickListener {
-            close()
+            finish()
         }
 
         btOk.setOnClickListener {
-            close()
+            finish()
         }
     }
 
-    private fun close() {
-        finishActivity(animation = ActivityAnimation.TRANSLATE_DOWN)
+    override fun getFinishActivityTransition(): ActivityAnimation {
+        return ActivityAnimation.TRANSLATE_DOWN
     }
 }
