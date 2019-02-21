@@ -44,6 +44,14 @@
         <item name="android:textSize" tools:ignore="SpUsage">12dp</item>
     </style>
 
+    <style name="TextHeavy.12sp">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextHeavy.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="TextHeavy.16sp">
         <item name="android:textSize">16sp</item>
     </style>

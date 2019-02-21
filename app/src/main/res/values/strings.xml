@@ -66,9 +66,12 @@
     <string name="toolbar_title_my_games">Meus jogos</string>
     <string name="toolbar_title_search_game">Cadastrar jogo</string>
     <string name="toolbar_title_loan_game">Reservar jogo</string>
+    <string name="toolbar_title_lend_game">Detalhes do jogo</string>
 
     <string name="red_dead_redemption">Red Dead Redemption 2</string>
-    <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles aparecerem aqui!</string>
+    <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles
+        aparecerem aqui!
+    </string>
 
     <string name="did_not_find_what_you_wanted">Não encontrou o que queria?</string>
     <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
@@ -112,6 +115,12 @@
         Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
         PageMaker including versions of Lorem Ipsum.
     </string>
+    <string name="reserved_by">Reservado por</string>
+    <string name="requested_by">Solicitado por</string>
+    <string name="nome_sobrenome">Nome Sobrenome</string>
+    <string name="date_return_prefix">até %1$s</string>
+    <string name="tempo_reserva">Tempo de reserva</string>
+    <string name="lendGame">Entregar Jogo</string>
 
     <string name="cancel">Cancelar</string>
 
@@ -121,8 +130,13 @@
     <string name="library_loan_user_list_hint">Selecione</string>
     <string name="library_loan_perform_loan">Reservar</string>
 
-    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!</string>
+    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!
+    </string>
     <string name="loan_button_success">Acompanhar suas reservas</string>
+    <string name="two_weeks">2 Semanas</string>
+
+    <string name="lend_success">O jogo foi entregue a %1$s e a reserva termina em %2$s.</string>
+    <string name="back_to_library">Voltar para Biblioteca</string>
 
     <string name="msg_empty_list">Ops! A sua busca não retornou nenhum resultado</string>
 </resources>
