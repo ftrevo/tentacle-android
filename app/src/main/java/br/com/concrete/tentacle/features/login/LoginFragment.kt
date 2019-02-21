@@ -2,7 +2,9 @@ package br.com.concrete.tentacle.features.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -18,7 +20,10 @@ import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_login.btLogin
 import kotlinx.android.synthetic.main.fragment_login.edtEmail
 import kotlinx.android.synthetic.main.fragment_login.edtPassword
+import kotlinx.android.synthetic.main.fragment_login.imgBackground
+import kotlinx.android.synthetic.main.fragment_login.parent
 import kotlinx.android.synthetic.main.fragment_login.tvRegisterAccount
+import kotlinx.android.synthetic.main.library_item_layout.view.groupLayout
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -80,24 +85,60 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     private fun initListeners() {
         edtEmail.edt.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                val email = edtEmail.edt.text.toString()
-                if (email.isNotEmpty()) {
-                    edtEmail.showError(!email.validateEmail())
-                } else {
-                    edtEmail.showError(false)
-                }
+                validateEmail()
             }
         }
 
         edtPassword.edt.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                val password = edtPassword.edt.text.toString()
-                if (password.isNotEmpty()) {
-                    edtPassword.showError(!password.validatePassword())
-                } else {
-                    edtPassword.showError(false)
-                }
+                validatePassword()
             }
+        }
+
+        parent.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                if (!parent.onTouchEvent(event)) {
+                    validateEmail()
+                    validatePassword()
+                }
+
+                return true
+            }
+        })
+
+        imgBackground.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                if (!parent.onTouchEvent(event)) {
+                    validateEmail()
+                    validatePassword()
+                } else if (event?.action == MotionEvent.ACTION_DOWN
+                    || event?.action == MotionEvent.ACTION_UP
+                ) {
+                    validateEmail()
+                    validatePassword()
+                }
+
+                return true
+            }
+
+        })
+    }
+
+    private fun validateEmail() {
+        val email = edtEmail.edt.text.toString()
+        if (email.isNotEmpty()) {
+            edtEmail.showError(!email.validateEmail())
+        } else {
+            edtEmail.showError(false)
+        }
+    }
+
+    private fun validatePassword() {
+        val password = edtPassword.edt.text.toString()
+        if (password.isNotEmpty()) {
+            edtPassword.showError(!password.validatePassword())
+        } else {
+            edtPassword.showError(false)
         }
     }
 
