@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.extensions
 import android.util.Patterns
 import br.com.concrete.tentacle.utils.BLANk_SPACE_STRING
 import br.com.concrete.tentacle.utils.EMPTY_STRING
+import br.com.concrete.tentacle.utils.SIMPLE_DATE_INPUT_FORMAT
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -22,7 +23,7 @@ fun String.toPlatformName() =
     }
 
 fun String.toDate(): Calendar {
-    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val sdf = SimpleDateFormat(SIMPLE_DATE_INPUT_FORMAT)
     val date = sdf.parse(this)
     val cal = Calendar.getInstance()
     cal.time = date
