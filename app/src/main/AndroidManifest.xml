@@ -15,6 +15,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".features.lendgame.LendGameActivitySuccess">
+        </activity>
         <activity
                 android:name=".features.login.LoginActivity"
                 android:screenOrientation="portrait"
@@ -22,6 +24,7 @@
                 android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -37,16 +40,13 @@
                 android:name=".features.registerGame.RegisterGameHostActivity"
                 android:theme="@style/AppTheme"
                 android:windowSoftInputMode="adjustPan"/>
-
         <activity
-            android:label="@string/toolbar_title_loan_game"
-            android:name=".features.library.loan.LoanActivity"
-            android:theme="@style/AppTheme"/>
-
+                android:name=".features.library.loan.LoanActivity"
+                android:label="@string/toolbar_title_loan_game"
+                android:theme="@style/AppTheme"/>
         <activity
-            android:name=".features.library.loan.LoanActivitySuccess"
-            android:theme="@style/AppTheme.FullScreen"/>
-
+                android:name=".features.library.loan.LoanActivitySuccess"
+                android:theme="@style/AppTheme.FullScreen"/>
         <activity
                 android:name=".features.lendgame.LendGameActivity"
                 android:theme="@style/AppTheme"

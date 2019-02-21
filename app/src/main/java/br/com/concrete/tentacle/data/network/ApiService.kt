@@ -63,9 +63,9 @@ interface ApiService {
     @GET("media-loan/{id}")
     fun getMediaLoan(@Path("id") id: String): Observable<BaseModel<Media>>
 
-    @PATCH("loans/{activeLoanId}")
-    fun updateMedia(
-        @Path("activeLoanId") activeLoanId: String,
+    @PATCH("loans/{id}")
+    fun updateMediaLoan(
+        @Path("id") activeLoanId: String,
         @Body loanAction: LoanActionRequest
     ): Observable<BaseModel<LoanResponse>>
 }

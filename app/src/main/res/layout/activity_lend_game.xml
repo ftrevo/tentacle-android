@@ -6,15 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:animateLayoutChanges="true"
         tools:context="br.com.concrete.tentacle.features.lendgame.LendGameActivity"
         android:background="@color/colorPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:paddingStart="@dimen/margin_default"
-            android:paddingTop="@dimen/dp_19"
+            android:paddingTop="@dimen/margin_default"
             android:paddingEnd="@dimen/margin_default"
             android:paddingBottom="@dimen/margin_default"
             android:layout_width="match_parent"
@@ -131,6 +129,13 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.Group
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/group"
+                android:visibility="gone"
+                app:constraint_referenced_ids="mediaRegisterImageView,tvGameName,tvReservado,tvRequestedBy,tvTempoReservaLabel,tvTempoReserva,tvDate"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
