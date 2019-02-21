@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.di
 
 import br.com.concrete.tentacle.features.home.HomeViewModel
+import br.com.concrete.tentacle.features.lendgame.LendGameViewModel
 import br.com.concrete.tentacle.features.library.LibraryViewModel
 import br.com.concrete.tentacle.features.library.loan.LoanViewModel
 import br.com.concrete.tentacle.features.library.filter.FilterViewModel
@@ -23,4 +24,5 @@ val viewModelModule = module {
     viewModel { LibraryViewModel(get()) }
     viewModel { FilterViewModel(get()) }
     viewModel { LoanViewModel(get()) }
+    viewModel { LendGameViewModel(get()) }
 }

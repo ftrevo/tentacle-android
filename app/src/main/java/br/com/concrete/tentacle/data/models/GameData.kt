@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Owner(
-    private val _id: String,
-    private val name: String
+data class GameData(
+    val _id: String,
+    val name: String?
 ) : Parcelable
