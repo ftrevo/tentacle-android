@@ -26,6 +26,7 @@ class ListCustom(
     private var errorDescriptionReference: Int = DEFAULT_INVALID_RESOURCE
     private var buttonNameErrorReference: Int = DEFAULT_INVALID_RESOURCE
     private var buttonNameActionReference: Int = DEFAULT_INVALID_RESOURCE
+    private var emptyListMessageReference: Int = DEFAULT_INVALID_RESOURCE
 
     init {
         View.inflate(context, R.layout.list_custom, this)
@@ -40,16 +41,18 @@ class ListCustom(
             errorDescriptionReference = getResourceId(R.styleable.ListCustom_errorDescription, DEFAULT_INVALID_RESOURCE)
             buttonNameErrorReference = getResourceId(R.styleable.ListCustom_buttonNameError, DEFAULT_INVALID_RESOURCE)
             buttonNameActionReference = getResourceId(R.styleable.ListCustom_buttonNameAction, DEFAULT_INVALID_RESOURCE)
+            emptyListMessageReference = getResourceId(R.styleable.ListCustom_emptyListMessage, DEFAULT_INVALID_RESOURCE)
         }
     }
 
-    fun <T> updateUi(elements: ArrayList<T>?) {
+    fun <T> updateUi(elements: ArrayList<T>?, filtering: Boolean = false) {
         if (elements == null) {
             recyclerListError.setUpComponents(iconReference, errorDescriptionReference, buttonNameErrorReference)
             showViewError()
         } else {
             if (elements.isEmpty()) {
-                recyclerListError.setUpComponents(iconReference, R.string.first_game_register, buttonNameActionReference)
+                val msg = if(filtering) emptyListMessageReference else errorDescriptionReference
+                recyclerListError.setUpComponents(iconReference, msg, buttonNameActionReference)
                 showViewError()
             } else {
                 showViewSuccess()

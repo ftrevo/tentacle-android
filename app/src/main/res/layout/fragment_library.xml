@@ -19,6 +19,7 @@
             app:layoutManager="LinearLayoutManager"
             app:buttonNameError="@string/add_new_game"
             app:errorDescription="@string/no_library_error"
+            app:emptyListMessage="@string/msg_empty_list"
             app:icon="@drawable/il_wow"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

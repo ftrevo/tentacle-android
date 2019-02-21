@@ -50,7 +50,16 @@ class LoanActivityTest {
     }
 
     @Test
-    fun testLoadLibrary() {
+    fun testLoadLibraryWithOnePlatformAndOneOwner() {
+        setResponseOnePlatformAndOneOwner()
+
+        onView(withId(R.id.tvGameName)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Jogo XPTO")))
+        onView(withId(R.id.btPerformLoan)).check(matches(isEnabled()))
+    }
+
+    @Test
+    fun testLoadLibraryWithPlatforms() {
         setResponse()
 
         onView(withId(R.id.tvGameName)).check(matches(isDisplayed()))
@@ -60,7 +69,7 @@ class LoanActivityTest {
 
     @Test
     fun checkVisibleChips() {
-        setResponse()
+        setResponseOnePlatformAndOneOwner()
 
         onView(withId(R.id.chipPs4)).check(matches(isDisplayed()))
         onView(withId(R.id.chipPs3)).check(matches(not(isDisplayed())))
@@ -84,6 +93,16 @@ class LoanActivityTest {
 
     private fun setResponse() {
         val response = "mockjson/library/loan/library_response_success.json".getJson()
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+    }
+
+    private fun setResponseOnePlatformAndOneOwner() {
+        val response = "mockjson/library/loan/library_response_one_platform_success.json".getJson()
 
         mockWebServer.enqueue(
             MockResponse()

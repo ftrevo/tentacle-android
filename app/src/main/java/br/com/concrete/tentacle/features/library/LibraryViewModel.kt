@@ -20,7 +20,7 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
         loadLibrary()
     }
 
-    fun loadLibrary(queryParameters: QueryParameters? = null, search: String? = null) {
+    fun loadLibrary(queryParameters: QueryParameters? = null, search: String? = null, filtering: Boolean = false) {
         val query = queryParameters ?: QueryParameters()
 
         viewStateLibrary.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
@@ -31,7 +31,8 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
                         Event(
                             ViewStateModel(
                                 status = ViewStateModel.Status.SUCCESS,
-                                model = baseModel.data.list as ArrayList<Library>
+                                model = baseModel.data.list as ArrayList<Library>,
+                                filtering = filtering
                             )
                         )
                     )
