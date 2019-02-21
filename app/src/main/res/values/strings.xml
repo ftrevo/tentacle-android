@@ -134,7 +134,11 @@
     <string name="library_loan_user_list_hint">Selecione</string>
     <string name="library_loan_perform_loan">Reservar</string>
 
-    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!</string>
+    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!
+    </string>
     <string name="loan_button_success">Acompanhar suas reservas</string>
     <string name="two_weeks">2 Semanas</string>
+
+    <string name="lend_success">O jogo foi entregue a %1$s e a reserva termina em %2$s.</string>
+    <string name="back_to_library">Voltar para Biblioteca</string>
 </resources>

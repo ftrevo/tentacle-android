@@ -44,8 +44,8 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun updateMediaLoan(activeLoanId: String, loanActionRequest: LoanActionRequest) : Observable<BaseModel<LoanResponse>> {
-        return apiRest.updateMedia(activeLoanId, loanActionRequest)
+    fun updateMediaLoan(activeLoanId: String, loanActionRequest: LoanActionRequest): Observable<BaseModel<LoanResponse>> {
+        return apiRest.updateMediaLoan(activeLoanId, loanActionRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

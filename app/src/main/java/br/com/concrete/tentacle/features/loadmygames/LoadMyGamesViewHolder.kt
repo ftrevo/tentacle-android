@@ -19,19 +19,18 @@ class LoadMyGamesViewHolder(
                 holder.mLinearLayout.game_media.text = element.platform.platformName
                 if (element.activeLoan != null) {
                     holder.mLinearLayout.ivLoanRequested.visibility = View.VISIBLE
-
                     val color = if (element.activeLoan.loanDate == null) { // Loan was requested
                         ContextCompat.getColor(holder.mLinearLayout.context, R.color.colorAccent)
                     } else {
                         ContextCompat.getColor(holder.mLinearLayout.context, R.color.loanPerformed)
                     }
                     holder.mLinearLayout.ivLoanRequested.setColorFilter(color)
+
+                    holder.itemView.setOnClickListener {
+                        listener(element)
+                    }
                 } else {
                     holder.mLinearLayout.ivLoanRequested.visible(false)
-                }
-
-                holder.itemView.setOnClickListener {
-                    listener(element)
                 }
             }
         }
