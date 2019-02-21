@@ -97,7 +97,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                             recyclerListView.layoutManager = LinearLayoutManager(context)
                             recyclerListView.adapter = recyclerViewAdapter
                         }
-                        list.updateUi(libraries)
+                        list.updateUi(libraries, it.filtering)
                         list.setLoading(false)
                     }
                     ViewStateModel.Status.LOADING -> {
@@ -180,7 +180,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
 
     private fun getSearchGame(text: String?) {
         libraries.clear()
-        viewModelLibrary.loadLibrary(queryParameters, text)
+        viewModelLibrary.loadLibrary(queryParameters, text, true)
     }
 
     private fun validateSearch(search: String) = search.trim().length > MINIMAL_CHARACTER

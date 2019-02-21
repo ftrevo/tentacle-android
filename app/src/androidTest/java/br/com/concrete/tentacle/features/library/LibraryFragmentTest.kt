@@ -39,7 +39,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
-            .check(ViewAssertions.matches(withText("Parece que você é o primeiro a buscar esse jogo!")))
+            .check(ViewAssertions.matches(withText("Nossa biblioteca ainda não tem\\nnenhum jogo cadastrado. Seja o\\nprimeiro a cadastrar.")))
         onView(withId(R.id.progressBarList))
             .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
     }
@@ -118,7 +118,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
         onView(withId(R.id.errorDescription))
-            .check(ViewAssertions.matches(withText("Parece que você é o primeiro a buscar esse jogo!")))
+            .check(ViewAssertions.matches(withText("Ops! A sua busca não retornou nenhum resultado")))
     }
 
     @Test
