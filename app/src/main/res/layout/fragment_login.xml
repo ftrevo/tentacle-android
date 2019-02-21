@@ -7,13 +7,16 @@
         android:layout_width="match_parent"
         android:fillViewport="true"
         tools:targetApi="lollipop"
-        tools:context=".features.login.LoginFragment">
+        tools:context=".features.login.LoginFragment"
+        android:focusableInTouchMode ="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode ="true">
 
-        <include layout="@layout/default_background"/>
+        <include android:id="@+id/imgBackground" layout="@layout/default_background"/>
 
         <TextView
                 android:id="@+id/tvOla"
