@@ -49,6 +49,7 @@ class BottomBar(
         container.asSequence().toList().map { item ->
             if (item is IconBottomBar) {
                 item.setViewSelected(id == item.id)
+                iconBottomBarSelected = item.id
             }
         }
     }
