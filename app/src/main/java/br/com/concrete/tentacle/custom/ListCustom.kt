@@ -26,6 +26,7 @@ class ListCustom(
     private var errorDescriptionReference: Int = DEFAULT_INVALID_RESOURCE
     private var buttonNameErrorReference: Int = DEFAULT_INVALID_RESOURCE
     private var buttonNameActionReference: Int = DEFAULT_INVALID_RESOURCE
+    private var emptyListMessageReference: Int = DEFAULT_INVALID_RESOURCE
 
     init {
         View.inflate(context, R.layout.list_custom, this)
@@ -40,6 +41,7 @@ class ListCustom(
             errorDescriptionReference = getResourceId(R.styleable.ListCustom_errorDescription, DEFAULT_INVALID_RESOURCE)
             buttonNameErrorReference = getResourceId(R.styleable.ListCustom_buttonNameError, DEFAULT_INVALID_RESOURCE)
             buttonNameActionReference = getResourceId(R.styleable.ListCustom_buttonNameAction, DEFAULT_INVALID_RESOURCE)
+            emptyListMessageReference = getResourceId(R.styleable.ListCustom_emptyListMessage, DEFAULT_INVALID_RESOURCE)
         }
     }
 
@@ -49,7 +51,7 @@ class ListCustom(
             showViewError()
         } else {
             if (elements.isEmpty()) {
-                recyclerListError.setUpComponents(iconReference, errorDescriptionReference, buttonNameActionReference)
+                recyclerListError.setUpComponents(iconReference, emptyListMessageReference, buttonNameActionReference)
                 showViewError()
             } else {
                 showViewSuccess()

@@ -123,4 +123,7 @@
 
     <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!</string>
     <string name="loan_button_success">Acompanhar suas reservas</string>
+
+    <string name="msg_empty_list">Ops! A sua busca não retornou nenhum resultado</string>
+    <string name="msg_error_list">Ops! A sua busca não retornou nenhum resultado</string>
 </resources>
