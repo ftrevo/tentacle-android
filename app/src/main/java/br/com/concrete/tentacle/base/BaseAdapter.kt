@@ -29,9 +29,7 @@ class BaseAdapter<T>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(layout, parent, false)
-        val h = holder(v)
-        //h.setIsRecyclable(false)
-        return h
+        return holder(v)
     }
 
     fun updateList(newElements: ArrayList<T>) {
