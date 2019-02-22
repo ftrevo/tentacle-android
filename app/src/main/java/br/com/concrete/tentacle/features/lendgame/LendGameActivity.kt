@@ -119,8 +119,8 @@ class LendGameActivity : BaseActivity() {
         progressBarList.visible(show)
     }
 
-    override fun showError(errors: ErrorResponse?) {
+    override fun showError(errors: ErrorResponse?, title: String) {
         showLoading(false)
-        super.showError(errors)
+        super.showError(errors, title)
     }
 }

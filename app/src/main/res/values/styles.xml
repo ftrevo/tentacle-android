@@ -32,9 +32,9 @@
 
 
     <style name="ButtonSpinnerStyle" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@drawable/shape_border_rounded_white_alpha_10</item>
         <item name="android:textAppearance">@style/TextMedium.14sp</item>
         <item name="android:textColor">@color/textColor</item>
+        <item name="android:backgroundTint">@color/backgroundSpinner</item>
 
     </style>
 
@@ -127,4 +127,5 @@
         <item name="android:height">@dimen/chipHeight</item>
         <item name="android:textAlignment">center</item>
     </style>
+    <color name="backgroundSpinner">#0FFFFFFF</color>
 </resources>

@@ -85,7 +85,7 @@ class LoanActivity : BaseActivity() {
             when (viewStateModel.status) {
                 ViewStateModel.Status.LOADING -> showLoading(true)
                 ViewStateModel.Status.SUCCESS -> showLoanSuccess()
-                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors)
+                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors, getString(R.string.someone_was_faster))
             }
         })
     }
@@ -171,9 +171,9 @@ class LoanActivity : BaseActivity() {
         }
     }
 
-    override fun showError(errors: ErrorResponse?) {
+    override fun showError(errors: ErrorResponse?, title: String) {
         showLoading(false)
-        super.showError(errors)
+        super.showError(errors, title)
     }
 
     override fun getFinishActivityTransition(): ActivityAnimation {

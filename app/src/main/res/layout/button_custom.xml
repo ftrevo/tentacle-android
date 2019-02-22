@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button"
+            android:lines="@integer/line_1"
             android:textStyle="bold"
             android:gravity="center"/>
 

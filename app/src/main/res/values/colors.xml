@@ -33,4 +33,6 @@
     <color name="loanRequested">#58ea7a</color>
     <color name="loanPerformed">#ff5f5f</color>
 
+    <color name="backgroundSpinner">#0FFFFFFF</color>
+
 </resources>

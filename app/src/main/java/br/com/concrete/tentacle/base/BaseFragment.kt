@@ -18,7 +18,7 @@ abstract class BaseFragment : Fragment() {
         if (context is CallBack) callback = context
     }
 
-    protected fun showError(errors: ErrorResponse?) {
+    protected fun showError(errors: ErrorResponse?, title: String = "Erro") {
         if (errors != null) {
             context?.let { ctx ->
                 errors.messageInt.map { error ->
@@ -28,7 +28,7 @@ abstract class BaseFragment : Fragment() {
             val ers = errors.toString()
             val alertDialog: AlertDialog? = activity?.let { fragment ->
                 val builder = AlertDialog.Builder(fragment)
-                builder.setTitle(R.string.error_dialog_title)
+                builder.setTitle(title)
                 builder.setMessage(ers)
                 builder.apply {
                     setPositiveButton(
