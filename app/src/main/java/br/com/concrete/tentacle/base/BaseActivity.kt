@@ -11,6 +11,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.finishActivity
+import br.com.concrete.tentacle.features.HostActivity
 
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
@@ -67,7 +68,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
+                if (this !is HostActivity) {
+                    onBackPressed()
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)

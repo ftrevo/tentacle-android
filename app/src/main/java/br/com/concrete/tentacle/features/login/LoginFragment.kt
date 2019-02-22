@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.features.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -23,7 +22,6 @@ import kotlinx.android.synthetic.main.fragment_login.edtPassword
 import kotlinx.android.synthetic.main.fragment_login.imgBackground
 import kotlinx.android.synthetic.main.fragment_login.parent
 import kotlinx.android.synthetic.main.fragment_login.tvRegisterAccount
-import kotlinx.android.synthetic.main.library_item_layout.view.groupLayout
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -111,8 +109,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                 if (!parent.onTouchEvent(event)) {
                     validateEmail()
                     validatePassword()
-                } else if (event?.action == MotionEvent.ACTION_DOWN
-                    || event?.action == MotionEvent.ACTION_UP
+                } else if (event?.action == MotionEvent.ACTION_DOWN ||
+                    event?.action == MotionEvent.ACTION_UP
                 ) {
                     validateEmail()
                     validatePassword()
@@ -120,7 +118,6 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
 
                 return true
             }
-
         })
     }
 

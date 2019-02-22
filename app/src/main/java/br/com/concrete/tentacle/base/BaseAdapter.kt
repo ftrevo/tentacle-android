@@ -29,7 +29,6 @@ class BaseAdapter<T>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(layout, parent, false)
-
         return holder(v)
     }
 

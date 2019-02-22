@@ -27,10 +27,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:ellipsize="end"
+                    app:layout_constraintEnd_toStartOf="@id/game_media"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginEnd="@dimen/dp_8"
-                    tools:text="@string/game_name" />
+                    tools:text="@string/loremText"/>
 
             <TextView
                     android:id="@+id/game_media"
@@ -40,7 +41,6 @@
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:ellipsize="end"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

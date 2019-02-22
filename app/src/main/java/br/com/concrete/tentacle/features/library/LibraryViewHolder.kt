@@ -37,7 +37,7 @@ class LibraryViewHolder(
                     else animateOpen(holder.mLinearLayout, element, selectedFilters)
                     holder.viewStateOpen = !holder.viewStateOpen
                 }
-                holder.itemView.setOnClickListener {
+                holder.itemView.tvGameName.setOnClickListener {
                     holder.listener(element)
                 }
             }

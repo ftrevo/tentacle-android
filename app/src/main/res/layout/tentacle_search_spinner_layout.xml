@@ -22,7 +22,7 @@
             style="@style/ButtonSpinnerStyle"
             android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="40dp"/>
+            android:layout_height="wrap_content"/>
 
     <TextView
             android:textAppearance="@style/TextMedium.12sp"

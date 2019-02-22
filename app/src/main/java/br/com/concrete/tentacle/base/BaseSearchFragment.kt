@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.callSnackbar
-import br.com.concrete.tentacle.extensions.showKeyboard
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
