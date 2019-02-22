@@ -10,10 +10,13 @@ import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.callSnackbar
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.HostActivity
+import br.com.concrete.tentacle.features.library.loan.LoanActivitySuccess
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_login.btLogin
@@ -67,7 +70,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                     ViewStateModel.Status.ERROR -> {
                         LogWrapper.log("LOGIN-ERROR", "User logged")
                         setLoading(false)
-                        showError(it.errors)
+                        showError(it.errors, getString(R.string.was_some_mistake))
                     }
                 }
             }
@@ -152,7 +155,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun showRegisterAccount() {
-        startActivity(Intent(context, RegisterActivity::class.java))
+        activity?.launchActivity<RegisterActivity>(animation = ActivityAnimation.TRANSLATE_LEFT)
     }
 
     private fun handleLogin() {

@@ -77,7 +77,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected open fun showError(errors: ErrorResponse?) {
+    protected open fun showError(errors: ErrorResponse?, title: String = "Erro") {
         errors?.let { errorResponse ->
             errorResponse.messageInt.map { error ->
                 errorResponse.message.add(getString(error))
@@ -86,7 +86,7 @@ abstract class BaseActivity : AppCompatActivity() {
             val ers = errorResponse.toString()
 
             val builder = AlertDialog.Builder(this)
-            builder.setTitle(R.string.error_dialog_title)
+            builder.setTitle(title)
             builder.setMessage(ers)
             builder.apply {
                 setPositiveButton(
