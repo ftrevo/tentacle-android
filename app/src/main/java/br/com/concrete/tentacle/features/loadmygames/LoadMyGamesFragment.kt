@@ -31,6 +31,7 @@ private const val REQUEST_CODE = 1
 class LoadMyGamesFragment : BaseFragment() {
 
     private val viewModelLoadMyGames: LoadMyGamesViewModel by viewModel()
+    private val medias = ArrayList<Media>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +55,11 @@ class LoadMyGamesFragment : BaseFragment() {
 
     private fun initObserver() {
         viewModelLoadMyGames.getMyGames().observe(this, Observer { stateModel ->
-            val medias = stateModel.model
             when (stateModel.status) {
                 ViewStateModel.Status.SUCCESS -> {
-                    medias?.let {
-                        recyclerListView.setHasFixedSize(true)
-                        val layoutManager = LinearLayoutManager(context)
-                        recyclerListView.layoutManager = layoutManager
+                    stateModel.model?.let {
+                        medias.clear()
+                        medias.addAll(it)
 
                         val recyclerViewAdapter = BaseAdapter(
                             medias,
@@ -68,11 +67,13 @@ class LoadMyGamesFragment : BaseFragment() {
                             { view ->
                                 LoadMyGamesViewHolder(view)
                             }, { holder, element ->
-                                LoadMyGamesViewHolder.callBack(holder = holder, element = element, listener = {
+                                LoadMyGamesViewHolder.callBack(holder = holder, el = element, listener = {
                                     media -> callActivity(media)
                                 })
                             })
 
+                        recyclerListView.layoutManager = LinearLayoutManager(context)
+                        recyclerListView.setItemViewCacheSize(medias.size)
                         recyclerListView.adapter = recyclerViewAdapter
                     }
                     list.updateUi(medias)
@@ -89,6 +90,10 @@ class LoadMyGamesFragment : BaseFragment() {
                     }
                     list.updateUi<Media>(null)
                     list.setLoading(false)
+                }
+
+                ViewStateModel.Status.LOADING -> {
+                    list.setLoading(true)
                 }
             }
         })

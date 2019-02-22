@@ -1,7 +1,6 @@
 package br.com.concrete.tentacle.features.lendgame
 
 import android.content.Intent
-import androidx.fragment.app.Fragment
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -15,9 +14,7 @@ import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.Matchers.not
-import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -25,9 +22,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.Calendar
 
-
 @RunWith(AndroidJUnit4::class)
-class LendGameActivityTest: BaseInstrumentedTest() {
+class LendGameActivityTest : BaseInstrumentedTest() {
 
     @get:Rule
     var activityRule = object : ActivityTestRule<LendGameActivity>(LendGameActivity::class.java) {}
