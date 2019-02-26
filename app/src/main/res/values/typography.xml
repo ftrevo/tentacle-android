@@ -12,6 +12,10 @@
         <item name="android:fontFamily">@font/avenir_heavy</item>
     </style>
 
+    <style name="TextBook">
+        <item name="android:fontFamily">@font/avenir_book</item>
+    </style>
+
     <style name="TextMedium.12sp">
         <item name="android:textSize">12sp</item>
     </style>
@@ -70,6 +74,10 @@
 
     <style name="TextBlack.24sp">
         <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextBook.16sp">
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

@@ -1,0 +1,116 @@
+{
+    "_id": "5c66feafdf4b530023a72773",
+    "title": "The Last of Us Remastered",
+    "id": 6036,
+    "aggregated_rating": 97.4,
+    "aggregated_rating_count": 11,
+    "cover": {
+      "id": 70754,
+      "height": 1500,
+      "image_id": "co1ile",
+      "width": 1062
+    },
+    "first_release_date": "2014-07-29T00:00:00.000Z",
+    "game_modes": [
+      {
+        "id": 1,
+        "name": "Single player",
+        "slug": "single-player"
+      },
+      {
+        "id": 2,
+        "name": "Multiplayer",
+        "slug": "multiplayer"
+      }
+    ],
+    "genres": [
+      {
+        "id": 5,
+        "name": "Shooter",
+        "slug": "shooter"
+      },
+      {
+        "id": 31,
+        "name": "Adventure",
+        "slug": "adventure"
+      }
+    ],
+    "name": "The Last of Us Remastered",
+    "screenshots": [
+      {
+        "id": 9463,
+        "height": 728,
+        "image_id": "wdzisarwedjsqeg5iah4",
+        "width": 1365
+      },
+      {
+        "id": 9464,
+        "height": 1080,
+        "image_id": "oz4rxwu528bmckp1qqzt",
+        "width": 1920
+      },
+      {
+        "id": 9465,
+        "height": 1080,
+        "image_id": "d64boffz2tkso1cuj1lk",
+        "width": 1920
+      },
+      {
+        "id": 9466,
+        "height": 1080,
+        "image_id": "lqz37tmv2r4lcjaxczwx",
+        "width": 1920
+      },
+      {
+        "id": 9467,
+        "height": 720,
+        "image_id": "iqzfweidhwepz0bf4fhr",
+        "width": 1280
+      }
+    ],
+    "slug": "the-last-of-us-remastered",
+    "summary": "Winner of over 200 game of the year awards, The Last of Us has been remastered for the PlayStation®4. Now featuring higher resolution character models, improved shadows and lighting, in addition to several other gameplay improvements. \n \nAbandoned cities reclaimed by nature. A population decimated by a modern plague. Survivors are killing each other for food, weapons whatever they can get their hands on. Joel, a brutal survivor, and Ellie, a brave young teenage girl who is wise beyond her years, must work together if they hope to survive their journey across the US. \n \nThe Last of Us: Remastered includes the Abandoned Territories Map Pack, Reclaimed Territories Map Pack, and the critically acclaimed The Last of Us: Left Behind Single Player campaign. \n \nPS4 PRO ENHANCED: \n- PS4 Pro HD \n- Dynamic 4K Gaming \n- Greater Draw Distance \n- Visual FX \n- Vivid Textures \n- Deep Shadows \n- High Fidelity Assets \n- HDR",
+    "url": "https://www.igdb.com/games/the-last-of-us-remastered",
+    "videos": [
+      {
+        "id": 2231,
+        "name": "Teaser",
+        "video_id": "Z2RlTvdNjzQ"
+      },
+      {
+        "id": 2641,
+        "name": "E3 Trailer",
+        "video_id": "6UNn6EIRsL0"
+      }
+    ],
+    "formattedReleaseDate": "29/07/2014",
+    "createdBy": "5c179fa83b6274002239a00b",
+    "createdAt": "2019-02-15T18:02:23.079Z",
+    "updatedAt": "2019-02-15T18:02:23.079Z",
+    "mediaPs3": [],
+    "mediaPs4": [
+      {
+        "_id": "5c66fef9df4b530023a72774",
+        "owner": "5c179fa83b6274002239a00b",
+        "ownerName": "FELIPE TREVISAN"
+      }
+    ],
+    "mediaXbox360": [],
+    "mediaXboxOne": [],
+    "mediaNintendo3ds": [
+      {
+        "_id": "5c7544ce088bff0023195eb3",
+        "owner": "5c1ab12e7c0f4f002272357e",
+        "ownerName": "JOAO DAS NEVES",
+        "ownerState": "5a107a691592ca19f7b4a860",
+        "ownerCity": "Recife"
+      }
+    ],
+    "mediaNintendoSwitch": [],
+    "mediaPs3Count": 0,
+    "mediaPs4Count": 1,
+    "mediaXbox360Count": 0,
+    "mediaXboxOneCount": 0,
+    "mediaNintendo3dsCount": 1,
+    "mediaNintendoSwitchCount": 0
+  }
