@@ -21,6 +21,7 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.lendgame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
+import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_game_list.*
 import kotlinx.android.synthetic.main.list_custom.*
 import kotlinx.android.synthetic.main.list_custom.view.*
@@ -28,7 +29,6 @@ import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 private const val REQUEST_CODE = 1
-private const val TIME_PROGRESS_LOAD = 3000L
 
 class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
 
@@ -36,8 +36,8 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
     private val medias = ArrayList<Media>()
     private var recyclerViewAdapter: BaseAdapter<Media>? = null
     private var lMedia = ArrayList<Media?>()
-    var count = 0
-    var loadMoreItems = true
+    private var count = 0
+    private var loadMoreItems = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

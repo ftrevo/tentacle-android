@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.features.library
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -19,6 +20,7 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.base.MINIMAL_CHARACTER
 import br.com.concrete.tentacle.base.TIME_OUT
+import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
@@ -29,15 +31,17 @@ import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.fragment_library.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
-import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.library.loan.LoanActivity
+import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
+import kotlinx.android.synthetic.main.fragment_game_list.*
+import kotlinx.android.synthetic.main.list_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
-class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
+class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, ListCustom.OnScrollListener {
 
     private val viewModelLibrary: LibraryViewModel by viewModel()
     private var recyclerViewAdapter: BaseAdapter<Library>? = null
@@ -48,6 +52,9 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
     private lateinit var searchView: SearchView
 
     private lateinit var editText: EditText
+
+    private var count = 0
+    private var loadMoreItems = true
 
     override fun getToolbarTitle() = R.string.toolbar_title_library
 
@@ -63,6 +70,12 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
     }
 
     private fun init() {
+        list.setOnScrollListener(this)
+
+        list.recyclerListView.setHasFixedSize(true)
+        val layoutManager = LinearLayoutManager(context)
+        list.recyclerListView.layoutManager = layoutManager
+
         list.recyclerListError.buttonNameError.setOnClickListener {
             callback?.changeBottomBar(R.id.action_games, R.id.navigate_to_my_games)
         }
@@ -74,29 +87,43 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         it.model?.let { list ->
-                            libraries.clear()
-                            libraries.addAll(list)
+                            if (libraries.isNullOrEmpty()) {
+                                libraries.clear()
+                                libraries.addAll(list.list)
+                                count = list.count
+                                recyclerViewAdapter = BaseAdapter(
+                                    libraries,
+                                    R.layout.library_item_layout,
+                                    { view ->
+                                        LibraryViewHolder(view, viewStateOpen = false) { library ->
+                                            val extras = Bundle()
+                                            extras.putString(LoanActivity.ID_LIBRARY_EXTRA, library._id)
+                                            activity?.launchActivity<LoanActivity>(
+                                                extras = extras,
+                                                animation = ActivityAnimation.TRANSLATE_UP
+                                            )
+                                        }
+                                    }, { holder, element ->
+                                        LibraryViewHolder.callBack(
+                                            holder = holder,
+                                            element = element,
+                                            selectedFilters = selectedFilterItems
+                                        )
+                                    })
 
-                        recyclerViewAdapter = BaseAdapter(
-                            libraries,
-                            R.layout.library_item_layout,
-                            { view ->
-                                LibraryViewHolder(view, viewStateOpen = false) { library ->
-                                    val extras = Bundle()
-                                    extras.putString(LoanActivity.ID_LIBRARY_EXTRA, library._id)
-                                    activity?.launchActivity<LoanActivity>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
-                                }
-                            }, { holder, element ->
-                                LibraryViewHolder.callBack(
-                                    holder = holder,
-                                    element = element,
-                                    selectedFilters = selectedFilterItems
-                                )
-                            })
-
-                            recyclerListView.layoutManager = LinearLayoutManager(context)
-                            recyclerListView.setItemViewCacheSize(libraries.size)
-                            recyclerListView.adapter = recyclerViewAdapter
+                                recyclerListView.layoutManager = LinearLayoutManager(context)
+                                recyclerListView.setItemViewCacheSize(libraries.size)
+                                recyclerListView.adapter = recyclerViewAdapter
+                            } else {
+                                Handler().postDelayed({
+                                    recyclerViewAdapter?.notifyItemInserted(libraries.size - 1)
+                                    libraries.removeAt(libraries.size - 1)
+                                    recyclerViewAdapter?.notifyItemRemoved(libraries.size - 1)
+                                    libraries.addAll(it.model.list)
+                                    loadMoreItems = true
+                                    recyclerViewAdapter?.setNewList(libraries)
+                                }, TIME_PROGRESS_LOAD)
+                            }
                         }
                         list.updateUi(libraries, it.filtering)
                         list.setLoading(false)
@@ -223,4 +250,20 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
 
         searchView.setIconifiedByDefault(true)
     }
+
+    override fun count() = count
+
+    override fun sizeElements(): Int  = libraries.size
+
+    override fun loadMore() {
+        viewModelLibrary.loadLibraryMore(queryParameters, searchView.query.toString(), true)
+        libraries.add(null)
+        loadMoreItems = false
+
+        recyclerViewAdapter?.notifyItemInserted(libraries.size - 1)
+        libraries.addAll(ArrayList<Library>())
+        recyclerViewAdapter?.setNewList(libraries)
+    }
+
+    override fun loadPage(): Boolean = loadMoreItems
 }
