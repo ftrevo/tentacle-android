@@ -41,5 +41,4 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
             })
         )
     }
-
 }

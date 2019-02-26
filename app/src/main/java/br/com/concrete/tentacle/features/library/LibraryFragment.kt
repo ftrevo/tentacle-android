@@ -41,7 +41,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
 
     private val viewModelLibrary: LibraryViewModel by viewModel()
     private var recyclerViewAdapter: BaseAdapter<Library>? = null
-    private val libraries = ArrayList<Library>()
+    private val libraries = ArrayList<Library?>()
     private val selectedFilterItems = ArrayList<SubItem>()
     private var queryParameters: QueryParameters? = null
 

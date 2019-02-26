@@ -3,15 +3,14 @@ package br.com.concrete.tentacle.features.loadmygames
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuInflater
 import android.os.Handler
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
 import android.view.ViewGroup
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
@@ -22,35 +21,31 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.lendgame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
-import kotlinx.android.synthetic.main.fragment_game_list.list
-import kotlinx.android.synthetic.main.list_custom.view.buttonAction
-import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
-import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
-import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
+import kotlinx.android.synthetic.main.fragment_game_list.*
+import kotlinx.android.synthetic.main.list_custom.*
+import kotlinx.android.synthetic.main.list_custom.view.*
+import kotlinx.android.synthetic.main.list_error_custom.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-
 private const val REQUEST_CODE = 1
+private const val TIME_PROGRESS_LOAD = 3000L
 
 class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
 
     private val viewModelLoadMyGames: LoadMyGamesViewModel by viewModel()
     private val medias = ArrayList<Media>()
+    private var recyclerViewAdapter: BaseAdapter<Media>? = null
+    private var lMedia = ArrayList<Media?>()
+    var count = 0
+    var loadMoreItems = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
 
-    private var recyclerViewAdapter = BaseAdapter<Media>()
-    private var lMedia = ArrayList<Media?>()
-    var count = 0
-
-    var loadMore: Boolean = true
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_game_list, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_game_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,22 +68,25 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         val mediaResponse = it.model
-                        val medias = mediaResponse?.list as ArrayList<Media?>
-                        medias.let {
-                            lMedia.add(null)
-                            recyclerViewAdapter.notifyItemInserted(lMedia.size - 1)
+                        val medias = mediaResponse?.list as ArrayList<Media>
+                        count = mediaResponse.count
 
+                        medias.let {
                             Handler().postDelayed({
+                                recyclerViewAdapter?.notifyItemInserted(lMedia.size - 1)
                                 lMedia.removeAt(lMedia.size - 1)
-                                recyclerViewAdapter.notifyItemRemoved(lMedia.size)
+                                recyclerViewAdapter?.notifyItemRemoved(lMedia.size - 1)
                                 lMedia.addAll(medias)
-                                loadMore = true
-                                recyclerViewAdapter.setNewList(lMedia)
-                            }, 1000)
+                                loadMoreItems = true
+                                recyclerViewAdapter?.setNewList(lMedia)
+                            }, TIME_PROGRESS_LOAD)
                         }
                     }
-                    ViewStateModel.Status.LOADING -> {}
-                    ViewStateModel.Status.ERROR -> { loadMore = true }
+                    ViewStateModel.Status.LOADING -> {
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        loadMoreItems = false
+                    }
                 }
             }
         })
@@ -100,8 +98,6 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                         val mediaResponse = it.model
                         val medias = mediaResponse?.list as ArrayList<Media?>
                         count = mediaResponse.count
-                        medias.clear()
-                        medias.addAll(it)
 
                         medias.let {
                             if (lMedia.isEmpty()) {
@@ -109,11 +105,14 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                                     medias,
                                     R.layout.item_game,
                                     { view ->
-                                        LoadMyGamesViewHolder(view!!)
+                                        LoadMyGamesViewHolder(view)
                                     }, { holder, element ->
-                                        LoadMyGamesViewHolder.callBack(holder = holder, el = element, listener = {
-                                                media -> callActivity(media)
-                                        }
+                                        LoadMyGamesViewHolder.callBack(
+                                            holder = holder,
+                                            el = element,
+                                            listener = { media ->
+                                                callActivity(media)
+                                            })
                                     })
 
                                 recyclerListView.layoutManager = LinearLayoutManager(context)
@@ -122,9 +121,9 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
 
                                 lMedia = medias
                                 list.updateUi(medias)
-                                list.setLoading(false)
                             }
                         }
+                        list.setLoading(false)
                     }
 
                     ViewStateModel.Status.ERROR -> {
@@ -139,11 +138,8 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                         list.setLoading(false)
                     }
                     ViewStateModel.Status.LOADING -> {
+                        list.setLoading(true)
                     }
-                }
-
-                ViewStateModel.Status.LOADING -> {
-                    list.setLoading(true)
                 }
             }
         })
@@ -186,15 +182,15 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
 
     override fun sizeElements() = lMedia.size
 
-    override fun loadPage(loadPage: Boolean) {
-        if (loadPage) {
-            viewModelLoadMyGames.loadGamePage()
-            loadMore = false
-        }
+    override fun loadMore() {
+        viewModelLoadMyGames.loadGamePage()
+        lMedia.add(null)
+        loadMoreItems = false
+
+        recyclerViewAdapter?.notifyItemInserted(lMedia.size - 1)
+        lMedia.addAll(medias)
+        recyclerViewAdapter?.setNewList(lMedia)
     }
 
-    override var loadPage: Boolean
-        get() = loadMore
-        set(value) {}
-
+    override fun loadPage(): Boolean = loadMoreItems
 }

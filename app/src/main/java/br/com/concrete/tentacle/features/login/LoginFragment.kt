@@ -16,7 +16,6 @@ import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.HostActivity
-import br.com.concrete.tentacle.features.library.loan.LoanActivitySuccess
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_login.btLogin

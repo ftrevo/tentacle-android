@@ -24,7 +24,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     private val gameViewModel: SearchGameViewModel by viewModel()
 
-    private var tempList: ArrayList<Game> = ArrayList()
+    private var tempList: ArrayList<Game?> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,

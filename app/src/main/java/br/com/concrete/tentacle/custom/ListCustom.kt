@@ -118,10 +118,9 @@ class ListCustom(
                         }
 
                         if (dy > 0) {
-                            if (mOnScrollListener.loadPage && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                            if (mOnScrollListener.loadPage() && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
                                 if (mOnScrollListener.count() > mOnScrollListener.sizeElements()) {
-                                    mOnScrollListener.loadPage(true)
-                                    mOnScrollListener.loadPage = false
+                                    mOnScrollListener.loadMore()
                                 }
                             }
                         }
@@ -186,7 +185,7 @@ class ListCustom(
     interface OnScrollListener {
         fun count(): Int
         fun sizeElements(): Int
-        fun loadPage(loadPage: Boolean)
-        var loadPage: Boolean
+        fun loadMore()
+        fun loadPage(): Boolean
     }
 }

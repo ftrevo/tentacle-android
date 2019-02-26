@@ -13,7 +13,7 @@ const val PLATFORM_XBOX_360_ABBREV = "X360"
 const val PLATFORM_NINTENDO_SWITCH_ABBREV = "SWITCH"
 const val PLATFORM_NINTENDO_3DS_ABBREV = "3DS"
 
-const val LIMIT_PAGE = 99
+const val LIMIT_PAGE = 15
 
 const val SIMPLE_DATE_OUTPUT_FORMAT = "dd/MM/yy"
 const val SIMPLE_DATE_INPUT_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
