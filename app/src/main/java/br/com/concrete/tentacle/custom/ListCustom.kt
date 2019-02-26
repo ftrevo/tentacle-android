@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.custom
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -7,14 +8,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.extensions.hideKeyboard
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE_BOOLEAN
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
-import kotlinx.android.synthetic.main.list_custom.view.progressBarList
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
+import kotlinx.android.synthetic.main.progress_include.view.progressBarList
 
 class ListCustom(
     context: Context,
@@ -32,6 +34,7 @@ class ListCustom(
     var totalItemCount: Int = 0
 
     private lateinit var mOnScrollListener: OnScrollListener
+    private var emptyListMessageReference: Int = DEFAULT_INVALID_RESOURCE
 
     init {
         View.inflate(context, R.layout.list_custom, this)
@@ -47,17 +50,19 @@ class ListCustom(
             errorDescriptionReference = getResourceId(R.styleable.ListCustom_errorDescription, DEFAULT_INVALID_RESOURCE)
             buttonNameErrorReference = getResourceId(R.styleable.ListCustom_buttonNameError, DEFAULT_INVALID_RESOURCE)
             buttonNameActionReference = getResourceId(R.styleable.ListCustom_buttonNameAction, DEFAULT_INVALID_RESOURCE)
+            emptyListMessageReference = getResourceId(R.styleable.ListCustom_emptyListMessage, DEFAULT_INVALID_RESOURCE)
             endLessScroll = getBoolean(R.styleable.ListCustom_endLessScroll, DEFAULT_INVALID_RESOURCE_BOOLEAN)
         }
     }
 
-    fun <T> updateUi(elements: ArrayList<T>?) {
+    fun <T> updateUi(elements: ArrayList<T>?, filtering: Boolean = false) {
         if (elements == null) {
             recyclerListError.setUpComponents(iconReference, errorDescriptionReference, buttonNameErrorReference)
             showViewError()
         } else {
             if (elements.isEmpty()) {
-                recyclerListError.setUpComponents(iconReference, errorDescriptionReference, buttonNameActionReference)
+                val msg = if (filtering) emptyListMessageReference else errorDescriptionReference
+                recyclerListError.setUpComponents(iconReference, msg, buttonNameActionReference)
                 showViewError()
             } else {
                 showViewSuccess()
@@ -130,6 +135,15 @@ class ListCustom(
         recyclerListView.visibility = View.GONE
         buttonAction.visibility = View.GONE
         recyclerListError.visibility = View.VISIBLE
+        hideSoftKeyboard()
+    }
+
+    private fun hideSoftKeyboard() {
+        context?.let {
+            if (it is Activity) {
+                it.hideKeyboard()
+            }
+        }
     }
 
     private fun showLoading() {

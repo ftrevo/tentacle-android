@@ -16,9 +16,8 @@
     <string name="state_error">Selecione um estado</string>
     <string name="city_error">Selecione uma cidade</string>
 
-
     <string name="ok">Ok</string>
-    <string name="error_dialog_title">Estamos enfrentando alguns problemas!</string>
+    <string name="error_dialog_title">Erro</string>
 
     <string name="email">Email</string>
     <string name="password">Senha</string>
@@ -48,7 +47,7 @@
 
     <string name="game_name">Nome do Jogo</string>
     <string name="media">mídia</string>
-    <string name="first_game_register">Parece que você é o primeiro a adicionar esse jogo!</string>
+    <string name="first_game_register">Parece que você é o primeiro a buscar esse jogo!</string>
 
     <string name="register_media_group_title">Selecione a plataforma:</string>
     <string name="register_media_ps3_radio_button_title">Playstation 3</string>
@@ -63,18 +62,22 @@
     <string name="register_media_generic_error_test">Ocorreu um erro</string>
     <string name="register_media_no_selection_error">Necessário escolher a plataforma do jogo</string>
 
-    <string name="toolbar_title_home">Novos Jogos</string>
-    <string name="toolbar_title_my_games">Meus Jogos</string>
+    <string name="toolbar_title_home">Novos jogos</string>
+    <string name="toolbar_title_my_games">Meus jogos</string>
     <string name="toolbar_title_search_game">Cadastrar jogo</string>
+    <string name="toolbar_title_loan_game">Reservar jogo</string>
+    <string name="toolbar_title_lend_game">Detalhes do jogo</string>
 
     <string name="red_dead_redemption">Red Dead Redemption 2</string>
-    <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles aparecerem aqui!</string>
+    <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles
+        aparecerem aqui!
+    </string>
 
     <string name="did_not_find_what_you_wanted">Não encontrou o que queria?</string>
     <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
     <string name="toolbar_title_library">Biblioteca</string>
 
-    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a cadastrar</string>
+    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a cadastrar.</string>
     <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente novamente.</string>
 
     <string name="bullet_ps3">PS3</string>
@@ -84,4 +87,59 @@
     <string name="bullet_3DS">3DS</string>
     <string name="bullet_NS">NS</string>
 
+    <string name="chip_ps3">PS3</string>
+    <string name="chip_ps4">PS4</string>
+    <string name="chip_360">X360</string>
+    <string name="chip_one">XOne</string>
+    <string name="chip_3ds">3DS</string>
+    <string name="chip_ns">Switch</string>
+
+    <string name="filter_toolbar_title">Filtro</string>
+    <string name="filter_button_text">Filtrar</string>
+    <string name="filter_clear_button_text">Limpar filtro</string>
+    <!-- These strings below will no longer needed once all the data starts to come from the api -->
+    <string name="filter_item_platforms">Plataformas</string>
+    <string name="filter_item_status">Status do jogo</string>
+    <string name="filter_subitem_games_availability">Mostrar jogos indisponíveis</string>
+    <!-- end here -->
+
+    <string name="logout_title">Logout</string>
+    <string name="logout_question">Tem certeza que deseja efetuar o logout?</string>
+
+    <string name="filter">Filtro</string>
+
+    <string name="loremText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+        been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
+    </string>
+    <string name="reserved_by">Reservado por</string>
+    <string name="requested_by">Solicitado por</string>
+    <string name="nome_sobrenome">Nome Sobrenome</string>
+    <string name="date_return_prefix">até %1$s</string>
+    <string name="tempo_reserva">Tempo de reserva</string>
+    <string name="lendGame">Jogo entregue</string>
+
+    <string name="cancel">Cancelar</string>
+
+    <string name="library_loan_text1">Qual a plataforma que voce quer reservar?</string>
+    <string name="library_loan_text2">Escolha de quem você quer emprestado</string>
+
+    <string name="library_loan_user_list_hint">Selecione</string>
+    <string name="library_loan_perform_loan">Reservar</string>
+
+    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!
+    </string>
+    <string name="loan_button_success">Acompanhar suas reservas</string>
+    <string name="two_weeks">2 Semanas</string>
+
+    <string name="lend_success">O jogo foi entregue a %1$s e a reserva termina em %2$s.</string>
+    <string name="back_to_library">Voltar para Biblioteca</string>
+
+    <string name="msg_empty_list">Ops! A sua busca não retornou nenhum resultado</string>
+    <string name="already_account">Já tem uma conta?</string>
+    <string name="was_some_mistake">Opa! Parece que ocorreu algum engano.</string>
+    <string name="someone_was_faster">Eita! Parece que alguém foi mais rápido.</string>
 </resources>

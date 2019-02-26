@@ -5,11 +5,8 @@
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorPrimary">
 
-    <ImageView
-            android:src="@drawable/logo_bg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+    <include
+        layout="@layout/logo_tentacle"/>
 
     <br.com.concrete.tentacle.custom.ListCustom
             android:id="@+id/list"
@@ -22,6 +19,7 @@
             app:layoutManager="LinearLayoutManager"
             app:buttonNameError="@string/add_new_game"
             app:errorDescription="@string/no_library_error"
+            app:emptyListMessage="@string/msg_empty_list"
             app:icon="@drawable/il_wow"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

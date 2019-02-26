@@ -1,13 +1,37 @@
 package br.com.concrete.tentacle.data.models
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-@Parcelize
 data class Game(
     val _id: String = String(),
-    val title: String = String(),
+    @SerializedName("name", alternate = ["title"])
+    val name: String = String(),
     val createdBy: User,
     var createdAt: String,
     var updateAt: String
-) : Parcelable
+
+) : Serializable {
+
+    companion object {
+
+        const val ID_EMPTY_GAME = "-1"
+
+        fun getEmptyGame(): Game = Game(
+            ID_EMPTY_GAME,
+            "",
+            User(
+                city = "",
+                name = "",
+                password = "",
+                state = State(
+                    "",
+                    "",
+                    ""
+                )
+            ),
+            "",
+            ""
+        )
+    }
+}

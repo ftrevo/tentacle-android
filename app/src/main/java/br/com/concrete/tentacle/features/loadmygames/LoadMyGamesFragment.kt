@@ -3,8 +3,10 @@ package br.com.concrete.tentacle.features.loadmygames
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuInflater
 import android.os.Handler
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -16,6 +18,9 @@ import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.features.lendgame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
 import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
@@ -30,6 +35,12 @@ private const val REQUEST_CODE = 1
 class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
 
     private val viewModelLoadMyGames: LoadMyGamesViewModel by viewModel()
+    private val medias = ArrayList<Media>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     private var recyclerViewAdapter = BaseAdapter<Media>()
     private var lMedia = ArrayList<Media?>()
@@ -45,6 +56,11 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         init()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun initObserver() {
@@ -84,6 +100,9 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                         val mediaResponse = it.model
                         val medias = mediaResponse?.list as ArrayList<Media?>
                         count = mediaResponse.count
+                        medias.clear()
+                        medias.addAll(it)
+
                         medias.let {
                             if (lMedia.isEmpty()) {
                                 recyclerViewAdapter = BaseAdapter(
@@ -92,9 +111,15 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                                     { view ->
                                         LoadMyGamesViewHolder(view!!)
                                     }, { holder, element ->
-                                        LoadMyGamesViewHolder.callBack(holder = holder, element = element)
+                                        LoadMyGamesViewHolder.callBack(holder = holder, el = element, listener = {
+                                                media -> callActivity(media)
+                                        }
                                     })
+
+                                recyclerListView.layoutManager = LinearLayoutManager(context)
+                                recyclerListView.setItemViewCacheSize(medias.size)
                                 list.recyclerListView.adapter = recyclerViewAdapter
+
                                 lMedia = medias
                                 list.updateUi(medias)
                                 list.setLoading(false)
@@ -116,10 +141,20 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                     ViewStateModel.Status.LOADING -> {
                     }
                 }
+
+                ViewStateModel.Status.LOADING -> {
+                    list.setLoading(true)
+                }
             }
         })
 
         lifecycle.addObserver(viewModelLoadMyGames)
+    }
+
+    private fun callActivity(media: Media) {
+        val bundle = Bundle()
+        bundle.putString(LendGameActivity.MEDIA_ID_EXTRA, media._id)
+        activity?.launchActivity<LendGameActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
     }
 
     private fun init() {

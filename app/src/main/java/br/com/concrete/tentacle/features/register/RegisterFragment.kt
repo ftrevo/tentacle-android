@@ -14,7 +14,9 @@ import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.digits
+import br.com.concrete.tentacle.extensions.finishActivity
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.HostActivity
@@ -62,6 +64,10 @@ class RegisterFragment : BaseFragment() {
                 dialogCity.showSpinerDialog()
             }
         }
+
+        tvAlreadyAccount.setOnClickListener {
+            activity?.finishActivity(animation = ActivityAnimation.TRANSLATE_RIGHT)
+        }
     }
 
     private fun initStatesObservable() {
@@ -86,7 +92,7 @@ class RegisterFragment : BaseFragment() {
                     enableField(true)
                 }
                 ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors)
+                    showError(viewState.errors, getString(R.string.was_some_mistake))
                     progressButton(false)
                     enableField(true)
                 }
@@ -113,7 +119,7 @@ class RegisterFragment : BaseFragment() {
                     progressButton(false)
                 }
                 ViewStateModel.Status.ERROR -> {
-                    showError(viewState.errors)
+                    showError(viewState.errors, getString(R.string.was_some_mistake))
                     progressButton(false)
                     enableField(true)
                 }
@@ -135,7 +141,7 @@ class RegisterFragment : BaseFragment() {
                         showHomeScreen()
                     }
                     ViewStateModel.Status.ERROR -> {
-                        showError(it.errors)
+                        showError(it.errors, getString(R.string.was_some_mistake))
                         progressButton(false)
                         enableField(true)
                     }

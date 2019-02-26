@@ -2,28 +2,30 @@ package br.com.concrete.tentacle.features.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.R.id.btLogin
-import br.com.concrete.tentacle.R.id.edtEmail
-import br.com.concrete.tentacle.R.id.edtPassword
-import br.com.concrete.tentacle.R.id.tvRegisterAccount
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.callSnackbar
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.HostActivity
+import br.com.concrete.tentacle.features.library.loan.LoanActivitySuccess
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import br.com.concrete.tentacle.utils.LogWrapper
-import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
+import kotlinx.android.synthetic.main.fragment_login.btLogin
+import kotlinx.android.synthetic.main.fragment_login.edtEmail
+import kotlinx.android.synthetic.main.fragment_login.edtPassword
+import kotlinx.android.synthetic.main.fragment_login.imgBackground
+import kotlinx.android.synthetic.main.fragment_login.parent
+import kotlinx.android.synthetic.main.fragment_login.tvRegisterAccount
+import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment(), View.OnClickListener {
@@ -68,7 +70,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                     ViewStateModel.Status.ERROR -> {
                         LogWrapper.log("LOGIN-ERROR", "User logged")
                         setLoading(false)
-                        showError(it.errors)
+                        showError(it.errors, getString(R.string.was_some_mistake))
                     }
                 }
             }
@@ -82,35 +84,62 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun initListeners() {
-        edtEmail.edt.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
+        edtEmail.edt.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                validateEmail()
+            }
+        }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        edtPassword.edt.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                validatePassword()
+            }
+        }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val email = s.toString()
-                if (email.isNotEmpty()) {
-                    edtEmail.showError(!email.validateEmail())
-                } else {
-                    edtEmail.showError(false)
+        parent.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                if (!parent.onTouchEvent(event)) {
+                    validateEmail()
+                    validatePassword()
                 }
+
+                return true
             }
         })
 
-        edtPassword.edt.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val password = s.toString()
-                if (password.isNotEmpty()) {
-                    edtPassword.showError(!password.validatePassword())
-                } else {
-                    edtPassword.showError(false)
+        imgBackground.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                if (!parent.onTouchEvent(event)) {
+                    validateEmail()
+                    validatePassword()
+                } else if (event?.action == MotionEvent.ACTION_DOWN ||
+                    event?.action == MotionEvent.ACTION_UP
+                ) {
+                    validateEmail()
+                    validatePassword()
                 }
+
+                return true
             }
         })
+    }
+
+    private fun validateEmail() {
+        val email = edtEmail.edt.text.toString()
+        if (email.isNotEmpty()) {
+            edtEmail.showError(!email.validateEmail())
+        } else {
+            edtEmail.showError(false)
+        }
+    }
+
+    private fun validatePassword() {
+        val password = edtPassword.edt.text.toString()
+        if (password.isNotEmpty()) {
+            edtPassword.showError(!password.validatePassword())
+        } else {
+            edtPassword.showError(false)
+        }
     }
 
     private fun initEvents() {
@@ -126,7 +155,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun showRegisterAccount() {
-        startActivity(Intent(context, RegisterActivity::class.java))
+        activity?.launchActivity<RegisterActivity>(animation = ActivityAnimation.TRANSLATE_LEFT)
     }
 
     private fun handleLogin() {
@@ -134,7 +163,16 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         val email = edtEmail.getText()
         val password = edtPassword.getText()
 
-        val isOk = email.validateEmail() && password.validatePassword()
+        var isOk = true
+
+        if (!email.validateEmail()) {
+            isOk = false
+            edtEmail.showError(true)
+        }
+        if (!password.validatePassword()) {
+            isOk = false
+            edtPassword.showError(true)
+        }
 
         when (isOk) {
             true -> loginViewModel.loginUser(email, password)

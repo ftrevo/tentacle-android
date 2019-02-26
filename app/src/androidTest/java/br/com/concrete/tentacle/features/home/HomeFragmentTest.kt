@@ -65,7 +65,7 @@ class HomeFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .check(matches(not(isDisplayed())))
         onView(withId(R.id.errorDescription))
-            .check(matches(withText(R.string.no_game_in_home)))
+            .check(matches(withText("A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles aparecerem aqui!")))
         onView(withId(R.id.progressBarList))
     }
 

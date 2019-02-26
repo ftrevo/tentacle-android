@@ -3,7 +3,7 @@
     <solid
             android:color="@color/colorAddNewGame"/>
     <corners
-            android:radius="3dp" />
+            android:radius="@dimen/defaultCorner3dp" />
 
     <padding
             android:left="@dimen/dp_10"

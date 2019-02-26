@@ -8,6 +8,8 @@ apply plugin: "de.mannodermaus.android-junit5"
 
 apply plugin: 'kotlin-allopen'
 
+apply plugin: 'kotlin-kapt'
+
 apply from: 'tasks.gradle'
 
 apply plugin: 'io.fabric'
@@ -27,13 +29,13 @@ android {
         applicationId "br.com.concrete.tentacle"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 102
-        versionName "1.0.2"
+        versionCode 104
+        versionName "1.0.4"
         testInstrumentationRunner "br.com.concrete.tentacle.util.TentacleTestRunner"
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", '"https://tentacle-backend.herokuapp.com/"'
+            buildConfigField "String", "BASE_URL", '"https://tentacle-backend-dev.herokuapp.com/"'
             applicationIdSuffix ".debug"
             testCoverageEnabled true
         }
@@ -49,7 +51,7 @@ android {
         unitTests {
             includeAndroidResources = true
             returnDefaultValues = true
-            all{
+            all {
                 jacoco {
                     includeNoLocationClasses = true
                 }
@@ -137,5 +139,13 @@ dependencies {
         transitive = true
     }
 
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide"
+    kapt "com.github.bumptech.glide:compiler:$glide"
+
     ktlint "com.github.shyiko:ktlint:$ktLintVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinReflection"
+
+    //https://github.com/jaredrummler/MaterialSpinner
+    implementation "com.jaredrummler:material-spinner:$materialSpinner"
 }
