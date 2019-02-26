@@ -17,5 +17,4 @@ class RegisterActivity : AppCompatActivity() {
         super.onBackPressed()
         finishActivity(animation = ActivityAnimation.TRANSLATE_RIGHT)
     }
-
 }
