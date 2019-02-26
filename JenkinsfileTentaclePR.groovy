@@ -6,6 +6,7 @@ node('master') {
     stage('Checkout') {
         deleteDir()
         checkout scm
+        
     }
 
     def utils = load('JenkinsUtils.groovy')
