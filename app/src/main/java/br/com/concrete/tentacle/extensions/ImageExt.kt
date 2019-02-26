@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.extensions
 
 import android.widget.ImageView
 import br.com.concrete.tentacle.di.GlideApp
-import com.bumptech.glide.Glide
 
 fun ImageView.loadImage(imageResource: Int) {
     GlideApp.with(this)
