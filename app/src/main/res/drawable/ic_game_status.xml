@@ -2,10 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <size android:width="24dp" android:height="8dp"/>
+    <size android:width="@dimen/dp_24" android:height="@dimen/dp_8"/>
 
-    <solid android:color="#ff00"/>
+    <solid android:color="@color/gameStatusDefaultColor"/>
 
-    <corners android:radius="8dp"/>
+    <corners android:radius="@dimen/gameStatusRadius"/>
 
 </shape>

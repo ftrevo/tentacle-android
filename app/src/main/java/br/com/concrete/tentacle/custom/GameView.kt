@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameRelease
 import kotlinx.android.synthetic.main.game_view_layout.view.gameModeContainer
 import kotlinx.android.synthetic.main.game_view_layout.view.genresContainer
 import kotlinx.android.synthetic.main.game_view_layout.view.tvGameSummary
-import java.util.*
+import java.util.Calendar
 
 class GameView(
     context: Context,
@@ -37,7 +37,7 @@ class GameView(
 
         with(game) {
 
-            game.cover?.image_id?.let {
+            cover?.imageId?.let {
                 ivGameCover.loadImageUrl(Utils.assembleGameImageUrl(IMAGE_SIZE_TYPE_LOGO_MED, it))
             }
 

@@ -12,7 +12,7 @@
         layout="@layout/game_view_header_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"/>
 
     <TextView
@@ -24,7 +24,7 @@
         android:textColor="@color/textColor"
         android:textAppearance="@style/TextMedium.14sp"
         tools:text="@string/loremText"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         android:maxLines="4"
         android:ellipsize="end"/>

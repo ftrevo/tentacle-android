@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.game_view_component
+package br.com.concrete.tentacle.features.gameViewComponent
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
