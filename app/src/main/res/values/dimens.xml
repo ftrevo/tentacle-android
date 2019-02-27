@@ -40,7 +40,7 @@
     <dimen name="sp_24">24sp</dimen>
 
     <dimen name="game_icon_width">44dp</dimen>
-    <dimen name="game_icon_height">58dp</dimen>
+    <dimen name="game_icon_height">60dp</dimen>
 
     <dimen name="itemGameNamePercent">0.75</dimen>
     <dimen name="itemGamePlatformPercent">0.20</dimen>
