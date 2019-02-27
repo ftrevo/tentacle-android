@@ -19,9 +19,9 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:id="@+id/tvGameName"
-        tools:text="Nome do Jogosdfssdf"
+        tools:text="Nome do Jogosdfssddfdfdfgdfgdgf"
         app:layout_constraintStart_toEndOf="@id/ivGameCover"
-        app:layout_constraintEnd_toStartOf="@id/tvGameStatus"
+        app:layout_constraintEnd_toStartOf="@id/ivGameStatus"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="@dimen/dp_8"
         android:layout_marginStart="@dimen/margin_default"
@@ -46,7 +46,9 @@
         android:textColor="@color/textColor"
         android:textAppearance="@style/TextMedium.14sp"
         app:layout_constraintTop_toTopOf="@id/rbGame"
-        app:layout_constraintEnd_toEndOf="@+id/tvGameName"
+        app:layout_constraintBottom_toBottomOf="@id/rbGame"
+        app:layout_constraintStart_toEndOf="@+id/rbGame"
+        android:layout_marginStart="@dimen/margin_default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -69,12 +71,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <androidx.constraintlayout.widget.Group
-            android:id="@+id/groupStatus"
-            android:visibility="visible"
-            app:constraint_referenced_ids="tvGameStatus,ivGameStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <!--<androidx.constraintlayout.widget.Group-->
+            <!--android:id="@+id/groupStatus"-->
+            <!--android:visibility="visible"-->
+            <!--app:constraint_referenced_ids="tvGameStatus,ivGameStatus"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

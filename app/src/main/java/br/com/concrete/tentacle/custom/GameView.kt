@@ -15,11 +15,12 @@ import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_LOGO_MED
 import br.com.concrete.tentacle.utils.Utils
-import kotlinx.android.synthetic.main.game_view_header_layout.view.groupStatus
 import kotlinx.android.synthetic.main.game_view_header_layout.view.ivGameCover
+import kotlinx.android.synthetic.main.game_view_header_layout.view.ivGameStatus
 import kotlinx.android.synthetic.main.game_view_header_layout.view.rbGame
 import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameName
 import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameReleaseYear
+import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameStatus
 import kotlinx.android.synthetic.main.game_view_layout.view.gameModeContainer
 import kotlinx.android.synthetic.main.game_view_layout.view.genresContainer
 import kotlinx.android.synthetic.main.game_view_layout.view.tvGameSummary
@@ -83,6 +84,7 @@ class GameView(
     }
 
     fun showStatusView(show: Boolean) {
-        groupStatus.visible(show)
+        tvGameStatus.visible(show)
+        ivGameStatus.visible(show)
     }
 }
