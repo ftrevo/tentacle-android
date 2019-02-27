@@ -155,7 +155,7 @@ def unitTests(String buildType) {
 
 def killEmulator() {
     sh '''
-    adb devices -l |grep emulator-5554
+    /Users/macmini-recife/homebrew/bin/adb devices -l |grep emulator-5554
     if [[ $? -eq 0 ]]; then
         PROCESS=$(ps -ef |grep -v grep |grep Nexus5XAPI26 |awk '{print $2}')
         kill -9 ${PROCESS}
@@ -168,7 +168,7 @@ def killEmulator() {
 def instrumentTests() {
     try {
         sh '''
-        ${HOME}/Library/Android/sdk/emulator/emulator -avd Nexus5XAPI26 -netdelay none -netspeed full &
+        /Library/Java/AndroidSDK/emulator/emulator -avd Nexus5XAPI26 -netdelay none -netspeed full &
         sleep 120
 
         ./gradlew uninstallAll
@@ -176,10 +176,12 @@ def instrumentTests() {
         '''
         killEmulator()
         publishHtmlProject('app/build/reports/androidTests/connected', 'Instrument Tests')
+        archivesProject("app/build/reports/androidTests/connected/index.html")
     }
     catch(err) {
         killEmulator()
         publishHtmlProject('app/build/reports/androidTests/connected', 'Instrument Tests')
+        archivesProject("app/build/reports/androidTests/connected/index.html")
         sendFailedNotify('Instrument Tests', err)
     }   
 }
