@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
+import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
 import br.com.concrete.tentacle.utils.Event
@@ -15,11 +16,14 @@ class SearchGameViewModel(
 ) : BaseViewModel(),
     LifecycleObserver {
 
-    private val viewSearchGame = MutableLiveData<ViewStateModel<ArrayList<Game?>>>()
+    private val viewSearchGame = MutableLiveData<ViewStateModel<GameResponse>>()
     private val viewGame = MutableLiveData<Event<ViewStateModel<Game>>>()
+    private val viewGameMore = MutableLiveData<Event<ViewStateModel<GameResponse>>>()
 
     val game: LiveData<Event<ViewStateModel<Game>>>
         get() = viewGame
+
+    private var page = 1
 
     fun searchGame(title: String) {
         viewSearchGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
@@ -28,16 +32,10 @@ class SearchGameViewModel(
 
     private fun obsSearchGames(name: String) =
         gameRepository.getSearchGames(name).subscribe({ base ->
-            if (base.data.list.isNotEmpty()) {
-                base.data.list.add(Game.getEmptyGame())
-            } else {
-                base.data.list
-            }
-
             viewSearchGame.postValue(
                 ViewStateModel(
                     status = ViewStateModel.Status.SUCCESS,
-                    model = ArrayList(base.data.list)
+                    model = base.data
                 )
             )
         }, {
@@ -75,11 +73,42 @@ class SearchGameViewModel(
             )
         })
 
-    fun getSearchGame(): LiveData<ViewStateModel<ArrayList<Game?>>> = viewSearchGame
-    fun getRegisteredGame(): LiveData<Event<ViewStateModel<Game>>> = viewGame
+    fun searchGameMore(title: String) {
+        disposables.add(obsSearchGameMore(title))
+    }
 
-    override fun onCleared() {
-        super.onCleared()
-        disposables.dispose()
+    private fun obsSearchGameMore(title: String) =
+        gameRepository.getSearchGames(title, page).subscribe({ base ->
+            /*if (base.data.list.isNotEmpty()) {
+                base.data.list.add(Game.getEmptyGame())
+            } else {
+                base.data.list
+            }*/
+
+            viewGameMore.postValue(
+                Event(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.SUCCESS,
+                        model = base.data
+                    )
+                )
+            )
+            page += 1
+        }, {
+            viewGameMore.postValue(
+                Event(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.ERROR,
+                        errors = notKnownError(it)
+                    )
+                )
+            )
+        })
+
+    fun getSearchGame(): LiveData<ViewStateModel<GameResponse>> = viewSearchGame
+    fun getRegisteredGame(): LiveData<Event<ViewStateModel<Game>>> = viewGame
+    fun getRegisteredGameMore(): LiveData<Event<ViewStateModel<GameResponse>>> = viewGameMore
+    fun onePage() {
+        page = 1
     }
 }

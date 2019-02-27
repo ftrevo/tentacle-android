@@ -14,8 +14,8 @@ import io.reactivex.schedulers.Schedulers
 
 class GameRepository(private val apiRest: ApiService) {
 
-    fun getSearchGames(name: String): Observable<BaseModel<GameResponse>> {
-        return apiRest.getSearchGames(name)
+    fun getSearchGames(name: String, page: Int = 0): Observable<BaseModel<GameResponse>> {
+        return apiRest.getSearchGames(name = name, page = page)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

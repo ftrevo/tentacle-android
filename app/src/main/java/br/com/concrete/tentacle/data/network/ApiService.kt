@@ -26,7 +26,8 @@ interface ApiService {
     @GET("/games")
     fun getSearchGames(
         @Query("name") name: String,
-        @Query("limit") limit: Int = 99
+        @Query("limit") limit: Int = LIMIT_PAGE,
+        @Query("page") page: Int = 0
     ): Observable<BaseModel<GameResponse>>
 
     @POST("/games")

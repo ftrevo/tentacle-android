@@ -78,6 +78,9 @@ class ListCustom(
             buttonAction.setButtonName(context.getString(buttonNameActionReference))
             buttonAction.visibility = View.VISIBLE
             setButtonEffect()
+            initEndLessRecyclerView()
+        } else {
+            initEndLessRecyclerView()
         }
     }
 
@@ -105,7 +108,13 @@ class ListCustom(
                     }
                     super.onScrollStateChanged(recyclerView, newState)
                 }
+            })
+        }
+    }
 
+    private fun initEndLessRecyclerView() {
+        recyclerListView.adapter?.let {
+            recyclerListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 

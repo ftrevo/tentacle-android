@@ -33,7 +33,6 @@ private const val REQUEST_CODE = 1
 class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
 
     private val viewModelLoadMyGames: LoadMyGamesViewModel by viewModel()
-    private val medias = ArrayList<Media>()
     private var recyclerViewAdapter: BaseAdapter<Media>? = null
     private var lMedia = ArrayList<Media?>()
     private var count = 0
@@ -188,7 +187,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
         loadMoreItems = false
 
         recyclerViewAdapter?.notifyItemInserted(lMedia.size - 1)
-        lMedia.addAll(medias)
+        lMedia.addAll(ArrayList<Media>())
         recyclerViewAdapter?.setNewList(lMedia)
     }
 

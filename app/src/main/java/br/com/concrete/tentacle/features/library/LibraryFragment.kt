@@ -45,7 +45,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
 
     private val viewModelLibrary: LibraryViewModel by viewModel()
     private var recyclerViewAdapter: BaseAdapter<Library>? = null
-    private val libraries = ArrayList<Library?>()
+    private var libraries = ArrayList<Library?>()
     private val selectedFilterItems = ArrayList<SubItem>()
     private var queryParameters: QueryParameters? = null
 
@@ -87,12 +87,15 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         it.model?.let { list ->
-                            if (libraries.isNullOrEmpty()) {
-                                libraries.clear()
-                                libraries.addAll(list.list)
-                                count = list.count
+                            libraries.clear()
+
+                            val libraryResponse = it.model
+                            val libs = libraryResponse.list as ArrayList<Library?>
+                            count = libraryResponse.count
+
+                            libs.let {
                                 recyclerViewAdapter = BaseAdapter(
-                                    libraries,
+                                    libs,
                                     R.layout.library_item_layout,
                                     { view ->
                                         LibraryViewHolder(view, viewStateOpen = false) { library ->
@@ -114,15 +117,8 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
                                 recyclerListView.layoutManager = LinearLayoutManager(context)
                                 recyclerListView.setItemViewCacheSize(libraries.size)
                                 recyclerListView.adapter = recyclerViewAdapter
-                            } else {
-                                Handler().postDelayed({
-                                    recyclerViewAdapter?.notifyItemInserted(libraries.size - 1)
-                                    libraries.removeAt(libraries.size - 1)
-                                    recyclerViewAdapter?.notifyItemRemoved(libraries.size - 1)
-                                    libraries.addAll(it.model.list)
-                                    loadMoreItems = true
-                                    recyclerViewAdapter?.setNewList(libraries)
-                                }, TIME_PROGRESS_LOAD)
+
+                                libraries = libs
                             }
                         }
                         list.updateUi(libraries, it.filtering)
@@ -146,6 +142,32 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
                 }
             }
         })
+
+        viewModelLibrary.getLibraryMore().observe(this, Observer { stateModel ->
+            stateModel.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        val libraryResponse = it.model
+                        val libs = libraryResponse?.list as ArrayList<Library?>
+                        count = libraryResponse.count
+
+                        Handler().postDelayed({
+                            recyclerViewAdapter?.notifyItemInserted(libraries.size - 1)
+                            libraries.removeAt(libraries.size - 1)
+                            recyclerViewAdapter?.notifyItemRemoved(libraries.size - 1)
+                            libraries.addAll(libs)
+                            loadMoreItems = true
+                            recyclerViewAdapter?.setNewList(libraries)
+                        }, TIME_PROGRESS_LOAD)
+                    }
+                    ViewStateModel.Status.LOADING -> {}
+                    ViewStateModel.Status.ERROR -> {
+                        loadMoreItems = false
+                    }
+                }
+            }
+        })
+
         lifecycle.addObserver(viewModelLibrary)
     }
 
@@ -183,6 +205,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
             (activity as BaseActivity).setupToolbar(R.drawable.ic_logo_actionbar)
             selectedFilterItems.clear()
             activity?.invalidateOptionsMenu()
+            queryParameters = null
 
             searchView.isIconified = true
             searchView.setIconifiedByDefault(true)
@@ -209,11 +232,10 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
     }
 
     private fun getSearchGame(text: String?) {
-        libraries.clear()
         viewModelLibrary.loadLibrary(queryParameters, text, true)
     }
 
-    private fun validateSearch(search: String) = search.trim().length > MINIMAL_CHARACTER
+    private fun validateSearch(search: String) = search.trim().length >= MINIMAL_CHARACTER
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
@@ -253,10 +275,14 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
 
     override fun count() = count
 
-    override fun sizeElements(): Int  = libraries.size
+    override fun sizeElements(): Int = libraries.size
 
     override fun loadMore() {
-        viewModelLibrary.loadLibraryMore(queryParameters, searchView.query.toString(), true)
+        viewModelLibrary.loadLibraryMore(
+            queryParameters,
+            if (searchView.query.toString() == "") null else searchView.query.toString(),
+            true
+        )
         libraries.add(null)
         loadMoreItems = false
 
