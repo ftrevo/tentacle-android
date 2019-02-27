@@ -42,7 +42,7 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         loadMyGamesViewModel.getMyGames().observeForever {
-            actual = it
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
         loadMyGamesViewModel.loadMyGames()
@@ -66,10 +66,67 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         mockResponseError400()
 
         loadMyGamesViewModel.getMyGames().observeForever {
-            actual = it
+            actual =
+                ViewStateModel(status = it.peekContent().status, model = null, errors = it.peekContent().errors)
         }
 
         loadMyGamesViewModel.loadMyGames()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loadMyGamesViewModel calls loadMoreGames should return a list of medias`() {
+        val responseJson = getJson(
+            "mockjson/loadmygames/load_my_games_success.json"
+        )
+
+        val collectionType = object : TypeToken<BaseModel<MediaResponse>>() {}.type
+        val responseObject: BaseModel<MediaResponse> = GsonBuilder()
+            .create()
+            .fromJson(responseJson, collectionType)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = responseObject.data.list)
+        var actual = ViewStateModel<ArrayList<Media>>(status = ViewStateModel.Status.LOADING)
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+
+        loadMyGamesViewModel.getMyGamesPage().observeForever {
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
+        }
+
+        loadMyGamesViewModel.loadGamePage()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loadMyGamesViewModel calls loadMoreGames should return an error404`() {
+        val responseJson = getJson(
+            "mockjson/errors/error_400.json"
+        )
+
+        val responseObject: ErrorResponse =
+            GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
+
+        val expected =
+            ViewStateModel<ArrayList<Media>>(
+                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
+        var actual = ViewStateModel<ArrayList<Media>>(status = ViewStateModel.Status.LOADING)
+
+        mockResponseError400()
+
+        loadMyGamesViewModel.getMyGamesPage().observeForever {
+            actual =
+                ViewStateModel(status = it.peekContent().status, model = null, errors = it.peekContent().errors)
+        }
+
+        loadMyGamesViewModel.loadGamePage()
         assertEquals(expected, actual)
     }
 }
