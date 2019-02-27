@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+    <include layout="@layout/logo_tentacle"/>
+
+    <br.com.concrete.tentacle.custom.ListCustom
+            android:id="@+id/listHome"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_0"
+            app:layoutManager="LinearLayoutManager"
+            app:buttonNameError="@string/add_new_game"
+            app:errorDescription="@string/no_game_in_home"
+            app:emptyListMessage="@string/no_game_in_home"
+            app:icon="@drawable/il_wow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

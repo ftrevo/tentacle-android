@@ -40,6 +40,12 @@ interface ApiService {
         @Query("limit") limit: Int = 99
     ): Observable<BaseModel<MediaResponse>>
 
+    @GET("/loans")
+    fun getMyLoans(
+        @Query("mineOnly") mineOnly: Boolean = true,
+        @Query("limit") limit: Int = 99
+    ): Observable<BaseModel<LoanResponse>>
+
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>
 

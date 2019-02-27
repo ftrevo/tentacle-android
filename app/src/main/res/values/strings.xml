@@ -67,6 +67,7 @@
     <string name="toolbar_title_search_game">Cadastrar jogo</string>
     <string name="toolbar_title_loan_game">Reservar jogo</string>
     <string name="toolbar_title_lend_game">Detalhes do jogo</string>
+    <string name="toolbar_title_my_reservations">Minhas Reservas</string>
 
     <string name="red_dead_redemption">Red Dead Redemption 2</string>
     <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles
@@ -77,8 +78,12 @@
     <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
     <string name="toolbar_title_library">Biblioteca</string>
 
-    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a cadastrar.</string>
-    <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente novamente.</string>
+    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a
+        cadastrar.
+    </string>
+    <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente
+        novamente.
+    </string>
 
     <string name="bullet_ps3">PS3</string>
     <string name="bullet_ps4">PS4</string>
@@ -142,4 +147,7 @@
     <string name="already_account">Já tem uma conta?</string>
     <string name="was_some_mistake">Opa! Parece que ocorreu algum engano.</string>
     <string name="someone_was_faster">Eita! Parece que alguém foi mais rápido.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
