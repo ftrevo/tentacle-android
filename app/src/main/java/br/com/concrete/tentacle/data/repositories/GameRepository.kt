@@ -5,6 +5,7 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.LoanActionRequest
+import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
@@ -50,7 +51,7 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun getMyLoans(): Observable<BaseModel<LoanResponse>> {
+    fun loadMyLoans(): Observable<BaseModel<LoansListResponse>> {
         return apiRest.getMyLoans()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())

@@ -5,6 +5,7 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.LoanActionRequest
+import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
@@ -44,7 +45,7 @@ interface ApiService {
     fun getMyLoans(
         @Query("mineOnly") mineOnly: Boolean = true,
         @Query("limit") limit: Int = 99
-    ): Observable<BaseModel<LoanResponse>>
+    ): Observable<BaseModel<LoansListResponse>>
 
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>
