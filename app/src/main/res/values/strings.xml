@@ -142,4 +142,6 @@
     <string name="already_account">Já tem uma conta?</string>
     <string name="was_some_mistake">Opa! Parece que ocorreu algum engano.</string>
     <string name="someone_was_faster">Eita! Parece que alguém foi mais rápido.</string>
+    
+    <string name="pending">Pendente</string>
 </resources>

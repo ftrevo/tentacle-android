@@ -15,7 +15,6 @@
     <color name="activateIcon">#FFF</color>
     <color name="deactivateIcon">#26FFFFFF</color>
 
-
     <color name="textColorErrorButtonName">#757575</color>
 
     <color name="bgGameIcon">#D8D8D8</color>
@@ -34,5 +33,6 @@
     <color name="loanPerformed">#ff5f5f</color>
 
     <color name="backgroundSpinner">#0FFFFFFF</color>
+    <color name="white">#FFF</color>
 
 </resources>
