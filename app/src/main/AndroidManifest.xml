@@ -21,10 +21,10 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"
                 android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name=".features.register.RegisterActivity"
@@ -52,14 +52,7 @@
 
         <activity android:name=".features.lendgame.LendGameActivitySuccess"
                   android:theme="@style/AppTheme.FullScreen"/>
-
-        <activity android:name=".testing.GameViewTestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
+        
         <meta-data
                 android:name="io.fabric.ApiKey"
                 android:value="938be7df4916734a793fa34ad87a79af694d54a2"/>
