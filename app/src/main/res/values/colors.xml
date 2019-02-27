@@ -35,4 +35,6 @@
 
     <color name="backgroundSpinner">#0FFFFFFF</color>
 
+    <color name="gameStatusDefaultColor">#ff00</color>
+
 </resources>

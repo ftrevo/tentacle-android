@@ -13,7 +13,7 @@ const val PLATFORM_NINTENDO_SWITCH_ABBREV = "SWITCH"
 const val PLATFORM_NINTENDO_3DS_ABBREV = "3DS"
 
 const val SIMPLE_DATE_OUTPUT_FORMAT = "dd/MM/yy"
-const val SIMPLE_DATE_INPUT_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+const val DATE_FORMAT_ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 const val DEFAULT_RETURN_DATE_IN_WEEKS = 2
 
 const val LOAN_ACTION_LEND = "LEND"
@@ -35,3 +35,9 @@ const val IMAGE_SIZE_TYPE_720P = "720p" // 1280 x 720
 const val IMAGE_SIZE_TYPE_1080P = "1080p" // 1920 x 1080
 
 const val IMAGE_SIZE_TYPE_MAXIMUM = "_2x"
+
+const val GAME_MODE_SINGLE_PLAYER = "single-player"
+const val GAME_MODE_MULTI_PLAYER = "multiplayer"
+const val GAME_MODE_CO_OPERATIVE = "co-operative"
+const val GAME_MODE_MMO = "massively-multiplayer-online-mmo"
+const val GAME_MODE_SPLIT_SCREEN = "split-screen"
