@@ -35,3 +35,9 @@ const val IMAGE_SIZE_TYPE_720P = "720p" // 1280 x 720
 const val IMAGE_SIZE_TYPE_1080P = "1080p" // 1920 x 1080
 
 const val IMAGE_SIZE_TYPE_MAXIMUM = "_2x"
+
+const val GAME_MODE_SINGLE_PLAYER = "single-player"
+const val GAME_MODE_MULTI_PLAYER = "multiplayer"
+const val GAME_MODE_CO_OPERATIVE = "co-operative"
+const val GAME_MODE_MMO = "massively-multiplayer-online-mmo"
+const val GAME_MODE_SPLIT_SCREEN = "split-screen"

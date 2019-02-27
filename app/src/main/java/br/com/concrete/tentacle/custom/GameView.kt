@@ -9,9 +9,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.extensions.getPartOfDate
-import br.com.concrete.tentacle.extensions.loadImage
+import br.com.concrete.tentacle.extensions.loadImageUrl
+import br.com.concrete.tentacle.extensions.progress
 import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
+import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_LOGO_MED
+import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.game_view_header_layout.view.groupStatus
 import kotlinx.android.synthetic.main.game_view_header_layout.view.ivGameCover
 import kotlinx.android.synthetic.main.game_view_header_layout.view.rbGame
@@ -34,14 +37,15 @@ class GameView(
 
         with(game) {
 
-            // TODO novo loadImage com Url do Json
-             ivGameCover.loadImage(R.drawable.ic_game)
+            game.cover?.image_id?.let {
+                ivGameCover.loadImageUrl(Utils.assembleGameImageUrl(IMAGE_SIZE_TYPE_LOGO_MED, it))
+            }
 
             val inflater = LayoutInflater.from(this@GameView.context)
 
             tvGameName.text = name
             rating?.let {
-                rbGame.progress = Math.round(it)
+                rbGame.progress(it)
             }
             releaseDate?.let {
                 tvGameReleaseYear.text = it.toDate().getPartOfDate(Calendar.YEAR)
@@ -57,6 +61,9 @@ class GameView(
                     val tv = inflater.inflate(R.layout.game_mode_text_layout, null) as TextView
                     gameMode.name?.let { name ->
                         tv.text = name
+                        gameMode.getIconResource()?.let { icon ->
+                            tv.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
+                        }
                         gameModeContainer.addView(tv)
                     }
                 }

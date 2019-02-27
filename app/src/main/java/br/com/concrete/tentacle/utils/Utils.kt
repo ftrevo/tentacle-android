@@ -15,7 +15,7 @@ object Utils {
             .assets
             .open(path).bufferedReader().use { it.readText() }
 
-    fun assembleGameImageUrl(sizeType: String, imageId: String, isMaximumType: Boolean) =
+    fun assembleGameImageUrl(sizeType: String, imageId: String, isMaximumType: Boolean = false) =
         "https://images.igdb.com/igdb/image/upload/t_$sizeType" +
                 "${if (isMaximumType) IMAGE_SIZE_TYPE_MAXIMUM else EMPTY_STRING}/$imageId.jpg"
 }
