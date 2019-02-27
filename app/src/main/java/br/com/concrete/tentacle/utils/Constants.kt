@@ -23,15 +23,15 @@ const val PLATFORM_XBOX_360 = "XBOX360"
 const val PLATFORM_NINTENDO_SWITCH = "NINTENDOSWITCH"
 const val PLATFORM_NINTENDO_3DS = "NINTENDO3DS"
 
-const val IMAGE_SYZE_TYPE_COVER_SMALL = "cover_small" // 90 x 128
-const val IMAGE_SYZE_TYPE_SCREENSHOT_MED = "screenshot_med" // 569 x 320
-const val IMAGE_SYZE_TYPE_COVER_BIG = "cover_big" // 264 x 374
-const val IMAGE_SYZE_TYPE_LOGO_MED = "logo_med" // 284 x 160
-const val IMAGE_SYZE_TYPE_SCREENSHOT_BIG = "screenshot_big" // 889 x 500
-const val IMAGE_SYZE_TYPE_SCREENSHOT_HUGE = "screenshot_huge" // 1280 x 720
-const val IMAGE_SYZE_TYPE_THUMB = "thumb" // 90 x 90
-const val IMAGE_SYZE_TYPE_MICRO = "micro" // 35 x 35
-const val IMAGE_SYZE_TYPE_720P = "720p" // 1280 x 720
-const val IMAGE_SYZE_TYPE_1080P = "1080p" // 1920 x 1080
+const val IMAGE_SIZE_TYPE_COVER_SMALL = "cover_small" // 90 x 128
+const val IMAGE_SIZE_TYPE_SCREENSHOT_MED = "screenshot_med" // 569 x 320
+const val IMAGE_SIZE_TYPE_COVER_BIG = "cover_big" // 264 x 374
+const val IMAGE_SIZE_TYPE_LOGO_MED = "logo_med" // 284 x 160
+const val IMAGE_SIZE_TYPE_SCREENSHOT_BIG = "screenshot_big" // 889 x 500
+const val IMAGE_SIZE_TYPE_SCREENSHOT_HUGE = "screenshot_huge" // 1280 x 720
+const val IMAGE_SIZE_TYPE_THUMB = "thumb" // 90 x 90
+const val IMAGE_SIZE_TYPE_MICRO = "micro" // 35 x 35
+const val IMAGE_SIZE_TYPE_720P = "720p" // 1280 x 720
+const val IMAGE_SIZE_TYPE_1080P = "1080p" // 1920 x 1080
 
-const val IMAGE_SYZE_TYPE_MAXIMUM = "_2x"
+const val IMAGE_SIZE_TYPE_MAXIMUM = "_2x"
