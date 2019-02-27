@@ -28,7 +28,6 @@
             android:textColor="@color/textColor"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
-            android:text="@string/loremText"
             android:lines="@integer/line_1"
             android:ellipsize="end"
             android:layout_marginStart="@dimen/dp_8"
@@ -36,6 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/mediaImageView"
             app:layout_constraintStart_toEndOf="@+id/mediaImageView"
+            tools:text="@string/loremText"
             />
 
     <TextView
