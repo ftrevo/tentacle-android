@@ -15,12 +15,11 @@ import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
-
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MyReservationFragment : BaseFragment() {
 
-    private val myReservationViewModel: MyReservationViewModel by inject()
+    private val myReservationViewModel: MyReservationViewModel by viewModel()
 
     override fun getToolbarTitle(): Int {
         return R.string.toolbar_title_my_reservations
