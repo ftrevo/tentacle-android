@@ -4,13 +4,13 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.swipeDown
 import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions.scrollTo
-import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
+import androidx.test.espresso.contrib.RecyclerViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.extensions.waitUntil
+import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
 import kotlinx.android.synthetic.main.list_custom.*
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
@@ -59,9 +59,11 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
 
     @Test
     fun showErrorMessageAndButtonLoadAgain() {
-        mockWebServer.enqueue(MockResponse()
-            .setBody("mockjson/errors/error_400.json".getJson())
-            .setResponseCode(400))
+        mockWebServer.enqueue(
+            MockResponse()
+                .setBody("mockjson/errors/error_400.json".getJson())
+                .setResponseCode(400)
+        )
 
         onView(withId(R.id.recyclerListView))
             .check(matches(not(isDisplayed())))
@@ -76,6 +78,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
     @Test
     fun showRecycleViewWithItemsEndLess() {
         val response = "mockjson/loadmygames/load_my_games_success.json".getJson()
+        val responseSecond = "mockjson/loadmygames/load_my_games_success_second.json".getJson()
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -84,7 +87,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(response)
+                .setBody(responseSecond)
         )
 
         onView(withId(R.id.recyclerListView))
@@ -94,6 +97,14 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
 
+        val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!!
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+
+        onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+
+        Thread.sleep(4000)
+
+        onView(withRecyclerView(R.id.recyclerListView).atPosition(oldCount))
+            .check(matches(hasDescendant(withText("Teste Second Last"))))
     }
 }

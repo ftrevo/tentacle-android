@@ -124,12 +124,10 @@ class ListCustom(
                             pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition()
                         }
 
-                        if (dy > 0) {
-                            if (mOnScrollListener.loadPage() && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                                if (mOnScrollListener.count() > mOnScrollListener.sizeElements()) {
-                                    mOnScrollListener.loadMore()
-                                    buttonAction.visibility = View.GONE
-                                }
+                        if (mOnScrollListener.loadPage() && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                            if (mOnScrollListener.count() > mOnScrollListener.sizeElements()) {
+                                mOnScrollListener.loadMore()
+                                buttonAction.visibility = View.GONE
                             }
                         }
                     }
