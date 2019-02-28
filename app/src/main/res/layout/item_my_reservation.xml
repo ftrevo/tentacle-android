@@ -71,17 +71,20 @@
 
         <ImageView
                 android:id="@+id/dateImage"
+                android:paddingEnd="@dimen/dp_6"
+                android:paddingStart="@dimen/dp_0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_6"
                 android:src="@drawable/ic_date_range_white_24dp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/status"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
                 android:id="@+id/status"
                 android:textColor="@color/white"
-                android:layout_marginStart="@dimen/dp_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/dateImage"
