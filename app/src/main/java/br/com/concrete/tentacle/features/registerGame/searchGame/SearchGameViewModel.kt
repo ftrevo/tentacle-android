@@ -101,7 +101,7 @@ class SearchGameViewModel(
 
     fun getSearchGame(): LiveData<ViewStateModel<GameResponse>> = viewSearchGame
     fun getRegisteredGame(): LiveData<Event<ViewStateModel<Game>>> = viewGame
-    fun getRegisteredGameMore(): LiveData<Event<ViewStateModel<GameResponse>>> = viewGameMore
+    fun getSearchMoreGame(): LiveData<Event<ViewStateModel<GameResponse>>> = viewGameMore
     fun onePage() {
         page = 1
     }
