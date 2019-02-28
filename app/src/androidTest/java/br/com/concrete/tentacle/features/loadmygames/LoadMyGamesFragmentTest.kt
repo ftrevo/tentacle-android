@@ -2,13 +2,14 @@ package br.com.concrete.tentacle.features.loadmygames
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers.*
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
+import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.extensions.waitUntil
+import kotlinx.android.synthetic.main.list_custom.*
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
@@ -68,5 +69,37 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
             .check(matches(isDisplayed()))
         onView(withId(R.id.errorDescription))
             .check(matches(withText(R.string.load_games_error_not_know)))
+    }
+
+    @Test
+    fun showRecycleViewWithItemsEndLess() {
+        val response = "mockjson/loadmygames/load_my_games_success.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
+        onView(withId(R.id.recyclerListView))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.recyclerListError))
+            .check(matches(not(isDisplayed())))
+        onView(withId(R.id.recyclerListView))
+            .perform(RecyclerViewActions.scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+
+        onView(withId(R.id.recyclerListView))
+            .perform(RecyclerViewActions.scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+
+        onView(withId(R.id.recyclerListView)
+            .childAtPosition(testFragment.recyclerListView.adapter?.itemCount!!))
+            .check(matches(withText("nome de jogo muito grande par...")))
     }
 }
