@@ -16,9 +16,8 @@ class BaseAdapter<T>(
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
 
-    override fun getItemCount(): Int {
-        return if (elements.isNullOrEmpty()) VIEW_TYPE_LOADING else elements.size
-    }
+    override fun getItemCount() = if (elements.isNullOrEmpty()) VIEW_TYPE_LOADING else elements.size
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
@@ -28,14 +27,15 @@ class BaseAdapter<T>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return if (viewType == VIEW_TYPE_LOADING) {
             ProgressBarViewHolder(
-                LayoutInflater.from(parent.context)
+                inflater
                     .inflate(R.layout.item_progress, parent, false)
             )
         } else {
             holder(
-                LayoutInflater.from(parent.context)
+                inflater
                     .inflate(layout, parent, false)
             )
         }
@@ -46,7 +46,5 @@ class BaseAdapter<T>(
         notifyDataSetChanged()
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (elements[position] == null) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
-    }
+    override fun getItemViewType(position: Int) = if (elements[position] == null) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
 }
