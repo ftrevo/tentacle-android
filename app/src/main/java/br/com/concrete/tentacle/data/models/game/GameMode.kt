@@ -6,12 +6,9 @@ import br.com.concrete.tentacle.utils.GAME_MODE_MMO
 import br.com.concrete.tentacle.utils.GAME_MODE_MULTI_PLAYER
 import br.com.concrete.tentacle.utils.GAME_MODE_SINGLE_PLAYER
 import br.com.concrete.tentacle.utils.GAME_MODE_SPLIT_SCREEN
-import com.google.gson.annotations.SerializedName
 
 data class GameMode(
-    @SerializedName("slug")
     val slug: String?,
-    @SerializedName("name")
     val name: String?
 ) {
 

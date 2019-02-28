@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.game_view_component
+package br.com.concrete.tentacle.features.gameViewComponent
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso

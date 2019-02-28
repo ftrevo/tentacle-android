@@ -1,5 +1,8 @@
 package br.com.concrete.tentacle.data.models.game
 
+import com.google.gson.annotations.SerializedName
+
 data class Cover(
-    val image_id: String?
+    @SerializedName("imageId")
+    val imageId: String?
 )
