@@ -29,9 +29,9 @@ class ListCustom(
     private var buttonNameActionReference: Int = DEFAULT_INVALID_RESOURCE
     private var endLessScroll: Boolean = DEFAULT_INVALID_RESOURCE_BOOLEAN
 
-    var pastVisibleItems: Int = 0
-    var visibleItemCount: Int = 0
-    var totalItemCount: Int = 0
+    private var pastVisibleItems: Int = 0
+    private var visibleItemCount: Int = 0
+    private var totalItemCount: Int = 0
 
     private lateinit var mOnScrollListener: OnScrollListener
     private var emptyListMessageReference: Int = DEFAULT_INVALID_RESOURCE
@@ -78,10 +78,8 @@ class ListCustom(
             buttonAction.setButtonName(context.getString(buttonNameActionReference))
             buttonAction.visibility = View.VISIBLE
             setButtonEffect()
-            initEndLessRecyclerView()
-        } else {
-            initEndLessRecyclerView()
         }
+        initEndLessRecyclerView()
     }
 
     private fun setButtonEffect() {
