@@ -13,7 +13,7 @@ class SetTextInTextView(private val text: String) : ViewAction {
     }
 
     override fun getConstraints(): Matcher<View> {
-        return  isAssignableFrom(TextView::class.java)
+        return isAssignableFrom(TextView::class.java)
     }
 
     override fun perform(uiController: UiController?, view: View?) {
