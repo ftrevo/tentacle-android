@@ -1,15 +1,14 @@
 package br.com.concrete.tentacle.features.loadmygames
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.contrib.RecyclerViewActions.scrollTo
 import androidx.test.espresso.matcher.ViewMatchers.*
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
-import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.extensions.waitUntil
-import kotlinx.android.synthetic.main.list_custom.*
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
@@ -79,6 +78,11 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
                 .setResponseCode(200)
                 .setBody(response)
         )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
 
         onView(withId(R.id.recyclerListView))
             .perform(isDisplayed().waitUntil())
@@ -87,19 +91,14 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
         onView(withId(R.id.recyclerListView))
-            .perform(RecyclerViewActions.scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
-
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(response)
-        )
+            .perform(scrollTo<LoadMyGamesViewHolder>(hasDescendant(withText("Teste"))))
 
         onView(withId(R.id.recyclerListView))
-            .perform(RecyclerViewActions.scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+            .perform(swipeUp())
 
-        onView(withId(R.id.recyclerListView)
-            .childAtPosition(testFragment.recyclerListView.adapter?.itemCount!!))
-            .check(matches(withText("nome de jogo muito grande par...")))
+        onView(withId(R.id.recyclerListView))
+            .perform(scrollTo<LoadMyGamesViewHolder>(hasDescendant(withText("Dell"))))
+        onView(withId(R.id.recyclerListView))
+            .perform(swipeUp())
     }
 }
