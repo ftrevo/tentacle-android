@@ -106,6 +106,12 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-android:$mockitoAndroid"
     androidTestImplementation "androidx.test.ext:junit:$androidxTest"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoIntent"
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$espressoContrib") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"
