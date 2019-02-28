@@ -143,6 +143,13 @@
     <string name="already_account">Já tem uma conta?</string>
     <string name="was_some_mistake">Opa! Parece que ocorreu algum engano.</string>
     <string name="someone_was_faster">Eita! Parece que alguém foi mais rápido.</string>
+
+    <string name="text_game_info">Informações do jogo</string>
+    <string name="text_game_gender">Gênero</string>
+    <string name="text_game_platform">Plataforma</string>
+    <string name="text_game_owner">Dono do jogo</string>
+    <string name="text_game_single_player">Single Player</string>
+    <string name="text_game_multi_player">Multiplayer online</string>
     <string name="pending">Pendente</string>
 
     <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.</string>
