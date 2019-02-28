@@ -22,10 +22,12 @@ import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.lendgame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
-import kotlinx.android.synthetic.main.fragment_game_list.*
-import kotlinx.android.synthetic.main.list_custom.*
-import kotlinx.android.synthetic.main.list_custom.view.*
-import kotlinx.android.synthetic.main.list_error_custom.view.*
+import kotlinx.android.synthetic.main.fragment_game_list.list
+import kotlinx.android.synthetic.main.list_custom.recyclerListView
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_custom.view.buttonAction
+import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import org.koin.android.viewmodel.ext.android.viewModel
 
 private const val REQUEST_CODE = 1

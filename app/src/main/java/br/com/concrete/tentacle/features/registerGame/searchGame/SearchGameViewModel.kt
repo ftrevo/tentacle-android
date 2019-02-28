@@ -79,12 +79,6 @@ class SearchGameViewModel(
 
     private fun obsSearchGameMore(title: String) =
         gameRepository.getSearchGames(title, page).subscribe({ base ->
-            /*if (base.data.list.isNotEmpty()) {
-                base.data.list.add(Game.getEmptyGame())
-            } else {
-                base.data.list
-            }*/
-
             viewGameMore.postValue(
                 Event(
                     ViewStateModel(
@@ -107,7 +101,7 @@ class SearchGameViewModel(
 
     fun getSearchGame(): LiveData<ViewStateModel<GameResponse>> = viewSearchGame
     fun getRegisteredGame(): LiveData<Event<ViewStateModel<Game>>> = viewGame
-    fun getRegisteredGameMore(): LiveData<Event<ViewStateModel<GameResponse>>> = viewGameMore
+    fun getSearchMoreGame(): LiveData<Event<ViewStateModel<GameResponse>>> = viewGameMore
     fun onePage() {
         page = 1
     }

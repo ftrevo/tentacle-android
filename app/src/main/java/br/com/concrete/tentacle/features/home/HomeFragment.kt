@@ -40,7 +40,7 @@ class HomeFragment : BaseFragment() {
         homeViewModel.getHomeGames().observe(this, Observer { base ->
             when (base.status) {
                 ViewStateModel.Status.SUCCESS -> {
-                    loadRecyclerView(base.model!!)
+                    base.model?.let { loadRecyclerView(it) }
                 }
                 ViewStateModel.Status.ERROR -> {
                     callError(base)
@@ -64,12 +64,12 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun loadRecyclerView(model: ArrayList<Game?>) {
-        model?.let {
+        model.let {
             val recyclerViewAdapter = BaseAdapter(
                 model,
                 R.layout.item_home_game,
                 { view ->
-                    view?.let { it1 -> HomeViewHolder(it1) }
+                    HomeViewHolder(view)
                 }, { holder, element ->
                     HomeViewHolder.callBack(holder = holder, element = element)
                 })

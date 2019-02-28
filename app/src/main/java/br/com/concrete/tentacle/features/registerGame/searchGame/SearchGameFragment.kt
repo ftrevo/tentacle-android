@@ -91,7 +91,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
             }
         })
 
-        gameViewModel.getRegisteredGameMore().observe(this, Observer {
+        gameViewModel.getSearchMoreGame().observe(this, Observer {
             it.getContentIfNotHandler()?.let {
                 when (it.status) {
                     ViewStateModel.Status.LOADING -> {
