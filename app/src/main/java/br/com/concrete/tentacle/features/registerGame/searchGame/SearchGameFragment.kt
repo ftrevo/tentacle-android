@@ -156,7 +156,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
         recyclerViewAdapter =
             BaseAdapter(model,
                 R.layout.item_game_search, {
-                    it.let { it1 -> SearchGameViewHolder(it1) }
+                    SearchGameViewHolder(it)
                 }, { holder, element ->
                     SearchGameViewHolder.callBack(holder = holder, game = element, listener = { gameSelected ->
                         navigateToRegisterPlatform(gameSelected)
