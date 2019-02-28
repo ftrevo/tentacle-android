@@ -78,7 +78,13 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                                 lMedia.removeAt(lMedia.size - 1)
                                 recyclerViewAdapter?.notifyItemRemoved(lMedia.size - 1)
                                 lMedia.addAll(medias)
+
+                                if (lMedia.size == count) {
+                                    lMedia.add(Media.getEmptyMedia())
+                                }
+
                                 loadMoreItems = true
+                                list.buttonAction.visibility = View.VISIBLE
                                 recyclerViewAdapter?.setNewList(lMedia)
                             }, TIME_PROGRESS_LOAD)
                         }

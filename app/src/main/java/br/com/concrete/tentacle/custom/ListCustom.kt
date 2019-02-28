@@ -29,9 +29,9 @@ class ListCustom(
     private var buttonNameActionReference: Int = DEFAULT_INVALID_RESOURCE
     private var endLessScroll: Boolean = DEFAULT_INVALID_RESOURCE_BOOLEAN
 
-    var pastVisibleItems: Int = 0
-    var visibleItemCount: Int = 0
-    var totalItemCount: Int = 0
+    private var pastVisibleItems: Int = 0
+    private var visibleItemCount: Int = 0
+    private var totalItemCount: Int = 0
 
     private lateinit var mOnScrollListener: OnScrollListener
     private var emptyListMessageReference: Int = DEFAULT_INVALID_RESOURCE
@@ -78,10 +78,8 @@ class ListCustom(
             buttonAction.setButtonName(context.getString(buttonNameActionReference))
             buttonAction.visibility = View.VISIBLE
             setButtonEffect()
-            initEndLessRecyclerView()
-        } else {
-            initEndLessRecyclerView()
         }
+        initEndLessRecyclerView()
     }
 
     private fun setButtonEffect() {
@@ -102,7 +100,7 @@ class ListCustom(
                                     buttonAction.visibility = View.VISIBLE
                                 }
                             }
-                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == it.itemCount - 1) {
+                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == mOnScrollListener.count()) {
                             buttonAction.visibility = View.VISIBLE
                         }
                     }
@@ -130,6 +128,7 @@ class ListCustom(
                             if (mOnScrollListener.loadPage() && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
                                 if (mOnScrollListener.count() > mOnScrollListener.sizeElements()) {
                                     mOnScrollListener.loadMore()
+                                    buttonAction.visibility = View.GONE
                                 }
                             }
                         }
