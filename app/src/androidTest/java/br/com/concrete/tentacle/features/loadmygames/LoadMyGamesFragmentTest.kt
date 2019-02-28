@@ -1,14 +1,17 @@
 package br.com.concrete.tentacle.features.loadmygames
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.swipeDown
 import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollTo
+import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.extensions.waitUntil
+import kotlinx.android.synthetic.main.list_custom.*
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
@@ -90,20 +93,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
             .check(matches(isDisplayed()))
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
-        onView(withId(R.id.recyclerListView))
-            .perform(scrollTo<LoadMyGamesViewHolder>(hasDescendant(withText("Teste"))))
 
-        onView(withId(R.id.recyclerListView))
-            .perform(swipeUp())
-
-        Thread.sleep(1000)
-
-        onView(withId(R.id.recyclerListView))
-            .perform(swipeUp())
-
-        onView(withId(R.id.recyclerListView))
-            .perform(scrollTo<LoadMyGamesViewHolder>(hasDescendant(withText("Dell"))))
-        onView(withId(R.id.recyclerListView))
-            .perform(swipeUp())
+        onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
     }
 }
