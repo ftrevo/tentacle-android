@@ -96,6 +96,11 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .perform(swipeUp())
 
+        Thread.sleep(1000)
+
+        onView(withId(R.id.recyclerListView))
+            .perform(swipeUp())
+
         onView(withId(R.id.recyclerListView))
             .perform(scrollTo<LoadMyGamesViewHolder>(hasDescendant(withText("Dell"))))
         onView(withId(R.id.recyclerListView))
