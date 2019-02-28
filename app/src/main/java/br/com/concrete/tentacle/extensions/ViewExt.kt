@@ -23,5 +23,5 @@ fun View.animation(@AnimRes animation: Int, animStart: () -> Unit) {
 }
 
 fun View.visible(isVisible: Boolean) {
-    this.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+    this.visibility = if (isVisible) View.VISIBLE else View.GONE
 }
