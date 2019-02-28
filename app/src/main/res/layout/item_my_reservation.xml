@@ -72,6 +72,7 @@
         <ImageView
                 android:id="@+id/dateImage"
                 android:paddingEnd="@dimen/dp_6"
+                android:paddingStart="@dimen/dp_0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dp_6"
