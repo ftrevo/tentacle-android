@@ -10,5 +10,5 @@ data class Media(
     val _id: String,
     val platform: Platform,
     val activeLoan: ActiveLoan?,
-    @SerializedName("game") val gameData: GameData?
+    val game: GameData?
 ) : Parcelable

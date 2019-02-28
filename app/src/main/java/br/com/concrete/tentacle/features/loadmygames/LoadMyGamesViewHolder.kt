@@ -15,7 +15,7 @@ class LoadMyGamesViewHolder(
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, el: Media, listener: (Media) -> Unit) {
             if (holder is LoadMyGamesViewHolder) {
-                holder.mLinearLayout.game_name.text = el.gameData?.name ?: ""
+                holder.mLinearLayout.game_name.text = el.game?.name ?: ""
                 holder.mLinearLayout.game_media.text = el.platform.platformName
                 el.activeLoan?.let {
                     holder.mLinearLayout.ivLoanRequested.visibility = View.VISIBLE
