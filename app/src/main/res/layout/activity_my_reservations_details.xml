@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@color/colorPrimary"
+    <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_default">
 
-            <br.com.concrete.tentacle.custom.GameView
+        <br.com.concrete.tentacle.custom.GameView
                 android:id="@+id/gameView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"/>
 
 
-            <TextView
+        <TextView
                 android:id="@+id/tvGamePlatformTitle"
                 android:text="@string/text_game_platform"
                 app:layout_constraintTop_toBottomOf="@+id/gameView"
@@ -33,9 +34,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <TextView
+        <TextView
                 android:id="@+id/tvGamePlatform"
-                tools:text="PS3"
+                tools:text="@string/bullet_ps3"
                 app:layout_constraintTop_toBottomOf="@+id/tvGamePlatformTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textAppearance="@style/TextBook.16sp"
@@ -43,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <TextView
+        <TextView
                 android:id="@+id/tvGameOwnerTitle"
                 android:text="@string/text_game_owner"
                 app:layout_constraintTop_toBottomOf="@+id/gameView"
@@ -55,9 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <TextView
+        <TextView
                 android:id="@+id/tvGameOwner"
-                tools:text="Nome do Dono"
+                tools:text="@string/text_game_owner"
                 app:layout_constraintTop_toBottomOf="@+id/tvGameOwnerTitle"
                 app:layout_constraintStart_toStartOf="@id/tvGameOwnerTitle"
                 android:textAppearance="@style/TextBook.16sp"
@@ -66,15 +67,15 @@
                 android:layout_height="wrap_content"/>
 
 
-            <TextView
+        <TextView
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGameOwner"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"/>
 
 
-            <include
+        <include
                 layout="@layout/progress_include"
                 android:layout_width="@dimen/dp_80"
                 android:layout_height="@dimen/dp_80"
