@@ -13,5 +13,6 @@
                 android:usesCleartextTraffic="true" tools:targetApi="m"/>
         <activity android:name=".testing.BottomBarTestActivity"/>
         <activity android:name=".testing.SingleFragmentTestActivityNoActionBarNoBottomBar"/>
+        <activity android:name=".testing.GameViewTestActivity"/>
     </application>
 </manifest>

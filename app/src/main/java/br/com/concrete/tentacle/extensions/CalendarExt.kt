@@ -8,3 +8,7 @@ fun Calendar.format(outFormat: String): String {
     val out = SimpleDateFormat(outFormat, Locale.getDefault())
     return out.format(this.time)
 }
+
+fun Calendar.getPartOfDate(part: Int): String {
+    return this.get(part).toString()
+}
