@@ -154,7 +154,7 @@
 
     <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.</string>
     <string name="load_reservations_empty_list">Você ainda não possui nenhum pedido de reserva.</string>
-    <string name="btn_reservation_error">Ir para a biblioteca</string>
+    <string name="btn_reservation_error_empty">Ir para a biblioteca</string>
 
     <string name="my_reservation_owner_name">Dono: %1$s</string>
 </resources>
