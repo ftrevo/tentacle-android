@@ -6,11 +6,12 @@ import br.com.concrete.tentacle.utils.GAME_MODE_MMO
 import br.com.concrete.tentacle.utils.GAME_MODE_MULTI_PLAYER
 import br.com.concrete.tentacle.utils.GAME_MODE_SINGLE_PLAYER
 import br.com.concrete.tentacle.utils.GAME_MODE_SPLIT_SCREEN
+import java.io.Serializable
 
 data class GameMode(
     val slug: String?,
     val name: String?
-) {
+) : Serializable {
 
     fun getIconResource(): Int? {
         var icon: Int? = null

@@ -13,7 +13,7 @@ class MyReservationViewModel(private val gameRepository: GameRepository) : BaseV
     private val viewStateGame: MutableLiveData<ViewStateModel<ArrayList<LoanResponse>>> = MutableLiveData()
     fun getMyReservations() = viewStateGame
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadMyReservations() {
         viewStateGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(gameRepository.loadMyLoans()
