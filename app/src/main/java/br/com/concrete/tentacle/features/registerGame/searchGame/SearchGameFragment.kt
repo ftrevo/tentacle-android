@@ -112,6 +112,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
                                 }
                                 loadMoreItems = true
                                 recyclerViewAdapter?.setNewList(tempList)
+                                listCustom.buttonAction.visibility = View.VISIBLE
                             }, TIME_PROGRESS_LOAD)
                         }
                     }

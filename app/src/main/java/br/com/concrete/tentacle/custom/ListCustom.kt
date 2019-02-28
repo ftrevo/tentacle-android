@@ -102,7 +102,7 @@ class ListCustom(
                                     buttonAction.visibility = View.VISIBLE
                                 }
                             }
-                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == it.itemCount - 1) {
+                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == (mOnScrollListener.count())) {
                             buttonAction.visibility = View.VISIBLE
                         }
                     }
@@ -130,6 +130,7 @@ class ListCustom(
                             if (mOnScrollListener.loadPage() && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
                                 if (mOnScrollListener.count() > mOnScrollListener.sizeElements()) {
                                     mOnScrollListener.loadMore()
+                                    buttonAction.visibility = View.GONE
                                 }
                             }
                         }
