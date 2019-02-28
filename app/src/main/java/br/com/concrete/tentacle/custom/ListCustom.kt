@@ -78,10 +78,8 @@ class ListCustom(
             buttonAction.setButtonName(context.getString(buttonNameActionReference))
             buttonAction.visibility = View.VISIBLE
             setButtonEffect()
-            initEndLessRecyclerView()
-        } else {
-            initEndLessRecyclerView()
         }
+        initEndLessRecyclerView()
     }
 
     private fun setButtonEffect() {
@@ -102,7 +100,7 @@ class ListCustom(
                                     buttonAction.visibility = View.VISIBLE
                                 }
                             }
-                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == (mOnScrollListener.count())) {
+                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == mOnScrollListener.count()) {
                             buttonAction.visibility = View.VISIBLE
                         }
                     }
