@@ -91,10 +91,10 @@
     <dimen name="loan_image_margin_top">20dp</dimen>
     <dimen name="loan_text_margin_top">22dp</dimen>
 
-
     <dimen name="defaultCorner3dp">3dp</dimen>
     <dimen name="defaultCorner22dp">22dp</dimen>
 
+    <dimen name="gameStatusRadius">8dp</dimen>
 
 </resources>
 
