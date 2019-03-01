@@ -15,6 +15,7 @@
     <string name="phone_error">Forneça um número de telefone válido</string>
     <string name="state_error">Selecione um estado</string>
     <string name="city_error">Selecione uma cidade</string>
+    <string name="load_error">Desculpe, não foi possível carregar os dados!</string>
 
     <string name="ok">Ok</string>
     <string name="error_dialog_title">Erro</string>

@@ -22,33 +22,39 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"/>
 
-
-        <TextView
-                android:id="@+id/tvGamePlatformTitle"
-                android:text="@string/text_game_platform"
+        <LinearLayout
+                android:id="@+id/platformLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/gameView"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="@dimen/dp_25"
-                android:textAppearance="@style/TextHeavy.16sp"
-                android:textColor="@color/textColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/tvGamePlatform"
-                tools:text="@string/bullet_ps3"
-                app:layout_constraintTop_toBottomOf="@+id/tvGamePlatformTitle"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textAppearance="@style/TextBook.16sp"
-                android:textColor="@color/textColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tvGamePlatformTitle"
+                    android:text="@string/text_game_platform"
+
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:textAppearance="@style/TextHeavy.16sp"
+                    android:textColor="@color/textColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tvGamePlatform"
+                    tools:text="@string/bullet_ps3"
+                    android:textAppearance="@style/TextBook.16sp"
+                    android:textColor="@color/textColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <TextView
                 android:id="@+id/tvGameOwnerTitle"
                 android:text="@string/text_game_owner"
                 app:layout_constraintTop_toBottomOf="@+id/gameView"
-                app:layout_constraintStart_toEndOf="@id/tvGamePlatformTitle"
+                app:layout_constraintStart_toEndOf="@id/platformLayout"
                 android:layout_marginStart="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_25"
                 android:textAppearance="@style/TextHeavy.16sp"
@@ -58,7 +64,9 @@
 
         <TextView
                 android:id="@+id/tvGameOwner"
-                tools:text="@string/text_game_owner"
+                tools:text="@string/loremText"
+                android:lines="@integer/line_1"
+                android:ellipsize="end"
                 app:layout_constraintTop_toBottomOf="@+id/tvGameOwnerTitle"
                 app:layout_constraintStart_toStartOf="@id/tvGameOwnerTitle"
                 android:textAppearance="@style/TextBook.16sp"
@@ -66,14 +74,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-
         <TextView
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGameOwner"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"/>
-
 
         <include
                 layout="@layout/progress_include"
@@ -83,5 +89,16 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.Group
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/group"
+                android:visibility="gone"
+                app:constraint_referenced_ids="gameView,platformLayout,tvGameOwnerTitle,tvGameOwner"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </ScrollView>

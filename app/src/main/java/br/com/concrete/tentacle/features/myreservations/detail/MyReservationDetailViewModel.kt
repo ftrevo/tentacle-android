@@ -1,12 +1,12 @@
 package br.com.concrete.tentacle.features.myreservations.detail
 
 import androidx.lifecycle.MutableLiveData
+import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.data.repositories.GameRepository
-import br.com.concrete.tentacle.features.myreservations.MyReservationBaseViewModel
 
-class MyReservationDetailViewModel(private val gameRepository: GameRepository) : MyReservationBaseViewModel() {
+class MyReservationDetailViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
     private val viewStateGame: MutableLiveData<ViewStateModel<LoanResponse>> = MutableLiveData()
     fun getViewState() = viewStateGame
 
