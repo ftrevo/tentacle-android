@@ -21,14 +21,31 @@ class MyReservationViewHolder(
             if (holder is MyReservationViewHolder) {
                 holder.layout.game_owner.text = String.format(holder.itemView.context.getString(R.string.my_reservation_owner_name), el.mediaOwner.name)
                 holder.layout.game_name.text = el.game.name
-                el.loanDate?.let {
-                    holder.layout.status.text = el.loanDate.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT)
-                    holder.layout.dateImage.visibility = View.VISIBLE
-                    loanClick(el)
-                } ?: run {
-                    holder.layout.status.text = holder.itemView.context.getString(R.string.pending)
-                    holder.layout.dateImage.visibility = View.GONE
+
+                var text: String? = null
+                var visibility: Int? = null
+                when (el.getLoanState()) {
+                    LoanResponse.LoanState.ACTIVE -> {
+                        text = el.loanDate?.toDate()?.format(SIMPLE_DATE_OUTPUT_FORMAT) ?: ""
+                        visibility = View.VISIBLE
+                    }
+                    LoanResponse.LoanState.PENDING -> {
+                        text = holder.itemView.context.getString(R.string.loan_state_pending)
+                        visibility = View.GONE
+                    }
+                    LoanResponse.LoanState.EXPIRED -> {
+                        text = holder.itemView.context.getString(R.string.loan_state_expired)
+                        visibility = View.GONE
+                    }
                 }
+
+                text?.let {
+                    holder.layout.status.text = text
+                }
+                visibility?.let {
+                    holder.layout.dateImage.visibility = visibility
+                }
+                loanClick(el)
             }
         }
     }
