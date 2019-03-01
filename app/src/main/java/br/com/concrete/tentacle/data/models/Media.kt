@@ -9,5 +9,23 @@ data class Media(
     val _id: String,
     val platform: Platform,
     val activeLoan: ActiveLoan?,
-    val gameData: GameData?
-) : Parcelable
+    val game: GameData?
+) : Parcelable {
+
+    companion object {
+        const val ID_EMPTY_MEDIA = "-1"
+
+        fun getEmptyMedia(): Media = Media(
+            ID_EMPTY_MEDIA,
+            Platform.PS4,
+            ActiveLoan(ID_EMPTY_MEDIA,
+                "",
+                "",
+                "",
+                "",
+                ""
+            ),
+            GameData(ID_EMPTY_MEDIA, "")
+        )
+    }
+}

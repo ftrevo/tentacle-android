@@ -71,7 +71,6 @@
     <string name="toolbar_title_my_reservations">Minhas Reservas</string>
     <string name="toolbar_title_my_reservations_detail">Detalhes da reserva</string>
 
-    <string name="red_dead_redemption">Red Dead Redemption 2</string>
     <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles
         aparecerem aqui!
     </string>
@@ -156,7 +155,7 @@
 
     <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.</string>
     <string name="load_reservations_empty_list">Você ainda não possui nenhum pedido de reserva.</string>
-    <string name="btn_reservation_error">Ir para a biblioteca</string>
+    <string name="btn_reservation_error_empty">Ir para a biblioteca</string>
 
     <string name="my_reservation_owner_name">Dono: %1$s</string>
 

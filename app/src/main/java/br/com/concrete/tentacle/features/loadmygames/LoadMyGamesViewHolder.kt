@@ -15,24 +15,35 @@ class LoadMyGamesViewHolder(
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, el: Media, listener: (Media) -> Unit) {
             if (holder is LoadMyGamesViewHolder) {
-                holder.mLinearLayout.game_name.text = el.gameData?.name ?: ""
-                holder.mLinearLayout.game_media.text = el.platform.platformName
-                el.activeLoan?.let {
-                    holder.mLinearLayout.ivLoanRequested.visibility = View.VISIBLE
-                    val color = if (it.loanDate == null) { // Loan was requested
-                        ContextCompat.getColor(holder.mLinearLayout.context, R.color.colorAccent)
-                    } else {
-                        ContextCompat.getColor(holder.mLinearLayout.context, R.color.loanPerformed)
-                    }
-                    holder.mLinearLayout.ivLoanRequested.setColorFilter(color)
 
-                    holder.itemView.setOnClickListener {
-                        listener(el)
+                if (el._id == Media.ID_EMPTY_MEDIA) {
+                    visibleView(holder, false)
+                } else {
+                    holder.mLinearLayout.game_name.text = el.game?.name ?: ""
+                    holder.mLinearLayout.game_media.text = el.platform.platformName
+                    el.activeLoan?.let {
+                        holder.mLinearLayout.ivLoanRequested.visibility = View.VISIBLE
+                        val color = if (it.loanDate == null) { // Loan was requested
+                            ContextCompat.getColor(holder.mLinearLayout.context, R.color.colorAccent)
+                        } else {
+                            ContextCompat.getColor(holder.mLinearLayout.context, R.color.loanPerformed)
+                        }
+                        holder.mLinearLayout.ivLoanRequested.setColorFilter(color)
+
+                        holder.itemView.setOnClickListener {
+                            listener(el)
+                        }
+                    } ?: run {
+                        holder.mLinearLayout.ivLoanRequested.visible(false)
                     }
-                } ?: run {
-                    holder.mLinearLayout.ivLoanRequested.visible(false)
+                    visibleView(holder, true)
                 }
             }
+        }
+
+        private fun visibleView(holder: LoadMyGamesViewHolder, isVisible: Boolean) {
+            val state = if (isVisible) View.VISIBLE else View.INVISIBLE
+            holder.mLinearLayout.visibility = state
         }
     }
 }

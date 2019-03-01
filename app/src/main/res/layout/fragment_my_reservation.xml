@@ -13,7 +13,7 @@
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_0"
             app:layoutManager="LinearLayoutManager"
-            app:buttonNameError="@string/btn_reservation_error"
+            app:buttonNameError="@string/btn_reservation_error_empty"
             app:errorDescription="@string/load_reservations_error_not_know"
             app:emptyListMessage="@string/load_reservations_empty_list"
             app:icon="@drawable/ilustra_tentacle"

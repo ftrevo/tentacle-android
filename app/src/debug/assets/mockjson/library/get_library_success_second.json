@@ -1,0 +1,114 @@
+{
+  "data": {
+    "list": [
+      {
+        "_id": "5c66feafdf4b530023a72773",
+        "id": 6036,
+        "aggregated_rating": 97.4,
+        "aggregated_rating_count": 11,
+        "cover": {
+          "id": 70754,
+          "height": 1500,
+          "image_id": "co1ile",
+          "width": 1062
+        },
+        "name": "JOGO FIRST",
+        "formattedReleaseDate": "29/07/2014",
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c66f80a9321750023d99987",
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c66f41d9321750023d99984",
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 0,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 1,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c66f3fb9321750023d99982",
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 0,
+        "mediaXbox360Count": 1,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c65e161860df20023ec848e",
+        "name": "jogo test",
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 0,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 1
+      },
+      {
+        "_id": "5c65d598860df20023ec8489",
+        "name": "culpa de yara",
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c65d298860df20023ec8484",
+        "name": "o jogo da vida",
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c65cae5860df20023ec8475",
+        "name": "jhv,jhv",
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 0,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 1
+      },
+      {
+        "_id": "5c64612f352d58002358f367",
+        "name": "😉😍🙂😎",
+        "mediaPs3Count": 1,
+        "mediaPs4Count": 0,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c64438f352d58002358f362",
+        "name": "Fifa 2015",
+        "mediaPs3Count": 1,
+        "mediaPs4Count": 2,
+        "mediaXbox360Count": 1,
+        "mediaXboxOneCount": 1,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 1
+      }
+    ],
+    "count": 88
+  }
+}

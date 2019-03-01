@@ -6,7 +6,7 @@
         "platform": "PS3",
         "game": {
           "_id": "5c3cb881098fab0023f6b0d5",
-          "name": "Battlefield V"
+          "name": "Teste First ITEM SECOND LIST"
         },
         "owner": {
           "_id": "5c1ab12e7c0f4f002272357e",
@@ -184,7 +184,7 @@
         "_id": "5c5320a1be36dd0023ea2c31",
         "game": {
           "_id": "5c532097be36dd0023ea2c30",
-          "name": "Teste"
+          "name": "Teste Second Last"
         },
         "platform": "PS4",
         "owner": {
