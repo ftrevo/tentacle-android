@@ -29,7 +29,6 @@
             app:layout_constraintRight_toRightOf="parent"/>
 
         <View
-            android:alpha="80"
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_0"
             android:background="@drawable/bg_gradient"
@@ -62,7 +61,7 @@
             style="@style/StyleCardHomeContent"
             android:maxLines="@integer/homeItemContentMaxLines"
             android:ellipsize="end"
-            tools:text="Estados Unidos, 1899. O fim da era do velho oeste começou, e as autoridades estão caçando as últimas gangues de fora da lei que restam. idasiaidhbfibfisdbfibsifbsdifbsdibfisdbfisdbfisbdifbsdifbsidbfisudbfisdbfisdbfiusbdifbsiub"
+            tools:text="@string/loremText"
             app:layout_constraintStart_toStartOf="@id/homeItemTitleTextView"
             app:layout_constraintTop_toBottomOf="@id/homeItemTitleTextView"
             app:layout_constraintEnd_toEndOf="@id/homeItemTitleTextView"/>
@@ -74,7 +73,7 @@
             android:layout_marginTop="@dimen/dp_8"
             android:numStars="@integer/ratingStarNumber"
             android:theme="@style/StyleRatingBar"
-            style="?attr/ratingBarStyleIndicator"
+            style="?android:attr/ratingBarStyleIndicator"
             tools:progress="92"
             app:layout_constraintStart_toStartOf="@id/homeItemTitleTextView"
             app:layout_constraintTop_toBottomOf="@id/homeItemDescriptionTextView"/>
