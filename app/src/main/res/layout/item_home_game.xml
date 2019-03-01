@@ -1,39 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_4"
         android:layout_marginBottom="@dimen/dp_4"
-        android:layout_marginLeft="@dimen/dp_8"
-        android:layout_marginRight="@dimen/dp_8">
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:minHeight="@dimen/homeItemCardHeightDefault"
             android:background="@color/backgroundColorCardHome">
 
         <ImageView
-            android:id="@+id/imgBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/homeItemBackground"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_0"
             android:src="@drawable/img_background_home"
+            android:scaleType="centerInside"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <View
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_0"
+            android:background="@drawable/bg_gradient"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
         <TextView
-            android:id="@+id/tvTitleGame"
-            style="@style/StyleTextCardHome"
+            android:id="@+id/homeItemTitleTextView"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
-            android:text="@string/red_dead_redemption"
+            android:layout_marginStart="@dimen/homeItemStartMargin"
+            android:layout_marginTop="@dimen/homeItemTopMargin"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:gravity="start"
+            style="@style/StyleCardHomeTitle"
+            android:maxLines="@integer/homeItemTitleMaxLines"
+            android:ellipsize="end"
+            tools:text="Red Dead Redemption 2 sjdasjbnasa asdjbaskh das daskhd askdbaskjbs"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/homeItemDescriptionTextView"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            style="@style/StyleCardHomeContent"
+            android:maxLines="@integer/homeItemContentMaxLines"
+            android:ellipsize="end"
+            tools:text="@string/loremText"
+            app:layout_constraintStart_toStartOf="@id/homeItemTitleTextView"
+            app:layout_constraintTop_toBottomOf="@id/homeItemTitleTextView"
+            app:layout_constraintEnd_toEndOf="@id/homeItemTitleTextView"/>
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/homeItemGameRatinBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:numStars="@integer/ratingStarNumber"
+            android:theme="@style/StyleRatingBar"
+            style="?android:attr/ratingBarStyleIndicator"
+            tools:progress="92"
+            app:layout_constraintStart_toStartOf="@id/homeItemTitleTextView"
+            app:layout_constraintTop_toBottomOf="@id/homeItemDescriptionTextView"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
