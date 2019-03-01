@@ -10,7 +10,7 @@ import br.com.concrete.tentacle.data.repositories.GameRepository
 
 class HomeViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
-    private val viewStateGame: MutableLiveData<ViewStateModel<ArrayList<Game>>> = MutableLiveData()
+    private val viewStateGame: MutableLiveData<ViewStateModel<ArrayList<Game?>>> = MutableLiveData()
     fun getHomeGames() = viewStateGame
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -18,7 +18,7 @@ class HomeViewModel(private val gameRepository: GameRepository) : BaseViewModel(
         viewStateGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(gameRepository.loadHomeGames()
             .subscribe({ baseModel ->
-                viewStateGame.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data.list as ArrayList<Game>))
+                viewStateGame.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data.list as ArrayList<Game?>))
             }, {
                 viewStateGame.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
             })

@@ -11,6 +11,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.hideKeyboard
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
+import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE_BOOLEAN
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
@@ -26,10 +27,18 @@ class ListCustom(
     private var errorDescriptionReference: Int = DEFAULT_INVALID_RESOURCE
     private var buttonNameErrorReference: Int = DEFAULT_INVALID_RESOURCE
     private var buttonNameActionReference: Int = DEFAULT_INVALID_RESOURCE
+    private var endLessScroll: Boolean = DEFAULT_INVALID_RESOURCE_BOOLEAN
+
+    private var pastVisibleItems: Int = 0
+    private var visibleItemCount: Int = 0
+    private var totalItemCount: Int = 0
+
+    private lateinit var mOnScrollListener: OnScrollListener
     private var emptyListMessageReference: Int = DEFAULT_INVALID_RESOURCE
 
     init {
         View.inflate(context, R.layout.list_custom, this)
+
         context.withStyledAttributes(
             attrs,
             R.styleable.ListCustom,
@@ -42,6 +51,7 @@ class ListCustom(
             buttonNameErrorReference = getResourceId(R.styleable.ListCustom_buttonNameError, DEFAULT_INVALID_RESOURCE)
             buttonNameActionReference = getResourceId(R.styleable.ListCustom_buttonNameAction, DEFAULT_INVALID_RESOURCE)
             emptyListMessageReference = getResourceId(R.styleable.ListCustom_emptyListMessage, DEFAULT_INVALID_RESOURCE)
+            endLessScroll = getBoolean(R.styleable.ListCustom_endLessScroll, DEFAULT_INVALID_RESOURCE_BOOLEAN)
         }
     }
 
@@ -69,6 +79,7 @@ class ListCustom(
             buttonAction.visibility = View.VISIBLE
             setButtonEffect()
         }
+        initEndLessRecyclerView()
     }
 
     private fun setButtonEffect() {
@@ -89,11 +100,37 @@ class ListCustom(
                                     buttonAction.visibility = View.VISIBLE
                                 }
                             }
-                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == it.itemCount - 1) {
+                        } else if (layoutManager.findLastCompletelyVisibleItemPosition() == mOnScrollListener.count()) {
                             buttonAction.visibility = View.VISIBLE
                         }
                     }
                     super.onScrollStateChanged(recyclerView, newState)
+                }
+            })
+        }
+    }
+
+    private fun initEndLessRecyclerView() {
+        recyclerListView.adapter?.let {
+            recyclerListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    if (endLessScroll) {
+                        val layoutManager = recyclerView.layoutManager
+                        if (layoutManager is LinearLayoutManager) {
+                            visibleItemCount = layoutManager.childCount
+                            totalItemCount = layoutManager.itemCount
+                            pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition()
+                        }
+
+                        if (mOnScrollListener.loadPage() && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                            if (mOnScrollListener.count() > mOnScrollListener.sizeElements()) {
+                                mOnScrollListener.loadMore()
+                                buttonAction.visibility = View.GONE
+                            }
+                        }
+                    }
                 }
             })
         }
@@ -145,5 +182,16 @@ class ListCustom(
             showLoading()
             action()
         }
+    }
+
+    fun setOnScrollListener(onScrollListener: OnScrollListener) {
+        this.mOnScrollListener = onScrollListener
+    }
+
+    interface OnScrollListener {
+        fun count(): Int
+        fun sizeElements(): Int
+        fun loadMore()
+        fun loadPage(): Boolean
     }
 }

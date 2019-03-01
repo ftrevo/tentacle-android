@@ -2,52 +2,59 @@ package br.com.concrete.tentacle.features.library
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.View
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.base.BaseActivity
-import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
-import br.com.concrete.tentacle.base.MINIMAL_CHARACTER
+import br.com.concrete.tentacle.base.BaseAdapter
+import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.base.TIME_OUT
+import br.com.concrete.tentacle.base.MINIMAL_CHARACTER
+import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.filter.SubItem
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.library.filter.FilterDialogFragment
+import br.com.concrete.tentacle.features.library.loan.LoanActivity
 import br.com.concrete.tentacle.utils.QueryUtils
+import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.fragment_library.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
-import br.com.concrete.tentacle.extensions.ActivityAnimation
-import br.com.concrete.tentacle.extensions.launchActivity
-import br.com.concrete.tentacle.features.library.loan.LoanActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
-class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
+class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, ListCustom.OnScrollListener {
 
     private val viewModelLibrary: LibraryViewModel by viewModel()
     private var recyclerViewAdapter: BaseAdapter<Library>? = null
-    private val libraries = ArrayList<Library>()
+    private var libraries = ArrayList<Library?>()
     private val selectedFilterItems = ArrayList<SubItem>()
     private var queryParameters: QueryParameters? = null
 
     private lateinit var searchView: SearchView
 
     private lateinit var editText: EditText
+
+    private var count = 0
+    private var loadMoreItems = true
 
     override fun getToolbarTitle() = R.string.toolbar_title_library
 
@@ -63,6 +70,12 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
     }
 
     private fun init() {
+        list.setOnScrollListener(this)
+
+        list.recyclerListView.setHasFixedSize(true)
+        val layoutManager = LinearLayoutManager(context)
+        list.recyclerListView.layoutManager = layoutManager
+
         list.recyclerListError.buttonNameError.setOnClickListener {
             callback?.changeBottomBar(R.id.action_games, R.id.navigate_to_my_games)
         }
@@ -75,28 +88,38 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                     ViewStateModel.Status.SUCCESS -> {
                         it.model?.let { list ->
                             libraries.clear()
-                            libraries.addAll(list)
 
-                        recyclerViewAdapter = BaseAdapter(
-                            libraries,
-                            R.layout.library_item_layout,
-                            { view ->
-                                LibraryViewHolder(view, viewStateOpen = false) { library ->
-                                    val extras = Bundle()
-                                    extras.putString(LoanActivity.ID_LIBRARY_EXTRA, library._id)
-                                    activity?.launchActivity<LoanActivity>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
-                                }
-                            }, { holder, element ->
-                                LibraryViewHolder.callBack(
-                                    holder = holder,
-                                    element = element,
-                                    selectedFilters = selectedFilterItems
-                                )
-                            })
+                            val libraryResponse = it.model
+                            val libs = libraryResponse.list as ArrayList<Library?>
+                            count = libraryResponse.count
 
-                            recyclerListView.layoutManager = LinearLayoutManager(context)
-                            recyclerListView.setItemViewCacheSize(libraries.size)
-                            recyclerListView.adapter = recyclerViewAdapter
+                            libs.let {
+                                recyclerViewAdapter = BaseAdapter(
+                                    libs,
+                                    R.layout.library_item_layout,
+                                    { view ->
+                                        LibraryViewHolder(view, viewStateOpen = false) { library ->
+                                            val extras = Bundle()
+                                            extras.putString(LoanActivity.ID_LIBRARY_EXTRA, library._id)
+                                            activity?.launchActivity<LoanActivity>(
+                                                extras = extras,
+                                                animation = ActivityAnimation.TRANSLATE_UP
+                                            )
+                                        }
+                                    }, { holder, element ->
+                                        LibraryViewHolder.callBack(
+                                            holder = holder,
+                                            element = element,
+                                            selectedFilters = selectedFilterItems
+                                        )
+                                    })
+
+                                recyclerListView.layoutManager = LinearLayoutManager(context)
+                                recyclerListView.setItemViewCacheSize(libraries.size)
+                                recyclerListView.adapter = recyclerViewAdapter
+
+                                libraries = libs
+                            }
                         }
                         list.updateUi(libraries, it.filtering)
                         list.setLoading(false)
@@ -119,6 +142,32 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
                 }
             }
         })
+
+        viewModelLibrary.getLibraryMore().observe(this, Observer { stateModel ->
+            stateModel.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        val libraryResponse = it.model
+                        val libs = libraryResponse?.list as ArrayList<Library?>
+                        count = libraryResponse.count
+
+                        Handler().postDelayed({
+                            recyclerViewAdapter?.notifyItemInserted(libraries.size - 1)
+                            libraries.removeAt(libraries.size - 1)
+                            recyclerViewAdapter?.notifyItemRemoved(libraries.size - 1)
+                            libraries.addAll(libs)
+                            loadMoreItems = true
+                            recyclerViewAdapter?.setNewList(libraries)
+                        }, TIME_PROGRESS_LOAD)
+                    }
+                    ViewStateModel.Status.LOADING -> {}
+                    ViewStateModel.Status.ERROR -> {
+                        loadMoreItems = true
+                    }
+                }
+            }
+        })
+
         lifecycle.addObserver(viewModelLibrary)
     }
 
@@ -156,6 +205,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
             (activity as BaseActivity).setupToolbar(R.drawable.ic_logo_actionbar)
             selectedFilterItems.clear()
             activity?.invalidateOptionsMenu()
+            queryParameters = null
 
             searchView.isIconified = true
             searchView.setIconifiedByDefault(true)
@@ -182,11 +232,10 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
     }
 
     private fun getSearchGame(text: String?) {
-        libraries.clear()
         viewModelLibrary.loadLibrary(queryParameters, text, true)
     }
 
-    private fun validateSearch(search: String) = search.trim().length > MINIMAL_CHARACTER
+    private fun validateSearch(search: String) = search.trim().length >= MINIMAL_CHARACTER
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
@@ -223,4 +272,24 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener {
 
         searchView.setIconifiedByDefault(true)
     }
+
+    override fun count() = count
+
+    override fun sizeElements(): Int = libraries.size
+
+    override fun loadMore() {
+        viewModelLibrary.loadLibraryMore(
+            queryParameters,
+            if (searchView.query.toString() == "") null else searchView.query.toString(),
+            true
+        )
+        libraries.add(null)
+        loadMoreItems = false
+
+        recyclerViewAdapter?.notifyItemInserted(libraries.size - 1)
+        libraries.addAll(ArrayList<Library>())
+        recyclerViewAdapter?.setNewList(libraries)
+    }
+
+    override fun loadPage(): Boolean = loadMoreItems
 }

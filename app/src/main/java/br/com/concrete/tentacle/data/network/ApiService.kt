@@ -13,6 +13,7 @@ import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
+import br.com.concrete.tentacle.utils.LIMIT_PAGE
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -26,7 +27,8 @@ interface ApiService {
     @GET("/games")
     fun getSearchGames(
         @Query("name") name: String,
-        @Query("limit") limit: Int = 99
+        @Query("limit") limit: Int = LIMIT_PAGE,
+        @Query("page") page: Int = 0
     ): Observable<BaseModel<GameResponse>>
 
     @POST("/games")
@@ -35,10 +37,14 @@ interface ApiService {
         game: GameRequest
     ): Observable<BaseModel<Game>>
 
-    @GET("/media-loan")
+    @GET("/media")
     fun getRegisteredGames(
-        @Query("mineOnly") mineOnly: Boolean = true,
-        @Query("limit") limit: Int = 99
+        @Query("mineOnly")
+        mineOnly: Boolean = true,
+        @Query("limit")
+        limit: Int = LIMIT_PAGE,
+        @Query("page")
+        page: Int
     ): Observable<BaseModel<MediaResponse>>
 
     @GET("/loans")
