@@ -22,6 +22,7 @@
         app:buttonNameError="@string/add_new_game"
         app:errorDescription="@string/no_game_registered"
         app:icon="@drawable/il_wow"
-        app:buttonNameAction="@string/add_new_game_compact"/>
+        app:buttonNameAction="@string/add_new_game_compact"
+        app:endLessScroll="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

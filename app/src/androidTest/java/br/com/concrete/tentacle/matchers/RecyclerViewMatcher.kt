@@ -11,7 +11,7 @@ class RecyclerViewMatcher(private val recyclerViewId: Int) {
 
     companion object {
         fun withRecyclerView(recyclerViewId: Int): RecyclerViewMatcher =
-                RecyclerViewMatcher(recyclerViewId)
+            RecyclerViewMatcher(recyclerViewId)
     }
 
     fun atPosition(position: Int): Matcher<View> = atPositionOnView(position, -1)
