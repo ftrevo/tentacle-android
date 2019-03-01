@@ -5,7 +5,6 @@ import br.com.concrete.tentacle.extensions.toDate
 import java.io.Serializable
 import java.util.Date
 
-
 data class LoanResponse(
     val _id: String,
     val game: Game,
@@ -22,12 +21,12 @@ data class LoanResponse(
         PENDING, EXPIRED, ACTIVE
     }
 
-    fun getLoanState() : LoanState{
+    fun getLoanState(): LoanState {
         val estimated = estimatedReturnDate?.toDate()?.timeInMillis
         val now = Date().time
         loanDate?.let {
             estimated?.let {
-                return if(now > it) LoanState.EXPIRED else LoanState.ACTIVE
+                return if (now > it) LoanState.EXPIRED else LoanState.ACTIVE
             }
         } ?: run {
             return LoanState.PENDING

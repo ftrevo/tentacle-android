@@ -4,4 +4,4 @@ import java.io.Serializable
 
 data class Genre(
     val name: String?
-): Serializable
+) : Serializable

@@ -6,4 +6,4 @@ import java.io.Serializable
 data class Cover(
     @SerializedName("image_id")
     val imageId: String?
-): Serializable
+) : Serializable
