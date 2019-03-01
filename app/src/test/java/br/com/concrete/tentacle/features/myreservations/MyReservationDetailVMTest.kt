@@ -47,6 +47,7 @@ class MyReservationDetailVMTest: BaseViewModelTest()  {
         myReservationDetail.loadMyLoan("id")
         assertEquals(expected, actual)
     }
+
     @Test
     fun `when MyReservationDetailViewModel calls loadMyLoan should return message for 401`() {
         val expected =
@@ -62,6 +63,33 @@ class MyReservationDetailVMTest: BaseViewModelTest()  {
             .setResponseCode(401)
 
         mockServer.enqueue(mockResponse)
+
+        myReservationDetail.getViewState().observeForever {
+            actual = it
+        }
+
+        myReservationDetail.loadMyLoan("id")
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when MyReservationDetailViewModel calls loadMyLoan should return message for 400`() {
+        val responseJson = getJson(
+            "mockjson/errors/error_400.json"
+        )
+        val responseObject: ErrorResponse =
+            GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
+
+        val expected =
+                ViewStateModel(
+                    status = ViewStateModel.Status.ERROR,
+                    model = null,
+                    errors = responseObject
+                )
+
+        var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
+
+        mockResponseError400()
 
         myReservationDetail.getViewState().observeForever {
             actual = it
