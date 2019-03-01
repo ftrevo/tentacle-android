@@ -92,7 +92,11 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                     ViewStateModel.Status.LOADING -> {
                     }
                     ViewStateModel.Status.ERROR -> {
-                        loadMoreItems = false
+                        recyclerViewAdapter?.notifyItemInserted(lMedia.size - 1)
+                        lMedia.removeAt(lMedia.size - 1)
+                        recyclerViewAdapter?.notifyItemRemoved(lMedia.size - 1)
+                        recyclerViewAdapter?.setNewList(lMedia)
+                        loadMoreItems = true
                     }
                 }
             }

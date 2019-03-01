@@ -162,7 +162,12 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
                     }
                     ViewStateModel.Status.LOADING -> {}
                     ViewStateModel.Status.ERROR -> {
-                        loadMoreItems = false
+                        loadMoreItems = true
+                        recyclerViewAdapter?.notifyItemInserted(libraries.size - 1)
+                        libraries.removeAt(libraries.size - 1)
+                        recyclerViewAdapter?.notifyItemRemoved(libraries.size - 1)
+                        recyclerViewAdapter?.setNewList(libraries)
+
                     }
                 }
             }
