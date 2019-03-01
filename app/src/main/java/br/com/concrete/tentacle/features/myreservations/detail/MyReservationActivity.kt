@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.features.myreservations.detail
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -13,6 +14,8 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
+import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.activity_my_reservations_details.gameView
 import kotlinx.android.synthetic.main.activity_my_reservations_details.group
 import kotlinx.android.synthetic.main.activity_my_reservations_details.tvGameOwner
@@ -64,6 +67,7 @@ class MyReservationActivity : BaseActivity(){
         showProgress(false)
         data?.let { loanResponse ->
             gameView.setGame(loanResponse.game)
+            gameView.showStatusView(true)
 
             tvGamePlatform.text = loanResponse.media.platform
             tvGameOwner.text = loanResponse.mediaOwner.name
@@ -114,7 +118,7 @@ class MyReservationActivity : BaseActivity(){
         return ActivityAnimation.TRANSLATE_DOWN
     }
 
-    fun getLoanDaysToReturn(estimatedReturnDate: String) : Int{
+    private fun getLoanDaysToReturn(estimatedReturnDate: String) : Int{
         val estimated = estimatedReturnDate.toDate().timeInMillis
         val now = Date().time
         val diff = estimated - now
@@ -128,18 +132,15 @@ class MyReservationActivity : BaseActivity(){
             }
             val ers = errorResponse.toString()
 
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle(title)
-            builder.setMessage(ers)
-            builder.apply {
-                setPositiveButton(
-                    R.string.ok
-                ) { dialog, _ ->
-                    dialog.dismiss()
+            DialogUtils.showDialog(
+                context = this@MyReservationActivity,
+                title = title,
+                message = ers,
+                positiveText = getString(R.string.ok),
+                positiveListener = DialogInterface.OnClickListener { _, _ ->
                     finish()
                 }
-            }
-            builder.create().show()
+            )
         }
     }
 }
