@@ -84,7 +84,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                                 }
 
                                 loadMoreItems = true
-                                list.buttonAction.visibility = View.VISIBLE
+                                list?.buttonAction?.visibility = View.VISIBLE
                                 recyclerViewAdapter?.setNewList(lMedia)
                             }, TIME_PROGRESS_LOAD)
                         }
