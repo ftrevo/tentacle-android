@@ -25,7 +25,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MyReservationFragment : BaseFragment() {
 
     private val myReservationViewModel: MyReservationViewModel by viewModel()
-    private val myReservationList = ArrayList<LoanResponse>()
+    private val myReservationList = ArrayList<LoanResponse?>()
 
     override fun getToolbarTitle(): Int {
         return R.string.toolbar_title_my_reservations
@@ -85,19 +85,21 @@ class MyReservationFragment : BaseFragment() {
         listMyReservations.setLoading(false)
     }
 
-    private fun loadRecyclerView(model: ArrayList<LoanResponse>?) {
+    private fun loadRecyclerView(model: ArrayList<LoanResponse?>?) {
         model?.let {
-            val recyclerViewAdapter = BaseAdapter(
+            val recyclerViewAdapter = BaseAdapter<LoanResponse?>(
                 model,
                 R.layout.item_my_reservation,
                 { view ->
                     MyReservationViewHolder(view)
                 }, { holder, element ->
-                    MyReservationViewHolder.callBack(holder, element) {
-                        holder.itemView.setOnClickListener {
-                            val bundle = Bundle()
-                            bundle.putString(MyReservationActivity.LOAN_EXTRA_ID, element._id)
-                            activity?.launchActivity<MyReservationActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
+                    element?.let {
+                        MyReservationViewHolder.callBack(holder, element) {
+                            holder.itemView.setOnClickListener {
+                                val bundle = Bundle()
+                                bundle.putString(MyReservationActivity.LOAN_EXTRA_ID, element._id)
+                                activity?.launchActivity<MyReservationActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
+                            }
                         }
                     }
                 })
