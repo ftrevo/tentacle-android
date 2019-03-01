@@ -48,7 +48,7 @@ interface ApiService {
     ): Observable<BaseModel<LoansListResponse>>
 
     @GET("/loans/{loanId}")
-    fun getMyLoan(@Path("loanId") loanId: String) : Observable<BaseModel<LoanResponse>>
+    fun getMyLoan(@Path("loanId") loanId: String): Observable<BaseModel<LoanResponse>>
 
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>

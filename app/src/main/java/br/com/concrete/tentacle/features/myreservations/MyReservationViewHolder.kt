@@ -24,22 +24,22 @@ class MyReservationViewHolder(
 
                 var text: String? = null
                 var visibility: Int? = null
-                when(el.getLoanState()){
-                    LoanResponse.LoanState.ACTIVE ->{
+                when (el.getLoanState()) {
+                    LoanResponse.LoanState.ACTIVE -> {
                         text = el.loanDate?.toDate()?.format(SIMPLE_DATE_OUTPUT_FORMAT) ?: ""
                         visibility = View.VISIBLE
                     }
-                    LoanResponse.LoanState.PENDING ->{
+                    LoanResponse.LoanState.PENDING -> {
                         text = holder.itemView.context.getString(R.string.loan_state_pending)
                         visibility = View.GONE
                     }
-                    LoanResponse.LoanState.EXPIRED ->{
+                    LoanResponse.LoanState.EXPIRED -> {
                         text = holder.itemView.context.getString(R.string.loan_state_expired)
                         visibility = View.GONE
                     }
                 }
 
-                text?.let{
+                text?.let {
                     holder.layout.status.text = text
                 }
                 visibility?.let {
