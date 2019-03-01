@@ -37,4 +37,8 @@
 
     <color name="gameStatusDefaultColor">#ff00</color>
 
+    <color name="loan_state_pending">#f8e71c</color>
+    <color name="loan_state_active">#58ea7a</color>
+    <color name="loan_state_expired">#ea5858</color>
+
 </resources>
