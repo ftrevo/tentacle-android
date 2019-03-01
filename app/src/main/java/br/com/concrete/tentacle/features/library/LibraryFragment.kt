@@ -162,7 +162,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
                     }
                     ViewStateModel.Status.LOADING -> {}
                     ViewStateModel.Status.ERROR -> {
-                        loadMoreItems = false
+                        loadMoreItems = true
                     }
                 }
             }

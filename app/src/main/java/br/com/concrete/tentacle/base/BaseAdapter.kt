@@ -18,7 +18,6 @@ class BaseAdapter<T>(
 
     override fun getItemCount() = if (elements.isNullOrEmpty()) VIEW_TYPE_LOADING else elements.size
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ProgressBarViewHolder -> holder

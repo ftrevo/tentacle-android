@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.data.models
 
 import android.os.Parcelable
 import br.com.concrete.tentacle.data.enums.Platform
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -29,5 +28,4 @@ data class Media(
             GameData(ID_EMPTY_MEDIA, "")
         )
     }
-
 }
