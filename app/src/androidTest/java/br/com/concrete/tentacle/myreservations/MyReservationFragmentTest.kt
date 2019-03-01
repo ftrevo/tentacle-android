@@ -73,4 +73,32 @@ class MyReservationFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.errorDescription))
             .check(matches(withText("Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.")))
     }
+
+    @Test
+    fun showErrorMessageAndClickButtonLoadAgain() {
+        mockWebServer.enqueue(
+            MockResponse()
+                .setBody("mockjson/errors/error_400.json".getJson())
+                .setResponseCode(400)
+        )
+
+        val response = "mockjson/myreservations/load_my_reservations_success.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+
+        onView(withId(R.id.recyclerListError))
+            .perform(isDisplayed().waitUntil())
+        onView(withId(R.id.errorDescription))
+            .check(matches(withText("Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.")))
+
+        onView(withText(R.string.load_again))
+            .perform(click())
+
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
+    }
+
 }
