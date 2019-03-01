@@ -39,6 +39,14 @@
 
     <dimen name="sp_24">24sp</dimen>
 
+    <dimen name="homeItemCardHeightDefault">220dp</dimen>
+    <dimen name="homeItemStartMargin">12dp</dimen>
+    <dimen name="homeItemTopMargin">16dp</dimen>
+    <dimen name="homeItemEndMargin">12dp</dimen>
+    <integer name="homeItemTitleMaxLines">2</integer>
+    <integer name="homeItemContentMaxLines">4</integer>
+    <integer name="ratingStarNumber">5</integer>
+
     <dimen name="game_icon_width">44dp</dimen>
     <dimen name="game_icon_height">60dp</dimen>
 

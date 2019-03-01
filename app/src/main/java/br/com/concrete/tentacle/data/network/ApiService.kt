@@ -47,6 +47,9 @@ interface ApiService {
         @Query("limit") limit: Int = 99
     ): Observable<BaseModel<LoansListResponse>>
 
+    @GET("/loans/{loanId}")
+    fun getMyLoan(@Path("loanId") loanId: String): Observable<BaseModel<LoanResponse>>
+
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>
 
@@ -78,4 +81,7 @@ interface ApiService {
         @Path("id") activeLoanId: String,
         @Body loanAction: LoanActionRequest
     ): Observable<BaseModel<LoanResponse>>
+
+    @GET("/library/home")
+    fun loadHome(): Observable<BaseModel<GameResponse>>
 }
