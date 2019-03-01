@@ -64,7 +64,7 @@ class HomeVMTest : BaseViewModelTest() {
     @Test
     fun `when HomeViewModel calls getHomeGames should return success`() {
         val responseJson = getJson(
-            "mockjson/home/load_home_games_success.json"
+            "mockjson/home/new_home_games_success.json"
         )
 
         val collectionType = object : TypeToken<BaseModel<GameResponse>>() {}.type

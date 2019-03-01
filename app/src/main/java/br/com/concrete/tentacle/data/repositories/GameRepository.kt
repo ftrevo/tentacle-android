@@ -33,7 +33,7 @@ class GameRepository(private val apiRest: ApiService) {
     }
 
     fun loadHomeGames(): Observable<BaseModel<GameResponse>> {
-        return apiRest.loadHomeGames()
+        return apiRest.loadHome()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
