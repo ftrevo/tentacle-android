@@ -22,7 +22,7 @@
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_0"
             android:src="@drawable/img_background_home"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
