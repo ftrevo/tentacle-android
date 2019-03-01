@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.data.models
 import br.com.concrete.tentacle.data.models.game.Cover
 import br.com.concrete.tentacle.data.models.game.GameMode
 import br.com.concrete.tentacle.data.models.game.Genre
+import br.com.concrete.tentacle.data.models.game.Screenshot
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -17,14 +18,12 @@ data class Game(
     val rating: Float? = .0f,
     @SerializedName("first_release_date")
     val releaseDate: String? = null,
-    @SerializedName("summary")
     val summary: String? = null,
     @SerializedName("game_modes")
     val gameModes: List<GameMode>? = null,
-    @SerializedName("genres")
     val genres: List<Genre>? = null,
-    @SerializedName("cover")
-    val cover: Cover? = null
+    val cover: Cover? = null,
+    val screenshots: List<Screenshot>? = null
 
 ) : Serializable {
 
