@@ -43,8 +43,7 @@ interface ApiService {
 
     @GET("/loans")
     fun getMyLoans(
-        @Query("mineOnly") mineOnly: Boolean = true,
-        @Query("limit") limit: Int = 99
+        @Query("mineOnly") mineOnly: Boolean = true
     ): Observable<BaseModel<LoansListResponse>>
 
     @GET("/loans/{loanId}")

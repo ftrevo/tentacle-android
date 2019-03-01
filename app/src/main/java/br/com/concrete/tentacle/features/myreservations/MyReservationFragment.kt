@@ -25,6 +25,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MyReservationFragment : BaseFragment() {
 
     private val myReservationViewModel: MyReservationViewModel by viewModel()
+    private val myReservationList = ArrayList<LoanResponse>()
 
     override fun getToolbarTitle(): Int {
         return R.string.toolbar_title_my_reservations
@@ -54,7 +55,14 @@ class MyReservationFragment : BaseFragment() {
         myReservationViewModel.getMyReservations().observe(this, Observer { base ->
             when (base.status) {
                 ViewStateModel.Status.SUCCESS -> {
-                    loadRecyclerView(base.model)
+                    base.model?.let {loanResponseList ->
+                        myReservationList.addAll(loanResponseList)
+                        if(myReservationList.isEmpty()){
+                            loadEmptyState()
+                        }else{
+                            loadRecyclerView(myReservationList)
+                        }
+                    }
                 }
                 ViewStateModel.Status.ERROR -> {
                     callError(base)
@@ -97,6 +105,14 @@ class MyReservationFragment : BaseFragment() {
         }
 
         listMyReservations.updateUi(model)
+        listMyReservations.setLoading(false)
+    }
+
+    private fun loadEmptyState(){
+        listMyReservations.setErrorMessage(R.string.load_reservations_empty_list)
+        listMyReservations.setButtonNameAction(R.string.btn_reservation_error_empty)
+
+        listMyReservations.updateUi(myReservationList)
         listMyReservations.setLoading(false)
     }
 
