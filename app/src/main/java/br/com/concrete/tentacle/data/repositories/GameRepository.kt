@@ -56,4 +56,10 @@ class GameRepository(private val apiRest: ApiService) {
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
+
+    fun loadMyLoan(loanId: String): Observable<BaseModel<LoanResponse>> {
+        return apiRest.getMyLoan(loanId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
 }

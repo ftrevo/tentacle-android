@@ -11,6 +11,9 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
@@ -75,6 +78,11 @@ class MyReservationFragment : BaseFragment() {
                     MyReservationViewHolder(view)
                 }, { holder, element ->
                     MyReservationViewHolder.callBack(holder, element) {
+                        holder.itemView.setOnClickListener {
+                            val bundle = Bundle()
+                            bundle.putString(MyReservationActivity.LOAN_EXTRA_ID, element._id)
+                            activity?.launchActivity<MyReservationActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
+                        }
                     }
                 })
             listMyReservations.recyclerListView.adapter = recyclerViewAdapter

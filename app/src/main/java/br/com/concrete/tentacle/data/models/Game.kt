@@ -10,7 +10,7 @@ data class Game(
     val _id: String = String(),
     @SerializedName("name", alternate = ["title"])
     val name: String = String(),
-    val createdBy: User,
+    val createdBy: String,
     var createdAt: String,
     var updateAt: String,
     @SerializedName("aggregated_rating")
@@ -35,16 +35,7 @@ data class Game(
         fun getEmptyGame(): Game = Game(
             ID_EMPTY_GAME,
             "",
-            User(
-                city = "",
-                name = "",
-                password = "",
-                state = State(
-                    "",
-                    "",
-                    ""
-                )
-            ),
+            "",
             "",
             ""
         )
