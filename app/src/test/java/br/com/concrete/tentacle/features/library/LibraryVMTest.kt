@@ -8,6 +8,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.filter.SubItem
+import br.com.concrete.tentacle.utils.Event
 import br.com.concrete.tentacle.utils.QueryUtils
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
@@ -44,7 +45,7 @@ class LibraryVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
         libraryViewModel.loadLibrary()
@@ -65,7 +66,7 @@ class LibraryVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status, errors = it.peekContent().errors)
         }
         libraryViewModel.loadLibrary()
         Assert.assertEquals(expected, actual)
@@ -88,7 +89,7 @@ class LibraryVMTest : BaseViewModelTest() {
         mockResponseError400()
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status, errors = it.peekContent().errors)
         }
         libraryViewModel.loadLibrary()
         Assert.assertEquals(expected, actual)
@@ -123,7 +124,7 @@ class LibraryVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
         libraryViewModel.loadLibrary(queryParameters)
@@ -159,7 +160,7 @@ class LibraryVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
         libraryViewModel.loadLibrary(queryParameters)
@@ -192,7 +193,7 @@ class LibraryVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
         libraryViewModel.loadLibrary(queryParameters, "fifa")
@@ -228,7 +229,7 @@ class LibraryVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
         libraryViewModel.loadLibrary(queryParameters, "fifa")
@@ -254,7 +255,7 @@ class LibraryVMTest : BaseViewModelTest() {
         mockResponseError400()
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status, errors = it.peekContent().errors)
         }
 
         libraryViewModel.loadLibrary(queryParameters, "fifa")
@@ -283,10 +284,91 @@ class LibraryVMTest : BaseViewModelTest() {
         mockResponseError400()
 
         libraryViewModel.getLibrary().observeForever {
-            actual = it.peekContent()
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status, errors = it.peekContent().errors)
         }
 
         libraryViewModel.loadLibrary(queryParameters, "fifa")
+        Assert.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when libraryViewModel calls loadlibrary should return a list of Library endLessRecyclerView`() {
+        val responseJson = getJson(
+            "mockjson/library/get_library_success.json"
+        )
+
+        val collectionType = object : TypeToken<BaseModel<LibraryResponse>>() {}.type
+        val responseObject: BaseModel<LibraryResponse> = GsonBuilder()
+            .create()
+            .fromJson(responseJson, collectionType)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = responseObject.data.list)
+        var actual = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+
+        libraryViewModel.getLibrary().observeForever {
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
+        }
+
+        mockServer.enqueue(mockResponse)
+
+        libraryViewModel.getLibrary().observeForever {
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
+        }
+
+        libraryViewModel.loadLibraryMore()
+        Assert.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when libraryViewModel calls loadlibrary should return a list of Library endLessRecyclerView with error 400 after scroll`() {
+        val responseJsonError = getJson(
+            "mockjson/errors/error_400.json"
+        )
+
+        val responseObjectError: ErrorResponse =
+            GsonBuilder().create().fromJson(responseJsonError, ErrorResponse::class.java)
+
+        val expectedError =
+            ViewStateModel<ArrayList<Library>>(
+                status = ViewStateModel.Status.ERROR, model = null, errors = responseObjectError)
+        var actualError = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
+
+        mockResponseError400()
+
+        libraryViewModel.getLibraryMore().observeForever {
+            actualError = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status, errors = it.peekContent().errors)
+        }
+
+        libraryViewModel.loadLibraryMore()
+        Assert.assertEquals(expectedError, actualError)
+    }
+
+    @Test
+    fun `when LibraryViewModel calls loadLibrary should of Library endLessRecyclerView return error message for 401`() {
+        val expected =
+            ViewStateModel<ArrayList<Library>>(
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+            )
+        var actual = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
+
+        val mockResponse = MockResponse()
+            .setResponseCode(401)
+
+        mockServer.enqueue(mockResponse)
+
+        libraryViewModel.getLibraryMore().observeForever {
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status, errors = it.peekContent().errors)
+        }
+        libraryViewModel.loadLibraryMore()
         Assert.assertEquals(expected, actual)
     }
 }
