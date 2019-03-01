@@ -76,7 +76,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun showRecycleViewWithItemsEndLess() {
+    fun showRecycleViewWithItemsEndLessSuccess() {
         val response = "mockjson/loadmygames/load_my_games_success.json".getJson()
         val responseSecond = "mockjson/loadmygames/load_my_games_success_second.json".getJson()
         mockWebServer.enqueue(
@@ -106,5 +106,33 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
 
         onView(withRecyclerView(R.id.recyclerListView).atPosition(oldCount))
             .check(matches(hasDescendant(withText("Teste Second Last"))))
+    }
+    @Test
+    fun showRecycleViewWithItemsEndLessSuccessAfterError() {
+        val response = "mockjson/loadmygames/load_my_games_success.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setBody("mockjson/errors/error_400.json".getJson())
+                .setResponseCode(400)
+        )
+
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
+        onView(withId(R.id.recyclerListView))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.recyclerListError))
+            .check(matches(not(isDisplayed())))
+
+        onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+
+        onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+
+        Thread.sleep(4000)
     }
 }
