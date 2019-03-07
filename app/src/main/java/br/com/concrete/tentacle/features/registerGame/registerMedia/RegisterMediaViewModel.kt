@@ -68,7 +68,7 @@ class RegisterMediaViewModel(
                     )
                 },
                     {
-                        viewStatusModel.postValue(
+                        viewStateModelGame.postValue(
                             Event(
                                 ViewStateModel(
                                     status = ViewStateModel.Status.ERROR,
