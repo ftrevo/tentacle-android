@@ -62,7 +62,7 @@ class RemoteGameFragment: BaseFragment() {
                 }
                 ViewStateModel.Status.SUCCESS -> {
                     enableProgress(false)
-                    showList(remoteGamesViewState.model)
+                    showList(remoteGamesViewState.model as ArrayList<Game?>)
                 }
                 ViewStateModel.Status.ERROR -> {
                     enableProgress(false)
@@ -104,15 +104,15 @@ class RemoteGameFragment: BaseFragment() {
 
     }
 
-    private fun showList(model: ArrayList<Game>?) {
-        model?.isNotEmpty()?.let {
+    private fun showList(model: ArrayList<Game?>) {
+        if (model.isNotEmpty()) {
             fillRecyclerView(model)
-        } ?: run {
+        } else {
             listCustom.updateUi(model)
         }
     }
 
-    private fun fillRecyclerView(modelItems: ArrayList<Game>) {
+    private fun fillRecyclerView(modelItems: ArrayList<Game?>) {
         val recyclerViewAdapter =
             BaseAdapter(modelItems,
                 R.layout.item_game_search, {

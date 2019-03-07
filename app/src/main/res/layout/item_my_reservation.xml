@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:background="@drawable/shape_border_corners_3dp"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/mediaImageView"
+            android:layout_width="@dimen/game_icon_width"
+            android:layout_height="@dimen/game_icon_height"
+            android:background="@color/bgGameIcon"
+            android:layout_margin="@dimen/dp_4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+            style="@style/TextHeavy.16sp"
+            android:id="@+id/game_name"
+            android:textColor="@color/textColor"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:lines="@integer/line_1"
+            android:ellipsize="end"
+            android:layout_marginStart="@dimen/dp_8"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mediaImageView"
+            app:layout_constraintStart_toEndOf="@+id/mediaImageView"
+            tools:text="@string/loremText"
+            />
+
+    <TextView
+            android:id="@+id/game_owner"
+            android:textAppearance="@style/TextMedium.12sp"
+            android:textColor="@color/textColor"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:lines="@integer/line_1"
+            android:ellipsize="end"
+            android:layout_marginStart="@dimen/dp_8"
+            app:layout_constraintStart_toEndOf="@+id/mediaImageView"
+            app:layout_constraintEnd_toStartOf="@id/statusLayout"
+            app:layout_constraintBottom_toBottomOf="@id/mediaImageView"
+            tools:text="@string/loremText"
+    />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/shape_border_rounded_dark"
+            android:id="@+id/statusLayout"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/dp_8"
+            android:paddingStart="@dimen/dp_8"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingBottom="@dimen/dp_2"
+            app:layout_constraintBottom_toBottomOf="@id/game_owner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/game_owner"
+            app:layout_constraintRight_toRightOf="parent"
+            >
+
+        <ImageView
+                android:id="@+id/dateImage"
+                android:paddingEnd="@dimen/dp_6"
+                android:paddingStart="@dimen/dp_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_6"
+                android:src="@drawable/ic_date_range_white_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/status"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+                android:id="@+id/status"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/dateImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="@string/pending" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
