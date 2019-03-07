@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
-import br.com.concrete.tentacle.extensions.finishActivity
 import br.com.concrete.tentacle.features.HostActivity
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -98,11 +97,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
             builder.create().show()
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finishActivity(animation = getFinishActivityTransition())
     }
 
     open fun getFinishActivityTransition(): ActivityAnimation {

@@ -39,6 +39,18 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
+    fun loadRemoteGames(gameName: String): Observable<BaseModel<GameResponse>> {
+        return apiRest.loadRemoteGames(gameName)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
+
+    fun registerRemoteGame(game: GameRequest): Observable<BaseModel<Game>> {
+        return apiRest.registerRemoteGame(game)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
+
     fun getMediaLoan(id: String): Observable<BaseModel<Media>> {
         return apiRest.getMediaLoan(id)
             .subscribeOn(Schedulers.io())

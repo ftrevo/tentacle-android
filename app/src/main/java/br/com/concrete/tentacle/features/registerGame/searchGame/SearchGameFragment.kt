@@ -194,14 +194,9 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.buttonNameError -> registerNewGame()
-            R.id.buttonAction -> registerNewGame()
+            R.id.buttonNameError -> navigateToRemoteGame()
+            R.id.buttonAction -> navigateToRemoteGame()
         }
-    }
-
-    private fun registerNewGame() {
-        if (validateSearch(getQuerySearchView())) gameViewModel.registerNewGame(name = getQuerySearchView())
-        else callSnackBar(getString(R.string.field_search_no_empty))
     }
 
     private fun enableProgress(isEnable: Boolean) {
@@ -210,6 +205,13 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
 
     private fun enableCustomError(isEnable: Boolean) {
         listCustom.visibleCustomError(isEnable)
+    }
+
+    private fun navigateToRemoteGame() {
+        if (validateSearch(getQuerySearchView())) {
+            val directions = SearchGameFragmentDirections.navigateToRemoteGame(getQuerySearchView())
+            findNavController().navigate(directions)
+        } else callSnackBar(getString(R.string.field_search_no_empty))
     }
 
     private fun navigateToRegisterPlatform(game: Game) {
