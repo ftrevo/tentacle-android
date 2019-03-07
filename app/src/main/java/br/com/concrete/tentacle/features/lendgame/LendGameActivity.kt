@@ -82,7 +82,7 @@ class LendGameActivity : BaseActivity() {
 
         media?.let { m ->
             activeLoan = m.activeLoan
-            tvGameName.text = m.gameData?.name ?: ""
+            tvGameName.text = m.game?.name ?: ""
             tvRequestedBy.text = m.activeLoan?.requestedByName ?: ""
             val currentDate = Calendar.getInstance()
             currentDate.add(Calendar.WEEK_OF_MONTH, DEFAULT_RETURN_DATE_IN_WEEKS)

@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.utils
 const val EMPTY_STRING = ""
 const val PREFS_KEY_USER_SESSION = "USER_SESSION"
 const val DEFAULT_INVALID_RESOURCE = -1
+const val DEFAULT_INVALID_RESOURCE_BOOLEAN = false
 const val BLANk_SPACE_STRING = " "
 
 const val PLATFORM_PS3_ABBREV = "PS3"
@@ -11,6 +12,8 @@ const val PLATFORM_XBOX_ONE_ABBREV = "XONE"
 const val PLATFORM_XBOX_360_ABBREV = "X360"
 const val PLATFORM_NINTENDO_SWITCH_ABBREV = "SWITCH"
 const val PLATFORM_NINTENDO_3DS_ABBREV = "3DS"
+
+const val LIMIT_PAGE = 15
 
 const val SIMPLE_DATE_OUTPUT_FORMAT = "dd/MM/yy"
 const val DATE_FORMAT_ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -23,6 +26,7 @@ const val PLATFORM_XBOX_360 = "XBOX360"
 const val PLATFORM_NINTENDO_SWITCH = "NINTENDOSWITCH"
 const val PLATFORM_NINTENDO_3DS = "NINTENDO3DS"
 
+const val TIME_PROGRESS_LOAD = 2500L
 const val IMAGE_SIZE_TYPE_COVER_SMALL = "cover_small" // 90 x 128
 const val IMAGE_SIZE_TYPE_SCREENSHOT_MED = "screenshot_med" // 569 x 320
 const val IMAGE_SIZE_TYPE_COVER_BIG = "cover_big" // 264 x 374

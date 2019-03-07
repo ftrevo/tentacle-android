@@ -15,6 +15,7 @@
     <string name="phone_error">Forneça um número de telefone válido</string>
     <string name="state_error">Selecione um estado</string>
     <string name="city_error">Selecione uma cidade</string>
+    <string name="load_error">Desculpe, não foi possível carregar os dados!</string>
 
     <string name="ok">Ok</string>
     <string name="error_dialog_title">Erro</string>
@@ -67,6 +68,8 @@
     <string name="toolbar_title_search_game">Cadastrar jogo</string>
     <string name="toolbar_title_loan_game">Reservar jogo</string>
     <string name="toolbar_title_lend_game">Detalhes do jogo</string>
+    <string name="toolbar_title_my_reservations">Minhas Reservas</string>
+    <string name="toolbar_title_my_reservations_detail">Detalhes da reserva</string>
 
     <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles
         aparecerem aqui!
@@ -148,4 +151,19 @@
     <string name="text_game_owner">Dono do jogo</string>
     <string name="text_game_single_player">Single Player</string>
     <string name="text_game_multi_player">Multiplayer online</string>
+    <string name="pending">Pendente</string>
+
+    <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.</string>
+    <string name="load_reservations_empty_list">Você ainda não possui nenhum pedido de reserva.</string>
+    <string name="btn_reservation_error_empty">Ir para a biblioteca</string>
+
+    <string name="my_reservation_owner_name">Dono: %1$s</string>
+
+    <string name="loan_state_pending">Pendente</string>
+    <string name="loan_state_active_plural">Faltam %1$d dias</string>
+    <string name="loan_state_active_singular">Falta %1$d dia</string>
+    <string name="loan_state_expired">Expirado</string>
+
+    <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga reservar :)</string>
+    <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.</string>
 </resources>

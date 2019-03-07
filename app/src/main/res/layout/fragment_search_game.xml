@@ -18,9 +18,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:icon="@drawable/ilustra_tentacle"
         app:layoutManager="LinearLayoutManager"
         app:buttonNameError="@string/load_again"
         app:errorDescription="@string/first_game_register"
-        app:buttonNameAction="@string/did_not_find_what_you_wanted"/>
+        app:buttonNameAction="@string/did_not_find_what_you_wanted"
+        app:endLessScroll="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
