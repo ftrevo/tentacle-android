@@ -14,10 +14,7 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.DialogUtils
-import kotlinx.android.synthetic.main.activity_my_reservations_details.gameView
-import kotlinx.android.synthetic.main.activity_my_reservations_details.group
-import kotlinx.android.synthetic.main.activity_my_reservations_details.tvGameOwner
-import kotlinx.android.synthetic.main.activity_my_reservations_details.tvGamePlatform
+import kotlinx.android.synthetic.main.activity_my_reservations_details.*
 import kotlinx.android.synthetic.main.game_view_header_layout.ivGameStatus
 import kotlinx.android.synthetic.main.game_view_header_layout.tvGameStatus
 import kotlinx.android.synthetic.main.progress_include.progressBarList
@@ -72,6 +69,7 @@ class MyReservationActivity : BaseActivity() {
 
             val loanState = loanResponse.getLoanState()
             var loanText: String? = null
+            var loanInfoText: String? = null
             var loanColor: Int? = null
             when (loanState) {
                 LoanResponse.LoanState.ACTIVE -> {
@@ -84,14 +82,17 @@ class MyReservationActivity : BaseActivity() {
                         }
                     }
                     loanColor = R.color.loan_state_active
+                    loanInfoText = ""
                 }
                 LoanResponse.LoanState.EXPIRED -> {
                     loanText = getString(R.string.loan_state_expired)
                     loanColor = R.color.loan_state_expired
+                    loanInfoText = getString(R.string.loan_info_expired)
                 }
                 LoanResponse.LoanState.PENDING -> {
                     loanText = getString(R.string.loan_state_pending)
                     loanColor = R.color.loan_state_pending
+                    loanInfoText = getString(R.string.loan_info_pending)
                 }
             }
 
@@ -99,7 +100,12 @@ class MyReservationActivity : BaseActivity() {
                 tvGameStatus.text = loanText
             }
 
-            ivGameStatus.setColorFilter(ContextCompat.getColor(this@MyReservationActivity, loanColor))
+            loanInfoText?.let {
+                tvLoanInfo.text = loanInfoText
+            }
+            val color = ContextCompat.getColor(this@MyReservationActivity, loanColor)
+            ivGameStatus.setColorFilter(color)
+            tvLoanInfo.setTextColor(color)
             group.visibility = View.VISIBLE
         } ?: run {
             val error = ErrorResponse()

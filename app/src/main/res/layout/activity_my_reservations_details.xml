@@ -74,6 +74,11 @@
                 android:layout_height="wrap_content"/>
 
         <TextView
+                android:id="@+id/tvLoanInfo"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textAppearance="@style/TextMedium.14sp"
+                tools:text="@string/loan_info_expired"
+                android:textColor="@color/loan_state_expired"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGameOwner"

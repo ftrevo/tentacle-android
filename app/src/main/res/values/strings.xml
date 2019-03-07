@@ -163,4 +163,7 @@
     <string name="loan_state_active_plural">Faltam %1$d dias</string>
     <string name="loan_state_active_singular">Falta %1$d dia</string>
     <string name="loan_state_expired">Expirado</string>
+
+    <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga reservar :)</string>
+    <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.</string>
 </resources>
