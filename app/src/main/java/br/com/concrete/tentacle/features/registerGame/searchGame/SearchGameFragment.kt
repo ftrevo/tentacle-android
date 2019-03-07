@@ -212,7 +212,6 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
             val directions = SearchGameFragmentDirections.navigateToRemoteGame(getQuerySearchView())
             findNavController().navigate(directions)
         } else callSnackBar(getString(R.string.field_search_no_empty))
-
     }
 
     private fun navigateToRegisterPlatform(game: Game) {

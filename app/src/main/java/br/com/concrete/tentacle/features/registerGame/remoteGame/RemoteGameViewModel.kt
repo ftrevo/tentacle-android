@@ -9,7 +9,7 @@ import br.com.concrete.tentacle.data.repositories.GameRepository
 import br.com.concrete.tentacle.utils.Event
 import br.com.concrete.tentacle.utils.LogWrapper
 
-class RemoteGameViewModel(private val gameRepository: GameRepository): BaseViewModel() {
+class RemoteGameViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
     val remoteGamesViewState = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
     val gameViewState = MutableLiveData< Event<ViewStateModel<Game>>>()
@@ -63,5 +63,4 @@ class RemoteGameViewModel(private val gameRepository: GameRepository): BaseViewM
             })
         )
     }
-
 }

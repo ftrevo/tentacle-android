@@ -21,8 +21,7 @@ import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import org.koin.android.viewmodel.ext.android.viewModel
 
-
-class RemoteGameFragment: BaseFragment() {
+class RemoteGameFragment : BaseFragment() {
 
     private val remoteViewModel: RemoteGameViewModel by viewModel()
     private var gameName: String = EMPTY_STRING
@@ -56,7 +55,7 @@ class RemoteGameFragment: BaseFragment() {
 
     private fun addObservers() {
         remoteViewModel.remoteGamesViewState.observe(this, Observer { remoteGamesViewState ->
-            when(remoteGamesViewState.status) {
+            when (remoteGamesViewState.status) {
                 ViewStateModel.Status.LOADING -> {
                     enableProgress(true)
                 }
@@ -68,7 +67,6 @@ class RemoteGameFragment: BaseFragment() {
                     enableProgress(false)
                     loadMessageErrorLoading(remoteGamesViewState)
                 }
-
             }
         })
 
@@ -91,7 +89,6 @@ class RemoteGameFragment: BaseFragment() {
                 }
             }
         })
-
     }
 
     fun addListener() {
@@ -101,7 +98,6 @@ class RemoteGameFragment: BaseFragment() {
         listCustom.buttonAction.setOnClickListener {
             activity?.onBackPressed()
         }
-
     }
 
     private fun showList(model: ArrayList<Game?>) {
