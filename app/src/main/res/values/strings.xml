@@ -49,6 +49,9 @@
     <string name="media">mídia</string>
     <string name="first_game_register">Parece que você é o primeiro a buscar esse jogo!</string>
 
+    <string name="remote_game_not_found_description">Jogo não encontrado</string>
+    <string name="remote_game_not_found_action_button">Retornar para pesquisa</string>
+
     <string name="register_media_group_title">Selecione a plataforma:</string>
     <string name="register_media_ps3_radio_button_title">Playstation 3</string>
     <string name="register_media_ps4_radio_button_title">Playstation 4</string>

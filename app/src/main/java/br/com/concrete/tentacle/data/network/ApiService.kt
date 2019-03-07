@@ -46,6 +46,15 @@ interface ApiService {
     @GET("/games")
     fun loadHomeGames(): Observable<BaseModel<GameResponse>>
 
+    @GET("games/remote")
+    fun loadRemoteGames(
+        @Query("name") gameName: String,
+        @Query("limit") limit: Int = 50
+    ): Observable<BaseModel<GameResponse>>
+
+    @POST("games/remote")
+    fun registerRemoteGame(@Body game: GameRequest): Observable<BaseModel<Game>>
+
     @GET("library")
     fun getLibrary(
         @Query("_id") id: String? = null,

@@ -55,7 +55,7 @@ class SearchGameViewModel(
     }
 
     private fun obsRegisterGame(name: String) =
-        gameRepository.registerNewGame(GameRequest(name)).subscribe({ base ->
+        gameRepository.registerNewGame(GameRequest(name = name)).subscribe({ base ->
             viewGame.postValue(
                 Event(
                     ViewStateModel(

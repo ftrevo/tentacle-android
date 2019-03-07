@@ -13,6 +13,7 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.utils.EMPTY_STRING
 import kotlinx.android.synthetic.main.fragment_search_game.listCustom
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
@@ -151,14 +152,9 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.buttonNameError -> registerNewGame()
-            R.id.buttonAction -> registerNewGame()
+            R.id.buttonNameError -> navigateToRemoteGame()
+            R.id.buttonAction -> navigateToRemoteGame()
         }
-    }
-
-    private fun registerNewGame() {
-        if (validateSearch(getQuerySearchView())) gameViewModel.registerNewGame(name = getQuerySearchView())
-        else callSnackBar(getString(R.string.field_search_no_empty))
     }
 
     private fun enableProgress(isEnable: Boolean) {
@@ -167,6 +163,14 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     private fun enableCustomError(isEnable: Boolean) {
         listCustom.visibleCustomError(isEnable)
+    }
+
+    private fun navigateToRemoteGame() {
+        if (validateSearch(getQuerySearchView())) {
+            val directions = SearchGameFragmentDirections.navigateToRemoteGame(getQuerySearchView())
+            findNavController().navigate(directions)
+        } else callSnackBar(getString(R.string.field_search_no_empty))
+
     }
 
     private fun navigateToRegisterPlatform(game: Game) {

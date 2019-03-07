@@ -9,9 +9,10 @@ import java.io.Serializable
 
 data class Game(
     val _id: String = String(),
+    @SerializedName("id") val remoteGameId: Int? = null,
     @SerializedName("name", alternate = ["title"])
     val name: String = String(),
-    val createdBy: User,
+    val createdBy: String,
     var createdAt: String,
     var updateAt: String,
     @SerializedName("aggregated_rating")
@@ -32,20 +33,11 @@ data class Game(
         const val ID_EMPTY_GAME = "-1"
 
         fun getEmptyGame(): Game = Game(
-            ID_EMPTY_GAME,
-            "",
-            User(
-                city = "",
-                name = "",
-                password = "",
-                state = State(
-                    "",
-                    "",
-                    ""
-                )
-            ),
-            "",
-            ""
+            _id = ID_EMPTY_GAME,
+            name = "",
+            createdBy = "",
+            createdAt = "",
+            updateAt = ""
         )
     }
 }
