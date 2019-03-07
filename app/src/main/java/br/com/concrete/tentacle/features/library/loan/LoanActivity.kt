@@ -138,9 +138,18 @@ class LoanActivity : BaseActivity() {
     }
 
     private fun setOwners(list: List<MediaLibrary>) {
+        resetHit()
         spOwners.setItems(list)
         autoSelectIfUniqueOwner(list)
         spOwners.isEnabled = list.isNotEmpty()
+    }
+
+    private fun resetHit(){
+        /*
+            Workaround in order to fix the bug that doesn't reset the index
+        */
+        spOwners.expand()
+        spOwners.collapse()
     }
 
     private fun autoSelectIfUniqueOwner(list: List<MediaLibrary>) {
