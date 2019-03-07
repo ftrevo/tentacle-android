@@ -20,6 +20,7 @@
             app:buttonNameError="@string/add_new_game"
             app:errorDescription="@string/no_library_error"
             app:emptyListMessage="@string/msg_empty_list"
-            app:icon="@drawable/il_wow"/>
+            app:icon="@drawable/ilustra_tentacle"
+            app:endLessScroll="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

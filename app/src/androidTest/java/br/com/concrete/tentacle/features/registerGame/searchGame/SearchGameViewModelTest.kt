@@ -5,7 +5,10 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -16,6 +19,8 @@ import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.util.RecyclerPositionViewMatcher.Companion.withRecyclerViewAndViewId
 import br.com.concrete.tentacle.extensions.waitUntil
+import br.com.concrete.tentacle.matchers.RecyclerViewMatcher
+import kotlinx.android.synthetic.main.list_custom.*
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers
 import org.junit.Test
@@ -130,5 +135,41 @@ class SearchGameViewModelTest : BaseFragmentTest() {
 
         onView(withRecyclerViewAndViewId(R.id.recyclerListView, 0, R.id.game_name))
             .check(matches(withText("JOGO 1")))
+    }
+
+    @Test
+    fun afterSearchAndScrollingToEndSuccess() {
+        mockWebServer.enqueue(MockResponse()
+            .setResponseCode(200)
+            .setBody("mockjson/searchgame/list_game_success.json".getJson()))
+        mockWebServer.enqueue(MockResponse()
+            .setResponseCode(200)
+            .setBody("mockjson/searchgame/list_game_success_second.json".getJson()))
+
+        onView(isAssignableFrom(EditText::class.java))
+            .perform(typeText("jo"))
+
+        pressBack()
+
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
+        onView(withId(R.id.recyclerListView))
+            .check(ViewAssertions.matches(isDisplayed()))
+        onView(withId(R.id.recyclerListError))
+            .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
+
+        val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!!
+        onView(withId(R.id.recyclerListView)).perform(
+            RecyclerViewActions.scrollToPosition<SearchGameViewHolder>(
+                testFragment.recyclerListView.adapter?.itemCount!! - 1
+            )
+        )
+
+        onView(withId(R.id.recyclerListView)).perform(RecyclerViewActions.scrollToPosition<SearchGameViewHolder>(oldCount))
+
+        Thread.sleep(2600)
+
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.recyclerListView).atPosition(oldCount))
+            .check(matches(ViewMatchers.hasDescendant(withText("JOGO FIRST"))))
     }
 }
