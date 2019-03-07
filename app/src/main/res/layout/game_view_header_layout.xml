@@ -5,10 +5,11 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:background="@color/colorPrimary">
+        tools:background="@color/colorPrimary"
+        android:id="@+id/gameViewHeader">
 
     <ImageView
-        tools:background="@color/activateIcon"
+        android:background="@color/activateIcon"
         android:id="@+id/ivGameCover"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,7 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Pendente"
-        android:id="@+id/tvGameStatus"/>
+        android:id="@+id/tvGameStatus"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/ivGameStatus"
@@ -70,6 +72,7 @@
         android:layout_marginBottom="@dimen/dp_8"
         android:src="@drawable/ic_game_status"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
