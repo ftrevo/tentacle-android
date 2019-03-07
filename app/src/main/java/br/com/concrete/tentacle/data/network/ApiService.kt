@@ -89,5 +89,5 @@ interface ApiService {
     fun getDetailsGame(@Path("id") idGame: String): Observable<BaseModel<Game>>
 
     @GET("/library/home")
-    fun loadHome(): Observable<BaseModel<GameResponse>
+    fun loadHome(): Observable<BaseModel<GameResponse>>
 }
