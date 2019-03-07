@@ -30,7 +30,7 @@
 
         <argument
             android:name="game_argument"
-            app:argType="br.com.concrete.tentacle.data.models.Game"/>
+            app:argType="string"/>
     </fragment>
 
 </navigation>

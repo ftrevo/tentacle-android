@@ -31,7 +31,7 @@
         android:textAppearance="@style/TextHeavy.24sp"
         android:textColor="@color/textColor"/>
 
-    <RatingBar
+    <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/rbGame"
         style="?android:attr/ratingBarStyleSmall"
         android:theme="@style/StyleRatingBar"

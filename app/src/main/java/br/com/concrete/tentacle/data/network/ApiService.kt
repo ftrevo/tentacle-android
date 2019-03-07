@@ -85,6 +85,9 @@ interface ApiService {
         @Body loanAction: LoanActionRequest
     ): Observable<BaseModel<LoanResponse>>
 
+    @GET("games/{id}")
+    fun getDetailsGame(@Path("id") idGame: String): Observable<BaseModel<Game>>
+
     @GET("/library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
 }
