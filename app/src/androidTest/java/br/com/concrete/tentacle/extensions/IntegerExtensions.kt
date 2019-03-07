@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
 
-fun Int.checkLines()
-        : TypeSafeMatcher<View> {
+fun Int.checkLines(): TypeSafeMatcher<View> {
 
     var lines = this
-    return object: TypeSafeMatcher<View>() {
+    return object : TypeSafeMatcher<View>() {
         override fun describeTo(description: Description?) {
             description?.appendText("IsTextInLines")
         }
@@ -22,7 +21,7 @@ fun Int.checkLines()
     }
 }
 
-fun Int.atPositionOnView(position: Int, targetViewId: Int = -1): TypeSafeMatcher<View>{
+fun Int.atPositionOnView(position: Int, targetViewId: Int = -1): TypeSafeMatcher<View> {
     val recyclerViewId = this
     return object : TypeSafeMatcher<View>() {
         var resources: Resources? = null
@@ -66,4 +65,3 @@ fun Int.atPositionOnView(position: Int, targetViewId: Int = -1): TypeSafeMatcher
         }
     }
 }
-

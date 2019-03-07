@@ -13,7 +13,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.koin.standalone.inject
 
-class MyReservationDetailVMTest: BaseViewModelTest()  {
+class MyReservationDetailVMTest : BaseViewModelTest() {
 
     private val myReservationDetail: MyReservationDetailViewModel by inject()
 
@@ -98,5 +98,4 @@ class MyReservationDetailVMTest: BaseViewModelTest()  {
         myReservationDetail.loadMyLoan("id")
         assertEquals(expected, actual)
     }
-
 }

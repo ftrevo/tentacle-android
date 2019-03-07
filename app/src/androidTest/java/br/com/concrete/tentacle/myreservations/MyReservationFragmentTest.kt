@@ -100,5 +100,4 @@ class MyReservationFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .perform(isDisplayed().waitUntil())
     }
-
 }
