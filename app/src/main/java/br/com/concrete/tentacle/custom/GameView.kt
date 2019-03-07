@@ -13,7 +13,7 @@ import br.com.concrete.tentacle.extensions.loadImageUrl
 import br.com.concrete.tentacle.extensions.progress
 import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
-import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_LOGO_MED
+import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
 import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.game_view_header_layout.view.ivGameCover
 import kotlinx.android.synthetic.main.game_view_header_layout.view.ivGameStatus
@@ -39,7 +39,7 @@ class GameView(
         with(game) {
 
             cover?.imageId?.let {
-                ivGameCover.loadImageUrl(Utils.assembleGameImageUrl(IMAGE_SIZE_TYPE_LOGO_MED, it))
+                ivGameCover.loadImageUrl(Utils.assembleGameImageUrl(IMAGE_SIZE_TYPE_COVER_SMALL, it))
             }
 
             val inflater = LayoutInflater.from(this@GameView.context)

@@ -19,7 +19,7 @@ val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { SearchGameViewModel(get()) }
     viewModel { LoadMyGamesViewModel(get()) }
-    viewModel { RegisterMediaViewModel(get()) }
+    viewModel { RegisterMediaViewModel(get(), get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { LibraryViewModel(get()) }
     viewModel { FilterViewModel(get()) }

@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.utils
 
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 
@@ -55,6 +56,9 @@ object DialogUtils {
 
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE)
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.WHITE)
 
         return dialog
     }

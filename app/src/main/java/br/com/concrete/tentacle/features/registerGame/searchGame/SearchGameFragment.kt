@@ -147,7 +147,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
 
     override fun onMenuItemActionCollapse(item: MenuItem?) = true
 
-    override fun titleToolbar() = getString(R.string.add_new_game)
+    override fun titleToolbar() = getString(R.string.toolbar_title_search_game)
 
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -170,7 +170,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener {
     }
 
     private fun navigateToRegisterPlatform(game: Game) {
-        val directions = SearchGameFragmentDirections.NavigateToRegisterPlatform(game)
+        val directions = SearchGameFragmentDirections.NavigateToRegisterPlatform(game._id)
         findNavController().navigate(directions)
     }
 

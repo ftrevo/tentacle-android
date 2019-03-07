@@ -45,7 +45,6 @@
     <dimen name="homeItemEndMargin">12dp</dimen>
     <integer name="homeItemTitleMaxLines">2</integer>
     <integer name="homeItemContentMaxLines">3</integer>
-    <integer name="ratingStarNumber">5</integer>
 
     <dimen name="game_icon_width">44dp</dimen>
     <dimen name="game_icon_height">58dp</dimen>
@@ -103,6 +102,7 @@
     <dimen name="defaultCorner22dp">22dp</dimen>
 
     <dimen name="gameStatusRadius">8dp</dimen>
+    <dimen name="dm_14">14sp</dimen>
 
 </resources>
 

@@ -123,7 +123,7 @@
 
     <string name="cancel">Cancelar</string>
 
-    <string name="library_loan_text1">Qual a plataforma que voce quer reservar?</string>
+    <string name="library_loan_text1">Qual a plataforma que você quer reservar?</string>
     <string name="library_loan_text2">Escolha de quem você quer emprestado</string>
 
     <string name="library_loan_user_list_hint">Selecione</string>
@@ -148,4 +148,8 @@
     <string name="text_game_owner">Dono do jogo</string>
     <string name="text_game_single_player">Single Player</string>
     <string name="text_game_multi_player">Multiplayer online</string>
+    <string name="game_already_registered">Ops! Parece que já cadastrou esse jogo.</string>
+    <string name="confirm_game">Você confirma que %1$s existe para a plataforma %2$s?</string>
+    <string name="back">Voltar</string>
+    <string name="confirm">Confirmar</string>
 </resources>

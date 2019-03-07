@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:homeAsUpIndicator">@drawable/arrow_back</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -132,4 +133,12 @@
         <item name="android:height">@dimen/chipHeight</item>
         <item name="android:textAlignment">center</item>
     </style>
+
+    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/dm_14</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>
