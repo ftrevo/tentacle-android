@@ -37,10 +37,8 @@ interface ApiService {
         game: GameRequest
     ): Observable<BaseModel<Game>>
 
-    @GET("/media")
+    @GET("/media-loan")
     fun getRegisteredGames(
-        @Query("mineOnly")
-        mineOnly: Boolean = true,
         @Query("limit")
         limit: Int = LIMIT_PAGE,
         @Query("page")
