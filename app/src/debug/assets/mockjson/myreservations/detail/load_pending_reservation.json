@@ -1,0 +1,61 @@
+{
+  "message": [
+    "Empréstimo encontrado"
+  ],
+  "data": {
+    "_id": "5c6c0bde2ec12a00236a4e52",
+    "requestedAt": "2019-02-19T13:43:26.539Z",
+    "media": {
+      "_id": "5c66fef9df4b530023a72774",
+      "platform": "PS4"
+    },
+    "requestedBy": {
+      "_id": "5c1ab12e7c0f4f002272357e",
+      "name": "JOAO DAS NEVES",
+      "email": "email@email.com"
+    },
+    "mediaOwner": {
+      "_id": "5c179fa83b6274002239a00b",
+      "name": "FELIPE TREVISAN",
+      "email": "felipe.t.cadastros@gmail.com"
+    },
+    "game": {
+      "_id": "5c66feafdf4b530023a72773",
+      "aggregated_rating": 97.4,
+      "cover": {
+        "id": 70754,
+        "height": 1500,
+        "image_id": "co1ile",
+        "width": 1062
+      },
+      "first_release_date": "2014-07-29T00:00:00.000Z",
+      "game_modes": [
+        {
+          "id": 1,
+          "name": "Single player",
+          "slug": "single-player"
+        },
+        {
+          "id": 2,
+          "name": "Multiplayer",
+          "slug": "multiplayer"
+        }
+      ],
+      "genres": [
+        {
+          "id": 5,
+          "name": "Shooter",
+          "slug": "shooter"
+        },
+        {
+          "id": 31,
+          "name": "Adventure",
+          "slug": "adventure"
+        }
+      ],
+      "name": "The Last of Us Remastered",
+      "summary": "Winner of over 200 game of the year awards, The Last of Us has been remastered for the PlayStation®4. Now featuring higher resolution character models, improved shadows and lighting, in addition to several other gameplay improvements. \n \nAbandoned cities reclaimed by nature. A population decimated by a modern plague. Survivors are killing each other for food, weapons whatever they can get their hands on. Joel, a brutal survivor, and Ellie, a brave young teenage girl who is wise beyond her years, must work together if they hope to survive their journey across the US. \n \nThe Last of Us: Remastered includes the Abandoned Territories Map Pack, Reclaimed Territories Map Pack, and the critically acclaimed The Last of Us: Left Behind Single Player campaign. \n \nPS4 PRO ENHANCED: \n- PS4 Pro HD \n- Dynamic 4K Gaming \n- Greater Draw Distance \n- Visual FX \n- Vivid Textures \n- Deep Shadows \n- High Fidelity Assets \n- HDR",
+      "formattedReleaseDate": "29/07/2014"
+    }
+  }
+}
