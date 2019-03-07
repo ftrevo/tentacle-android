@@ -28,7 +28,6 @@ class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
         activityTestRule.launchActivity(intent)
     }
 
-
     @Test
     fun showActiveLoan() {
 
@@ -64,10 +63,9 @@ class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
         verifyFilds()
         onView(withId(R.id.tvGameStatus))
             .check(matches(withText("Expirado")))
-
     }
 
-    private fun verifyFilds(){
+    private fun verifyFilds() {
         onView(withId(R.id.tvGameName))
             .check(matches(withText("The Last of Us Remastered")))
 
@@ -97,6 +95,5 @@ class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
 
         onView(withId(R.id.tvGameOwner))
             .check(matches(withText("FELIPE TREVISAN")))
-
     }
 }

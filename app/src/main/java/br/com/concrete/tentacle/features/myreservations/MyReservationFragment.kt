@@ -55,11 +55,11 @@ class MyReservationFragment : BaseFragment() {
         myReservationViewModel.getMyReservations().observe(this, Observer { base ->
             when (base.status) {
                 ViewStateModel.Status.SUCCESS -> {
-                    base.model?.let {loanResponseList ->
+                    base.model?.let { loanResponseList ->
                         myReservationList.addAll(loanResponseList)
-                        if(myReservationList.isEmpty()){
+                        if (myReservationList.isEmpty()) {
                             loadEmptyState()
-                        }else{
+                        } else {
                             loadRecyclerView(myReservationList)
                         }
                     }
@@ -110,7 +110,7 @@ class MyReservationFragment : BaseFragment() {
         listMyReservations.setLoading(false)
     }
 
-    private fun loadEmptyState(){
+    private fun loadEmptyState() {
         listMyReservations.setErrorMessage(R.string.load_reservations_empty_list)
         listMyReservations.setButtonNameAction(R.string.btn_reservation_error_empty)
 

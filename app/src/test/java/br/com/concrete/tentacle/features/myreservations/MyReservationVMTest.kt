@@ -88,5 +88,4 @@ class MyReservationVMTest : BaseViewModelTest() {
         myReservationViewModel.loadMyReservations()
         Assert.assertEquals(expected, actual)
     }
-
 }
