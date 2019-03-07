@@ -64,7 +64,9 @@ class HostActivity : BaseActivity(), CallBack {
                 R.id.action_home -> {
                     navController.navigate(R.id.navigate_to_home)
                 }
-                R.id.action_reservation -> LogWrapper.log("ACTION", "Wallet")
+                R.id.action_reservation -> {
+                    navController.navigate(R.id.navigate_to_my_reservations)
+                }
                 R.id.action_events -> LogWrapper.log("ACTION", "Calendar")
             }
             setupToolbar(R.drawable.ic_logo_actionbar)

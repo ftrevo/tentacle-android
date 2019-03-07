@@ -24,6 +24,12 @@
         android:label="@string/toolbar_title_library"
         tools:layout="@layout/fragment_library"/>
 
+    <fragment
+            android:id="@+id/my_reservations"
+            android:name="br.com.concrete.tentacle.features.myreservations.MyReservationFragment"
+            android:label="@string/toolbar_title_my_reservations"
+            tools:layout="@layout/fragment_my_reservation"/>
+
     <action
         app:popUpTo="@+id/nav_host"
         app:popUpToInclusive="true"
@@ -41,5 +47,11 @@
         app:popUpToInclusive="true"
         android:id="@+id/navigate_to_library"
         app:destination="@+id/library"/>
+
+    <action
+            app:popUpTo="@+id/nav_host"
+            app:popUpToInclusive="true"
+            android:id="@+id/navigate_to_my_reservations"
+            app:destination="@+id/my_reservations"/>
 
 </navigation>

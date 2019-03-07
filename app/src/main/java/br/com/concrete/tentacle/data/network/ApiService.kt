@@ -5,6 +5,7 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.LoanActionRequest
+import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
@@ -12,6 +13,7 @@ import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
+import br.com.concrete.tentacle.utils.LIMIT_PAGE
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -25,7 +27,8 @@ interface ApiService {
     @GET("/games")
     fun getSearchGames(
         @Query("name") name: String,
-        @Query("limit") limit: Int = 99
+        @Query("limit") limit: Int = LIMIT_PAGE,
+        @Query("page") page: Int = 0
     ): Observable<BaseModel<GameResponse>>
 
     @POST("/games")
@@ -36,9 +39,19 @@ interface ApiService {
 
     @GET("/media-loan")
     fun getRegisteredGames(
-        @Query("mineOnly") mineOnly: Boolean = true,
-        @Query("limit") limit: Int = 99
+        @Query("limit")
+        limit: Int = LIMIT_PAGE,
+        @Query("page")
+        page: Int
     ): Observable<BaseModel<MediaResponse>>
+
+    @GET("/loans")
+    fun getMyLoans(
+        @Query("mineOnly") mineOnly: Boolean = true
+    ): Observable<BaseModel<LoansListResponse>>
+
+    @GET("/loans/{loanId}")
+    fun getMyLoan(@Path("loanId") loanId: String): Observable<BaseModel<LoanResponse>>
 
     @POST("/media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>
@@ -74,4 +87,7 @@ interface ApiService {
 
     @GET("games/{id}")
     fun getDetailsGame(@Path("id") idGame: String): Observable<BaseModel<Game>>
+
+    @GET("/library/home")
+    fun loadHome(): Observable<BaseModel<GameResponse>
 }
