@@ -26,9 +26,7 @@
         android:textAppearance="@style/TextMedium.14sp"
         tools:text="@string/loremText"
         android:layout_width="@dimen/dp_0"
-        android:layout_height="wrap_content"
-        android:maxLines="4"
-        android:ellipsize="end"/>
+        android:layout_height="wrap_content"/>
 
     <TextView
         app:layout_constraintStart_toStartOf="parent"

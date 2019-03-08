@@ -56,9 +56,9 @@
         <activity android:name=".features.myreservations.detail.MyReservationActivity"
                   android:theme="@style/AppTheme"/>
 
-        <meta-data
-                android:name="io.fabric.ApiKey"
-                android:value="938be7df4916734a793fa34ad87a79af694d54a2"/>
-    </application>
+            <meta-data
+                    android:name="io.fabric.ApiKey"
+                    android:value="938be7df4916734a793fa34ad87a79af694d54a2"/>
+        </application>
 
-</manifest>
+    </manifest>
