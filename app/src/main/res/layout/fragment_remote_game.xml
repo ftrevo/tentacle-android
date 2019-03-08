@@ -21,6 +21,7 @@
         app:layoutManager="LinearLayoutManager"
         app:buttonNameError="@string/remote_game_not_found_action_button"
         app:errorDescription="@string/remote_game_not_found_description"
-        app:buttonNameAction="@string/remote_game_not_found_action_button"/>
+        app:buttonNameAction="@string/remote_game_not_found_action_button"
+        app:endLessScroll="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

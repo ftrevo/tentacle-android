@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.features.registerGame.remoteGame
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,20 +12,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
+import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.utils.EMPTY_STRING
+import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_remote_game.listCustom
+import kotlinx.android.synthetic.main.list_custom.*
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class RemoteGameFragment : BaseFragment() {
+class RemoteGameFragment : BaseFragment(), ListCustom.OnScrollListener {
 
     private val remoteViewModel: RemoteGameViewModel by viewModel()
     private var gameName: String = EMPTY_STRING
+    private var gamesList = ArrayList<Game?>()
+    private lateinit var recyclerViewAdapter : BaseAdapter<Game>
+    private var loadMoreItems = true
+    private var count = Int.MAX_VALUE
 
     override fun getToolbarTitle(): Int = -1
 
@@ -38,6 +46,7 @@ class RemoteGameFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        listCustom.setOnScrollListener(this)
         listCustom.recyclerListView.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(context)
         listCustom.recyclerListView.layoutManager = layoutManager
@@ -89,6 +98,39 @@ class RemoteGameFragment : BaseFragment() {
                 }
             }
         })
+
+        remoteViewModel.remoteGamesMoreViewState.observe(this, Observer { remoteGamesViewState ->
+            when (remoteGamesViewState.status) {
+                ViewStateModel.Status.LOADING -> {}
+                ViewStateModel.Status.SUCCESS -> {
+                    if(remoteGamesViewState.model.isNullOrEmpty()){
+                        finishLoadMore()
+                    }else {
+                        val gamesResponse = remoteGamesViewState.model
+                        Handler().postDelayed({
+                            recyclerViewAdapter.notifyItemInserted(gamesList.size - 1)
+                            gamesList.removeAt(gamesList.size - 1)
+                            recyclerViewAdapter.notifyItemRemoved(gamesList.size - 1)
+                            gamesResponse?.let { gamesList.addAll(it) }
+                            loadMoreItems = true
+                            recyclerViewAdapter.setNewList(gamesList)
+                        }, TIME_PROGRESS_LOAD)
+                    }
+                }
+                ViewStateModel.Status.ERROR -> {
+                    finishLoadMore()
+                }
+            }
+        })
+    }
+
+    private fun finishLoadMore() {
+        gamesList.removeAt(gamesList.size - 1)
+        recyclerViewAdapter.notifyItemRemoved(gamesList.size - 1)
+        loadMoreItems = false
+        gamesList.add(Game.getEmptyGame())
+        recyclerViewAdapter.notifyItemInserted(gamesList.size - 1)
+        count = gamesList.size - 1
     }
 
     fun addListener() {
@@ -101,6 +143,9 @@ class RemoteGameFragment : BaseFragment() {
     }
 
     private fun showList(model: ArrayList<Game?>) {
+        model.forEach { game ->
+            game?.let {  gamesList.add(it) }
+        }
         if (model.isNotEmpty()) {
             fillRecyclerView(model)
         } else {
@@ -109,7 +154,7 @@ class RemoteGameFragment : BaseFragment() {
     }
 
     private fun fillRecyclerView(modelItems: ArrayList<Game?>) {
-        val recyclerViewAdapter =
+        recyclerViewAdapter =
             BaseAdapter(modelItems,
                 R.layout.item_game_search, {
                     RemoteGameViewHolder(it)
@@ -146,7 +191,25 @@ class RemoteGameFragment : BaseFragment() {
     }
 
     private fun navigateToRegisterPlatform(game: Game) {
-        val directions = RemoteGameFragmentDirections.navigateToRegisterPlatformFromRemote(game)
+        val directions = RemoteGameFragmentDirections.navigateToRegisterPlatformFromRemote(game._id)
         findNavController().navigate(directions)
     }
+
+    override fun count() = count
+
+    override fun sizeElements() = gamesList.size
+
+    override fun loadMore() {
+        if(loadMoreItems){
+            remoteViewModel.loadMore()
+            gamesList.add(null)
+            loadMoreItems = false
+
+            recyclerViewAdapter.notifyItemInserted(gamesList.size - 1)
+            gamesList.addAll(ArrayList<Game>())
+            recyclerViewAdapter.setNewList(gamesList)
+        }
+    }
+
+    override fun loadPage() = loadMoreItems
 }

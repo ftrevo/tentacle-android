@@ -12,18 +12,18 @@ import br.com.concrete.tentacle.utils.LogWrapper
 class RemoteGameViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
     val remoteGamesViewState = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
+    val remoteGamesMoreViewState = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
     val gameViewState = MutableLiveData< Event<ViewStateModel<Game>>>()
 
+    var name: String = ""
+    var page = 1
+
     fun getRemoteGames(name: String) {
+        this.name = name
         remoteGamesViewState.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
 
         disposables.add(
-            gameRepository.loadRemoteGames(name).subscribe({ base ->
-                if (base.data.list.isNotEmpty()) {
-                    base.data.list.add(Game.getEmptyGame())
-                } else {
-                    base.data.list
-                }
+            gameRepository.loadRemoteGames(gameName = name).subscribe({ base ->
 
                 remoteGamesViewState.postValue(
                     ViewStateModel(
@@ -60,6 +60,33 @@ class RemoteGameViewModel(private val gameRepository: GameRepository) : BaseView
                     )
                 )
                 LogWrapper.print(it)
+            })
+        )
+    }
+
+    fun loadMore(){
+        remoteGamesMoreViewState.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
+        disposables.add(
+            gameRepository.loadRemoteGames(gameName = name, page = page).subscribe({ base ->
+                if (base.data.list.isNotEmpty()) {
+                    page++
+                } else {
+                    base.data.list
+                }
+
+                remoteGamesMoreViewState.postValue(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.SUCCESS,
+                        model = ArrayList(base.data.list)
+                    )
+                )
+            }, {
+                remoteGamesMoreViewState.postValue(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.ERROR,
+                        errors = notKnownError(it)
+                    )
+                )
             })
         )
     }

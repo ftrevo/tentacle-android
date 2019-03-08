@@ -43,6 +43,8 @@ class RegisterMediaFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        activity?.title = getString(R.string.toolbar_title_search_game)
+        gameView.showStatusView(false)
         mediaRegisterButton.disable()
 
         arguments?.let { bundle ->
