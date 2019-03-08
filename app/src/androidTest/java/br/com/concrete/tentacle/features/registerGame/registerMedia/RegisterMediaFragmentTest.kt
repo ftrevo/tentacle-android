@@ -28,7 +28,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         "mockjson/registerMedia/register_media_success.json".getJson()
 
     private val mediaAlreadyRegistered =
-        "mockjson/registerMedia/register_media_error_already_registered.json".getJson()
+        "mockjson/errors/error_400.json".getJson()
 
     private val expectedGame = Gson().fromJson<BaseModel<Game>>(responseJson)
 
@@ -132,7 +132,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         onView(withText("Ops! Parece que já cadastrou esse jogo."))
             .check(matches(ViewMatchers.isDisplayed()))
-        onView(withText("Mídia já cadastrada"))
+        onView(withText("ERROR MESSAGE."))
             .check(matches(ViewMatchers.isDisplayed()))
         onView(withText("Ok"))
             .check(matches(ViewMatchers.isDisplayed()))
