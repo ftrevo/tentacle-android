@@ -7,6 +7,7 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.toDate
+import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
 import kotlinx.android.synthetic.main.activity_lend_game_success.btCloseLend
 import kotlinx.android.synthetic.main.activity_lend_game_success.btOk
@@ -37,6 +38,7 @@ class LendGameActivitySuccess : BaseActivity() {
 
         btOk.setOnClickListener {
             finish()
+            HostActivity.fragment.value = R.id.navigate_to_library
         }
     }
 

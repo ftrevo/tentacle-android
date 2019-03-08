@@ -5,6 +5,8 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.finishActivity
+import br.com.concrete.tentacle.features.HostActivity
+import br.com.concrete.tentacle.features.library.LibraryFragment
 import kotlinx.android.synthetic.main.activity_loan_success.btClose
 import kotlinx.android.synthetic.main.activity_loan_success.btOk
 import kotlinx.android.synthetic.main.activity_loan_success.tvText
@@ -33,6 +35,7 @@ class LoanActivitySuccess : BaseActivity() {
 
         btOk.setOnClickListener {
             close()
+            HostActivity.fragment.value = R.id.navigate_to_my_reservations
         }
     }
 
