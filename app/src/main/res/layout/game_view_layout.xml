@@ -5,6 +5,7 @@
         android:layout_height="match_parent"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@android:color/transparent"
         tools:background="@color/colorPrimary">
 
     <include

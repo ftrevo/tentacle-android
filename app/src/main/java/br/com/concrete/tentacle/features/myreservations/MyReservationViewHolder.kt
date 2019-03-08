@@ -26,7 +26,7 @@ class MyReservationViewHolder(
                 var visibility: Int? = null
                 when (el.getLoanState()) {
                     LoanResponse.LoanState.ACTIVE -> {
-                        text = el.loanDate?.toDate()?.format(SIMPLE_DATE_OUTPUT_FORMAT) ?: ""
+                        text = el.estimatedReturnDate?.toDate()?.format(SIMPLE_DATE_OUTPUT_FORMAT) ?: ""
                         visibility = View.VISIBLE
                     }
                     LoanResponse.LoanState.PENDING -> {
