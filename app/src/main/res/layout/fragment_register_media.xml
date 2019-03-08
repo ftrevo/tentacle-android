@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
@@ -26,119 +25,101 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <ImageView
-                    android:id="@+id/mediaRegisterImageView"
-                    android:layout_width="@dimen/game_icon_width"
-                    android:layout_height="@dimen/game_icon_height"
-                    android:background="@color/bgGameIcon"
-                    app:layout_constraintStart_toStartOf="parent"
+            <br.com.concrete.tentacle.custom.GameView
+                    android:id="@+id/gameView"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                    android:id="@+id/mediaRegisterNameTextView"
-                    android:layout_width="@dimen/dp_0"
+                    android:id="@+id/tvTitle1"
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:textColor="@color/textColor"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginEnd="@dimen/margin_default"
-                    android:textSize="@dimen/sp_24"
-                    android:maxLines="@integer/maxLines_5"
-                    android:ellipsize="end"
-                    android:textColor="@android:color/white"
-                    tools:text="@string/loremText"
-                    app:layout_constraintStart_toEndOf="@id/mediaRegisterImageView"
-                    app:layout_constraintTop_toTopOf="@id/mediaRegisterImageView"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-
-            <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/barrier"
-                    android:layout_width="@dimen/dp_0"
-                    android:layout_height="@dimen/dp_0"
-                    app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="mediaRegisterImageView, mediaRegisterNameTextView"
+                    android:text="@string/library_loan_text1"
+                    android:textAppearance="@style/TextHeavy.16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/gameView"/>
 
-            <TextView
-                    android:id="@+id/radioGroupTitle"
-                    android:layout_width="@dimen/dp_0"
-                    android:layout_height="wrap_content"
+            <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/container"
+                    app:singleSelection="true"
+                    app:chipSpacingHorizontal="@dimen/dp_8"
                     android:layout_marginTop="@dimen/margin_default"
-                    android:layout_marginEnd="@dimen/margin_default"
-                    android:textSize="@dimen/sp_24"
-                    android:textColor="@android:color/white"
-                    android:text="@string/register_media_group_title"
-                    app:layout_constraintStart_toStartOf="@id/mediaRegisterImageView"
-                    app:layout_constraintTop_toBottomOf="@id/barrier"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <RadioGroup
-                    android:id="@+id/mediaRegisterRadioGroup"
-                    android:layout_width="@dimen/dp_0"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_18"
-                    app:layout_constraintStart_toStartOf="@id/mediaRegisterImageView"
-                    app:layout_constraintTop_toBottomOf="@id/radioGroupTitle"
-                    app:layout_constraintEnd_toEndOf="parent">
-
-                <RadioButton
-                        android:id="@+id/mediaPS3RadioButton"
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chipPs3"
+                        app:chipSurfaceColor="@null"
+                        android:text="@string/chip_ps3"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:theme="@style/StyleRadioButton"
-                        android:text="@string/register_media_ps3_radio_button_title"/>
+                        android:layout_height="wrap_content"/>
 
-                <RadioButton
-                        android:id="@+id/mediaPS4RadioButton"
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chipPs4"
+                        app:chipSurfaceColor="@null"
+                        android:text="@string/chip_ps4"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:theme="@style/StyleRadioButton"
-                        android:text="@string/register_media_ps4_radio_button_title"/>
+                        android:layout_height="wrap_content"/>
 
-                <RadioButton
-                        android:id="@+id/mediaXbox360RadioButton"
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chip360"
+                        app:chipSurfaceColor="@null"
+                        android:text="@string/chip_360"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:theme="@style/StyleRadioButton"
-                        android:text="@string/register_media_xbox360_radio_button_title"/>
+                        android:layout_height="wrap_content"/>
 
-                <RadioButton
-                        android:id="@+id/mediaXboxOneRadioButton"
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chipOne"
+                        app:chipSurfaceColor="@null"
+                        android:text="@string/chip_one"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:theme="@style/StyleRadioButton"
-                        android:text="@string/register_media_xboxone_radio_button_title"/>
+                        android:layout_height="wrap_content"/>
 
-                <RadioButton
-                        android:id="@+id/media3DSRadioButton"
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chip3ds"
+                        app:chipSurfaceColor="@null"
+                        android:text="@string/chip_3ds"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:theme="@style/StyleRadioButton"
-                        android:text="@string/register_media_3ds_radio_button_title"/>
+                        android:layout_height="wrap_content"/>
 
-                <RadioButton
-                        android:id="@+id/mediaSwitchRadioButton"
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chipSwitch"
+                        app:chipSurfaceColor="@null"
+                        android:visibility="visible"
+                        android:text="@string/chip_ns"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:theme="@style/StyleRadioButton"
-                        android:text="@string/register_media_switch_radio_button_title"/>
+                        android:layout_height="wrap_content"/>
 
-            </RadioGroup>
+            </com.google.android.material.chip.ChipGroup>
 
-            <br.com.concrete.tentacle.custom.ButtonView
+            <br.com.concrete.tentacle.custom.StateButtomView
                     android:id="@+id/mediaRegisterButton"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     style="@style/StyleButton"
                     app:buttonName="@string/register_media_button"
+                    android:layout_marginTop="@dimen/dp_24"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/container"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

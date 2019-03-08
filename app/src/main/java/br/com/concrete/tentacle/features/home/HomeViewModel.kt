@@ -18,9 +18,14 @@ class HomeViewModel(private val gameRepository: GameRepository) : BaseViewModel(
         viewStateGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(gameRepository.loadHomeGames()
             .subscribe({ baseModel ->
-                viewStateGame.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data.list as ArrayList<Game?>))
+                viewStateGame.postValue(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.SUCCESS,
+                        model = baseModel.data.list as ArrayList<Game?>))
             }, {
-                viewStateGame.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
+                viewStateGame.postValue(
+                    ViewStateModel(status = ViewStateModel.Status.ERROR,
+                        errors = notKnownError(it)))
             })
         )
     }

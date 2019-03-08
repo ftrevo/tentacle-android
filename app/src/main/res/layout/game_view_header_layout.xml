@@ -5,11 +5,12 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/gameViewHeader"
         android:background="@android:color/transparent"
         tools:background="@color/colorPrimary">
 
     <ImageView
-        tools:background="@color/activateIcon"
+        android:background="@color/activateIcon"
         android:id="@+id/ivGameCover"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +32,7 @@
         android:textAppearance="@style/TextHeavy.24sp"
         android:textColor="@color/textColor"/>
 
-    <RatingBar
+    <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/rbGame"
         style="?android:attr/ratingBarStyleSmall"
         android:theme="@style/StyleRatingBar"
@@ -62,7 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Pendente"
-        android:id="@+id/tvGameStatus"/>
+        android:id="@+id/tvGameStatus"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/ivGameStatus"
@@ -71,7 +73,8 @@
         android:layout_marginBottom="@dimen/dp_8"
         android:src="@drawable/ic_game_status"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.Group
             android:id="@+id/groupStatus"
@@ -79,6 +82,5 @@
             app:constraint_referenced_ids="tvGameStatus,ivGameStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

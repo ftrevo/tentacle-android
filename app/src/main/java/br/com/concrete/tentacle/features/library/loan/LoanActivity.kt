@@ -153,7 +153,7 @@ class LoanActivity : BaseActivity() {
         spOwners.isEnabled = list.isNotEmpty()
     }
 
-    private fun resetHit(){
+    private fun resetHit() {
         /*
             Workaround in order to fix the bug that doesn't reset the index
         */

@@ -190,18 +190,13 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
 
     override fun onMenuItemActionCollapse(item: MenuItem?) = true
 
-    override fun titleToolbar() = getString(R.string.add_new_game)
+    override fun titleToolbar() = getString(R.string.toolbar_title_search_game)
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.buttonNameError -> registerNewGame()
-            R.id.buttonAction -> registerNewGame()
+            R.id.buttonNameError -> navigateToRemoteGame()
+            R.id.buttonAction -> navigateToRemoteGame()
         }
-    }
-
-    private fun registerNewGame() {
-        if (validateSearch(getQuerySearchView())) gameViewModel.registerNewGame(name = getQuerySearchView())
-        else callSnackBar(getString(R.string.field_search_no_empty))
     }
 
     private fun enableProgress(isEnable: Boolean) {
@@ -212,8 +207,15 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
         listCustom.visibleCustomError(isEnable)
     }
 
+    private fun navigateToRemoteGame() {
+        if (validateSearch(getQuerySearchView())) {
+            val directions = SearchGameFragmentDirections.navigateToRemoteGame(getQuerySearchView())
+            findNavController().navigate(directions)
+        } else callSnackBar(getString(R.string.field_search_no_empty))
+    }
+
     private fun navigateToRegisterPlatform(game: Game) {
-        val directions = SearchGameFragmentDirections.NavigateToRegisterPlatform(game)
+        val directions = SearchGameFragmentDirections.NavigateToRegisterPlatform(game._id)
         findNavController().navigate(directions)
     }
 
