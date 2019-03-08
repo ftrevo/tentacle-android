@@ -12,7 +12,10 @@ import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.MediaLibrary
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.extensions.loadImageUrl
 import br.com.concrete.tentacle.extensions.visible
+import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
+import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.activity_loan.btPerformLoan
 import kotlinx.android.synthetic.main.activity_loan.chip360
 import kotlinx.android.synthetic.main.activity_loan.chip3ds
@@ -21,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_loan.chipOne
 import kotlinx.android.synthetic.main.activity_loan.chipPs3
 import kotlinx.android.synthetic.main.activity_loan.chipPs4
 import kotlinx.android.synthetic.main.activity_loan.chipSwitch
+import kotlinx.android.synthetic.main.activity_loan.ivGame
 import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.activity_loan.tvGameName
 import kotlinx.android.synthetic.main.progress_include.progressBarList
@@ -107,6 +111,11 @@ class LoanActivity : BaseActivity() {
         this.library = library
         showLoading(false)
         library?.let {
+            it.cover?.let {cover ->
+                cover.imageId?.let { imageId ->
+                    ivGame.loadImageUrl(Utils.assembleGameImageUrl(sizeType = IMAGE_SIZE_TYPE_COVER_SMALL, imageId = imageId))
+                }
+            }
             tvGameName.text = library.name
             setOwners(emptyList())
 
