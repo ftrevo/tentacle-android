@@ -3,6 +3,8 @@ package br.com.concrete.tentacle.features.gameViewComponent
 import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.ViewAssertion
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
@@ -60,27 +62,35 @@ class GameViewTest : BaseInstrumentedTest() {
         }
 
         Espresso.onView(withId(R.id.tvGameName))
+            .perform(scrollTo())
             .check(ViewAssertions.matches(withText("The Last of Us Remastered")))
 
         Espresso.onView(withId(R.id.rbGame))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Espresso.onView(withId(R.id.tvGameReleaseYear))
+            .perform(scrollTo())
             .check(matches(withText("2014")))
 
         Espresso.onView(withText("Single player"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Espresso.onView(withText("Multiplayer"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Espresso.onView(withText("Shooter"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Espresso.onView(withText("Adventure"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Espresso.onView(withText("Multiplayer"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         val assertion: ViewAssertion?
@@ -94,10 +104,17 @@ class GameViewTest : BaseInstrumentedTest() {
             assertion = matches(not(isDisplayed()))
         }
 
-        Espresso.onView(ViewMatchers.withId(R.id.tvGameStatus))
-            .check(assertion)
 
-        Espresso.onView(ViewMatchers.withId(R.id.ivGameStatus))
-            .check(assertion)
+        val tvGameStatus = Espresso.onView(ViewMatchers.withId(R.id.tvGameStatus))
+        val ivGameStatus = Espresso.onView(ViewMatchers.withId(R.id.ivGameStatus))
+
+        if(showStatus){
+            tvGameStatus.perform(scrollTo())
+            ivGameStatus.perform(scrollTo())
+        }
+
+        tvGameStatus.check(assertion)
+        ivGameStatus.check(assertion)
+
     }
 }

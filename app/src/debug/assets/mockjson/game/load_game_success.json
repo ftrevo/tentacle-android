@@ -84,10 +84,7 @@
     }
   ],
   "formattedReleaseDate": "29/07/2014",
-  "createdBy": {
-    "_id": "5c179fa83b6274002239a00b",
-    "name": "FELIPE TREVISAN"
-  },
+  "createdBy": "5c179fa83b6274002239a00b",
   "createdAt": "2019-02-15T18:02:23.079Z",
   "updatedAt": "2019-02-15T18:02:23.079Z"
 }
