@@ -17,7 +17,6 @@ import br.com.concrete.tentacle.actions.SetTextInTextView
 import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.extensions.getJson
-import br.com.concrete.tentacle.matchers.IsTextInLines
 import br.com.concrete.tentacle.testing.GameViewTestActivity
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.debug.activity_game_view_test.gameView
@@ -68,9 +67,6 @@ class GameViewTest : BaseInstrumentedTest() {
 
         Espresso.onView(withId(R.id.tvGameReleaseYear))
             .check(matches(withText("2014")))
-
-        Espresso.onView(withId(R.id.tvGameSummary))
-            .check(matches(IsTextInLines(4)))
 
         Espresso.onView(withText("Single player"))
             .check(matches(isDisplayed()))
