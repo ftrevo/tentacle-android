@@ -64,7 +64,7 @@ class RemoteGameViewModel(private val gameRepository: GameRepository) : BaseView
         )
     }
 
-    fun loadMore(){
+    fun loadMore() {
         remoteGamesMoreViewState.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(
             gameRepository.loadRemoteGames(gameName = name, page = page).subscribe({ base ->

@@ -63,7 +63,6 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-
     fun getDetailsGame(idGame: String): Observable<BaseModel<Game>> {
         return apiRest.getDetailsGame(idGame)
             .subscribeOn(Schedulers.io())

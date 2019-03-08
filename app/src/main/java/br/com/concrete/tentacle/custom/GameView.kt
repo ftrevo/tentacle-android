@@ -12,6 +12,7 @@ import br.com.concrete.tentacle.extensions.getPartOfDate
 import br.com.concrete.tentacle.extensions.loadImageUrl
 import br.com.concrete.tentacle.extensions.progress
 import br.com.concrete.tentacle.extensions.toDate
+import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
 import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.game_view_header_layout.view.ivGameCover
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameName
 import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameReleaseYear
 import kotlinx.android.synthetic.main.game_view_header_layout.view.groupStatus
 import kotlinx.android.synthetic.main.game_view_layout.view.*
-import java.util.*
+import java.util.Calendar
 
 class GameView(
     context: Context,
