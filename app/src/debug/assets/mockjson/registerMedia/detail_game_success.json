@@ -1,0 +1,59 @@
+{
+  "message": [
+    "Jogo encontrado"
+  ],
+  "data": {
+    "_id": "5c816b27349f31002315fcf0",
+    "id": 22342,
+    "aggregated_rating": 42.5,
+    "aggregated_rating_count": 2,
+    "cover": {
+      "id": 16570,
+      "height": 913,
+      "image_id": "o0qarlntb9mwnquavfqn",
+      "width": 640
+    },
+    "first_release_date": "2005-11-16T00:00:00.000Z",
+    "game_modes": [
+      {
+        "id": 1,
+        "name": "Single player",
+        "slug": "single-player"
+      },
+      {
+        "id": 2,
+        "name": "Multiplayer",
+        "slug": "multiplayer"
+      },
+      {
+        "id": 3,
+        "name": "Co-operative",
+        "slug": "co-operative"
+      }
+    ],
+    "genres": [
+      {
+        "id": 14,
+        "name": "Sport",
+        "slug": "sport"
+      }
+    ],
+    "name": "FIFA 06: Road to FIFA World Cup",
+    "screenshots": [
+      {
+        "id": 106461,
+        "height": 720,
+        "image_id": "dnpqjrudpolxqso4xfz0",
+        "width": 1280
+      }
+    ],
+    "slug": "fifa-06-road-to-fifa-world-cup",
+    "summary": "You can experience the excitement of international soccer competition in FIFA 06. Extensive coaching options give you the opportunity to take control of all of your players on the pitch and determine their formation and strategy. FIFA 06 offers game modes ranging from a tournament to individual skill games. You can also play with real players from famous international teams from around the world. Multiplayer modes let you challenge other gamers.",
+    "url": "https://www.igdb.com/games/fifa-06-road-to-fifa-world-cup",
+    "formattedReleaseDate": "16/11/2005",
+    "createdBy": "5c81593f349f31002315fcd4",
+    "videos": [],
+    "createdAt": "2019-03-07T19:04:07.729Z",
+    "updatedAt": "2019-03-07T19:04:07.729Z"
+  }
+}
