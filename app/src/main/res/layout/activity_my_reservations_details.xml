@@ -33,6 +33,7 @@
                 android:layerType="software"/>
 
         <LinearLayout
+                android:paddingTop="@dimen/margin_default"
                 android:paddingLeft="@dimen/margin_default"
                 android:id="@+id/platformLayout"
                 android:layout_width="wrap_content"
@@ -44,7 +45,6 @@
             <TextView
                     android:id="@+id/tvGamePlatformTitle"
                     android:text="@string/text_game_platform"
-                    android:layout_marginTop="@dimen/dp_25"
                     android:textAppearance="@style/TextHeavy.16sp"
                     android:textColor="@color/textColor"
                     android:layout_width="wrap_content"

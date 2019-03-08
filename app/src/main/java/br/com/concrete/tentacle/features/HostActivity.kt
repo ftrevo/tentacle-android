@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,6 +15,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.data.interfaces.CallBack
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.features.library.LibraryFragment
 import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
@@ -30,6 +33,7 @@ class HostActivity : BaseActivity(), CallBack {
 
         startNavListener()
         setupToolbar(R.drawable.ic_logo_actionbar)
+        initObservable()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -44,6 +48,34 @@ class HostActivity : BaseActivity(), CallBack {
                 return true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    companion object {
+        val fragment: MutableLiveData<Int> = MutableLiveData()
+    }
+
+    private fun initObservable(){
+        HostActivity.fragment.observe(this, Observer {
+            initOn(it)
+        })
+    }
+
+    private fun initOn(id: Int){
+        when(id){
+            R.id.navigate_to_library -> {
+                changeBottomBar(R.id.action_library,R.id.navigate_to_library)
+            }
+            R.id.navigate_to_my_games -> {
+                changeBottomBar(R.id.action_games,R.id.navigate_to_my_games)
+            }
+            R.id.navigate_to_home -> {
+                changeBottomBar(R.id.action_home,R.id.navigate_to_home)
+            }
+            R.id.navigate_to_my_reservations -> {
+                changeBottomBar(R.id.action_reservation,R.id.navigate_to_my_reservations)
+            }
+            R.id.action_events -> {}
         }
     }
 
