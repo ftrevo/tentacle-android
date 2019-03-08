@@ -39,8 +39,8 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadRemoteGames(gameName: String): Observable<BaseModel<GameResponse>> {
-        return apiRest.loadRemoteGames(gameName)
+    fun loadRemoteGames(gameName: String, page: Int = 0): Observable<BaseModel<GameResponse>> {
+        return apiRest.loadRemoteGames(gameName = gameName, page = page)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

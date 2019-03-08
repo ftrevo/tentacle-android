@@ -62,7 +62,8 @@ interface ApiService {
     @GET("games/remote")
     fun loadRemoteGames(
         @Query("name") gameName: String,
-        @Query("limit") limit: Int = 50
+        @Query("limit") limit: Int = 50,
+        @Query("page") page: Int = 0
     ): Observable<BaseModel<GameResponse>>
 
     @POST("games/remote")

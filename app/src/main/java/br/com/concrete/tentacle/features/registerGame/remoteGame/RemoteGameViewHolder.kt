@@ -23,6 +23,7 @@ class RemoteGameViewHolder(private val item: View) : RecyclerView.ViewHolder(ite
         fun callBack(holder: RecyclerView.ViewHolder, game: Game, listener: (Game) -> Unit) {
 
             if (holder is RemoteGameViewHolder) {
+                holder.item.groupStatus.visibility = View.GONE
                 if (game._id == Game.ID_EMPTY_GAME) {
                     visibleViews(holder, false)
                 } else {
@@ -47,7 +48,6 @@ class RemoteGameViewHolder(private val item: View) : RecyclerView.ViewHolder(ite
                         setOnClickListener {
                             listener(game)
                         }
-                        groupStatus.visibility = View.GONE
                         visibleViews(holder, true)
                     }
                 }

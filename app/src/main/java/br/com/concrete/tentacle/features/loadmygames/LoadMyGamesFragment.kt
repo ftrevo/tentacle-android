@@ -201,9 +201,4 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
     }
 
     override fun loadPage(): Boolean = loadMoreItems
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("LM", "LM")
-    }
 }
