@@ -16,7 +16,7 @@ import org.koin.standalone.inject
 
 class RegisterMediaViewModelTest : BaseViewModelTest() {
 
-    private val regMediaviewModel: RegisterMediaViewModel by inject()
+    private val registerMediaViewModel: RegisterMediaViewModel by inject()
     private lateinit var actual: ViewStateModel<Media>
 
     private lateinit var requestGame: BaseModel<Game>
@@ -24,31 +24,31 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
     @Before
     fun setup() {
         val gameJson = getJson("mockjson/registerMedia/detail_game_success.json")
-        val klass = object : TypeToken<BaseModel<Game>>() {}.type
+        val classType = object : TypeToken<BaseModel<Game>>() {}.type
         requestGame = GsonBuilder()
         .create()
-            .fromJson(gameJson, klass)
+            .fromJson(gameJson, classType)
     }
 
     @Test
     fun `when viewmodel successfully register a game should change status to SUCCESS`() {
         val responseJson = getJson("mockjson/registerMedia/register_media_success.json")
 
-        val klass = object : TypeToken<BaseModel<Media>>() {}.type
+        val classType = object : TypeToken<BaseModel<Media>>() {}.type
         val baseResponse: BaseModel<Media> = GsonBuilder()
             .create()
-            .fromJson(responseJson, klass)
+            .fromJson(responseJson, classType)
 
         val mockResponse = MockResponse()
             .setResponseCode(200)
             .setBody(responseJson)
         mockServer.enqueue(mockResponse)
 
-        regMediaviewModel.viewStatusModel.observeForever {
+        registerMediaViewModel.viewStatusModel.observeForever {
             actual = it.peekContent()
         }
 
-        regMediaviewModel.registerMedia(
+        registerMediaViewModel.registerMedia(
             "PS3",
             requestGame.data
         )
@@ -83,11 +83,11 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
                 model = null,
                 errors = responseObject)
 
-        regMediaviewModel.viewStatusModel.observeForever {
+        registerMediaViewModel.viewStatusModel.observeForever {
             actual = it.peekContent()
         }
 
-        regMediaviewModel.registerMedia(
+        registerMediaViewModel.registerMedia(
             "PS3",
             requestGame.data
         )
@@ -99,21 +99,21 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
         val responseJson = getJson("mockjson/registerMedia/detail_game_success.json")
         var actualDetail = ViewStateModel<Game>(status = ViewStateModel.Status.LOADING)
 
-        val klass = object : TypeToken<BaseModel<Game>>() {}.type
+        val classType = object : TypeToken<BaseModel<Game>>() {}.type
         val baseResponse: BaseModel<Game> = GsonBuilder()
             .create()
-            .fromJson(responseJson, klass)
+            .fromJson(responseJson, classType)
 
         val mockResponse = MockResponse()
             .setResponseCode(200)
             .setBody(responseJson)
         mockServer.enqueue(mockResponse)
 
-        regMediaviewModel.getDetailGame().observeForever {
+        registerMediaViewModel.getDetailGame().observeForever {
             actualDetail = ViewStateModel(model = it.peekContent().model, status = it.peekContent().status)
         }
 
-        regMediaviewModel.getDetailsGame("game_id")
+        registerMediaViewModel.getDetailsGame("game_id")
 
         val expected =
             ViewStateModel(
@@ -141,7 +141,7 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
                 ErrorResponse::class.java
             )
 
-        regMediaviewModel.getDetailGame().observeForever {
+        registerMediaViewModel.getDetailGame().observeForever {
             actualDetail = ViewStateModel(
                 model = null,
                 status = it.peekContent().status,
@@ -149,7 +149,7 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
             )
         }
 
-        regMediaviewModel.getDetailsGame("game_id")
+        registerMediaViewModel.getDetailsGame("game_id")
 
         val expected =
             ViewStateModel(
