@@ -5,8 +5,9 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:background="@color/colorPrimary"
-        android:id="@+id/gameViewHeader">
+        android:id="@+id/gameViewHeader"
+        android:background="@android:color/transparent"
+        tools:background="@color/colorPrimary">
 
     <ImageView
         android:background="@color/activateIcon"

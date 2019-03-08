@@ -30,7 +30,7 @@ class RemoteGameFragment : BaseFragment(), ListCustom.OnScrollListener {
     private val remoteViewModel: RemoteGameViewModel by viewModel()
     private var gameName: String = EMPTY_STRING
     private var gamesList = ArrayList<Game?>()
-    private lateinit var recyclerViewAdapter : BaseAdapter<Game>
+    private lateinit var recyclerViewAdapter: BaseAdapter<Game>
     private var loadMoreItems = true
     private var count = Int.MAX_VALUE
 
@@ -103,9 +103,9 @@ class RemoteGameFragment : BaseFragment(), ListCustom.OnScrollListener {
             when (remoteGamesViewState.status) {
                 ViewStateModel.Status.LOADING -> {}
                 ViewStateModel.Status.SUCCESS -> {
-                    if(remoteGamesViewState.model.isNullOrEmpty()){
+                    if (remoteGamesViewState.model.isNullOrEmpty()) {
                         finishLoadMore()
-                    }else {
+                    } else {
                         val gamesResponse = remoteGamesViewState.model
                         Handler().postDelayed({
                             recyclerViewAdapter.notifyItemInserted(gamesList.size - 1)
@@ -144,7 +144,7 @@ class RemoteGameFragment : BaseFragment(), ListCustom.OnScrollListener {
 
     private fun showList(model: ArrayList<Game?>) {
         model.forEach { game ->
-            game?.let {  gamesList.add(it) }
+            game?.let { gamesList.add(it) }
         }
         if (model.isNotEmpty()) {
             fillRecyclerView(model)
@@ -200,7 +200,7 @@ class RemoteGameFragment : BaseFragment(), ListCustom.OnScrollListener {
     override fun sizeElements() = gamesList.size
 
     override fun loadMore() {
-        if(loadMoreItems){
+        if (loadMoreItems) {
             remoteViewModel.loadMore()
             gamesList.add(null)
             loadMoreItems = false

@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameName
 import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameReleaseYear
 import kotlinx.android.synthetic.main.game_view_header_layout.view.groupStatus
 import kotlinx.android.synthetic.main.game_view_layout.view.*
-import java.util.*
+import java.util.Calendar
 
 class GameView(
     context: Context,

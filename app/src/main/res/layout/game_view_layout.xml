@@ -5,6 +5,7 @@
         android:layout_height="match_parent"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@android:color/transparent"
         tools:background="@color/colorPrimary">
 
     <include
@@ -25,8 +26,7 @@
         android:textAppearance="@style/TextMedium.14sp"
         tools:text="@string/loremText"
         android:layout_width="@dimen/dp_0"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"/>
+        android:layout_height="wrap_content"/>
 
     <TextView
         app:layout_constraintStart_toStartOf="parent"
