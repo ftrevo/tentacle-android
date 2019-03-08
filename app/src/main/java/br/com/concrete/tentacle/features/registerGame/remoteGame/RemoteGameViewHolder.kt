@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.registerGame.searchGame
+package br.com.concrete.tentacle.features.registerGame.remoteGame
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -9,16 +9,20 @@ import br.com.concrete.tentacle.extensions.progress
 import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
 import br.com.concrete.tentacle.utils.Utils
-import kotlinx.android.synthetic.main.game_view_header_layout.view.*
+import kotlinx.android.synthetic.main.game_view_header_layout.view.ivGameCover
+import kotlinx.android.synthetic.main.game_view_header_layout.view.rbGame
+import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameName
+import kotlinx.android.synthetic.main.game_view_header_layout.view.tvGameReleaseYear
+import kotlinx.android.synthetic.main.game_view_header_layout.view.groupStatus
 import kotlinx.android.synthetic.main.item_game_search.view.horizontalLine
 import java.util.Calendar
 
-class SearchGameViewHolder(private val item: View) : RecyclerView.ViewHolder(item) {
+class RemoteGameViewHolder(private val item: View) : RecyclerView.ViewHolder(item) {
 
     companion object {
         fun callBack(holder: RecyclerView.ViewHolder, game: Game, listener: (Game) -> Unit) {
 
-            if (holder is SearchGameViewHolder) {
+            if (holder is RemoteGameViewHolder) {
                 holder.item.groupStatus.visibility = View.GONE
                 if (game._id == Game.ID_EMPTY_GAME) {
                     visibleViews(holder, false)
@@ -50,7 +54,7 @@ class SearchGameViewHolder(private val item: View) : RecyclerView.ViewHolder(ite
             }
         }
 
-        private fun visibleViews(holder: SearchGameViewHolder, isVisible: Boolean) {
+        private fun visibleViews(holder: RemoteGameViewHolder, isVisible: Boolean) {
             val state = if (isVisible) View.VISIBLE else View.INVISIBLE
 
             with(holder.item) {

@@ -50,6 +50,9 @@
     <string name="media">mídia</string>
     <string name="first_game_register">Parece que você é o primeiro a buscar esse jogo!</string>
 
+    <string name="remote_game_not_found_description">Jogo não encontrado</string>
+    <string name="remote_game_not_found_action_button">Retornar para pesquisa</string>
+
     <string name="register_media_group_title">Selecione a plataforma:</string>
     <string name="register_media_ps3_radio_button_title">Playstation 3</string>
     <string name="register_media_ps4_radio_button_title">Playstation 4</string>
@@ -126,7 +129,7 @@
 
     <string name="cancel">Cancelar</string>
 
-    <string name="library_loan_text1">Qual a plataforma que voce quer reservar?</string>
+    <string name="library_loan_text1">Qual a plataforma que você quer reservar?</string>
     <string name="library_loan_text2">Escolha de quem você quer emprestado</string>
 
     <string name="library_loan_user_list_hint">Selecione</string>
@@ -151,6 +154,12 @@
     <string name="text_game_owner">Dono do jogo</string>
     <string name="text_game_single_player">Single Player</string>
     <string name="text_game_multi_player">Multiplayer online</string>
+
+    <string name="game_already_registered">Ops! Parece que já cadastrou esse jogo.</string>
+    <string name="confirm_game">Você confirma que %1$s existe para a plataforma %2$s?</string>
+    <string name="back">Voltar</string>
+    <string name="confirm">Confirmar</string>
+
     <string name="pending">Pendente</string>
 
     <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.</string>
@@ -166,4 +175,5 @@
 
     <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga reservar :)</string>
     <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.</string>
+
 </resources>

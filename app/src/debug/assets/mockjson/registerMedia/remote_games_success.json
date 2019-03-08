@@ -1,0 +1,370 @@
+{
+  "data": {
+    "list": [
+      {
+        "id": 1070,
+        "aggregated_rating": 100,
+        "aggregated_rating_count": 1,
+        "category": 0,
+        "cover": {
+          "id": 69388,
+          "height": 561,
+          "image_id": "co1hjg",
+          "width": 800
+        },
+        "first_release_date": "1990-11-21T00:00:00.000Z",
+        "name": "Super Mario World",
+        "summary": "Super Mario World (known in Japan as Super Mario World: Super Mario Bros. 4) is a side-scrolling platformer developed by Nintendo EAD and published by Nintendo for the Super Nintendo Entertainment System on November 21, 1990 (in Japan), August 31, 1991 (in North America), and April 11, 1992 (in Europe). \n \nOne of the launch titles of the SNES (and bundled with early systems in North America), Super Mario World is the fifth main game in the Super Mario series. (starring Nintendo's mascot, Mario, and his brother, Luigi). The game follows both Mario brothers as they explore Dinosaur Land (known for its large amount of dinosaurs) to find and defeat the evil Koopa king Bowser (and his seven underlings, the Koopalings) while rescuing Princess Toadstool. \n \nAlong with new abilities (such as the \"Spin Jump\"), a new power-up (the \"Cape Feather\") and more obstacles, the game introduces dinosaur companions (known as Yoshi) that Mario and Luigi can ride. Yoshi, known for using their long tongues to snare and eat enemies, have become a fan-favorite among the series (giving them their own games and spin-offs, most notably this game's prequel). \n \nSpecial bundles of the SNES in 1994 included a compilation cartridge mixing Super Mario World with Super Mario All-Stars. The only difference in this version is a new sprite set for Luigi. The original game was later ported to the Game Boy Advance on February 11, 2002 as Super Mario World: Super Mario Advance 2. Along with a special version of the original Mario Bros., the port includes a variety of differences, including Luigi as a selectable character (who now has unique features, such as his floating jump from Super Mario Bros. 2), new voice acting, and the ability to save anywhere. The original game was also digitally re-released in Nintendo's Virtual Console platform for the Wii (on February 5, 2007) and Wii U (on April 26, 2013).",
+        "formattedReleaseDate": "21/11/1990"
+      },
+      {
+        "id": 1067,
+        "category": 0,
+        "cover": {
+          "id": 65622,
+          "height": 600,
+          "image_id": "suassfx7mt3lpsctjlxw",
+          "width": 438
+        },
+        "first_release_date": "1988-09-01T00:00:00.000Z",
+        "name": "Super Mario Bros. 2",
+        "summary": "Mario’s back! Bigger and badder than before! This time it’s a fierce action-packed battle to free the land of Subcon from the curse of the evil Wart. It’s up to you, along with Mario, Luigi, Toad and the Princess, to fight your way through bizarre multi-level worlds and find him! This time you’ve got a brand new kind of power - plucking power - and now anything you find can be a weapon. But beware! You’ve never seen creatures like these! Shyguys and Tweeters! Ninji and Beezos! And you’ve never had an adventure like this! Only cunning and speed can save you now…",
+        "formattedReleaseDate": "01/09/1988"
+      },
+      {
+        "id": 1079,
+        "aggregated_rating": 90,
+        "aggregated_rating_count": 10,
+        "category": 0,
+        "cover": {
+          "id": 1063,
+          "height": 464,
+          "image_id": "fcgiwb5fhmiyoil5xohy",
+          "width": 520
+        },
+        "first_release_date": "2011-11-03T00:00:00.000Z",
+        "name": "Super Mario 3D Land",
+        "summary": "Mario is once again out to beat Bowser in Super Mario 3D Land! The game features the well-known Mario playstyle that people all around the world love, but in 3D!",
+        "formattedReleaseDate": "03/11/2011"
+      },
+      {
+        "id": 49877,
+        "aggregated_rating": 82,
+        "aggregated_rating_count": 1,
+        "category": 0,
+        "cover": {
+          "id": 27570,
+          "height": 1000,
+          "image_id": "iac6sxowktu93yke0hgh",
+          "width": 1000
+        },
+        "first_release_date": "1999-05-30T00:00:00.000Z",
+        "name": "Super Mario Bros. Deluxe",
+        "summary": "Bowser has once again taken over the Mushroom Kingdom, and it's up to Mario to put an end to his sinister reign. Battle Bowser's vile henchmen through 32 different levels - all taken directly from the 1985 classic! Then move on to collect special Red Coins and Yoshi Eggs in the Challenge Mode. Or face off against a friend and race through 8 competition courses in the all-new VS Mode! This time there's a lot more to do than just save a Princess, so get ready for a brick-smashin', pipe-warpin', turtle-stompin' good time!",
+        "formattedReleaseDate": "30/05/1999"
+      },
+      {
+        "id": 1072,
+        "category": 0,
+        "cover": {
+          "id": 1071,
+          "height": 737,
+          "image_id": "oz4pynjbgos0vcyhylyi",
+          "width": 729
+        },
+        "first_release_date": "1994-03-31T00:00:00.000Z",
+        "name": "Wario Land: Super Mario Land 3",
+        "summary": "Hey! Things are really cookin' on Kitchen Island! Wario's got a scheme to steal the pirates' treasure so he can have his very own castle! You help Wario get the treasure by smashing into the the magic pots! Each pot changes him into Dragon Wario, Bull Wario, or Jet Wario! With each change comes new powers! \n \nDozens of enemies try to stop Wario, but you have the power to beat them! \n \nBe the bad guy! \n \nExplore the many exciting levels of Kitchen Island! \n \nBattery-backed memory saves your progress for many hours of fun!",
+        "formattedReleaseDate": "31/03/1994"
+      },
+      {
+        "id": 16747,
+        "aggregated_rating": 90,
+        "aggregated_rating_count": 1,
+        "category": 0,
+        "cover": {
+          "id": 13963,
+          "height": 479,
+          "image_id": "zoachzirbptak6nwimgd",
+          "width": 483
+        },
+        "first_release_date": "2002-09-20T00:00:00.000Z",
+        "name": "Super Mario Advance 3: Yoshi's Island",
+        "summary": "Super Mario Advance 3 is a GBA remake for the SNES with the dinosaur Yoshi and his friends as main characters carrying Baby Mario and Luigi on their back. \n \nSuper Mario Advance is a four-part series for the GBA with Super Mario games of the NES and SNES era. The remakes came with adjusted graphics, sound and additional content. Each game of the series includes additionally the arcade-classic \"Mario Bros\" which can be played in multiplayer via link cable.",
+        "formattedReleaseDate": "20/09/2002"
+      },
+      {
+        "id": 1069,
+        "category": 0,
+        "cover": {
+          "id": 1069,
+          "height": 500,
+          "image_id": "p9gyfxwavpmcibejrpiz",
+          "width": 486
+        },
+        "first_release_date": "1989-04-21T00:00:00.000Z",
+        "name": "Super Mario Land",
+        "summary": "Journey with Mario to a land of giant crabs, Koopa Troopas, flying stone heads and hungry sharks! \n \nTravel over land, in the air, and underwater. Mario makes his way through four treacherous worlds on his way to save the Princess!",
+        "formattedReleaseDate": "21/04/1989"
+      },
+      {
+        "id": 358,
+        "category": 0,
+        "cover": {
+          "id": 65627,
+          "height": 600,
+          "image_id": "mrrnryomkk2hhmrwzk78",
+          "width": 438
+        },
+        "first_release_date": "1985-09-13T00:00:00.000Z",
+        "name": "Super Mario Bros.",
+        "summary": "Do you have what it takes to save the Mushroom Princess? You’ll have to think fast and move even faster to complete this quest! The Mushroom Princess is being held captive by the evil Koopa tribe of turtles. It’s up to you to rescue her from the clutches of the Koopa King before time runs out. But it won’t be easy. To get to the Princess, you’ll have to climb mountains, cross seas, avoid bottomless pits, fight off turtle soldiers and a host of black magic traps that only a Koopa King can devise. It’s another non-stop adventure from the Super Mario Bros.!",
+        "formattedReleaseDate": "13/09/1985"
+      },
+      {
+        "id": 115276,
+        "category": 0,
+        "cover": {
+          "id": 71673,
+          "height": 1000,
+          "image_id": "co1jax",
+          "width": 750
+        },
+        "first_release_date": "2019-06-30T00:00:00.000Z",
+        "name": "Super Mario Maker 2",
+        "summary": "Build and play the Super Mario courses of your dreams! This sequel features a host of new tools and features—like slopes!",
+        "formattedReleaseDate": "30/06/2019"
+      },
+      {
+        "id": 2332,
+        "aggregated_rating": 90,
+        "aggregated_rating_count": 2,
+        "category": 0,
+        "cover": {
+          "id": 40305,
+          "height": 730,
+          "image_id": "it2lmsv3nyj4neqoqbf5",
+          "width": 1000
+        },
+        "first_release_date": "1992-08-27T00:00:00.000Z",
+        "name": "Super Mario Kart",
+        "summary": "Super Mario Kart is a racing game for the Super Nintendo Entertainment System and the first game of the Mario Kart series, as well as the game that sets precedents to fictional kart racing genre. It was first released in 1992 and re-released in 1996 as a Player's Choice title. Part of this game is heavily based on another successful game, Super Mario World.",
+        "formattedReleaseDate": "27/08/1992"
+      },
+      {
+        "id": 103339,
+        "aggregated_rating": 72.9090909090909,
+        "aggregated_rating_count": 12,
+        "category": 0,
+        "cover": {
+          "id": 69274,
+          "height": 600,
+          "image_id": "co1hga",
+          "width": 365
+        },
+        "first_release_date": "2018-10-05T00:00:00.000Z",
+        "name": "Super Mario Party",
+        "summary": "Inspired by the original Mario Party board game play, the beloved series is coming to Nintendo Switch with new mini-games and play styles that make use of the Joy-Con controllers. Super Mario Party includes features like character-exclusive Dice Blocks that add depth to players’ strategy. Up to four players take turns rolling the dice, and individually race across the board searching for Stars. In Toad’s Rec Room, new gameplay links two games and two Nintendo Switch systems for side-by-side fun. The game launched on Oct. 5, 2018.",
+        "formattedReleaseDate": "05/10/2018"
+      },
+      {
+        "id": 1068,
+        "category": 0,
+        "cover": {
+          "id": 1059,
+          "height": 775,
+          "image_id": "ogguvec9vhrsml4uxqrg",
+          "width": 565
+        },
+        "first_release_date": "1988-10-03T00:00:00.000Z",
+        "name": "Super Mario Bros. 3",
+        "summary": "Super Mario Bros. 3 is a platform video game for the Nintendo Entertainment System (NES) video game console. Mario and Luigi embark on a quest to save Princess Toadstool and the rulers of seven different kingdoms from the antagonist Bowser and his children, the Koopalings. The player, as Mario or Luigi, is able to defeat enemies by stomping them or using items that bestow magical powers. Mario and Luigi are given a wider range of abilities than in previous Super Mario games, including flying or sliding down slopes. In addition, Super Mario Bros. 3 introduces numerous elements, such as new enemy characters and the use of a world map to transition between levels, that have reappeared in or have influenced subsequent Mario games.",
+        "formattedReleaseDate": "03/10/1988"
+      },
+      {
+        "id": 26758,
+        "aggregated_rating": 96.7058823529412,
+        "aggregated_rating_count": 19,
+        "category": 0,
+        "cover": {
+          "id": 44025,
+          "height": 4252,
+          "image_id": "u4m45xwqdq8cuu4b9elq",
+          "width": 2718
+        },
+        "first_release_date": "2017-10-27T00:00:00.000Z",
+        "name": "Super Mario Odyssey",
+        "summary": "The game has Mario leaving the Mushroom Kingdom to reach an unknown open world-like setting, like Super Mario 64 and Super Mario Sunshine.",
+        "formattedReleaseDate": "27/10/2017"
+      },
+      {
+        "id": 1080,
+        "aggregated_rating": 77.0833333333333,
+        "aggregated_rating_count": 13,
+        "category": 0,
+        "cover": {
+          "id": 1065,
+          "height": 534,
+          "image_id": "suosktmvzkynhlmizn2g",
+          "width": 600
+        },
+        "first_release_date": "2012-07-28T00:00:00.000Z",
+        "name": "New Super Mario Bros. 2",
+        "summary": "New Super Mario Bros. 2 is a traditional side-scrolling adventure game featuring Mario, Luigi and loads of other favorite characters from the popular Mario series. The game was created specifically as a pick-up-and-play experience that can be instantly enjoyed by players of all skill levels on the Nintendo 3DS system.",
+        "formattedReleaseDate": "28/07/2012"
+      },
+      {
+        "id": 109457,
+        "aggregated_rating": 82.7777777777778,
+        "aggregated_rating_count": 11,
+        "category": 0,
+        "cover": {
+          "id": 69051,
+          "height": 2848,
+          "image_id": "co1ha3",
+          "width": 2067
+        },
+        "first_release_date": "2019-01-11T00:00:00.000Z",
+        "name": "New Super Mario Bros. U Deluxe",
+        "summary": "New Super Mario Bros. U including New Super Luigi U. for the Nintendo Switch!",
+        "formattedReleaseDate": "11/01/2019"
+      },
+      {
+        "id": 1066,
+        "category": 0,
+        "cover": {
+          "id": 1062,
+          "height": 602,
+          "image_id": "j6vyifrkfpq9jinr2bek",
+          "width": 600
+        },
+        "first_release_date": "1986-05-03T00:00:00.000Z",
+        "name": "Super Mario Bros.: The Lost Levels",
+        "summary": "Super Mario Bros.: The Lost Levels is a true video game treasure.",
+        "formattedReleaseDate": "03/05/1986"
+      },
+      {
+        "id": 26157,
+        "aggregated_rating": 67.8333333333333,
+        "aggregated_rating_count": 12,
+        "category": 0,
+        "cover": {
+          "id": 19223,
+          "height": 899,
+          "image_id": "rdte9wtobjyn7dt0l18s",
+          "width": 984
+        },
+        "first_release_date": "2016-12-01T00:00:00.000Z",
+        "name": "Super Mario Maker for Nintendo 3DS",
+        "summary": "Super Mario Maker for Nintendo 3DS features all the same tools as the original Wii U version but does not support online sharing. Instead it comes with 100 courses designed by Nintendo featuring special challenges. Also new is the ability of collaborating on unfinished courses locally.",
+        "formattedReleaseDate": "01/12/2016"
+      },
+      {
+        "id": 67198,
+        "aggregated_rating": 76,
+        "aggregated_rating_count": 1,
+        "category": 0,
+        "cover": {
+          "id": 61335,
+          "height": 1000,
+          "image_id": "vieqzhasvntx8lsbx8tl",
+          "width": 1000
+        },
+        "first_release_date": "2017-12-21T00:00:00.000Z",
+        "name": "Arcade Archives VS. SUPER MARIO BROS.",
+        "summary": "VS. SUPER MARIO BROS. is an action game released in 1986 by Nintendo.",
+        "formattedReleaseDate": "21/12/2017"
+      },
+      {
+        "id": 1071,
+        "category": 0,
+        "cover": {
+          "id": 1064,
+          "height": 586,
+          "image_id": "dcjo8ck4mtdbnukst2xo",
+          "width": 600
+        },
+        "first_release_date": "1992-10-21T00:00:00.000Z",
+        "name": "Super Mario Land 2: 6 Golden Coins",
+        "summary": "In his greatest Game Boy adventure, Mario faces off against his evil rival Wario, who has captured Mario Land and turned it into his private playground. \n \nTo toss Wario off his ill-gotten throne, Mario must search all-new worlds for the six golden coins that unlock the gate to Mario's castle. A mob of monsters, old and new, seek to stop him. Along the way, through 6 zones, Mario can nab Power Mushrooms, Super Stars and Fire Flowers for extra power. And if he eats the Magic Carrot, he'll turn into a high-flying hare. \n \nThe battery pack saves your game in progress in this biggest Game Boy Mario adventure yet.",
+        "formattedReleaseDate": "21/10/1992"
+      },
+      {
+        "id": 8591,
+        "aggregated_rating": 76,
+        "aggregated_rating_count": 5,
+        "category": 0,
+        "cover": {
+          "id": 15721,
+          "height": 1372,
+          "image_id": "cpu69isowbcalwygdegr",
+          "width": 1500
+        },
+        "first_release_date": "2013-12-12T00:00:00.000Z",
+        "name": "Puzzle & Dragons Z + Puzzle & Dragons Super Mario Bros.",
+        "summary": "Two Puzzle & Dragons releases are combined into one for this North American release.",
+        "formattedReleaseDate": "12/12/2013"
+      },
+      {
+        "id": 3350,
+        "aggregated_rating": 78.8181818181818,
+        "aggregated_rating_count": 13,
+        "category": 0,
+        "cover": {
+          "id": 70494,
+          "height": 1800,
+          "image_id": "co1ie6",
+          "width": 1270
+        },
+        "first_release_date": "2012-11-11T00:00:00.000Z",
+        "name": "Paper Mario: Sticker Star",
+        "summary": "On the day of the annual Sticker Fest, Bowser decides to pull a prank and scatters six Royal Stickers across the land. To retrieve these mysterious, magical stickers, which are now stuck onto Bowser and his underlings, Mario sets off on an adventure with Kersti, a sticker fairy, visiting prairies, deserts, forests, snowy mountains and volcanoes around the world.",
+        "formattedReleaseDate": "11/11/2012"
+      },
+      {
+        "id": 85357,
+        "category": 0,
+        "cover": {
+          "id": 62129,
+          "height": 1373,
+          "image_id": "laza8xj7sngfqqu68fae",
+          "width": 1536
+        },
+        "first_release_date": "2015-05-08T00:00:00.000Z",
+        "name": "Puzzle & Dragons Z + Puzzle & Dragons: Super Mario Bros. Edition",
+        "summary": "Role-playing elements and match-three puzzle fun meet in Puzzle & Dragons Z + Puzzle & Dragons: Super Mario Bros. Edition. In a single package containing both games, explore dungeons, command monsters and master all types of elemental Orbs to defeat the enemy hordes!",
+        "formattedReleaseDate": "08/05/2015"
+      },
+      {
+        "id": 2343,
+        "aggregated_rating": 90,
+        "aggregated_rating_count": 1,
+        "category": 0,
+        "cover": {
+          "id": 2406,
+          "height": 250,
+          "image_id": "m8sdu5wj1mcfhey2pe6u",
+          "width": 250
+        },
+        "first_release_date": "2001-07-21T00:00:00.000Z",
+        "name": "Mario Kart: Super Circuit",
+        "summary": "Classic Mario Kart action is back once again, this time in a colorful, lightning-fast game that you can take anywhere. Mario, Luigi, Peach, Toad, Wario, Yoshi and Bowser are all tearing up the track, tossing Koopa Shells and laying banana peels along the way. \n \nMario Kart Super Circuit puts your driving skills to the test on 40 tracks, each littered with wild weapons and obstacles. Choose to play as any of your favorite characters as you speed around classic and brand-new tracks. If you're feeling combative, try out the creative weaponry (mushrooms, bananas, thunder bolts, and stars) in Battle mode. Feel like making some friends eat your dust? No problem. Four players can compete in Mario Kart Super Circuit using only one Game Pak! If each player has a copy of the game, bonus features and new modes of play become available.",
+        "formattedReleaseDate": "21/07/2001"
+      },
+      {
+        "id": 80174,
+        "category": 0,
+        "cover": {
+          "id": 61902,
+          "height": 468,
+          "image_id": "ah4luoi90ehyeajwu3pc",
+          "width": 260
+        },
+        "first_release_date": "1995-09-14T00:00:00.000Z",
+        "name": "Mario's Super Picross",
+        "summary": "More than 10 years before Picross DS, there was Mario's Super Picross for Super Nintendo. This classic 'picture crossword' game, previously unavailable outside of Japan, features hundreds of relaxing yet challenging brainteasers.",
+        "formattedReleaseDate": "14/09/1995"
+      }
+    ]
+  }
+}

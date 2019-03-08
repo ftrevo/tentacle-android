@@ -3,50 +3,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-    <ImageView
-        android:id="@+id/mediaImageView"
-        android:layout_width="@dimen/game_icon_width"
-        android:layout_height="@dimen/game_icon_height"
-        android:background="@color/bgGameIcon"
-        android:layout_marginTop="@dimen/dp_11"
-        app:layout_goneMarginTop="@dimen/marginBorderLogin"
-        android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginBottom="@dimen/dp_8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/horizontalLine"/>
-
-    <TextView
-        android:id="@+id/game_name"
-        android:textAppearance="@style/TextMedium.20sp"
-        android:textColor="@color/textColor"
-        android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
-        android:text="@string/game_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mediaImageView"
-        app:layout_constraintStart_toEndOf="@+id/mediaImageView"
-        android:layout_marginStart="@dimen/margin_default" />
+        android:paddingTop="@dimen/dp_11">
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="@dimen/dp_0"
-        android:layout_height="@dimen/dp_0"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="game_name, mediaImageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        layout="@layout/game_view_header_layout"/>
 
     <View
         android:id="@+id/horizontalLine"
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_8"
         android:background="@color/lineColor"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameViewHeader"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

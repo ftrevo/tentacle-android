@@ -9,6 +9,7 @@ import java.io.Serializable
 
 data class Game(
     val _id: String = String(),
+    @SerializedName("id") val remoteGameId: Int? = null,
     @SerializedName("name", alternate = ["title"])
     val name: String = String(),
     val createdBy: String,
@@ -32,11 +33,11 @@ data class Game(
         const val ID_EMPTY_GAME = "-1"
 
         fun getEmptyGame(): Game = Game(
-            ID_EMPTY_GAME,
-            "",
-            "",
-            "",
-            ""
+            _id = ID_EMPTY_GAME,
+            name = "",
+            createdBy = "",
+            createdAt = "",
+            updateAt = ""
         )
     }
 }

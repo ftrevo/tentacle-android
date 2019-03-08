@@ -105,11 +105,12 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                         val mediaResponse = it.model
                         val medias = mediaResponse?.list as ArrayList<Media?>
                         count = mediaResponse.count
-
+                        lMedia.clear()
                         medias.let {
                             if (lMedia.isEmpty()) {
+                                lMedia.addAll(medias)
                                 recyclerViewAdapter = BaseAdapter(
-                                    medias,
+                                    lMedia,
                                     R.layout.item_game,
                                     { view ->
                                         LoadMyGamesViewHolder(view)
@@ -126,8 +127,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                                 recyclerListView.setItemViewCacheSize(medias.size)
                                 list.recyclerListView.adapter = recyclerViewAdapter
 
-                                lMedia = medias
-                                list.updateUi(medias)
+                                list.updateUi(lMedia)
                             }
                         }
                         list.setLoading(false)

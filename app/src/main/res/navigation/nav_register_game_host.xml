@@ -20,6 +20,33 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
 
+        <action
+            android:id="@+id/navigate_to_remote_game"
+            app:destination="@id/remoteGame"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/remoteGame"
+        android:name="br.com.concrete.tentacle.features.registerGame.remoteGame.RemoteGameFragment"
+        android:label="@string/add_new_game"
+        tools:layout="@layout/fragment_remote_game">
+
+        <argument
+            android:name="game_name"
+            app:argType="java.lang.String"/>
+
+        <action
+                android:id="@+id/navigate_to_register_platform_from_remote"
+                app:destination="@id/mediaRegisterGame"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
     </fragment>
 
     <fragment
@@ -30,7 +57,7 @@
 
         <argument
             android:name="game_argument"
-            app:argType="br.com.concrete.tentacle.data.models.Game"/>
+            app:argType="string"/>
     </fragment>
 
 </navigation>

@@ -59,6 +59,16 @@ interface ApiService {
     @GET("/games")
     fun loadHomeGames(): Observable<BaseModel<GameResponse>>
 
+    @GET("games/remote")
+    fun loadRemoteGames(
+        @Query("name") gameName: String,
+        @Query("limit") limit: Int = 50,
+        @Query("page") page: Int = 0
+    ): Observable<BaseModel<GameResponse>>
+
+    @POST("games/remote")
+    fun registerRemoteGame(@Body game: GameRequest): Observable<BaseModel<Game>>
+
     @GET("library")
     fun getLibrary(
         @Query("_id") id: String? = null,
@@ -84,6 +94,9 @@ interface ApiService {
         @Path("id") activeLoanId: String,
         @Body loanAction: LoanActionRequest
     ): Observable<BaseModel<LoanResponse>>
+
+    @GET("games/{id}")
+    fun getDetailsGame(@Path("id") idGame: String): Observable<BaseModel<Game>>
 
     @GET("/library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
