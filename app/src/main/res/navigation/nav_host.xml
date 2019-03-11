@@ -19,21 +19,39 @@
         tools:layout="@layout/fragment_game_list"/>
 
     <fragment
-            android:id="@+id/library"
-            android:name="br.com.concrete.tentacle.features.library.LibraryFragment"
-            android:label="@string/toolbar_title_library"
-            tools:layout="@layout/fragment_library"/>
+        android:id="@+id/library"
+        android:name="br.com.concrete.tentacle.features.library.LibraryFragment"
+        android:label="@string/toolbar_title_library"
+        tools:layout="@layout/fragment_library"/>
+
+    <fragment
+            android:id="@+id/my_reservations"
+            android:name="br.com.concrete.tentacle.features.myreservations.MyReservationFragment"
+            android:label="@string/toolbar_title_my_reservations"
+            tools:layout="@layout/fragment_my_reservation"/>
 
     <action
+        app:popUpTo="@+id/nav_host"
+        app:popUpToInclusive="true"
         android:id="@+id/navigate_to_home"
         app:destination="@+id/home"/>
 
     <action
+        app:popUpTo="@+id/nav_host"
+        app:popUpToInclusive="true"
         android:id="@+id/navigate_to_my_games"
         app:destination="@+id/myGames"/>
 
     <action
-            android:id="@+id/navigate_to_library"
-            app:destination="@+id/library"/>
+        app:popUpTo="@+id/nav_host"
+        app:popUpToInclusive="true"
+        android:id="@+id/navigate_to_library"
+        app:destination="@+id/library"/>
+
+    <action
+            app:popUpTo="@+id/nav_host"
+            app:popUpToInclusive="true"
+            android:id="@+id/navigate_to_my_reservations"
+            app:destination="@+id/my_reservations"/>
 
 </navigation>

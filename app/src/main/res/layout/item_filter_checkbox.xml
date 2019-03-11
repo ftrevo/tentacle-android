@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/filterItemHeight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/subItemFilter">
 
     <TextView
         android:id="@+id/subitemFilterTextView"
@@ -17,6 +18,7 @@
         android:textAppearance="@style/TextMedium.16sp"
         android:textColor="@android:color/white"
         tools:text="Mostrar jogos disponiveis"
+        android:clickable="false"
         app:layout_constraintWidth_percent="90"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/subitemFilterCheckBox"/>
@@ -26,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:theme="@style/StyleRadioButton"
+        android:clickable="false"
         app:layout_constraintWidth_percent="10"
         app:layout_constraintStart_toEndOf="@id/itemFilterTextView"
         app:layout_constraintEnd_toEndOf="parent"/>

@@ -31,6 +31,8 @@
         <attr name="errorDescription" format="reference"/>
         <attr name="buttonNameError" format="reference"/>
         <attr name="buttonNameAction" format="reference"/>
+        <attr name="endLessScroll" format="boolean"/>
+        <attr name="emptyListMessage" format="reference"/>
     </declare-styleable>
 
 </resources>

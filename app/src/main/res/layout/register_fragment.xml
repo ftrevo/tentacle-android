@@ -42,7 +42,6 @@
                 android:imeOptions="actionNext"
                 app:errorLabel="@string/name_error"
                 app:label="@string/register_name_hint"
-
                 android:id="@+id/edtUserName"
                 app:layout_constraintTop_toBottomOf="@id/edtEmail"
                 android:layout_width="match_parent"
@@ -81,7 +80,6 @@
                 app:layout_constraintStart_toStartOf="@+id/edtPhone"
                 app:layout_constraintTop_toBottomOf="@+id/edtPhone"/>
 
-
         <br.com.concrete.tentacle.custom.TentacleSearchSpinner
                 app:errorLabel="@string/city_error"
                 app:label="@string/city_hint"
@@ -108,10 +106,23 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spState"/>
 
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAlreadyAccount"
+                android:textAppearance="@style/TextHeavy.16sp"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/already_account"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"/>
+
         <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50"
-                app:layout_constraintTop_toBottomOf="@id/btnCreateAccount"/>
+                app:layout_constraintTop_toBottomOf="@id/tvAlreadyAccount"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

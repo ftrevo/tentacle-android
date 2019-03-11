@@ -8,6 +8,8 @@ apply plugin: "de.mannodermaus.android-junit5"
 
 apply plugin: 'kotlin-allopen'
 
+apply plugin: 'kotlin-kapt'
+
 apply from: 'tasks.gradle'
 
 apply plugin: 'io.fabric'
@@ -27,13 +29,13 @@ android {
         applicationId "br.com.concrete.tentacle"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 102
-        versionName "1.0.2"
+        versionCode 105
+        versionName "1.0.5"
         testInstrumentationRunner "br.com.concrete.tentacle.util.TentacleTestRunner"
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", '"https://tentacle-backend.herokuapp.com/"'
+            buildConfigField "String", "BASE_URL", '"https://tentacle-backend-dev.herokuapp.com/"'
             applicationIdSuffix ".debug"
             testCoverageEnabled true
         }
@@ -49,7 +51,7 @@ android {
         unitTests {
             includeAndroidResources = true
             returnDefaultValues = true
-            all{
+            all {
                 jacoco {
                     includeNoLocationClasses = true
                 }
@@ -104,6 +106,12 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-android:$mockitoAndroid"
     androidTestImplementation "androidx.test.ext:junit:$androidxTest"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoIntent"
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$espressoContrib") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
 
     //Koin
     implementation "org.koin:koin-core:$koinVersion"
@@ -139,8 +147,11 @@ dependencies {
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+    kapt "com.github.bumptech.glide:compiler:$glide"
 
     ktlint "com.github.shyiko:ktlint:$ktLintVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinReflection"
+
+    //https://github.com/jaredrummler/MaterialSpinner
+    implementation "com.jaredrummler:material-spinner:$materialSpinner"
 }

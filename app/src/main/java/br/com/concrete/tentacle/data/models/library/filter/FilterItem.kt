@@ -7,5 +7,5 @@ import kotlinx.android.parcel.Parcelize
 data class FilterItem(
     val title: String,
     val icon: String,
-    val subitems: List<SubItem>
+    val subItems: List<SubItem>
 ) : Parcelable

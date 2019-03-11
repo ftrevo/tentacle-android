@@ -1,0 +1,31 @@
+{
+  "message": [
+    "Empréstimo encontrado"
+  ],
+  "data": {
+    "_id": "5c6a97b8684dc800238b41ab",
+    "requestedAt": "2019-02-18T11:28:04.224Z",
+    "media": {
+      "_id": "5c66f81d9321750023d99988",
+      "platform": "PS4"
+    },
+    "requestedBy": {
+      "_id": "5c18060442daa00022e856e1",
+      "name": "LEO MALKES",
+      "email": "leonardo.malkes@concrete.com.br"
+    },
+    "mediaOwner": {
+      "_id": "5c58603ff8e6ef002376a5d2",
+      "email": "yara.taciane.d.paula@concrete.com.br",
+      "name": "YARA"
+    },
+    "game": {
+      "_id": "5c66f80a9321750023d99987",
+      "name": "Eeee",
+      "game_modes": [],
+      "genres": []
+    },
+    "estimatedReturnDate": "2019-03-07T18:38:09.892Z",
+    "loanDate": "2019-02-21T18:38:09.892Z"
+  }
+}

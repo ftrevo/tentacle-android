@@ -12,28 +12,46 @@
 
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
     <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
     <dimen name="dp_7">7dp</dimen>
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_11">11dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
     <dimen name="dp_14">14dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
     <dimen name="dp_18">18dp</dimen>
     <dimen name="dp_19">19dp</dimen>
+    <dimen name="dp_22">22dp</dimen>
+    <dimen name="dp_24">24dp</dimen>
     <dimen name="dp_25">25dp</dimen>
+    <dimen name="dp_26">26dp</dimen>
+    <dimen name="dp_35">35dp</dimen>
     <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
     <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_64">64dp</dimen>
     <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_87">87dp</dimen>
     <dimen name="dp_95">95dp</dimen>
 
     <dimen name="sp_24">24sp</dimen>
 
+    <dimen name="homeItemCardHeightDefault">220dp</dimen>
+    <dimen name="homeItemStartMargin">12dp</dimen>
+    <dimen name="homeItemTopMargin">16dp</dimen>
+    <dimen name="homeItemEndMargin">12dp</dimen>
+    <integer name="homeItemTitleMaxLines">2</integer>
+    <integer name="homeItemContentMaxLines">4</integer>
+
     <dimen name="game_icon_width">44dp</dimen>
-    <dimen name="game_icon_height">58dp</dimen>
+    <dimen name="game_icon_height">60dp</dimen>
 
     <dimen name="itemGameNamePercent">0.75</dimen>
-    <dimen name="itemGamePlatformPercent">0.25</dimen>
+    <dimen name="itemGamePlatformPercent">0.20</dimen>
 
     <dimen name="tentacleLogoOpacity">0.1</dimen>
 
@@ -68,5 +86,24 @@
     <dimen name="filterItemIconHeight">40dp</dimen>
     <dimen name="filterCloseButtonWidth">40dp</dimen>
     <dimen name="filterCloseButtonHeight">40dp</dimen>
+    <dimen name="lineSpacingExtra">8sp</dimen>
+
+    <dimen name="chipWidth">78dp</dimen>
+    <dimen name="chipHeight">54dp</dimen>
+    <dimen name="chipCornerRadius">20dp</dimen>
+
+    <dimen name="loan_success_height">146dp</dimen>
+    <dimen name="loan_success_width">115dp</dimen>
+    <dimen name="loan_success_margin_top">87dp</dimen>
+
+    <dimen name="loan_image_margin_top">20dp</dimen>
+    <dimen name="loan_text_margin_top">22dp</dimen>
+
+    <dimen name="defaultCorner3dp">3dp</dimen>
+    <dimen name="defaultCorner22dp">22dp</dimen>
+
+    <dimen name="gameStatusRadius">8dp</dimen>
+    <dimen name="dm_14">14sp</dimen>
+
 </resources>
 

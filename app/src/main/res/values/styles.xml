@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:statusBarColor">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:homeAsUpIndicator">@drawable/arrow_back</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="AppTheme.FullScreen">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="actionModeBackground">@color/colorPrimary</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:screenOrientation">portrait</item>
+    </style>
+
 
     <style name="TextInputLayoutStyle">
         <item name="android:layout_marginStart">@dimen/margin_default</item>
@@ -21,9 +33,9 @@
 
 
     <style name="ButtonSpinnerStyle" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@drawable/shape_border_rounded_white</item>
         <item name="android:textAppearance">@style/TextMedium.14sp</item>
         <item name="android:textColor">@color/textColor</item>
+        <item name="android:backgroundTint">@color/backgroundSpinner</item>
 
     </style>
 
@@ -39,6 +51,12 @@
         <item name="android:textSize">@dimen/sizeButton</item>
     </style>
 
+    <style name="StyleCLearFilterButton" parent="StyleButton">
+        <item name="textColorButton">@color/colorButtonBlue</item>
+        <item name="android:textColor">@color/colorButtonBlue</item>
+        <item name="android:background">@drawable/shape_border_rounded_white</item>
+    </style>
+
     <style name="StyleRadioButton">
         <item name="colorControlNormal">@android:color/white</item>
         <item name="android:colorControlActivated">@color/colorAccent</item>
@@ -49,14 +67,23 @@
         <item name="android:colorControlActivated">@color/colorAccent</item>
     </style>
 
-    <style name="StyleTextCardHome">
-        <item name="android:layout_marginTop">@dimen/dp_95</item>
-        <item name="android:layout_marginBottom">@dimen/dp_87</item>
-        <item name="android:layout_marginStart">@dimen/dp_8</item>
-        <item name="android:layout_marginEnd">@dimen/dp_8</item>
+    <style name="StyleCardHomeTitle">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textAppearance">@style/TextBlack.24sp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextBlack.22sp</item>
+    </style>
+
+    <style name="StyleCardHomeContent">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAppearance">@style/TextMedium.14sp</item>
+    </style>
+    
+    <style name="StyleRatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:colorControlNormal">@android:color/black</item>
+        <item name="android:colorControlActivated">@color/starColor</item>
+        <item name="android:scaleX">0.7</item>
+        <item name="android:scaleY">0.7</item>
+        <item name="android:transformPivotX">-0dp</item>
+        <item name="android:transformPivotY">-0dp</item>
     </style>
 
     <style name="LibraryBullets">
@@ -65,11 +92,63 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="StyleDialogFragment" parent="Theme.AppCompat.Dialog">
+    <style name="StyleDialogFragment" parent="Theme.MaterialComponents.Dialog">
         <item name="android:windowNoTitle">true</item>
         <!-- Set this to true if you want Full Screen without status bar -->
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="StyleTextViewLendGame">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:lineSpacingExtra">@dimen/lineSpacingExtra</item>
+    </style>
+
+    <style name="StyleTextViewLendGame.UserTextHeavy">
+        <item name="android:textAppearance">@style/TextHeavy.16sp</item>
+    </style>
+
+    <style name="StyleTextViewLendGame.UserTextMedium">
+        <item name="android:textAppearance">@style/TextMedium.16sp</item>
+    </style>
+
+    <style name="StyleTextViewLendGame.UserTextHeavy.Label">
+        <item name="android:layout_marginTop">@dimen/dp_26</item>
+    </style>
+
+    <style name="StyleTextViewLendGame.UserTextHeavy.WithShape">
+        <item name="android:background">@drawable/shape_border_white</item>
+        <item name="android:layout_marginTop">@dimen/dp_6</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="StyleTextViewLendGame.UserTextHeavy.WithDarkShape">
+        <item name="android:textColor">@drawable/shape_border_white</item>
+        <item name="android:layout_marginTop">@dimen/dp_6</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="StyleTextViewLendGame.UserTextMedium.Date">
+
+    </style>
+
+    <style name="Chip">
+        <item name="chipSurfaceColor">@android:color/transparent</item>
+        <item name="android:checkable">true</item>
+        <item name="chipBackgroundColor">@color/color_chip_state</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="android:width">@dimen/chipWidth</item>
+        <item name="android:height">@dimen/chipHeight</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/dm_14</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

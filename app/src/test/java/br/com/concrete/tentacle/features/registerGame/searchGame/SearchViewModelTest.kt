@@ -35,7 +35,7 @@ class SearchViewModelTest : BaseViewModelTest() {
         mockResponse200(responseJson)
 
         searchGameViewModel.getSearchGame().observeForever {
-            actual = it
+            actual = ViewStateModel(model = it.model?.list, status = ViewStateModel.Status.SUCCESS)
         }
 
         searchGameViewModel.searchGame("Fifa")
@@ -63,7 +63,7 @@ class SearchViewModelTest : BaseViewModelTest() {
         mockResponse200(responseJson)
 
         searchGameViewModel.getSearchGame().observeForever {
-            actual = it
+            actual = ViewStateModel(model = it.model?.list, status = ViewStateModel.Status.SUCCESS)
         }
 
         searchGameViewModel.searchGame("Fifa")
@@ -81,14 +81,14 @@ class SearchViewModelTest : BaseViewModelTest() {
 
         val expected =
             ViewStateModel<ArrayList<Game>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject
+                status = ViewStateModel.Status.ERROR, model = null
             )
         var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
 
         mockResponseError400()
 
         searchGameViewModel.getSearchGame().observeForever {
-            actual = it
+            actual = ViewStateModel(model = it.model?.list, status = it.status)
         }
 
         searchGameViewModel.searchGame("Fifa")
@@ -153,6 +153,32 @@ class SearchViewModelTest : BaseViewModelTest() {
         }
 
         searchGameViewModel.registerNewGame("Fallout 76")
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when searchGameViewModel calls searchMoreGame should return a list of Games`() {
+        val responseJson = getJson(
+            "mockjson/searchgame/list_game_success.json"
+        )
+
+        val collectionType = object : TypeToken<BaseModel<GameResponse>>() {}.type
+        val responseObject: BaseModel<GameResponse> = GsonBuilder().create().fromJson(responseJson, collectionType)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = responseObject.data.list
+            )
+        var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
+
+        mockResponse200(responseJson)
+
+        searchGameViewModel.getSearchGame().observeForever {
+            actual = ViewStateModel(model = it.model?.list, status = ViewStateModel.Status.SUCCESS)
+        }
+
+        searchGameViewModel.searchGameMore("Fifa")
         assertEquals(expected, actual)
     }
 }

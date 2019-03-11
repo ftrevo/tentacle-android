@@ -5,7 +5,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.data.models.ErrorResponse
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.features.HostActivity
 
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
@@ -20,6 +25,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun setupToolbar() {
         setupToolbar(INVALID_TITLE, INVALID_ICON, true)
+    }
+
+    fun setupToolbar(@StringRes title: Int, @DrawableRes icon: Int) {
+        setupToolbar(title, icon, true)
     }
 
     fun setupToolbar(@DrawableRes icon: Int) {
@@ -58,10 +67,39 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                super.onBackPressed()
+                if (this !is HostActivity) {
+                    onBackPressed()
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    protected open fun showError(errors: ErrorResponse?, title: String = "Erro") {
+        errors?.let { errorResponse ->
+            errorResponse.messageInt.map { error ->
+                errorResponse.message.add(getString(error))
+            }
+
+            val ers = errorResponse.toString()
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(title)
+            builder.setMessage(ers)
+            builder.apply {
+                setPositiveButton(
+                    R.string.ok
+                ) { dialog, _ ->
+                    dialog.dismiss()
+                }
+            }
+
+            builder.create().show()
+        }
+    }
+
+    open fun getFinishActivityTransition(): ActivityAnimation {
+        return ActivityAnimation.TRANSLATE_RIGHT
     }
 }

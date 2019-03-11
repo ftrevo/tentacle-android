@@ -1,0 +1,27 @@
+{
+  "message": [
+    "Empréstimo atualizado"
+  ],
+  "data": {
+    "requestedAt": "2019-02-20T16:57:33.698Z",
+    "_id": "5c6da1ae70d4e60023af7fe9",
+    "media": {
+      "_id": "5c4af2a1f9d9720023542eec",
+      "platform": "PS4"
+    },
+    "requestedBy": {
+      "_id": "5c58603ff8e6ef002376a5d2",
+      "name": "YARA"
+    },
+    "mediaOwner": {
+      "_id": "5c1ab12e7c0f4f002272357e",
+      "name": "JOAO DAS NEVES"
+    },
+    "game": {
+      "_id": "5c4af29bf9d9720023542eeb",
+      "name": "Monster Hunter: World"
+    },
+    "estimatedReturnDate": "2019-03-07T16:39:49.694Z",
+    "loanDate": "2019-02-21T16:39:49.694Z"
+  }
+}

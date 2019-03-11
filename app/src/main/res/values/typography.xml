@@ -12,6 +12,10 @@
         <item name="android:fontFamily">@font/avenir_heavy</item>
     </style>
 
+    <style name="TextBook">
+        <item name="android:fontFamily">@font/avenir_book</item>
+    </style>
+
     <style name="TextMedium.12sp">
         <item name="android:textSize">12sp</item>
     </style>
@@ -44,6 +48,14 @@
         <item name="android:textSize" tools:ignore="SpUsage">12dp</item>
     </style>
 
+    <style name="TextHeavy.12sp">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextHeavy.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="TextHeavy.16sp">
         <item name="android:textSize">16sp</item>
     </style>
@@ -56,8 +68,16 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="TextHeavy.24sp">
+        <item name="android:textSize">24sp</item>
+    </style>
+
     <style name="TextBlack.24sp">
         <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextBook.16sp">
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

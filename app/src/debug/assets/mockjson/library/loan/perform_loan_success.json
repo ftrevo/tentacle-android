@@ -1,0 +1,25 @@
+{
+  "message": [
+    "Empréstimo salvo"
+  ],
+  "data": {
+    "requestedAt": "2019-02-19T13:43:26.539Z",
+    "_id": "5c6c08f42ec12a00236a4e51",
+    "media": {
+      "_id": "5c66fc8f9321750023d99992",
+      "platform": "XBOXONE"
+    },
+    "requestedBy": {
+      "_id": "5c18060442daa00022e856e1",
+      "name": "LEO MALKES"
+    },
+    "mediaOwner": {
+      "_id": "5c58603ff8e6ef002376a5d2",
+      "name": "YARA"
+    },
+    "game": {
+      "_id": "5c64438f352d58002358f362",
+      "name": "Fifa 2015"
+    }
+  }
+}

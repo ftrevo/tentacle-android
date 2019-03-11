@@ -1,15 +1,10 @@
 package br.com.concrete.tentacle.features.login
 
-import android.app.Activity
-import android.app.Instrumentation
-import androidx.navigation.NavHost
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.intent.Intents
-import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -21,7 +16,6 @@ import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.allOf
 import org.junit.Test
-import java.io.File
 
 class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
@@ -78,7 +72,6 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         setField("teste@test.com", R.id.edtEmail)
         setField("123456", R.id.edtPassword)
         callButtonClick()
-        clearApplicationData()
         checkIfGoesToHome()
     }
 
@@ -136,41 +129,5 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
     private fun matchesIsDisplayed(idMessageError: Int) {
         Espresso.onView(ViewMatchers.withText(idMessageError)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
-
-    private fun checkIfGoesToHome() {
-        Intents.init()
-        val matcher = CoreMatchers.allOf(IntentMatchers.hasComponent(NavHost::class.java.name))
-        val result = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
-        Intents.intending(matcher).respondWith(result)
-    }
-
-    private fun clearApplicationData() {
-        val cacheDirectory = activityRule.activity.cacheDir
-        val applicationDirectory = File(cacheDirectory.parent)
-        if (applicationDirectory.exists()) {
-            val fileNames = applicationDirectory.list()
-            for (fileName in fileNames) {
-                if (fileName != "lib") {
-                    deleteFile(File(applicationDirectory, fileName))
-                }
-            }
-        }
-    }
-
-    private fun deleteFile(file: File?): Boolean {
-        var deletedAll = true
-        if (file != null) {
-            if (file.isDirectory) {
-                val children = file.list()
-                for (i in children.indices) {
-                    deletedAll = deleteFile(File(file, children[i])) && deletedAll
-                }
-            } else {
-                deletedAll = file!!.delete()
-            }
-        }
-
-        return deletedAll
     }
 }
