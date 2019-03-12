@@ -47,7 +47,7 @@
 
         <br.com.concrete.tentacle.custom.TentacleEditText
                 android:id="@+id/edtEmail"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
@@ -62,7 +62,7 @@
 
         <br.com.concrete.tentacle.custom.ButtonView
                 android:id="@+id/btSend"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
                 style="@style/StyleButton"
                 android:layout_marginTop="@dimen/dp_16"
