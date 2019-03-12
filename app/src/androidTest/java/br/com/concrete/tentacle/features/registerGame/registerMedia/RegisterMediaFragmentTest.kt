@@ -56,7 +56,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
@@ -79,13 +79,13 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isEnabled()))
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(click())
         onView(withText("Você confirma que FIFA 06: Road to FIFA World Cup existe para a plataforma PS3?"))
             .check(matches(ViewMatchers.isDisplayed()))
@@ -111,7 +111,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
 
         onView(withId(R.id.mediaRegisterButton))
@@ -120,7 +120,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isEnabled()))
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(click())
         onView(withText("Você confirma que FIFA 06: Road to FIFA World Cup existe para a plataforma PS3?"))
             .check(matches(ViewMatchers.isDisplayed()))
@@ -139,7 +139,6 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
             .perform(click())
-
     }
 
     private fun checkDetails() {
@@ -170,5 +169,4 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.chip3ds))
             .check(matches(isDisplayed()))
     }
-
 }
