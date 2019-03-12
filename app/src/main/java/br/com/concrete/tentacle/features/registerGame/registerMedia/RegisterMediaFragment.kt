@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragment
@@ -43,7 +44,7 @@ class RegisterMediaFragment : BaseFragment() {
     }
 
     private fun initViews() {
-        activity?.title = getString(R.string.toolbar_title_search_game)
+        (activity as? AppCompatActivity)?.supportActionBar?.title  = getString(R.string.toolbar_title_search_game)
         gameView.showStatusView(false)
         mediaRegisterButton.disable()
 
