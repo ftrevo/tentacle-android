@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.view.View
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.validateEmail
-import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.*
-import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.*
+import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.btSend
+import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.edtEmail
+import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 
 class ForgotPassSendEmailActivity : Activity(), View.OnClickListener {
 
@@ -36,8 +37,8 @@ class ForgotPassSendEmailActivity : Activity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id) {
-            R.id.btSend-> verifyData()
+        when (v?.id) {
+            R.id.btSend -> verifyData()
         }
     }
 
@@ -46,7 +47,7 @@ class ForgotPassSendEmailActivity : Activity(), View.OnClickListener {
 
         when (email.validateEmail()) {
             true -> sendEmailViewModel()
-            false-> showError()
+            false -> showError()
         }
     }
 
