@@ -89,29 +89,69 @@
                 android:orientation="horizontal">
 
             <TextView
-                    android:textColor="@color/textColor"
+                    style="@style/LibraryBullets"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextBlack.9dp"
+                    android:text="@string/bullet_ps3"
+                    android:id="@+id/tvPS3"
+                    android:visibility="gone"
+                    android:background="@drawable/circle_bg_icon_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                    style="@style/LibraryBullets"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextBlack.9dp"
+                    android:text="@string/bullet_ps4"
+                    android:id="@+id/tvPS4"
+                    android:visibility="gone"
+                    android:background="@drawable/circle_bg_icon_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    style="@style/LibraryBullets"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextBlack.9dp"
+                    android:text="@string/bullet_360"
+                    android:id="@+id/tv360"
+                    android:visibility="gone"
+                    android:background="@drawable/circle_bg_icon_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    style="@style/LibraryBullets"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextBlack.9dp"
+                    android:text="@string/bullet_ONE"
+                    android:id="@+id/tvONE"
+                    android:visibility="gone"
+                    android:background="@drawable/circle_bg_icon_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            <TextView
+                    style="@style/LibraryBullets"
                     android:gravity="center"
                     android:textAppearance="@style/TextBlack.9dp"
                     android:text="@string/bullet_3DS"
                     android:id="@+id/tv3DS"
+                    android:visibility="gone"
                     android:background="@drawable/circle_bg_icon_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
             <TextView
-                    android:textColor="@color/textColor"
+                    style="@style/LibraryBullets"
                     android:gravity="center"
                     android:textAppearance="@style/TextBlack.9dp"
-                    android:text="@string/bullet_3DS"
-                    android:background="@drawable/circle_bg_icon_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:textColor="@color/textColor"
-                    android:gravity="center"
-                    android:textAppearance="@style/TextBlack.9dp"
-                    android:text="@string/bullet_3DS"
+                    android:text="@string/bullet_NS"
+                    android:id="@+id/tvNS"
+                    android:visibility="gone"
                     android:background="@drawable/circle_bg_icon_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

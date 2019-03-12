@@ -24,7 +24,13 @@ data class Game(
     val gameModes: List<GameMode>? = null,
     val genres: List<Genre>? = null,
     val cover: Cover? = null,
-    val screenshots: List<Screenshot>? = null
+    val screenshots: List<Screenshot>? = null,
+    val mediaNintendo3dsCount: Int = 0,
+    val mediaNintendoSwitchCount: Int = 0,
+    val mediaPs3Count: Int = 0,
+    val mediaPs4Count: Int = 0,
+    val mediaXbox360Count: Int = 0,
+    val mediaXboxOneCount: Int = 0
 
 ) : Serializable {
 
