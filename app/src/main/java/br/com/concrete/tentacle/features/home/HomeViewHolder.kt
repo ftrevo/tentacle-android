@@ -17,7 +17,7 @@ class HomeViewHolder(
 ) : RecyclerView.ViewHolder(mLinearLayout) {
 
     companion object {
-        fun callBack(holder: RecyclerView.ViewHolder, element: Game) {
+        fun callBack(holder: RecyclerView.ViewHolder, element: Game, listener: (Game) -> Unit) {
             if (holder is HomeViewHolder) {
                 holder.mLinearLayout.let { itemView ->
                     element.screenshots?.firstOrNull()?.let { screenshot ->
@@ -34,6 +34,10 @@ class HomeViewHolder(
                     }
                     element.rating?.let { rating ->
                         itemView.homeItemGameRatinBar.progress(rating)
+                    }
+
+                    holder.itemView.setOnClickListener {
+                        listener(element)
                     }
                 }
             }
