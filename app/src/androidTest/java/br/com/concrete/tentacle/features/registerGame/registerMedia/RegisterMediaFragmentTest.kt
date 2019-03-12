@@ -7,7 +7,10 @@ import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.isEnabled
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.data.models.BaseModel
@@ -56,7 +59,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
@@ -79,13 +82,13 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isEnabled()))
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(click())
         onView(withText("Você confirma que FIFA 06: Road to FIFA World Cup existe para a plataforma PS3?"))
             .check(matches(ViewMatchers.isDisplayed()))
@@ -111,7 +114,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
 
         onView(withId(R.id.mediaRegisterButton))
@@ -120,7 +123,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isEnabled()))
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(click())
         onView(withText("Você confirma que FIFA 06: Road to FIFA World Cup existe para a plataforma PS3?"))
             .check(matches(ViewMatchers.isDisplayed()))
@@ -139,7 +142,6 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
             .perform(click())
-
     }
 
     private fun checkDetails() {
@@ -170,5 +172,4 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.chip3ds))
             .check(matches(isDisplayed()))
     }
-
 }

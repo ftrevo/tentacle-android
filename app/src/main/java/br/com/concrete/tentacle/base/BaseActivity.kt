@@ -1,8 +1,14 @@
 package br.com.concrete.tentacle.base
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -11,6 +17,9 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.features.HostActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
@@ -101,5 +110,53 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun getFinishActivityTransition(): ActivityAnimation {
         return ActivityAnimation.TRANSLATE_RIGHT
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create channel to show notifications.
+            val channelId = getString(R.string.default_notification_channel_id)
+            val channelName = getString(R.string.default_notification_channel_name)
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager?.createNotificationChannel(
+                NotificationChannel(channelId,
+                    channelName, NotificationManager.IMPORTANCE_LOW)
+            )
+        }
+
+        intent.extras?.let {
+            for (key in it.keySet()) {
+                val value = intent.extras.get(key)
+                Log.d("TAG", "Key: $key Value: $value")
+            }
+        }
+        Log.d("TAG", "Subscribing to weather topic")
+        FirebaseMessaging.getInstance().subscribeToTopic("weather")
+            .addOnCompleteListener { task ->
+                var msg = getString(R.string.msg_subscribed)
+                if (!task.isSuccessful) {
+                    msg = getString(R.string.msg_subscribe_failed)
+                }
+                Log.d("TAG", msg)
+                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+            }
+
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w("TAG", "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+
+                // Get new Instance ID token
+                val token = task.result?.token
+
+                // Log and toast
+                val msg = getString(R.string.msg_token_fmt, token)
+                Log.d("TAG", msg)
+                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+            })
     }
 }

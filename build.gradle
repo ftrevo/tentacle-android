@@ -56,6 +56,12 @@ buildscript {
     //Navigation
     ext.navigation = "1.0.0-alpha09"
 
+    ext.googleServices = "4.2.0"
+    ext.firebaseCore = "16.0.7"
+    ext.firebaseMessaging = "17.4.0"
+    ext.firebaseIid = "17.1.0"
+    ext.firebaseDispatcher = "0.8.5"
+
     repositories {
         google()
         jcenter()
@@ -70,6 +76,7 @@ buildscript {
         classpath "org.jacoco:org.jacoco.core:$jacobVersion"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$navigation"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
+        classpath "com.google.gms:google-services:$googleServices"
     }
 }
 
