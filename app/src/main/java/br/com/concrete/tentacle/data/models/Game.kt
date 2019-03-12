@@ -24,7 +24,8 @@ data class Game(
     val gameModes: List<GameMode>? = null,
     val genres: List<Genre>? = null,
     val cover: Cover? = null,
-    val screenshots: List<Screenshot>? = null
+    val screenshots: List<Screenshot>? = null,
+    val active: Boolean = true
 
 ) : Serializable {
 
