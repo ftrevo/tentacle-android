@@ -41,7 +41,7 @@ interface ApiService {
     @DELETE("/media/{id}")
     fun deleteMedia(
         @Path("id") mediaId: String
-    ): Observable<BaseModel<Game>>
+    ): Observable<BaseModel<Media>>
 
     @GET("/media-loan")
     fun getRegisteredGames(
