@@ -29,6 +29,9 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                     HttpURLConnection.HTTP_UNAUTHORIZED -> {
                         // TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
                     }
+                    HttpURLConnection.HTTP_NOT_FOUND -> errorResponse = gson.fromJson(
+                        error.response().errorBody()!!.charStream(),
+                        ErrorResponse::class.java)
                     else -> errorResponse.messageInt.add(R.string.unknow_error)
                 }
             }

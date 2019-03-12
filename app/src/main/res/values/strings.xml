@@ -190,5 +190,6 @@
     <string name="add_email_receive_code">Adicione o email para receber o \n código de verificação</string>
     <string name="send">Enviar</string>
     <string name="alreadyHaveToken">Já possui o token?</string>
+    <string name="ops_ocorreu_erro">Ops!</string>
 
 </resources>
