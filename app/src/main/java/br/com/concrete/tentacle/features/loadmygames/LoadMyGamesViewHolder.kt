@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.extensions.visible
-import kotlinx.android.synthetic.main.item_game.view.*
+import kotlinx.android.synthetic.main.item_game.view.game_media
+import kotlinx.android.synthetic.main.item_game.view.game_name
+import kotlinx.android.synthetic.main.item_game.view.ivLoanRequested
+
 
 class LoadMyGamesViewHolder(
     private val mLinearLayout: View
