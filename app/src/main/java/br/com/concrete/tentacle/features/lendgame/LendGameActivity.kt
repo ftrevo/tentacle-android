@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.features.lendgame
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
@@ -31,7 +32,6 @@ import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
-
 class LendGameActivity : BaseActivity() {
 
     companion object {
@@ -50,6 +50,12 @@ class LendGameActivity : BaseActivity() {
         loadData()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_game_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     private fun loadData() {
         intent?.let {
             if (it.hasExtra(MEDIA_ID_EXTRA)) {
@@ -64,6 +70,7 @@ class LendGameActivity : BaseActivity() {
             when (stateModel.status) {
                 ViewStateModel.Status.SUCCESS -> {
                     fillData(stateModel.model)
+                    media = stateModel.model
                 }
                 ViewStateModel.Status.LOADING -> showLoading(true)
                 ViewStateModel.Status.ERROR -> showError(stateModel.errors)
@@ -147,17 +154,22 @@ class LendGameActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId){
+        when (item?.itemId) {
             br.com.concrete.tentacle.R.id.delete -> {
                 showDialogDelete()
                 return true
             }
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
+        return false
     }
 
     private fun showDialogDelete() {
-        media?.let {media ->
+        media?.let { media ->
             val gameName = String.format(getString(br.com.concrete.tentacle.R.string.delete_dialog_message), media.game?.name ?: "")
 
             DialogUtils.showDialog(
