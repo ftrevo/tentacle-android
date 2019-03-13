@@ -5,6 +5,8 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import br.com.concrete.tentacle.R
 
 object DialogUtils {
     fun showDialog(
@@ -56,9 +58,11 @@ object DialogUtils {
 
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
-        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE)
-        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.WHITE)
+        val color = ContextCompat.getColor(context, R.color.colorAccent)
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(color)
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(color)
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(color)
+
 
         return dialog
     }
