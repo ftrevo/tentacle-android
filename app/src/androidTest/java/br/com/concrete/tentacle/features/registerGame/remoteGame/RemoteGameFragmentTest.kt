@@ -24,9 +24,7 @@ import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.Test
 import java.util.Calendar
 
-
 class RemoteGameFragmentTest : BaseFragmentTest() {
-
 
     override fun setupFragment() {
         testFragment = RemoteGameFragment().apply {
@@ -43,7 +41,6 @@ class RemoteGameFragmentTest : BaseFragmentTest() {
             withParent(withResourceName("action_bar"))))
             .check(matches(withText("Nome do jogo")))
     }
-
 
     @Test
     fun showEmptyErrorCustomLayout() {

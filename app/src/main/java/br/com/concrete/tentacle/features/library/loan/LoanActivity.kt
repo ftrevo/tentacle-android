@@ -111,7 +111,7 @@ class LoanActivity : BaseActivity() {
         this.library = library
         showLoading(false)
         library?.let {
-            it.cover?.let {cover ->
+            it.cover?.let { cover ->
                 cover.imageId?.let { imageId ->
                     ivGame.loadImageUrl(Utils.assembleGameImageUrl(sizeType = IMAGE_SIZE_TYPE_COVER_SMALL, imageId = imageId))
                 }

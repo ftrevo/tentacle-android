@@ -3,15 +3,19 @@ package br.com.concrete.tentacle.features.home
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
+import br.com.concrete.tentacle.extensions.checkLines
 import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.matchers.RecyclerViewMatcher
 import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
 import okhttp3.mockwebserver.MockResponse
+import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
 
@@ -83,6 +87,24 @@ class HomeFragmentTest : BaseFragmentTest() {
             .check(matches(isDisplayed()))
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
+
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.recyclerListView).atPosition(0))
+            .check(matches(hasDescendant(withText("The Last of Us Remastered"))))
+            .check(matches(hasDescendant(allOf(withText("PS4"), isDisplayed()))))
+            .check(matches(hasDescendant(allOf(withText("PS3"), not(isDisplayed())))))
+            .check(matches(hasDescendant(allOf(withText("360"), not(isDisplayed())))))
+            .check(matches(hasDescendant(allOf(withText("ONE"), not(isDisplayed())))))
+            .check(matches(hasDescendant(allOf(withText("3DS"), not(isDisplayed())))))
+            .check(matches(hasDescendant(allOf(withText("NS"), not(isDisplayed())))))
+
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.recyclerListView).atPosition(1))
+            .check(matches(hasDescendant(withText("God of War III"))))
+            .check(matches(hasDescendant(allOf(withText("PS4"), not(isDisplayed())))))
+            .check(matches(hasDescendant(allOf(withText("PS3"), not(isDisplayed())))))
+            .check(matches(hasDescendant(allOf(withText("360"), isDisplayed()))))
+            .check(matches(hasDescendant(allOf(withText("ONE"), isDisplayed()))))
+            .check(matches(hasDescendant(allOf(withText("3DS"), not(isDisplayed())))))
+            .check(matches(hasDescendant(allOf(withText("NS"), not(isDisplayed())))))
     }
 
     @Test
@@ -136,6 +158,7 @@ class HomeFragmentTest : BaseFragmentTest() {
             .check(matches(withText(R.string.load_games_error_not_know)))
         onView(withId(R.id.progressBarList))
             .check(matches(not(isDisplayed())))
+
     }
 
     /**
