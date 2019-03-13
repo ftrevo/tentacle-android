@@ -2,7 +2,9 @@ package br.com.concrete.tentacle.features.library.loan
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
@@ -23,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_loan.chipPs3
 import kotlinx.android.synthetic.main.activity_loan.chipPs4
 import kotlinx.android.synthetic.main.activity_loan.chipSwitch
 import kotlinx.android.synthetic.main.activity_loan.gameView
+import kotlinx.android.synthetic.main.activity_loan.scroll
 import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -53,6 +56,7 @@ class LoanActivity : BaseActivity() {
         gameView.showStatusView(false)
         spOwners.setBackgroundResource(R.drawable.shape_border_corners_3dp)
         btPerformLoan.disable()
+
         intent?.let {
             if (it.hasExtra(ID_LIBRARY_EXTRA)) {
                 val libraryId = it.getStringExtra(ID_LIBRARY_EXTRA)
@@ -98,6 +102,7 @@ class LoanActivity : BaseActivity() {
                 ViewStateModel.Status.SUCCESS ->
                     viewStateModel.model?.let {
                         gameView.setGame(it)
+                        showLoading(false)
                     }
                 ViewStateModel.Status.ERROR -> showError(viewStateModel.errors, getString(R.string.someone_was_faster))
             }
@@ -210,5 +215,6 @@ class LoanActivity : BaseActivity() {
     private fun configureSpinnerFirstState() {
         spOwners.hint = getString(R.string.select_hint)
         spOwners.setHintTextColor(Color.WHITE)
+        spOwners.isEnabled = false
     }
 }
