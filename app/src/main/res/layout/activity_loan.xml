@@ -27,6 +27,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp_25"
+                app:layout_constraintTop_toBottomOf="@+id/gameView"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
         <TextView
                 android:id="@+id/tvTitle1"
                 android:layout_marginTop="@dimen/dp_25"
@@ -36,7 +46,7 @@
                 android:text="@string/library_loan_text1"
                 android:textAppearance="@style/TextHeavy.16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gameView"/>
+                app:layout_constraintTop_toBottomOf="@id/recyclerView"/>
 
         <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipContainer"
