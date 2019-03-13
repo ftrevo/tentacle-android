@@ -14,4 +14,8 @@ abstract class BaseTentacleLabeledWidget(
     fun showError(show: Boolean) {
         tvError.visibility = if (show) View.VISIBLE else View.INVISIBLE
     }
+
+    fun setError(errorMsg: String) {
+        tvError.text = errorMsg
+    }
 }

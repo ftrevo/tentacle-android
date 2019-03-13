@@ -37,4 +37,8 @@ class TentacleEditText(
     }
 
     fun getText() = edt.text.toString()
+
+    fun setLetterSpacing(space: Float) {
+        edt.letterSpacing = space
+    }
 }

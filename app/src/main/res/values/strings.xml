@@ -12,10 +12,12 @@
     <string name="email_error">Digite um e-mail válido</string>
     <string name="name_error">O campo nome é de preenchimento obrigatório</string>
     <string name="password_error">O campo password precisa ter no mínimo 6 digitos</string>
+    <string name="password_confirmation_error">Os campos senha e comfirmação de senha não coincidem</string>
     <string name="phone_error">Forneça um número de telefone válido</string>
     <string name="state_error">Selecione um estado</string>
     <string name="city_error">Selecione uma cidade</string>
     <string name="load_error">Desculpe, não foi possível carregar os dados!</string>
+    <string name="token_error">O campo token é de preenchimento obrigatório</string>
 
     <string name="ok">Ok</string>
     <string name="error_dialog_title">Erro</string>
@@ -28,6 +30,17 @@
     <string name="verificar_campos_login">Por favor, verifique os campos obrigatórios.</string>
     <string name="button">Button</string>
     <string name="register_account">Registrar conta</string>
+
+    <string name="token">Token</string>
+    <string name="new_password">Crie sua nova senha</string>
+    <string name="new_password_confirmation">Confimar senha</string>
+    <string name="confirmation_button">Confimar</string>
+
+
+    <string name="password_recovery_title">Recuperar senha</string>
+    <string name="password_recovery_subtitle">Adicione o token que enviamos para seu email</string>
+    <string name="password_recovery_new_pass_text">Crie uma nova senha para acessar o Tentacle.</string>
+
 
     <string name="state_dialog_text">Selecione ou pesquise o estado</string>
     <string name="city_dialog_text">Selecione ou pesquise a cidade</string>

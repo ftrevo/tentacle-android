@@ -105,5 +105,7 @@
     <dimen name="gameStatusRadius">8dp</dimen>
     <dimen name="dm_14">14sp</dimen>
 
+    <dimen name="recovery_password_texts_margins">30dp</dimen>
+
 </resources>
 
