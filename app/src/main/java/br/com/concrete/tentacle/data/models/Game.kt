@@ -12,7 +12,6 @@ data class Game(
     @SerializedName("id") val remoteGameId: Int? = null,
     @SerializedName("name", alternate = ["title"])
     val name: String = String(),
-    val createdBy: String,
     var createdAt: String,
     var updateAt: String,
     @SerializedName("aggregated_rating")
@@ -41,7 +40,6 @@ data class Game(
         fun getEmptyGame(): Game = Game(
             _id = ID_EMPTY_GAME,
             name = "",
-            createdBy = "",
             createdAt = "",
             updateAt = ""
         )
