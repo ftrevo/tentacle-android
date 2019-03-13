@@ -47,6 +47,24 @@ class ForgotPassSendEmailTest : BaseInstrumentedTest() {
     }
 
     @Test
+    fun checkValidEmailInvalidEmpty() {
+        onView(
+            Matchers.allOf(
+                ViewMatchers.withId(R.id.edt),
+                ViewMatchers.withId(R.id.edtEmail)
+                    .childAtPosition(0)
+                    .childAtPosition(1)
+            )
+        ).perform(
+            ViewActions.scrollTo(),
+            ViewActions.replaceText("")
+        )
+
+        clickButton()
+        onView(withText("Digite um e-mail válido")).check(matches(isDisplayed()))
+    }
+
+    @Test
     fun sendEmailForgotPassword() {
         mockWebServer.enqueue(
             MockResponse()
