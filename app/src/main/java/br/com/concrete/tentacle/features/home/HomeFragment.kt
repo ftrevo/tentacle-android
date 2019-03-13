@@ -74,7 +74,7 @@ class HomeFragment : BaseFragment() {
                 { view ->
                     HomeViewHolder(view)
                 }, { holder, element ->
-                    HomeViewHolder.callBack(holder = holder, element = element){ game ->
+                    HomeViewHolder.callBack(holder = holder, element = element) { game ->
                         val extras = Bundle()
                         extras.putString(LoanActivity.ID_LIBRARY_EXTRA, game._id)
                         activity?.launchActivity<LoanActivity>(

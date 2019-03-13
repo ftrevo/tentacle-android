@@ -4,6 +4,6 @@
 
     <size android:height="@dimen/library_bullet" android:width="@dimen/library_bullet"/>
 
-    <solid android:color="#8024282F"  />
+    <solid android:color="@color/colorBGIconHome"  />
 
 </shape>

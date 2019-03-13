@@ -6,7 +6,6 @@ import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.finishActivity
 import br.com.concrete.tentacle.features.HostActivity
-import br.com.concrete.tentacle.features.library.LibraryFragment
 import kotlinx.android.synthetic.main.activity_loan_success.btClose
 import kotlinx.android.synthetic.main.activity_loan_success.btOk
 import kotlinx.android.synthetic.main.activity_loan_success.tvText

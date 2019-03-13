@@ -43,12 +43,12 @@ class HomeViewHolder(
                         itemView.homeItemGameRatinBar.progress(rating)
                     }
 
-                    itemView.tv360.visible(element.mediaXbox360Count > 0 )
-                    itemView.tv3DS.visible(element.mediaNintendo3dsCount > 0 )
-                    itemView.tvNS.visible(element.mediaNintendoSwitchCount > 0 )
-                    itemView.tvONE.visible(element.mediaXboxOneCount > 0 )
-                    itemView.tvPS3.visible(element.mediaPs3Count > 0 )
-                    itemView.tvPS4.visible(element.mediaPs4Count > 0 )
+                    itemView.tv360.visible(element.mediaXbox360Count > 0)
+                    itemView.tv3DS.visible(element.mediaNintendo3dsCount > 0)
+                    itemView.tvNS.visible(element.mediaNintendoSwitchCount > 0)
+                    itemView.tvONE.visible(element.mediaXboxOneCount > 0)
+                    itemView.tvPS3.visible(element.mediaPs3Count > 0)
+                    itemView.tvPS4.visible(element.mediaPs4Count > 0)
 
                     holder.itemView.setOnClickListener {
                         listener(element)
