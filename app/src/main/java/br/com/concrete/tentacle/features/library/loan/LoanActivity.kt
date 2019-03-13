@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.features.library.loan
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -12,10 +13,7 @@ import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.MediaLibrary
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
-import br.com.concrete.tentacle.extensions.loadImageUrl
 import br.com.concrete.tentacle.extensions.visible
-import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
-import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.activity_loan.btPerformLoan
 import kotlinx.android.synthetic.main.activity_loan.chip360
 import kotlinx.android.synthetic.main.activity_loan.chip3ds
@@ -24,9 +22,8 @@ import kotlinx.android.synthetic.main.activity_loan.chipOne
 import kotlinx.android.synthetic.main.activity_loan.chipPs3
 import kotlinx.android.synthetic.main.activity_loan.chipPs4
 import kotlinx.android.synthetic.main.activity_loan.chipSwitch
-import kotlinx.android.synthetic.main.activity_loan.ivGame
+import kotlinx.android.synthetic.main.activity_loan.gameView
 import kotlinx.android.synthetic.main.activity_loan.spOwners
-import kotlinx.android.synthetic.main.activity_loan.tvGameName
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -53,6 +50,7 @@ class LoanActivity : BaseActivity() {
     }
 
     private fun init() {
+        gameView.showStatusView(false)
         spOwners.setBackgroundResource(R.drawable.shape_border_corners_3dp)
         btPerformLoan.disable()
         intent?.let {
@@ -60,6 +58,7 @@ class LoanActivity : BaseActivity() {
                 val libraryId = it.getStringExtra(ID_LIBRARY_EXTRA)
                 libraryId?.let { id ->
                     viewModel.loadLibrary(id)
+                    viewModel.getDetailsGame(id)
                 }
 
                 spOwners.setOnItemSelectedListener { _, position, _, _ ->
@@ -92,6 +91,18 @@ class LoanActivity : BaseActivity() {
                 ViewStateModel.Status.ERROR -> showError(viewStateModel.errors, getString(R.string.someone_was_faster))
             }
         })
+
+        viewModel.getGame().observe(this, Observer { viewStateModel ->
+            when (viewStateModel.status) {
+                ViewStateModel.Status.LOADING -> showLoading(true)
+                ViewStateModel.Status.SUCCESS ->
+                    viewStateModel.model?.let {
+                        gameView.setGame(it)
+                    }
+                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors, getString(R.string.someone_was_faster))
+            }
+
+        })
     }
 
     private fun showLoanSuccess() {
@@ -111,12 +122,6 @@ class LoanActivity : BaseActivity() {
         this.library = library
         showLoading(false)
         library?.let {
-            it.cover?.let {cover ->
-                cover.imageId?.let { imageId ->
-                    ivGame.loadImageUrl(Utils.assembleGameImageUrl(sizeType = IMAGE_SIZE_TYPE_COVER_SMALL, imageId = imageId))
-                }
-            }
-            tvGameName.text = library.name
             setOwners(emptyList())
 
             chipPs3.visibility = if (library.mediaPs3.isEmpty()) View.GONE else View.VISIBLE
@@ -167,7 +172,7 @@ class LoanActivity : BaseActivity() {
             spOwners.isSelected = true
             mediaLibrary = spOwners.getItems<MediaLibrary>()[0]
             btPerformLoan.enable()
-        }else{
+        } else {
             btPerformLoan.disable()
         }
     }
@@ -188,6 +193,8 @@ class LoanActivity : BaseActivity() {
             val view = chipContainer.getChildAt(position)
             view.performClick()
             view.isPressed = true
+        } else {
+            configureSpinnerFirstState()
         }
     }
 
@@ -198,5 +205,10 @@ class LoanActivity : BaseActivity() {
 
     override fun getFinishActivityTransition(): ActivityAnimation {
         return ActivityAnimation.TRANSLATE_DOWN
+    }
+
+    private fun configureSpinnerFirstState() {
+        spOwners.hint = getString(R.string.select_hint)
+        spOwners.setHintTextColor(Color.WHITE)
     }
 }
