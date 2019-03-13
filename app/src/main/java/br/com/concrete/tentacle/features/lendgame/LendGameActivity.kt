@@ -44,8 +44,8 @@ class LendGameActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(br.com.concrete.tentacle.R.layout.activity_lend_game)
-        setupToolbar(br.com.concrete.tentacle.R.string.toolbar_title_lend_game, br.com.concrete.tentacle.R.drawable.ic_close, true)
+        setContentView(R.layout.activity_lend_game)
+        setupToolbar(R.string.toolbar_title_lend_game, R.drawable.ic_close, true)
         initObserver()
         loadData()
     }
@@ -115,7 +115,7 @@ class LendGameActivity : BaseActivity() {
             tvRequestedBy.text = m.activeLoan?.requestedByName ?: ""
             val currentDate = Calendar.getInstance()
             currentDate.add(Calendar.WEEK_OF_MONTH, DEFAULT_RETURN_DATE_IN_WEEKS)
-            tvDate.text = getString(br.com.concrete.tentacle.R.string.date_return_prefix, currentDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
+            tvDate.text = getString(R.string.date_return_prefix, currentDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
 
             activeLoan?.let {
                 btLendGame.setOnClickListener {
@@ -124,7 +124,7 @@ class LendGameActivity : BaseActivity() {
             }
 
             if (activeLoan?.loanDate != null) {
-                tvReservado.text = getString(br.com.concrete.tentacle.R.string.reserved_by)
+                tvReservado.text = getString(R.string.reserved_by)
                 btLendGame.visibility = View.GONE
             } else {
                 btLendGame.visibility = View.VISIBLE
@@ -155,7 +155,7 @@ class LendGameActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId) {
-            br.com.concrete.tentacle.R.id.delete -> {
+            R.id.delete -> {
                 showDialogDelete()
                 return true
             }
@@ -170,17 +170,17 @@ class LendGameActivity : BaseActivity() {
 
     private fun showDialogDelete() {
         media?.let { media ->
-            val gameName = String.format(getString(br.com.concrete.tentacle.R.string.delete_dialog_message), media.game?.name ?: "")
+            val gameName = String.format(getString(R.string.delete_dialog_message), media.game?.name ?: "")
 
             DialogUtils.showDialog(
                 context = this,
-                title = getString(br.com.concrete.tentacle.R.string.delete_dialog_title),
+                title = getString(R.string.delete_dialog_title),
                 message = gameName,
-                positiveText = getString(br.com.concrete.tentacle.R.string.delete),
+                positiveText = getString(R.string.delete),
                 positiveListener = DialogInterface.OnClickListener { _, _ ->
                     viewModelLendGame.deleteGame(media._id)
                 },
-                negativeText = getString(br.com.concrete.tentacle.R.string.cancel)
+                negativeText = getString(R.string.cancel)
             )
         }
     }
