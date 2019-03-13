@@ -192,54 +192,6 @@
           "_id": "5c66feafdf4b530023a72773",
           "name": "The Last of Us Remastered"
         }
-      },
-      {
-        "_id": "5c826f8e2e75f4002361814c",
-        "platform": "PS4",
-        "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
-        },
-        "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
-        }
-      },
-      {
-        "_id": "5c826f8e2e75f4002361814c",
-        "platform": "PS4",
-        "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
-        },
-        "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
-        }
-      },
-      {
-        "_id": "5c826f8e2e75f4002361814c",
-        "platform": "PS4",
-        "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
-        },
-        "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
-        }
-      },
-      {
-        "_id": "5c826f8e2e75f4002361814c",
-        "platform": "PS4",
-        "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
-        },
-        "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
-        }
       }
     ],
     "count": 21
