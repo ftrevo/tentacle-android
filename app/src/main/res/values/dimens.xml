@@ -104,6 +104,10 @@
 
     <dimen name="gameStatusRadius">8dp</dimen>
     <dimen name="dm_14">14sp</dimen>
+    <dimen name="marginTopMessage">9dp</dimen>
+    <dimen name="marginTopReceivePassword">80dp</dimen>
+    <dimen name="biasImageLogo">0.9</dimen>
+    <dimen name="letterSpacing">0.19</dimen>
 
     <dimen name="recovery_password_texts_margins">30dp</dimen>
 
