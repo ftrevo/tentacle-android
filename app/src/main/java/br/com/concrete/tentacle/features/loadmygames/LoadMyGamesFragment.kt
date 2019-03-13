@@ -186,7 +186,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                 context = it,
                 title = getString(R.string.delete_dialog_title),
                 message = gameName,
-                positiveText = getString(R.string.ok),
+                positiveText = getString(R.string.delete),
                 positiveListener = DialogInterface.OnClickListener { _, _ ->
                     viewModelLoadMyGames.deleteGame(media._id)
                 },
