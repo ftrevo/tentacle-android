@@ -125,7 +125,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                                                 callActivity(media)
                                             },
                                             listenerLongClick = { media ->
-                                               showDialogDelete(media)
+                                                showDialogDelete(media)
                                             })
                                     })
 
