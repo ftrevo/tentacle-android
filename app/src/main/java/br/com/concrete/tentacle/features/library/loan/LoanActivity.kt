@@ -2,9 +2,7 @@ package br.com.concrete.tentacle.features.library.loan
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
@@ -12,10 +10,8 @@ import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.custom.ChipCustom
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.models.game.Screenshot
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.MediaLibrary
-import br.com.concrete.tentacle.data.models.library.Video
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.visible
@@ -29,7 +25,6 @@ import kotlinx.android.synthetic.main.activity_loan.chipPs4
 import kotlinx.android.synthetic.main.activity_loan.chipSwitch
 import kotlinx.android.synthetic.main.activity_loan.gameView
 import kotlinx.android.synthetic.main.activity_loan.recyclerView
-import kotlinx.android.synthetic.main.activity_loan.scroll
 import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -122,7 +117,6 @@ class LoanActivity : BaseActivity() {
                     }
                 ViewStateModel.Status.ERROR -> showError(viewStateModel.errors, getString(R.string.someone_was_faster))
             }
-
         })
     }
 
@@ -130,6 +124,8 @@ class LoanActivity : BaseActivity() {
         val list: ArrayList<T> = ArrayList()
         videos?.let { list.addAll(it) }
         screenshots?.let { list.addAll(it) }
+
+        recyclerView.setItemViewCacheSize(list.size)
         recyclerView.adapter = LoanAdapter(list)
     }
 

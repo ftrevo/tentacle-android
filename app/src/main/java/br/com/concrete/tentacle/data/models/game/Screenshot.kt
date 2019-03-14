@@ -9,4 +9,4 @@ data class Screenshot(
     val width: Int,
     @SerializedName("image_id")
     val imageId: String
-): Serializable
+) : Serializable

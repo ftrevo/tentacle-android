@@ -82,8 +82,12 @@
     <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
     <string name="toolbar_title_library">Biblioteca</string>
 
-    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a cadastrar.</string>
-    <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente novamente.</string>
+    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a
+        cadastrar.
+    </string>
+    <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente
+        novamente.
+    </string>
 
     <string name="bullet_ps3">PS3</string>
     <string name="bullet_ps4">PS4</string>
@@ -162,7 +166,9 @@
 
     <string name="pending">Pendente</string>
 
-    <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.</string>
+    <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente
+        novamente.
+    </string>
     <string name="load_reservations_empty_list">Você ainda não possui nenhum pedido de reserva.</string>
     <string name="btn_reservation_error_empty">Ir para a biblioteca</string>
 
@@ -173,7 +179,11 @@
     <string name="loan_state_active_singular">Falta %1$d dia</string>
     <string name="loan_state_expired">Expirado</string>
 
-    <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga reservar :)</string>
-    <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.</string>
+    <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga
+        reservar :)
+    </string>
+    <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.
+    </string>
+    <string name="title_activity_pinch_to_zoom">PinchToZoomActivity</string>
 
 </resources>

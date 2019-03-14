@@ -21,4 +21,7 @@ object Utils {
 
     fun assembleGameImageUrlYouTube(imageId: String) =
             "https://img.youtube.com/vi/$imageId/maxresdefault.jpg"
+
+    fun assembleUrlYouTube(videoId: String) =
+        "http://www.youtube.com/watch?v=$videoId"
 }

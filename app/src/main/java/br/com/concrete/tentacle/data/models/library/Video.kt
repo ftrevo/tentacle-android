@@ -6,4 +6,4 @@ data class Video(
     val id: Int,
     val name: String,
     val video_id: String
-): Serializable
+) : Serializable

@@ -56,6 +56,9 @@ buildscript {
     //Navigation
     ext.navigation = "1.0.0-alpha09"
 
+    //PinchToZoom
+    ext.pinchZoom = "2.3.0"
+
     repositories {
         google()
         jcenter()
