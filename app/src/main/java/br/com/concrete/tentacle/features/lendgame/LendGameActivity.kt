@@ -88,7 +88,9 @@ class LendGameActivity : BaseActivity() {
         viewModelLendGame.deleteMedia().observe(this, Observer { stateModel ->
             stateModel.getContentIfNotHandler()?.let {
                 when (it.status) {
-                    ViewStateModel.Status.SUCCESS -> finish()
+                    ViewStateModel.Status.SUCCESS -> {
+                        this.finish()
+                    }
                     ViewStateModel.Status.LOADING -> showLoading(true)
                     ViewStateModel.Status.ERROR -> showError(it.errors)
                 }
