@@ -2,9 +2,7 @@ package br.com.concrete.tentacle.features.library.loan
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
@@ -25,7 +23,6 @@ import kotlinx.android.synthetic.main.activity_loan.chipPs3
 import kotlinx.android.synthetic.main.activity_loan.chipPs4
 import kotlinx.android.synthetic.main.activity_loan.chipSwitch
 import kotlinx.android.synthetic.main.activity_loan.gameView
-import kotlinx.android.synthetic.main.activity_loan.scroll
 import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
