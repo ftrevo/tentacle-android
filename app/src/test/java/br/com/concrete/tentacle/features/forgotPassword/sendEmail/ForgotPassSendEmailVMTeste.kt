@@ -12,15 +12,15 @@ import org.junit.Assert
 import org.junit.Test
 import org.koin.standalone.inject
 
-class ForgotPassSendEmailVMTeste: BaseViewModelTest() {
+class ForgotPassSendEmailVMTeste : BaseViewModelTest() {
 
     private val forgotPassSendEmailViewModel: ForgotPassSendEmailViewModel by inject()
 
     @Test
-    fun `when forgotPassSendEmailViewModel calls forgotPassword should return a user`(){
+    fun `when forgotPassSendEmailViewModel calls forgotPassword should return a user`() {
         val responseJson = getJson("mockjson/forgotPassword/sendEmail/user.json")
 
-        val collectionType = object : TypeToken<BaseModel<User>>(){}.type
+        val collectionType = object : TypeToken<BaseModel<User>>() {}.type
         val responseObject: BaseModel<User> = GsonBuilder()
             .create()
             .fromJson(responseJson, collectionType)
@@ -45,7 +45,7 @@ class ForgotPassSendEmailVMTeste: BaseViewModelTest() {
     }
 
     @Test
-    fun `when forgotPassSendEmailViewModel calls forgotPassword should return a message not found`(){
+    fun `when forgotPassSendEmailViewModel calls forgotPassword should return a message not found`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
         )
@@ -69,7 +69,7 @@ class ForgotPassSendEmailVMTeste: BaseViewModelTest() {
     }
 
     @Test
-    fun `when forgotPassSendEmailViewModel calls forgotPassword should return a message not found error 400`(){
+    fun `when forgotPassSendEmailViewModel calls forgotPassword should return a message not found error 400`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
         )
@@ -91,5 +91,4 @@ class ForgotPassSendEmailVMTeste: BaseViewModelTest() {
         forgotPassSendEmailViewModel.forgotPassword("email")
         Assert.assertEquals(expected, actual)
     }
-
 }

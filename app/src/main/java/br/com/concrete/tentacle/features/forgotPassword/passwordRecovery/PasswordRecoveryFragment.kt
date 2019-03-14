@@ -1,16 +1,22 @@
-package br.com.concrete.tentacle.features.passwordRecovery
+package br.com.concrete.tentacle.features.forgotPassword.passwordRecovery
 
+import android.content.Intent
 import android.os.Bundle
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragment
+import br.com.concrete.tentacle.data.models.PasswordRecovery
+import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.validadeToken
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
+import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.utils.EMPTY_STRING
 import kotlinx.android.synthetic.main.fragment_password_recovery.emailEditText
 import kotlinx.android.synthetic.main.fragment_password_recovery.newPassConfirmationEditText
@@ -18,8 +24,11 @@ import kotlinx.android.synthetic.main.fragment_password_recovery.newPassEditText
 import kotlinx.android.synthetic.main.fragment_password_recovery.recoveryPasswordButton
 import kotlinx.android.synthetic.main.fragment_password_recovery.tokenEditText
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class PasswordRecoveryFragment: BaseFragment() {
+class PasswordRecoveryFragment : BaseFragment() {
+
+    private val passwordRecoveryViewModel: PasswordRecoveryViewModel by viewModel()
 
     companion object {
 
@@ -41,12 +50,12 @@ class PasswordRecoveryFragment: BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         inflater.inflate(R.layout.fragment_password_recovery, container, false)
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         prepareViews()
-        setListeners()
+        initListeners()
+        initObserves()
     }
 
     private fun prepareViews() {
@@ -60,7 +69,25 @@ class PasswordRecoveryFragment: BaseFragment() {
         }
     }
 
-    private fun setListeners() {
+    private fun initObserves() {
+        passwordRecoveryViewModel.stateModel.observe(this, Observer { state ->
+            when (state.status) {
+                ViewStateModel.Status.LOADING -> {
+                    recoveryPasswordButton.isLoading(true)
+                }
+                ViewStateModel.Status.SUCCESS -> {
+                    recoveryPasswordButton.isLoading(false)
+                    goToHome()
+                }
+                ViewStateModel.Status.ERROR -> {
+                    recoveryPasswordButton.isLoading(false)
+                    showError(state.errors, getString(R.string.ops_ocorreu_erro))
+                }
+            }
+        })
+    }
+
+    private fun initListeners() {
         recoveryPasswordButton.setOnClickListener {
             handleConfirmationClick()
         }
@@ -99,7 +126,7 @@ class PasswordRecoveryFragment: BaseFragment() {
     }
 
     private fun validateToken() {
-        val token = tokenEditText.edt.text.trim().toString()
+        val token = tokenEditText.edt.text.toString()
         if (token.isNotEmpty()) {
             tokenEditText.showError(!token.validadeToken())
         } else {
@@ -108,7 +135,7 @@ class PasswordRecoveryFragment: BaseFragment() {
     }
 
     private fun validatePassword() {
-        val password = newPassEditText.edt.text.trim().toString()
+        val password = newPassEditText.edt.text.toString()
         if (password.isNotEmpty()) {
             newPassEditText.showError(!password.validatePassword())
         } else {
@@ -117,8 +144,8 @@ class PasswordRecoveryFragment: BaseFragment() {
     }
 
     private fun validatePasswordConfirmation() {
-        val confirmPass = newPassConfirmationEditText.edt.text.trim().toString()
-        val pass = newPassEditText.edt.text.trim().toString()
+        val confirmPass = newPassConfirmationEditText.edt.text.toString()
+        val pass = newPassEditText.edt.text.toString()
 
         if (confirmPass.isNotEmpty()) {
             if (!confirmPass.validatePassword()) {
@@ -171,10 +198,13 @@ class PasswordRecoveryFragment: BaseFragment() {
         }
 
         when (isOk) {
-            true -> {}//TODO - confirm new password
+            true -> passwordRecoveryViewModel.restorePassword(PasswordRecovery(email, token, newPassword))
             false -> context?.callSnackbar(view!!, getString(R.string.verificar_campos_login))
         }
     }
 
-
+    private fun goToHome() {
+        activity?.launchActivity<HostActivity>(intentFlags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        activity?.finish()
+    }
 }
