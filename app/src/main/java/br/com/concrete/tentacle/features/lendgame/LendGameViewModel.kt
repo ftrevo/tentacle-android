@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.features.lendgame
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.LoanActionRequest
@@ -7,11 +8,14 @@ import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.data.repositories.GameRepository
+import br.com.concrete.tentacle.utils.Event
 
 class LendGameViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
     private val viewState: MutableLiveData<ViewStateModel<Media>> = MutableLiveData()
     private val viewStateUpdateLoan: MutableLiveData<ViewStateModel<LoanResponse>> = MutableLiveData()
+    private val viewStateGameDelete: MutableLiveData<Event<ViewStateModel<Media>>> = MutableLiveData()
 
+    fun deleteMedia(): LiveData<Event<ViewStateModel<Media>>> = viewStateGameDelete
     fun getMediaViewState() = viewState
     fun getUpdateLoanViewState() = viewStateUpdateLoan
 
@@ -33,6 +37,16 @@ class LendGameViewModel(private val gameRepository: GameRepository) : BaseViewMo
                 viewStateUpdateLoan.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data))
             }, {
                 viewStateUpdateLoan.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
+            })
+        )
+    }
+
+    fun deleteGame(id: String) {
+        disposables.add(gameRepository.deleteMedia(id)
+            .subscribe({ baseModel ->
+                viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
+            }, {
+                viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
             })
         )
     }

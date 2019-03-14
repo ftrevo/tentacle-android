@@ -2,35 +2,35 @@
   "data": {
     "list": [
       {
-        "_id": "5c814846349f31002315fcc7",
-        "platform": "XBOX360",
+        "_id": "5c891051624e3f0023d3a5ac",
+        "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8155a9349f31002315fcd1",
-          "requestedAt": "2019-03-07T17:32:25.772Z"
+          "_id": "5c89549b33610c00237a68a4",
+          "requestedAt": "2019-03-13T19:06:03.501Z"
         },
         "gameData": {
-          "_id": "5c7939eeef995f00239a0d01",
-          "name": "FIFA 08"
+          "_id": "5c816b27349f31002315fcf0",
+          "name": "TEST"
         }
       },
       {
-        "_id": "5c8148dd349f31002315fcc8",
-        "platform": "NINTENDOSWITCH",
+        "_id": "5c891084624e3f0023d3a5ae",
+        "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8163d4349f31002315fcec",
-          "requestedAt": "2019-03-07T18:32:52.879Z"
+          "_id": "5c891104624e3f0023d3a5b5",
+          "requestedAt": "2019-03-13T14:17:40.741Z"
         },
         "gameData": {
-          "_id": "5c7939eeef995f00239a0d01",
-          "name": "FIFA 08"
+          "_id": "5c8255c92e75f40023618138",
+          "name": "FIFA 09"
         }
       },
       {
-        "_id": "5c814980349f31002315fccc",
-        "platform": "XBOXONE",
+        "_id": "5c891092624e3f0023d3a5af",
+        "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8160c4349f31002315fce1",
-          "requestedAt": "2019-03-07T18:19:48.241Z"
+          "_id": "5c891110624e3f0023d3a5b6",
+          "requestedAt": "2019-03-13T14:17:52.365Z"
         },
         "gameData": {
           "_id": "5c7938f1ef995f00239a0cfe",
@@ -38,155 +38,87 @@
         }
       },
       {
-        "_id": "5c815a7a349f31002315fcd7",
-        "platform": "XBOXONE",
+        "_id": "5c8910a1624e3f0023d3a5b0",
+        "platform": "PS4",
+        "activeLoan": {
+          "_id": "5c891116624e3f0023d3a5b7",
+          "requestedAt": "2019-03-13T14:17:58.737Z"
+        },
         "gameData": {
           "_id": "5c7939e7ef995f00239a0d00",
           "name": "FIFA 13"
         }
       },
       {
-        "_id": "5c826f782e75f4002361814a",
+        "_id": "5c8252af2e75f40023618134",
         "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8273b42e75f40023618169",
-          "requestedAt": "2019-03-08T13:52:52.898Z"
+          "_id": "5c8267f02e75f40023618142",
+          "requestedAt": "2019-03-08T13:02:40.192Z",
+          "loanDate": "2019-03-08T14:47:04.846Z"
         },
         "gameData": {
-          "_id": "5c8160c4349f31002315fce2",
-          "name": "GOD WARS The Complete Legend"
+          "_id": "5c8252a72e75f40023618133",
+          "name": "FIFA 18"
         }
       },
       {
-        "_id": "5c826f832e75f4002361814b",
-        "platform": "PS4",
-        "activeLoan": {
-          "_id": "5c82717d2e75f40023618154",
-          "requestedAt": "2019-03-08T13:43:25.828Z"
-        },
-        "gameData": {
-          "_id": "5c815f86349f31002315fcde",
-          "name": "God of War"
-        }
-      },
-      {
-        "_id": "5c8272c02e75f4002361815c",
-        "platform": "PS3",
-        "activeLoan": {
-          "_id": "5c8275102e75f4002361816d",
-          "requestedAt": "2019-03-08T13:58:40.493Z"
-        },
-        "gameData": {
-          "_id": "5c8272a92e75f4002361815a",
-          "name": "Paper Mario: Sticker Star"
-        }
-      },
-      {
-        "_id": "5c8272f92e75f4002361815e",
-        "platform": "PS4",
-        "activeLoan": {
-          "_id": "5c8274d52e75f4002361816c",
-          "requestedAt": "2019-03-08T13:57:41.194Z"
-        },
-        "gameData": {
-          "_id": "5c8272a92e75f4002361815a",
-          "name": "Paper Mario: Sticker Star"
-        }
-      },
-      {
-        "_id": "5c8276f02e75f40023618170",
-        "platform": "XBOXONE",
-        "gameData": {
-          "_id": "5c8272a92e75f4002361815a",
-          "name": "Paper Mario: Sticker Star"
-        }
-      },
-      {
-        "_id": "5c82773f2e75f40023618171",
+        "_id": "5c8910bf624e3f0023d3a5b1",
         "platform": "XBOX360",
-        "gameData": {
-          "_id": "5c8272a92e75f4002361815a",
-          "name": "Paper Mario: Sticker Star"
-        }
-      },
-      {
-        "_id": "5c826f8e2e75f4002361814c",
-        "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
+          "_id": "5c891120624e3f0023d3a5b8",
+          "requestedAt": "2019-03-13T14:18:08.154Z"
         },
         "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
+          "_id": "5c8252a72e75f40023618133",
+          "name": "FIFA 18"
         }
       },
       {
-        "_id": "5c826f8e2e75f4002361814c",
+        "_id": "5c8910cb624e3f0023d3a5b2",
         "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
+          "_id": "5c891126624e3f0023d3a5b9",
+          "requestedAt": "2019-03-13T14:18:14.620Z"
         },
         "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
+          "_id": "5c816449349f31002315fced",
+          "name": "FIFA Street"
         }
       },
       {
-        "_id": "5c826f8e2e75f4002361814c",
+        "_id": "5c8256162e75f40023618139",
         "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
+          "_id": "5c825ead2e75f4002361813b",
+          "requestedAt": "2019-03-08T12:23:09.786Z",
+          "loanDate": "2019-03-08T14:48:22.479Z"
         },
         "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
+          "_id": "5c8197b6349f31002315fd08",
+          "name": "Super Meat Boy"
         }
       },
       {
-        "_id": "5c826f8e2e75f4002361814c",
+        "_id": "5c819031349f31002315fcff",
         "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
+          "_id": "5c82531a2e75f40023618136",
+          "requestedAt": "2019-03-08T11:33:46.921Z",
+          "loanDate": "2019-03-08T11:33:55.453Z"
         },
         "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
+          "_id": "5c8162a1349f31002315fce9",
+          "name": "The Amazing Spider-Man"
         }
       },
       {
-        "_id": "5c826f8e2e75f4002361814c",
+        "_id": "5c81598e349f31002315fcd6",
         "platform": "PS4",
         "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
-        },
-        "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
-        }
-      },
-      {
-        "_id": "5c826f8e2e75f4002361814c",
-        "platform": "PS4",
-        "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
-        },
-        "gameData": {
-          "_id": "5c66feafdf4b530023a72773",
-          "name": "The Last of Us Remastered"
-        }
-      },
-      {
-        "_id": "5c826f8e2e75f4002361814c",
-        "platform": "PS4",
-        "activeLoan": {
-          "_id": "5c8271022e75f40023618151",
-          "requestedAt": "2019-03-08T13:41:22.378Z"
+          "_id": "5c816317349f31002315fceb",
+          "requestedAt": "2019-03-07T18:29:43.722Z",
+          "loanDate": "2019-03-07T19:26:37.548Z"
         },
         "gameData": {
           "_id": "5c66feafdf4b530023a72773",
@@ -194,6 +126,6 @@
         }
       }
     ],
-    "count": 21
+    "count": 20
   }
 }

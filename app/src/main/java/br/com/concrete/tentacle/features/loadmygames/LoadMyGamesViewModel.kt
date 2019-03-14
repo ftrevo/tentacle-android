@@ -49,7 +49,6 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
         disposables.add(gameRepository.deleteMedia(id)
             .subscribe({ baseModel ->
                 viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
-                page += 1
             }, {
                 viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
             })

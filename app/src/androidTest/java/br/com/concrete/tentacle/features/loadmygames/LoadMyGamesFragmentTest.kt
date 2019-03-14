@@ -101,7 +101,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
 
-        val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!!
+        val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!! -1
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
 
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
@@ -109,7 +109,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         Thread.sleep(4000)
 
         onView(withRecyclerView(R.id.recyclerListView).atPosition(oldCount))
-            .check(matches(hasDescendant(withText("Teste First ITEM SECOND LIST"))))
+            .check(matches(hasDescendant(withText("SECOND"))))
     }
 
     @Test
