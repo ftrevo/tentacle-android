@@ -161,10 +161,6 @@ class LendGameActivity : BaseActivity() {
                 showDialogDelete()
                 return true
             }
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
             else -> super.onOptionsItemSelected(item)
         }
         return false
