@@ -17,55 +17,56 @@ import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.item_game_video.view.imageView
 import kotlinx.android.synthetic.main.item_game_video.view.ivBackground
 
-class LoanViewHolder(val item: View) : RecyclerView.ViewHolder(item) {
+class LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-    private val context = item.context
+    companion object {
 
-    fun bind(any: Any) {
-        item.let {
-            when (any) {
-                is Video -> imageBackgroundYoutube(any)
-                is Screenshot -> imageBackgroundScreenshots(any)
+        fun <T> bind(holder: RecyclerView.ViewHolder, any: T) {
+            if (holder is LoanViewHolder) {
+                when (any) {
+                    is Video -> imageBackgroundYoutube(holder.itemView, any)
+                    is Screenshot -> imageBackgroundScreenshots(holder.itemView, any)
+                }
             }
         }
-    }
 
-    private fun imageBackgroundYoutube(video: Video) {
-        item.ivBackground.loadImageUrl(
-            Utils.assembleGameImageUrlYouTube(
-                video.video_id
+        private fun imageBackgroundYoutube(item: View, video: Video) {
+            item.ivBackground.loadImageUrl(
+                Utils.assembleGameImageUrlYouTube(
+                    video.video_id
+                )
             )
-        )
 
-        item.setOnClickListener {
-            context?.startActivity(
-                Intent(
-                    Intent.ACTION_VIEW, Uri.parse(
-                        Utils.assembleUrlYouTube(video.video_id)
+            item.setOnClickListener {
+                item.context?.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW, Uri.parse(
+                            Utils.assembleUrlYouTube(video.video_id)
+                        )
                     )
                 )
-            )
+            }
         }
-    }
 
-    private fun imageBackgroundScreenshots(screenshot: Screenshot) {
-        val idImage = screenshot.imageId
-        item.ivBackground.loadImageUrl(
-            Utils.assembleGameImageUrl(
-                sizeType = IMAGE_SIZE_TYPE_ORIGINAL,
-                imageId = idImage
-            )
-        )
-        item.setOnClickListener {
-                val extras = Bundle()
-            extras.putString(PinchToZoomActivity.ID_IMAGE, idImage)
-
-            (context as AppCompatActivity)
-                .launchActivity<PinchToZoomActivity>(
-                    extras = extras,
-                    animation = ActivityAnimation.TRANSLATE_UP
+        private fun imageBackgroundScreenshots(item: View, screenshot: Screenshot) {
+            val idImage = screenshot.imageId
+            item.ivBackground.loadImageUrl(
+                Utils.assembleGameImageUrl(
+                    sizeType = IMAGE_SIZE_TYPE_ORIGINAL,
+                    imageId = idImage
                 )
+            )
+            item.setOnClickListener {
+                val extras = Bundle()
+                extras.putString(PinchToZoomActivity.ID_IMAGE, idImage)
+
+                (item.context as AppCompatActivity)
+                    .launchActivity<PinchToZoomActivity>(
+                        extras = extras,
+                        animation = ActivityAnimation.TRANSLATE_UP
+                    )
+            }
+            item.imageView.visible(false)
         }
-        item.imageView.visible(false)
     }
 }

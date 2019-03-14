@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.library.loan
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.R
@@ -40,7 +39,16 @@ class PinchToZoomActivity : AppCompatActivity() {
         }
 
         btClose.setOnClickListener {
-            finishActivity(animation = ActivityAnimation.TRANSLATE_DOWN)
+            closeActivity()
         }
+    }
+
+    private fun closeActivity() {
+        finishActivity(animation = ActivityAnimation.TRANSLATE_DOWN)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        closeActivity()
     }
 }

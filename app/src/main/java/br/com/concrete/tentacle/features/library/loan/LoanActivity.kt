@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
+import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.custom.ChipCustom
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
@@ -121,12 +122,18 @@ class LoanActivity : BaseActivity() {
     }
 
     private fun <T> populateRecyclerView(videos: List<T>?, screenshots: List<T>?) {
-        val list: ArrayList<T> = ArrayList()
+        val list: ArrayList<T?> = ArrayList()
         videos?.let { list.addAll(it) }
         screenshots?.let { list.addAll(it) }
 
         recyclerView.setItemViewCacheSize(list.size)
-        recyclerView.adapter = LoanAdapter(list)
+        recyclerView.adapter = BaseAdapter(
+            elements = list,
+            layout = R.layout.item_game_video, holder = { view ->
+                LoanViewHolder(view)
+            }, holderCallback = { holder, element ->
+                LoanViewHolder.bind(holder = holder, any = element)
+            })
     }
 
     private fun showLoanSuccess() {
