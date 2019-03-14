@@ -59,7 +59,10 @@
                 android:name=".features.forgotPassword.sendEmail.ForgotPassSendEmailActivity"
                 android:label="@string/title_activity_forgot_pass_send_email"
                 android:theme="@style/AppTheme.NoActionBar"/>
-
+        <activity
+                android:name=".features.forgotPassword.passwordRecovery.PasswordRecoveryActivity"
+                android:theme="@style/AppTheme.NoActionBar"
+                android:screenOrientation="portrait"/>
         <meta-data
                 android:name="io.fabric.ApiKey"
                 android:value="938be7df4916734a793fa34ad87a79af694d54a2"/>

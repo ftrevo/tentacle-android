@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.di
 
+import br.com.concrete.tentacle.features.forgotPassword.passwordRecovery.PasswordRecoveryViewModel
 import br.com.concrete.tentacle.features.forgotPassword.sendEmail.ForgotPassSendEmailViewModel
 import br.com.concrete.tentacle.features.home.HomeViewModel
 import br.com.concrete.tentacle.features.lendgame.LendGameViewModel
@@ -33,4 +34,5 @@ val viewModelModule = module {
     viewModel { MyReservationViewModel(get()) }
     viewModel { MyReservationDetailViewModel(get()) }
     viewModel { ForgotPassSendEmailViewModel(get()) }
+    viewModel { PasswordRecoveryViewModel(get(), get()) }
 }

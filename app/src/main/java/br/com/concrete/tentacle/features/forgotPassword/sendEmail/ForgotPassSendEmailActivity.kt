@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.features.forgotPassword.sendEmail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -7,8 +8,11 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.validateEmail
+import br.com.concrete.tentacle.features.forgotPassword.passwordRecovery.ARGUMENT_EMAIL
+import br.com.concrete.tentacle.features.forgotPassword.passwordRecovery.PasswordRecoveryActivity
 import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.btSend
 import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.edtEmail
+import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.tvAlreadyHaveToken
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -40,11 +44,13 @@ class ForgotPassSendEmailActivity : BaseActivity(), View.OnClickListener {
 
     private fun initListener() {
         btSend.setOnClickListener(this)
+        tvAlreadyHaveToken.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btSend -> verifyData()
+            R.id.tvAlreadyHaveToken -> callNextActivity()
         }
     }
 
@@ -85,8 +91,8 @@ class ForgotPassSendEmailActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun callNextActivity() {
-        val bundle = Bundle()
-        // TODO CRIAR UMA CONSTANTE NA PROXIMA ACTIVITY bundle.putString("CONSTANTE", edtEmail.getText())
-        // TODO INSERIR A ACTIVITY   launchActivity<>(extras = bundle, animation = ActivityAnimation.TRANSLATE_LEFT)
+        val intent = Intent(applicationContext, PasswordRecoveryActivity::class.java)
+        intent.putExtra(ARGUMENT_EMAIL, edtEmail.getText())
+        startActivity(intent)
     }
 }

@@ -3,8 +3,11 @@ package br.com.concrete.tentacle.extensions
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import br.com.concrete.tentacle.R
 
 enum class ActivityAnimation {
@@ -128,6 +131,28 @@ fun Activity.finishActivity(animation: ActivityAnimation = ActivityAnimation.TRA
     finish()
     val animations = getAnimation(animation)
     overridePendingTransition(animations[0], animations[1])
+}
+
+fun Activity.hideKeyboard() {
+    val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    val view = this.currentFocus
+    view?.let {
+        imm.hideSoftInputFromWindow(it.windowToken, 0)
+    }
+}
+
+fun Activity.showKeyboard() {
+    val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    val view = this.currentFocus
+    view?.let {
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+    }
+}
+
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
+    val fragmentTransaction = beginTransaction()
+    fragmentTransaction.func()
+    fragmentTransaction.commit()
 }
 
 fun getAnimation(animation: ActivityAnimation?): IntArray {

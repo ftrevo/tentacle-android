@@ -6,6 +6,7 @@ import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.StateResponse
 import br.com.concrete.tentacle.data.models.CityResponse
 import br.com.concrete.tentacle.data.models.ForgotPassword
+import br.com.concrete.tentacle.data.models.PasswordRecovery
 import br.com.concrete.tentacle.data.models.RequestLogin
 import br.com.concrete.tentacle.data.models.User
 import io.reactivex.Flowable
@@ -31,4 +32,7 @@ interface ApiServiceAuthentication {
 
     @POST("/users/forgot-password")
     fun forgotPassword(@Body forgetPass: ForgotPassword): Observable<BaseModel<User>>
+
+    @POST("/users/restore-password")
+    fun restorePassword(@Body passwordRecovery: PasswordRecovery): Flowable<BaseModel<Session>>
 }
