@@ -4,8 +4,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
+import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.custom.ChipCustom
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
@@ -23,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_loan.chipPs3
 import kotlinx.android.synthetic.main.activity_loan.chipPs4
 import kotlinx.android.synthetic.main.activity_loan.chipSwitch
 import kotlinx.android.synthetic.main.activity_loan.gameView
+import kotlinx.android.synthetic.main.activity_loan.recyclerView
 import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -54,6 +57,12 @@ class LoanActivity : BaseActivity() {
         spOwners.setBackgroundResource(R.drawable.shape_border_corners_3dp)
         btPerformLoan.disable()
 
+        recyclerView.layoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
         intent?.let {
             if (it.hasExtra(ID_LIBRARY_EXTRA)) {
                 val libraryId = it.getStringExtra(ID_LIBRARY_EXTRA)
@@ -80,7 +89,13 @@ class LoanActivity : BaseActivity() {
         viewModel.getLibrary().observe(this, Observer { viewStateModel ->
             when (viewStateModel.status) {
                 ViewStateModel.Status.LOADING -> showLoading(true)
-                ViewStateModel.Status.SUCCESS -> populateScreen(viewStateModel.model)
+                ViewStateModel.Status.SUCCESS -> {
+                    populateScreen(viewStateModel.model)
+                    populateRecyclerView(
+                        videos = viewStateModel.model?.videos,
+                        screenshots = viewStateModel.model?.screenshots
+                    )
+                }
                 ViewStateModel.Status.ERROR -> showError(viewStateModel.errors)
             }
         })
@@ -103,8 +118,22 @@ class LoanActivity : BaseActivity() {
                     }
                 ViewStateModel.Status.ERROR -> showError(viewStateModel.errors, getString(R.string.someone_was_faster))
             }
-
         })
+    }
+
+    private fun <T> populateRecyclerView(videos: List<T>?, screenshots: List<T>?) {
+        val list: ArrayList<T?> = ArrayList()
+        videos?.let { list.addAll(it) }
+        screenshots?.let { list.addAll(it) }
+
+        recyclerView.setItemViewCacheSize(list.size)
+        recyclerView.adapter = BaseAdapter(
+            elements = list,
+            layout = R.layout.item_game_video, holder = { view ->
+                LoanViewHolder(view)
+            }, holderCallback = { holder, element ->
+                LoanViewHolder.bind(holder = holder, any = element)
+            })
     }
 
     private fun showLoanSuccess() {

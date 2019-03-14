@@ -3,7 +3,6 @@ package br.com.concrete.tentacle.features.gameViewComponent
 import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.ViewAssertion
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -104,17 +103,15 @@ class GameViewTest : BaseInstrumentedTest() {
             assertion = matches(not(isDisplayed()))
         }
 
-
         val tvGameStatus = Espresso.onView(ViewMatchers.withId(R.id.tvGameStatus))
         val ivGameStatus = Espresso.onView(ViewMatchers.withId(R.id.ivGameStatus))
 
-        if(showStatus){
+        if (showStatus) {
             tvGameStatus.perform(scrollTo())
             ivGameStatus.perform(scrollTo())
         }
 
         tvGameStatus.check(assertion)
         ivGameStatus.check(assertion)
-
     }
 }

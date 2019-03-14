@@ -31,6 +31,7 @@ const val IMAGE_SIZE_TYPE_COVER_SMALL = "cover_small" // 90 x 128
 const val IMAGE_SIZE_TYPE_SCREENSHOT_MED = "screenshot_med" // 569 x 320
 const val IMAGE_SIZE_TYPE_COVER_BIG = "cover_big" // 264 x 374
 const val IMAGE_SIZE_TYPE_LOGO_MED = "logo_med" // 284 x 160
+const val IMAGE_SIZE_TYPE_ORIGINAL = "original" // 284 x 160
 const val IMAGE_SIZE_TYPE_SCREENSHOT_BIG = "screenshot_big" // 889 x 500
 const val IMAGE_SIZE_TYPE_SCREENSHOT_HUGE = "screenshot_huge" // 1280 x 720
 const val IMAGE_SIZE_TYPE_THUMB = "thumb" // 90 x 90

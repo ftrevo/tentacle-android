@@ -44,7 +44,7 @@ class RegisterMediaFragment : BaseFragment() {
     }
 
     private fun initViews() {
-        (activity as? AppCompatActivity)?.supportActionBar?.title  = getString(R.string.toolbar_title_search_game)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.toolbar_title_search_game)
         gameView.showStatusView(false)
         mediaRegisterButton.disable()
 
