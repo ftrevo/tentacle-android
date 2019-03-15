@@ -1,10 +1,11 @@
 package br.com.concrete.tentacle.features.library.loan
 
 import android.content.Intent
-import androidx.fragment.app.Fragment
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -17,6 +18,7 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.Matchers.not
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -29,7 +31,6 @@ class LoanActivityTest {
     var activityRule = object : ActivityTestRule<LoanActivity>(LoanActivity::class.java) {}
 
     lateinit var mockWebServer: MockWebServer
-    lateinit var testFragment: Fragment
 
     @Before
     fun setUp() {
@@ -89,6 +90,54 @@ class LoanActivityTest {
         onView(withId(R.id.tv_tinted_spinner)).perform(click()) // Clicking on the first item on list
         onView(withId(R.id.spOwners)).check(matches(withText("John Doe")))
         onView(withId(R.id.btPerformLoan)).check(matches(isEnabled()))
+    }
+
+    @Test
+    fun showDetailGame() {
+        setResponseOnePlatformAndOneOwner()
+
+        val responseJson =
+            "mockjson/library/detail_game_success.json".getJson()
+
+        val mediaReservationSuccess =
+            "mockjson/registerMedia/register_media_success.json".getJson()
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(responseJson)
+        )
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(mediaReservationSuccess)
+        )
+
+        checkDetails()
+
+    }
+
+    private fun checkDetails() {
+        onView(withId(R.id.tvGameName))
+            .check(matches(withText("Jogo XPTO")))
+        onView(withId(R.id.tvGameSummary))
+            .check(matches(withText("You can experience the excitement of international soccer competition in FIFA 06. Extensive coaching options give you the opportunity to take control of all of your players on the pitch and determine their formation and strategy. FIFA 06 offers game modes ranging from a tournament to individual skill games. You can also play with real players from famous international teams from around the world. Multiplayer modes let you challenge other gamers.")))
+        onView(withId(R.id.tvGameReleaseYear))
+        onView(withText("Sport")).check(matches(ViewMatchers.isDisplayed()))
+        onView(withText("Single player")).check(matches(ViewMatchers.isDisplayed()))
+        onView(withText("Multiplayer")).check(matches(ViewMatchers.isDisplayed()))
+        onView(withText("Co-operative")).check(matches(ViewMatchers.isDisplayed()))
+
+        onView(withId(R.id.btPerformLoan))
+            .perform(ViewActions.scrollTo())
+        onView(withId(R.id.btPerformLoan))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.btPerformLoan))
+            .perform(click())
+
+        Assert.assertTrue(activityRule.activity.isFinishing)
+
     }
 
     private fun setResponse() {
