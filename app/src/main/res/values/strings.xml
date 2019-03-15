@@ -204,5 +204,12 @@
     <string name="send">Enviar</string>
     <string name="alreadyHaveToken">Já possui o token?</string>
     <string name="ops_ocorreu_erro">Ops!</string>
+    <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga reservar :)</string>
+    <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.</string>
+
+    <string name="delete_dialog_title">Deletar Jogo</string>
+    <string name="delete_dialog_message">Tem certeza que deseja deletar o jogo %1$s ?</string>
+    <string name="delete_dialog_error">Ocorreu um erro ao tentar deletar o jogo, por favor tente novamente mais tarde!</string>
+    <string name="delete">Excluir</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.features.loadmygames
 
 import android.app.Activity.RESULT_OK
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -21,6 +22,7 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.lendgame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
+import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
@@ -28,6 +30,7 @@ import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
+import kotlinx.android.synthetic.main.progress_include.view.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 
 private const val REQUEST_CODE = 1
@@ -120,6 +123,9 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                                             el = element,
                                             listener = { media ->
                                                 callActivity(media)
+                                            },
+                                            listenerLongClick = { media ->
+                                                showDialogDelete(media)
                                             })
                                     })
 
@@ -151,7 +157,42 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
             }
         })
 
+        viewModelLoadMyGames.deleteMedia().observe(this, Observer { stateModel ->
+            stateModel.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        lMedia.removeAt(LoadMyGamesViewHolder.itemRemove)
+                        recyclerViewAdapter?.notifyItemRemoved(LoadMyGamesViewHolder.itemRemove)
+                        list.progressBarList.visibility = View.GONE
+                    }
+                    ViewStateModel.Status.LOADING -> {
+                        list.progressBarList.visibility = View.VISIBLE
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        showError(it.errors)
+                        list.progressBarList.visibility = View.GONE
+                    }
+                }
+            }
+        })
+
         lifecycle.addObserver(viewModelLoadMyGames)
+    }
+
+    private fun showDialogDelete(media: Media) {
+        val gameName = String.format(getString(R.string.delete_dialog_message), media.game?.name ?: "")
+        activity?.let {
+            DialogUtils.showDialog(
+                context = it,
+                title = getString(R.string.delete_dialog_title),
+                message = gameName,
+                positiveText = getString(R.string.delete),
+                positiveListener = DialogInterface.OnClickListener { _, _ ->
+                    viewModelLoadMyGames.deleteGame(media._id)
+                },
+                negativeText = getString(R.string.cancel)
+            )
+        }
     }
 
     private fun callActivity(media: Media) {

@@ -167,7 +167,7 @@ class LoanActivity : BaseActivity() {
             spOwners.isSelected = true
             mediaLibrary = spOwners.getItems<MediaLibrary>()[0]
             btPerformLoan.enable()
-        }else{
+        } else {
             btPerformLoan.disable()
         }
     }
