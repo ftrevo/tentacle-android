@@ -19,7 +19,7 @@ import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 import org.junit.Test
 
-class PasswordRecoveryFragmentTest: BaseFragmentTest() {
+class PasswordRecoveryFragmentTest : BaseFragmentTest() {
 
     override fun setupFragment() {
         val emailTest = "email@email.com"
@@ -66,7 +66,6 @@ class PasswordRecoveryFragmentTest: BaseFragmentTest() {
         checkErrorById(R.id.newPassEditText) {
             matches(withText("O campo password precisa ter no mínimo 6 digitos"))
         }
-
     }
 
     @Test
@@ -82,7 +81,6 @@ class PasswordRecoveryFragmentTest: BaseFragmentTest() {
         checkErrorById(R.id.newPassConfirmationEditText) {
             matches(withText("O campo password precisa ter no mínimo 6 digitos"))
         }
-
     }
 
     @Test
@@ -140,5 +138,4 @@ class PasswordRecoveryFragmentTest: BaseFragmentTest() {
         onView(withId(R.id.recoveryPasswordButton))
             .perform(click())
     }
-
 }
