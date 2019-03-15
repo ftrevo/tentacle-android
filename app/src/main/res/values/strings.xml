@@ -206,7 +206,7 @@
     <string name="ops_ocorreu_erro">Ops!</string>
 
     <string name="delete_dialog_title">Excluir Jogo</string>
-    <string name="delete_dialog_message">O jogo %1$s sairá da lista de \"Meus Jogos\", mas você porderá adicioná-lo novamente no futuro.</string>
+    <string name="delete_dialog_message">O jogo %1$s sairá da lista de \"Meus Jogos\", mas você poderá adicioná-lo novamente no futuro.</string>
     <string name="delete_dialog_error">Ocorreu um erro ao tentar deletar o jogo, por favor tente novamente mais tarde!</string>
     <string name="delete">Excluir</string>
     <string name="not_delete">Agora não</string>
