@@ -101,7 +101,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
 
-        val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!! -1
+        val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!! - 1
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
 
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
