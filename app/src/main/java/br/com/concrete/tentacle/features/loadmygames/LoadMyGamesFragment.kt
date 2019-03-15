@@ -190,7 +190,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                 positiveListener = DialogInterface.OnClickListener { _, _ ->
                     viewModelLoadMyGames.deleteGame(media._id)
                 },
-                negativeText = getString(R.string.cancel)
+                negativeText = getString(R.string.not_delete)
             )
         }
     }

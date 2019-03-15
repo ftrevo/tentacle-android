@@ -178,7 +178,7 @@ class LendGameActivity : BaseActivity() {
                 positiveListener = DialogInterface.OnClickListener { _, _ ->
                     viewModelLendGame.deleteGame(media._id)
                 },
-                negativeText = getString(R.string.cancel)
+                negativeText = getString(R.string.not_delete)
             )
         }
     }
