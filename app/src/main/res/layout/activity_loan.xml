@@ -20,15 +20,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:paddingTop="@dimen/margin_default"
-            android:paddingStart="@dimen/margin_default"
-            android:paddingEnd="@dimen/margin_default"
-            android:paddingBottom="@dimen/margin_default">
+            app:layout_constraintRight_toRightOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_default"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
+                android:paddingBottom="@dimen/margin_default">
 
             <br.com.concrete.tentacle.custom.GameView
                     android:id="@+id/gameView"
