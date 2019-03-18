@@ -63,4 +63,11 @@ open class BaseViewModelTest : KoinTest {
             .setBody(responseJson)
         mockServer.enqueue(mockResponse)
     }
+
+    fun mockResponseError404() {
+        val mockResponse = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_NOT_FOUND)
+            .setBody(getJson("mockjson/errors/error_400.json"))
+        mockServer.enqueue(mockResponse)
+    }
 }
