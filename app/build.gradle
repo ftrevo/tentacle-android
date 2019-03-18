@@ -161,6 +161,9 @@ dependencies {
 
     //https://github.com/jaredrummler/MaterialSpinner
     implementation "com.jaredrummler:material-spinner:$materialSpinner"
+
+    //PinchToZoom
+    implementation "com.github.chrisbanes:PhotoView:$pinchZoom"
 }
 
 // Add to the bottom of the file

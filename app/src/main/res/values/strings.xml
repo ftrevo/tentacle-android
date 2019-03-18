@@ -197,6 +197,7 @@
     </string>
     <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.
     </string>
+    <string name="title_activity_pinch_to_zoom">PinchToZoomActivity</string>
     <string name="forgot_password">Esquece a senha?</string>
     <string name="title_activity_forgot_pass_send_email">ForgotPassSendEmailActivity</string>
     <string name="recover_password">Recuperar senha</string>
@@ -228,6 +229,5 @@
     <string name="default_notification_channel_name" translatable="true">Weather</string>
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
-
 
 </resources>

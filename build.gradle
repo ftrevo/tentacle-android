@@ -56,6 +56,8 @@ buildscript {
     //Navigation
     ext.navigation = "1.0.0-alpha09"
 
+    //PinchToZoom
+    ext.pinchZoom = "2.3.0"
     ext.googleServices = "4.2.0"
     ext.firebaseCore = "16.0.7"
     ext.firebaseMessaging = "17.4.0"
