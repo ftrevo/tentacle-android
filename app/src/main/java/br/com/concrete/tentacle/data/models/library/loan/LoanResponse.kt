@@ -13,7 +13,8 @@ data class LoanResponse(
     val requestedAt: String,
     val requestedBy: RequestedBy,
     val estimatedReturnDate: String?,
-    val loanDate: String?
+    val loanDate: String?,
+    val returnDate: String?
 
 ) : Serializable {
 

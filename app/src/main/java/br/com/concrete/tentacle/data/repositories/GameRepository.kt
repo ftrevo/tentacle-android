@@ -8,6 +8,7 @@ import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
@@ -77,6 +78,12 @@ class GameRepository(private val apiRest: ApiService) {
 
     fun loadMyLoan(loanId: String): Observable<BaseModel<LoanResponse>> {
         return apiRest.getMyLoan(loanId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
+
+    fun rememberDelivery(): Observable<BaseModel<RememberDeliveryResponse>> {
+        return apiRest.rememberDelivery()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

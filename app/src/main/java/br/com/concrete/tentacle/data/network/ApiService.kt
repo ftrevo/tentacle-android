@@ -9,6 +9,7 @@ import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
@@ -100,4 +101,7 @@ interface ApiService {
 
     @GET("/library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
+
+    @POST("loans/{loanId}/remember-delivery")
+    fun rememberDelivery(): Observable<BaseModel<RememberDeliveryResponse>>
 }

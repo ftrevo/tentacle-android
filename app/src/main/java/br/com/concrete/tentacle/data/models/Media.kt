@@ -11,7 +11,7 @@ data class Media(
     val platform: Platform,
     val activeLoan: ActiveLoan?,
     @SerializedName("gameData")
-    val game: GameData?
+    val game: Game?
 ) : Parcelable {
 
     companion object {
@@ -27,7 +27,7 @@ data class Media(
                 "",
                 ""
             ),
-            GameData(ID_EMPTY_MEDIA, "")
+            Game.getEmptyGame()
         )
     }
 }
