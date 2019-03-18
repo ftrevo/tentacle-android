@@ -11,6 +11,7 @@ import android.util.Log
 import androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior.setTag
 import androidx.core.app.NotificationCompat
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.AppTentacle
 import br.com.concrete.tentacle.features.HostActivity
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
@@ -71,7 +72,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      */
     override fun onNewToken(token: String?) {
         Log.d(TAG, "Refreshed token: $token")
-
+        AppTentacle.TOKEN = token ?: ""
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.

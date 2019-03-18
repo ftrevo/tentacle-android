@@ -51,32 +51,18 @@ class AppTentacle : Application() {
             )
         }
 
-        Log.d("TAG", "Subscribing to weather topic")
-        FirebaseMessaging.getInstance().subscribeToTopic("weather")
-            .addOnCompleteListener { task ->
-                var msg = getString(R.string.msg_subscribed)
-                if (!task.isSuccessful) {
-                    msg = getString(R.string.msg_subscribe_failed)
-                }
-                Log.d("TAG", msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-            }
-
         FirebaseInstanceId.getInstance().instanceId
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
                     Log.w("TAG", "getInstanceId failed", task.exception)
                     return@OnCompleteListener
                 }
-
                 // Get new Instance ID token
                 val token = task.result?.token
                 TOKEN = token!!
-
                 // Log and toast
                 val msg = getString(R.string.msg_token_fmt, token)
                 Log.d("TAG", msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             })
     }
 }
