@@ -27,6 +27,7 @@
 
         <include
                 android:id="@+id/dashed"
+                layout="@layout/dashed_include"
                 app:layout_constraintTop_toBottomOf="@id/gameView"
                 android:layout_marginTop="@dimen/dp_24"
                 android:layout_width="match_parent"
