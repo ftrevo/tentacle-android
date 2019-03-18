@@ -264,6 +264,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
         }
 
         queryParameters = QueryUtils.assemblefilterQuery(selectedFilterItems)
+        updateListBeforeFilter()
         viewModelLibrary.loadLibrary(
             queryParameters,
             if (editText.text.toString().isEmpty())
@@ -271,6 +272,12 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
         )
 
         searchView.setIconifiedByDefault(true)
+    }
+
+    private fun updateListBeforeFilter(){
+        viewModelLibrary.initPage()
+        libraries = ArrayList()
+        recyclerViewAdapter?.notifyDataSetChanged()
     }
 
     override fun count() = count
