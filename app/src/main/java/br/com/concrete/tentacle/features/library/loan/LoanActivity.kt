@@ -15,6 +15,8 @@ import br.com.concrete.tentacle.data.models.library.MediaLibrary
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.visible
+import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
+import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.activity_loan.btPerformLoan
 import kotlinx.android.synthetic.main.activity_loan.chip360
 import kotlinx.android.synthetic.main.activity_loan.chip3ds
@@ -25,6 +27,8 @@ import kotlinx.android.synthetic.main.activity_loan.chipPs4
 import kotlinx.android.synthetic.main.activity_loan.chipSwitch
 import kotlinx.android.synthetic.main.activity_loan.gameView
 import kotlinx.android.synthetic.main.activity_loan.recyclerView
+import kotlinx.android.synthetic.main.activity_loan.error
+import kotlinx.android.synthetic.main.activity_loan.group
 import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.activity_loan.tvTitle2
 import kotlinx.android.synthetic.main.progress_include.progressBarList
@@ -152,6 +156,8 @@ class LoanActivity : BaseActivity() {
     private fun populateScreen(library: Library?) {
         this.library = library
         showLoading(false)
+        group.visibility = View.VISIBLE
+        error.visibility = View.GONE
         library?.let {
             setOwners(emptyList())
 
@@ -197,9 +203,6 @@ class LoanActivity : BaseActivity() {
     }
 
     private fun resetHit() {
-        /*
-            Workaround in order to fix the bug that doesn't reset the index
-        */
         spOwners.expand()
         spOwners.collapse()
     }
@@ -238,6 +241,11 @@ class LoanActivity : BaseActivity() {
 
     override fun showError(errors: ErrorResponse?, title: String) {
         showLoading(false)
+        error.visibility = View.VISIBLE
+        error.setUpComponents(R.drawable.ilustra_tentacle, R.string.load_error, R.string.load_again)
+        error.setUpActionErrorButton {
+            init()
+        }
         super.showError(errors, title)
     }
 
