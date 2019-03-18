@@ -24,9 +24,12 @@ import kotlinx.android.synthetic.main.activity_loan.chipOne
 import kotlinx.android.synthetic.main.activity_loan.chipPs3
 import kotlinx.android.synthetic.main.activity_loan.chipPs4
 import kotlinx.android.synthetic.main.activity_loan.chipSwitch
+import kotlinx.android.synthetic.main.activity_loan.error
+import kotlinx.android.synthetic.main.activity_loan.group
 import kotlinx.android.synthetic.main.activity_loan.ivGame
 import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.activity_loan.tvGameName
+import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -110,6 +113,8 @@ class LoanActivity : BaseActivity() {
     private fun populateScreen(library: Library?) {
         this.library = library
         showLoading(false)
+        group.visibility = View.VISIBLE
+        error.visibility = View.GONE
         library?.let {
             it.cover?.let { cover ->
                 cover.imageId?.let { imageId ->
@@ -154,9 +159,6 @@ class LoanActivity : BaseActivity() {
     }
 
     private fun resetHit() {
-        /*
-            Workaround in order to fix the bug that doesn't reset the index
-        */
         spOwners.expand()
         spOwners.collapse()
     }
@@ -193,6 +195,11 @@ class LoanActivity : BaseActivity() {
 
     override fun showError(errors: ErrorResponse?, title: String) {
         showLoading(false)
+        error.visibility = View.VISIBLE
+        error.setUpComponents(R.drawable.ilustra_tentacle, R.string.load_error, R.string.load_again)
+        error.setUpActionErrorButton{
+            init()
+        }
         super.showError(errors, title)
     }
 
