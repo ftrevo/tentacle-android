@@ -21,7 +21,15 @@ import br.com.concrete.tentacle.utils.LOAN_ACTION_LEND
 import br.com.concrete.tentacle.utils.LOAN_ACTION_REMEMBER_DELIVERY
 import br.com.concrete.tentacle.utils.LOAN_ACTION_RETURN
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
-import kotlinx.android.synthetic.main.activity_lend_game.*
+import kotlinx.android.synthetic.main.activity_lend_game.btLendGame
+import kotlinx.android.synthetic.main.activity_lend_game.btRequestReturn
+import kotlinx.android.synthetic.main.activity_lend_game.gameView
+import kotlinx.android.synthetic.main.activity_lend_game.group
+import kotlinx.android.synthetic.main.activity_lend_game.tvDate
+import kotlinx.android.synthetic.main.activity_lend_game.tvDateRequested
+import kotlinx.android.synthetic.main.activity_lend_game.tvExpired
+import kotlinx.android.synthetic.main.activity_lend_game.tvRequestedBy
+import kotlinx.android.synthetic.main.activity_lend_game.tvReservado
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 
