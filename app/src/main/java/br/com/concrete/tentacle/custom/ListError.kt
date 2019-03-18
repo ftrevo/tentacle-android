@@ -40,7 +40,7 @@ class ListError(
         if (buttonNameReference > DEFAULT_INVALID_RESOURCE) buttonNameError.setButtonName(context.getString(buttonNameReference))
     }
 
-    fun setUpActionErrorButton(error: () -> Unit){
+    fun setUpActionErrorButton(error: () -> Unit) {
         buttonNameError.setOnClickListener { error() }
     }
 }

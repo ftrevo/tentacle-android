@@ -29,7 +29,6 @@ import kotlinx.android.synthetic.main.activity_loan.group
 import kotlinx.android.synthetic.main.activity_loan.ivGame
 import kotlinx.android.synthetic.main.activity_loan.spOwners
 import kotlinx.android.synthetic.main.activity_loan.tvGameName
-import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -197,7 +196,7 @@ class LoanActivity : BaseActivity() {
         showLoading(false)
         error.visibility = View.VISIBLE
         error.setUpComponents(R.drawable.ilustra_tentacle, R.string.load_error, R.string.load_again)
-        error.setUpActionErrorButton{
+        error.setUpActionErrorButton {
             init()
         }
         super.showError(errors, title)
