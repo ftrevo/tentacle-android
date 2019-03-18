@@ -1,7 +1,5 @@
 package br.com.concrete.tentacle.features.library.loan
 
-import android.content.res.Resources
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -28,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_loan.chipSwitch
 import kotlinx.android.synthetic.main.activity_loan.gameView
 import kotlinx.android.synthetic.main.activity_loan.recyclerView
 import kotlinx.android.synthetic.main.activity_loan.spOwners
-import kotlinx.android.synthetic.main.activity_loan.tvTitle1
+import kotlinx.android.synthetic.main.activity_loan.tvTitle2
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -193,7 +191,7 @@ class LoanActivity : BaseActivity() {
             configureSpinnerFirstState()
         } else {
             val colorDisable = resources.getColor(R.color.white)
-            tvTitle1.setTextColor(colorDisable)
+            tvTitle2.setTextColor(colorDisable)
             spOwners.setArrowColor(colorDisable)
         }
     }
@@ -252,7 +250,7 @@ class LoanActivity : BaseActivity() {
         val colorDisable = resources.getColor(R.color.disableTextButton)
         spOwners.isEnabled = false
 
-        tvTitle1.setTextColor(colorDisable)
+        tvTitle2.setTextColor(colorDisable)
         spOwners.setHintTextColor(colorDisable)
         spOwners.setArrowColor(colorDisable)
     }
