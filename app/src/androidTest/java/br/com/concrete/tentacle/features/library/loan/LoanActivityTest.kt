@@ -1,10 +1,19 @@
 package br.com.concrete.tentacle.features.library.loan
 
+import android.app.Instrumentation
 import android.content.Intent
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.Intents.intending
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
+import androidx.test.espresso.intent.matcher.IntentMatchers.toPackage
+import androidx.test.espresso.intent.matcher.UriMatchers.hasHost
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
@@ -14,8 +23,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Assert
@@ -94,6 +106,57 @@ class LoanActivityTest {
 
     @Test
     fun showDetailGame() {
+
+        checkDetails()
+
+        onView(withId(R.id.btPerformLoan))
+            .perform(ViewActions.scrollTo())
+        onView(withId(R.id.btPerformLoan))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.btPerformLoan))
+            .perform(click())
+
+        Assert.assertTrue(activityRule.activity.isFinishing)
+    }
+
+    @Test
+    fun showDetailAndClickImage() {
+        Intents.init()
+        checkDetails()
+
+        onView(withRecyclerView(R.id.recyclerView).atPosition(1))
+            .perform(click())
+
+        intended(hasComponent(PinchToZoomActivity::class.java.name))
+        Intents.release()
+    }
+
+    @Test
+    fun showDetailAndClickVideoAndOpenYouTube() {
+        Intents.init()
+        checkDetails()
+
+        onView(withRecyclerView(R.id.recyclerView).atPosition(0))
+            .perform(click())
+
+        Thread.sleep(2000)
+
+        intended(
+            allOf(
+                hasAction(
+                    Intent.ACTION_VIEW
+                ),
+                hasData("http://www.youtube.com/watch?v=l1FJfr_spJQ"),
+                toPackage(
+                    "com.google.android.youtube"
+                )
+            )
+        )
+
+        Intents.release()
+    }
+
+    private fun checkDetails() {
         setResponseOnePlatformAndOneOwner()
 
         val responseJson =
@@ -114,11 +177,6 @@ class LoanActivityTest {
                 .setBody(mediaReservationSuccess)
         )
 
-        checkDetails()
-
-    }
-
-    private fun checkDetails() {
         onView(withId(R.id.tvGameName))
             .check(matches(withText("Jogo XPTO")))
         onView(withId(R.id.tvGameSummary))
@@ -128,16 +186,6 @@ class LoanActivityTest {
         onView(withText("Single player")).check(matches(ViewMatchers.isDisplayed()))
         onView(withText("Multiplayer")).check(matches(ViewMatchers.isDisplayed()))
         onView(withText("Co-operative")).check(matches(ViewMatchers.isDisplayed()))
-
-        onView(withId(R.id.btPerformLoan))
-            .perform(ViewActions.scrollTo())
-        onView(withId(R.id.btPerformLoan))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.btPerformLoan))
-            .perform(click())
-
-        Assert.assertTrue(activityRule.activity.isFinishing)
-
     }
 
     private fun setResponse() {

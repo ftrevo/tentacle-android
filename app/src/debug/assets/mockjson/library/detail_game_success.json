@@ -49,7 +49,13 @@
     "url": "https://www.igdb.com/games/fifa-06-road-to-fifa-world-cup",
     "formattedReleaseDate": "16/11/2005",
     "createdBy": "5c81593f349f31002315fcd4",
-    "videos": [],
+    "videos": [
+      {
+        "id": 14136,
+        "name": "Trailer",
+        "video_id": "l1FJfr_spJQ"
+      }
+    ],
     "createdAt": "2019-03-07T19:04:07.729Z",
     "updatedAt": "2019-03-07T19:04:07.729Z",
     "mediaPs3": [],
