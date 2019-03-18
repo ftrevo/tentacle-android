@@ -1,13 +1,14 @@
-package br.com.concrete.tentacle.utils
+package br.com.concrete.tentacle.data.services
 
 import android.util.Log
+import br.com.concrete.tentacle.utils.LogWrapper
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
 
 class MyJobService : JobService() {
 
     override fun onStartJob(jobParameters: JobParameters): Boolean {
-        Log.d(TAG, "Performing long running task in scheduled job")
+        LogWrapper.log(TAG, "Performing long running task in scheduled job")
         // TODO(developer): add long running task here.
         return false
     }

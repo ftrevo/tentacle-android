@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.utils
+package br.com.concrete.tentacle.data.services
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.AppTentacle
 import br.com.concrete.tentacle.features.HostActivity
+import br.com.concrete.tentacle.utils.LogWrapper
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -37,11 +38,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        LogWrapper.log(TAG, "From: ${remoteMessage?.from}")
+        LogWrapper.log(
+            TAG,
+            "From: ${remoteMessage?.from}"
+        )
 
         // Check if message contains a data payload.
         remoteMessage?.data?.isNotEmpty()?.let {
-            LogWrapper.log(TAG, "Message data payload: " + remoteMessage.data)
+            LogWrapper.log(
+                TAG,
+                "Message data payload: " + remoteMessage.data
+            )
 
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
@@ -54,7 +61,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // Check if message contains a notification payload.
         remoteMessage?.notification?.let {
-            LogWrapper.log(TAG, "Message Notification Body: ${it.body}")
+            LogWrapper.log(
+                TAG,
+                "Message Notification Body: ${it.body}"
+            )
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -69,7 +79,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * is initially generated so this is where you would retrieve the token.
      */
     override fun onNewToken(token: String?) {
-        LogWrapper.log(TAG, "Refreshed token: $token")
+        LogWrapper.log(
+            TAG,
+            "Refreshed token: $token"
+        )
         AppTentacle.TOKEN = token ?: ""
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
@@ -96,7 +109,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * Handle time allotted to BroadcastReceivers.
      */
     private fun handleNow() {
-        LogWrapper.log(TAG, "Short lived task is done.")
+        LogWrapper.log(
+            TAG,
+            "Short lived task is done."
+        )
     }
 
     /**
