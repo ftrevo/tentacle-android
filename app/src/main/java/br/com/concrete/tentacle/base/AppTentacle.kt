@@ -13,6 +13,7 @@ import br.com.concrete.tentacle.di.androidModule
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
+import br.com.concrete.tentacle.utils.LogWrapper
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.answers.Answers
 import com.google.android.gms.tasks.OnCompleteListener
@@ -62,7 +63,7 @@ class AppTentacle : Application() {
                 TOKEN = token!!
                 // Log and toast
                 val msg = getString(R.string.msg_token_fmt, token)
-                Log.d("TAG", msg)
+                LogWrapper.log("TAG", msg)
             })
     }
 }

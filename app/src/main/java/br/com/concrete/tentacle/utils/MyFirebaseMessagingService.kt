@@ -7,8 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
-import androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior.setTag
 import androidx.core.app.NotificationCompat
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.AppTentacle
@@ -39,11 +37,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.d(TAG, "From: ${remoteMessage?.from}")
+        LogWrapper.log(TAG, "From: ${remoteMessage?.from}")
 
         // Check if message contains a data payload.
         remoteMessage?.data?.isNotEmpty()?.let {
-            Log.d(TAG, "Message data payload: " + remoteMessage.data)
+            LogWrapper.log(TAG, "Message data payload: " + remoteMessage.data)
 
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
@@ -56,7 +54,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // Check if message contains a notification payload.
         remoteMessage?.notification?.let {
-            Log.d(TAG, "Message Notification Body: ${it.body}")
+            LogWrapper.log(TAG, "Message Notification Body: ${it.body}")
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -71,7 +69,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * is initially generated so this is where you would retrieve the token.
      */
     override fun onNewToken(token: String?) {
-        Log.d(TAG, "Refreshed token: $token")
+        LogWrapper.log(TAG, "Refreshed token: $token")
         AppTentacle.TOKEN = token ?: ""
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
@@ -98,7 +96,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * Handle time allotted to BroadcastReceivers.
      */
     private fun handleNow() {
-        Log.d(TAG, "Short lived task is done.")
+        LogWrapper.log(TAG, "Short lived task is done.")
     }
 
     /**
