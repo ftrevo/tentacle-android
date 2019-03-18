@@ -164,4 +164,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <br.com.concrete.tentacle.custom.ListError
+            android:id="@+id/error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:errorDescription="@string/load_error"
+            app:buttonNameError="@string/load_again"/>
+
+    <androidx.constraintlayout.widget.Group
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/group"
+            android:visibility="gone"
+            app:constraint_referenced_ids="btPerformLoan, ivGame, tvGameName, tvTitle1, tvTitle2, spOwners"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,11 @@
         <attr name="defaultSelectedPosition" format="integer"/>
     </declare-styleable>
 
-    <declare-styleable name="ListError"/>
+    <declare-styleable name="ListError">
+        <attr name="iconError" format="reference"/>
+        <attr name="errorTextDescription" format="reference"/>
+        <attr name="buttonNameTextError" format="reference"/>
+    </declare-styleable>
 
     <declare-styleable name="ListCustom">
         <attr name="icon" format="reference"/>
