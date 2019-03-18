@@ -30,13 +30,25 @@
             android:layout_height="wrap_content"
             android:lines="@integer/line_1"
             android:ellipsize="end"
-            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginStart="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/mediaImageView"
             app:layout_constraintStart_toEndOf="@+id/mediaImageView"
             tools:text="@string/loremText"
-            />
+            app:layout_constraintEnd_toStartOf="@+id/ivGameStatus"/>
+
+    <ImageView
+            android:id="@+id/ivGameStatus"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:src="@drawable/ic_game_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginStart="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_4"
+            app:layout_constraintTop_toTopOf="@+id/game_name"
+            app:layout_constraintBottom_toBottomOf="@+id/game_name" />
 
     <TextView
             android:id="@+id/game_owner"
@@ -50,8 +62,7 @@
             app:layout_constraintStart_toEndOf="@+id/mediaImageView"
             app:layout_constraintEnd_toStartOf="@id/statusLayout"
             app:layout_constraintBottom_toBottomOf="@id/mediaImageView"
-            tools:text="@string/loremText"
-    />
+            tools:text="@string/loremText"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:background="@drawable/shape_border_rounded_dark"
