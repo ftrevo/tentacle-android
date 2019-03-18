@@ -12,10 +12,12 @@
     <string name="email_error">Digite um e-mail válido</string>
     <string name="name_error">O campo nome é de preenchimento obrigatório</string>
     <string name="password_error">O campo password precisa ter no mínimo 6 digitos</string>
+    <string name="password_confirmation_error">Os campos senha e comfirmação de senha não coincidem</string>
     <string name="phone_error">Forneça um número de telefone válido</string>
     <string name="state_error">Selecione um estado</string>
     <string name="city_error">Selecione uma cidade</string>
     <string name="load_error">Desculpe, não foi possível carregar os dados!</string>
+    <string name="token_error">O campo token é de preenchimento obrigatório</string>
 
     <string name="ok">Ok</string>
     <string name="error_dialog_title">Erro</string>
@@ -28,6 +30,17 @@
     <string name="verificar_campos_login">Por favor, verifique os campos obrigatórios.</string>
     <string name="button">Button</string>
     <string name="register_account">Registrar conta</string>
+
+    <string name="token">Token</string>
+    <string name="new_password">Crie sua nova senha</string>
+    <string name="new_password_confirmation">Confimar senha</string>
+    <string name="confirmation_button">Confimar</string>
+
+
+    <string name="password_recovery_title">Recuperar senha</string>
+    <string name="password_recovery_subtitle">Adicione o token que enviamos para seu email</string>
+    <string name="password_recovery_new_pass_text">Crie uma nova senha para acessar o Tentacle.</string>
+
 
     <string name="state_dialog_text">Selecione ou pesquise o estado</string>
     <string name="city_dialog_text">Selecione ou pesquise a cidade</string>
@@ -82,8 +95,12 @@
     <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
     <string name="toolbar_title_library">Biblioteca</string>
 
-    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a cadastrar.</string>
-    <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente novamente.</string>
+    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a
+        cadastrar.
+    </string>
+    <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente
+        novamente.
+    </string>
 
     <string name="bullet_ps3">PS3</string>
     <string name="bullet_ps4">PS4</string>
@@ -162,7 +179,9 @@
 
     <string name="pending">Pendente</string>
 
-    <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente novamente.</string>
+    <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente
+        novamente.
+    </string>
     <string name="load_reservations_empty_list">Você ainda não possui nenhum pedido de reserva.</string>
     <string name="btn_reservation_error_empty">Ir para a biblioteca</string>
 
@@ -173,7 +192,42 @@
     <string name="loan_state_active_singular">Falta %1$d dia</string>
     <string name="loan_state_expired">Expirado</string>
 
-    <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga reservar :)</string>
-    <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.</string>
+    <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga
+        reservar :)
+    </string>
+    <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.
+    </string>
+    <string name="forgot_password">Esquece a senha?</string>
+    <string name="title_activity_forgot_pass_send_email">ForgotPassSendEmailActivity</string>
+    <string name="recover_password">Recuperar senha</string>
+    <string name="add_email_receive_code">Adicione o email para receber o \n código de verificação</string>
+    <string name="send">Enviar</string>
+    <string name="alreadyHaveToken">Já possui o token?</string>
+    <string name="ops_ocorreu_erro">Ops!</string>
+
+    <string name="delete_dialog_title">Excluir Jogo</string>
+    <string name="delete_dialog_message">O jogo %1$s sairá da lista de \"Meus Jogos\", mas você poderá adicioná-lo novamente no futuro.</string>
+    <string name="delete_dialog_error">Ocorreu um erro ao tentar deletar o jogo, por favor tente novamente mais tarde!</string>
+    <string name="delete">Excluir</string>
+    <string name="not_delete">Agora não</string>
+
+    <string name="quickstart_message">Click the SUBSCRIBE TO WEATHER button below to subscribe to the
+        weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logs the
+        InstanceID token to logcat.</string>
+    <string name="subscribe_to_weather">Subscribe To Weather</string>
+    <string name="log_token">Log Token</string>
+
+    <string name="msg_subscribed">Subscribed to weather topic</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">Weather</string>
+    <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
+    <string name="fcm_message">FCM Message</string>
+
 
 </resources>

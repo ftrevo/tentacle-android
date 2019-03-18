@@ -1,0 +1,20 @@
+{
+  "message": [
+    "Mídia removida"
+  ],
+  "data": {
+    "active": true,
+    "_id": "5c8910cb624e3f0023d3a5b2",
+    "game": {
+      "_id": "5c816449349f31002315fced",
+      "name": "FIFA Street"
+    },
+    "platform": "PS4",
+    "owner": {
+      "_id": "5c815595349f31002315fccf",
+      "name": "Daivid Vasconcelos Leal"
+    },
+    "createdAt": "2019-03-13T14:16:43.990Z",
+    "updatedAt": "2019-03-13T14:16:43.990Z"
+  }
+}
