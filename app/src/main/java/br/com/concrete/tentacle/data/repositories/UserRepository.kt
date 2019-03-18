@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.data.repositories
 
+import br.com.concrete.tentacle.base.AppTentacle
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.CityResponse
 import br.com.concrete.tentacle.data.models.ForgotPassword
@@ -16,7 +17,6 @@ import io.reactivex.schedulers.Schedulers
 class UserRepository(private val apiServiceAuthentication: ApiServiceAuthentication) {
 
     fun registerUser(userRequest: UserRequest): Observable<BaseModel<Session>> {
-
         return apiServiceAuthentication.registerUser(userRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())

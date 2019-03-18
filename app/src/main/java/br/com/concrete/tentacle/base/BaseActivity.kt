@@ -1,8 +1,14 @@
 package br.com.concrete.tentacle.base
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -11,6 +17,9 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.features.HostActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
