@@ -97,12 +97,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/edtPassword"/>
 
         <TextView
-                android:textAppearance="@style/TextMedium.14sp"
+                android:textAppearance="@style/TextHeavy.16sp"
                 android:padding="@dimen/paddingClickTextView"
-                android:id="@+id/tvRegisterAccount"
+                android:id="@+id/tvForgotPassword"
                 android:textColor="@color/textColor"
                 android:layout_marginTop="@dimen/margin_top_default"
                 app:layout_constraintTop_toBottomOf="@id/btLogin"
+                app:layout_constraintStart_toStartOf="@id/btLogin"
+                android:text="@string/forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:textAppearance="@style/TextHeavy.16sp"
+                android:padding="@dimen/paddingClickTextView"
+                android:id="@+id/tvRegisterAccount"
+                android:textColor="@color/textColor"
+                app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
                 app:layout_constraintStart_toStartOf="@id/btLogin"
                 android:text="@string/register_account"
                 android:layout_width="wrap_content"

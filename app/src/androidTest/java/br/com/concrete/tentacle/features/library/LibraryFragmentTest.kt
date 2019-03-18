@@ -183,7 +183,7 @@ class LibraryFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun showRecycleViewWithItemsEndLessSuccess() {
+    fun showRecyclerViewWithItemsEndLessSuccess() {
         val response = "mockjson/library/get_library_success.json".getJson()
         val responseSecond = "mockjson/library/get_library_success_second.json".getJson()
         mockWebServer.enqueue(
@@ -206,12 +206,13 @@ class LibraryFragmentTest : BaseFragmentTest() {
 
         val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!!
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LibraryViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+        onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LibraryViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
 
         Thread.sleep(2500)
 
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LibraryViewHolder>(oldCount))
 
-        onView(withRecyclerView(R.id.recyclerListView).atPosition(oldCount - 1))
+        onView(withRecyclerView(R.id.recyclerListView).atPosition(oldCount))
             .check(matches(hasDescendant(withText("JOGO FIRST"))))
     }
 

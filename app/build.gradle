@@ -89,6 +89,13 @@ dependencies {
     //https://github.com/MdFarhanRaja/SearchableSpinner
     implementation "com.github.MdFarhanRaja:SearchableSpinner:$searchableSpinner"
 
+    //firebase
+    implementation "com.google.firebase:firebase-core:$firebaseCore"
+    implementation "com.google.firebase:firebase-messaging:$firebaseMessaging"
+    implementation "com.google.firebase:firebase-iid:$firebaseIid"
+    implementation "com.firebase:firebase-jobdispatcher:$firebaseDispatcher"
+
+
     //Test
     implementation "androidx.legacy:legacy-support-v4:$legacySupport"
     implementation "androidx.recyclerview:recyclerview:$legacySupport"
@@ -158,3 +165,6 @@ dependencies {
     //PinchToZoom
     implementation "com.github.chrisbanes:PhotoView:$pinchZoom"
 }
+
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'

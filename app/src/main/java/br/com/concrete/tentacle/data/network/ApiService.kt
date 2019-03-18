@@ -16,6 +16,7 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.utils.LIMIT_PAGE
 import io.reactivex.Observable
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
@@ -36,6 +37,11 @@ interface ApiService {
         @Body
         game: GameRequest
     ): Observable<BaseModel<Game>>
+
+    @DELETE("/media/{id}")
+    fun deleteMedia(
+        @Path("id") mediaId: String
+    ): Observable<BaseModel<Media>>
 
     @GET("/media-loan")
     fun getRegisteredGames(

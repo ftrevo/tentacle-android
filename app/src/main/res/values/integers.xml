@@ -2,6 +2,7 @@
 <resources>
     <item name="speedSlideAnim" type="integer">250</item>
     <item name="maxLines_5" type="integer">5</item>
+    <item name="maxLength_5" type="integer">5</item>
     <item name="line_1" type="integer">1</item>
     <integer name="ratingStarNumber">5</integer>
 </resources>

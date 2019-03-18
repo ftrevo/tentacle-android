@@ -1,12 +1,15 @@
 package br.com.concrete.tentacle.features.loadmygames
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.longClick
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.getJson
@@ -98,7 +101,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
 
-        val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!!
+        val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!! - 1
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
 
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LoadMyGamesViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
@@ -106,6 +109,55 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         Thread.sleep(4000)
 
         onView(withRecyclerView(R.id.recyclerListView).atPosition(oldCount))
-            .check(matches(hasDescendant(withText("Teste First ITEM SECOND LIST"))))
+            .check(matches(hasDescendant(withText("SECOND"))))
+    }
+
+    @Test
+    fun showRecycleViewWithItemsAndLongClick() {
+        val response = "mockjson/loadmygames/load_my_games_success.json".getJson()
+        val removeGame = "mockjson/loadmygames/load_my_games_remove_success.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(removeGame)
+        )
+
+        onView(withId(R.id.recyclerListView))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.recyclerListView))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.recyclerListError))
+            .check(matches(not(isDisplayed())))
+        onView(withRecyclerView(R.id.recyclerListView)
+            .atPosition(0))
+            .check(matches(isDisplayed()))
+            .check(matches(hasDescendant(withText("FIFA 08"))))
+            .check(matches(hasDescendant(withText("X360"))))
+        onView(
+            withRecyclerView(R.id.recyclerListView)
+                .atPosition(0))
+            .check(matches(isDisplayed()))
+            .perform(longClick())
+
+        onView(withText("Tem certeza que deseja deletar o jogo FIFA 08 ?"))
+        onView(withText("Ok"))
+        onView(withText("CANCELAR"))
+
+        onView(withText("Ok"))
+            .check(matches(isDisplayed()))
+            .inRoot(RootMatchers.isDialog())
+            .check(matches(isDisplayed()))
+            .perform(ViewActions.click())
+
+        onView(withRecyclerView(R.id.recyclerListView)
+            .atPosition(0))
+            .check(matches(isDisplayed()))
+            .check(matches(hasDescendant(not(withText("FIFA 08")))))
+            .check(matches(hasDescendant(not(withText("X360")))))
     }
 }

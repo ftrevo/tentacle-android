@@ -16,14 +16,10 @@ import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.HostActivity
+import br.com.concrete.tentacle.features.forgotPassword.sendEmail.ForgotPassSendEmailActivity
 import br.com.concrete.tentacle.features.register.RegisterActivity
 import br.com.concrete.tentacle.utils.LogWrapper
-import kotlinx.android.synthetic.main.fragment_login.btLogin
-import kotlinx.android.synthetic.main.fragment_login.edtEmail
-import kotlinx.android.synthetic.main.fragment_login.edtPassword
-import kotlinx.android.synthetic.main.fragment_login.imgBackground
-import kotlinx.android.synthetic.main.fragment_login.parent
-import kotlinx.android.synthetic.main.fragment_login.tvRegisterAccount
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -144,12 +140,14 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     private fun initEvents() {
         btLogin.setOnClickListener(this)
         tvRegisterAccount.setOnClickListener(this)
+        tvForgotPassword.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btLogin -> handleLogin()
             R.id.tvRegisterAccount -> showRegisterAccount()
+            R.id.tvForgotPassword -> callForgotPassword()
         }
     }
 
@@ -193,5 +191,11 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
 
     override fun getToolbarTitle(): Int {
         return 0
+    }
+
+    private fun callForgotPassword() {
+        val bundle = Bundle()
+        bundle.putString(ForgotPassSendEmailActivity.EMAIL, edtEmail.getText())
+        activity?.launchActivity<ForgotPassSendEmailActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
     }
 }
