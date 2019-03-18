@@ -13,6 +13,7 @@ import br.com.concrete.tentacle.features.forgotPassword.passwordRecovery.Passwor
 import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.btSend
 import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.edtEmail
 import kotlinx.android.synthetic.main.activity_forgot_pass_send_email.tvAlreadyHaveToken
+import kotlinx.android.synthetic.main.button_back_arrow.backArrowButton
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -45,12 +46,14 @@ class ForgotPassSendEmailActivity : BaseActivity(), View.OnClickListener {
     private fun initListener() {
         btSend.setOnClickListener(this)
         tvAlreadyHaveToken.setOnClickListener(this)
+        backArrowButton.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btSend -> verifyData()
             R.id.tvAlreadyHaveToken -> callNextActivity()
+            R.id.backArrowButton -> onBackPressed()
         }
     }
 

@@ -25,6 +25,7 @@
     <dimen name="dp_16">16dp</dimen>
     <dimen name="dp_18">18dp</dimen>
     <dimen name="dp_19">19dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
     <dimen name="dp_22">22dp</dimen>
     <dimen name="dp_24">24dp</dimen>
     <dimen name="dp_25">25dp</dimen>
@@ -33,6 +34,7 @@
     <dimen name="dp_40">40dp</dimen>
     <dimen name="dp_48">48dp</dimen>
     <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_55">55dp</dimen>
     <dimen name="dp_64">64dp</dimen>
     <dimen name="dp_70">70dp</dimen>
     <dimen name="dp_80">80dp</dimen>
@@ -106,7 +108,7 @@
     <dimen name="gameStatusRadius">8dp</dimen>
     <dimen name="dm_14">14sp</dimen>
     <dimen name="marginTopMessage">9dp</dimen>
-    <dimen name="marginTopReceivePassword">80dp</dimen>
+    <dimen name="marginTopReceivePassword">24dp</dimen>
     <dimen name="biasImageLogo">0.9</dimen>
     <dimen name="letterSpacing">0.19</dimen>
 

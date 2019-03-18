@@ -18,6 +18,7 @@ import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.validatePassword
 import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.utils.EMPTY_STRING
+import kotlinx.android.synthetic.main.button_back_arrow.backArrowButton
 import kotlinx.android.synthetic.main.fragment_password_recovery.emailEditText
 import kotlinx.android.synthetic.main.fragment_password_recovery.newPassConfirmationEditText
 import kotlinx.android.synthetic.main.fragment_password_recovery.newPassEditText
@@ -113,6 +114,10 @@ class PasswordRecoveryFragment : BaseFragment() {
             if (!hasFocus) {
                 validatePasswordConfirmation()
             }
+        }
+
+        backArrowButton.setOnClickListener {
+            activity?.onBackPressed()
         }
     }
 
