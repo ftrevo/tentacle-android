@@ -130,14 +130,16 @@ class LoanActivity : BaseActivity() {
         videos?.let { list.addAll(it) }
         screenshots?.let { list.addAll(it) }
 
-        recyclerView.setItemViewCacheSize(list.size)
-        recyclerView.adapter = BaseAdapter(
-            elements = list,
-            layout = R.layout.item_game_video, holder = { view ->
-                LoanViewHolder(view)
-            }, holderCallback = { holder, element ->
-                LoanViewHolder.bind(holder = holder, any = element)
-            })
+        if (list.size > 0) {
+            recyclerView.setItemViewCacheSize(list.size)
+            recyclerView.adapter = BaseAdapter(
+                elements = list,
+                layout = R.layout.item_game_video, holder = { view ->
+                    LoanViewHolder(view)
+                }, holderCallback = { holder, element ->
+                    LoanViewHolder.bind(holder = holder, any = element)
+                })
+        }
     }
 
     private fun showLoanSuccess() {
