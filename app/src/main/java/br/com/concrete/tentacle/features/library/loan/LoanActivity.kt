@@ -71,7 +71,7 @@ class LoanActivity : BaseActivity() {
             if (it.hasExtra(ID_LIBRARY_EXTRA)) {
                 val libraryId = it.getStringExtra(ID_LIBRARY_EXTRA)
                 libraryId?.let { id ->
-                    viewModel.loadLibrary(id)
+
                     viewModel.getDetailsGame(id)
                 }
 
@@ -118,9 +118,9 @@ class LoanActivity : BaseActivity() {
                 ViewStateModel.Status.SUCCESS ->
                     viewStateModel.model?.let {
                         gameView.setGame(it)
-                        showLoading(false)
+                        viewModel.loadLibrary(it._id)
                     }
-                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors, getString(R.string.someone_was_faster))
+                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors)
             }
         })
     }
