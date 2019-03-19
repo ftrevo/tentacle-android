@@ -6,10 +6,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class RequestedBy(
     val name: String
-):Parcelable
+) : Parcelable
 
 @Parcelize
 data class RememberDeliveryResponse(
     val _id: String,
     val requestedBy: RequestedBy
-):Parcelable
+) : Parcelable

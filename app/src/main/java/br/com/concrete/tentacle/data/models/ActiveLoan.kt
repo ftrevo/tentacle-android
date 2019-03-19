@@ -17,7 +17,7 @@ data class ActiveLoan(
 ) : Parcelable {
 
     companion object {
-        fun getDefaultReturnDate(): Calendar{
+        fun getDefaultReturnDate(): Calendar {
             val date = Calendar.getInstance()
             date.add(Calendar.WEEK_OF_MONTH, DEFAULT_RETURN_DATE_IN_WEEKS)
             return date
@@ -38,9 +38,8 @@ data class ActiveLoan(
         getReturnDate()?.let {
             val currentDate = Calendar.getInstance()
             return currentDate.timeInMillis > it.timeInMillis
-        } ?: run{
+        } ?: run {
             return false
         }
     }
-
 }
