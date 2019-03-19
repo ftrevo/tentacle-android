@@ -141,8 +141,11 @@
     <string name="requested_by">Solicitado por</string>
     <string name="nome_sobrenome">Nome Sobrenome</string>
     <string name="date_return_prefix">até %1$s</string>
+    <string name="date_requested_prefix">em %1$s</string>
     <string name="tempo_reserva">Tempo de reserva</string>
     <string name="lendGame">Jogo entregue</string>
+    <string name="gameReturned">Jogo devolvido</string>
+    <string name="requestReturn">Solicitar devolução</string>
 
     <string name="cancel">Cancelar</string>
 
@@ -158,7 +161,10 @@
     <string name="two_weeks">2 Semanas</string>
 
     <string name="lend_success">O jogo foi entregue a %1$s e a reserva termina em %2$s.</string>
+    <string name="return_success">O jogo foi devolvido e já está disponível novamente na Biblioteca.</string>
+    <string name="remember_success">Um email foi enviado para %1$s solicitando a devolução do jogo.</string>
     <string name="back_to_library">Voltar para Biblioteca</string>
+    <string name="back_to_my_games">Voltar para Meus Jogos</string>
 
     <string name="msg_empty_list">Ops! A sua busca não retornou nenhum resultado</string>
     <string name="already_account">Já tem uma conta?</string>
@@ -191,12 +197,14 @@
     <string name="loan_state_active_plural">Faltam %1$d dias</string>
     <string name="loan_state_active_singular">Falta %1$d dia</string>
     <string name="loan_state_expired">Expirado</string>
+    <string name="loan_state_expired_lower_case">expirado</string>
 
     <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga
         reservar :)
     </string>
     <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.
     </string>
+    <string name="title_activity_pinch_to_zoom">PinchToZoomActivity</string>
     <string name="forgot_password">Esquece a senha?</string>
     <string name="title_activity_forgot_pass_send_email">ForgotPassSendEmailActivity</string>
     <string name="recover_password">Recuperar senha</string>
@@ -228,6 +236,5 @@
     <string name="default_notification_channel_name" translatable="true">Weather</string>
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
-
 
 </resources>

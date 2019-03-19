@@ -1,168 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:paddingStart="@dimen/margin_default"
-        android:paddingEnd="@dimen/margin_default"
-        android:paddingBottom="@dimen/margin_default">
+        android:background="@color/colorPrimary">
 
-    <include layout="@layout/logo_tentacle"/>
+    <include layout="@layout/logo_tentacle"
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintLeft_toLeftOf="parent"
+             app:layout_constraintRight_toRightOf="parent"/>
 
-    <ImageView
-            android:layout_marginTop="@dimen/loan_image_margin_top"
-            android:background="@color/bgGameIcon"
-            android:id="@+id/ivGame"
-            app:layout_constraintStart_toStartOf="parent"
+    <ScrollView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="@dimen/game_icon_width"
-            android:layout_height="@dimen/game_icon_height"/>
-
-    <TextView
-            android:id="@+id/tvGameName"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:layout_marginStart="@dimen/margin_default"
-            android:textColor="@color/textColor"
-            android:textAppearance="@style/TextHeavy.24sp"
-            tools:text="Nome do jogo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/loan_text_margin_top"
-            app:layout_constraintStart_toEndOf="@id/ivGame"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-            android:id="@+id/tvTitle1"
-            android:layout_marginTop="@dimen/dp_25"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/library_loan_text1"
-            android:textAppearance="@style/TextHeavy.16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivGame"/>
-
-    <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipContainer"
-            app:singleSelection="true"
-            app:chipSpacingHorizontal="@dimen/dp_8"
-            android:layout_marginTop="@dimen/margin_default"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <br.com.concrete.tentacle.custom.ChipCustom
-                android:id="@+id/chipPs3"
-                app:chipSurfaceColor="@null"
-                android:visibility="gone"
-                android:text="@string/chip_ps3"
-                android:minWidth="@dimen/chipWidth"
-                android:minHeight="@dimen/chipHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <br.com.concrete.tentacle.custom.ChipCustom
-                android:id="@+id/chipPs4"
-                app:chipSurfaceColor="@null"
-                android:visibility="gone"
-                android:text="@string/chip_ps4"
-                android:minWidth="@dimen/chipWidth"
-                android:minHeight="@dimen/chipHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <br.com.concrete.tentacle.custom.ChipCustom
-                android:id="@+id/chip360"
-                app:chipSurfaceColor="@null"
-                android:visibility="gone"
-                android:text="@string/chip_360"
-                android:minWidth="@dimen/chipWidth"
-                android:minHeight="@dimen/chipHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <br.com.concrete.tentacle.custom.ChipCustom
-                android:id="@+id/chipOne"
-                app:chipSurfaceColor="@null"
-                android:visibility="gone"
-                android:text="@string/chip_one"
-                android:minWidth="@dimen/chipWidth"
-                android:minHeight="@dimen/chipHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <br.com.concrete.tentacle.custom.ChipCustom
-                android:id="@+id/chip3ds"
-                app:chipSurfaceColor="@null"
-                android:visibility="gone"
-                android:text="@string/chip_3ds"
-                android:minWidth="@dimen/chipWidth"
-                android:minHeight="@dimen/chipHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <br.com.concrete.tentacle.custom.ChipCustom
-                android:id="@+id/chipSwitch"
-                app:chipSurfaceColor="@null"
-                android:visibility="gone"
-                android:text="@string/chip_ns"
-                android:minWidth="@dimen/chipWidth"
-                android:minHeight="@dimen/chipHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-    </com.google.android.material.chip.ChipGroup>
-
-    <TextView
-            android:id="@+id/tvTitle2"
-            android:layout_marginTop="@dimen/dp_25"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/library_loan_text2"
-            android:textAppearance="@style/TextHeavy.16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chipContainer"/>
-
-    <com.jaredrummler.materialspinner.MaterialSpinner
-            android:textAppearance="@style/TextMedium.14sp"
-            app:ms_arrow_tint="@color/textColor"
-            app:ms_background_color="@color/chipIconTint"
-            app:ms_text_color="@color/textColor"
-            app:ms_hint="@string/library_loan_user_list_hint"
-            app:ms_hint_color="@color/textColor"
-            app:ms_popup_padding_top="@dimen/dp_25"
-            android:id="@+id/spOwners"
-            android:layout_marginTop="@dimen/margin_default"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle2"/>
-
-    <br.com.concrete.tentacle.custom.StateButtomView
-            android:id="@+id/btPerformLoan"
-            app:buttonName="@string/library_loan_perform_loan"
-            style="@style/StyleButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <include
-            layout="@layout/progress_include"
-            android:layout_width="@dimen/dp_80"
-            android:layout_height="@dimen/dp_80"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_default"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
+                android:paddingBottom="@dimen/margin_default">
+
+            <br.com.concrete.tentacle.custom.GameView
+                    android:id="@+id/gameView"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/dp_25"
+                    app:layout_constraintTop_toBottomOf="@+id/gameView"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+            <TextView
+                    android:id="@+id/tvTitle1"
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:textColor="@color/textColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/library_loan_text1"
+                    android:textAppearance="@style/TextHeavy.16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerView"/>
+
+            <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipContainer"
+                    app:singleSelection="true"
+                    app:chipSpacingHorizontal="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/margin_default"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chipPs3"
+                        app:chipSurfaceColor="@null"
+                        android:visibility="gone"
+                        android:text="@string/chip_ps3"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chipPs4"
+                        app:chipSurfaceColor="@null"
+                        android:visibility="gone"
+                        android:text="@string/chip_ps4"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chip360"
+                        app:chipSurfaceColor="@null"
+                        android:visibility="gone"
+                        android:text="@string/chip_360"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chipOne"
+                        app:chipSurfaceColor="@null"
+                        android:visibility="gone"
+                        android:text="@string/chip_one"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chip3ds"
+                        app:chipSurfaceColor="@null"
+                        android:visibility="gone"
+                        android:text="@string/chip_3ds"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <br.com.concrete.tentacle.custom.ChipCustom
+                        android:id="@+id/chipSwitch"
+                        app:chipSurfaceColor="@null"
+                        android:visibility="gone"
+                        android:text="@string/chip_ns"
+                        android:minWidth="@dimen/chipWidth"
+                        android:minHeight="@dimen/chipHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                    android:id="@+id/tvTitle2"
+                    android:layout_marginTop="@dimen/dp_25"
+                    android:textColor="@color/textColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/library_loan_text2"
+                    android:textAppearance="@style/TextHeavy.16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/chipContainer"/>
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:textAppearance="@style/TextMedium.14sp"
+                    app:ms_arrow_tint="@color/textColor"
+                    app:ms_background_color="@color/chipIconTint"
+                    app:ms_text_color="@color/textColor"
+                    app:ms_hint="@string/library_loan_user_list_hint"
+                    app:ms_hint_color="@color/textColor"
+                    app:ms_popup_padding_top="@dimen/dp_25"
+                    android:id="@+id/spOwners"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle2"/>
+
+            <br.com.concrete.tentacle.custom.StateButtonView
+                    android:id="@+id/btPerformLoan"
+                    app:buttonName="@string/library_loan_perform_loan"
+                    style="@style/StyleButton"
+                    android:layout_marginTop="@dimen/dp_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spOwners"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.constraintlayout.widget.Group
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/group"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="btPerformLoan, gameView, recyclerView, chipContainer, tvGameName, tvTitle1, tvTitle2, spOwners"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <br.com.concrete.tentacle.custom.ListError
             android:id="@+id/error"
@@ -172,11 +186,13 @@
             app:errorDescription="@string/load_error"
             app:buttonNameError="@string/load_again"/>
 
-    <androidx.constraintlayout.widget.Group
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/group"
-            android:visibility="gone"
-            app:constraint_referenced_ids="btPerformLoan, ivGame, tvGameName, tvTitle1, tvTitle2, spOwners"/>
+    <include
+            layout="@layout/progress_include"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ class LendGameVMTest : BaseViewModelTest() {
     fun `when loanViewModel calls fetchMediaLoan should return a Media`() {
 
         val responseJson = getJson(
-            "mockjson/lend_game/get_media_success.json"
+            "mockjson/library/loan/lend_response_success.json"
         )
 
         val collectionType = object : TypeToken<BaseModel<Media>>() {}.type
