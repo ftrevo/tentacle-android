@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.utils
 
 import android.content.Context
 import android.content.DialogInterface
-import android.graphics.Color
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -62,7 +61,6 @@ object DialogUtils {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(color)
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(color)
         dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(color)
-
 
         return dialog
     }

@@ -7,7 +7,10 @@ import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.isEnabled
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.data.models.BaseModel
@@ -56,7 +59,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
@@ -79,18 +82,18 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isEnabled()))
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(click())
         onView(withText("Você confirma que FIFA 06: Road to FIFA World Cup existe para a plataforma PS3?"))
-            .check(matches(ViewMatchers.isDisplayed()))
+            .check(matches(isDisplayed()))
         onView(withText("Confirmar"))
-            .check(matches(ViewMatchers.isDisplayed()))
+            .check(matches(isDisplayed()))
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
             .perform(click())
@@ -111,7 +114,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
 
         checkDetails()
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(scrollTo())
 
         onView(withId(R.id.mediaRegisterButton))
@@ -120,26 +123,25 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isEnabled()))
 
-        onView(withId( R.id.mediaRegisterButton))
+        onView(withId(R.id.mediaRegisterButton))
             .perform(click())
         onView(withText("Você confirma que FIFA 06: Road to FIFA World Cup existe para a plataforma PS3?"))
-            .check(matches(ViewMatchers.isDisplayed()))
+            .check(matches(isDisplayed()))
         onView(withText("Confirmar"))
-            .check(matches(ViewMatchers.isDisplayed()))
+            .check(matches(isDisplayed()))
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
             .perform(click())
 
         onView(withText("Ops! Parece que já cadastrou esse jogo."))
-            .check(matches(ViewMatchers.isDisplayed()))
+            .check(matches(isDisplayed()))
         onView(withText("ERROR MESSAGE."))
-            .check(matches(ViewMatchers.isDisplayed()))
+            .check(matches(isDisplayed()))
         onView(withText("Ok"))
-            .check(matches(ViewMatchers.isDisplayed()))
+            .check(matches(isDisplayed()))
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
             .perform(click())
-
     }
 
     private fun checkDetails() {
@@ -151,10 +153,10 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
             .check(matches(withText("FIFA 06: Road to FIFA World Cup")))
         onView(withId(R.id.tvGameReleaseYear))
             .check(matches(withText("2005")))
-        onView(withText("Sport")).check(matches(ViewMatchers.isDisplayed()))
-        onView(withText("Single player")).check(matches(ViewMatchers.isDisplayed()))
-        onView(withText("Multiplayer")).check(matches(ViewMatchers.isDisplayed()))
-        onView(withText("Co-operative")).check(matches(ViewMatchers.isDisplayed()))
+        onView(withText("Sport")).check(matches(isDisplayed()))
+        onView(withText("Single player")).check(matches(isDisplayed()))
+        onView(withText("Multiplayer")).check(matches(isDisplayed()))
+        onView(withText("Co-operative")).check(matches(isDisplayed()))
 
         onView(withId(R.id.chipPs3))
             .check(matches(isDisplayed()))
@@ -170,5 +172,4 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.chip3ds))
             .check(matches(isDisplayed()))
     }
-
 }
