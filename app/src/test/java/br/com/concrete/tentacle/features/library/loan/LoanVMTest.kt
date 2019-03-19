@@ -197,5 +197,4 @@ class LoanVMTest : BaseViewModelTest() {
         loanViewModel.getDetailsGame("idGame")
         Assert.assertEquals(expected, actualDetail)
     }
-
 }

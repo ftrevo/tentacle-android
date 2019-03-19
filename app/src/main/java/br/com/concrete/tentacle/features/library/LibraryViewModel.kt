@@ -89,7 +89,7 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
         )
     }
 
-    fun initPage(){
+    fun initPage() {
         this.page = 1
     }
 }

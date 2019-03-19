@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.data.repositories
 
-import br.com.concrete.tentacle.base.AppTentacle
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.CityResponse
 import br.com.concrete.tentacle.data.models.ForgotPassword

@@ -15,8 +15,6 @@ import br.com.concrete.tentacle.data.models.library.MediaLibrary
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.visible
-import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
-import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.activity_loan.btPerformLoan
 import kotlinx.android.synthetic.main.activity_loan.chip360
 import kotlinx.android.synthetic.main.activity_loan.chip3ds
@@ -264,5 +262,4 @@ class LoanActivity : BaseActivity() {
         spOwners.setHintTextColor(colorDisable)
         spOwners.setArrowColor(colorDisable)
     }
-
 }

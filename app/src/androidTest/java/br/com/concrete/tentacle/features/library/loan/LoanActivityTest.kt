@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.library.loan
 
-import android.app.Instrumentation
 import android.content.Intent
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
@@ -8,12 +7,10 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
-import androidx.test.espresso.intent.Intents.intending
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
 import androidx.test.espresso.intent.matcher.IntentMatchers.toPackage
-import androidx.test.espresso.intent.matcher.UriMatchers.hasHost
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
@@ -27,7 +24,6 @@ import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyc
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.Matchers.allOf
-import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Assert
