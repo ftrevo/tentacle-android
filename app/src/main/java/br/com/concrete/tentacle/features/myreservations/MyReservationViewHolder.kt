@@ -52,8 +52,8 @@ class MyReservationViewHolder(
                         setColorStatus(holder.itemView, R.color.loan_state_pending)
                     }
                     LoanResponse.LoanState.EXPIRED -> {
-                        text = holder.itemView.context.getString(R.string.loan_state_expired)
-                        visibility = View.GONE
+                        text = loanResponse.estimatedReturnDate?.toDate()?.format(SIMPLE_DATE_OUTPUT_FORMAT) ?: ""
+                        visibility = View.VISIBLE
                         setColorStatus(holder.itemView, R.color.loan_state_expired)
                     }
                 }
