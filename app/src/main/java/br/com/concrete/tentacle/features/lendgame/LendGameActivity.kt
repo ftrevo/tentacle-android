@@ -186,7 +186,7 @@ class LendGameActivity : BaseActivity() {
                 }
             }
 
-            val returnDate = ActiveLoan.getDefaultReturnDate()
+            val returnDate = activeLoan?.estimatedReturnDate?.toDate() ?: ActiveLoan.getDefaultReturnDate()
             tvDate.text =  getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
         }
 

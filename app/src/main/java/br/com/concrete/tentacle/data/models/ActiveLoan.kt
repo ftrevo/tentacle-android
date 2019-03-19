@@ -13,7 +13,8 @@ data class ActiveLoan(
     val loanDate: String?,
     val requestedByName: String?,
     val requestedByState: String?,
-    val requestedByCity: String?
+    val requestedByCity: String?,
+    val estimatedReturnDate: String? = null
 ) : Parcelable {
 
     companion object {
