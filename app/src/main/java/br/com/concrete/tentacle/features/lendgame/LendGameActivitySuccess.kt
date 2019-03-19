@@ -40,8 +40,8 @@ class LendGameActivitySuccess : BaseActivity() {
             action = intent.getStringExtra(ACTION_EXTRA)
             when (action) {
                 LOAN_ACTION_LEND -> lendSuccess()
-                LOAN_ACTION_RETURN -> returnSuccess()
-                LOAN_ACTION_REMEMBER_DELIVERY -> rememberSuccess()
+                LOAN_ACTION_RETURN-> returnSuccess()
+                LOAN_ACTION_REMEMBER_DELIVERY-> rememberSuccess()
             }
         }
     }
@@ -61,7 +61,7 @@ class LendGameActivitySuccess : BaseActivity() {
 
     private fun lendSuccess() {
         if (intent.hasExtra(LOAN_EXTRA)) {
-            val args = intent.getSerializableExtra(LOAN_EXTRA) as LoanResponse
+            val args = intent.getParcelableExtra<LoanResponse>(LOAN_EXTRA)
             args.loanDate?.let {
                 tvText.text = String.format(getString(R.string.lend_success), args.requestedBy.name, it.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT))
                 btOk.setButtonName(getString(R.string.back_to_library))

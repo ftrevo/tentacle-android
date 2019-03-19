@@ -76,8 +76,8 @@ class LendGameActivity : BaseActivity() {
             lendGame()
         }
 
-        btRequestReturn.setOnClickListener {
-            rememberDelivery()
+        btRequestReturn.setOnClickListener{
+            rememberDelivery(activeLoan?._id)
         }
     }
 
@@ -137,7 +137,7 @@ class LendGameActivity : BaseActivity() {
         loanResponse?.let {
             val action = if (it.returnDate == null) LOAN_ACTION_LEND else LOAN_ACTION_RETURN
             val bundle = Bundle()
-            bundle.putSerializable(LendGameActivitySuccess.LOAN_EXTRA, it)
+            bundle.putParcelable(LendGameActivitySuccess.LOAN_EXTRA, it)
             bundle.putString(LendGameActivitySuccess.ACTION_EXTRA, action)
             launchActivitySuccess(bundle)
         }
@@ -199,8 +199,8 @@ class LendGameActivity : BaseActivity() {
         }
     }
 
-    private fun rememberDelivery() {
-        viewModelLendGame.rememberDelivery()
+    private fun rememberDelivery(id: String?) {
+        viewModelLendGame.rememberDelivery(id)
     }
 
     override fun getFinishActivityTransition(): ActivityAnimation {

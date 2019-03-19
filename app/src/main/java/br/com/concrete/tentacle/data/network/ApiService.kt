@@ -54,7 +54,12 @@ interface ApiService {
 
     @GET("/loans")
     fun getMyLoans(
-        @Query("mineOnly") mineOnly: Boolean = true
+        @Query("mineOnly")
+        mineOnly: Boolean = true,
+        @Query("limit")
+        limit: Int = LIMIT_PAGE,
+        @Query("page")
+        page: Int
     ): Observable<BaseModel<LoansListResponse>>
 
     @GET("/loans/{loanId}")
@@ -108,6 +113,6 @@ interface ApiService {
     @GET("/library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
 
-    @POST("loans/{loanId}/remember-delivery")
-    fun rememberDelivery(): Observable<BaseModel<RememberDeliveryResponse>>
+    @POST("loans/{id}/remember-delivery")
+    fun rememberDelivery(@Path("id")id: String?): Observable<BaseModel<RememberDeliveryResponse>>
 }

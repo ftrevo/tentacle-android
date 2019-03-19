@@ -44,10 +44,10 @@ class LendGameViewModel(private val gameRepository: GameRepository) : BaseViewMo
         )
     }
 
-    fun rememberDelivery() {
+    fun rememberDelivery(id: String?) {
         viewStateRememberDelivery.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(
-            gameRepository.rememberDelivery()
+            gameRepository.rememberDelivery(id)
                 .subscribe({ baseModel ->
                     viewStateRememberDelivery.postValue(ViewStateModel(
                             status = ViewStateModel.Status.SUCCESS,
