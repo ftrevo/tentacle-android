@@ -77,7 +77,7 @@ class LendGameActivity : BaseActivity() {
         }
 
         btRequestReturn.setOnClickListener{
-            rememberDelivery()
+            rememberDelivery(activeLoan?._id)
         }
     }
 
@@ -200,8 +200,8 @@ class LendGameActivity : BaseActivity() {
         }
     }
 
-    private fun rememberDelivery(){
-        viewModelLendGame.rememberDelivery()
+    private fun rememberDelivery(id: String?) {
+        viewModelLendGame.rememberDelivery(id)
     }
 
     override fun getFinishActivityTransition(): ActivityAnimation {

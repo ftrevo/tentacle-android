@@ -108,6 +108,6 @@ interface ApiService {
     @GET("/library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
 
-    @POST("loans/{loanId}/remember-delivery")
-    fun rememberDelivery(): Observable<BaseModel<RememberDeliveryResponse>>
+    @POST("loans/{id}/remember-delivery")
+    fun rememberDelivery(@Path("id")id: String?): Observable<BaseModel<RememberDeliveryResponse>>
 }
