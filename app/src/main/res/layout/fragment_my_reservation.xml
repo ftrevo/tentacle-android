@@ -17,6 +17,7 @@
             app:errorDescription="@string/load_reservations_error_not_know"
             app:emptyListMessage="@string/load_reservations_empty_list"
             app:icon="@drawable/ilustra_tentacle"
+            app:endLessScroll="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
