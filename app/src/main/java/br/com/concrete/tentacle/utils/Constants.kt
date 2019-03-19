@@ -47,3 +47,5 @@ const val GAME_MODE_MULTI_PLAYER = "multiplayer"
 const val GAME_MODE_CO_OPERATIVE = "co-operative"
 const val GAME_MODE_MMO = "massively-multiplayer-online-mmo"
 const val GAME_MODE_SPLIT_SCREEN = "split-screen"
+
+const val DEFAULT_EXCEPTION_STATUS_CODE = 0
