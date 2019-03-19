@@ -1,11 +1,14 @@
 package br.com.concrete.tentacle.data.models.library.loan
 
+import android.os.Parcelable
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.extensions.toDate
+import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 import java.util.Date
 
+@Parcelize
 data class LoanResponse(
     val _id: String,
     val game: Game,
@@ -17,7 +20,7 @@ data class LoanResponse(
     val loanDate: String?,
     val returnDate: String?
 
-) : Serializable {
+) : Parcelable {
 
     enum class LoanState {
         PENDING, EXPIRED, ACTIVE
