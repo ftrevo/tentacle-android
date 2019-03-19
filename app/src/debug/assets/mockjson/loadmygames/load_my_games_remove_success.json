@@ -1,0 +1,20 @@
+{
+  "message": [
+    "Mídia removida"
+  ],
+  "data": {
+    "active": true,
+    "_id": "5c8278c72e75f40023618173",
+    "game": {
+      "_id": "5c8278c32e75f40023618172",
+      "name": "Asphalt 3D"
+    },
+    "platform": "NINTENDOSWITCH",
+    "owner": {
+      "_id": "5c810617647c2c0023ccdb28",
+      "name": "Maherbson"
+    },
+    "createdAt": "2019-03-08T14:14:31.453Z",
+    "updatedAt": "2019-03-08T14:14:31.453Z"
+  }
+}

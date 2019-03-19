@@ -21,7 +21,9 @@ import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360
 import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH
-import kotlinx.android.synthetic.main.fragment_register_media.*
+import kotlinx.android.synthetic.main.fragment_register_media.container
+import kotlinx.android.synthetic.main.fragment_register_media.gameView
+import kotlinx.android.synthetic.main.fragment_register_media.mediaRegisterButton
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class RegisterMediaFragment : BaseFragment() {
@@ -44,7 +46,7 @@ class RegisterMediaFragment : BaseFragment() {
     }
 
     private fun initViews() {
-        (activity as? AppCompatActivity)?.supportActionBar?.title  = getString(R.string.toolbar_title_search_game)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.toolbar_title_search_game)
         gameView.showStatusView(false)
         mediaRegisterButton.disable()
 

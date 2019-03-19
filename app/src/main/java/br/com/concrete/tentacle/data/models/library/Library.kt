@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.data.models.library
 
 import android.os.Parcelable
 import br.com.concrete.tentacle.data.models.game.Cover
+import br.com.concrete.tentacle.data.models.game.Screenshot
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -23,5 +24,7 @@ data class Library(
 
     @SerializedName("title", alternate = ["name"])
     val name: String,
-    val cover: Cover? = null
+    val cover: Cover? = null,
+    val videos: List<Video>,
+    val screenshots: List<Screenshot>
 ) : Parcelable

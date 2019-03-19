@@ -4,6 +4,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
+import br.com.concrete.tentacle.base.AppTentacle
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.ViewStateModel
@@ -36,7 +37,8 @@ class RegisterUserViewModel(
             email = user.email,
             state = user.state._id,
             phone = user.phone,
-            password = user.password
+            password = user.password,
+            deviceToken = AppTentacle.TOKEN
         )
 
         viewStateUser.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))

@@ -87,4 +87,10 @@ class GameRepository(private val apiRest: ApiService) {
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
+
+    fun deleteMedia(mediaId: String): Observable<BaseModel<Media>> {
+        return apiRest.deleteMedia(mediaId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
 }

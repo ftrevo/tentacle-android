@@ -6,7 +6,7 @@
               xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-            android:textAppearance="@style/TextMedium.12sp"
+            android:textAppearance="@style/TextHeavy.14sp"
             android:textColor="@android:color/white"
             android:textAllCaps="true"
             tools:text="Label text"

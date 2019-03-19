@@ -1,5 +1,7 @@
 package br.com.concrete.tentacle.di
 
+import br.com.concrete.tentacle.features.forgotPassword.passwordRecovery.PasswordRecoveryViewModel
+import br.com.concrete.tentacle.features.forgotPassword.sendEmail.ForgotPassSendEmailViewModel
 import br.com.concrete.tentacle.features.home.HomeViewModel
 import br.com.concrete.tentacle.features.lendgame.LendGameViewModel
 import br.com.concrete.tentacle.features.library.LibraryViewModel
@@ -26,9 +28,11 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { LibraryViewModel(get()) }
     viewModel { FilterViewModel(get()) }
-    viewModel { LoanViewModel(get()) }
+    viewModel { LoanViewModel(get(), get()) }
     viewModel { LendGameViewModel(get()) }
     viewModel { RemoteGameViewModel(get()) }
     viewModel { MyReservationViewModel(get()) }
     viewModel { MyReservationDetailViewModel(get()) }
+    viewModel { ForgotPassSendEmailViewModel(get()) }
+    viewModel { PasswordRecoveryViewModel(get(), get()) }
 }

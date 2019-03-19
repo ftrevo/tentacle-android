@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.data.models.library.loan
 
 import br.com.concrete.tentacle.data.models.Game
+import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.extensions.toDate
 import java.io.Serializable
 import java.util.Date

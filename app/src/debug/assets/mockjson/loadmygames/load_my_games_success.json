@@ -2,199 +2,130 @@
   "data": {
     "list": [
       {
-        "_id": "5c4630bccd1df100236a6b2c",
-        "platform": "PS3",
-        "game": {
-          "_id": "5c3cb881098fab0023f6b0d5",
-          "name": "Battlefield V"
+        "_id": "5c891051624e3f0023d3a5ac",
+        "platform": "PS4",
+        "activeLoan": {
+          "_id": "5c89549b33610c00237a68a4",
+          "requestedAt": "2019-03-13T19:06:03.501Z"
         },
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-21T20:51:08.405Z",
-        "updatedAt": "2019-01-21T20:51:08.405Z"
+        "gameData": {
+          "_id": "5c816b27349f31002315fcf0",
+          "name": "TEST"
+        }
       },
       {
-        "_id": "5c48dd5ee07db9002375d5ac",
-        "game": {
-          "_id": "5c48dd54e07db9002375d5ab",
-          "name": "Contra III"
+        "_id": "5c891084624e3f0023d3a5ae",
+        "platform": "PS4",
+        "activeLoan": {
+          "_id": "5c891104624e3f0023d3a5b5",
+          "requestedAt": "2019-03-13T14:17:40.741Z"
         },
-        "platform": "XBOXONE",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-23T21:32:14.879Z",
-        "updatedAt": "2019-01-23T21:32:14.879Z"
+        "gameData": {
+          "_id": "5c8255c92e75f40023618138",
+          "name": "FIFA 09"
+        }
       },
       {
-        "_id": "5c49b3410124e4002334b1bd",
-        "game": {
-          "_id": "5c49b33a0124e4002334b1bc",
-          "name": "Doom Troppers"
+        "_id": "5c891092624e3f0023d3a5af",
+        "platform": "PS4",
+        "activeLoan": {
+          "_id": "5c891110624e3f0023d3a5b6",
+          "requestedAt": "2019-03-13T14:17:52.365Z"
         },
-        "platform": "NINTENDOSWITCH",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-24T12:44:49.877Z",
-        "updatedAt": "2019-01-24T12:44:49.877Z"
+        "gameData": {
+          "_id": "5c7938f1ef995f00239a0cfe",
+          "name": "FIFA 12"
+        }
       },
       {
-        "_id": "5c5348f4906fb50023e50730",
-        "game": {
-          "_id": "5c5348ef906fb50023e5072f",
-          "name": "Space Invaders"
+        "_id": "5c8910a1624e3f0023d3a5b0",
+        "platform": "PS4",
+        "activeLoan": {
+          "_id": "5c891116624e3f0023d3a5b7",
+          "requestedAt": "2019-03-13T14:17:58.737Z"
         },
+        "gameData": {
+          "_id": "5c7939e7ef995f00239a0d00",
+          "name": "FIFA 13"
+        }
+      },
+      {
+        "_id": "5c8252af2e75f40023618134",
+        "platform": "PS4",
+        "activeLoan": {
+          "_id": "5c8267f02e75f40023618142",
+          "requestedAt": "2019-03-08T13:02:40.192Z",
+          "loanDate": "2019-03-08T14:47:04.846Z"
+        },
+        "gameData": {
+          "_id": "5c8252a72e75f40023618133",
+          "name": "FIFA 18"
+        }
+      },
+      {
+        "_id": "5c8910bf624e3f0023d3a5b1",
         "platform": "XBOX360",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
+        "activeLoan": {
+          "_id": "5c891120624e3f0023d3a5b8",
+          "requestedAt": "2019-03-13T14:18:08.154Z"
         },
-        "createdAt": "2019-01-31T19:13:56.491Z",
-        "updatedAt": "2019-01-31T19:13:56.491Z"
+        "gameData": {
+          "_id": "5c8252a72e75f40023618133",
+          "name": "FIFA 18"
+        }
       },
       {
-        "_id": "5c4af2a1f9d9720023542eec",
-        "game": {
-          "_id": "5c4af29bf9d9720023542eeb",
-          "name": "Monster Hunter: World"
-        },
+        "_id": "5c8910cb624e3f0023d3a5b2",
         "platform": "PS4",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
+        "activeLoan": {
+          "_id": "5c891126624e3f0023d3a5b9",
+          "requestedAt": "2019-03-13T14:18:14.620Z"
         },
-        "createdAt": "2019-01-25T11:27:29.556Z",
-        "updatedAt": "2019-01-25T11:27:29.556Z"
+        "gameData": {
+          "_id": "5c816449349f31002315fced",
+          "name": "FIFA Street"
+        }
       },
       {
-        "_id": "5c5348d8906fb50023e5072e",
-        "game": {
-          "_id": "5c5348d1906fb50023e5072d",
-          "name": "Doom"
-        },
-        "platform": "NINTENDO3DS",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-31T19:13:28.644Z",
-        "updatedAt": "2019-01-31T19:13:28.644Z"
-      },
-      {
-        "_id": "5c5348b7906fb50023e5072c",
-        "game": {
-          "_id": "5c532097be36dd0023ea2c30",
-          "name": "nome de jogo muito grande para caber no item da lista"
-        },
-        "platform": "NINTENDOSWITCH",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-31T19:12:55.748Z",
-        "updatedAt": "2019-01-31T19:12:55.748Z"
-      },
-      {
-        "_id": "5c50b81a2288f00023ab7478",
-        "game": null,
-        "platform": "NINTENDOSWITCH",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-29T20:31:22.776Z",
-        "updatedAt": "2019-01-29T20:31:22.776Z"
-      },
-      {
-        "_id": "5c51bb39ad29c90023fe1c69",
-        "platform": "PS3",
-        "game": {
-          "_id": "5c48dd54e07db9002375d5ab",
-          "name": "Contra III"
-        },
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-30T14:56:57.321Z",
-        "updatedAt": "2019-01-30T14:56:57.321Z"
-      },
-      {
-        "_id": "5c5320a1be36dd0023ea2c31",
-        "game": {
-          "_id": "5c532097be36dd0023ea2c30",
-          "name": "nome de jogo muito grande para caber no item da lista"
-        },
+        "_id": "5c8256162e75f40023618139",
         "platform": "PS4",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
+        "activeLoan": {
+          "_id": "5c825ead2e75f4002361813b",
+          "requestedAt": "2019-03-08T12:23:09.786Z",
+          "loanDate": "2019-03-08T14:48:22.479Z"
         },
-        "createdAt": "2019-01-31T16:21:53.336Z",
-        "updatedAt": "2019-01-31T16:21:53.336Z"
+        "gameData": {
+          "_id": "5c8197b6349f31002315fd08",
+          "name": "Super Meat Boy"
+        }
       },
       {
-        "_id": "5c5320a1be36dd0023ea2c31",
-        "game": {
-          "_id": "5c532097be36dd0023ea2c30",
-          "name": "nome de jogo muito grande para caber no item da lista"
-        },
+        "_id": "5c819031349f31002315fcff",
         "platform": "PS4",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
+        "activeLoan": {
+          "_id": "5c82531a2e75f40023618136",
+          "requestedAt": "2019-03-08T11:33:46.921Z",
+          "loanDate": "2019-03-08T11:33:55.453Z"
         },
-        "createdAt": "2019-01-31T16:21:53.336Z",
-        "updatedAt": "2019-01-31T16:21:53.336Z"
+        "gameData": {
+          "_id": "5c8162a1349f31002315fce9",
+          "name": "The Amazing Spider-Man"
+        }
       },
       {
-        "_id": "5c5320a1be36dd0023ea2c31",
-        "game": {
-          "_id": "5c532097be36dd0023ea2c30",
-          "name": "nome de jogo muito grande para caber no item da lista"
-        },
+        "_id": "5c81598e349f31002315fcd6",
         "platform": "PS4",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
+        "activeLoan": {
+          "_id": "5c816317349f31002315fceb",
+          "requestedAt": "2019-03-07T18:29:43.722Z",
+          "loanDate": "2019-03-07T19:26:37.548Z"
         },
-        "createdAt": "2019-01-31T16:21:53.336Z",
-        "updatedAt": "2019-01-31T16:21:53.336Z"
-      },
-      {
-        "_id": "5c5320a1be36dd0023ea2c31",
-        "game": {
-          "_id": "5c532097be36dd0023ea2c30",
-          "name": "nome de jogo muito grande para caber no item da lista"
-        },
-        "platform": "PS4",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-31T16:21:53.336Z",
-        "updatedAt": "2019-01-31T16:21:53.336Z"
-      },
-      {
-        "_id": "5c5320a1be36dd0023ea2c31",
-        "game": {
-          "_id": "5c532097be36dd0023ea2c30",
-          "name": "Teste"
-        },
-        "platform": "PS4",
-        "owner": {
-          "_id": "5c1ab12e7c0f4f002272357e",
-          "name": "JOAO DAS NEVES"
-        },
-        "createdAt": "2019-01-31T16:21:53.336Z",
-        "updatedAt": "2019-01-31T16:21:53.336Z"
+        "gameData": {
+          "_id": "5c66feafdf4b530023a72773",
+          "name": "The Last of Us Remastered"
+        }
       }
     ],
-    "count": 60
+    "count": 20
   }
 }
