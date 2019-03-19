@@ -1,6 +1,6 @@
 {
   "data": {
-    "_id": "5c66f80a9321750023d99987",
+    "_id": "5c816b27349f31002315fcf0",
     "id": 22342,
     "aggregated_rating": 42.5,
     "aggregated_rating_count": 2,
@@ -48,10 +48,16 @@
     "summary": "You can experience the excitement of international soccer competition in FIFA 06. Extensive coaching options give you the opportunity to take control of all of your players on the pitch and determine their formation and strategy. FIFA 06 offers game modes ranging from a tournament to individual skill games. You can also play with real players from famous international teams from around the world. Multiplayer modes let you challenge other gamers.",
     "url": "https://www.igdb.com/games/fifa-06-road-to-fifa-world-cup",
     "formattedReleaseDate": "16/11/2005",
-    "createdBy": "5c58603ff8e6ef002376a5d2",
-    "videos": [],
-    "createdAt": "2019-02-15T17:34:02.039Z",
-    "updatedAt": "2019-02-15T17:34:02.039Z",
+    "createdBy": "5c81593f349f31002315fcd4",
+    "videos": [
+      {
+        "id": 14136,
+        "name": "Trailer",
+        "video_id": "l1FJfr_spJQ"
+      }
+    ],
+    "createdAt": "2019-03-07T19:04:07.729Z",
+    "updatedAt": "2019-03-07T19:04:07.729Z",
     "mediaPs3": [],
     "mediaPs4": [
       {

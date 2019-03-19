@@ -28,7 +28,7 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { LibraryViewModel(get()) }
     viewModel { FilterViewModel(get()) }
-    viewModel { LoanViewModel(get()) }
+    viewModel { LoanViewModel(get(), get()) }
     viewModel { LendGameViewModel(get()) }
     viewModel { RemoteGameViewModel(get()) }
     viewModel { MyReservationViewModel(get()) }

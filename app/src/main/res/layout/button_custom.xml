@@ -11,6 +11,7 @@
             android:layout_height="wrap_content"
             android:text="@string/button"
             android:lines="@integer/line_1"
+            android:ellipsize="end"
             android:textStyle="bold"
             android:gravity="center"/>
 

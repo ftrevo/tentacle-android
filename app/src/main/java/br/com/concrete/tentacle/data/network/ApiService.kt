@@ -9,6 +9,7 @@ import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
@@ -53,7 +54,12 @@ interface ApiService {
 
     @GET("/loans")
     fun getMyLoans(
-        @Query("mineOnly") mineOnly: Boolean = true
+        @Query("mineOnly")
+        mineOnly: Boolean = true,
+        @Query("limit")
+        limit: Int = LIMIT_PAGE,
+        @Query("page")
+        page: Int
     ): Observable<BaseModel<LoansListResponse>>
 
     @GET("/loans/{loanId}")
@@ -106,4 +112,7 @@ interface ApiService {
 
     @GET("/library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
+
+    @POST("loans/{id}/remember-delivery")
+    fun rememberDelivery(@Path("id")id: String?): Observable<BaseModel<RememberDeliveryResponse>>
 }

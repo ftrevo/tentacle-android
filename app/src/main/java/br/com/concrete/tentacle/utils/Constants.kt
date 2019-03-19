@@ -21,16 +21,18 @@ const val DEFAULT_RETURN_DATE_IN_WEEKS = 2
 
 const val LOAN_ACTION_LEND = "LEND"
 const val LOAN_ACTION_RETURN = "RETURN"
+const val LOAN_ACTION_REMEMBER_DELIVERY = "LOAN_ACTION_REMEMBER_DELIVERY"
 const val PLATFORM_XBOX_ONE = "XBOXONE"
 const val PLATFORM_XBOX_360 = "XBOX360"
 const val PLATFORM_NINTENDO_SWITCH = "NINTENDOSWITCH"
 const val PLATFORM_NINTENDO_3DS = "NINTENDO3DS"
 
-const val TIME_PROGRESS_LOAD = 2500L
+const val TIME_PROGRESS_LOAD = 1500L
 const val IMAGE_SIZE_TYPE_COVER_SMALL = "cover_small" // 90 x 128
 const val IMAGE_SIZE_TYPE_SCREENSHOT_MED = "screenshot_med" // 569 x 320
 const val IMAGE_SIZE_TYPE_COVER_BIG = "cover_big" // 264 x 374
 const val IMAGE_SIZE_TYPE_LOGO_MED = "logo_med" // 284 x 160
+const val IMAGE_SIZE_TYPE_ORIGINAL = "original" // 284 x 160
 const val IMAGE_SIZE_TYPE_SCREENSHOT_BIG = "screenshot_big" // 889 x 500
 const val IMAGE_SIZE_TYPE_SCREENSHOT_HUGE = "screenshot_huge" // 1280 x 720
 const val IMAGE_SIZE_TYPE_THUMB = "thumb" // 90 x 90
@@ -45,3 +47,5 @@ const val GAME_MODE_MULTI_PLAYER = "multiplayer"
 const val GAME_MODE_CO_OPERATIVE = "co-operative"
 const val GAME_MODE_MMO = "massively-multiplayer-online-mmo"
 const val GAME_MODE_SPLIT_SCREEN = "split-screen"
+
+const val DEFAULT_EXCEPTION_STATUS_CODE = 0

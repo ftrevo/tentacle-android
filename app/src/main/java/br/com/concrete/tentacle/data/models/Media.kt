@@ -11,7 +11,7 @@ data class Media(
     val platform: Platform,
     val activeLoan: ActiveLoan?,
     @SerializedName("gameData")
-    val game: GameData?,
+    val game: Game?,
     val active: Boolean = true
 ) : Parcelable {
 
@@ -28,7 +28,7 @@ data class Media(
                 "",
                 ""
             ),
-            GameData(ID_EMPTY_MEDIA, "")
+            Game.getEmptyGame()
         )
     }
 }
