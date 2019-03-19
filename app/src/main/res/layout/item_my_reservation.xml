@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:lines="@integer/line_1"
             android:ellipsize="end"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/dp_8"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/mediaImageView"
             app:layout_constraintStart_toEndOf="@+id/mediaImageView"
