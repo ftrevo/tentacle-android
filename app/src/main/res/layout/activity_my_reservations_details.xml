@@ -24,13 +24,12 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"/>
 
-        <ImageView
+        <include
+                layout="@layout/dashed_include"
                 android:id="@+id/dashed"
-                app:srcCompat="@drawable/dashed_shape"
                 app:layout_constraintTop_toBottomOf="@id/gameView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_10"
-                android:layerType="software"/>
+                android:layout_height="@dimen/dp_10"/>
 
         <LinearLayout
                 android:paddingTop="@dimen/margin_default"

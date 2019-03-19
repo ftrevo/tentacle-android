@@ -3,7 +3,9 @@ package br.com.concrete.tentacle.features.lendgame
 import android.content.Intent
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -48,41 +50,50 @@ class LendGameActivityTest : BaseInstrumentedTest() {
     fun testLoadLendSuccessWithoutReservation() {
         setResponse("mockjson/library/loan/lend_response_success.json".getJson(), 200)
 
-        onView(withId(R.id.mediaRegisterImageView)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvGameName)).check(matches(withText("Fifa 2015")))
+        onView(withId(R.id.ivGameCover)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Super Meat Boy")))
         onView(withId(R.id.tvReservado)).check(matches(withText("Solicitado por")))
-        onView(withId(R.id.tvRequestedBy)).check(matches(withText("RWYEG")))
+        onView(withId(R.id.tvRequestedBy)).check(matches(withText("Daivid Vasconcelos Leal")))
         onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
         onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
         onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.btLendGame)).perform(scrollTo())
         onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvDateRequested)).check(matches(withText("em 14/03/19")))
+        onView(withId(R.id.btRequestReturn)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.btLendGame)).check(matches(hasDescendant(withText("Jogo entregue"))))
     }
 
     @Test
     fun testLoadLendSuccessWithReservation() {
         setResponse("mockjson/library/loan/lend_response_success_with_reservation.json".getJson(), 200)
 
-        onView(withId(R.id.mediaRegisterImageView)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvGameName)).check(matches(withText("Fifa 2015")))
+        onView(withId(R.id.ivGameCover)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Super Beat Sports")))
         onView(withId(R.id.tvReservado)).check(matches(withText("Reservado por")))
-        onView(withId(R.id.tvRequestedBy)).check(matches(withText("RWYEG")))
+        onView(withId(R.id.tvRequestedBy)).check(matches(withText("Daivid Vasconcelos Leal")))
         onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
         onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
         onView(withId(R.id.tvDate)).check(matches(withText(date)))
-        onView(withId(R.id.btLendGame)).check(matches(not(isDisplayed())))
+        onView(withId(R.id.btLendGame)).perform(scrollTo())
+        onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvDateRequested)).check(matches(withText("em 08/03/19")))
+        onView(withId(R.id.btRequestReturn)).check(matches(isDisplayed()))
+        onView(withId(R.id.btLendGame)).check(matches(hasDescendant(withText("Jogo devolvido"))))
     }
 
     @Test
     fun testLoadLendSuccessWithoutReservationClickButton() {
         setResponse("mockjson/library/loan/lend_response_success.json".getJson(), 200)
 
-        onView(withId(R.id.mediaRegisterImageView)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvGameName)).check(matches(withText("Fifa 2015")))
+        onView(withId(R.id.ivGameCover)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Super Meat Boy")))
         onView(withId(R.id.tvReservado)).check(matches(withText("Solicitado por")))
-        onView(withId(R.id.tvRequestedBy)).check(matches(withText("RWYEG")))
+        onView(withId(R.id.tvRequestedBy)).check(matches(withText("Daivid Vasconcelos Leal")))
         onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
         onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
         onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.btLendGame)).perform(scrollTo())
         onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
 
         setResponse("mockjson/library/loan/lend_response_success_updated.json".getJson(), 200)
@@ -96,13 +107,14 @@ class LendGameActivityTest : BaseInstrumentedTest() {
     fun testLoadLendSuccessWithoutReservationClickButtonWithoutConnection() {
         setResponse("mockjson/library/loan/lend_response_success.json".getJson(), 200)
 
-        onView(withId(R.id.mediaRegisterImageView)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvGameName)).check(matches(withText("Fifa 2015")))
+        onView(withId(R.id.ivGameCover)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Super Meat Boy")))
         onView(withId(R.id.tvReservado)).check(matches(withText("Solicitado por")))
-        onView(withId(R.id.tvRequestedBy)).check(matches(withText("RWYEG")))
+        onView(withId(R.id.tvRequestedBy)).check(matches(withText("Daivid Vasconcelos Leal")))
         onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
         onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
         onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.btLendGame)).perform(scrollTo())
         onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
 
         setResponse("mockjson/errors/error_400.json".getJson(), 400)

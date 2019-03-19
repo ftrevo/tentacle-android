@@ -110,7 +110,7 @@
 
             </com.google.android.material.chip.ChipGroup>
 
-            <br.com.concrete.tentacle.custom.StateButtomView
+            <br.com.concrete.tentacle.custom.StateButtonView
                     android:id="@+id/mediaRegisterButton"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"

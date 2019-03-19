@@ -157,7 +157,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvTitle2"/>
 
-            <br.com.concrete.tentacle.custom.StateButtomView
+            <br.com.concrete.tentacle.custom.StateButtonView
                     android:id="@+id/btPerformLoan"
                     app:buttonName="@string/library_loan_perform_loan"
                     style="@style/StyleButton"
