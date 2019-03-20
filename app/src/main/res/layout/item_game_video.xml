@@ -5,12 +5,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dp_8"
-        android:background="#3b4048">
+        android:background="@color/backgroundItemGameVideo">
 
     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBackground"
-            android:layout_width="125dp"
-            android:layout_height="95dp"
+            android:layout_width="@dimen/heightGameVideo"
+            android:layout_height="@dimen/widthGameVideo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
