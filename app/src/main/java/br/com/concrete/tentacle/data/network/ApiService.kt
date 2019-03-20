@@ -117,6 +117,6 @@ interface ApiService {
     @GET("users/profile")
     fun getProfile(): Observable<BaseModel<User>>
 
-    @PATCH("users")
-    fun updateUserProfile(@Body user: UserRequest): Observable<BaseModel<Session>>
+    @PATCH("users/{id}")
+    fun updateUserProfile(@Path("id") userId: String, @Body user: UserRequest): Observable<BaseModel<Session>>
 }

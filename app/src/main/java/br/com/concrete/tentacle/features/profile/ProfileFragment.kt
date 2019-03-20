@@ -32,6 +32,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileFragment: BaseFragment() {
 
+    private val profileViewModel: ProfileViewModel by viewModel()
+
     private var isPhoneValid = false
     private var states: ArrayList<State>? = null
     private var cities: ArrayList<String>? = null
@@ -53,10 +55,102 @@ class ProfileFragment: BaseFragment() {
         initObservables()
         initButtonsClickListener()
         initPhoneValidate()
+
+        lifecycle.addObserver(profileViewModel)
     }
 
     private fun initObservables() {
-        //TODO - add observables
+        profileViewModel.getProfileViewState().observe(this, Observer { profileViewState ->
+            when (profileViewState.status) {
+                ViewStateModel.Status.LOADING -> showProgress(true)
+                ViewStateModel.Status.SUCCESS -> {
+                    showProgress(false)
+                    showLoadError(false)
+                    profileViewState.model?.let {
+                        currentUser = it
+                        setupViews()
+                        profileViewModel.loadStates()
+                    }
+                }
+                ViewStateModel.Status.ERROR -> {
+                    showProgress(false)
+                    showLoadError(true)
+                }
+            }
+        })
+
+        profileViewModel.getStateViewState().observe(this, Observer { viewState ->
+            when (viewState.status) {
+                ViewStateModel.Status.LOADING -> {
+                    enableField(false)
+                }
+                ViewStateModel.Status.SUCCESS -> {
+                    states = viewState.model
+                    val statesList: ArrayList<String> = ArrayList()
+                    states?.map {
+                        statesList.add(it.toString())
+                    }
+
+                    stateSelected?.let {
+                        stateSearchSpinner.setText(it.initials)
+                        profileViewModel.loadCities(it._id)
+                    }
+
+                    dialogState = SpinnerDialog(
+                        activity!!, statesList,
+                        getString(R.string.state_dialog_text), getString(R.string.dialog_close)
+                    )
+                    initDialogStateBind()
+                    enableField(true)
+                }
+                ViewStateModel.Status.ERROR -> {
+                    progressButton(false)
+                    enableField(true)
+                }
+            }
+        })
+
+        profileViewModel.getCityViewState().observe(this, Observer { viewState ->
+            when (viewState.status) {
+                ViewStateModel.Status.LOADING -> {
+                    enableField(false)
+                }
+                ViewStateModel.Status.SUCCESS -> {
+                    cities = viewState.model
+
+                    citySelected?.let {
+                        citySearchSpinner.setText(it)
+                    }
+
+                    dialogCity = SpinnerDialog(
+                        activity!!, cities, getString(R.string.city_dialog_text),
+                        getString(R.string.dialog_close)
+                    )
+                    initDialogCityBind()
+                    enableField(true)
+                }
+                ViewStateModel.Status.ERROR -> {
+                    enableField(true)
+                }
+            }
+        })
+
+        profileViewModel.getProfileUpdateViewState().observe(this, Observer { profileUpdatedViewState ->
+            when(profileUpdatedViewState.status) {
+                ViewStateModel.Status.LOADING -> showProgress(true)
+                ViewStateModel.Status.SUCCESS -> {
+                    showProgress(false)
+
+                    if (isAdded && activity != null) {
+                        activity!!.callSnackbar(view!!, getString(R.string.profile_changed_success))
+                    }
+                }
+                ViewStateModel.Status.ERROR -> {
+                    showProgress(false)
+                    showError(profileUpdatedViewState.errors)
+                }
+            }
+        })
     }
 
     private fun setupViews() {
@@ -76,7 +170,7 @@ class ProfileFragment: BaseFragment() {
         }
 
         loadError.setUpActionErrorButton {
-            //TODO - getProfile
+            profileViewModel.getProfile()
         }
 
         stateSearchSpinner.setOnClickListener {
@@ -127,7 +221,7 @@ class ProfileFragment: BaseFragment() {
             if (states != null) {
                 stateSelected = states!![position]
                 stateSelected?.let { state ->
-                    //TODO - load cities
+                    profileViewModel.loadCities(state._id)
                     stateSearchSpinner.setText(state.initials)
                     resetCity()
                 }
@@ -188,7 +282,7 @@ class ProfileFragment: BaseFragment() {
                 password = null
             )
 
-            //TODO - update profile
+            profileViewModel.updateProfile(currentUser._id, userRequest)
         }
     }
 

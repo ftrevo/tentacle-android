@@ -16,8 +16,8 @@ class UserLoggedRepository(private val api: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun updateProfile(userRequest: UserRequest): Observable<BaseModel<Session>> {
-        return api.updateUserProfile(userRequest)
+    fun updateProfile(userId: String, userRequest: UserRequest): Observable<BaseModel<Session>> {
+        return api.updateUserProfile(userId, userRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
