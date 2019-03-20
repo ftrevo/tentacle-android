@@ -18,7 +18,7 @@ class LoanActivitySuccess : BaseActivity() {
 
     companion object {
         const val GAME_NAME_EXTRA = "gameNameExtra"
-        const val GAME_NAME_EXTRA_ID = "idGame"
+        const val GAME_NAME_EXTRA_ID = "gameImageIdExtra"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
