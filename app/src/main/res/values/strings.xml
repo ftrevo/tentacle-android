@@ -214,8 +214,11 @@
     <string name="ops_ocorreu_erro">Ops!</string>
 
     <string name="delete_dialog_title">Excluir Jogo</string>
-    <string name="delete_dialog_message">O jogo %1$s sairá da lista de \"Meus Jogos\", mas você poderá adicioná-lo novamente no futuro.</string>
-    <string name="delete_dialog_error">Ocorreu um erro ao tentar deletar o jogo, por favor tente novamente mais tarde!</string>
+    <string name="delete_dialog_message">O jogo %1$s sairá da lista de \"Meus Jogos\", mas você poderá adicioná-lo
+        novamente no futuro.
+    </string>
+    <string name="delete_dialog_error">Ocorreu um erro ao tentar deletar o jogo, por favor tente novamente mais tarde!
+    </string>
     <string name="delete">Excluir</string>
     <string name="not_delete">Agora não</string>
 
@@ -237,5 +240,12 @@
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
     <string name="midias_title">Mídias</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="version">versão %1$s</string>
+
+    <string name="profile">Perfil</string>
+    <string name="exit">Sair</string>
 
 </resources>

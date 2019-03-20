@@ -164,6 +164,9 @@ dependencies {
 
     //PinchToZoom
     implementation "com.github.chrisbanes:PhotoView:$pinchZoom"
+
+    //CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 }
 
 // Add to the bottom of the file

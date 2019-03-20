@@ -5,6 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -18,6 +24,7 @@ import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_host.bottomBar
 import org.koin.android.ext.android.inject
 
@@ -25,14 +32,23 @@ class HostActivity : BaseActivity(), CallBack {
 
     private lateinit var navController: NavController
     private val sharePrefRepository: SharedPrefRepository by inject()
+    private lateinit var drawerLayout: DrawerLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_host)
 
+        init()
         startNavListener()
-        setupToolbar(R.drawable.ic_logo_actionbar)
         initObservable()
+    }
+
+    private fun init(){
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBarWithIcon(toolbar, R.string.toolbar_title_home, R.drawable.ic_logo_actionbar)
+        drawerLayout = findViewById(R.id.drawer_layout)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
