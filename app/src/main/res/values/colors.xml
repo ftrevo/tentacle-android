@@ -42,4 +42,7 @@
     <color name="loan_state_expired">#ea5858</color>
     <color name="colorBGIconHome">#8024282F</color>
 
+    <color name="black_80_opacity">#99000000</color>
+    <color name="backgroundItemGameVideo">#3b4048</color>
+
 </resources>

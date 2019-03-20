@@ -274,7 +274,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
         searchView.setIconifiedByDefault(true)
     }
 
-    private fun updateListBeforeFilter(){
+    private fun updateListBeforeFilter() {
         viewModelLibrary.initPage()
         libraries = ArrayList()
         recyclerViewAdapter?.notifyDataSetChanged()

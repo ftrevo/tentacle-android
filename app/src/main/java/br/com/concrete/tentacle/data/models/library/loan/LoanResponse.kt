@@ -5,7 +5,6 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.extensions.toDate
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 import java.util.Date
 
 @Parcelize

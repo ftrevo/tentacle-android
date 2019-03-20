@@ -21,7 +21,6 @@ import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
-import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
@@ -90,7 +89,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
 
         myReservationViewModel.getMyReservationsPage().observe(this, Observer { base ->
             base.getContentIfNotHandler()?.let {
-                when(it.status) {
+                when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         val loansResponse = it.model
                         val loansList = loansResponse?.list as ArrayList<LoanResponse>
@@ -105,13 +104,10 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
 
                                 loadMoreItems = true
                                 recyclerViewAdapter?.setNewList(myReservationList)
-
                             }, TIME_PROGRESS_LOAD)
                         }
-
                     }
                     ViewStateModel.Status.LOADING -> {
-
                     }
                     ViewStateModel.Status.ERROR -> {
                         loadMoreItems = false
