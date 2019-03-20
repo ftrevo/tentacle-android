@@ -153,6 +153,7 @@ class LoanActivity : BaseActivity() {
         library?.let {
             val extras = Bundle()
             extras.putString(LoanActivitySuccess.GAME_NAME_EXTRA, it.name)
+            extras.putString(LoanActivitySuccess.GAME_NAME_EXTRA_ID, it.cover?.imageId)
             launchActivity<LoanActivitySuccess>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
             finish()
         }
