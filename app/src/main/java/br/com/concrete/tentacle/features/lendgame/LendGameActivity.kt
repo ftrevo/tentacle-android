@@ -165,7 +165,10 @@ class LendGameActivity : BaseActivity() {
                 btLendGame.visible(true)
 
                 tvRequestedBy.text = activeLoan.requestedByName
-                tvDateRequested.text = getString(R.string.date_requested_prefix, activeLoan.requestedAt.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT))
+                tvDateRequested.text = getString(
+                    R.string.date_requested_prefix,
+                    activeLoan.requestedAt.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT)
+                )
 
                 activeLoan.loanDate?.let {
                     tvReservado.text = getString(R.string.reserved_by)
@@ -189,8 +192,9 @@ class LendGameActivity : BaseActivity() {
                 bottomGroup.visible(false)
             }
 
-            val returnDate = activeLoan?.estimatedReturnDate?.toDate() ?: ActiveLoan.getDefaultReturnDate()
-            tvDate.text = getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
+            val returnDate =
+                activeLoan?.estimatedReturnDate?.toDate() ?: activeLoan?.getReturnDateWithoutEstimatedReturn()
+            tvDate.text = getString(R.string.date_return_prefix, returnDate?.format(SIMPLE_DATE_OUTPUT_FORMAT))
         }
 
         group.visibility = View.VISIBLE
@@ -198,7 +202,8 @@ class LendGameActivity : BaseActivity() {
 
     private fun lendGame() {
         activeLoan?.let {
-            val action = if (it.loanDate == null) LoanActionRequest(LOAN_ACTION_LEND) else LoanActionRequest(LOAN_ACTION_RETURN)
+            val action =
+                if (it.loanDate == null) LoanActionRequest(LOAN_ACTION_LEND) else LoanActionRequest(LOAN_ACTION_RETURN)
             viewModelLendGame.updateMediaLoan(it._id, action)
         }
     }

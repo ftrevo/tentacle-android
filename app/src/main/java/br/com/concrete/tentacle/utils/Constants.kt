@@ -16,7 +16,7 @@ const val PLATFORM_NINTENDO_3DS_ABBREV = "3DS"
 const val LIMIT_PAGE = 15
 
 const val SIMPLE_DATE_OUTPUT_FORMAT = "dd/MM/yy"
-const val DATE_FORMAT_ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+const val DATE_FORMAT_ISO_8601 = "yyyy-MM-dd"
 const val DEFAULT_RETURN_DATE_IN_WEEKS = 2
 
 const val LOAN_ACTION_LEND = "LEND"
@@ -49,3 +49,5 @@ const val GAME_MODE_MMO = "massively-multiplayer-online-mmo"
 const val GAME_MODE_SPLIT_SCREEN = "split-screen"
 
 const val DEFAULT_EXCEPTION_STATUS_CODE = 0
+
+const val ONE_HOUR = 60 * 60 * 1000L

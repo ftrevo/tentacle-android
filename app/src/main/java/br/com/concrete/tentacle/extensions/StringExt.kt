@@ -5,7 +5,7 @@ import br.com.concrete.tentacle.utils.BLANk_SPACE_STRING
 import br.com.concrete.tentacle.utils.EMPTY_STRING
 import br.com.concrete.tentacle.utils.DATE_FORMAT_ISO_8601
 import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.util.*
 
 fun String.validateEmail() = this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
@@ -25,7 +25,7 @@ fun String.toPlatformName() =
     }
 
 fun String.toDate(): Calendar {
-    val sdf = SimpleDateFormat(DATE_FORMAT_ISO_8601)
+    val sdf = SimpleDateFormat(DATE_FORMAT_ISO_8601, Locale("pt", "BR"))
     val date = sdf.parse(this)
     val cal = Calendar.getInstance()
     cal.time = date
