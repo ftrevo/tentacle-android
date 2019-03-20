@@ -110,7 +110,7 @@ class LoanActivity : BaseActivity() {
                     showLoading(false)
                     viewStateModel.errors?.let {
                         if (it.statusCode != DEFAULT_EXCEPTION_STATUS_CODE) {
-                            showError(viewStateModel.errors, getString(R.string.someone_was_faster))
+                            showError(viewStateModel.errors, getString(R.string.generic_fail_text))
                         } else {
                             showError(viewStateModel.errors)
                         }

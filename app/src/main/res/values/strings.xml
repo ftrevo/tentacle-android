@@ -169,7 +169,7 @@
     <string name="msg_empty_list">Ops! A sua busca não retornou nenhum resultado</string>
     <string name="already_account">Já tem uma conta?</string>
     <string name="was_some_mistake">Opa! Parece que ocorreu algum engano.</string>
-    <string name="someone_was_faster">Eita! Parece que alguém foi mais rápido.</string>
+    <string name="generic_fail_text">Ops! Parece que aconteceu alguma coisa.</string>
 
     <string name="text_game_info">Informações do jogo</string>
     <string name="text_game_gender">Gênero</string>
