@@ -184,7 +184,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/group"
                     android:visibility="gone"
-                    app:constraint_referenced_ids="btPerformLoan, gameView, recyclerView, chipContainer, tvGameName, tvTitle1, tvTitle2, spOwners"/>
+                    app:constraint_referenced_ids="tvGameMidia, btPerformLoan, gameView, recyclerView, chipContainer, tvGameName, tvTitle1, tvTitle2, spOwners"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
