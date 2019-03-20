@@ -5,7 +5,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dp_8"
-        android:layout_marginTop="@dimen/dp_8"
         android:background="#3b4048">
 
     <androidx.appcompat.widget.AppCompatImageView

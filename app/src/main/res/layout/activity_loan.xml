@@ -38,13 +38,24 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
 
+            <TextView
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gameView"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:textColor="@color/textColor"
+                    android:textAppearance="@style/TextHeavy.16sp"
+                    android:id="@+id/tvGameMidia"
+                    android:text="@string/midias_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/dp_25"
-                    app:layout_constraintTop_toBottomOf="@+id/gameView"
+                    android:layout_marginTop="@dimen/dp_4"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGameMidia"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
 
