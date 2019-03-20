@@ -8,7 +8,6 @@ import br.com.concrete.tentacle.utils.GAME_MODE_MULTI_PLAYER
 import br.com.concrete.tentacle.utils.GAME_MODE_SINGLE_PLAYER
 import br.com.concrete.tentacle.utils.GAME_MODE_SPLIT_SCREEN
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @Parcelize
 data class GameMode(

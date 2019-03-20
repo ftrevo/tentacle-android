@@ -14,5 +14,4 @@ class StateButtonWhiteView(
         backgroundColor(R.drawable.shape_border_rounded_white)
         textColor(R.color.colorAccent)
     }
-
 }

@@ -42,7 +42,6 @@ class LoadMyGamesViewHolder(
                             ContextCompat.getColor(holder.mLinearLayout.context, R.color.loanPerformed)
                         }
                         holder.mLinearLayout.ivLoanRequested.setColorFilter(color)
-
                     } ?: run {
                         holder.mLinearLayout.ivLoanRequested.visible(false)
                     }

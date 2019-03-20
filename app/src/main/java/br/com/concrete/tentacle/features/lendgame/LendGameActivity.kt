@@ -72,12 +72,12 @@ class LendGameActivity : BaseActivity() {
         }
     }
 
-    private fun initEvents(){
+    private fun initEvents() {
         btLendGame.setOnClickListener {
             lendGame()
         }
 
-        btRequestReturn.setOnClickListener{
+        btRequestReturn.setOnClickListener {
             rememberDelivery(activeLoan?._id)
         }
     }
@@ -136,7 +136,7 @@ class LendGameActivity : BaseActivity() {
     private fun lendSuccess(loanResponse: LoanResponse?) {
         showLoading(false)
         loanResponse?.let {
-            val action = if(it.returnDate == null) LOAN_ACTION_LEND else LOAN_ACTION_RETURN
+            val action = if (it.returnDate == null) LOAN_ACTION_LEND else LOAN_ACTION_RETURN
             val bundle = Bundle()
             bundle.putParcelable(LendGameActivitySuccess.LOAN_EXTRA, it)
             bundle.putString(LendGameActivitySuccess.ACTION_EXTRA, action)
@@ -144,7 +144,7 @@ class LendGameActivity : BaseActivity() {
         }
     }
 
-    private fun launchActivitySuccess(bundle: Bundle){
+    private fun launchActivitySuccess(bundle: Bundle) {
         launchActivity<LendGameActivitySuccess>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
         finish()
     }
@@ -159,7 +159,6 @@ class LendGameActivity : BaseActivity() {
             }
             gameView.showStatusView(false)
             tvRequestedBy.text = m.activeLoan?.requestedByName ?: ""
-
 
             activeLoan?.let { activeLoan ->
                 bottomGroup.visible(true)
@@ -177,21 +176,21 @@ class LendGameActivity : BaseActivity() {
 
                     tvExpired.visible(expired)
 
-                    if(expired){
+                    if (expired) {
 
                         btRequestReturn.enable()
-                    }else{
+                    } else {
                         btRequestReturn.disable()
                     }
-                } ?: run{
+                } ?: run {
                     btRequestReturn.visible(false)
                 }
-            } ?: run{
+            } ?: run {
                 bottomGroup.visible(false)
             }
 
             val returnDate = activeLoan?.estimatedReturnDate?.toDate() ?: ActiveLoan.getDefaultReturnDate()
-            tvDate.text =  getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
+            tvDate.text = getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
         }
 
         group.visibility = View.VISIBLE

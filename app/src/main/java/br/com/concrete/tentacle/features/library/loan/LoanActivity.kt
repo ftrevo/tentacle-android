@@ -270,5 +270,4 @@ class LoanActivity : BaseActivity() {
         spOwners.setHintTextColor(colorDisable)
         spOwners.setArrowColor(colorDisable)
     }
-
 }

@@ -34,7 +34,7 @@ class MyReservationViewModel(private val gameRepository: GameRepository) : BaseV
         disposables.add(gameRepository.loadMyLoans(page)
             .subscribe({ baseModel ->
                 viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
-                page+= 1
+                page += 1
             }, {
                 viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
             })
