@@ -20,7 +20,11 @@ import br.com.concrete.tentacle.utils.PLATFORM_PS4_ABBREV
 import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360
 import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS
+import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS_ABBREV
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH
+import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH_ABBREV
+import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360_ABBREV
+import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE_ABBREV
 import kotlinx.android.synthetic.main.fragment_register_media.container
 import kotlinx.android.synthetic.main.fragment_register_media.gameView
 import kotlinx.android.synthetic.main.fragment_register_media.mediaRegisterButton
@@ -88,19 +92,19 @@ class RegisterMediaFragment : BaseFragment() {
                     mediaRegisterButton.enable()
                 }
                 R.id.chip360 -> {
-                    selectedPlatform = PLATFORM_XBOX_360
+                    selectedPlatform = PLATFORM_XBOX_360_ABBREV
                     mediaRegisterButton.enable()
                 }
                 R.id.chipOne -> {
-                    selectedPlatform = PLATFORM_XBOX_ONE
+                    selectedPlatform = PLATFORM_XBOX_ONE_ABBREV
                     mediaRegisterButton.enable()
                 }
                 R.id.chip3ds -> {
-                    selectedPlatform = PLATFORM_NINTENDO_3DS
+                    selectedPlatform = PLATFORM_NINTENDO_3DS_ABBREV
                     mediaRegisterButton.enable()
                 }
                 R.id.chipSwitch -> {
-                    selectedPlatform = PLATFORM_NINTENDO_SWITCH
+                    selectedPlatform = PLATFORM_NINTENDO_SWITCH_ABBREV
                     mediaRegisterButton.enable()
                 }
                 else -> {
