@@ -11,6 +11,7 @@
             layout="@layout/logo_tentacle"/>
 
     <ScrollView
+            android:id="@+id/profileContent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,12 +123,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            android:background="@color/bgBottomBar"
             app:errorDescription="@string/load_error"
             app:errorTextDescription="@string/load_error"
             app:buttonNameTextError="@string/load_again"/>
 
     <include
-        layout="@layout/progress_include"/>
+        layout="@layout/progress_include"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

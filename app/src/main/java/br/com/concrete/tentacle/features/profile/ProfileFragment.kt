@@ -19,10 +19,12 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.digits
 import br.com.concrete.tentacle.extensions.validateEmail
+import br.com.concrete.tentacle.extensions.visible
 import kotlinx.android.synthetic.main.fragment_profile.citySearchSpinner
 import kotlinx.android.synthetic.main.fragment_profile.emailEditText
 import kotlinx.android.synthetic.main.fragment_profile.loadError
 import kotlinx.android.synthetic.main.fragment_profile.phoneEditText
+import kotlinx.android.synthetic.main.fragment_profile.profileContent
 import kotlinx.android.synthetic.main.fragment_profile.saveChangesButton
 import kotlinx.android.synthetic.main.fragment_profile.stateSearchSpinner
 import kotlinx.android.synthetic.main.fragment_profile.userNameEditText
@@ -291,14 +293,13 @@ class ProfileFragment: BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        progressBarList.visibility = setVisibility(show)
+        progressBarList.visible(show)
     }
 
     private fun showLoadError(show: Boolean) {
-        loadError.visibility = setVisibility(show)
+        profileContent.visible(!show)
+        loadError.visible(show)
     }
-
-    private fun setVisibility(isVisible: Boolean) = if (isVisible) VISIBLE else GONE
 
     override fun getToolbarTitle(): Int = R.string.profile_title
 
