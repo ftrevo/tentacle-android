@@ -113,6 +113,8 @@ class ProfileFragmentTest: BaseFragmentTest() {
     fun checkValidName() {
         if (!SHOW_LOADING_ERROR_SCREEN) {
             setField("Teste Teste", R.id.userNameEditText)
+
+            setField("", R.id.emailEditText)    //force this error in order to only make validations after click
             clickButton(R.id.saveChangesButton)
             matchesNotIsDisplayed(R.string.name_error)
         }
@@ -129,6 +131,8 @@ class ProfileFragmentTest: BaseFragmentTest() {
     @Test
     fun checkValidEmail() {
         if (!SHOW_LOADING_ERROR_SCREEN) {
+
+            setField("", R.id.userNameEditText)    //force this error in order to only make validations after click
             setField("teste@teste.com", R.id.emailEditText)
             clickButton(R.id.saveChangesButton)
             matchesNotIsDisplayed(R.string.email_error)
@@ -155,6 +159,8 @@ class ProfileFragmentTest: BaseFragmentTest() {
     fun checkValidPhone() {
         if (!SHOW_LOADING_ERROR_SCREEN) {
             setField("99 999999999", R.id.phoneEditText)
+
+            setField("", R.id.emailEditText)    //force this error in order to only make validations after click
             clickButton(R.id.saveChangesButton)
             matchesNotIsDisplayed(R.string.phone_error)
         }

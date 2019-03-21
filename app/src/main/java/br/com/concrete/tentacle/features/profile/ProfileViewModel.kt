@@ -12,6 +12,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.data.repositories.UserLoggedRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
+import br.com.concrete.tentacle.utils.LogWrapper
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
 class ProfileViewModel(
@@ -41,6 +42,7 @@ class ProfileViewModel(
                     status = ViewStateModel.Status.SUCCESS,
                     model = baseModel.data ))
             }, {
+                LogWrapper.print(it)
                 viewStateProfile.postValue(ViewStateModel(
                     status = ViewStateModel.Status.ERROR,
                     errors = notKnownError(it)))
@@ -55,6 +57,7 @@ class ProfileViewModel(
                 status = ViewStateModel.Status.SUCCESS,
                 model = base.data.list as ArrayList<State>))
         }, {
+            LogWrapper.print(it)
             viewStateState.postValue(ViewStateModel(
                 status = ViewStateModel.Status.ERROR,
                 errors = notKnownError(it)))
@@ -68,6 +71,7 @@ class ProfileViewModel(
                 status = ViewStateModel.Status.SUCCESS,
                 model = base.data.cities as ArrayList<String>))
         }, {
+            LogWrapper.print(it)
             viewStateCity.postValue(ViewStateModel(
                 status = ViewStateModel.Status.ERROR,
                 errors = notKnownError(it)))
@@ -83,6 +87,7 @@ class ProfileViewModel(
                     status = ViewStateModel.Status.SUCCESS,
                     model = baseModel.data ))
             }, {
+                LogWrapper.print(it)
                 viewStateUpdate.postValue(ViewStateModel(
                     status = ViewStateModel.Status.ERROR,
                     errors = notKnownError(it)))
