@@ -242,5 +242,8 @@
     <string name="fcm_message">FCM Message</string>
     <string name="midias_title">Mídias</string>
     <string name="something_happened">Ops! Parece que algo aconteceu!</string>
+    <string name="exampleMessage">O jogo sairá da lista de ‘’Meus jogos’’. Mas você poderá adicioná-lo novamente no
+        futuro.
+    </string>
 
 </resources>
