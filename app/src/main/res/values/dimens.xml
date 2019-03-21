@@ -90,6 +90,7 @@
     <dimen name="filterCloseButtonWidth">40dp</dimen>
     <dimen name="filterCloseButtonHeight">40dp</dimen>
     <dimen name="lineSpacingExtra">8sp</dimen>
+    <dimen name="lineSpacingExtra10">10sp</dimen>
 
     <dimen name="chipWidth">78dp</dimen>
     <dimen name="chipHeight">54dp</dimen>

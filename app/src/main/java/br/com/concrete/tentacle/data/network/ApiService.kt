@@ -10,6 +10,9 @@ import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
+import br.com.concrete.tentacle.data.models.Session
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
@@ -110,4 +113,10 @@ interface ApiService {
 
     @POST("loans/{loanId}/remember-delivery")
     fun rememberDelivery(): Observable<BaseModel<RememberDeliveryResponse>>
+
+    @GET("users/profile")
+    fun getProfile(): Observable<BaseModel<User>>
+
+    @PATCH("users/{id}")
+    fun updateUserProfile(@Path("id") userId: String, @Body user: UserRequest): Observable<BaseModel<Session>>
 }
