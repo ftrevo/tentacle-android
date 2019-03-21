@@ -144,7 +144,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                             list.setErrorMessage(R.string.load_games_error_not_know)
                             list.setButtonTextError(R.string.load_again)
                             list.setActionError {
-                                viewModelLoadMyGames.loadGamePage()
+                                viewModelLoadMyGames.loadMyGames()
                             }
                         }
                         list.updateUi<Media>(null)

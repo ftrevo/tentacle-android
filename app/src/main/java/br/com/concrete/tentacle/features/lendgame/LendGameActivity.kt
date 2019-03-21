@@ -25,6 +25,7 @@ import br.com.concrete.tentacle.utils.LOAN_ACTION_LEND
 import br.com.concrete.tentacle.utils.LOAN_ACTION_REMEMBER_DELIVERY
 import br.com.concrete.tentacle.utils.LOAN_ACTION_RETURN
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
+import kotlinx.android.synthetic.main.activity_lend_game.bottomGroup
 import kotlinx.android.synthetic.main.activity_lend_game.btLendGame
 import kotlinx.android.synthetic.main.activity_lend_game.btRequestReturn
 import kotlinx.android.synthetic.main.activity_lend_game.gameView
@@ -71,13 +72,13 @@ class LendGameActivity : BaseActivity() {
         }
     }
 
-    private fun initEvents(){
+    private fun initEvents() {
         btLendGame.setOnClickListener {
             lendGame()
         }
 
-        btRequestReturn.setOnClickListener{
-            rememberDelivery()
+        btRequestReturn.setOnClickListener {
+            rememberDelivery(activeLoan?._id)
         }
     }
 
@@ -135,15 +136,15 @@ class LendGameActivity : BaseActivity() {
     private fun lendSuccess(loanResponse: LoanResponse?) {
         showLoading(false)
         loanResponse?.let {
-            val action = if(it.returnDate == null) LOAN_ACTION_LEND else LOAN_ACTION_RETURN
+            val action = if (it.returnDate == null) LOAN_ACTION_LEND else LOAN_ACTION_RETURN
             val bundle = Bundle()
-            bundle.putSerializable(LendGameActivitySuccess.LOAN_EXTRA, it)
+            bundle.putParcelable(LendGameActivitySuccess.LOAN_EXTRA, it)
             bundle.putString(LendGameActivitySuccess.ACTION_EXTRA, action)
             launchActivitySuccess(bundle)
         }
     }
 
-    private fun launchActivitySuccess(bundle: Bundle){
+    private fun launchActivitySuccess(bundle: Bundle) {
         launchActivity<LendGameActivitySuccess>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
         finish()
     }
@@ -159,12 +160,15 @@ class LendGameActivity : BaseActivity() {
             gameView.showStatusView(false)
             tvRequestedBy.text = m.activeLoan?.requestedByName ?: ""
 
-
             activeLoan?.let { activeLoan ->
+                bottomGroup.visible(true)
                 btLendGame.visible(true)
 
                 tvRequestedBy.text = activeLoan.requestedByName
-                tvDateRequested.text = getString(R.string.date_requested_prefix, activeLoan.requestedAt.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT))
+                tvDateRequested.text = getString(
+                    R.string.date_requested_prefix,
+                    activeLoan.requestedAt.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT)
+                )
 
                 activeLoan.loanDate?.let {
                     tvReservado.text = getString(R.string.reserved_by)
@@ -175,19 +179,22 @@ class LendGameActivity : BaseActivity() {
 
                     tvExpired.visible(expired)
 
-                    if(expired){
+                    if (expired) {
 
                         btRequestReturn.enable()
-                    }else{
+                    } else {
                         btRequestReturn.disable()
                     }
-                } ?: run{
+                } ?: run {
                     btRequestReturn.visible(false)
                 }
+            } ?: run {
+                bottomGroup.visible(false)
             }
 
-            val returnDate = ActiveLoan.getDefaultReturnDate()
-            tvDate.text =  getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
+            val returnDate =
+                activeLoan?.estimatedReturnDate?.toDate() ?: ActiveLoan.getDefaultReturnDate()
+            tvDate.text = getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
         }
 
         group.visibility = View.VISIBLE
@@ -195,13 +202,14 @@ class LendGameActivity : BaseActivity() {
 
     private fun lendGame() {
         activeLoan?.let {
-            val action = if (it.loanDate == null) LoanActionRequest(LOAN_ACTION_LEND) else LoanActionRequest(LOAN_ACTION_RETURN)
+            val action =
+                if (it.loanDate == null) LoanActionRequest(LOAN_ACTION_LEND) else LoanActionRequest(LOAN_ACTION_RETURN)
             viewModelLendGame.updateMediaLoan(it._id, action)
         }
     }
 
-    private fun rememberDelivery(){
-        viewModelLendGame.rememberDelivery()
+    private fun rememberDelivery(id: String?) {
+        viewModelLendGame.rememberDelivery(id)
     }
 
     override fun getFinishActivityTransition(): ActivityAnimation {

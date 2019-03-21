@@ -36,46 +36,45 @@ class LendGameActivitySuccess : BaseActivity() {
 
     private fun init() {
 
-        if(intent.hasExtra(ACTION_EXTRA)){
+        if (intent.hasExtra(ACTION_EXTRA)) {
             action = intent.getStringExtra(ACTION_EXTRA)
-            when(action){
+            when (action) {
                 LOAN_ACTION_LEND -> lendSuccess()
-                LOAN_ACTION_RETURN-> returnSuccess()
-                LOAN_ACTION_REMEMBER_DELIVERY-> rememberSuccess()
-
+                LOAN_ACTION_RETURN -> returnSuccess()
+                LOAN_ACTION_REMEMBER_DELIVERY -> rememberSuccess()
             }
         }
     }
 
-    private fun initEvents(){
+    private fun initEvents() {
         btCloseLend.setOnClickListener {
             finish()
         }
 
         btOk.setOnClickListener {
             finish()
-            action?.let{
-                HostActivity.fragment.value = if(it == LOAN_ACTION_LEND) R.id.navigate_to_library else R.id.navigate_to_my_games
+            action?.let {
+                HostActivity.fragment.value = if (it == LOAN_ACTION_LEND) R.id.navigate_to_library else R.id.navigate_to_my_games
             }
         }
     }
 
-    private fun lendSuccess(){
+    private fun lendSuccess() {
         if (intent.hasExtra(LOAN_EXTRA)) {
-            val args = intent.getSerializableExtra(LOAN_EXTRA) as LoanResponse
-            args.loanDate?.let {
+            val args = intent.getParcelableExtra<LoanResponse>(LOAN_EXTRA)
+            args.estimatedReturnDate?.let {
                 tvText.text = String.format(getString(R.string.lend_success), args.requestedBy.name, it.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT))
                 btOk.setButtonName(getString(R.string.back_to_library))
             }
         }
     }
 
-    private fun returnSuccess(){
+    private fun returnSuccess() {
         tvText.text = getString(R.string.return_success)
         btOk.setButtonName(getString(R.string.back_to_my_games))
     }
 
-    private fun rememberSuccess(){
+    private fun rememberSuccess() {
         if (intent.hasExtra(DELIVERY_RESPONSE_EXTRA)) {
             val args = intent.getParcelableExtra<RememberDeliveryResponse>(DELIVERY_RESPONSE_EXTRA)
             args?.let {

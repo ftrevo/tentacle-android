@@ -10,15 +10,18 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.AppTentacle
+import br.com.concrete.tentacle.data.repositories.TokenRepository
 import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import org.koin.android.ext.android.inject
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
+    private val tokenRepository: TokenRepository by inject()
     /**
      * Called when message is received.
      *
@@ -65,6 +68,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 TAG,
                 "Message Notification Body: ${it.body}"
             )
+            sendNotification(it.body, it.title)
+
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -124,7 +129,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * @param token The new token.
      */
     private fun sendRegistrationToServer(token: String?) {
-        // TODO: Implement this method to send token to your app server.
+        tokenRepository.sendToken(AppTentacle.TOKEN).subscribe({
+            LogWrapper.log("TokenResponse: ", it.message[0])
+        },{
+            LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
+        }).dispose()
     }
 
     /**
@@ -132,7 +141,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      *
      * @param messageBody FCM message body received.
      */
-    private fun sendNotification(messageBody: String) {
+    private fun sendNotification(messageBody: String?, messageTitle: String?) {
         val intent = Intent(this, HostActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -141,8 +150,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val channelId = getString(R.string.default_notification_channel_id)
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.bookmark_lend)
-            .setContentTitle(getString(R.string.fcm_message))
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(messageTitle)
             .setContentText(messageBody)
             .setAutoCancel(true)
             .setSound(defaultSoundUri)

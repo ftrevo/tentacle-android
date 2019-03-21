@@ -1,12 +1,14 @@
 package br.com.concrete.tentacle.base
 
 import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.interfaces.CallBack
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.callSnackbar
+import br.com.concrete.tentacle.utils.DialogUtils
 import org.jetbrains.annotations.TestOnly
 
 abstract class BaseFragment : Fragment() {
@@ -26,21 +28,17 @@ abstract class BaseFragment : Fragment() {
                 }
             }
             val ers = errors.toString()
-            val alertDialog: AlertDialog? = activity?.let { fragment ->
-                val builder = AlertDialog.Builder(fragment)
-                builder.setTitle(title)
-                builder.setMessage(ers)
-                builder.apply {
-                    setPositiveButton(
-                        R.string.ok
-                    ) { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                }
 
-                builder.create()
+            activity?.let {
+                DialogUtils.showDialog(
+                    context = it,
+                    title = if (title == "Erro") getString(R.string.something_happened) else title,
+                    message = ers,
+                    positiveText = getString(R.string.ok),
+                    positiveListener = DialogInterface.OnClickListener { _, _ -> },
+                    contentView = R.layout.custom_dialog_error
+                )
             }
-            alertDialog?.show()
         }
     }
 

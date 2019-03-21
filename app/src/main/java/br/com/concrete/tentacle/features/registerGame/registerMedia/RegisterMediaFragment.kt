@@ -20,7 +20,11 @@ import br.com.concrete.tentacle.utils.PLATFORM_PS4_ABBREV
 import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360
 import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS
+import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS_ABBREV
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH
+import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH_ABBREV
+import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360_ABBREV
+import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE_ABBREV
 import kotlinx.android.synthetic.main.fragment_register_media.container
 import kotlinx.android.synthetic.main.fragment_register_media.gameView
 import kotlinx.android.synthetic.main.fragment_register_media.mediaRegisterButton
@@ -32,6 +36,7 @@ class RegisterMediaFragment : BaseFragment() {
     private lateinit var idGame: String
     private lateinit var game: Game
     private var selectedPlatform = EMPTY_STRING
+    private var selectedPlatformText = EMPTY_STRING
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_register_media, container, false)
@@ -66,7 +71,10 @@ class RegisterMediaFragment : BaseFragment() {
                     DialogUtils.showDialog(
                         context = context,
                         title = getString(R.string.toolbar_title_search_game),
-                        message = String.format(getString(R.string.confirm_game), game.name, selectedPlatform),
+                        message = String.format(
+                            getString(R.string.confirm_game),
+                            game.name,
+                            selectedPlatformText),
                         positiveText = getString(R.string.confirm),
                         negativeText = getString(R.string.back),
                         positiveListener = DialogInterface.OnClickListener { _, _ ->
@@ -81,26 +89,32 @@ class RegisterMediaFragment : BaseFragment() {
             when (checkedId) {
                 R.id.chipPs3 -> {
                     selectedPlatform = PLATFORM_PS3_ABBREV
+                    selectedPlatformText = PLATFORM_PS3_ABBREV
                     mediaRegisterButton.enable()
                 }
                 R.id.chipPs4 -> {
                     selectedPlatform = PLATFORM_PS4_ABBREV
+                    selectedPlatformText = PLATFORM_PS4_ABBREV
                     mediaRegisterButton.enable()
                 }
                 R.id.chip360 -> {
                     selectedPlatform = PLATFORM_XBOX_360
+                    selectedPlatformText = PLATFORM_XBOX_360_ABBREV
                     mediaRegisterButton.enable()
                 }
                 R.id.chipOne -> {
                     selectedPlatform = PLATFORM_XBOX_ONE
+                    selectedPlatformText = PLATFORM_XBOX_ONE_ABBREV
                     mediaRegisterButton.enable()
                 }
                 R.id.chip3ds -> {
                     selectedPlatform = PLATFORM_NINTENDO_3DS
+                    selectedPlatformText = PLATFORM_NINTENDO_3DS_ABBREV
                     mediaRegisterButton.enable()
                 }
                 R.id.chipSwitch -> {
                     selectedPlatform = PLATFORM_NINTENDO_SWITCH
+                    selectedPlatformText = PLATFORM_NINTENDO_SWITCH_ABBREV
                     mediaRegisterButton.enable()
                 }
                 else -> {

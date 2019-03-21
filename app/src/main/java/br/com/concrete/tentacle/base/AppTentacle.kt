@@ -5,7 +5,6 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import android.util.Log
-import android.widget.Toast
 import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
@@ -18,7 +17,6 @@ import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.answers.Answers
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
-import com.google.firebase.messaging.FirebaseMessaging
 import io.fabric.sdk.android.Fabric
 import org.koin.android.ext.android.startKoin
 

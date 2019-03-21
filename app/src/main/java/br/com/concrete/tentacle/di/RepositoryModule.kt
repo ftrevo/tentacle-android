@@ -8,6 +8,7 @@ import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.data.repositories.LibraryRepository
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.data.repositories.UserLoggedRepository
+import br.com.concrete.tentacle.data.repositories.TokenRepository
 import org.koin.dsl.module.module
 
 val repositoryModule = module {
@@ -19,6 +20,7 @@ val repositoryModule = module {
     factory { LibraryRepository(get(API_WITH_TOKEN)) }
     factory { FilterRepository(get()) }
     factory { UserLoggedRepository(get()) }
+    factory { TokenRepository(get(API_WITH_TOKEN)) }
 
     single { SharedPrefRepository(get()) }
 }
