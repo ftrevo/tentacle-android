@@ -19,8 +19,6 @@ import kotlinx.android.synthetic.main.item_game_video.view.ivBackground
 
 class
 
-
-
 LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
     companion object {

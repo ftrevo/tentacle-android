@@ -49,7 +49,7 @@ class RegisterUserViewModel(
             viewStateUser.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data)))
             disposables.add(tokenRepository.sendToken(AppTentacle.TOKEN).subscribe({
                 LogWrapper.log("TokenResponse: ", it.message[0])
-            },{
+            }, {
                 LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
             }))
         }, {

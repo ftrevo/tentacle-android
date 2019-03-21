@@ -61,7 +61,6 @@ abstract class BaseActivity : AppCompatActivity() {
             }
             actionBar.setDisplayShowHomeEnabled(displayHome)
             actionBar.setDisplayHomeAsUpEnabled(displayHome)
-
         }
     }
 

@@ -37,7 +37,7 @@ class LoginViewModel(
                 postSession(base.data)
                 disposables.add(tokenRepository.sendToken(AppTentacle.TOKEN).subscribe({
                     LogWrapper.log("TokenResponse: ", it.message[0])
-                },{
+                }, {
                     LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
                 }))
             },
