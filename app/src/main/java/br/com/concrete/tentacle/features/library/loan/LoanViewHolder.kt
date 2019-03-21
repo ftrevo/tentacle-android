@@ -17,7 +17,11 @@ import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.item_game_video.view.imageView
 import kotlinx.android.synthetic.main.item_game_video.view.ivBackground
 
-class LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+class
+
+
+
+LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
     companion object {
 

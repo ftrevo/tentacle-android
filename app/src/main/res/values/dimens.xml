@@ -116,6 +116,8 @@
     <dimen name="recovery_password_texts_margins">30dp</dimen>
     <dimen name="heightGameVideo">125dp</dimen>
     <dimen name="widthGameVideo">95dp</dimen>
+    <dimen name="textSizeDialog">20sp</dimen>
+    <dimen name="heightErrorTentacle">180dp</dimen>
 
 </resources>
 
