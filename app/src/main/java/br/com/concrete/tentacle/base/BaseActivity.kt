@@ -7,6 +7,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
@@ -39,22 +40,27 @@ abstract class BaseActivity : AppCompatActivity() {
         setupToolbar(INVALID_TITLE, INVALID_ICON, displayHome)
     }
 
+    fun setSupportActionBarWithIcon(toolbar: Toolbar?, @StringRes title: Int, @DrawableRes icon: Int) {
+        super.setSupportActionBar(toolbar)
+        setupToolbar(title, icon)
+    }
+
     fun setupToolbar(
         title: Int,
         icon: Int,
         displayHome: Boolean = true
     ) {
-
         supportActionBar?.let { actionBar ->
             if (title != INVALID_TITLE) {
                 setToolbarTitle(title)
             }
 
-            actionBar.setDisplayShowHomeEnabled(displayHome)
-            actionBar.setDisplayHomeAsUpEnabled(displayHome)
             if (icon != -1 && displayHome) {
                 actionBar.setHomeAsUpIndicator(icon)
             }
+            actionBar.setDisplayShowHomeEnabled(displayHome)
+            actionBar.setDisplayHomeAsUpEnabled(displayHome)
+
         }
     }
 
