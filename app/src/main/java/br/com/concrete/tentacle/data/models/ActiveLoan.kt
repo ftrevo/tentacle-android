@@ -6,7 +6,8 @@ import br.com.concrete.tentacle.utils.DEFAULT_PENULTIMATE_DAY
 import br.com.concrete.tentacle.utils.DEFAULT_RETURN_DATE_IN_WEEKS
 import br.com.concrete.tentacle.utils.ONE_HOUR
 import kotlinx.android.parcel.Parcelize
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 @Parcelize
 data class ActiveLoan(
@@ -20,7 +21,11 @@ data class ActiveLoan(
 ) : Parcelable {
 
     companion object {
-        fun getDefaultReturnDate() = Calendar.getInstance()
+        fun getDefaultReturnDate(): Calendar {
+            val date = Calendar.getInstance()
+            date.add(Calendar.WEEK_OF_MONTH, DEFAULT_RETURN_DATE_IN_WEEKS)
+            return date
+        }
     }
 
     private fun getReturnDate(): Calendar? {
@@ -33,19 +38,11 @@ data class ActiveLoan(
         }
     }
 
-    fun getReturnDateWithoutEstimatedReturn(): Calendar? {
-        requestedAt.let {
-            val date = it.toDate()
-            date.add(Calendar.WEEK_OF_MONTH, DEFAULT_RETURN_DATE_IN_WEEKS)
-            return date
-        }
-    }
-
     fun isExpired(): Boolean {
         getReturnDate()?.let {
             val currentDate = Calendar.getInstance()
             val days = daysBetweenDates(currentDate.time, it.time)
-            return days < DEFAULT_PENULTIMATE_DAY
+            return days <= DEFAULT_PENULTIMATE_DAY
         } ?: run {
             return false
         }

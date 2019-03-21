@@ -193,8 +193,8 @@ class LendGameActivity : BaseActivity() {
             }
 
             val returnDate =
-                activeLoan?.estimatedReturnDate?.toDate() ?: activeLoan?.getReturnDateWithoutEstimatedReturn()
-            tvDate.text = getString(R.string.date_return_prefix, returnDate?.format(SIMPLE_DATE_OUTPUT_FORMAT))
+                activeLoan?.estimatedReturnDate?.toDate() ?: ActiveLoan.getDefaultReturnDate()
+            tvDate.text = getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
         }
 
         group.visibility = View.VISIBLE
