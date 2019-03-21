@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundDialog">
+
+    <ImageView
+            android:id="@+id/errorTentacle"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:src="@drawable/error_tentacle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+            android:id="@+id/titleMessage"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextMedium.20sp"
+            android:textColor="@color/textColor"
+            android:layout_marginStart="@dimen/dp_24"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@+id/errorTentacle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Ops! Parece que algo aconteceu!"/>
+
+    <TextView
+            android:id="@+id/message"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextMedium.20sp"
+            android:textColor="@color/textColor"
+            android:layout_marginTop="@dimen/dp_11"
+            android:layout_marginStart="@dimen/dp_24"
+            android:layout_marginEnd="@dimen/dp_24"
+            app:layout_constraintTop_toBottomOf="@+id/titleMessage"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="O jogo sairá da lista de ‘’Meus jogos’’. Mas você poderá adicioná-lo novamente no futuro."
+            android:gravity="start"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
