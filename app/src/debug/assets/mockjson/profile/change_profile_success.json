@@ -1,0 +1,11 @@
+{
+  "message":[
+    "Login realizado"
+  ],
+  "data":{
+    "accessToken":"TOKEN",
+    "refreshToken":"REFRESH_TOKEN",
+    "tokenType":"JWT"
+  }
+
+}
