@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.data.models.PaginationParameters
 import br.com.concrete.tentacle.extensions.hideKeyboard
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
@@ -124,8 +125,10 @@ class ListCustom(
                             pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition()
                         }
 
-                        if (mOnScrollListener.loadPage() && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                            if (mOnScrollListener.count() > mOnScrollListener.sizeElements()) {
+                        if (mOnScrollListener.paginationParameters().loadPage
+                            && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                            if (mOnScrollListener.paginationParameters().count
+                                > mOnScrollListener.paginationParameters().sizeElements) {
                                 mOnScrollListener.loadMore()
                                 buttonAction.visibility = View.GONE
                             }
@@ -193,5 +196,6 @@ class ListCustom(
         fun sizeElements(): Int
         fun loadMore()
         fun loadPage(): Boolean
+        fun paginationParameters(): PaginationParameters
     }
 }

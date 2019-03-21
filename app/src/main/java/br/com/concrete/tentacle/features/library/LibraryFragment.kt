@@ -21,6 +21,7 @@ import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.base.TIME_OUT
 import br.com.concrete.tentacle.base.MINIMAL_CHARACTER
 import br.com.concrete.tentacle.custom.ListCustom
+import br.com.concrete.tentacle.data.models.PaginationParameters
 import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
@@ -55,6 +56,8 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
 
     private var count = 0
     private var loadMoreItems = true
+
+    private val paginationParameters = PaginationParameters()
 
     override fun getToolbarTitle() = R.string.toolbar_title_library
 
@@ -291,7 +294,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
             true
         )
         libraries.add(null)
-        loadMoreItems = false
+        paginationParameters.loadPage = loadMoreItems
 
         recyclerViewAdapter?.notifyItemInserted(libraries.size - 1)
         libraries.addAll(ArrayList<Library>())
@@ -299,4 +302,6 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
     }
 
     override fun loadPage(): Boolean = loadMoreItems
+
+    override fun paginationParameters() = paginationParameters
 }
