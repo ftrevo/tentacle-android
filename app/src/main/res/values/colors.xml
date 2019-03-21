@@ -45,5 +45,6 @@
 
     <color name="black_80_opacity">#99000000</color>
     <color name="backgroundItemGameVideo">#3b4048</color>
+    <color name="backgroundDialog">#191b1f</color>
 
 </resources>

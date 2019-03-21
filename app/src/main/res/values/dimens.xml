@@ -96,6 +96,7 @@
     <dimen name="filterCloseButtonWidth">40dp</dimen>
     <dimen name="filterCloseButtonHeight">40dp</dimen>
     <dimen name="lineSpacingExtra">8sp</dimen>
+    <dimen name="lineSpacingExtra10">10sp</dimen>
 
     <dimen name="chipWidth">78dp</dimen>
     <dimen name="chipHeight">54dp</dimen>
@@ -121,6 +122,8 @@
     <dimen name="recovery_password_texts_margins">30dp</dimen>
     <dimen name="heightGameVideo">125dp</dimen>
     <dimen name="widthGameVideo">95dp</dimen>
+    <dimen name="textSizeDialog">20sp</dimen>
+    <dimen name="heightErrorTentacle">180dp</dimen>
 
 </resources>
 

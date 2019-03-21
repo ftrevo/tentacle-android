@@ -12,12 +12,16 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.loadImageUrl
 import br.com.concrete.tentacle.extensions.visible
-import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_ORIGINAL
+import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_LOGO_MED
 import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.item_game_video.view.imageView
 import kotlinx.android.synthetic.main.item_game_video.view.ivBackground
 
-class LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+class
+
+
+
+LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
     companion object {
 
@@ -52,7 +56,7 @@ class LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
             val idImage = screenshot.imageId
             item.ivBackground.loadImageUrl(
                 Utils.assembleGameImageUrl(
-                    sizeType = IMAGE_SIZE_TYPE_ORIGINAL,
+                    sizeType = IMAGE_SIZE_TYPE_LOGO_MED,
                     imageId = idImage
                 )
             )
