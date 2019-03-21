@@ -47,7 +47,7 @@
     <string name="user_or_password_error">Usuário ou senha inválidos!</string>
 
     <string name="unknow_error">Ocorreu um erro inesperado</string>
-    <string name="no_internet_connection">Ops! Parece que você está sem conexão com a internet</string>
+    <string name="no_internet_connection">Parece que você está sem conexão com a internet</string>
 
     <string name="search">Pesquisar</string>
 
@@ -167,7 +167,7 @@
     <string name="msg_empty_list">Ops! A sua busca não retornou nenhum resultado</string>
     <string name="already_account">Já tem uma conta?</string>
     <string name="was_some_mistake">Opa! Parece que ocorreu algum engano.</string>
-    <string name="someone_was_faster">Eita! Parece que alguém foi mais rápido.</string>
+    <string name="generic_fail_text">Ops! Parece que aconteceu alguma coisa.</string>
 
     <string name="text_game_info">Informações do jogo</string>
     <string name="text_game_gender">Gênero</string>
@@ -212,14 +212,18 @@
     <string name="ops_ocorreu_erro">Ops!</string>
 
     <string name="delete_dialog_title">Excluir Jogo</string>
-    <string name="delete_dialog_message">O jogo %1$s sairá da lista de \"Meus Jogos\", mas você poderá adicioná-lo novamente no futuro.</string>
-    <string name="delete_dialog_error">Ocorreu um erro ao tentar deletar o jogo, por favor tente novamente mais tarde!</string>
+    <string name="delete_dialog_message">O jogo %1$s sairá da lista de \"Meus Jogos\", mas você poderá adicioná-lo
+        novamente no futuro.
+    </string>
+    <string name="delete_dialog_error">Ocorreu um erro ao tentar deletar o jogo, por favor tente novamente mais tarde!
+    </string>
     <string name="delete">Excluir</string>
     <string name="not_delete">Agora não</string>
 
     <string name="quickstart_message">Click the SUBSCRIBE TO WEATHER button below to subscribe to the
         weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logs the
-        InstanceID token to logcat.</string>
+        InstanceID token to logcat.
+    </string>
     <string name="subscribe_to_weather">Subscribe To Weather</string>
     <string name="log_token">Log Token</string>
 
@@ -233,7 +237,12 @@
      -->
     <string name="default_notification_channel_name" translatable="true">Weather</string>
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
-    <string name="fcm_message">FCM Message</string>
+    <string name="fcm_message">Nova Mensagem</string>
+    <string name="midias_title">Mídias</string>
+    <string name="something_happened">Ops! Parece que algo aconteceu!</string>
+    <string name="exampleMessage">O jogo sairá da lista de ‘’Meus jogos’’. Mas você poderá adicioná-lo novamente no
+        futuro.
+    </string>
 
     <string name="profile_title">Perfil</string>
     <string name="profile_state_city_warning">Ao alterar o Estado/Cidade, você só conseguirá ver os jogos disponíveis na Concrete desta localidade.</string>

@@ -171,6 +171,13 @@
                 android:visibility="gone"
                 app:constraint_referenced_ids="dashed,gameView,tvReservado,tvRequestedBy,tvTempoReservaLabel,tvTempoReserva,tvDate,tvDateRequested"/>
 
+        <androidx.constraintlayout.widget.Group
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bottomGroup"
+                android:visibility="gone"
+                app:constraint_referenced_ids="dashed,tvReservado,tvRequestedBy,tvTempoReservaLabel,tvTempoReserva,tvDate,tvDateRequested"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

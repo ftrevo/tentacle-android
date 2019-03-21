@@ -1,17 +1,19 @@
 package br.com.concrete.tentacle.data.models.game
 
+import android.os.Parcelable
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.utils.GAME_MODE_CO_OPERATIVE
 import br.com.concrete.tentacle.utils.GAME_MODE_MMO
 import br.com.concrete.tentacle.utils.GAME_MODE_MULTI_PLAYER
 import br.com.concrete.tentacle.utils.GAME_MODE_SINGLE_PLAYER
 import br.com.concrete.tentacle.utils.GAME_MODE_SPLIT_SCREEN
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class GameMode(
     val slug: String?,
     val name: String?
-) : Serializable {
+) : Parcelable {
 
     fun getIconResource(): Int? {
         var icon: Int? = null

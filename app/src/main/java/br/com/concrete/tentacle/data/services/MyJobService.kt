@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.data.services
 
-import android.util.Log
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService

@@ -8,15 +8,13 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.custom.ChipCustom
-import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.MediaLibrary
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.visible
-import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
-import br.com.concrete.tentacle.utils.Utils
+import br.com.concrete.tentacle.utils.DEFAULT_EXCEPTION_STATUS_CODE
 import kotlinx.android.synthetic.main.activity_loan.btPerformLoan
 import kotlinx.android.synthetic.main.activity_loan.chip360
 import kotlinx.android.synthetic.main.activity_loan.chip3ds
@@ -100,7 +98,7 @@ class LoanActivity : BaseActivity() {
                         screenshots = viewStateModel.model?.screenshots
                     )
                 }
-                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors)
+                ViewStateModel.Status.ERROR -> showInitError()
             }
         })
 
@@ -108,7 +106,16 @@ class LoanActivity : BaseActivity() {
             when (viewStateModel.status) {
                 ViewStateModel.Status.LOADING -> showLoading(true)
                 ViewStateModel.Status.SUCCESS -> showLoanSuccess()
-                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors, getString(R.string.someone_was_faster))
+                ViewStateModel.Status.ERROR -> {
+                    showLoading(false)
+                    viewStateModel.errors?.let {
+                        if (it.statusCode != DEFAULT_EXCEPTION_STATUS_CODE) {
+                            showError(viewStateModel.errors, getString(R.string.generic_fail_text))
+                        } else {
+                            showError(viewStateModel.errors)
+                        }
+                    }
+                }
             }
         })
 
@@ -120,7 +127,7 @@ class LoanActivity : BaseActivity() {
                         gameView.setGame(it)
                         viewModel.loadLibrary(it._id)
                     }
-                ViewStateModel.Status.ERROR -> showError(viewStateModel.errors)
+                ViewStateModel.Status.ERROR -> showInitError()
             }
         })
     }
@@ -146,6 +153,7 @@ class LoanActivity : BaseActivity() {
         library?.let {
             val extras = Bundle()
             extras.putString(LoanActivitySuccess.GAME_NAME_EXTRA, it.name)
+            extras.putString(LoanActivitySuccess.GAME_NAME_EXTRA_ID, it.cover?.imageId)
             launchActivity<LoanActivitySuccess>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
             finish()
         }
@@ -241,14 +249,13 @@ class LoanActivity : BaseActivity() {
         }
     }
 
-    override fun showError(errors: ErrorResponse?, title: String) {
+    private fun showInitError() {
         showLoading(false)
         error.visibility = View.VISIBLE
         error.setUpComponents(R.drawable.ilustra_tentacle, R.string.load_error, R.string.load_again)
         error.setUpActionErrorButton {
             init()
         }
-        super.showError(errors, title)
     }
 
     override fun getFinishActivityTransition(): ActivityAnimation {
@@ -264,5 +271,4 @@ class LoanActivity : BaseActivity() {
         spOwners.setHintTextColor(colorDisable)
         spOwners.setArrowColor(colorDisable)
     }
-
 }

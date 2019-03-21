@@ -209,4 +209,8 @@ def gradleClean() {
     sh "./gradlew clean"
 }
 
+def cpArquivoFirebaseJson() {
+    sh "cp /Users/Shared/Jenkins/Home/jsonFirebaseTentacle/google-services.json /Users/Shared/Jenkins/Home/workspace/tentacle-frontend-android-debug-build/app"
+}
+
 return this

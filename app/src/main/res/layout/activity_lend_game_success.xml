@@ -26,7 +26,7 @@
             android:id="@+id/ivCover"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/checked"
+            android:src="@drawable/ilustra_tentacle_ok"
             android:layout_marginBottom="@dimen/dp_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

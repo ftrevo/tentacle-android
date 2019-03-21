@@ -27,7 +27,7 @@ const val PLATFORM_XBOX_360 = "XBOX360"
 const val PLATFORM_NINTENDO_SWITCH = "NINTENDOSWITCH"
 const val PLATFORM_NINTENDO_3DS = "NINTENDO3DS"
 
-const val TIME_PROGRESS_LOAD = 2500L
+const val TIME_PROGRESS_LOAD = 1500L
 const val IMAGE_SIZE_TYPE_COVER_SMALL = "cover_small" // 90 x 128
 const val IMAGE_SIZE_TYPE_SCREENSHOT_MED = "screenshot_med" // 569 x 320
 const val IMAGE_SIZE_TYPE_COVER_BIG = "cover_big" // 264 x 374
@@ -47,3 +47,12 @@ const val GAME_MODE_MULTI_PLAYER = "multiplayer"
 const val GAME_MODE_CO_OPERATIVE = "co-operative"
 const val GAME_MODE_MMO = "massively-multiplayer-online-mmo"
 const val GAME_MODE_SPLIT_SCREEN = "split-screen"
+
+const val DEFAULT_EXCEPTION_STATUS_CODE = 0
+
+const val ONE_HOUR = 60 * 60 * 1000L
+
+const val DEFAULT_PENULTIMATE_DAY = 1
+
+const val DEFAULT_LANGUAGE = "pt"
+const val DEFAULT_COUNTRY = "BR"

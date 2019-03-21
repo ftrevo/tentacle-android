@@ -70,8 +70,8 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadMyLoans(): Observable<BaseModel<LoansListResponse>> {
-        return apiRest.getMyLoans()
+    fun loadMyLoans(page: Int = 0): Observable<BaseModel<LoansListResponse>> {
+        return apiRest.getMyLoans(page = page)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
@@ -82,8 +82,8 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun rememberDelivery(): Observable<BaseModel<RememberDeliveryResponse>> {
-        return apiRest.rememberDelivery()
+    fun rememberDelivery(id: String?): Observable<BaseModel<RememberDeliveryResponse>> {
+        return apiRest.rememberDelivery(id)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
