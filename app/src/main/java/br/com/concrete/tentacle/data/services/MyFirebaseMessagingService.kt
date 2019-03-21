@@ -10,15 +10,18 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.AppTentacle
+import br.com.concrete.tentacle.data.repositories.TokenRepository
 import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import org.koin.android.ext.android.inject
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
+    private val tokenRepository: TokenRepository by inject()
     /**
      * Called when message is received.
      *
@@ -124,7 +127,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * @param token The new token.
      */
     private fun sendRegistrationToServer(token: String?) {
-        // TODO: Implement this method to send token to your app server.
+        tokenRepository.sendToken(AppTentacle.TOKEN).subscribe({
+            LogWrapper.log("TokenResponse: ", it.message[0])
+        },{
+            LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
+        }).dispose()
     }
 
     /**
