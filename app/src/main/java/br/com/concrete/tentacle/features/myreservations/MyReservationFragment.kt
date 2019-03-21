@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.custom.ListCustom
@@ -21,7 +22,6 @@ import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
-import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
@@ -90,7 +90,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
 
         myReservationViewModel.getMyReservationsPage().observe(this, Observer { base ->
             base.getContentIfNotHandler()?.let {
-                when(it.status) {
+                when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         val loansResponse = it.model
                         val loansList = loansResponse?.list as ArrayList<LoanResponse>
@@ -105,13 +105,10 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
 
                                 loadMoreItems = true
                                 recyclerViewAdapter?.setNewList(myReservationList)
-
                             }, TIME_PROGRESS_LOAD)
                         }
-
                     }
                     ViewStateModel.Status.LOADING -> {
-
                     }
                     ViewStateModel.Status.ERROR -> {
                         loadMoreItems = false
@@ -180,7 +177,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
             callback?.changeBottomBar(R.id.action_library, R.id.navigate_to_library)
         }
 
-        (activity as HostActivity).setupToolbar(R.string.toolbar_title_my_reservations, R.drawable.ic_logo_actionbar)
+        (activity as BaseActivity).setupToolbar(R.string.toolbar_title_my_reservations, R.drawable.ic_logo_actionbar)
     }
 
     override fun count() = count

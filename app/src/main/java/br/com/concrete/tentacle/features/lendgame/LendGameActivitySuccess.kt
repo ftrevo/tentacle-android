@@ -40,8 +40,8 @@ class LendGameActivitySuccess : BaseActivity() {
             action = intent.getStringExtra(ACTION_EXTRA)
             when (action) {
                 LOAN_ACTION_LEND -> lendSuccess()
-                LOAN_ACTION_RETURN-> returnSuccess()
-                LOAN_ACTION_REMEMBER_DELIVERY-> rememberSuccess()
+                LOAN_ACTION_RETURN -> returnSuccess()
+                LOAN_ACTION_REMEMBER_DELIVERY -> rememberSuccess()
             }
         }
     }

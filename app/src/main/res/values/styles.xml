@@ -25,6 +25,12 @@
         <item name="android:screenOrientation">portrait</item>
     </style>
 
+    <style name="Translucent" parent="AppTheme.FullScreen">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 
     <style name="TextInputLayoutStyle">
         <item name="android:layout_marginStart">@dimen/margin_default</item>

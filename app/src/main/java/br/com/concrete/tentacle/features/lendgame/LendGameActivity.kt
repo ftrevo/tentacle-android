@@ -25,6 +25,7 @@ import br.com.concrete.tentacle.utils.LOAN_ACTION_LEND
 import br.com.concrete.tentacle.utils.LOAN_ACTION_REMEMBER_DELIVERY
 import br.com.concrete.tentacle.utils.LOAN_ACTION_RETURN
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
+import kotlinx.android.synthetic.main.activity_lend_game.bottomGroup
 import kotlinx.android.synthetic.main.activity_lend_game.btLendGame
 import kotlinx.android.synthetic.main.activity_lend_game.btRequestReturn
 import kotlinx.android.synthetic.main.activity_lend_game.gameView
@@ -76,7 +77,7 @@ class LendGameActivity : BaseActivity() {
             lendGame()
         }
 
-        btRequestReturn.setOnClickListener{
+        btRequestReturn.setOnClickListener {
             rememberDelivery(activeLoan?._id)
         }
     }
@@ -160,6 +161,7 @@ class LendGameActivity : BaseActivity() {
             tvRequestedBy.text = m.activeLoan?.requestedByName ?: ""
 
             activeLoan?.let { activeLoan ->
+                bottomGroup.visible(true)
                 btLendGame.visible(true)
 
                 tvRequestedBy.text = activeLoan.requestedByName
@@ -183,9 +185,11 @@ class LendGameActivity : BaseActivity() {
                 } ?: run {
                     btRequestReturn.visible(false)
                 }
+            } ?: run {
+                bottomGroup.visible(false)
             }
 
-            val returnDate = ActiveLoan.getDefaultReturnDate()
+            val returnDate = activeLoan?.estimatedReturnDate?.toDate() ?: ActiveLoan.getDefaultReturnDate()
             tvDate.text = getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
         }
 

@@ -20,6 +20,10 @@ class LoadMyGamesViewHolder(
         fun callBack(holder: RecyclerView.ViewHolder, el: Media, listener: (Media) -> Unit, listenerLongClick: (Media) -> Unit) {
             if (holder is LoadMyGamesViewHolder) {
 
+                holder.itemView.setOnClickListener {
+                    listener(el)
+                }
+
                 if (el._id == Media.ID_EMPTY_MEDIA) {
                     visibleView(holder, false)
                 } else {
@@ -38,10 +42,6 @@ class LoadMyGamesViewHolder(
                             ContextCompat.getColor(holder.mLinearLayout.context, R.color.loanPerformed)
                         }
                         holder.mLinearLayout.ivLoanRequested.setColorFilter(color)
-
-                        holder.itemView.setOnClickListener {
-                            listener(el)
-                        }
                     } ?: run {
                         holder.mLinearLayout.ivLoanRequested.visible(false)
                     }

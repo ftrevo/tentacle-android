@@ -110,7 +110,7 @@ class LoanActivity : BaseActivity() {
                     showLoading(false)
                     viewStateModel.errors?.let {
                         if (it.statusCode != DEFAULT_EXCEPTION_STATUS_CODE) {
-                            showError(viewStateModel.errors, getString(R.string.someone_was_faster))
+                            showError(viewStateModel.errors, getString(R.string.generic_fail_text))
                         } else {
                             showError(viewStateModel.errors)
                         }
@@ -153,6 +153,7 @@ class LoanActivity : BaseActivity() {
         library?.let {
             val extras = Bundle()
             extras.putString(LoanActivitySuccess.GAME_NAME_EXTRA, it.name)
+            extras.putString(LoanActivitySuccess.GAME_NAME_EXTRA_ID, it.cover?.imageId)
             launchActivity<LoanActivitySuccess>(extras = extras, animation = ActivityAnimation.TRANSLATE_UP)
             finish()
         }

@@ -9,7 +9,9 @@ import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.MessageReturn
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
+import br.com.concrete.tentacle.data.models.RequestUpdateToken
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
@@ -32,6 +34,13 @@ interface ApiService {
         @Query("limit") limit: Int = LIMIT_PAGE,
         @Query("page") page: Int = 0
     ): Observable<BaseModel<GameResponse>>
+
+    @POST("/device-token")
+    fun sendToken(
+        @Body
+        deviceToken: RequestUpdateToken
+    ): Observable<BaseModel<MessageReturn>>
+
 
     @POST("/games")
     fun registerNewGame(
