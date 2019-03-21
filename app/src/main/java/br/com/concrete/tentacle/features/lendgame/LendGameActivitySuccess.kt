@@ -62,7 +62,7 @@ class LendGameActivitySuccess : BaseActivity() {
     private fun lendSuccess() {
         if (intent.hasExtra(LOAN_EXTRA)) {
             val args = intent.getParcelableExtra<LoanResponse>(LOAN_EXTRA)
-            args.loanDate?.let {
+            args.estimatedReturnDate?.let {
                 tvText.text = String.format(getString(R.string.lend_success), args.requestedBy.name, it.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT))
                 btOk.setButtonName(getString(R.string.back_to_library))
             }
