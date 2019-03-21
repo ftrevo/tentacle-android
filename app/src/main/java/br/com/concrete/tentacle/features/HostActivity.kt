@@ -5,12 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -24,7 +18,6 @@ import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
-import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_host.*
 import org.koin.android.ext.android.inject
 
@@ -41,7 +34,7 @@ class HostActivity : BaseActivity(), CallBack {
         initObservable()
     }
 
-    private fun init(){
+    private fun init() {
         setSupportActionBarWithIcon(toolbar, R.string.toolbar_title_home, R.drawable.ic_logo_actionbar)
     }
 

@@ -3,7 +3,9 @@ package br.com.concrete.tentacle.utils
 import android.content.Context
 import android.content.DialogInterface
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import br.com.concrete.tentacle.R
 
@@ -24,7 +26,9 @@ object DialogUtils {
 
         val builder = AlertDialog.Builder(context)
 
-        builder.setTitle(title)
+        if (contentView == null) {
+            builder.setTitle(title)
+        }
 
         if (contentView == null) {
             builder.setMessage(message)
@@ -51,7 +55,16 @@ object DialogUtils {
             if (contentView is View) {
                 dialog.setContentView(contentView)
             } else {
-                dialog.setContentView(contentView as Int)
+                val inflater = ((context) as AppCompatActivity).layoutInflater
+                val view = inflater.inflate(contentView as Int, null)
+
+                val titleMessage = view.findViewById<TextView>(R.id.titleMessage)
+                titleMessage.text = title
+
+                val messageBody = view.findViewById<TextView>(R.id.message)
+                messageBody.text = message
+
+                dialog.setView(view)
             }
         }
 

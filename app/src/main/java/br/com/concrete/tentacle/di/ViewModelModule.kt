@@ -12,6 +12,7 @@ import br.com.concrete.tentacle.features.login.LoginViewModel
 import br.com.concrete.tentacle.features.menu.MenuViewModel
 import br.com.concrete.tentacle.features.myreservations.MyReservationViewModel
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationDetailViewModel
+import br.com.concrete.tentacle.features.profile.ProfileViewModel
 import br.com.concrete.tentacle.features.register.RegisterUserViewModel
 import br.com.concrete.tentacle.features.registerGame.registerMedia.RegisterMediaViewModel
 import br.com.concrete.tentacle.features.registerGame.remoteGame.RemoteGameViewModel
@@ -36,5 +37,6 @@ val viewModelModule = module {
     viewModel { MyReservationDetailViewModel(get()) }
     viewModel { ForgotPassSendEmailViewModel(get()) }
     viewModel { PasswordRecoveryViewModel(get(), get()) }
+    viewModel { ProfileViewModel(get(), get(), get()) }
     viewModel { MenuViewModel(get(), get()) }
 }
