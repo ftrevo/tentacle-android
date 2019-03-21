@@ -1,10 +1,6 @@
 package br.com.concrete.tentacle.features
 
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -14,12 +10,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.data.interfaces.CallBack
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
-import br.com.concrete.tentacle.features.login.LoginActivity
-import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
-import kotlinx.android.synthetic.main.activity_host.*
-import org.koin.android.ext.android.inject
+import kotlinx.android.synthetic.main.activity_host.bottomBar
+import kotlinx.android.synthetic.main.activity_host.toolbar
 
 class HostActivity : BaseActivity(), CallBack {
 

@@ -14,10 +14,12 @@ import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.features.login.LoginActivity
+import br.com.concrete.tentacle.features.profile.ProfileActivity
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_menu.logout
 import kotlinx.android.synthetic.main.fragment_menu.name
+import kotlinx.android.synthetic.main.fragment_menu.profile
 import kotlinx.android.synthetic.main.fragment_menu.state
 import kotlinx.android.synthetic.main.fragment_menu.version
 import org.koin.android.ext.android.inject
@@ -58,7 +60,14 @@ class MenuFragment : Fragment() {
 
     fun init(){
         logout.setOnClickListener { checkLogout() }
+        profile.setOnClickListener { goToProfile() }
         version.text = String.format(getString(R.string.version), BuildConfig.VERSION_NAME)
+    }
+
+    private fun goToProfile(){
+        val profile = Intent(activity, ProfileActivity::class.java)
+        profile.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(profile)
     }
 
     private fun updateUI(user: User){

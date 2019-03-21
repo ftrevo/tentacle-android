@@ -72,7 +72,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.toolbar -> {
+            R.id.home -> {
                 if (this !is HostActivity) {
                     onBackPressed()
                 }
