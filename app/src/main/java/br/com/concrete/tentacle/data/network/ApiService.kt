@@ -49,7 +49,8 @@ interface ApiService {
         @Query("limit")
         limit: Int = LIMIT_PAGE,
         @Query("page")
-        page: Int
+        page: Int,
+        @Query("active") active: Boolean = true
     ): Observable<BaseModel<MediaResponse>>
 
     @GET("/loans")
@@ -99,7 +100,7 @@ interface ApiService {
     fun performLoan(@Body loanRequest: LoanRequest): Observable<BaseModel<LoanResponse>>
 
     @GET("media-loan/{id}")
-    fun getMediaLoan(@Path("id") id: String): Observable<BaseModel<Media>>
+    fun getMediaLoan(@Path("id") id: String, @Query("active") active: Boolean = true): Observable<BaseModel<Media>>
 
     @PATCH("loans/{id}")
     fun updateMediaLoan(
