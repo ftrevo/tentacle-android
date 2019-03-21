@@ -53,13 +53,6 @@ class RegisterUserViewModel(
             },{
                 LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
             }))
-            disposables.add(
-                userRepository.getProfile().subscribe({
-                    sharedPrefRepository.saveUser(PREFS_KEY_USER,it.data)
-                },{
-                    LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
-                })
-            )
         }, {
             viewStateUser.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
         }))

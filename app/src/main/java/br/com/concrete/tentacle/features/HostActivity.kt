@@ -31,8 +31,6 @@ import org.koin.android.ext.android.inject
 class HostActivity : BaseActivity(), CallBack {
 
     private lateinit var navController: NavController
-    private val sharePrefRepository: SharedPrefRepository by inject()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,21 +43,6 @@ class HostActivity : BaseActivity(), CallBack {
 
     private fun init(){
         setSupportActionBarWithIcon(toolbar, R.string.toolbar_title_home, R.drawable.ic_logo_actionbar)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_home, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.logout -> {
-                checkLogout()
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     companion object {
@@ -122,27 +105,6 @@ class HostActivity : BaseActivity(), CallBack {
     }
 
     override fun onBackPressed() {
-        finish()
-    }
-
-    private fun checkLogout() {
-        DialogUtils.showDialog(
-            context = this@HostActivity,
-            title = getString(R.string.logout_title),
-            message = getString(R.string.logout_question),
-            positiveText = getString(R.string.ok),
-            positiveListener = DialogInterface.OnClickListener { _, _ ->
-                performLogout()
-            },
-            negativeText = getString(R.string.cancel)
-        )
-    }
-
-    private fun performLogout() {
-        sharePrefRepository.removeSession()
-        val login = Intent(this, LoginActivity::class.java)
-        login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(login)
         finish()
     }
 }

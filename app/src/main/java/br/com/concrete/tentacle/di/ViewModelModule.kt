@@ -22,7 +22,7 @@ import org.koin.dsl.module.module
 val viewModelModule = module {
 
     viewModel { RegisterUserViewModel(get(), get(), get()) }
-    viewModel { LoginViewModel(get(), get(), get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get()) }
     viewModel { SearchGameViewModel(get()) }
     viewModel { LoadMyGamesViewModel(get()) }
     viewModel { RegisterMediaViewModel(get(), get()) }
@@ -36,5 +36,5 @@ val viewModelModule = module {
     viewModel { MyReservationDetailViewModel(get()) }
     viewModel { ForgotPassSendEmailViewModel(get()) }
     viewModel { PasswordRecoveryViewModel(get(), get()) }
-    viewModel { MenuViewModel(get()) }
+    viewModel { MenuViewModel(get(), get()) }
 }

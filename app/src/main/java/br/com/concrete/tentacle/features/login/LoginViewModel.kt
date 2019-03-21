@@ -24,8 +24,7 @@ import java.net.HttpURLConnection
 class LoginViewModel(
     private val repository: LoginRepository,
     private val sharedPrefRepository: SharedPrefRepository,
-    private val tokenRepository: TokenRepository,
-    private val userRepository: UserRepository
+    private val tokenRepository: TokenRepository
 )
     : BaseViewModel(), LifecycleObserver {
 
@@ -43,13 +42,6 @@ class LoginViewModel(
                 },{
                     LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
                 }))
-                disposables.add(
-                    userRepository.getProfile().subscribe({
-                        sharedPrefRepository.saveUser(PREFS_KEY_USER,it.data)
-                    },{
-                        LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
-                    })
-                )
             },
             {
                 stateModel.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = errorLogin(it))))
