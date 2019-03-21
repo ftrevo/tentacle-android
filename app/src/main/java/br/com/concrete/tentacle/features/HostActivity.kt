@@ -25,14 +25,13 @@ import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_host.bottomBar
+import kotlinx.android.synthetic.main.activity_host.*
 import org.koin.android.ext.android.inject
 
 class HostActivity : BaseActivity(), CallBack {
 
     private lateinit var navController: NavController
     private val sharePrefRepository: SharedPrefRepository by inject()
-    private lateinit var drawerLayout: DrawerLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +44,7 @@ class HostActivity : BaseActivity(), CallBack {
     }
 
     private fun init(){
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBarWithIcon(toolbar, R.string.toolbar_title_home, R.drawable.ic_logo_actionbar)
-        drawerLayout = findViewById(R.id.drawer_layout)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

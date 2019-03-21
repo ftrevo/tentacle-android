@@ -24,18 +24,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_margin="@dimen/margin_default"
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/header"
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:padding="16dp"
+            android:padding="@dimen/margin_default"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             android:orientation="vertical"
             android:gravity="bottom">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
                 android:padding="@dimen/dp_6"
                 android:id="@+id/icon_profile"
                 android:src="@drawable/ic_logo_actionbar"
@@ -63,7 +62,7 @@
                 android:textColor="@color/white"
                 android:lines="@integer/line_2"
                 android:gravity="center"
-                style="@style/TextMedium.16sp"
+                android:textAppearance="@style/TextMedium.16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -78,7 +77,6 @@
                 android:lines="@integer/line_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        />
 
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guide"
@@ -91,7 +89,7 @@
 
     <TextView
             android:padding="@dimen/dp_8"
-            style="@style/TextMedium.14sp"
+            android:textAppearance="@style/TextMedium.14sp"
             android:layout_marginStart="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,7 +106,7 @@
 
     <TextView
             android:padding="@dimen/dp_8"
-            style="@style/TextMedium.14sp"
+            android:textAppearance="@style/TextMedium.14sp"
             android:layout_marginStart="@dimen/margin_default"
             android:id="@+id/logout"
             android:drawablePadding="@dimen/dp_16"

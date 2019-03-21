@@ -240,11 +240,7 @@
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
     <string name="midias_title">Mídias</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="version">versão %1$s</string>
-
     <string name="profile">Perfil</string>
     <string name="exit">Sair</string>
 

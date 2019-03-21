@@ -17,27 +17,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <FrameLayout
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:elevation="@dimen/dp_95">
-
-            <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    app:titleTextColor="@color/textColor"
-                    android:layout_height="?attr/actionBarSize"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            />
-
-        </FrameLayout>
+                app:titleTextColor="@color/textColor"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        />
 
         <fragment
                 android:id="@+id/nav_fragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/dp_0"
                 app:defaultNavHost="true"
                 android:layout_weight="1"
                 app:navGraph="@navigation/nav_host"/>
@@ -50,7 +42,6 @@
                 android:layout_height="wrap_content"/>
 
     </LinearLayout>
-
 
     <fragment
             android:clickable="true"
