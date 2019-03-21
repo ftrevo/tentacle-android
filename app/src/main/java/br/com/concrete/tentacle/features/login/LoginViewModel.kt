@@ -13,8 +13,10 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.LoginRepository
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.data.repositories.TokenRepository
+import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.utils.Event
 import br.com.concrete.tentacle.utils.LogWrapper
+import br.com.concrete.tentacle.utils.PREFS_KEY_USER
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import retrofit2.HttpException
 import java.net.HttpURLConnection
@@ -22,7 +24,8 @@ import java.net.HttpURLConnection
 class LoginViewModel(
     private val repository: LoginRepository,
     private val sharedPrefRepository: SharedPrefRepository,
-    private val tokenRepository: TokenRepository
+    private val tokenRepository: TokenRepository,
+    private val userRepository: UserRepository
 )
     : BaseViewModel(), LifecycleObserver {
 
@@ -40,6 +43,13 @@ class LoginViewModel(
                 },{
                     LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
                 }))
+                disposables.add(
+                    userRepository.getProfile().subscribe({
+                        sharedPrefRepository.saveUser(PREFS_KEY_USER,it.data)
+                    },{
+                        LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
+                    })
+                )
             },
             {
                 stateModel.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = errorLogin(it))))

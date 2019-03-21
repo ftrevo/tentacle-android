@@ -8,12 +8,13 @@ import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.StateResponse
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.UserRequest
+import br.com.concrete.tentacle.data.network.ApiService
 import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class UserRepository(private val apiServiceAuthentication: ApiServiceAuthentication) {
+class UserRepository(private val apiServiceAuthentication: ApiServiceAuthentication, private val apiService: ApiService) {
 
     fun registerUser(userRequest: UserRequest): Observable<BaseModel<Session>> {
         return apiServiceAuthentication.registerUser(userRequest)
@@ -43,6 +44,12 @@ class UserRepository(private val apiServiceAuthentication: ApiServiceAuthenticat
 
     fun restorePassword(passwordRecovery: PasswordRecovery): Flowable<BaseModel<Session>> {
         return apiServiceAuthentication.restorePassword(passwordRecovery)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
+
+    fun getProfile(): Observable<BaseModel<User>>{
+        return apiService.getProfile()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
