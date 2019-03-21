@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+    <io.fotoapparat.view.CameraView
+        android:id="@+id/cameraView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:visibility="gone"
+        android:scaleType="centerCrop"
+        android:id="@+id/ivPreview"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/btTakePicture"
+        android:scaleType="fitCenter"
+        android:background="@drawable/ic_take_picture_selector"
+        android:layout_marginBottom="@dimen/dp_40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/btReject"
+        android:scaleType="fitCenter"
+        android:background="@drawable/ic_reject_selector"
+        app:layout_constraintBottom_toBottomOf="@+id/btTakePicture"
+        app:layout_constraintTop_toTopOf="@+id/btTakePicture"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/dp_40"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/btAccept"
+        android:scaleType="fitCenter"
+        android:background="@drawable/ic_accept_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="@dimen/dp_40"
+        app:layout_constraintBottom_toBottomOf="@+id/btTakePicture"
+        app:layout_constraintTop_toTopOf="@+id/btTakePicture"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

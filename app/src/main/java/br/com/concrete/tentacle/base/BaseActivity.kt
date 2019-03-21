@@ -14,6 +14,7 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.features.HostActivity
 
 abstract class BaseActivity : AppCompatActivity() {
+
     companion object {
         const val INVALID_ICON = -1
         const val INVALID_TITLE = -1
