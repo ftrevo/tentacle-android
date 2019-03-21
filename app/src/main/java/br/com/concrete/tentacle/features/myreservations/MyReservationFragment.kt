@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.custom.ListCustom
@@ -176,7 +177,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
             callback?.changeBottomBar(R.id.action_library, R.id.navigate_to_library)
         }
 
-        (activity as HostActivity).setupToolbar(R.string.toolbar_title_my_reservations, R.drawable.ic_logo_actionbar)
+        (activity as BaseActivity).setupToolbar(R.string.toolbar_title_my_reservations, R.drawable.ic_logo_actionbar)
     }
 
     override fun count() = count

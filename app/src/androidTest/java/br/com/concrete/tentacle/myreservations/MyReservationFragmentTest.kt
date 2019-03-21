@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.myreservations
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -11,6 +12,7 @@ import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.extensions.waitUntil
 import br.com.concrete.tentacle.features.myreservations.MyReservationFragment
+import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
@@ -54,6 +56,52 @@ class MyReservationFragmentTest : BaseFragmentTest() {
             .check(matches(isDisplayed()))
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
+    }
+
+    @Test
+    fun showRecycleViewWithItemsExpired() {
+        val response = "mockjson/myreservations/load_my_reservations_success.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
+        onView(withId(R.id.recyclerListView))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.recyclerListError))
+            .check(matches(not(isDisplayed())))
+        onView(withRecyclerView(R.id.recyclerListView)
+            .atPosition(0))
+            .check(matches(isDisplayed()))
+            .check(matches(hasDescendant(withText("Eeee"))))
+            .check(matches(hasDescendant(withText("07/03/19"))))
+            .check(matches(hasDescendant(withText("Dono: YARA"))))
+    }
+
+    @Test
+    fun showRecycleViewWithItemsPendente() {
+        val response = "mockjson/myreservations/load_my_reservations_success.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
+        onView(withId(R.id.recyclerListView))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.recyclerListError))
+            .check(matches(not(isDisplayed())))
+        onView(withRecyclerView(R.id.recyclerListView)
+            .atPosition(2))
+            .check(matches(isDisplayed()))
+            .check(matches(hasDescendant(withText("o jogo da vida"))))
+            .check(matches(hasDescendant(withText("Pendente"))))
+            .check(matches(hasDescendant(withText("Dono: DAIVID V. LEAL"))))
     }
 
     @Test
