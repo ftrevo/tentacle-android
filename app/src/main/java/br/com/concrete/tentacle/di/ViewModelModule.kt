@@ -11,6 +11,7 @@ import br.com.concrete.tentacle.features.loadmygames.LoadMyGamesViewModel
 import br.com.concrete.tentacle.features.login.LoginViewModel
 import br.com.concrete.tentacle.features.myreservations.MyReservationViewModel
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationDetailViewModel
+import br.com.concrete.tentacle.features.profile.ProfileViewModel
 import br.com.concrete.tentacle.features.register.RegisterUserViewModel
 import br.com.concrete.tentacle.features.registerGame.registerMedia.RegisterMediaViewModel
 import br.com.concrete.tentacle.features.registerGame.remoteGame.RemoteGameViewModel
@@ -20,8 +21,8 @@ import org.koin.dsl.module.module
 
 val viewModelModule = module {
 
-    viewModel { RegisterUserViewModel(get(), get()) }
-    viewModel { LoginViewModel(get(), get()) }
+    viewModel { RegisterUserViewModel(get(), get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get()) }
     viewModel { SearchGameViewModel(get()) }
     viewModel { LoadMyGamesViewModel(get()) }
     viewModel { RegisterMediaViewModel(get(), get()) }
@@ -35,4 +36,5 @@ val viewModelModule = module {
     viewModel { MyReservationDetailViewModel(get()) }
     viewModel { ForgotPassSendEmailViewModel(get()) }
     viewModel { PasswordRecoveryViewModel(get(), get()) }
+    viewModel { ProfileViewModel(get(), get(), get()) }
 }

@@ -18,7 +18,6 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
-import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
@@ -80,7 +79,6 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
                 ViewStateModel.Status.ERROR -> {
                     callError(
                         ViewStateModel(
-                            model = base.model?.list as ArrayList<LoanResponse>,
                             status = base.status
                         )
                     )
@@ -130,6 +128,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
         }
         listMyReservations.updateUi<LoanResponse>(null)
         listMyReservations.setLoading(false)
+        listMyReservations.buttonNameError.setButtonName(getString(R.string.load_again))
     }
 
     private fun loadRecyclerView(model: ArrayList<LoanResponse?>?) {
@@ -174,7 +173,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
         listMyReservations.recyclerListView.layoutManager = layoutManager
 
         listMyReservations.recyclerListError.buttonNameError.setOnClickListener {
-            callback?.changeBottomBar(R.id.action_library, R.id.navigate_to_library)
+            myReservationViewModel.loadMyReservations()
         }
 
         (activity as BaseActivity).setupToolbar(R.string.toolbar_title_my_reservations, R.drawable.ic_logo_actionbar)

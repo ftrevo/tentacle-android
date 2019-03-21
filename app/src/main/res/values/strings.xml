@@ -36,11 +36,9 @@
     <string name="new_password_confirmation">Confimar senha</string>
     <string name="confirmation_button">Confimar</string>
 
-
     <string name="password_recovery_title">Recuperar senha</string>
     <string name="password_recovery_subtitle">Adicione o token que enviamos para seu email</string>
     <string name="password_recovery_new_pass_text">Crie uma nova senha para acessar o Tentacle.</string>
-
 
     <string name="state_dialog_text">Selecione ou pesquise o estado</string>
     <string name="city_dialog_text">Selecione ou pesquise a cidade</string>
@@ -49,7 +47,7 @@
     <string name="user_or_password_error">Usuário ou senha inválidos!</string>
 
     <string name="unknow_error">Ocorreu um erro inesperado</string>
-    <string name="no_internet_connection">Ops! Parece que você está sem conexão com a internet</string>
+    <string name="no_internet_connection">Parece que você está sem conexão com a internet</string>
 
     <string name="search">Pesquisar</string>
 
@@ -224,7 +222,8 @@
 
     <string name="quickstart_message">Click the SUBSCRIBE TO WEATHER button below to subscribe to the
         weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logs the
-        InstanceID token to logcat.</string>
+        InstanceID token to logcat.
+    </string>
     <string name="subscribe_to_weather">Subscribe To Weather</string>
     <string name="log_token">Log Token</string>
 
@@ -238,10 +237,19 @@
      -->
     <string name="default_notification_channel_name" translatable="true">Weather</string>
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
-    <string name="fcm_message">FCM Message</string>
+    <string name="fcm_message">Nova Mensagem</string>
     <string name="midias_title">Mídias</string>
-    <string name="version">versão %1$s</string>
+    <string name="something_happened">Ops! Parece que algo aconteceu!</string>
+    <string name="exampleMessage">O jogo sairá da lista de ‘’Meus jogos’’. Mas você poderá adicioná-lo novamente no
+        futuro.
+    </string>
+
+    <string name="profile_title">Perfil</string>
+    <string name="profile_state_city_warning">Ao alterar o Estado/Cidade, você só conseguirá ver os jogos disponíveis na Concrete desta localidade.</string>
+    <string name="profile_save_button">Salvar alterações</string>
+    <string name="profile_changed_success">O seu perfil foi alterado com sucesso.</string>
+
     <string name="profile">Perfil</string>
     <string name="exit">Sair</string>
-
+    <string name="version">versão %1$s</string>
 </resources>

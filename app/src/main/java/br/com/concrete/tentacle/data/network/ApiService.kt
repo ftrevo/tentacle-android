@@ -9,7 +9,12 @@ import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.MessageReturn
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
+import br.com.concrete.tentacle.data.models.Session
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.UserRequest
+import br.com.concrete.tentacle.data.models.RequestUpdateToken
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
@@ -33,6 +38,12 @@ interface ApiService {
         @Query("page") page: Int = 0
     ): Observable<BaseModel<GameResponse>>
 
+    @POST("/device-token")
+    fun sendToken(
+        @Body
+        deviceToken: RequestUpdateToken
+    ): Observable<BaseModel<MessageReturn>>
+
     @POST("/games")
     fun registerNewGame(
         @Body
@@ -49,7 +60,8 @@ interface ApiService {
         @Query("limit")
         limit: Int = LIMIT_PAGE,
         @Query("page")
-        page: Int
+        page: Int,
+        @Query("active") active: Boolean = true
     ): Observable<BaseModel<MediaResponse>>
 
     @GET("/loans")
@@ -99,7 +111,7 @@ interface ApiService {
     fun performLoan(@Body loanRequest: LoanRequest): Observable<BaseModel<LoanResponse>>
 
     @GET("media-loan/{id}")
-    fun getMediaLoan(@Path("id") id: String): Observable<BaseModel<Media>>
+    fun getMediaLoan(@Path("id") id: String, @Query("active") active: Boolean = true): Observable<BaseModel<Media>>
 
     @PATCH("loans/{id}")
     fun updateMediaLoan(
@@ -112,6 +124,12 @@ interface ApiService {
 
     @GET("/library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
+
+    @GET("users/profile")
+    fun getProfile(): Observable<BaseModel<User>>
+
+    @PATCH("users/{id}")
+    fun updateUserProfile(@Path("id") userId: String, @Body user: UserRequest): Observable<BaseModel<Session>>
 
     @POST("loans/{id}/remember-delivery")
     fun rememberDelivery(@Path("id")id: String?): Observable<BaseModel<RememberDeliveryResponse>>
