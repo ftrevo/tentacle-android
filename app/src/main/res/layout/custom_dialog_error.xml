@@ -10,7 +10,7 @@
     <ImageView
             android:id="@+id/errorTentacle"
             android:layout_width="wrap_content"
-            android:layout_height="180dp"
+            android:layout_height="@dimen/heightErrorTentacle"
             android:src="@drawable/error_tentacle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
