@@ -51,3 +51,5 @@ const val GAME_MODE_SPLIT_SCREEN = "split-screen"
 const val DEFAULT_EXCEPTION_STATUS_CODE = 0
 
 const val ONE_HOUR = 60 * 60 * 1000L
+
+const val DEFAULT_PENULTIMATE_DAY = 1

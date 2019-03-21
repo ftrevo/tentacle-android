@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.data.models
 
 import android.os.Parcelable
 import br.com.concrete.tentacle.extensions.toDate
+import br.com.concrete.tentacle.utils.DEFAULT_PENULTIMATE_DAY
 import br.com.concrete.tentacle.utils.DEFAULT_RETURN_DATE_IN_WEEKS
 import br.com.concrete.tentacle.utils.ONE_HOUR
 import kotlinx.android.parcel.Parcelize
@@ -44,7 +45,7 @@ data class ActiveLoan(
         getReturnDate()?.let {
             val currentDate = Calendar.getInstance()
             val days = daysBetweenDates(currentDate.time, it.time)
-            return days < 1
+            return days < DEFAULT_PENULTIMATE_DAY
         } ?: run {
             return false
         }
