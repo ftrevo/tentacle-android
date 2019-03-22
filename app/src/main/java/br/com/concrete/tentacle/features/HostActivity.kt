@@ -28,7 +28,7 @@ class HostActivity : BaseActivity(), CallBack {
     }
 
     private fun init() {
-        setSupportActionBarWithIcon(toolbar, R.string.toolbar_title_home, R.drawable.ic_logo_actionbar)
+        setSupportActionBarWithIcon(toolbar, R.string.toolbar_title_home, R.drawable.ic_menu)
         initObservable()
         startNavListener()
     }
