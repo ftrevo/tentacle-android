@@ -12,7 +12,6 @@ import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.loadRoundImageUrl
@@ -27,7 +26,6 @@ import kotlinx.android.synthetic.main.fragment_menu.name
 import kotlinx.android.synthetic.main.fragment_menu.profile
 import kotlinx.android.synthetic.main.fragment_menu.state
 import kotlinx.android.synthetic.main.fragment_menu.version
-import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
@@ -37,7 +35,6 @@ import java.io.File
 class MenuFragment : Fragment() {
 
     private val menuViewModel: MenuViewModel by viewModel()
-    private val sharePrefRepository: SharedPrefRepository by inject()
     private lateinit var user: User
 
     override fun onCreateView(
@@ -127,8 +124,8 @@ class MenuFragment : Fragment() {
     }
 
     private fun performLogout() {
-        sharePrefRepository.removeSession()
-        sharePrefRepository.removeUser()
+        menuViewModel.removeSession()
+        menuViewModel.removeUser()
         val login = Intent(activity, LoginActivity::class.java)
         login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(login)
