@@ -15,11 +15,13 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
-import br.com.concrete.tentacle.features.library.loan.LoanActivity
+import br.com.concrete.tentacle.extensions.loadRoundImageUrl
 import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.features.profile.ProfileActivity
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
+import kotlinx.android.synthetic.main.fragment_menu.camera
+import kotlinx.android.synthetic.main.fragment_menu.iconProfile
 import kotlinx.android.synthetic.main.fragment_menu.logout
 import kotlinx.android.synthetic.main.fragment_menu.name
 import kotlinx.android.synthetic.main.fragment_menu.profile
@@ -27,11 +29,16 @@ import kotlinx.android.synthetic.main.fragment_menu.state
 import kotlinx.android.synthetic.main.fragment_menu.version
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import pl.aprilapps.easyphotopicker.DefaultCallback
+import pl.aprilapps.easyphotopicker.EasyImage
+import java.io.File
+
 
 class MenuFragment : Fragment() {
 
     private val menuViewModel: MenuViewModel by viewModel()
     private val sharePrefRepository: SharedPrefRepository by inject()
+    private lateinit var user: User
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +72,19 @@ class MenuFragment : Fragment() {
         logout.setOnClickListener { checkLogout() }
         profile.setOnClickListener { goToProfile() }
         version.text = String.format(getString(R.string.version), BuildConfig.VERSION_NAME)
+        configCamera()
+    }
+
+    private fun configCamera(){
+        EasyImage.configuration(context)
+            .setImagesFolderName("Tentacle")
+            .saveInAppExternalFilesDir()
+            .setCopyExistingPicturesToPublicLocation(true)
+            .saveInRootPicturesDirectory()
+
+        camera.setOnClickListener{
+            EasyImage.openChooserWithGallery(this,getString(R.string.select_hint), EasyImage.REQ_SOURCE_CHOOSER)
+        }
     }
 
     private fun goToProfile(){
@@ -73,9 +93,22 @@ class MenuFragment : Fragment() {
         )
     }
 
-    private fun updateUI(user: User){
-        name.text = user?.name
-        state.text = user?.state?.name
+    private fun updateUI(u: User){
+        user = u
+        name.text = user.name
+        state.text = user.state.name
+        loadPhotoFile()
+    }
+
+    private fun loadPhotoFile(){
+        try {
+            val file = File(user.internalImage)
+            file?.let {
+                setUpImage(it)
+            }
+        }catch (e: Exception){
+            LogWrapper.log("File Error:", e.toString())
+        }
     }
 
     private fun checkLogout() {
@@ -100,6 +133,38 @@ class MenuFragment : Fragment() {
         login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(login)
         activity?.finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        EasyImage.handleActivityResult(requestCode, resultCode, data, activity, object : DefaultCallback() {
+            override fun onImagePicked(imageFile: File?, source: EasyImage.ImageSource?, type: Int) {
+                setUpImage(imageFile)
+            }
+
+            override fun onImagePickerError(e: Exception?, source: EasyImage.ImageSource?, type: Int) {
+                LogWrapper.log("Error: ", "Picking image: ${e.toString()}")
+            }
+
+            override fun onCanceled(source: EasyImage.ImageSource, type: Int) {
+                if (source == EasyImage.ImageSource.CAMERA) {
+                    val photoFile = EasyImage.lastlyTakenButCanceledPhoto(activity)
+                    photoFile?.delete()
+                }
+            }
+        })
+    }
+
+    private fun setUpImage(imagesFiles: File?){
+        imagesFiles?.let {
+            if(it.exists()){
+                iconProfile.loadRoundImageUrl(it.absolutePath)
+                user.internalImage = it.absolutePath
+                sharePrefRepository.updateUser(user)
+                LogWrapper.log("PATH: ", it.absolutePath)
+            }
+        }
     }
 
 }
