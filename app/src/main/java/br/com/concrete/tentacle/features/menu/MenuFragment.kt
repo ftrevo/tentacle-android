@@ -158,7 +158,7 @@ class MenuFragment : Fragment() {
             if(it.exists()){
                 iconProfile.loadRoundImageUrl(it.absolutePath)
                 user.internalImage = it.absolutePath
-                sharePrefRepository.updateUser(user)
+                menuViewModel.updateUser(user)
                 LogWrapper.log("PATH: ", it.absolutePath)
             }
         }
