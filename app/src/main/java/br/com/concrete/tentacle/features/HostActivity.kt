@@ -83,7 +83,7 @@ class HostActivity : BaseActivity(), CallBack {
                 }
                 R.id.action_events -> LogWrapper.log("ACTION", "Calendar")
             }
-            setupToolbar(R.drawable.ic_logo_actionbar)
+            setupToolbar(R.drawable.ic_menu)
         }
         setupToolbar(R.drawable.ic_menu)
         val mDrawerToggle = ActionBarDrawerToggle(
