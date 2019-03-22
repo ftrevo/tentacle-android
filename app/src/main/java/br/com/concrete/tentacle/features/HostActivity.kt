@@ -85,7 +85,7 @@ class HostActivity : BaseActivity(), CallBack {
             }
             setupToolbar(R.drawable.ic_logo_actionbar)
         }
-        setupToolbar(R.drawable.ic_logo_actionbar)
+        setupToolbar(R.drawable.ic_menu)
         val mDrawerToggle = ActionBarDrawerToggle(
             this,
             drawer_layout,
