@@ -13,6 +13,7 @@ import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
 import br.com.concrete.tentacle.data.repositories.UserLoggedRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.utils.LogWrapper
+import br.com.concrete.tentacle.utils.PREFS_KEY_USER
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
 class ProfileViewModel(
@@ -36,16 +37,22 @@ class ProfileViewModel(
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun getProfile() {
         viewStateProfile.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        disposables.add(userLoggedRepository.getProfile()
-            .subscribe({ baseModel ->
-                viewStateProfile.postValue(ViewStateModel(
-                    status = ViewStateModel.Status.SUCCESS,
-                    model = baseModel.data))
-            }, {
-                LogWrapper.print(it)
-                viewStateProfile.postValue(ViewStateModel(
-                    status = ViewStateModel.Status.ERROR,
-                    errors = notKnownError(it)))
+        sharedPrefRepository.getStoredUser(PREFS_KEY_USER)?.let {
+            viewStateProfile.postValue(ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = it))
+        } ?: run {
+            loadUserFromServer()
+        }
+    }
+
+    private fun loadUserFromServer(){
+        disposables.add(
+            userRepository.getProfile().subscribe({
+                sharedPrefRepository.saveUser(PREFS_KEY_USER,it.data)
+                viewStateProfile.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data))
+            },{
+                LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
             })
         )
     }
@@ -78,14 +85,15 @@ class ProfileViewModel(
         }))
     }
 
-    fun updateProfile(userId: String, userRequest: UserRequest) {
+    fun updateProfile(currentUser: User, userRequest: UserRequest) {
         viewStateProfile.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        disposables.add(userLoggedRepository.updateProfile(userId, userRequest)
+        disposables.add(userLoggedRepository.updateProfile(currentUser._id, userRequest)
             .subscribe({ baseModel ->
                 sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, baseModel.data)
                 viewStateUpdate.postValue(ViewStateModel(
                     status = ViewStateModel.Status.SUCCESS,
                     model = baseModel.data))
+                updateCurrentUser(currentUser, userRequest)
             }, {
                 LogWrapper.print(it)
                 viewStateUpdate.postValue(ViewStateModel(
@@ -93,5 +101,22 @@ class ProfileViewModel(
                     errors = notKnownError(it)))
             })
         )
+    }
+
+    private fun updateCurrentUser(currentUser: User, userRequest: UserRequest){
+        var newState : State? = null
+        userRequest.stateObj?.let {
+            newState = it
+        } ?: run {
+            newState = currentUser.state
+        }
+
+        val user = User(_id = currentUser._id, name = userRequest.name, email = userRequest.email,
+            phone = userRequest.phone, password = "",
+            city = userRequest.city, createdAt = currentUser.createdAt,
+            state = newState!!,
+            updatedAt = currentUser.updatedAt,
+            internalImage = currentUser.internalImage)
+        sharedPrefRepository.saveUser(PREFS_KEY_USER, user)
     }
 }

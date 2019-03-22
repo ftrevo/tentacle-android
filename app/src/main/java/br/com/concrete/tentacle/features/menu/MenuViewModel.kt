@@ -1,6 +1,8 @@
 package br.com.concrete.tentacle.features.menu
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.User
@@ -20,6 +22,7 @@ class MenuViewModel(
     private val stateModel: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
     fun getUser() = stateModel
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun loadUser(){
         val user = sharedPrefRepository.getStoredUser(PREFS_KEY_USER)
         user?.let{

@@ -62,7 +62,7 @@ class MenuFragment : Fragment() {
             }
         })
 
-        menuViewModel.loadUser()
+        lifecycle.addObserver(menuViewModel)
     }
 
     fun init(){

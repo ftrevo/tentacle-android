@@ -7,5 +7,6 @@ data class UserRequest(
     val password: String? = String(),
     val state: String = String(),
     val city: String = String(),
-    val deviceToken: String? = null
+    val deviceToken: String? = null,
+    val stateObj: State? = null
 )

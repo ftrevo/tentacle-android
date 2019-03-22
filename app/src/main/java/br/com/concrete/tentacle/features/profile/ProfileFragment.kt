@@ -18,6 +18,7 @@ import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.digits
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.visible
+import kotlinx.android.synthetic.main.fragment_menu.state
 import kotlinx.android.synthetic.main.fragment_profile.citySearchSpinner
 import kotlinx.android.synthetic.main.fragment_profile.emailEditText
 import kotlinx.android.synthetic.main.fragment_profile.loadError
@@ -279,10 +280,11 @@ class ProfileFragment : BaseFragment() {
                 phone = phoneEditText.getText().trim().digits(),
                 state = stateSelected!!._id,
                 city = citySelected!!,
-                password = null
+                password = null,
+                stateObj = stateSelected
             )
 
-            profileViewModel.updateProfile(currentUser._id, userRequest)
+            profileViewModel.updateProfile(currentUser, userRequest)
         }
     }
 
