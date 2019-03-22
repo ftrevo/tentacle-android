@@ -32,7 +32,7 @@
                 android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <activity
                 android:name=".features.HostActivity"
-                android:theme="@style/AppTheme"
+                android:theme="@style/AppTheme.NoActionBar"
                 android:windowSoftInputMode="adjustPan"/>
         <activity
                 android:name=".features.registerGame.RegisterGameHostActivity"

@@ -44,7 +44,6 @@ interface ApiService {
         deviceToken: RequestUpdateToken
     ): Observable<BaseModel<MessageReturn>>
 
-
     @POST("/games")
     fun registerNewGame(
         @Body

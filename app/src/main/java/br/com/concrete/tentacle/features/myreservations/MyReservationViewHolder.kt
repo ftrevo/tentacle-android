@@ -72,6 +72,5 @@ class MyReservationViewHolder(
             val colorStatus = ContextCompat.getColor(holder.context, color)
             holder.ivGameStatus.setColorFilter(colorStatus)
         }
-
     }
 }

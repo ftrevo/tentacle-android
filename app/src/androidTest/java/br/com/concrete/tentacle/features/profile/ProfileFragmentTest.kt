@@ -16,7 +16,7 @@ import org.hamcrest.CoreMatchers.not
 import org.junit.Before
 import org.junit.Test
 
-class ProfileFragmentTest: BaseFragmentTest() {
+class ProfileFragmentTest : BaseFragmentTest() {
 
     /**
      * Set this variable to true to see Loading error screen
@@ -114,7 +114,7 @@ class ProfileFragmentTest: BaseFragmentTest() {
         if (!SHOW_LOADING_ERROR_SCREEN) {
             setField("Teste Teste", R.id.userNameEditText)
 
-            setField("", R.id.emailEditText)    //force this error in order to only make validations after click
+            setField("", R.id.emailEditText) // force this error in order to only make validations after click
             clickButton(R.id.saveChangesButton)
             matchesNotIsDisplayed(R.string.name_error)
         }
@@ -132,7 +132,7 @@ class ProfileFragmentTest: BaseFragmentTest() {
     fun checkValidEmail() {
         if (!SHOW_LOADING_ERROR_SCREEN) {
 
-            setField("", R.id.userNameEditText)    //force this error in order to only make validations after click
+            setField("", R.id.userNameEditText) // force this error in order to only make validations after click
             setField("teste@teste.com", R.id.emailEditText)
             clickButton(R.id.saveChangesButton)
             matchesNotIsDisplayed(R.string.email_error)
@@ -160,7 +160,7 @@ class ProfileFragmentTest: BaseFragmentTest() {
         if (!SHOW_LOADING_ERROR_SCREEN) {
             setField("99 999999999", R.id.phoneEditText)
 
-            setField("", R.id.emailEditText)    //force this error in order to only make validations after click
+            setField("", R.id.emailEditText) // force this error in order to only make validations after click
             clickButton(R.id.saveChangesButton)
             matchesNotIsDisplayed(R.string.phone_error)
         }
@@ -168,7 +168,7 @@ class ProfileFragmentTest: BaseFragmentTest() {
 
     private fun clickButton(buttonResId: Int) {
         onView(withId(buttonResId))
-            .perform(scrollTo(),click())
+            .perform(scrollTo(), click())
     }
 
     private fun matchesNotIsDisplayed(idMessageError: Int) {

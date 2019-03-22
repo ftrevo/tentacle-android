@@ -4,8 +4,6 @@ import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import br.com.concrete.canarinho.watcher.TelefoneTextWatcher
@@ -32,7 +30,7 @@ import kotlinx.android.synthetic.main.progress_include.progressBarList
 import kotlinx.android.synthetic.main.tentacle_edit_text_layout.view.edt
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ProfileFragment: BaseFragment() {
+class ProfileFragment : BaseFragment() {
 
     private val profileViewModel: ProfileViewModel by viewModel()
 
@@ -138,7 +136,7 @@ class ProfileFragment: BaseFragment() {
         })
 
         profileViewModel.getProfileUpdateViewState().observe(this, Observer { profileUpdatedViewState ->
-            when(profileUpdatedViewState.status) {
+            when (profileUpdatedViewState.status) {
                 ViewStateModel.Status.LOADING -> showProgress(true)
                 ViewStateModel.Status.SUCCESS -> {
                     showProgress(false)
@@ -302,5 +300,4 @@ class ProfileFragment: BaseFragment() {
     }
 
     override fun getToolbarTitle(): Int = R.string.profile_title
-
 }

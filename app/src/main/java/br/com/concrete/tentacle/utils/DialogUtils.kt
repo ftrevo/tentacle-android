@@ -8,8 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.base.BaseActivity
-
 
 object DialogUtils {
     fun showDialog(
