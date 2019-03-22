@@ -24,20 +24,20 @@
                app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_margin="@dimen/margin_default"
             android:id="@+id/header"
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_0"
+            android:layout_marginTop="@dimen/margin_default"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:background="@android:color/transparent"
-            android:padding="@dimen/margin_default"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             android:orientation="vertical"
             android:gravity="bottom">
 
         <ImageView
-                android:padding="@dimen/dp_6"
-                android:id="@+id/icon_profile"
+                android:id="@+id/iconProfile"
                 android:src="@drawable/ic_logo_actionbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,10 +46,11 @@
                 android:layout_height="@dimen/dp_105"/>
 
         <ImageView
+                android:id="@+id/camera"
                 android:background="@drawable/shape_camera_profile"
                 android:src="@drawable/ic_camera"
-                app:layout_constraintEnd_toEndOf="@id/icon_profile"
-                app:layout_constraintBottom_toBottomOf="@id/icon_profile"
+                app:layout_constraintEnd_toEndOf="@id/iconProfile"
+                app:layout_constraintBottom_toBottomOf="@id/iconProfile"
                 android:layout_width="@dimen/dp_28"
                 android:layout_height="@dimen/dp_28"/>
 
@@ -58,10 +59,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guide"
-                android:layout_margin="@dimen/margin_default"
+                android:layout_marginTop="@dimen/dp_8"
                 tools:text="@string/loremText"
                 android:textColor="@color/white"
-                android:lines="@integer/line_2"
+                android:maxLines="@integer/line_2"
                 android:gravity="center"
                 android:textAppearance="@style/TextMedium.16sp"
                 android:layout_width="wrap_content"
@@ -72,7 +73,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/name"
-                android:layout_margin="@dimen/dp_4"
                 tools:text="@string/version"
                 android:textColor="@color/menuItem"
                 android:lines="@integer/line_1"
