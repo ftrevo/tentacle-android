@@ -36,7 +36,7 @@
 
         <br.com.concrete.tentacle.custom.BottomBar
                 android:gravity="bottom"
-                app:defaultSelectedPosition="2"
+                app:defaultSelectedPosition="0"
                 android:id="@+id/bottomBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

@@ -10,22 +10,22 @@
     android:paddingEnd="@dimen/margin_default">
 
     <br.com.concrete.tentacle.custom.IconBottomBar
+            app:iconBottomBar="@drawable/ic_home"
+            android:id="@+id/action_home"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+    <br.com.concrete.tentacle.custom.IconBottomBar
+            app:iconBottomBar="@drawable/ic_game"
+            android:id="@+id/action_games"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+    <br.com.concrete.tentacle.custom.IconBottomBar
         app:iconBottomBar="@drawable/ic_library"
         android:id="@+id/action_library"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
-
-    <br.com.concrete.tentacle.custom.IconBottomBar
-        app:iconBottomBar="@drawable/ic_game"
-        android:id="@+id/action_games"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
-
-    <br.com.concrete.tentacle.custom.IconBottomBar
-        app:iconBottomBar="@drawable/ic_home"
-        android:id="@+id/action_home"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
@@ -41,6 +41,7 @@
         app:iconBottomBar="@drawable/ic_events"
         android:id="@+id/action_events"
         android:layout_weight="1"
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
 
