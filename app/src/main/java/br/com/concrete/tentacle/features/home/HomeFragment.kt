@@ -15,7 +15,6 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.library.loan.LoanActivity
 import kotlinx.android.synthetic.main.fragment_home.listHome
-import kotlinx.android.synthetic.main.list_custom.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError

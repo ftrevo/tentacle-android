@@ -1,0 +1,19 @@
+{
+  "message": [
+    "Usuário salvo"
+  ],
+  "data": {
+    "_id": "123456789",
+    "name": "Damiana dos SOL",
+    "email": "dragons@best.com",
+    "phone": "81 958742360",
+    "state": {
+      "_id": "5a107a691592ca19f7b4a860",
+      "initials": "PE",
+      "name": "Ceará"
+    },
+    "city": "Recife",
+    "createdAt": "2019-01-17T21:36:04.584Z",
+    "updatedAt": "2019-01-17T21:36:04.584Z"
+  }
+}

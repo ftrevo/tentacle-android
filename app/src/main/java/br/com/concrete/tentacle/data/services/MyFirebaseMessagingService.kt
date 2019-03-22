@@ -69,7 +69,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 "Message Notification Body: ${it.body}"
             )
             sendNotification(it.body, it.title)
-
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -131,7 +130,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun sendRegistrationToServer(token: String?) {
         tokenRepository.sendToken(AppTentacle.TOKEN).subscribe({
             LogWrapper.log("TokenResponse: ", it.message[0])
-        },{
+        }, {
             LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
         }).dispose()
     }

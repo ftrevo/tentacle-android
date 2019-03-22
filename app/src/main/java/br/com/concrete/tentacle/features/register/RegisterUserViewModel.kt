@@ -16,6 +16,7 @@ import br.com.concrete.tentacle.data.repositories.TokenRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.utils.Event
 import br.com.concrete.tentacle.utils.LogWrapper
+import br.com.concrete.tentacle.utils.PREFS_KEY_USER
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
 class RegisterUserViewModel(
@@ -49,7 +50,7 @@ class RegisterUserViewModel(
             viewStateUser.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data)))
             disposables.add(tokenRepository.sendToken(AppTentacle.TOKEN).subscribe({
                 LogWrapper.log("TokenResponse: ", it.message[0])
-            },{
+            }, {
                 LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
             }))
         }, {

@@ -19,7 +19,7 @@ class ProfileViewModel(
     private val userLoggedRepository: UserLoggedRepository,
     private val userRepository: UserRepository,
     private val sharedPrefRepository: SharedPrefRepository
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val viewStateProfile: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
     fun getProfileViewState() = viewStateProfile
@@ -40,7 +40,7 @@ class ProfileViewModel(
             .subscribe({ baseModel ->
                 viewStateProfile.postValue(ViewStateModel(
                     status = ViewStateModel.Status.SUCCESS,
-                    model = baseModel.data ))
+                    model = baseModel.data))
             }, {
                 LogWrapper.print(it)
                 viewStateProfile.postValue(ViewStateModel(
@@ -85,7 +85,7 @@ class ProfileViewModel(
                 sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, baseModel.data)
                 viewStateUpdate.postValue(ViewStateModel(
                     status = ViewStateModel.Status.SUCCESS,
-                    model = baseModel.data ))
+                    model = baseModel.data))
             }, {
                 LogWrapper.print(it)
                 viewStateUpdate.postValue(ViewStateModel(
