@@ -111,12 +111,16 @@ class ProfileViewModel(
             newState = currentUser.state
         }
 
+        var imagePath = ""
+        currentUser.internalImage?.let {
+            imagePath = it
+        }
         val user = User(_id = currentUser._id, name = userRequest.name, email = userRequest.email,
             phone = userRequest.phone, password = "",
             city = userRequest.city, createdAt = currentUser.createdAt,
             state = newState!!,
             updatedAt = currentUser.updatedAt,
-            internalImage = currentUser.internalImage)
+            internalImage = imagePath)
         sharedPrefRepository.saveUser(PREFS_KEY_USER, user)
     }
 }
