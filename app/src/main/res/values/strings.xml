@@ -36,11 +36,9 @@
     <string name="new_password_confirmation">Confimar senha</string>
     <string name="confirmation_button">Confimar</string>
 
-
     <string name="password_recovery_title">Recuperar senha</string>
     <string name="password_recovery_subtitle">Adicione o token que enviamos para seu email</string>
     <string name="password_recovery_new_pass_text">Crie uma nova senha para acessar o Tentacle.</string>
-
 
     <string name="state_dialog_text">Selecione ou pesquise o estado</string>
     <string name="city_dialog_text">Selecione ou pesquise a cidade</string>
@@ -246,4 +244,15 @@
         futuro.
     </string>
 
+    <string name="profile_title">Perfil</string>
+    <string name="profile_state_city_warning">Ao alterar o Estado/Cidade, você só conseguirá ver os jogos disponíveis na Concrete desta localidade.</string>
+    <string name="profile_save_button">Salvar alterações</string>
+    <string name="profile_changed_success">O seu perfil foi alterado com sucesso.</string>
+
+    <string name="profile">Perfil</string>
+    <string name="exit">Sair</string>
+    <string name="version">versão %1$s</string>
+
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
 </resources>

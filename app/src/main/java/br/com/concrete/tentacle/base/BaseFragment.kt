@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.base
 
 import android.content.Context
 import android.content.DialogInterface
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.interfaces.CallBack

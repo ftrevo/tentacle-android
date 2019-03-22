@@ -31,6 +31,8 @@ class ListError(
             iconReferenceError = getResourceId(R.styleable.ListError_iconError, DEFAULT_INVALID_RESOURCE)
             errorDescriptionTextReference = getResourceId(R.styleable.ListError_errorTextDescription, DEFAULT_INVALID_RESOURCE)
             buttonNameTextErrorReference = getResourceId(R.styleable.ListError_buttonNameTextError, DEFAULT_INVALID_RESOURCE)
+
+            setUpComponents(iconReferenceError, errorDescriptionTextReference, buttonNameTextErrorReference)
         }
     }
 

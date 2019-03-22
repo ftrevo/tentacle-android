@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorPrimary"
+        android:focusableInTouchMode ="true">
+
+    <include
+            layout="@layout/logo_tentacle"/>
+
+    <ScrollView
+            android:id="@+id/profileContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:fillViewport="true"
+            android:focusableInTouchMode ="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_default"
+                android:focusableInTouchMode ="true">
+
+            <br.com.concrete.tentacle.custom.TentacleEditText
+                    android:id="@+id/userNameEditText"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    app:label="@string/register_name_hint"
+                    app:errorLabel="@string/name_error"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <br.com.concrete.tentacle.custom.TentacleEditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:inputType="textEmailAddress"
+                    android:imeOptions="actionNext"
+                    app:label="@string/email"
+                    app:errorLabel="@string/email_error"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/userNameEditText"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <br.com.concrete.tentacle.custom.TentacleEditText
+                    android:id="@+id/phoneEditText"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:inputType="phone"
+                    android:imeOptions="actionNext"
+                    app:label="@string/register_ddd_phone_hint"
+                    app:errorLabel="@string/phone_error"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/emailEditText"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <br.com.concrete.tentacle.custom.TentacleSearchSpinner
+                    android:id="@+id/stateSearchSpinner"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    app:label="@string/state_hint"
+                    app:errorLabel="@string/state_error"
+                    app:layout_constraintHorizontal_weight="4"
+                    app:layout_constraintStart_toStartOf="@id/phoneEditText"
+                    app:layout_constraintTop_toBottomOf="@id/phoneEditText"/>
+
+            <br.com.concrete.tentacle.custom.TentacleSearchSpinner
+                    android:id="@+id/citySearchSpinner"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    app:label="@string/city_hint"
+                    app:errorLabel="@string/city_error"
+                    app:layout_constraintHorizontal_weight="6"
+                    app:layout_constraintStart_toEndOf="@id/stateSearchSpinner"
+                    app:layout_constraintTop_toTopOf="@id/stateSearchSpinner"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/warningChangesTextView"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextMedium.14sp"
+                    android:textColor="@android:color/white"
+                    android:lineSpacingExtra="@dimen/lineSpacingExtra10"
+                    android:text="@string/profile_state_city_warning"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/stateSearchSpinner"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <br.com.concrete.tentacle.custom.ButtonView
+                    android:id="@+id/saveChangesButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_18"
+                    style="@style/StyleButton"
+                    app:buttonName="@string/profile_save_button"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/warningChangesTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <br.com.concrete.tentacle.custom.ListError
+            android:id="@+id/loadError"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:errorDescription="@string/load_error"
+            app:errorTextDescription="@string/load_error"
+            app:buttonNameTextError="@string/load_again"/>
+
+    <include
+        layout="@layout/progress_include"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

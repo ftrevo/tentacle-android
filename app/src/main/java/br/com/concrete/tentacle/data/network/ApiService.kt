@@ -11,6 +11,9 @@ import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.MessageReturn
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
+import br.com.concrete.tentacle.data.models.Session
+import br.com.concrete.tentacle.data.models.User
+import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.RequestUpdateToken
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
@@ -40,7 +43,6 @@ interface ApiService {
         @Body
         deviceToken: RequestUpdateToken
     ): Observable<BaseModel<MessageReturn>>
-
 
     @POST("/games")
     fun registerNewGame(
@@ -122,6 +124,12 @@ interface ApiService {
 
     @GET("/library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
+
+    @GET("users/profile")
+    fun getProfile(): Observable<BaseModel<User>>
+
+    @PATCH("users/{id}")
+    fun updateUserProfile(@Path("id") userId: String, @Body user: UserRequest): Observable<BaseModel<Session>>
 
     @POST("loans/{id}/remember-delivery")
     fun rememberDelivery(@Path("id")id: String?): Observable<BaseModel<RememberDeliveryResponse>>

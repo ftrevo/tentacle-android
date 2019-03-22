@@ -11,5 +11,6 @@ data class User(
     var state: State,
     var city: String,
     var createdAt: String = String(),
-    var updatedAt: String = String()
+    var updatedAt: String = String(),
+    var internalImage: String = String()
 ) : Serializable

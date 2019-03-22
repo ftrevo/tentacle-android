@@ -14,6 +14,7 @@
     <!-- IconBottomBar -->
     <color name="activateIcon">#FFF</color>
     <color name="deactivateIcon">#26FFFFFF</color>
+    <color name="menuItem">#A0A0A0</color>
 
     <color name="textColorErrorButtonName">#757575</color>
 
