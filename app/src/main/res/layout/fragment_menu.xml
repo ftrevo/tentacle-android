@@ -14,7 +14,7 @@
                android:layout_height="@dimen/dp_200"
                android:src="@drawable/logo_bg"
                android:translationY="@dimen/dp_250"
-               android:translationX="@dimen/dp_negative_60"
+               android:paddingEnd="@dimen/dp_55"
                android:rotation="@integer/rotation_menu_image"
                android:scaleX="@integer/scale_menu_image"
                android:scaleY="@integer/scale_menu_image"
