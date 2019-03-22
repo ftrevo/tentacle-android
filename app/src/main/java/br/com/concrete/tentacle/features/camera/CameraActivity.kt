@@ -6,7 +6,10 @@ import android.view.View
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.cameraPermissionResultGranted
 import br.com.concrete.tentacle.extensions.compress
+import br.com.concrete.tentacle.extensions.hasCameraPermission
+import br.com.concrete.tentacle.extensions.requestCameraPermission
 import br.com.concrete.tentacle.extensions.rotate
 import br.com.concrete.tentacle.extensions.visible
 import io.fotoapparat.Fotoapparat
@@ -24,20 +27,36 @@ class CameraActivity : BaseActivity() {
 
     private var fotoApparat: Fotoapparat? = null
     private var photoAccepted: Bitmap? = null
+    private var permissionsGranted: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
+        checkCameraPermission()
         init()
+    }
+
+    private fun checkCameraPermission(){
+        permissionsGranted = hasCameraPermission()
+        if(permissionsGranted){
+            cameraView.visible(true)
+        }else{
+            cameraView.visible(false)
+            requestCameraPermission()
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        fotoApparat?.start()
+        if(permissionsGranted){
+            fotoApparat?.start()
+        }
     }
 
     override fun onStop() {
-        fotoApparat?.stop()
+        if(permissionsGranted){
+            fotoApparat?.stop()
+        }
         super.onStop()
     }
 
@@ -103,4 +122,12 @@ class CameraActivity : BaseActivity() {
 
     override fun getFinishActivityTransition() = ActivityAnimation.TRANSLATE_DOWN
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(cameraPermissionResultGranted(requestCode, permissions, grantResults)){
+            permissionsGranted = true
+            fotoApparat?.start()
+            cameraView.visible(true)
+        }
+    }
 }

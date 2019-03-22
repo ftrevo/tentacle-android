@@ -1,11 +1,15 @@
 package br.com.concrete.tentacle.extensions
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import br.com.concrete.tentacle.R
@@ -13,6 +17,8 @@ import br.com.concrete.tentacle.R
 enum class ActivityAnimation {
     TRANSLATE_LEFT, TRANSLATE_RIGHT, TRANSLATE_UP, TRANSLATE_DOWN, TRANSLATE_FADE
 }
+
+const val CAMERA_REQUEST_CODE = 10
 
 inline fun <reified T : Activity> Activity.launchActivity(
     animation: ActivityAnimation = ActivityAnimation.TRANSLATE_LEFT
@@ -188,4 +194,36 @@ fun getAnimation(animation: ActivityAnimation?): IntArray {
     }
 
     return intArrayOf(enterAnim, exitAnim)
+}
+
+fun Activity.hasCameraPermission() = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+
+fun Activity.requestCameraPermission(){
+    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
+}
+
+fun Activity.cameraPermissionResultGranted(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+): Boolean {
+
+    if (requestCode != CAMERA_REQUEST_CODE) {
+        return false
+    }
+
+    if (grantResults.isEmpty()) {
+        return false
+    }
+    if (permissions[0] != Manifest.permission.CAMERA) {
+        return false
+    }
+
+
+    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        return true
+    }
+
+    requestCameraPermission()
+    return false
 }
