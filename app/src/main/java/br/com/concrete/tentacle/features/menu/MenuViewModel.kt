@@ -43,4 +43,8 @@ class MenuViewModel(
     fun removeSession(){
         sharedPrefRepository.removeSession()
     }
+
+    fun removeUser(){
+        sharedPrefRepository.removeUser()
+    }
 }

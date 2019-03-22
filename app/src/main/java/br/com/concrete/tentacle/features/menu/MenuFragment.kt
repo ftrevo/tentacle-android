@@ -73,8 +73,8 @@ class MenuFragment : Fragment() {
     }
 
     private fun updateUI(user: User){
-        name.text = user.name
-        state.text = user.state.name
+        name.text = user?.name
+        state.text = user?.state?.name
     }
 
     private fun checkLogout() {
@@ -94,6 +94,7 @@ class MenuFragment : Fragment() {
 
     private fun performLogout() {
         menuViewModel.removeSession()
+        menuViewModel.removeUser()
         val login = Intent(activity, LoginActivity::class.java)
         login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(login)
