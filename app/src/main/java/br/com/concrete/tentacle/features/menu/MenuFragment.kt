@@ -13,6 +13,9 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.features.library.loan.LoanActivity
 import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.features.profile.ProfileActivity
 import br.com.concrete.tentacle.utils.DialogUtils
@@ -65,9 +68,9 @@ class MenuFragment : Fragment() {
     }
 
     private fun goToProfile(){
-        val profile = Intent(activity, ProfileActivity::class.java)
-        profile.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(profile)
+        activity?.launchActivity<ProfileActivity>(
+            animation = ActivityAnimation.TRANSLATE_UP
+        )
     }
 
     private fun updateUI(user: User){

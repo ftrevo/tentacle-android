@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.features
 
 import android.os.Bundle
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -12,7 +13,9 @@ import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.data.interfaces.CallBack
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.activity_host.bottomBar
+import kotlinx.android.synthetic.main.activity_host.drawer_layout
 import kotlinx.android.synthetic.main.activity_host.toolbar
+
 
 class HostActivity : BaseActivity(), CallBack {
 
@@ -21,14 +24,13 @@ class HostActivity : BaseActivity(), CallBack {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_host)
-
         init()
-        startNavListener()
-        initObservable()
     }
 
     private fun init() {
         setSupportActionBarWithIcon(toolbar, R.string.toolbar_title_home, R.drawable.ic_logo_actionbar)
+        initObservable()
+        startNavListener()
     }
 
     companion object {
@@ -61,7 +63,7 @@ class HostActivity : BaseActivity(), CallBack {
 
     private fun startNavListener() {
         navController = Navigation.findNavController(this, R.id.nav_fragment)
-        val topLevelDestinations = setOf(R.id.home, R.id.myGames, R.id.library)
+        val topLevelDestinations = setOf(R.id.home, R.id.myGames, R.id.library, R.id.my_reservations)
         val appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -83,6 +85,14 @@ class HostActivity : BaseActivity(), CallBack {
             }
             setupToolbar(R.drawable.ic_logo_actionbar)
         }
+        setupToolbar(R.drawable.ic_logo_actionbar)
+        val mDrawerToggle = ActionBarDrawerToggle(
+            this,
+            drawer_layout,
+            toolbar,
+            R.string.drawer_open,
+            R.string.drawer_close)
+        drawer_layout.addDrawerListener(mDrawerToggle)
     }
 
     override fun changeBottomBar(actionNameId: Int, navigateId: Int) {
