@@ -176,7 +176,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
             myReservationViewModel.loadMyReservations()
         }
 
-        (activity as BaseActivity).setupToolbar(R.string.toolbar_title_my_reservations, R.drawable.ic_logo_actionbar)
+        (activity as BaseActivity).setupToolbar(R.string.toolbar_title_my_reservations, R.drawable.ic_menu)
     }
 
     override fun count() = count
