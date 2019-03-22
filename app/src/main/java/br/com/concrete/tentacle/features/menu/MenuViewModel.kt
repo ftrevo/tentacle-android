@@ -47,4 +47,8 @@ class MenuViewModel(
     fun removeUser(){
         sharedPrefRepository.removeUser()
     }
+
+    fun updateUser(user: User) {
+        sharedPrefRepository.updateUser(user)
+    }
 }
