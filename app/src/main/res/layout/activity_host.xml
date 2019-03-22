@@ -18,7 +18,7 @@
         app:navGraph="@navigation/nav_host"/>
 
     <br.com.concrete.tentacle.custom.BottomBar
-        app:defaultSelectedPosition="2"
+        app:defaultSelectedPosition="0"
         android:id="@+id/bottomBar"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"

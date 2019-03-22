@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="auto_size_text_sizes">
+        <item>@dimen/sp_3</item>
+        <item>@dimen/sp_4</item>
+        <item>@dimen/sp_6</item>
+        <item>@dimen/sp_8</item>
+        <item>@dimen/sp_10</item>
+        <item>@dimen/sp_12</item>
+        <item>@dimen/sp_14</item>
+        <item>@dimen/sp_16</item>
+        <item>@dimen/sp_20</item>
+    </array>
+
+</resources>
