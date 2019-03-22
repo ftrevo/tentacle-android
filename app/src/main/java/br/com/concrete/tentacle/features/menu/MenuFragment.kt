@@ -31,7 +31,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MenuFragment : Fragment() {
 
     private val menuViewModel: MenuViewModel by viewModel()
-    private val sharePrefRepository: SharedPrefRepository by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -94,8 +93,7 @@ class MenuFragment : Fragment() {
     }
 
     private fun performLogout() {
-        sharePrefRepository.removeSession()
-        sharePrefRepository.removeUser()
+        menuViewModel.removeSession()
         val login = Intent(activity, LoginActivity::class.java)
         login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(login)
