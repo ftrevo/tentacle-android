@@ -20,38 +20,62 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     fun getMyGamesPage(): LiveData<Event<ViewStateModel<MediaResponse>>> = viewStateGamePage
     fun deleteMedia(): LiveData<Event<ViewStateModel<Media>>> = viewStateGameDelete
 
-    var page: Int = 1
+    var page: Int = 0
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun loadMyGames() {
         viewStateGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
-        disposables.add(gameRepository.loadMyGames()
-            .subscribe({ baseModel ->
-                viewStateGame.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
-            }, {
-                viewStateGame.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
-            })
-        )
+        disposables.add(getObservable())
     }
 
     fun loadGamePage() {
-        disposables.add(gameRepository.loadMyGames(page)
-            .subscribe({ baseModel ->
-                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
-                page += 1
-            }, {
-                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
-            })
-        )
+        disposables.add(getObservable())
     }
 
+    private fun getObservable() = gameRepository.loadMyGames(page)
+        .subscribe({ baseModel ->
+            viewStateGame.postValue(
+                Event(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.SUCCESS,
+                        model = baseModel.data
+                    )
+                )
+            )
+            page += 1
+        }, {
+            viewStateGame.postValue(
+                Event(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.ERROR,
+                        errors = notKnownError(it)
+                    )
+                )
+            )
+        })
+
     fun deleteGame(id: String) {
-        disposables.add(gameRepository.deleteMedia(id)
-            .subscribe({ baseModel ->
-                viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
-            }, {
-                viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
-            })
+        disposables.add(
+            gameRepository.deleteMedia(id)
+                .subscribe({ baseModel ->
+                    viewStateGameDelete.postValue(
+                        Event(
+                            ViewStateModel(
+                                status = ViewStateModel.Status.SUCCESS,
+                                model = baseModel.data
+                            )
+                        )
+                    )
+                }, {
+                    viewStateGameDelete.postValue(
+                        Event(
+                            ViewStateModel(
+                                status = ViewStateModel.Status.ERROR,
+                                errors = notKnownError(it)
+                            )
+                        )
+                    )
+                })
         )
     }
 }

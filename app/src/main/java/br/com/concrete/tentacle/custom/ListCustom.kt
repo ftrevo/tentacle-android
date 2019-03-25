@@ -2,17 +2,19 @@ package br.com.concrete.tentacle.custom
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.data.models.PaginationParameters
+import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.extensions.hideKeyboard
 import br.com.concrete.tentacle.extensions.withStyledAttributes
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE
 import br.com.concrete.tentacle.utils.DEFAULT_INVALID_RESOURCE_BOOLEAN
+import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
@@ -125,10 +127,12 @@ class ListCustom(
                             pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition()
                         }
 
-                        if (mOnScrollListener.paginationParameters().loadPage
-                            && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                            if (mOnScrollListener.paginationParameters().count
-                                > mOnScrollListener.paginationParameters().sizeElements) {
+                        if (mOnScrollListener.loadPage()
+                            && (visibleItemCount + pastVisibleItems) >= totalItemCount
+                        ) {
+                            if (mOnScrollListener.count()
+                                > mOnScrollListener.sizeElements()
+                            ) {
                                 mOnScrollListener.loadMore()
                                 buttonAction.visibility = View.GONE
                             }
@@ -196,6 +200,6 @@ class ListCustom(
         fun sizeElements(): Int
         fun loadMore()
         fun loadPage(): Boolean
-        fun paginationParameters(): PaginationParameters
+        //fun paginationParameters(): PaginationParameters
     }
 }

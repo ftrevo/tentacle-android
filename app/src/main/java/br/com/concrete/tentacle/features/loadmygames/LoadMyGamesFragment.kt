@@ -17,6 +17,7 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.Media
+import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
@@ -67,88 +68,29 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
         val layoutManager = LinearLayoutManager(context)
         list.recyclerListView.layoutManager = layoutManager
 
-        viewModelLoadMyGames.getMyGamesPage().observe(this, Observer { stateModel ->
-            stateModel.getContentIfNotHandler()?.let {
-                when (it.status) {
-                    ViewStateModel.Status.SUCCESS -> {
-                        val mediaResponse = it.model
-                        val medias = mediaResponse?.list as ArrayList<Media>
-                        count = mediaResponse.count
-
-                        medias.let {
-                            Handler().postDelayed({
-                                recyclerViewAdapter?.notifyItemInserted(lMedia.size - 1)
-                                lMedia.removeAt(lMedia.size - 1)
-                                recyclerViewAdapter?.notifyItemRemoved(lMedia.size - 1)
-                                lMedia.addAll(medias)
-
-                                if (lMedia.size == count) {
-                                    lMedia.add(Media.getEmptyMedia())
-                                }
-
-                                loadMoreItems = true
-                                list?.buttonAction?.visibility = View.VISIBLE
-                                recyclerViewAdapter?.setNewList(lMedia)
-                            }, TIME_PROGRESS_LOAD)
-                        }
-                    }
-                    ViewStateModel.Status.LOADING -> {
-                    }
-                    ViewStateModel.Status.ERROR -> {
-                        loadMoreItems = false
-                    }
-                }
-            }
-        })
-
         viewModelLoadMyGames.getMyGames().observe(this, Observer { stateModel ->
             stateModel.getContentIfNotHandler()?.let {
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
-                        val mediaResponse = it.model
-                        val medias = mediaResponse?.list as ArrayList<Media?>
-                        count = mediaResponse.count
-                        lMedia.clear()
-                        medias.let {
-                            if (lMedia.isEmpty()) {
-                                lMedia.addAll(medias)
-                                recyclerViewAdapter = BaseAdapter(
-                                    lMedia,
-                                    R.layout.item_game,
-                                    { view ->
-                                        LoadMyGamesViewHolder(view)
-                                    }, { holder, element ->
-                                        LoadMyGamesViewHolder.callBack(
-                                            holder = holder,
-                                            el = element,
-                                            listener = { media ->
-                                                callActivity(media)
-                                            },
-                                            listenerLongClick = { media ->
-                                                showDialogDelete(media)
-                                            })
-                                    })
-
-                                recyclerListView.layoutManager = LinearLayoutManager(context)
-                                recyclerListView.setItemViewCacheSize(medias.size)
-                                list.recyclerListView.adapter = recyclerViewAdapter
-
-                                list.updateUi(lMedia)
-                            }
+                        if (lMedia.isEmpty()) {
+                            fillRecyclerView(it)
+                        } else {
+                            moreItemsRecyclerView(it)
                         }
-                        list.setLoading(false)
                     }
 
                     ViewStateModel.Status.ERROR -> {
                         it.errors?.let {
-                            list.setErrorMessage(R.string.load_games_error_not_know)
-                            list.setButtonTextError(R.string.load_again)
-                            list.setActionError {
-                                viewModelLoadMyGames.loadMyGames()
+                            if (lMedia.isEmpty()) {
+                                list.setErrorMessage(R.string.load_games_error_not_know)
+                                list.setButtonTextError(R.string.load_again)
+                                list.setActionError {
+                                    viewModelLoadMyGames.loadMyGames()
+                                }
                             }
+                            list.updateUi<Media>(null)
+                            list.setLoading(false)
                         }
-                        list.updateUi<Media>(null)
-                        list.setLoading(false)
                     }
                     ViewStateModel.Status.LOADING -> {
                         list.setLoading(true)
@@ -177,6 +119,64 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
         })
 
         lifecycle.addObserver(viewModelLoadMyGames)
+    }
+
+    private fun fillRecyclerView(it: ViewStateModel<MediaResponse>) {
+        val mediaResponse = it.model
+        val medias = mediaResponse?.list as ArrayList<Media?>
+        count = mediaResponse.count
+        lMedia.clear()
+        medias.let {
+            if (lMedia.isEmpty()) {
+                lMedia.addAll(medias)
+                recyclerViewAdapter = BaseAdapter(
+                    lMedia,
+                    R.layout.item_game,
+                    { view ->
+                        LoadMyGamesViewHolder(view)
+                    }, { holder, element ->
+                        LoadMyGamesViewHolder.callBack(
+                            holder = holder,
+                            el = element,
+                            listener = { media ->
+                                callActivity(media)
+                            },
+                            listenerLongClick = { media ->
+                                showDialogDelete(media)
+                            })
+                    })
+
+                recyclerListView.layoutManager = LinearLayoutManager(context)
+                recyclerListView.setItemViewCacheSize(medias.size)
+                list.recyclerListView.adapter = recyclerViewAdapter
+
+                list.updateUi(lMedia)
+            }
+        }
+        list.setLoading(false)
+    }
+
+    private fun moreItemsRecyclerView(it: ViewStateModel<MediaResponse>) {
+        val mediaResponse = it.model
+        val medias = mediaResponse?.list as ArrayList<Media>
+        count = mediaResponse.count
+
+        medias.let {
+            Handler().postDelayed({
+                recyclerViewAdapter?.notifyItemInserted(lMedia.size - 1)
+                lMedia.removeAt(lMedia.size - 1)
+                recyclerViewAdapter?.notifyItemRemoved(lMedia.size - 1)
+                lMedia.addAll(medias)
+
+                if (lMedia.size == count) {
+                    lMedia.add(Media.getEmptyMedia())
+                }
+
+                loadMoreItems = true
+                list?.buttonAction?.visibility = View.VISIBLE
+                recyclerViewAdapter?.setNewList(lMedia)
+            }, TIME_PROGRESS_LOAD)
+        }
     }
 
     private fun showDialogDelete(media: Media) {
