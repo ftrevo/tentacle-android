@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -11,8 +12,11 @@
             android:layout_height="wrap_content"
             android:text="@string/button"
             android:lines="@integer/line_1"
+            android:ellipsize="end"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center"
+            app:autoSizeTextType="uniform"
+            app:autoSizePresetSizes="@array/auto_size_text_sizes"/>
 
     <ProgressBar
             android:id="@+id/progressBar"

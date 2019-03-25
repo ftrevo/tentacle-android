@@ -62,7 +62,7 @@ class ListCustom(
         } else {
             if (elements.isEmpty()) {
                 val msg = if (filtering) emptyListMessageReference else errorDescriptionReference
-                recyclerListError.setUpComponents(iconReference, msg, buttonNameActionReference)
+                recyclerListError.setUpComponents(iconReference, msg, buttonNameErrorReference)
                 showViewError()
             } else {
                 showViewSuccess()

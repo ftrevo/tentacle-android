@@ -1,6 +1,9 @@
 package br.com.concrete.tentacle.features.lendgame
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
@@ -9,19 +12,31 @@ import br.com.concrete.tentacle.data.models.ActiveLoan
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.Media
+import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
-import br.com.concrete.tentacle.utils.DEFAULT_RETURN_DATE_IN_WEEKS
+import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LOAN_ACTION_LEND
+import br.com.concrete.tentacle.utils.LOAN_ACTION_REMEMBER_DELIVERY
+import br.com.concrete.tentacle.utils.LOAN_ACTION_RETURN
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
-import kotlinx.android.synthetic.main.activity_lend_game.*
+import kotlinx.android.synthetic.main.activity_lend_game.bottomGroup
+import kotlinx.android.synthetic.main.activity_lend_game.btLendGame
+import kotlinx.android.synthetic.main.activity_lend_game.btRequestReturn
+import kotlinx.android.synthetic.main.activity_lend_game.gameView
+import kotlinx.android.synthetic.main.activity_lend_game.group
+import kotlinx.android.synthetic.main.activity_lend_game.tvDate
+import kotlinx.android.synthetic.main.activity_lend_game.tvDateRequested
+import kotlinx.android.synthetic.main.activity_lend_game.tvExpired
+import kotlinx.android.synthetic.main.activity_lend_game.tvRequestedBy
+import kotlinx.android.synthetic.main.activity_lend_game.tvReservado
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.Calendar
 
 class LendGameActivity : BaseActivity() {
 
@@ -31,13 +46,21 @@ class LendGameActivity : BaseActivity() {
 
     private val viewModelLendGame: LendGameViewModel by viewModel()
     private var activeLoan: ActiveLoan? = null
+    private var media: Media? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lend_game)
         setupToolbar(R.string.toolbar_title_lend_game, R.drawable.ic_close, true)
+        initEvents()
         initObserver()
         loadData()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_game_detail, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun loadData() {
@@ -49,10 +72,23 @@ class LendGameActivity : BaseActivity() {
         }
     }
 
+    private fun initEvents() {
+        btLendGame.setOnClickListener {
+            lendGame()
+        }
+
+        btRequestReturn.setOnClickListener {
+            rememberDelivery(activeLoan?._id)
+        }
+    }
+
     private fun initObserver() {
         viewModelLendGame.getMediaViewState().observe(this, Observer { stateModel ->
             when (stateModel.status) {
-                ViewStateModel.Status.SUCCESS -> fillData(stateModel.model)
+                ViewStateModel.Status.SUCCESS -> {
+                    fillData(stateModel.model)
+                    media = stateModel.model
+                }
                 ViewStateModel.Status.LOADING -> showLoading(true)
                 ViewStateModel.Status.ERROR -> showError(stateModel.errors)
             }
@@ -65,16 +101,52 @@ class LendGameActivity : BaseActivity() {
                 ViewStateModel.Status.ERROR -> showError(stateModel.errors)
             }
         })
+
+        viewModelLendGame.getRememberDeliveryViewState().observe(this, Observer { stateModel ->
+            when (stateModel.status) {
+                ViewStateModel.Status.SUCCESS -> rememberDeliverySuccess(stateModel.model)
+                ViewStateModel.Status.LOADING -> showLoading(true)
+                ViewStateModel.Status.ERROR -> showError(stateModel.errors)
+            }
+        })
+
+        viewModelLendGame.deleteMedia().observe(this, Observer { stateModel ->
+            stateModel.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        this.finish()
+                    }
+                    ViewStateModel.Status.LOADING -> showLoading(true)
+                    ViewStateModel.Status.ERROR -> showError(it.errors)
+                }
+            }
+        })
+    }
+
+    private fun rememberDeliverySuccess(deliveryResponse: RememberDeliveryResponse?) {
+        showLoading(false)
+        deliveryResponse?.let {
+            val bundle = Bundle()
+            bundle.putString(LendGameActivitySuccess.ACTION_EXTRA, LOAN_ACTION_REMEMBER_DELIVERY)
+            bundle.putParcelable(LendGameActivitySuccess.DELIVERY_RESPONSE_EXTRA, it)
+            launchActivitySuccess(bundle)
+        }
     }
 
     private fun lendSuccess(loanResponse: LoanResponse?) {
+        showLoading(false)
         loanResponse?.let {
-            showLoading(false)
+            val action = if (it.returnDate == null) LOAN_ACTION_LEND else LOAN_ACTION_RETURN
             val bundle = Bundle()
-            bundle.putSerializable(LendGameActivitySuccess.LOAN_EXTRA, it)
-            launchActivity<LendGameActivitySuccess>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
-            finish()
+            bundle.putParcelable(LendGameActivitySuccess.LOAN_EXTRA, it)
+            bundle.putString(LendGameActivitySuccess.ACTION_EXTRA, action)
+            launchActivitySuccess(bundle)
         }
+    }
+
+    private fun launchActivitySuccess(bundle: Bundle) {
+        launchActivity<LendGameActivitySuccess>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
+        finish()
     }
 
     private fun fillData(media: Media?) {
@@ -82,24 +154,47 @@ class LendGameActivity : BaseActivity() {
 
         media?.let { m ->
             activeLoan = m.activeLoan
-            tvGameName.text = m.game?.name ?: ""
+            m.game?.let { game ->
+                gameView.setGame(game)
+            }
+            gameView.showStatusView(false)
             tvRequestedBy.text = m.activeLoan?.requestedByName ?: ""
-            val currentDate = Calendar.getInstance()
-            currentDate.add(Calendar.WEEK_OF_MONTH, DEFAULT_RETURN_DATE_IN_WEEKS)
-            tvDate.text = getString(R.string.date_return_prefix, currentDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
 
-            activeLoan?.let {
-                btLendGame.setOnClickListener {
-                    lendGame()
+            activeLoan?.let { activeLoan ->
+                bottomGroup.visible(true)
+                btLendGame.visible(true)
+
+                tvRequestedBy.text = activeLoan.requestedByName
+                tvDateRequested.text = getString(
+                    R.string.date_requested_prefix,
+                    activeLoan.requestedAt.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT)
+                )
+
+                activeLoan.loanDate?.let {
+                    tvReservado.text = getString(R.string.reserved_by)
+                    btRequestReturn.visible(true)
+                    btLendGame.setButtonName(getString(R.string.gameReturned))
+
+                    val expired = activeLoan.isExpired()
+
+                    tvExpired.visible(expired)
+
+                    if (expired) {
+
+                        btRequestReturn.enable()
+                    } else {
+                        btRequestReturn.disable()
+                    }
+                } ?: run {
+                    btRequestReturn.visible(false)
                 }
+            } ?: run {
+                bottomGroup.visible(false)
             }
 
-            if (activeLoan?.loanDate != null) {
-                tvReservado.text = getString(R.string.reserved_by)
-                btLendGame.visibility = View.GONE
-            } else {
-                btLendGame.visibility = View.VISIBLE
-            }
+            val returnDate =
+                activeLoan?.estimatedReturnDate?.toDate() ?: ActiveLoan.getDefaultReturnDate()
+            tvDate.text = getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
         }
 
         group.visibility = View.VISIBLE
@@ -107,8 +202,14 @@ class LendGameActivity : BaseActivity() {
 
     private fun lendGame() {
         activeLoan?.let {
-            viewModelLendGame.updateMediaLoan(it._id, LoanActionRequest(LOAN_ACTION_LEND))
+            val action =
+                if (it.loanDate == null) LoanActionRequest(LOAN_ACTION_LEND) else LoanActionRequest(LOAN_ACTION_RETURN)
+            viewModelLendGame.updateMediaLoan(it._id, action)
         }
+    }
+
+    private fun rememberDelivery(id: String?) {
+        viewModelLendGame.rememberDelivery(id)
     }
 
     override fun getFinishActivityTransition(): ActivityAnimation {
@@ -122,5 +223,33 @@ class LendGameActivity : BaseActivity() {
     override fun showError(errors: ErrorResponse?, title: String) {
         showLoading(false)
         super.showError(errors, title)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item?.itemId) {
+            R.id.delete -> {
+                showDialogDelete()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+        return false
+    }
+
+    private fun showDialogDelete() {
+        media?.let { media ->
+            val gameName = String.format(getString(R.string.delete_dialog_message), media.game?.name ?: "")
+
+            DialogUtils.showDialog(
+                context = this,
+                title = getString(R.string.delete_dialog_title),
+                message = gameName,
+                positiveText = getString(R.string.delete),
+                positiveListener = DialogInterface.OnClickListener { _, _ ->
+                    viewModelLendGame.deleteGame(media._id)
+                },
+                negativeText = getString(R.string.not_delete)
+            )
+        }
     }
 }

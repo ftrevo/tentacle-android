@@ -14,6 +14,7 @@
     <!-- IconBottomBar -->
     <color name="activateIcon">#FFF</color>
     <color name="deactivateIcon">#26FFFFFF</color>
+    <color name="menuItem">#A0A0A0</color>
 
     <color name="textColorErrorButtonName">#757575</color>
 
@@ -37,8 +38,13 @@
 
     <color name="gameStatusDefaultColor">#ff00</color>
 
-    <color name="loan_state_pending">#f8e71c</color>
-    <color name="loan_state_active">#58ea7a</color>
-    <color name="loan_state_expired">#ea5858</color>
+    <color name="loan_state_pending">#FFD700</color>
+    <color name="loan_state_active">#00CF80</color>
+    <color name="loan_state_expired">#E34444</color>
+    <color name="colorBGIconHome">#8024282F</color>
+
+    <color name="black_80_opacity">#99000000</color>
+    <color name="backgroundItemGameVideo">#3b4048</color>
+    <color name="backgroundDialog">#191b1f</color>
 
 </resources>

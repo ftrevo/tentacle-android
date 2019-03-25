@@ -25,6 +25,12 @@
         <item name="android:screenOrientation">portrait</item>
     </style>
 
+    <style name="Translucent" parent="AppTheme.FullScreen">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 
     <style name="TextInputLayoutStyle">
         <item name="android:layout_marginStart">@dimen/margin_default</item>
@@ -49,6 +55,12 @@
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/shape_border_rounded_blue</item>
         <item name="android:textSize">@dimen/sizeButton</item>
+    </style>
+
+    <style name="StyleButton.WhiteActive">
+        <item name="textColorButton">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@drawable/shape_border_rounded_white</item>
     </style>
 
     <style name="StyleCLearFilterButton" parent="StyleButton">
@@ -77,13 +89,9 @@
         <item name="android:textAppearance">@style/TextMedium.14sp</item>
     </style>
     
-    <style name="StyleRatingBar" parent="Widget.AppCompat.RatingBar">
+    <style name="StyleRatingBar" parent="android:style/Widget.Material.RatingBar.Small">
         <item name="android:colorControlNormal">@android:color/black</item>
         <item name="android:colorControlActivated">@color/starColor</item>
-        <item name="android:scaleX">0.7</item>
-        <item name="android:scaleY">0.7</item>
-        <item name="android:transformPivotX">-0dp</item>
-        <item name="android:transformPivotY">-0dp</item>
     </style>
 
     <style name="LibraryBullets">

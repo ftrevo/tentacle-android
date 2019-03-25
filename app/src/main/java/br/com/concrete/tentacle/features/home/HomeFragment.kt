@@ -11,8 +11,10 @@ import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.features.library.loan.LoanActivity
 import kotlinx.android.synthetic.main.fragment_home.listHome
-import kotlinx.android.synthetic.main.list_custom.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
@@ -71,7 +73,14 @@ class HomeFragment : BaseFragment() {
                 { view ->
                     HomeViewHolder(view)
                 }, { holder, element ->
-                    HomeViewHolder.callBack(holder = holder, element = element)
+                    HomeViewHolder.callBack(holder = holder, element = element) { game ->
+                        val extras = Bundle()
+                        extras.putString(LoanActivity.ID_LIBRARY_EXTRA, game._id)
+                        activity?.launchActivity<LoanActivity>(
+                            extras = extras,
+                            animation = ActivityAnimation.TRANSLATE_UP
+                        )
+                    }
                 })
             recyclerListView.adapter = recyclerViewAdapter
         }

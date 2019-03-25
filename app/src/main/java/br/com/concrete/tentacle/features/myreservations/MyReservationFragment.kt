@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.features.myreservations
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -9,23 +10,31 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
+import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
+import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MyReservationFragment : BaseFragment() {
+class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
 
     private val myReservationViewModel: MyReservationViewModel by viewModel()
     private val myReservationList = ArrayList<LoanResponse?>()
+
+    private var recyclerViewAdapter: BaseAdapter<LoanResponse>? = null
+
+    private var count = 0
+    private var loadMoreItems = true
 
     override fun getToolbarTitle(): Int {
         return R.string.toolbar_title_my_reservations
@@ -56,7 +65,10 @@ class MyReservationFragment : BaseFragment() {
             when (base.status) {
                 ViewStateModel.Status.SUCCESS -> {
                     base.model?.let { loanResponseList ->
-                        myReservationList.addAll(loanResponseList)
+                        count = loanResponseList.count
+                        myReservationList.clear()
+
+                        myReservationList.addAll(loanResponseList.list)
                         if (myReservationList.isEmpty()) {
                             loadEmptyState()
                         } else {
@@ -65,7 +77,40 @@ class MyReservationFragment : BaseFragment() {
                     }
                 }
                 ViewStateModel.Status.ERROR -> {
-                    callError(base)
+                    callError(
+                        ViewStateModel(
+                            status = base.status
+                        )
+                    )
+                }
+            }
+        })
+
+        myReservationViewModel.getMyReservationsPage().observe(this, Observer { base ->
+            base.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        val loansResponse = it.model
+                        val loansList = loansResponse?.list as ArrayList<LoanResponse>
+                        count = loansResponse.count
+
+                        loansResponse.let {
+                            Handler().postDelayed({
+                                recyclerViewAdapter?.notifyItemInserted(myReservationList.size - 1)
+                                myReservationList.removeAt(myReservationList.size - 1)
+                                recyclerViewAdapter?.notifyItemRemoved(myReservationList.size - 1)
+                                myReservationList.addAll(loansList)
+
+                                loadMoreItems = true
+                                recyclerViewAdapter?.setNewList(myReservationList)
+                            }, TIME_PROGRESS_LOAD)
+                        }
+                    }
+                    ViewStateModel.Status.LOADING -> {
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        loadMoreItems = false
+                    }
                 }
             }
         })
@@ -83,11 +128,12 @@ class MyReservationFragment : BaseFragment() {
         }
         listMyReservations.updateUi<LoanResponse>(null)
         listMyReservations.setLoading(false)
+        listMyReservations.buttonNameError.setButtonName(getString(R.string.load_again))
     }
 
     private fun loadRecyclerView(model: ArrayList<LoanResponse?>?) {
         model?.let {
-            val recyclerViewAdapter = BaseAdapter<LoanResponse?>(
+            recyclerViewAdapter = BaseAdapter(
                 model,
                 R.layout.item_my_reservation,
                 { view ->
@@ -103,6 +149,8 @@ class MyReservationFragment : BaseFragment() {
                         }
                     }
                 })
+
+            listMyReservations.recyclerListView.setItemViewCacheSize(model.size)
             listMyReservations.recyclerListView.adapter = recyclerViewAdapter
         }
 
@@ -120,11 +168,30 @@ class MyReservationFragment : BaseFragment() {
 
     private fun initView() {
         listMyReservations.recyclerListView.setHasFixedSize(true)
+        listMyReservations.setOnScrollListener(this)
         val layoutManager = LinearLayoutManager(context)
         listMyReservations.recyclerListView.layoutManager = layoutManager
 
         listMyReservations.recyclerListError.buttonNameError.setOnClickListener {
-            callback?.changeBottomBar(R.id.action_library, R.id.navigate_to_library)
+            myReservationViewModel.loadMyReservations()
         }
+
+        (activity as BaseActivity).setupToolbar(R.string.toolbar_title_my_reservations, R.drawable.ic_menu)
     }
+
+    override fun count() = count
+
+    override fun sizeElements() = myReservationList.size
+
+    override fun loadMore() {
+        myReservationViewModel.loadMyReservationsPage()
+        myReservationList.add(null)
+        loadMoreItems = false
+
+        recyclerViewAdapter?.notifyItemInserted(myReservationList.size - 1)
+        myReservationList.addAll(ArrayList<LoanResponse>())
+        recyclerViewAdapter?.setNewList(myReservationList)
+    }
+
+    override fun loadPage() = loadMoreItems
 }

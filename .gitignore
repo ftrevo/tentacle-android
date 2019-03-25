@@ -22,3 +22,5 @@ local.properties
 ehthumbs.db
 Thumbs.db
 build/
+app/google-services.json
+/.project

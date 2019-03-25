@@ -29,8 +29,8 @@ android {
         applicationId "br.com.concrete.tentacle"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 105
-        versionName "1.0.5"
+        versionCode 106
+        versionName "1.0.6"
         testInstrumentationRunner "br.com.concrete.tentacle.util.TentacleTestRunner"
     }
     buildTypes {
@@ -88,6 +88,13 @@ dependencies {
     //UI Components
     //https://github.com/MdFarhanRaja/SearchableSpinner
     implementation "com.github.MdFarhanRaja:SearchableSpinner:$searchableSpinner"
+
+    //firebase
+    implementation "com.google.firebase:firebase-core:$firebaseCore"
+    implementation "com.google.firebase:firebase-messaging:$firebaseMessaging"
+    implementation "com.google.firebase:firebase-iid:$firebaseIid"
+    implementation "com.firebase:firebase-jobdispatcher:$firebaseDispatcher"
+
 
     //Test
     implementation "androidx.legacy:legacy-support-v4:$legacySupport"
@@ -154,4 +161,13 @@ dependencies {
 
     //https://github.com/jaredrummler/MaterialSpinner
     implementation "com.jaredrummler:material-spinner:$materialSpinner"
+
+    //PinchToZoom
+    implementation "com.github.chrisbanes:PhotoView:$pinchZoom"
+
+    //takePicture
+    implementation 'com.github.jkwiecien:EasyImage:1.3.1'
 }
+
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'

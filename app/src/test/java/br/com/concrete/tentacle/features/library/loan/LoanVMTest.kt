@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.features.library.loan
 import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
+import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
@@ -167,5 +168,33 @@ class LoanVMTest : BaseViewModelTest() {
         }
         loanViewModel.performLoad("someId")
         Assert.assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loanViewModel calls getGame should return a detail game`() {
+        val responseJson = getJson("mockjson/registerMedia/detail_game_success.json")
+        var actualDetail = ViewStateModel<Game>(status = ViewStateModel.Status.LOADING)
+
+        val classType = object : com.google.gson.reflect.TypeToken<BaseModel<Game>>() {}.type
+        val baseResponse: BaseModel<Game> = GsonBuilder()
+            .create()
+            .fromJson(responseJson, classType)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = baseResponse.data)
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+        mockServer.enqueue(mockResponse)
+
+        loanViewModel.getGame().observeForever {
+            actualDetail = it
+        }
+
+        loanViewModel.getDetailsGame("idGame")
+        Assert.assertEquals(expected, actualDetail)
     }
 }

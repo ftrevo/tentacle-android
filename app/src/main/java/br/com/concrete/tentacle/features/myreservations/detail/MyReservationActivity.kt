@@ -64,7 +64,7 @@ class MyReservationActivity : BaseActivity() {
             gameView.setGame(loanResponse.game)
             gameView.showStatusView(true)
 
-            tvGamePlatform.text = loanResponse.media.platform
+            tvGamePlatform.text = loanResponse.media.platform.platformName
             tvGameOwner.text = loanResponse.mediaOwner.name
 
             val loanState = loanResponse.getLoanState()
