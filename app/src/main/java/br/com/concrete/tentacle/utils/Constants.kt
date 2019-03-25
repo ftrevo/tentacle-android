@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.utils
 
 const val EMPTY_STRING = ""
 const val PREFS_KEY_USER_SESSION = "USER_SESSION"
+const val PREFS_KEY_USER = "USER"
 const val DEFAULT_INVALID_RESOURCE = -1
 const val DEFAULT_INVALID_RESOURCE_BOOLEAN = false
 const val BLANk_SPACE_STRING = " "
@@ -49,3 +50,10 @@ const val GAME_MODE_MMO = "massively-multiplayer-online-mmo"
 const val GAME_MODE_SPLIT_SCREEN = "split-screen"
 
 const val DEFAULT_EXCEPTION_STATUS_CODE = 0
+
+const val ONE_HOUR = 60 * 60 * 1000L
+
+const val DEFAULT_PENULTIMATE_DAY = 1
+
+const val DEFAULT_LANGUAGE = "pt"
+const val DEFAULT_COUNTRY = "BR"

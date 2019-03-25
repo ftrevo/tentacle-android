@@ -14,6 +14,7 @@
     <!-- IconBottomBar -->
     <color name="activateIcon">#FFF</color>
     <color name="deactivateIcon">#26FFFFFF</color>
+    <color name="menuItem">#A0A0A0</color>
 
     <color name="textColorErrorButtonName">#757575</color>
 
@@ -44,5 +45,6 @@
 
     <color name="black_80_opacity">#99000000</color>
     <color name="backgroundItemGameVideo">#3b4048</color>
+    <color name="backgroundDialog">#191b1f</color>
 
 </resources>

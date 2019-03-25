@@ -1,16 +1,18 @@
 package br.com.concrete.tentacle.base
 
+import android.content.DialogInterface
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.features.HostActivity
+import br.com.concrete.tentacle.utils.DialogUtils
 
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
@@ -39,22 +41,26 @@ abstract class BaseActivity : AppCompatActivity() {
         setupToolbar(INVALID_TITLE, INVALID_ICON, displayHome)
     }
 
+    fun setSupportActionBarWithIcon(toolbar: Toolbar?, @StringRes title: Int, @DrawableRes icon: Int) {
+        super.setSupportActionBar(toolbar)
+        setupToolbar(title, icon)
+    }
+
     fun setupToolbar(
         title: Int,
         icon: Int,
         displayHome: Boolean = true
     ) {
-
         supportActionBar?.let { actionBar ->
             if (title != INVALID_TITLE) {
                 setToolbarTitle(title)
             }
 
-            actionBar.setDisplayShowHomeEnabled(displayHome)
-            actionBar.setDisplayHomeAsUpEnabled(displayHome)
             if (icon != -1 && displayHome) {
                 actionBar.setHomeAsUpIndicator(icon)
             }
+            actionBar.setDisplayShowHomeEnabled(displayHome)
+            actionBar.setDisplayHomeAsUpEnabled(displayHome)
         }
     }
 
@@ -84,18 +90,14 @@ abstract class BaseActivity : AppCompatActivity() {
 
             val ers = errorResponse.toString()
 
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle(title)
-            builder.setMessage(ers)
-            builder.apply {
-                setPositiveButton(
-                    R.string.ok
-                ) { dialog, _ ->
-                    dialog.dismiss()
-                }
-            }
-
-            builder.create().show()
+            DialogUtils.showDialog(
+                context = this,
+                title = if (title == "Erro") getString(R.string.something_happened) else title,
+                message = ers,
+                positiveText = getString(R.string.ok),
+                positiveListener = DialogInterface.OnClickListener { _, _ -> },
+                contentView = R.layout.custom_dialog_error
+            )
         }
     }
 

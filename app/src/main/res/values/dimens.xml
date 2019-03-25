@@ -30,6 +30,7 @@
     <dimen name="dp_24">24dp</dimen>
     <dimen name="dp_25">25dp</dimen>
     <dimen name="dp_26">26dp</dimen>
+    <dimen name="dp_28">28dp</dimen>
     <dimen name="dp_35">35dp</dimen>
     <dimen name="dp_40">40dp</dimen>
     <dimen name="dp_48">48dp</dimen>
@@ -40,7 +41,11 @@
     <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_87">87dp</dimen>
     <dimen name="dp_95">95dp</dimen>
+    <dimen name="dp_105">105dp</dimen>
+    <dimen name="dp_192">192dp</dimen>
     <dimen name="dp_125">125dp</dimen>
+    <dimen name="dp_250">250dp</dimen>
+    <dimen name="dp_200">200dp</dimen>
 
     <dimen name="sp_24">24sp</dimen>
 
@@ -91,6 +96,7 @@
     <dimen name="filterCloseButtonWidth">40dp</dimen>
     <dimen name="filterCloseButtonHeight">40dp</dimen>
     <dimen name="lineSpacingExtra">8sp</dimen>
+    <dimen name="lineSpacingExtra10">10sp</dimen>
 
     <dimen name="chipWidth">78dp</dimen>
     <dimen name="chipHeight">54dp</dimen>
@@ -116,6 +122,18 @@
     <dimen name="recovery_password_texts_margins">30dp</dimen>
     <dimen name="heightGameVideo">125dp</dimen>
     <dimen name="widthGameVideo">95dp</dimen>
+    <dimen name="textSizeDialog">20sp</dimen>
+    <dimen name="heightErrorTentacle">180dp</dimen>
+
+    <dimen name="sp_3">3sp</dimen>
+    <dimen name="sp_4">4sp</dimen>
+    <dimen name="sp_6">6sp</dimen>
+    <dimen name="sp_8">8sp</dimen>
+    <dimen name="sp_10">10sp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
 
 </resources>
 

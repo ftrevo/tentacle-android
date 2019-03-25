@@ -8,5 +8,5 @@ data class ErrorResponse(
     var messageInt: ArrayList<Int> = ArrayList(),
     var statusCode: Int = DEFAULT_EXCEPTION_STATUS_CODE
 ) {
-    override fun toString() = TextUtils.join(", ", message)
+    override fun toString() = TextUtils.join(".\n", message)
 }

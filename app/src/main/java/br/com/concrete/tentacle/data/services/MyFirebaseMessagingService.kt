@@ -68,6 +68,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 TAG,
                 "Message Notification Body: ${it.body}"
             )
+            sendNotification(it.body, it.title)
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -129,7 +130,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun sendRegistrationToServer(token: String?) {
         tokenRepository.sendToken(AppTentacle.TOKEN).subscribe({
             LogWrapper.log("TokenResponse: ", it.message[0])
-        },{
+        }, {
             LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
         }).dispose()
     }
@@ -139,7 +140,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      *
      * @param messageBody FCM message body received.
      */
-    private fun sendNotification(messageBody: String) {
+    private fun sendNotification(messageBody: String?, messageTitle: String?) {
         val intent = Intent(this, HostActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -148,8 +149,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val channelId = getString(R.string.default_notification_channel_id)
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.bookmark_lend)
-            .setContentTitle(getString(R.string.fcm_message))
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(messageTitle)
             .setContentText(messageBody)
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
