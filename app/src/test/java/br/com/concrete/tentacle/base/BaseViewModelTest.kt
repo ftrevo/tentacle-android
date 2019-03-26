@@ -6,6 +6,7 @@ import br.com.concrete.tentacle.di.mockAndroidModule
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
+import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import okhttp3.mockwebserver.MockResponse
@@ -30,6 +31,9 @@ open class BaseViewModelTest : KoinTest {
     @Before
     @Throws fun setUp() {
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+        RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
+        RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         StandAloneContext.startKoin(
             listOf(
                 networkModule,
@@ -47,6 +51,7 @@ open class BaseViewModelTest : KoinTest {
         StandAloneContext.stopKoin()
         mockServer.shutdown()
         RxJavaPlugins.reset()
+        RxAndroidPlugins.reset()
     }
 
     fun getJson(path: String): String? {
@@ -81,7 +86,7 @@ open class BaseViewModelTest : KoinTest {
     fun mockResponseError404() {
         val mockResponse = MockResponse()
             .setResponseCode(HttpURLConnection.HTTP_NOT_FOUND)
-            .setBody(getJson("mockjson/errors/error_400.json"))
+            .setBody(getJson("mockjson/errors/error_404.json"))
         mockServer.enqueue(mockResponse)
     }
 }
