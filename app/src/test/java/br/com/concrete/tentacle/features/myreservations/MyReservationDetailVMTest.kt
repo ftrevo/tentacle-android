@@ -54,7 +54,7 @@ class MyReservationDetailVMTest : BaseViewModelTest() {
                 ViewStateModel(
                     status = ViewStateModel.Status.ERROR,
                     model = null,
-                    errors = ErrorResponse()
+                    errors = ErrorResponse(statusCode = 401)
                 )
 
         var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)

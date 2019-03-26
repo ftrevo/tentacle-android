@@ -55,7 +55,7 @@ class LibraryVMTest : BaseViewModelTest() {
     fun `when LibraryViewModel calls loadLibrary should return error message for 401`() {
         val expected =
             ViewStateModel<ArrayList<Library>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
             )
         var actual = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
 
@@ -312,16 +312,15 @@ class LibraryVMTest : BaseViewModelTest() {
             .setBody(responseJson)
 
         mockServer.enqueue(mockResponse)
+//        mockServer.enqueue(mockResponse)
 
-        libraryViewModel.getLibrary().observeForever {
+        libraryViewModel.getLibraryMore().observeForever {
             actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
-        mockServer.enqueue(mockResponse)
-
-        libraryViewModel.getLibrary().observeForever {
-            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
-        }
+//        libraryViewModel.getLibraryMore().observeForever {
+//            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
+//        }
 
         libraryViewModel.loadLibraryMore()
         Assert.assertEquals(expected, actual)
@@ -335,7 +334,7 @@ class LibraryVMTest : BaseViewModelTest() {
 
         val responseObjectError: ErrorResponse =
             GsonBuilder().create().fromJson(responseJsonError, ErrorResponse::class.java)
-
+        responseObjectError.statusCode = 400
         val expectedError =
             ViewStateModel<ArrayList<Library>>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObjectError)
@@ -355,7 +354,7 @@ class LibraryVMTest : BaseViewModelTest() {
     fun `when LibraryViewModel calls loadLibrary should of Library endLessRecyclerView return error message for 401`() {
         val expected =
             ViewStateModel<ArrayList<Library>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
             )
         var actual = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
 

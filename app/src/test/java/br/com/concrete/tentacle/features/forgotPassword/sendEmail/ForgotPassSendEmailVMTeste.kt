@@ -47,7 +47,7 @@ class ForgotPassSendEmailVMTeste : BaseViewModelTest() {
     @Test
     fun `when forgotPassSendEmailViewModel calls forgotPassword should return a message not found`() {
         val responseJson = getJson(
-            "mockjson/errors/error_400.json"
+            "mockjson/errors/error_404.json"
         )
 
         val responseObject: ErrorResponse =

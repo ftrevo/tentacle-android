@@ -5,13 +5,13 @@ import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert
 import org.junit.Test
 import org.koin.standalone.inject
+import org.junit.Assert.assertEquals
 
 class MyReservationVMTest : BaseViewModelTest() {
 
@@ -20,10 +20,10 @@ class MyReservationVMTest : BaseViewModelTest() {
     @Test
     fun `when myReservationViewModel calls getHomeGames should return error message for 401`() {
         val expected =
-            ViewStateModel<ArrayList<LoanResponse>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+            ViewStateModel<LoansListResponse>(
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
             )
-        var actual = ViewStateModel<ArrayList<LoanResponse>>(status = ViewStateModel.Status.LOADING)
+        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
             .setResponseCode(401)
@@ -47,9 +47,9 @@ class MyReservationVMTest : BaseViewModelTest() {
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
 
         val expected =
-            ViewStateModel<ArrayList<LoanResponse>>(
+            ViewStateModel<LoansListResponse>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
-        var actual = ViewStateModel<ArrayList<LoanResponse>>(status = ViewStateModel.Status.LOADING)
+        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
 
         mockResponseError400()
 
@@ -57,7 +57,7 @@ class MyReservationVMTest : BaseViewModelTest() {
             actual = it
         }
         myReservationViewModel.loadMyReservations()
-        Assert.assertEquals(expected, actual)
+        assertEquals(expected, actual)
     }
 
     @Test
@@ -73,8 +73,8 @@ class MyReservationVMTest : BaseViewModelTest() {
         val expected =
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data.list)
-        var actual = ViewStateModel<ArrayList<LoanResponse>>(status = ViewStateModel.Status.LOADING)
+                model = responseObject.data)
+        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
             .setResponseCode(200)
@@ -86,6 +86,9 @@ class MyReservationVMTest : BaseViewModelTest() {
             actual = it
         }
         myReservationViewModel.loadMyReservations()
-        Assert.assertEquals(expected, actual)
+        assertEquals(expected.model!!.list, actual.model!!.list)
+        assertEquals(expected.status, actual.status)
+        assertEquals(expected.errors, actual.errors)
+        assertEquals(expected.filtering, actual.filtering)
     }
 }
