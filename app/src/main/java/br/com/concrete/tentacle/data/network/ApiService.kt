@@ -133,4 +133,7 @@ interface ApiService {
 
     @POST("loans/{id}/remember-delivery")
     fun rememberDelivery(@Path("id")id: String?): Observable<BaseModel<RememberDeliveryResponse>>
+
+    @DELETE("loans/{id}")
+    fun deleteLoan(@Path("id") idLoan: String): Observable<BaseModel<LoanResponse>>
 }

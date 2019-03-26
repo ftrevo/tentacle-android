@@ -93,4 +93,10 @@ class GameRepository(private val apiRest: ApiService) {
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
+
+    fun deleteLoan(idLoan: String): Observable<BaseModel<LoanResponse>> {
+        return apiRest.deleteLoan(idLoan)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
 }

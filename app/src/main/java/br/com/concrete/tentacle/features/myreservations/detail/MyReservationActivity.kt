@@ -2,6 +2,8 @@ package br.com.concrete.tentacle.features.myreservations.detail
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -14,13 +16,16 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.DialogUtils
-import kotlinx.android.synthetic.main.activity_my_reservations_details.*
+import kotlinx.android.synthetic.main.activity_my_reservations_details.gameView
+import kotlinx.android.synthetic.main.activity_my_reservations_details.group
+import kotlinx.android.synthetic.main.activity_my_reservations_details.tvGameOwner
+import kotlinx.android.synthetic.main.activity_my_reservations_details.tvGamePlatform
+import kotlinx.android.synthetic.main.activity_my_reservations_details.tvLoanInfo
 import kotlinx.android.synthetic.main.game_view_header_layout.ivGameStatus
 import kotlinx.android.synthetic.main.game_view_header_layout.tvGameStatus
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.Date
-
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MyReservationActivity : BaseActivity() {
@@ -28,6 +33,8 @@ class MyReservationActivity : BaseActivity() {
     companion object {
         const val LOAN_EXTRA_ID = "loanExtraId"
     }
+
+    private var loan: LoanResponse? = null
 
     private val viewModel: MyReservationDetailViewModel by viewModel()
 
@@ -56,11 +63,20 @@ class MyReservationActivity : BaseActivity() {
                 ViewStateModel.Status.ERROR -> showError(base.errors, getString(R.string.unknow_error))
             }
         })
+
+        viewModel.getStateDeleteLoan().observe(this, Observer { base ->
+            when (base.status) {
+                ViewStateModel.Status.LOADING -> showProgress(true)
+                ViewStateModel.Status.SUCCESS -> finish()
+                ViewStateModel.Status.ERROR -> showError(base.errors, getString(R.string.unknow_error))
+            }
+        })
     }
 
     private fun fillData(data: LoanResponse?) {
         showProgress(false)
         data?.let { loanResponse ->
+            loan = loanResponse
             gameView.setGame(loanResponse.game)
             gameView.showStatusView(true)
 
@@ -144,6 +160,40 @@ class MyReservationActivity : BaseActivity() {
                 positiveListener = DialogInterface.OnClickListener { _, _ ->
                     finish()
                 }
+            )
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_game_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.delete -> {
+                showDialogDelete()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+        return false
+    }
+
+    private fun showDialogDelete() {
+        loan?.let { loanResponse ->
+            val gameName = String.format(getString(R.string.delete_dialog_message), loanResponse.game.name)
+
+            DialogUtils.showDialog(
+                context = this,
+                title = getString(R.string.delete_dialog_title),
+                message = gameName,
+                positiveText = getString(R.string.delete),
+                positiveListener = DialogInterface.OnClickListener { _, _ ->
+                    viewModel.deleteLoan(loanResponse._id)
+                },
+                negativeText = getString(R.string.not_delete)
             )
         }
     }
