@@ -6,7 +6,7 @@ import br.com.concrete.tentacle.features.home.HomeViewModel
 import br.com.concrete.tentacle.features.lendgame.LendGameViewModel
 import br.com.concrete.tentacle.features.library.LibraryViewModel
 import br.com.concrete.tentacle.features.library.loan.LoanViewModel
-import br.com.concrete.tentacle.features.library.filter.FilterViewModel
+import br.com.concrete.tentacle.features.filter.FilterViewModel
 import br.com.concrete.tentacle.features.loadmygames.LoadMyGamesViewModel
 import br.com.concrete.tentacle.features.login.LoginViewModel
 import br.com.concrete.tentacle.features.menu.MenuViewModel
