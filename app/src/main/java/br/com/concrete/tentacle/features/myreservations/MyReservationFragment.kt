@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.features.myreservations
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -7,7 +8,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
@@ -20,12 +20,14 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
-import br.com.concrete.tentacle.utils.LogWrapper
+import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
+import kotlinx.android.synthetic.main.progress_include.*
+import kotlinx.android.synthetic.main.progress_include.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
@@ -117,6 +119,22 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
             }
         })
 
+        myReservationViewModel.getStateDeleteLoan().observe(this, Observer { base ->
+            when (base.status) {
+                ViewStateModel.Status.LOADING -> listMyReservations.setLoading(true)
+                ViewStateModel.Status.SUCCESS -> {
+                    listMyReservations.setLoading(false)
+                    myReservationList.removeAt(MyReservationViewHolder.itemRemove)
+                    recyclerViewAdapter?.notifyItemRemoved(MyReservationViewHolder.itemRemove)
+                    listMyReservations.progressBarList.visibility = View.GONE
+                }
+                ViewStateModel.Status.ERROR -> {
+                    listMyReservations.setLoading(false)
+                    showError(base.errors, getString(R.string.unknow_error))
+                }
+            }
+        })
+
         lifecycle.addObserver(myReservationViewModel)
     }
 
@@ -148,9 +166,8 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
                                 bundle.putString(MyReservationActivity.LOAN_EXTRA_ID, element._id)
                                 activity?.launchActivity<MyReservationActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
                             }
-                        },{
-                            LogWrapper.log("LOG: ", "EXCLUIRRRR!! ")
-                            //TODO CALL DIALOG EXCLUIR
+                        }, {
+                            showDialogDelete(it)
                         })
                     }
                 })
@@ -199,4 +216,23 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
     }
 
     override fun loadPage() = loadMoreItems
+
+    private fun showDialogDelete(loanResponse: LoanResponse) {
+        activity?.let {
+            val gameName = String.format(getString(R.string.delete_dialog_message_reservation), loanResponse.game.name)
+            DialogUtils.showDialog(
+                context = it,
+                title = getString(R.string.delete_dialog_title_reservation),
+                message = gameName,
+                positiveText = getString(R.string.remove),
+                positiveListener = DialogInterface.OnClickListener { _, _ ->
+                    myReservationViewModel.deleteLoan(loanResponse._id)
+                },
+                negativeText = getString(R.string.not_delete),
+                negativeListener = DialogInterface.OnClickListener { _, _ ->
+                    listMyReservations.setLoading(false)
+                }
+            )
+        }
+    }
 }

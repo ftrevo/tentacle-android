@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.game_view_header_layout.ivGameStatus
 import kotlinx.android.synthetic.main.game_view_header_layout.tvGameStatus
 import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.*
+import java.util.Date
 import java.util.concurrent.TimeUnit
 
 class MyReservationActivity : BaseActivity() {

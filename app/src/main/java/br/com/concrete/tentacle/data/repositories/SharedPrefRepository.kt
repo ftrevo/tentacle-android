@@ -38,7 +38,7 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
         }
     }
 
-    fun updateUser(user: User){
+    fun updateUser(user: User) {
         removeUser()
         saveUser(PREFS_KEY_USER, user)
     }

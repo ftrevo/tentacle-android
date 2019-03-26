@@ -1,6 +1,6 @@
 package br.com.concrete.tentacle.data.models.library.loan
 
-data class LoanDeleteResponse (
+data class LoanDeleteResponse(
     val _id: String,
     val media: String,
     val requestedBy: String,

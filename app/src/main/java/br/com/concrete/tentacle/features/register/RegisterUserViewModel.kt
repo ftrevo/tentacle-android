@@ -16,7 +16,6 @@ import br.com.concrete.tentacle.data.repositories.TokenRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.utils.Event
 import br.com.concrete.tentacle.utils.LogWrapper
-import br.com.concrete.tentacle.utils.PREFS_KEY_USER
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
 class RegisterUserViewModel(
