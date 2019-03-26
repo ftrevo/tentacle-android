@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.library.filter
+package br.com.concrete.tentacle.features.filter
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
