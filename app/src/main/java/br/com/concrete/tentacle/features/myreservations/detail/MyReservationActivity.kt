@@ -183,13 +183,13 @@ class MyReservationActivity : BaseActivity() {
 
     private fun showDialogDelete() {
         loan?.let { loanResponse ->
-            val gameName = String.format(getString(R.string.delete_dialog_message), loanResponse.game.name)
+            val gameName = String.format(getString(R.string.delete_dialog_message_reservation), loanResponse.game.name)
 
             DialogUtils.showDialog(
                 context = this,
-                title = getString(R.string.delete_dialog_title),
+                title = getString(R.string.delete_dialog_title_reservation),
                 message = gameName,
-                positiveText = getString(R.string.delete),
+                positiveText = getString(R.string.remove),
                 positiveListener = DialogInterface.OnClickListener { _, _ ->
                     viewModel.deleteLoan(loanResponse._id)
                 },

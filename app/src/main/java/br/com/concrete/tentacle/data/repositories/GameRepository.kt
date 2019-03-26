@@ -9,6 +9,7 @@ import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
+import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
@@ -94,7 +95,7 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun deleteLoan(idLoan: String): Observable<BaseModel<LoanResponse>> {
+    fun deleteLoan(idLoan: String): Observable<BaseModel<LoanDeleteResponse>> {
         return apiRest.deleteLoan(idLoan)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
