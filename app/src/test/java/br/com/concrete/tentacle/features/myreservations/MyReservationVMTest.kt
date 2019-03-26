@@ -20,10 +20,10 @@ class MyReservationVMTest : BaseViewModelTest() {
     @Test
     fun `when myReservationViewModel calls getHomeGames should return error message for 401`() {
         val expected =
-            ViewStateModel<ArrayList<LoanResponse>>(
+            ViewStateModel<LoansListResponse>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
             )
-        var actual = ViewStateModel<ArrayList<LoanResponse>>(status = ViewStateModel.Status.LOADING)
+        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
             .setResponseCode(401)
@@ -47,9 +47,9 @@ class MyReservationVMTest : BaseViewModelTest() {
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
 
         val expected =
-            ViewStateModel<ArrayList<LoanResponse>>(
+            ViewStateModel<LoansListResponse>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
-        var actual = ViewStateModel<ArrayList<LoanResponse>>(status = ViewStateModel.Status.LOADING)
+        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
 
         mockResponseError400()
 
@@ -74,7 +74,7 @@ class MyReservationVMTest : BaseViewModelTest() {
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
                 model = responseObject.data.list)
-        var actual = ViewStateModel<ArrayList<LoanResponse>>(status = ViewStateModel.Status.LOADING)
+        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
             .setResponseCode(200)

@@ -1,38 +1,52 @@
 package br.com.concrete.tentacle.base
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
-import br.com.concrete.tentacle.rules.RxImmediateSchedulerRule
+import br.com.concrete.tentacle.di.mockAndroidModule
+import br.com.concrete.tentacle.di.networkModule
+import br.com.concrete.tentacle.di.repositoryModule
+import br.com.concrete.tentacle.di.viewModelModule
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Rule
-import org.junit.runner.RunWith
+import org.koin.core.KoinProperties
 import org.koin.standalone.StandAloneContext
 import org.koin.test.KoinTest
-import org.robolectric.RobolectricTestRunner
 import java.net.HttpURLConnection
 
-@Ignore
-@RunWith(RobolectricTestRunner::class)
+
 open class BaseViewModelTest : KoinTest {
 
-    val mockServer: MockWebServer = MockWebServer()
+    var mockServer: MockWebServer = MockWebServer()
 
     @get:Rule
-    var rxImmediateSchedulerRule = RxImmediateSchedulerRule()
+    var rule = InstantTaskExecutorRule()
+
 
     @Before
     @Throws fun setUp() {
-        mockServer.start()
-        getKoin().setProperty(PROPERTY_BASE_URL, mockServer.url("/").toString())
+        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+        StandAloneContext.startKoin(
+            listOf(
+                networkModule,
+                viewModelModule,
+                repositoryModule,
+                mockAndroidModule
+            ), properties = KoinProperties(extraProperties = mapOf(PROPERTY_BASE_URL to "http://localhost:8080/"))
+        )
+
+        mockServer.start(8080)
     }
 
     @After
     @Throws fun tearDown() {
         StandAloneContext.stopKoin()
         mockServer.shutdown()
+        RxJavaPlugins.reset()
     }
 
     fun getJson(path: String): String? {

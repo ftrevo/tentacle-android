@@ -155,6 +155,7 @@ class LoanVMTest : BaseViewModelTest() {
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
+        responseObject.statusCode = 400
 
         val expected =
             ViewStateModel<LoanResponse>(

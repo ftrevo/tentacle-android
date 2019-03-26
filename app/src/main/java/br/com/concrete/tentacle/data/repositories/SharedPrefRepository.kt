@@ -11,16 +11,16 @@ import br.com.concrete.tentacle.utils.PREFS_KEY_USER
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import com.google.gson.Gson
 
-class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
+class SharedPrefRepository(private val mSharedPref: SharedPreferences) : SharedPrefRepositoryContract {
 
-    fun saveString(key: String, value: String) = mSharedPref.put(key, value)
+    override fun saveString(key: String, value: String) = mSharedPref.put(key, value)
 
-    fun saveSession(key: String, session: Session) = mSharedPref.put(key, Gson().toJson(session))
+    override fun saveSession(key: String, session: Session) = mSharedPref.put(key, Gson().toJson(session))
 
-    fun removeSession() = mSharedPref.remove(PREFS_KEY_USER_SESSION)
-    fun removeUser() = mSharedPref.remove(PREFS_KEY_USER)
+    override fun removeSession() = mSharedPref.remove(PREFS_KEY_USER_SESSION)
+    override fun removeUser() = mSharedPref.remove(PREFS_KEY_USER)
 
-    fun getStoredSession(key: String): Session? {
+    override fun getStoredSession(key: String): Session? {
         val sessionJson = mSharedPref.get(key, "")
         return if (sessionJson != "") {
             Gson().fromJson<Session>(sessionJson)
@@ -29,7 +29,7 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
         }
     }
 
-    fun getStoredUser(key: String): User? {
+    override fun getStoredUser(key: String): User? {
         val user = mSharedPref.get(key, "")
         return if (user != "") {
             Gson().fromJson<User>(user)
@@ -38,14 +38,14 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) {
         }
     }
 
-    fun updateUser(user: User){
+    override fun updateUser(user: User){
         removeUser()
         saveUser(PREFS_KEY_USER, user)
     }
 
-    fun saveUser(key: String, user: User) = mSharedPref.put(key, Gson().toJson(user))
+    override fun saveUser(key: String, user: User) = mSharedPref.put(key, Gson().toJson(user))
 
-    fun getStoreString(key: String): String? = mSharedPref.get(key, "")
+    override fun getStoreString(key: String): String? = mSharedPref.get(key, "")
 
-    fun deleteStoreString(key: String) = mSharedPref.remove(key)
+    override fun deleteStoreString(key: String) = mSharedPref.remove(key)
 }

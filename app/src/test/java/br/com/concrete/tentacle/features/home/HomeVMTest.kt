@@ -6,23 +6,24 @@ import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert.assertEquals
 import org.junit.Test
-
 import org.koin.standalone.inject
 
-class HomeVMTest : BaseViewModelTest() {
+class HomeVMTest : BaseViewModelTest()    {
 
-    val homeViewModel: HomeViewModel by inject()
+    val homeViewModel by inject<HomeViewModel>()
+
 
     @Test
     fun `when HomeViewModel calls getHomeGames should return error message for 401`() {
+
         val expected =
             ViewStateModel<ArrayList<Game>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
             )
         var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
 
@@ -58,7 +59,7 @@ class HomeVMTest : BaseViewModelTest() {
             actual = ViewStateModel(model = it.model as ArrayList<Game>?, status = it.status, errors = it.errors)
         }
         homeViewModel.loadHomeGames()
-        assertEquals(expected, actual)
+        assertEquals(expected.status, actual.status)
     }
 
     @Test
