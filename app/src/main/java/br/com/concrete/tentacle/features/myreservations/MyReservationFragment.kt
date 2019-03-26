@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
@@ -19,6 +20,7 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
+import br.com.concrete.tentacle.utils.LogWrapper
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
@@ -140,13 +142,16 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
                     MyReservationViewHolder(view)
                 }, { holder, element ->
                     element?.let {
-                        MyReservationViewHolder.callBack(holder, element) {
+                        MyReservationViewHolder.callBack(holder, element, {
                             holder.itemView.setOnClickListener {
                                 val bundle = Bundle()
                                 bundle.putString(MyReservationActivity.LOAN_EXTRA_ID, element._id)
                                 activity?.launchActivity<MyReservationActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
                             }
-                        }
+                        },{
+                            LogWrapper.log("LOG: ", "EXCLUIRRRR!! ")
+                            //TODO CALL DIALOG EXCLUIR
+                        })
                     }
                 })
 

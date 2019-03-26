@@ -4,10 +4,12 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.loadImageUrl
 import br.com.concrete.tentacle.extensions.toDate
+import br.com.concrete.tentacle.features.loadmygames.LoadMyGamesViewHolder
 import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
 import br.com.concrete.tentacle.utils.Utils
@@ -24,7 +26,7 @@ class MyReservationViewHolder(
 ) : RecyclerView.ViewHolder(layout) {
 
     companion object {
-        fun callBack(holder: RecyclerView.ViewHolder, loanResponse: LoanResponse, loanClick: (LoanResponse) -> Unit) {
+        fun callBack(holder: RecyclerView.ViewHolder, loanResponse: LoanResponse, loanClick: (LoanResponse) -> Unit, listenerLongClick: (LoanResponse) -> Unit) {
             if (holder is MyReservationViewHolder) {
                 loanResponse.game.cover?.imageId?.let { imageId ->
                     holder.layout.mediaImageView.loadImageUrl(
@@ -37,6 +39,11 @@ class MyReservationViewHolder(
 
                 holder.layout.game_owner.text = String.format(holder.itemView.context.getString(R.string.my_reservation_owner_name), loanResponse.mediaOwner.name)
                 holder.layout.game_name.text = loanResponse.game.name
+                holder.layout.setOnLongClickListener {
+                    LoadMyGamesViewHolder.itemRemove = holder.position
+                    listenerLongClick(loanResponse)
+                    true
+                }
 
                 var text: String? = null
                 var visibility: Int? = null
