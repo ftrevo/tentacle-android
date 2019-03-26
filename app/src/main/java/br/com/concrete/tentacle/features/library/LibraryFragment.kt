@@ -29,6 +29,7 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.filter.FilterDialogFragment
 import br.com.concrete.tentacle.features.library.loan.LoanActivity
+import br.com.concrete.tentacle.utils.MOCK_FILTER_LIBRARY
 import br.com.concrete.tentacle.utils.QueryUtils
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import io.reactivex.Observable
@@ -247,7 +248,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.filterMenuId) {
-            FilterDialogFragment.showDialog(this, selectedFilterItems, "dummy_filter_itens.json")
+            FilterDialogFragment.showDialog(this, selectedFilterItems, MOCK_FILTER_LIBRARY)
             true
         } else super.onOptionsItemSelected(item)
     }
