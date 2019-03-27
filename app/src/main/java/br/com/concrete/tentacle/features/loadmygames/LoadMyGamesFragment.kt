@@ -6,23 +6,30 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.Media
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.data.models.filter.SubItem
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.features.filter.FilterDialogFragment
 import br.com.concrete.tentacle.features.lendgame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
 import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.MOCK_FILTER_MY_GAMES
+import br.com.concrete.tentacle.utils.QueryUtils
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
@@ -35,13 +42,16 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 private const val REQUEST_CODE = 1
 
-class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
+class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterDialogFragment.OnFilterListener {
 
     private val viewModelLoadMyGames: LoadMyGamesViewModel by viewModel()
     private var recyclerViewAdapter: BaseAdapter<Media>? = null
     private var lMedia = ArrayList<Media?>()
     private var count = 0
     private var loadMoreItems = true
+
+    private val selectedFilterItems = ArrayList<SubItem>()
+    private var queryParameters: QueryParameters? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +69,26 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
-        super.onCreateOptionsMenu(menu, inflater)
+        setupOptionMenu(menu, inflater)
+    }
+
+    private fun setupOptionMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_load_my_games, menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.findItem(R.id.filterMenuId).let {
+            val iconRes = if (selectedFilterItems.isEmpty()) R.drawable.ic_filter_off else R.drawable.ic_filter_on
+            it.setIcon(iconRes)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.filterMenuId) {
+            FilterDialogFragment.showDialog(this, selectedFilterItems, MOCK_FILTER_MY_GAMES)
+            true
+        } else super.onOptionsItemSelected(item)
     }
 
     private fun initObserver() {
@@ -144,7 +173,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                             list.setErrorMessage(R.string.load_games_error_not_know)
                             list.setButtonTextError(R.string.load_again)
                             list.setActionError {
-                                viewModelLoadMyGames.loadMyGames()
+                                viewModelLoadMyGames.loadMyGames(queryParameters)
                             }
                         }
                         list.updateUi<Media>(null)
@@ -231,7 +260,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
     override fun sizeElements() = lMedia.size
 
     override fun loadMore() {
-        viewModelLoadMyGames.loadGamePage()
+        viewModelLoadMyGames.loadGamePage(queryParameters)
         lMedia.add(null)
         loadMoreItems = false
 
@@ -241,4 +270,25 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
     }
 
     override fun loadPage(): Boolean = loadMoreItems
+
+    override fun onFilterListener(filters: List<SubItem>) {
+        activity?.invalidateOptionsMenu()
+        selectedFilterItems.clear()
+        selectedFilterItems.addAll(filters)
+
+        if (filters.isEmpty()) {
+            (activity as BaseActivity).setupToolbar(false)
+        }
+
+        queryParameters = QueryUtils.assemblefilterQuery(selectedFilterItems)
+        updateListBeforeFilter()
+        viewModelLoadMyGames.loadMyGames(queryParameters)
+    }
+
+    private fun updateListBeforeFilter() {
+        viewModelLoadMyGames.resetPage()
+        lMedia = ArrayList()
+        recyclerViewAdapter?.notifyDataSetChanged()
+    }
+
 }
