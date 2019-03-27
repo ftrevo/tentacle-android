@@ -5,6 +5,7 @@ import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
@@ -127,6 +128,50 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
 
         loadMyGamesViewModel.loadGamePage(null)
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loadMyGamesViewModel calls loadMyGames with filters should assemble right path`() {
+        val expectedPath = "/media-loan?limit=15&page=0&active=false"
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+        mockServer.enqueue(mockResponse)
+
+        val queryParameters = QueryParameters(active = false)
+        loadMyGamesViewModel.loadMyGames(queryParameters)
+
+        val requestedPath = mockServer.takeRequest().path
+        assertEquals(expectedPath, requestedPath)
+    }
+
+    @Test
+    fun `when loadMyGamesViewModel calls loadMoreGames with filters should assemble right path`() {
+        val responseJson = getJson(
+            "mockjson/loadmygames/load_my_games_success.json"
+        )
+        val expectedPath = "/media-loan?limit=15&page=4&active=false"
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+        mockServer.enqueue(mockResponse)
+        mockServer.enqueue(mockResponse)
+        mockServer.enqueue(mockResponse)
+
+        val queryParameters = QueryParameters(active = false)
+        loadMyGamesViewModel.loadGamePage(queryParameters)
+        loadMyGamesViewModel.loadGamePage(queryParameters)
+        loadMyGamesViewModel.loadGamePage(queryParameters)
+        loadMyGamesViewModel.loadGamePage(queryParameters)
+
+        mockServer.takeRequest()
+        mockServer.takeRequest()
+        mockServer.takeRequest()
+        val requestedPath = mockServer.takeRequest().path
+        assertEquals(expectedPath, requestedPath)
     }
 
 }
