@@ -19,14 +19,12 @@ import org.koin.standalone.StandAloneContext
 import org.koin.test.KoinTest
 import java.net.HttpURLConnection
 
-
 open class BaseViewModelTest : KoinTest {
 
     var mockServer: MockWebServer = MockWebServer()
 
     @get:Rule
     var rule = InstantTaskExecutorRule()
-
 
     @Before
     @Throws fun setUp() {

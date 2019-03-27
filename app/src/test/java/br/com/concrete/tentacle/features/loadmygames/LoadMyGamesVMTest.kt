@@ -173,5 +173,4 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         val requestedPath = mockServer.takeRequest().path
         assertEquals(expectedPath, requestedPath)
     }
-
 }

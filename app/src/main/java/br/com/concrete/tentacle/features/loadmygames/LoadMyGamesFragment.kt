@@ -290,5 +290,4 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
         lMedia = ArrayList()
         recyclerViewAdapter?.notifyDataSetChanged()
     }
-
 }

@@ -20,5 +20,4 @@ val repositoryModule = module {
     factory { FilterRepository(get()) }
     factory { UserLoggedRepository(get()) }
     factory { TokenRepository(get(API_WITH_TOKEN)) }
-
 }

@@ -14,37 +14,37 @@ import br.com.concrete.tentacle.utils.PREFS_KEY_USER
 class MenuViewModel(
     private val sharedPrefRepository: SharedPrefRepositoryContract,
     private val userRepository: UserRepository
-): BaseViewModel(){
+) : BaseViewModel() {
 
     private val stateModel: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
     fun getUser() = stateModel
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun loadUser(){
+    fun loadUser() {
         val user = sharedPrefRepository.getStoredUser(PREFS_KEY_USER)
-        user?.let{
+        user?.let {
             stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it))
         } ?: run {
             loadUserFromServer()
         }
     }
 
-    private fun loadUserFromServer(){
+    private fun loadUserFromServer() {
         disposables.add(
             userRepository.getProfile().subscribe({
-                sharedPrefRepository.saveUser(PREFS_KEY_USER,it.data)
+                sharedPrefRepository.saveUser(PREFS_KEY_USER, it.data)
                 stateModel.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data))
-            },{
+            }, {
                 LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
             })
         )
     }
 
-    fun removeSession(){
+    fun removeSession() {
         sharedPrefRepository.removeSession()
     }
 
-    fun removeUser(){
+    fun removeUser() {
         sharedPrefRepository.removeUser()
     }
 

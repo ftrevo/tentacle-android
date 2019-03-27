@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_host.bottomBar
 import kotlinx.android.synthetic.main.activity_host.drawer_layout
 import kotlinx.android.synthetic.main.activity_host.toolbar
 
-
 class HostActivity : BaseActivity(), CallBack {
 
     private lateinit var navController: NavController
