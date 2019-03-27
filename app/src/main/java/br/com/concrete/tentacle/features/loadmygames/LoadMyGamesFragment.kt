@@ -72,10 +72,10 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener {
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
                         val mediaResponse = it.model
-                        val medias = mediaResponse?.list as ArrayList<Media>
-                        count = mediaResponse.count
+                        val medias = mediaResponse?.list
+                        count = mediaResponse!!.count
 
-                        medias.let {
+                        medias?.let {
                             Handler().postDelayed({
                                 recyclerViewAdapter?.notifyItemInserted(lMedia.size - 1)
                                 lMedia.removeAt(lMedia.size - 1)
