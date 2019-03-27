@@ -24,7 +24,9 @@ class MyReservationViewHolder(
 ) : RecyclerView.ViewHolder(layout) {
 
     companion object {
-        fun callBack(holder: RecyclerView.ViewHolder, loanResponse: LoanResponse, loanClick: (LoanResponse) -> Unit) {
+        var itemRemove = 0
+
+        fun callBack(holder: RecyclerView.ViewHolder, loanResponse: LoanResponse, loanClick: (LoanResponse) -> Unit, listenerLongClick: (LoanResponse) -> Unit) {
             if (holder is MyReservationViewHolder) {
                 loanResponse.game.cover?.imageId?.let { imageId ->
                     holder.layout.mediaImageView.loadImageUrl(
@@ -47,6 +49,12 @@ class MyReservationViewHolder(
                         setColorStatus(holder.itemView, R.color.loan_state_active)
                     }
                     LoanResponse.LoanState.PENDING -> {
+                        holder.layout.setOnLongClickListener {
+                            itemRemove = holder.position
+                            listenerLongClick(loanResponse)
+                            true
+                        }
+
                         text = holder.itemView.context.getString(R.string.loan_state_pending)
                         visibility = View.GONE
                         setColorStatus(holder.itemView, R.color.loan_state_pending)

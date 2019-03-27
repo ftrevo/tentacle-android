@@ -1,0 +1,14 @@
+{
+  "message": [
+    "Empréstimo removido"
+  ],
+  "data": {
+    "_id": "5c9a481b2930710023e75ba0",
+    "media": "5c952a0a0c59e50023beec80",
+    "requestedBy": "5c815595349f31002315fccf",
+    "mediaOwner": "5c5dba8ccc06180023fd7df7",
+    "game": "5c93dee63e379400232111f4",
+    "mediaPlatform": "PS4",
+    "requestedAt": "2019-03-26T15:41:15.226Z"
+  }
+}

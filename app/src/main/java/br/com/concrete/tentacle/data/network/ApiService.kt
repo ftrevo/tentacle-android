@@ -17,6 +17,7 @@ import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.RequestUpdateToken
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
+import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanRequest
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.utils.LIMIT_PAGE
@@ -133,4 +134,7 @@ interface ApiService {
 
     @POST("loans/{id}/remember-delivery")
     fun rememberDelivery(@Path("id")id: String?): Observable<BaseModel<RememberDeliveryResponse>>
+
+    @DELETE("loans/{id}")
+    fun deleteLoan(@Path("id") idLoan: String): Observable<BaseModel<LoanDeleteResponse>>
 }
