@@ -15,7 +15,6 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.loadRoundImageUrl
-import br.com.concrete.tentacle.extensions.logout
 import br.com.concrete.tentacle.features.about.AboutActivity
 import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.features.profile.ProfileActivity
