@@ -57,7 +57,7 @@ class LendGameVMTest : BaseViewModelTest() {
     fun `when lendGameViewModel calls fetchMediaLoan should return error message for 401`() {
         val expected =
             ViewStateModel<Media>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
             )
         var actual = ViewStateModel<Media>(status = ViewStateModel.Status.LOADING)
 
@@ -82,7 +82,7 @@ class LendGameVMTest : BaseViewModelTest() {
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
-
+        responseObject.statusCode = 400
         val expected =
             ViewStateModel<Media>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
@@ -135,7 +135,7 @@ class LendGameVMTest : BaseViewModelTest() {
     fun `when lendGameViewModel calls updateMediaLoan should return error message for 401`() {
         val expected =
             ViewStateModel<LoanResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
             )
         var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
 
@@ -160,7 +160,7 @@ class LendGameVMTest : BaseViewModelTest() {
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
-
+        responseObject.statusCode = 400
         val expected =
             ViewStateModel<LoanResponse>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)

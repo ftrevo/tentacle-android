@@ -174,8 +174,8 @@ class SearchViewModelTest : BaseViewModelTest() {
 
         mockResponse200(responseJson)
 
-        searchGameViewModel.getSearchGame().observeForever {
-            actual = ViewStateModel(model = it.model?.list, status = ViewStateModel.Status.SUCCESS)
+        searchGameViewModel.getSearchMoreGame().observeForever {
+            actual = ViewStateModel(model = it.peekContent().model?.list, status = ViewStateModel.Status.SUCCESS)
         }
 
         searchGameViewModel.searchGameMore("Fifa")
