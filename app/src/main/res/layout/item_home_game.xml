@@ -17,12 +17,13 @@
             android:minHeight="@dimen/homeItemCardHeightDefault"
             android:background="@color/backgroundColorCardHome">
 
-        <ImageView
+        <com.santalu.autoviewpager.AutoViewPager
             android:id="@+id/homeItemBackground"
             android:layout_width="@dimen/dp_0"
             android:layout_height="@dimen/dp_0"
-            android:src="@drawable/img_background_home"
-            android:scaleType="centerInside"
+            app:avp_autoScroll="true"
+            app:avp_duration="1000"
+            app:avp_indeterminate="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
