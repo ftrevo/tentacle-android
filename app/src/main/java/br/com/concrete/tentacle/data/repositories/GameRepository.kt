@@ -1,14 +1,6 @@
 package br.com.concrete.tentacle.data.repositories
 
-import br.com.concrete.tentacle.data.models.BaseModel
-import br.com.concrete.tentacle.data.models.Game
-import br.com.concrete.tentacle.data.models.GameRequest
-import br.com.concrete.tentacle.data.models.GameResponse
-import br.com.concrete.tentacle.data.models.LoanActionRequest
-import br.com.concrete.tentacle.data.models.LoansListResponse
-import br.com.concrete.tentacle.data.models.Media
-import br.com.concrete.tentacle.data.models.MediaResponse
-import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
+import br.com.concrete.tentacle.data.models.*
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
@@ -22,8 +14,10 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadMyGames(page: Int = 0): Observable<BaseModel<MediaResponse>> {
-        return apiRest.getRegisteredGames(page = page)
+    fun loadMyGames(queries: QueryParameters = QueryParameters()): Observable<BaseModel<MediaResponse>> {
+        return apiRest.getRegisteredGames(
+            page = queries.page,
+            active = queries.active)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

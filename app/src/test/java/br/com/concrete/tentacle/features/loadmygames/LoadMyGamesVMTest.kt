@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.viewmodel
+package br.com.concrete.tentacle.features.loadmygames
 
 import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
@@ -6,7 +6,6 @@ import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.features.loadmygames.LoadMyGamesViewModel
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
 import okhttp3.mockwebserver.MockResponse
@@ -101,7 +100,7 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
             actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
-        loadMyGamesViewModel.loadGamePage()
+        loadMyGamesViewModel.loadGamePage(null)
         assertEquals(expected, actual)
     }
 
@@ -126,7 +125,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
                 ViewStateModel(status = it.peekContent().status, model = null, errors = it.peekContent().errors)
         }
 
-        loadMyGamesViewModel.loadGamePage()
+        loadMyGamesViewModel.loadGamePage(null)
         assertEquals(expected, actual)
     }
+
 }
