@@ -11,7 +11,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
-import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.extensions.waitUntil
 import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
@@ -76,11 +75,11 @@ class MyReservationFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListError))
             .check(matches(not(isDisplayed())))
         onView(withRecyclerView(R.id.recyclerListView)
-            .atPosition(0))
+            .atPosition(1))
             .check(matches(isDisplayed()))
-            .check(matches(hasDescendant(withText("Eeee"))))
-            .check(matches(hasDescendant(withText("07/03/19"))))
-            .check(matches(hasDescendant(withText("Dono: YARA"))))
+            .check(matches(hasDescendant(withText("culpa de yara"))))
+            .check(matches(hasDescendant(withText("06/03/19"))))
+            .check(matches(hasDescendant(withText("Dono: DAIVID V. LEAL"))))
     }
 
     @Test
@@ -223,40 +222,50 @@ class MyReservationFragmentTest : BaseFragmentTest() {
             .check(matches(hasDescendant((withText("Eeee")))))
     }
 
-    //TODO FIX BELLOW METHODS
     @Test
     fun testDeleteGameSuccess() {
-        val response = "mockjson/myreservations/load_my_reservations_success.json".getJson()
-        setResponse(response, 200)
-        setResponse("mockjson/library/loan/lend_response_success.json".getJson(), 200)
-        setResponse("mockjson/loadmygames/delete_success.json".getJson(), 200)
-        setResponse("mockjson/loadmygames/load_my_games_success_after_delete.json".getJson(), 200)
-        setResponse("mockjson/loadmygames/load_my_games_success_second.json".getJson(), 200)
+        setResponse("mockjson/myreservations/load_my_reservations_success.json".getJson(), 200)
+        setResponse("mockjson/myreservations/detail/load_pending_reservation.json".getJson(), 200)
+        setResponse("mockjson/myreservations/delete_my_reservation_success.json".getJson(), 200)
+        setResponse("mockjson/myreservations/load_my_reservations_success_after_remove.json".getJson(), 200)
 
-        onView(withId(R.id.recyclerListView).childAtPosition(
-            0
-        ).childAtPosition(0)).check(matches(hasDescendant(withText("TEST"))))
-        onView(withId(R.id.recyclerListView).childAtPosition(
-            0
-        ).childAtPosition(0)).perform(click())
+        onView(withRecyclerView(R.id.recyclerListView)
+            .atPosition(0))
+            .check(matches(isDisplayed()))
+            .check(matches(hasDescendant(withText("Eeee"))))
+        onView(
+            withRecyclerView(R.id.recyclerListView)
+                .atPosition(0))
+            .check(matches(isDisplayed()))
+            .perform(ViewActions.click())
 
         onView(withId(R.id.delete)).perform(click())
-        onView(withText("EXCLUIR")).perform(click())
-        onView(withId(R.id.recyclerListView).childAtPosition(
-            0
-        ).childAtPosition(0)).check(matches(hasDescendant(withText("FIFA 06: Road to FIFA World Cup"))))
+        onView(withText("REMOVER")).perform(click())
+
+        onView(withRecyclerView(R.id.recyclerListView)
+            .atPosition(0))
+            .check(matches(isDisplayed()))
+            .check(matches(hasDescendant(not((withText("Eeee"))))))
     }
 
     @Test
     fun testDeleteGameError() {
-        setResponse("mockjson/loadmygames/load_my_games_success.json".getJson(), 200)
-        setResponse("mockjson/loadmygames/load_my_games_success_second.json".getJson(), 200)
-        setResponse("mockjson/library/loan/lend_response_success.json".getJson(), 200)
+        setResponse("mockjson/myreservations/load_my_reservations_success.json".getJson(), 200)
+        setResponse("mockjson/myreservations/detail/load_pending_reservation.json".getJson(), 200)
         setResponse("mockjson/errors/error_400.json".getJson(), 400)
 
-        onView(withText("TEST")).perform(click())
+        onView(withRecyclerView(R.id.recyclerListView)
+            .atPosition(0))
+            .check(matches(isDisplayed()))
+            .check(matches(hasDescendant(withText("Eeee"))))
+        onView(
+            withRecyclerView(R.id.recyclerListView)
+                .atPosition(0))
+            .check(matches(isDisplayed()))
+            .perform(ViewActions.click())
+
         onView(withId(R.id.delete)).perform(click())
-        onView(withText("EXCLUIR")).perform(click())
+        onView(withText("REMOVER")).perform(click())
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
