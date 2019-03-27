@@ -29,16 +29,4 @@
       }
     ]
   }
-  //TODO UNCOMMMENT WHEN THIS FILTER START TO WORK
-  /*,
-  {
-    "title":"Status do jogo",
-    "icon":"ic_filter_status",
-    "subItems":[
-      {
-        "queryParameter":"UNAVAILABLE",
-        "name":"Mostrar jogos indisponíveis"
-      }
-    ]
-  }*/
 ]

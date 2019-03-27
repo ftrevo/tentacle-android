@@ -58,4 +58,5 @@ const val DEFAULT_PENULTIMATE_DAY = 1
 const val DEFAULT_LANGUAGE = "pt"
 const val DEFAULT_COUNTRY = "BR"
 
-const val MOCK_FILTER_LIBRARY = "dummy_filter_itens.json"
+const val MOCK_FILTER_LIBRARY = "dummy_filter_itens_library.json"
+const val MOCK_FILTER_MY_GAMES = "dummy_fiter_itens_my_games.json"

@@ -24,7 +24,7 @@ import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
-import br.com.concrete.tentacle.data.models.library.filter.SubItem
+import br.com.concrete.tentacle.data.models.filter.SubItem
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.filter.FilterDialogFragment
@@ -47,6 +47,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
     private val viewModelLibrary: LibraryViewModel by viewModel()
     private var recyclerViewAdapter: BaseAdapter<Library>? = null
     private var libraries = ArrayList<Library?>()
+
     private val selectedFilterItems = ArrayList<SubItem>()
     private var queryParameters: QueryParameters? = null
 

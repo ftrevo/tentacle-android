@@ -7,7 +7,7 @@ import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
-import br.com.concrete.tentacle.data.models.library.filter.SubItem
+import br.com.concrete.tentacle.data.models.filter.SubItem
 import br.com.concrete.tentacle.utils.QueryUtils
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
