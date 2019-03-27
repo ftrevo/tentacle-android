@@ -1,11 +1,14 @@
 package br.com.concrete.tentacle.di
 
 import br.com.concrete.tentacle.BuildConfig
+import br.com.concrete.tentacle.data.models.RequestRefreshToken
+import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.network.ApiService
 import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import com.google.gson.Gson
+import okhttp3.Authenticator
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,6 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 private const val CONNECTION_TIMEOUT = 30L
 private const val READ_TIMEOUT = 30L
@@ -25,6 +29,41 @@ const val API_WITH_TOKEN = "apiWithToken"
 const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
+
+    single{
+        val auth = Authenticator { route, response ->
+            val prefs: SharedPrefRepositoryContract = get()
+            val userSession =
+                prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+
+            userSession?.let {
+                if (!response.request().header("Authorization").equals("${userSession.tokenType} ${userSession.accessToken}")){
+                    null
+                }
+
+                val apiServiceAuthentication: ApiServiceAuthentication = get(API_WITHOUT_TOKEN)
+                val request = apiServiceAuthentication.refreshToken(RequestRefreshToken(it.refreshToken))
+                val retrofitResponse = request.execute()
+
+                if (retrofitResponse != null) {
+                    val refreshTokenResponse = retrofitResponse.body()
+
+                    refreshTokenResponse?.let {
+                        val userSession = it.data
+                        prefs.saveSession(PREFS_KEY_USER_SESSION, it.data)
+                        response.request().newBuilder()
+                            .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
+                            .build()
+                    } ?: run {
+                        null
+                    }
+                }else{
+                    null
+                }
+            }
+        }
+        auth
+    }
 
     single("withToken") {
 
@@ -38,6 +77,7 @@ val networkModule = module {
 
         val tokenInterceptor = Interceptor { chain ->
             val prefs: SharedPrefRepositoryContract = get()
+
             val userSession =
                     prefs.getStoredSession(PREFS_KEY_USER_SESSION)
 
@@ -55,6 +95,7 @@ val networkModule = module {
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+            .authenticator(get())
             .addInterceptor(httpLogInterceptor)
             .addInterceptor(tokenInterceptor)
             .build()

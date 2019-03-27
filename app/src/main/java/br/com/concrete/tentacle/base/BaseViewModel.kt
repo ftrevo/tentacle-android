@@ -24,15 +24,21 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         when (error) {
             is HttpException -> {
                 when (error.code()) {
-                    HttpURLConnection.HTTP_BAD_REQUEST -> errorResponse = gson.fromJson(
-                        error.response().errorBody()?.charStream(),
-                        ErrorResponse::class.java)
-                    HttpURLConnection.HTTP_UNAUTHORIZED -> {
-                        // TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
+                    HttpURLConnection.HTTP_BAD_REQUEST -> {
+                        errorResponse = gson.fromJson(
+                            error.response().errorBody()?.charStream(),
+                            ErrorResponse::class.java
+                        )
                     }
-                    HttpURLConnection.HTTP_NOT_FOUND -> errorResponse = gson.fromJson(
-                        error.response().errorBody()?.charStream(),
-                        ErrorResponse::class.java)
+                    HttpURLConnection.HTTP_UNAUTHORIZED -> {
+                        LogWrapper.log("REDIRECT: ", "Login")
+                    }
+                    HttpURLConnection.HTTP_NOT_FOUND -> {
+                        errorResponse = gson.fromJson(
+                            error.response().errorBody()?.charStream(),
+                            ErrorResponse::class.java
+                        )
+                    }
                     else -> errorResponse.messageInt.add(R.string.unknow_error)
                 }
                 errorResponse.statusCode = error.code()

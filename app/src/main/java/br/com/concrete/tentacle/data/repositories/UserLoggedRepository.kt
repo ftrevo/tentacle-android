@@ -10,12 +10,6 @@ import io.reactivex.schedulers.Schedulers
 
 class UserLoggedRepository(private val api: ApiService) {
 
-    fun getProfile(): Observable<BaseModel<User>> {
-        return api.getProfile()
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-    }
-
     fun updateProfile(userId: String, userRequest: UserRequest): Observable<BaseModel<Session>> {
         return api.updateUserProfile(userId, userRequest)
             .subscribeOn(Schedulers.io())
