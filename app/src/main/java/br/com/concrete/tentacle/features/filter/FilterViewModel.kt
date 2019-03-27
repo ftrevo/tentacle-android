@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.library.filter
+package br.com.concrete.tentacle.features.filter
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
@@ -12,10 +12,9 @@ class FilterViewModel(private val filterRepository: FilterRepository) : BaseView
 
     val viewStateFilters: MutableLiveData<ViewStateModel<List<FilterItem>>> = MutableLiveData()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun getFilterItems() {
+    fun getFilterItems(filtersPath: String) {
         disposables.add(
-            filterRepository.getFilterItems()
+            filterRepository.getFilterItems(filtersPath)
                 .subscribe(
                     {
                         viewStateFilters

@@ -9,8 +9,8 @@ import io.reactivex.schedulers.Schedulers
 
 class FilterRepository(private val resources: Resources) {
 
-    fun getFilterItems(): Observable<List<FilterItem>> {
-        val filterJson = getJson("dummy_filter_itens.json")
+    fun getFilterItems(filterUrl: String): Observable<List<FilterItem>> {
+        val filterJson = getJson(filterUrl)
         val filterItems = Gson().fromJson<List<FilterItem>>(filterJson)
         return Observable.just(filterItems)
             .subscribeOn(Schedulers.io())

@@ -2,5 +2,5 @@
   "message": [
     "ERROR MESSAGE."
   ],
-  "statusCode":400
+  "statusCode":404
 }

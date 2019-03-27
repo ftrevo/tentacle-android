@@ -11,7 +11,7 @@ import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.LoginRepository
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.data.repositories.TokenRepository
 import br.com.concrete.tentacle.utils.Event
 import br.com.concrete.tentacle.utils.LogWrapper
@@ -21,7 +21,7 @@ import java.net.HttpURLConnection
 
 class LoginViewModel(
     private val repository: LoginRepository,
-    private val sharedPrefRepository: SharedPrefRepository,
+    private val sharedPrefRepository: SharedPrefRepositoryContract,
     private val tokenRepository: TokenRepository
 )
     : BaseViewModel(), LifecycleObserver {
