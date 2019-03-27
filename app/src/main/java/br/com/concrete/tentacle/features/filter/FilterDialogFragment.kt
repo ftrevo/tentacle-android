@@ -70,7 +70,7 @@ class FilterDialogFragment : DialogFragment() {
             inflater.inflate(R.layout.fragment_filter, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments?.getString("FILTER_PATH")?.let {filterPath ->
+        arguments?.getString("FILTER_PATH")?.let { filterPath ->
             initObservers()
             initListeners()
             viewModelFilter.getFilterItems(filterPath)
