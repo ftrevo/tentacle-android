@@ -1,9 +1,9 @@
 package br.com.concrete.tentacle.di
 
 import br.com.concrete.tentacle.BuildConfig
-import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import br.com.concrete.tentacle.data.network.ApiService
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
+import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 import com.google.gson.Gson
 import okhttp3.Interceptor
@@ -37,7 +37,7 @@ val networkModule = module {
         }
 
         val tokenInterceptor = Interceptor { chain ->
-            val prefs: SharedPrefRepository = get()
+            val prefs: SharedPrefRepositoryContract = get()
             val userSession =
                     prefs.getStoredSession(PREFS_KEY_USER_SESSION)
 

@@ -13,6 +13,6 @@ data class QueryParameters(
     var page: Int? = 0 // First page as default page
 ) {
     override fun toString(): String {
-        return if (mediaPlatform != null) TextUtils.join(",", mediaPlatform) else ""
+        return if (mediaPlatform != null) TextUtils.join(",", mediaPlatform) ?: "" else ""
     }
 }

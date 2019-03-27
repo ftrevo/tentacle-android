@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.library.filter
+package br.com.concrete.tentacle.features.filter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -40,11 +40,12 @@ class FilterDialogFragment : DialogFragment() {
     private val filtersSelected = ArrayList<SubItem>()
 
     companion object {
-        fun showDialog(fragment: Fragment?, elements: ArrayList<SubItem>) {
+        fun showDialog(fragment: Fragment?, elements: ArrayList<SubItem>, filterPath: String) {
             fragment?.fragmentManager?.let {
                 val dialog = FilterDialogFragment()
                 val args = Bundle()
                 args.putParcelableArrayList(FILTER_BUNDLE_ARGS, elements)
+                args.putString("FILTER_PATH", filterPath)
 
                 dialog.arguments = args
                 dialog.setTargetFragment(fragment, 0)
@@ -69,9 +70,11 @@ class FilterDialogFragment : DialogFragment() {
             inflater.inflate(R.layout.fragment_filter, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initObservers()
-
-        initListeners()
+        arguments?.getString("FILTER_PATH")?.let {filterPath ->
+            initObservers()
+            initListeners()
+            viewModelFilter.getFilterItems(filterPath)
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
