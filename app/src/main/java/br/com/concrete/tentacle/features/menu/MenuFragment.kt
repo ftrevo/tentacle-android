@@ -15,10 +15,12 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.loadRoundImageUrl
+import br.com.concrete.tentacle.features.about.AboutActivity
 import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.features.profile.ProfileActivity
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.LogWrapper
+import kotlinx.android.synthetic.main.fragment_menu.about
 import kotlinx.android.synthetic.main.fragment_menu.camera
 import kotlinx.android.synthetic.main.fragment_menu.iconProfile
 import kotlinx.android.synthetic.main.fragment_menu.logout
@@ -68,6 +70,7 @@ class MenuFragment : Fragment() {
     fun init(){
         logout.setOnClickListener { checkLogout() }
         profile.setOnClickListener { goToProfile() }
+        about.setOnClickListener { goToAbout() }
         version.text = String.format(getString(R.string.version), BuildConfig.VERSION_NAME)
         configCamera()
     }
@@ -86,6 +89,12 @@ class MenuFragment : Fragment() {
 
     private fun goToProfile(){
         activity?.launchActivity<ProfileActivity>(
+            animation = ActivityAnimation.TRANSLATE_UP
+        )
+    }
+
+    private fun goToAbout(){
+        activity?.launchActivity<AboutActivity>(
             animation = ActivityAnimation.TRANSLATE_UP
         )
     }
