@@ -134,7 +134,12 @@ class MenuFragment : Fragment() {
     }
 
     private fun performLogout() {
-        activity?.logout()
+        menuViewModel.removeSession()
+        menuViewModel.removeUser()
+        val login = Intent(activity, LoginActivity::class.java)
+        login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(login)
+        activity?.finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
