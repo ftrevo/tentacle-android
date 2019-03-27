@@ -13,14 +13,14 @@ import okhttp3.mockwebserver.MockResponse
 import org.junit.Before
 import org.junit.Test
 
-class MenuFragmentTest: BaseFragmentTest(){
+class MenuFragmentTest : BaseFragmentTest() {
 
     override fun setupFragment() {
         testFragment = MenuFragment()
     }
 
     @Before
-    fun setUpMenu(){
+    fun setUpMenu() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -29,13 +29,13 @@ class MenuFragmentTest: BaseFragmentTest(){
     }
 
     @Test
-    fun checkFields(){
+    fun checkFields() {
         onView(withId(R.id.name)).check(matches(withText("Damiana dos toró")))
         onView(withId(R.id.state)).check(matches(withText("Pernambuco")))
     }
 
     @Test
-    fun checkLogout(){
+    fun checkLogout() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -64,7 +64,7 @@ class MenuFragmentTest: BaseFragmentTest(){
     }
 
     @Test
-    fun checkCancelLogout(){
+    fun checkCancelLogout() {
         onView(withId(R.id.logout)).perform(click())
         onView(withText("CANCELAR")).perform(click())
         onView(withId(R.id.name)).check(matches(withText("Damiana dos toró")))

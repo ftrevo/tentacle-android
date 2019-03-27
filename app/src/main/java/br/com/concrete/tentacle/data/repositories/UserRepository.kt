@@ -48,7 +48,7 @@ class UserRepository(private val apiServiceAuthentication: ApiServiceAuthenticat
             .observeOn(Schedulers.io())
     }
 
-    fun getProfile(): Observable<BaseModel<User>>{
+    fun getProfile(): Observable<BaseModel<User>> {
         return apiService.getProfile()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())

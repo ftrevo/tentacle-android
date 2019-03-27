@@ -31,14 +31,14 @@ import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
 
-
 class MenuFragment : Fragment() {
 
     private val menuViewModel: MenuViewModel by viewModel()
     private lateinit var user: User
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_menu, container, false)
@@ -50,7 +50,7 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun initObservable(){
+    private fun initObservable() {
         menuViewModel.getUser().observe(this, Observer { base ->
             when (base.status) {
                 ViewStateModel.Status.SUCCESS -> {
@@ -65,45 +65,45 @@ class MenuFragment : Fragment() {
         lifecycle.addObserver(menuViewModel)
     }
 
-    fun init(){
+    fun init() {
         logout.setOnClickListener { checkLogout() }
         profile.setOnClickListener { goToProfile() }
         version.text = String.format(getString(R.string.version), BuildConfig.VERSION_NAME)
         configCamera()
     }
 
-    private fun configCamera(){
+    private fun configCamera() {
         EasyImage.configuration(context)
             .setImagesFolderName("Tentacle")
             .saveInAppExternalFilesDir()
             .setCopyExistingPicturesToPublicLocation(true)
             .saveInRootPicturesDirectory()
 
-        camera.setOnClickListener{
-            EasyImage.openChooserWithGallery(this,getString(R.string.select_hint), EasyImage.REQ_SOURCE_CHOOSER)
+        camera.setOnClickListener {
+            EasyImage.openChooserWithGallery(this, getString(R.string.select_hint), EasyImage.REQ_SOURCE_CHOOSER)
         }
     }
 
-    private fun goToProfile(){
+    private fun goToProfile() {
         activity?.launchActivity<ProfileActivity>(
             animation = ActivityAnimation.TRANSLATE_UP
         )
     }
 
-    private fun updateUI(u: User){
+    private fun updateUI(u: User) {
         user = u
         name.text = user.name
         state.text = user.state.name
         loadPhotoFile()
     }
 
-    private fun loadPhotoFile(){
+    private fun loadPhotoFile() {
         try {
             val file = File(user.internalImage)
             file?.let {
                 setUpImage(it)
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             LogWrapper.log("File Error:", e.toString())
         }
     }
@@ -141,7 +141,7 @@ class MenuFragment : Fragment() {
             }
 
             override fun onImagePickerError(e: Exception?, source: EasyImage.ImageSource?, type: Int) {
-                LogWrapper.log("Error: ", "Picking image: ${e.toString()}")
+                LogWrapper.log("Error: ", "Picking image: $e")
             }
 
             override fun onCanceled(source: EasyImage.ImageSource, type: Int) {
@@ -153,9 +153,9 @@ class MenuFragment : Fragment() {
         })
     }
 
-    private fun setUpImage(imagesFiles: File?){
+    private fun setUpImage(imagesFiles: File?) {
         imagesFiles?.let {
-            if(it.exists()){
+            if (it.exists()) {
                 iconProfile.loadRoundImageUrl(it.absolutePath)
                 user.internalImage = it.absolutePath
                 menuViewModel.updateUser(user)
@@ -163,5 +163,4 @@ class MenuFragment : Fragment() {
             }
         }
     }
-
 }
