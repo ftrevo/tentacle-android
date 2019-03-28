@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.base
 
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
@@ -13,9 +14,11 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection
 
-abstract class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
+open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
 
     protected val disposables = CompositeDisposable()
+    private val sessionStatus: MutableLiveData<Int> = MutableLiveData()
+    fun getSessionStatus() = sessionStatus
 
     protected fun notKnownError(error: Throwable): ErrorResponse {
 
@@ -32,7 +35,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
                         )
                     }
                     HttpURLConnection.HTTP_UNAUTHORIZED -> {
-                        BaseActivity.gotToLogin()
+                        sessionStatus.postValue(HttpURLConnection.HTTP_UNAUTHORIZED)
                     }
                     HttpURLConnection.HTTP_NOT_FOUND -> {
                         errorResponse = gson.fromJson(
