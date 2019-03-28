@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.data.models.library.filter
+package br.com.concrete.tentacle.data.models.filter
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

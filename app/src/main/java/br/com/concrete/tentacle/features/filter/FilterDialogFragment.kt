@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.models.library.filter.FilterItem
-import br.com.concrete.tentacle.data.models.library.filter.SubItem
+import br.com.concrete.tentacle.data.models.filter.FilterItem
+import br.com.concrete.tentacle.data.models.filter.SubItem
 import br.com.concrete.tentacle.extensions.loadImage
 import br.com.concrete.tentacle.utils.LogWrapper
 import kotlinx.android.synthetic.main.fragment_filter.filterButtonView
@@ -70,7 +70,7 @@ class FilterDialogFragment : DialogFragment() {
             inflater.inflate(R.layout.fragment_filter, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments?.getString("FILTER_PATH")?.let {filterPath ->
+        arguments?.getString("FILTER_PATH")?.let { filterPath ->
             initObservers()
             initListeners()
             viewModelFilter.getFilterItems(filterPath)
