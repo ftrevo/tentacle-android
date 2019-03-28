@@ -1,6 +1,8 @@
 package br.com.concrete.tentacle.base
 
+import android.app.Activity
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,13 +10,22 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.HostActivity
+import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.utils.DialogUtils
+import org.koin.android.viewmodel.ext.android.viewModel
+import java.net.HttpURLConnection
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    private val baseViewModel: BaseViewModel by viewModel()
+
     companion object {
         const val INVALID_ICON = -1
         const val INVALID_TITLE = -1
@@ -23,6 +34,21 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        initObservable()
+    }
+
+    private fun initObservable() {
+        baseViewModel.getSessionStatus().observe(this, Observer { statusCode ->
+            when(statusCode) {
+                HttpURLConnection.HTTP_UNAUTHORIZED -> gotToLogin()
+            }
+        })
+    }
+
+    private fun gotToLogin() {
+        this.launchActivity<LoginActivity>(animation = ActivityAnimation.TRANSLATE_UP)
+        finish()
     }
 
     fun setupToolbar() {

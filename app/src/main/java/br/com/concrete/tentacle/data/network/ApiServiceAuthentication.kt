@@ -8,9 +8,11 @@ import br.com.concrete.tentacle.data.models.CityResponse
 import br.com.concrete.tentacle.data.models.ForgotPassword
 import br.com.concrete.tentacle.data.models.PasswordRecovery
 import br.com.concrete.tentacle.data.models.RequestLogin
+import br.com.concrete.tentacle.data.models.RequestRefreshToken
 import br.com.concrete.tentacle.data.models.User
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -35,4 +37,7 @@ interface ApiServiceAuthentication {
 
     @POST("/users/restore-password")
     fun restorePassword(@Body passwordRecovery: PasswordRecovery): Flowable<BaseModel<Session>>
+
+    @POST("/refresh-token")
+    fun refreshToken(@Body requestRefreshToken: RequestRefreshToken): Call<BaseModel<Session>>
 }
