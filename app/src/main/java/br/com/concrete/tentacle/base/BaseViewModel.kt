@@ -8,11 +8,12 @@ import br.com.concrete.tentacle.utils.DEFAULT_EXCEPTION_STATUS_CODE
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
 import io.reactivex.disposables.CompositeDisposable
+import org.koin.standalone.KoinComponent
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection
 
-abstract class BaseViewModel : ViewModel(), LifecycleObserver {
+abstract class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
 
     protected val disposables = CompositeDisposable()
 
@@ -31,7 +32,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                         )
                     }
                     HttpURLConnection.HTTP_UNAUTHORIZED -> {
-                        LogWrapper.log("REDIRECT: ", "Login")
+                        BaseActivity.gotToLogin()
                     }
                     HttpURLConnection.HTTP_NOT_FOUND -> {
                         errorResponse = gson.fromJson(

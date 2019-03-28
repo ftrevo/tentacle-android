@@ -1,6 +1,8 @@
 package br.com.concrete.tentacle.base
 
+import android.app.Activity
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,20 +10,34 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat.startActivity
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.HostActivity
+import br.com.concrete.tentacle.features.login.LoginActivity
 import br.com.concrete.tentacle.utils.DialogUtils
 
 abstract class BaseActivity : AppCompatActivity() {
+
     companion object {
         const val INVALID_ICON = -1
         const val INVALID_TITLE = -1
+        var activity: BaseActivity? =  null
+
+        //TODO fix looping
+        fun gotToLogin(){
+            activity?.let {
+                it.launchActivity<LoginActivity>(animation = ActivityAnimation.TRANSLATE_UP)
+                it.finish()
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activity = this
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 

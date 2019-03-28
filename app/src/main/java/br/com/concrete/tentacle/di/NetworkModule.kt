@@ -55,9 +55,11 @@ val networkModule = module {
                             .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
                             .build()
                     } ?: run {
+                        prefs.removeUser()
                         null
                     }
                 }else{
+                    prefs.removeUser()
                     null
                 }
             }
