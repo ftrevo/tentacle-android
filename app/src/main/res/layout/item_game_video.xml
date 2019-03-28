@@ -8,6 +8,7 @@
         android:background="@color/backgroundItemGameVideo">
 
     <androidx.appcompat.widget.AppCompatImageView
+            android:scaleType="centerInside"
             android:id="@+id/ivBackground"
             android:layout_width="@dimen/heightGameVideo"
             android:layout_height="@dimen/widthGameVideo"

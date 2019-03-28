@@ -6,7 +6,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.extensions.fromJson
 import br.com.concrete.tentacle.extensions.toJson
@@ -17,7 +17,7 @@ import br.com.concrete.tentacle.utils.PREFS_KEY_USER
 import com.google.gson.Gson
 
 class MenuViewModel(
-    private val sharedPrefRepository: SharedPrefRepository,
+    private val sharedPrefRepository: SharedPrefRepositoryContract,
     private val userRepository: UserRepository
 ) : BaseViewModel() {
 
@@ -39,6 +39,7 @@ class MenuViewModel(
             userRepository.getProfile().subscribe({
                 sharedPrefRepository.saveUser(PREFS_KEY_USER, it.data)
                 stateModel.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data)))
+
             }, {
                 LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
             })
@@ -65,7 +66,6 @@ class MenuViewModel(
             HashMap()
         }
     }
-
 
     fun removeSession() {
         sharedPrefRepository.removeSession()

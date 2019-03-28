@@ -5,13 +5,13 @@ import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.PasswordRecovery
 import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
 class PasswordRecoveryViewModel(
     private val userRepository: UserRepository,
-    private val sharedPrefRepository: SharedPrefRepository
+    private val sharedPrefRepository: SharedPrefRepositoryContract
 ) : BaseViewModel() {
 
     val stateModel: MutableLiveData<ViewStateModel<Session>> = MutableLiveData()

@@ -2,28 +2,6 @@
   "data": {
     "list": [
       {
-        "_id": "654847",
-        "requestedAt": "2019-02-18T13:45:29.390Z",
-        "media": {
-          "_id": "cvcvbb",
-          "platform": "PS4"
-        },
-        "requestedBy": {
-          "_id": "gffgxvfnvc",
-          "name": "LEO MALKES",
-          "email": "leonardo.malkes@concrete.com.br"
-        },
-        "mediaOwner": {
-          "_id": "5c1ab15c7c0f4f00ncnbncxn2272357f",
-          "name": "DAIVID V. LEAL",
-          "email": "daivid.v.leal@concrete.com.br"
-        },
-        "game": {
-          "_id": "nxcnxcvncvxnxvc",
-          "name": "Eeee"
-        }
-      },
-      {
         "_id": "5c6ab844a1826b0023ed7b61",
         "requestedAt": "2019-02-18T13:45:29.390Z",
         "media": {

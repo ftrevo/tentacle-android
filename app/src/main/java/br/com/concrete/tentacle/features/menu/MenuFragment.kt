@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +45,8 @@ class MenuFragment : Fragment() {
     private lateinit var user: User
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_menu, container, false)
@@ -113,6 +113,9 @@ class MenuFragment : Fragment() {
         try {
             val file = File(menuViewModel.getPathPhotoUser(user._id))
             setUpImage(file)
+            file?.let {
+                setUpImage(it)
+            }
         } catch (e: Exception) {
             LogWrapper.log("File Error:", e.toString())
         }
@@ -152,7 +155,7 @@ class MenuFragment : Fragment() {
             }
 
             override fun onImagePickerError(e: Exception?, source: EasyImage.ImageSource?, type: Int) {
-                LogWrapper.log("Error: ", "Picking image: ${e.toString()}")
+                LogWrapper.log("Error: ", "Picking image: $e")
             }
 
             override fun onCanceled(source: EasyImage.ImageSource, type: Int) {
@@ -174,7 +177,6 @@ class MenuFragment : Fragment() {
             }
         }
     }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {

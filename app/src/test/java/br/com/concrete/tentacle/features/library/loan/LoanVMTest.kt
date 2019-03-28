@@ -55,7 +55,7 @@ class LoanVMTest : BaseViewModelTest() {
     fun `when loanViewModel calls loadLibrary should return error message for 401`() {
         val expected =
             ViewStateModel<Library>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
             )
         var actual = ViewStateModel<Library>(status = ViewStateModel.Status.LOADING)
 
@@ -79,7 +79,7 @@ class LoanVMTest : BaseViewModelTest() {
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
-
+        responseObject.statusCode = 400
         val expected =
             ViewStateModel<Library>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
@@ -131,7 +131,7 @@ class LoanVMTest : BaseViewModelTest() {
     fun `when loanViewModel calls performLoan should return error message for 401`() {
         val expected =
             ViewStateModel<LoanResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse()
+                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
             )
         var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
 
@@ -155,6 +155,7 @@ class LoanVMTest : BaseViewModelTest() {
 
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
+        responseObject.statusCode = 400
 
         val expected =
             ViewStateModel<LoanResponse>(

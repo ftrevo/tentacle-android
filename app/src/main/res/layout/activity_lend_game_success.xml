@@ -19,18 +19,19 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_close"
             android:padding="@dimen/dp_10"
-            android:background="@drawable/circle_bg_close" />
+            android:background="@drawable/circle_bg_close"/>
 
 
     <ImageView
+            app:layout_constraintVertical_chainStyle="packed"
             android:id="@+id/ivCover"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ilustra_tentacle_ok"
-            android:layout_marginBottom="@dimen/dp_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvText"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvText"/>
 
     <TextView
             android:lineSpacingExtra="@dimen/dp_4"
@@ -43,11 +44,11 @@
             android:id="@+id/tvText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivCover"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintBottom_toTopOf="@+id/btOk"
+    />
 
     <br.com.concrete.tentacle.custom.ButtonView
             android:layout_marginTop="@dimen/dp_25"
@@ -55,6 +56,7 @@
             android:layout_marginEnd="@dimen/margin_default"
             style="@style/StyleButton"
             app:layout_constraintTop_toBottomOf="@+id/tvText"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/btOk"
@@ -63,6 +65,5 @@
             app:buttonName="@string/back_to_library"
             app:textColorButton="@color/textColorErrorButtonName"
             android:backgroundTint="@color/textColor"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
