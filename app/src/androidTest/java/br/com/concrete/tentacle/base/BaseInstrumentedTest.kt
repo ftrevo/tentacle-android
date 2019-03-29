@@ -13,7 +13,7 @@ import org.koin.standalone.inject
 
 @Ignore
 @RunWith(AndroidJUnit4::class)
-abstract class BaseInstrumentedTest: KoinComponent {
+abstract class BaseInstrumentedTest : KoinComponent {
 
     private val sharedPrefRepositoryContract: SharedPrefRepositoryContract by inject()
 

@@ -15,7 +15,7 @@ import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
 import org.junit.Test
 
-class ProfileFragmentTest : BaseFragmentTest(){
+class ProfileFragmentTest : BaseFragmentTest() {
 
     override fun setupFragment() {
         testFragment = ProfileFragment()
@@ -29,9 +29,7 @@ class ProfileFragmentTest : BaseFragmentTest(){
         checkInputField("(81) 95874-2360", R.id.phoneEditText)
         checkStateSelection("PE")
         checkCitySelection("Recife")
-
     }
-
 
     @Test
     fun checkLoadErrorScreen() {
@@ -48,7 +46,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
             .check(matches(isDisplayed()))
         clickButton(R.id.buttonNameError)
         checkAutofillFields()
-
     }
 
     @Test
@@ -57,7 +54,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
         setField("", R.id.userNameEditText)
         clickButton(R.id.saveChangesButton)
         matchesIsDisplayed("O campo nome é de preenchimento obrigatório")
-
     }
 
     @Test
@@ -67,7 +63,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
         setField("", R.id.emailEditText) // force this error in order to only make validations after click
         clickButton(R.id.saveChangesButton)
         matchesNotIsDisplayed("O campo nome é de preenchimento obrigatório")
-
     }
 
     @Test
@@ -76,7 +71,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
         setField("teste@teste", R.id.emailEditText)
         clickButton(R.id.saveChangesButton)
         matchesIsDisplayed("Digite um e-mail válido")
-
     }
 
     @Test
@@ -86,7 +80,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
         setField("teste@teste.com", R.id.emailEditText)
         clickButton(R.id.saveChangesButton)
         matchesNotIsDisplayed("Digite um e-mail válido")
-
     }
 
     @Test
@@ -95,7 +88,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
         setField("", R.id.phoneEditText)
         clickButton(R.id.saveChangesButton)
         matchesIsDisplayed("Forneça um número de telefone válido")
-
     }
 
     @Test
@@ -104,7 +96,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
         setField("999999999", R.id.phoneEditText)
         clickButton(R.id.saveChangesButton)
         matchesIsDisplayed("Forneça um número de telefone válido")
-
     }
 
     @Test
@@ -114,7 +105,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
         setField("", R.id.emailEditText) // force this error in order to only make validations after click
         clickButton(R.id.saveChangesButton)
         matchesNotIsDisplayed("Forneça um número de telefone válido")
-
     }
 
     private fun mockResult200() {
@@ -150,7 +140,6 @@ class ProfileFragmentTest : BaseFragmentTest(){
                 .setBody("mockjson/profile/get_profile_error.json".getJson())
         )
     }
-
 
     private fun clickButton(buttonResId: Int) {
         onView(withId(buttonResId))

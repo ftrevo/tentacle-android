@@ -10,14 +10,14 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseInstrumentedTest
-import br.com.concrete.tentacle.extensions.checkLines
 import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
 

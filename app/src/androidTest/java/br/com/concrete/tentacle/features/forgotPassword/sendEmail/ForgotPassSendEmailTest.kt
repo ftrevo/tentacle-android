@@ -15,7 +15,6 @@ import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
-import org.hamcrest.CoreMatchers
 import org.hamcrest.Matchers
 import org.junit.Rule
 import org.junit.Test

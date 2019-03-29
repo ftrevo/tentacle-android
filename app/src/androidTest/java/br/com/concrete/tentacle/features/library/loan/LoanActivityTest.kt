@@ -201,6 +201,4 @@ class LoanActivityTest {
             .setResponseCode(200)
             .setBody("mockjson/library/get_one_id_library.json".getJson()))
     }
-
-
 }

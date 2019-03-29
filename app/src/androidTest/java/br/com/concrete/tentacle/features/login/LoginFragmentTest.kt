@@ -17,7 +17,6 @@ import org.junit.Test
 import okhttp3.mockwebserver.RecordedRequest
 import okhttp3.mockwebserver.Dispatcher
 
-
 class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
     override fun setupFragment() {
@@ -119,7 +118,7 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         Espresso.onView(ViewMatchers.withText(idMessageError)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-    private fun getDispatcher(): Dispatcher{
+    private fun getDispatcher(): Dispatcher {
         return object : Dispatcher() {
             override fun dispatch(request: RecordedRequest?): MockResponse {
                 var mockResponse: MockResponse = MockResponse().setResponseCode(404)

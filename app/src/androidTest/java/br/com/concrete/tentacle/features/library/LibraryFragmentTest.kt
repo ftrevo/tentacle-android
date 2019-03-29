@@ -6,7 +6,6 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -268,5 +267,4 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withRecyclerView(R.id.recyclerListView).atPosition(0))
             .check(matches(ViewMatchers.hasDescendant(withText("JOGO FIRST"))))
     }
-
 }

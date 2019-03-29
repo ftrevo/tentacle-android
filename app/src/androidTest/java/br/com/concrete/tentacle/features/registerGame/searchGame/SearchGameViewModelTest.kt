@@ -17,9 +17,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.extensions.getJson
-import br.com.concrete.tentacle.util.RecyclerPositionViewMatcher.Companion.withRecyclerViewAndViewId
 import br.com.concrete.tentacle.extensions.waitUntil
-import br.com.concrete.tentacle.matchers.RecyclerViewMatcher
 import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
 import kotlinx.android.synthetic.main.list_custom.*
 import okhttp3.mockwebserver.MockResponse
