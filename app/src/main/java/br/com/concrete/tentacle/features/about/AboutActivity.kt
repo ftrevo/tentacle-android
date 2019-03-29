@@ -28,7 +28,7 @@ class AboutActivity : BaseActivity() {
             }
         }
         webView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
-        webView.loadUrl("https://github.com/ftrevo/tentacle-android/wiki")
+        webView.loadUrl("https://github.com/ftrevo/tentacle-android/wiki/Sobre")
     }
 
     override fun getFinishActivityTransition() = ActivityAnimation.TRANSLATE_DOWN
