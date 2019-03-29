@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView
+    android:id="@+id/homeImageView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_0"
+    android:layout_height="@dimen/dp_0" xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:avp_autoScroll="true"
+    app:avp_duration="1000"
+    app:avp_indeterminate="true"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"/>
