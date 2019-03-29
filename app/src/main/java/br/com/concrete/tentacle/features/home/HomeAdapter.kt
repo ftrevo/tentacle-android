@@ -17,16 +17,22 @@ class HomeAdapter(private val imageList: List<String>) : PagerAdapter() {
     }
 
     override fun getCount(): Int {
+        return if(imageList.isEmpty()) 0 else imageList.size + 2
+    }
+
+    fun getRealCount(): Int{
         return imageList.size
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val imageView = LayoutInflater.from(container.context).inflate(R.layout.home_image_view, null) as ImageView
 
+        val modelPosition = mapPagerPositionToModelPosition(position
+        )
         imageView.loadImageUrl(
             Utils.assembleGameImageUrl(
                 sizeType = IMAGE_SIZE_TYPE_SCREENSHOT_HUGE,
-                imageId = imageList[position]
+                imageId = imageList[modelPosition]
             )
         )
 
@@ -34,8 +40,19 @@ class HomeAdapter(private val imageList: List<String>) : PagerAdapter() {
         return imageView
     }
 
+    private fun mapPagerPositionToModelPosition(pagerPosition: Int) : Int {
+        if(pagerPosition == 0){
+            return getRealCount() - 1
+        }
+
+        if(pagerPosition == getRealCount() + 1){
+            return  0
+        }
+        return pagerPosition - 1
+    }
+
+
     override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
-//        super.destroyItem(container, position, view)
         container.removeView(view as View)
     }
 }
