@@ -23,11 +23,14 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
 
     private var page: Int = 1
 
+    var queryParameters: QueryParameters? = null
+
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun preLoadMyGames() {
         loadMyGames()
     }
-    fun loadMyGames(queryParameters: QueryParameters? = null) {
+
+    fun loadMyGames() {
         val queries = queryParameters ?: QueryParameters()
 
         viewStateGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
@@ -40,7 +43,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
         )
     }
 
-    fun loadGamePage(queryParameters: QueryParameters?) {
+    fun loadGamePage() {
         val queries = queryParameters ?: QueryParameters()
         queries.page = page
 
@@ -67,4 +70,5 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     fun resetPage() {
         this.page = 1
     }
+
 }
