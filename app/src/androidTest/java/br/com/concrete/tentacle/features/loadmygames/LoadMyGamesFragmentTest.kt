@@ -126,6 +126,16 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
                 .setResponseCode(200)
                 .setBody(removeGame)
         )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(removeGame)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(removeGame)
+        )
 
         onView(withId(R.id.recyclerListView))
             .check(matches(isDisplayed()))
@@ -136,19 +146,17 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withRecyclerView(R.id.recyclerListView)
             .atPosition(0))
             .check(matches(isDisplayed()))
-            .check(matches(hasDescendant(withText("FIFA 08"))))
-            .check(matches(hasDescendant(withText("X360"))))
+            .check(matches(hasDescendant(withText("TEST"))))
+            .check(matches(hasDescendant(withText("PS4"))))
         onView(
             withRecyclerView(R.id.recyclerListView)
                 .atPosition(0))
             .check(matches(isDisplayed()))
             .perform(longClick())
 
-        onView(withText("Tem certeza que deseja deletar o jogo FIFA 08 ?"))
-        onView(withText("Ok"))
-        onView(withText("CANCELAR"))
+        onView(withText("O jogo TEST sairá da lista de \"Meus Jogos\", mas você poderá adicioná-lo novamente no futuro."))
 
-        onView(withText("Ok"))
+        onView(withText("EXCLUIR"))
             .check(matches(isDisplayed()))
             .inRoot(RootMatchers.isDialog())
             .check(matches(isDisplayed()))
@@ -157,7 +165,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         onView(withRecyclerView(R.id.recyclerListView)
             .atPosition(0))
             .check(matches(isDisplayed()))
-            .check(matches(hasDescendant(not(withText("FIFA 08")))))
-            .check(matches(hasDescendant(not(withText("X360")))))
+            .check(matches(hasDescendant(not(withText("TEST")))))
+            .check(matches(hasDescendant(not(withText("PS4")))))
     }
 }

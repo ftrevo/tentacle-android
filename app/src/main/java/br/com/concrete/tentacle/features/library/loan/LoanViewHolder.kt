@@ -5,7 +5,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.game.Screenshot
 import br.com.concrete.tentacle.data.models.library.Video
 import br.com.concrete.tentacle.extensions.ActivityAnimation
@@ -56,7 +58,8 @@ LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
                 Utils.assembleGameImageUrl(
                     sizeType = IMAGE_SIZE_TYPE_LOGO_MED,
                     imageId = idImage
-                )
+                ),
+                drawablePlaceholder = ContextCompat.getDrawable(item.context, R.drawable.ic_image_placeholder)
             )
             item.setOnClickListener {
                 val extras = Bundle()
