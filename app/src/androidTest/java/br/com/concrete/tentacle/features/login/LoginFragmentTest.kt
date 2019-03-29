@@ -7,15 +7,16 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentNoActionBarNoBottomBarTest
 import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers
-import org.hamcrest.CoreMatchers.allOf
 import org.junit.Test
+import okhttp3.mockwebserver.RecordedRequest
+import okhttp3.mockwebserver.Dispatcher
+
 
 class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
@@ -57,18 +58,7 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
     @Test
     fun loginSuccess() {
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody("mockjson/login/login_success.json".getJson())
-        )
-
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody("mockjson/home/load_home_games_success.json".getJson())
-        )
-
+        mockWebServer.setDispatcher(getDispatcher())
         setField("teste@test.com", R.id.edtEmail)
         setField("123456", R.id.edtPassword)
         callButtonClick()
@@ -86,8 +76,7 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         setField("teste@test.com", R.id.edtEmail)
         setField("123456", R.id.edtPassword)
         callButtonClick()
-        onView(withId(android.R.id.message))
-            .check(matches(allOf(withText("ERROR MESSAGE."), isDisplayed())))
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
     @Test
@@ -100,8 +89,7 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         setField("teste@test.com", R.id.edtEmail)
         setField("123456", R.id.edtPassword)
         callButtonClick()
-        onView(withId(android.R.id.message))
-            .check(matches(allOf(withText(R.string.user_or_password_error), isDisplayed())))
+        onView(withText("Usuário ou senha inválidos!")).check(matches(isDisplayed()))
     }
 
     @Test
@@ -129,5 +117,41 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
 
     private fun matchesIsDisplayed(idMessageError: Int) {
         Espresso.onView(ViewMatchers.withText(idMessageError)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+    }
+
+    private fun getDispatcher(): Dispatcher{
+        return object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest?): MockResponse {
+                var mockResponse: MockResponse = MockResponse().setResponseCode(404)
+                request?.let {
+                    when {
+                        request.path == "/login" -> {
+                            mockResponse = MockResponse()
+                                .setResponseCode(200)
+                                .setBody("mockjson/login/login_success.json".getJson())
+                        }
+                        request.path == "/refresh-token" -> {
+                            mockResponse =
+                                MockResponse()
+                                    .setResponseCode(200)
+                                    .setBody("mockjson/token/token_update_success.json".getJson())
+                        }
+                        request.path == "/users/profile" -> {
+                            mockResponse =
+                                MockResponse()
+                                    .setResponseCode(200)
+                                    .setBody("mockjson/profile/get_profile_success.json".getJson())
+                        }
+                        request.path == "/library/home" -> {
+                            mockResponse =
+                                MockResponse()
+                                    .setResponseCode(200)
+                                    .setBody("mockjson/home/load_home_games_success.json".getJson())
+                        }
+                    }
+                }
+                return mockResponse
+            }
+        }
     }
 }

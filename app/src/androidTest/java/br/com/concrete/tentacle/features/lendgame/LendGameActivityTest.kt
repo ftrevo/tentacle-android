@@ -74,7 +74,7 @@ class LendGameActivityTest : BaseInstrumentedTest() {
         onView(withId(R.id.tvRequestedBy)).check(matches(withText("Daivid Vasconcelos Leal")))
         onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
         onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
-        onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.tvDate)).check(matches(withText("até 22/03/19")))
         onView(withId(R.id.btLendGame)).perform(scrollTo())
         onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
         onView(withId(R.id.tvDateRequested)).check(matches(withText("em 08/03/19")))

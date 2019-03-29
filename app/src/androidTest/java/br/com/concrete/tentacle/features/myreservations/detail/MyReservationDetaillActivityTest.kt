@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.features.myreservations.detail
 
 import android.content.Intent
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -15,6 +16,8 @@ import okhttp3.mockwebserver.MockResponse
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
 
@@ -28,17 +31,32 @@ class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
         activityTestRule.launchActivity(intent)
     }
 
+    fun getDaysAfter(daysAgo: Int): Date {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, daysAgo)
+        return calendar.time
+    }
+
     @Test
     fun showActiveLoan() {
+        val date = getDaysAfter(5)
+        var json = "mockjson/myreservations/detail/load_active_reservation.json"
+            .getJson()
+            .replace(
+                "2019-03-06T18:44:58.540Z",
+                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                    .format(date)
+            )
 
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody("mockjson/myreservations/detail/load_active_reservation.json".getJson())
+                .setBody(json)
         )
-        verifyFilds()
+
         onView(withId(R.id.tvGameStatus))
             .check(matches(withText("Faltam 4 dias")))
+        verifyFilds()
     }
 
     @Test
@@ -48,9 +66,10 @@ class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
                 .setResponseCode(200)
                 .setBody("mockjson/myreservations/detail/load_pending_reservation.json".getJson())
         )
-        verifyFilds()
+
         onView(withId(R.id.tvGameStatus))
             .check(matches(withText("Pendente")))
+        verifyFilds()
     }
 
     @Test
@@ -60,9 +79,10 @@ class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
                 .setResponseCode(200)
                 .setBody("mockjson/myreservations/detail/load_expired_reservation.json".getJson())
         )
-        verifyFilds()
+
         onView(withId(R.id.tvGameStatus))
             .check(matches(withText("Expirado")))
+        verifyFilds()
     }
 
     private fun verifyFilds() {
@@ -72,28 +92,32 @@ class MyReservationDetaillActivityTest : BaseInstrumentedTest() {
         onView(withId(R.id.tvGameReleaseYear))
             .check(matches(withText("2014")))
 
-        onView(withId(R.id.tvGameSummary))
-            .check(matches((4.checkLines())))
-
         onView(withText("Single player"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         onView(withText("Multiplayer"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         onView(withText("Shooter"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         onView(withText("Adventure"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         onView(withText("Multiplayer"))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         onView(withId(R.id.tvGamePlatform))
+            .perform(scrollTo())
             .check(matches(withText("PS4")))
 
         onView(withId(R.id.tvGameOwner))
+            .perform(scrollTo())
             .check(matches(withText("FELIPE TREVISAN")))
     }
 }

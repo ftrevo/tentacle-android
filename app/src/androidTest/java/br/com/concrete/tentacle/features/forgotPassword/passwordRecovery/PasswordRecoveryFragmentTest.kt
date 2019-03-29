@@ -110,9 +110,7 @@ class PasswordRecoveryFragmentTest : BaseFragmentTest() {
         setInputField(R.id.newPassEditText, "123456")
         setInputField(R.id.newPassConfirmationEditText, "123456")
         performClickButton()
-
-        onView(withId(android.R.id.message))
-            .check(matches(allOf(withText("ERROR MESSAGE."), isDisplayed())))
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
     private fun setInputField(resId: Int, text: String) {

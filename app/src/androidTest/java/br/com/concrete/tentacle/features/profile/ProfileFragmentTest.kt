@@ -13,171 +13,158 @@ import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.not
-import org.junit.Before
 import org.junit.Test
 
-class ProfileFragmentTest : BaseFragmentTest() {
-
-    /**
-     * Set this variable to true to see Loading error screen
-     */
-    private var SHOW_LOADING_ERROR_SCREEN: Boolean
-
-    init {
-        SHOW_LOADING_ERROR_SCREEN = true
-    }
+class ProfileFragmentTest : BaseFragmentTest(){
 
     override fun setupFragment() {
         testFragment = ProfileFragment()
     }
 
-    @Before
-    fun setMock() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
-            mockWebServer.enqueue(
-                MockResponse()
-                    .setResponseCode(200)
-                    .setBody("mockjson/profile/get_profile_success.json".getJson())
-            )
-
-            mockWebServer.enqueue(
-                MockResponse()
-                    .setResponseCode(200)
-                    .setBody("mockjson/profile/get_states_success.json".getJson())
-            )
-
-            mockWebServer.enqueue(
-                MockResponse()
-                    .setResponseCode(200)
-                    .setBody("mockjson/profile/get_cities_success.json".getJson())
-            )
-
-            mockWebServer.enqueue(
-                MockResponse()
-                    .setResponseCode(200)
-                    .setBody("mockjson/profile/change_profile_success.json")
-            )
-        } else {
-            mockWebServer.enqueue(
-                MockResponse()
-                    .setResponseCode(400)
-                    .setBody("mockjson/profile/get_profile_error.json".getJson())
-            )
-        }
-    }
-
     @Test
     fun checkAutofillFields() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
-            checkInputField("Damiana dos toró", R.id.userNameEditText)
-            checkInputField("dragons@best.com", R.id.emailEditText)
-            checkInputField("(81) 95874-2360", R.id.phoneEditText)
+        mockResult200()
+        checkInputField("Damiana dos toró", R.id.userNameEditText)
+        checkInputField("dragons@best.com", R.id.emailEditText)
+        checkInputField("(81) 95874-2360", R.id.phoneEditText)
+        checkStateSelection("PE")
+        checkCitySelection("Recife")
 
-            checkStateSelection("PE")
-            checkCitySelection("Recife")
-        }
     }
+
 
     @Test
     fun checkLoadErrorScreen() {
-        if (SHOW_LOADING_ERROR_SCREEN) {
-            onView(withId(R.id.loadError))
-                .check(matches(isDisplayed()))
-        }
+        mockResult400()
+        onView(withId(R.id.loadError))
+            .check(matches(isDisplayed()))
     }
 
     @Test
     fun checkReloadContentOnErrorScreen() {
-        if (SHOW_LOADING_ERROR_SCREEN) {
-            onView(withId(R.id.loadError))
-                .check(matches(isDisplayed()))
+        mockResult400()
+        mockResult200()
+        onView(withId(R.id.loadError))
+            .check(matches(isDisplayed()))
+        clickButton(R.id.buttonNameError)
+        checkAutofillFields()
 
-            SHOW_LOADING_ERROR_SCREEN = false
-            setMock()
-            clickButton(R.id.buttonNameError)
-
-            checkAutofillFields()
-        }
     }
 
     @Test
     fun checkEmptyName() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
-            setField("", R.id.userNameEditText)
-            clickButton(R.id.saveChangesButton)
-            matchesIsDisplayed(R.string.name_error)
-        }
+        mockResult200()
+        setField("", R.id.userNameEditText)
+        clickButton(R.id.saveChangesButton)
+        matchesIsDisplayed("O campo nome é de preenchimento obrigatório")
+
     }
 
     @Test
     fun checkValidName() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
-            setField("Teste Teste", R.id.userNameEditText)
+        mockResult200()
+        setField("Teste Teste", R.id.userNameEditText)
+        setField("", R.id.emailEditText) // force this error in order to only make validations after click
+        clickButton(R.id.saveChangesButton)
+        matchesNotIsDisplayed("O campo nome é de preenchimento obrigatório")
 
-            setField("", R.id.emailEditText) // force this error in order to only make validations after click
-            clickButton(R.id.saveChangesButton)
-            matchesNotIsDisplayed(R.string.name_error)
-        }
     }
 
     @Test
     fun checkInvalidEmail() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
-            setField("teste@teste", R.id.emailEditText)
-            clickButton(R.id.saveChangesButton)
-            matchesIsDisplayed(R.string.email_error)
-        }
+        mockResult200()
+        setField("teste@teste", R.id.emailEditText)
+        clickButton(R.id.saveChangesButton)
+        matchesIsDisplayed("Digite um e-mail válido")
+
     }
+
     @Test
     fun checkValidEmail() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
+        mockResult200()
+        setField("", R.id.userNameEditText) // force this error in order to only make validations after click
+        setField("teste@teste.com", R.id.emailEditText)
+        clickButton(R.id.saveChangesButton)
+        matchesNotIsDisplayed("Digite um e-mail válido")
 
-            setField("", R.id.userNameEditText) // force this error in order to only make validations after click
-            setField("teste@teste.com", R.id.emailEditText)
-            clickButton(R.id.saveChangesButton)
-            matchesNotIsDisplayed(R.string.email_error)
-        }
     }
 
     @Test
     fun checkEmptyPhone() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
-            setField("", R.id.phoneEditText)
-            clickButton(R.id.saveChangesButton)
-            matchesIsDisplayed(R.string.phone_error)
-        }
+        mockResult200()
+        setField("", R.id.phoneEditText)
+        clickButton(R.id.saveChangesButton)
+        matchesIsDisplayed("Forneça um número de telefone válido")
+
     }
+
     @Test
     fun checkInvalidPhone() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
-            setField("999999999", R.id.phoneEditText)
-            clickButton(R.id.saveChangesButton)
-            matchesIsDisplayed(R.string.phone_error)
-        }
+        mockResult200()
+        setField("999999999", R.id.phoneEditText)
+        clickButton(R.id.saveChangesButton)
+        matchesIsDisplayed("Forneça um número de telefone válido")
+
     }
+
     @Test
     fun checkValidPhone() {
-        if (!SHOW_LOADING_ERROR_SCREEN) {
-            setField("99 999999999", R.id.phoneEditText)
+        mockResult200()
+        setField("99 999999999", R.id.phoneEditText)
+        setField("", R.id.emailEditText) // force this error in order to only make validations after click
+        clickButton(R.id.saveChangesButton)
+        matchesNotIsDisplayed("Forneça um número de telefone válido")
 
-            setField("", R.id.emailEditText) // force this error in order to only make validations after click
-            clickButton(R.id.saveChangesButton)
-            matchesNotIsDisplayed(R.string.phone_error)
-        }
     }
+
+    private fun mockResult200() {
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody("mockjson/profile/get_profile_success.json".getJson())
+        )
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody("mockjson/profile/get_states_success.json".getJson())
+        )
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody("mockjson/profile/get_cities_success.json".getJson())
+        )
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody("mockjson/profile/change_profile_success.json")
+        )
+    }
+
+    private fun mockResult400() {
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(400)
+                .setBody("mockjson/profile/get_profile_error.json".getJson())
+        )
+    }
+
 
     private fun clickButton(buttonResId: Int) {
         onView(withId(buttonResId))
             .perform(scrollTo(), click())
     }
 
-    private fun matchesNotIsDisplayed(idMessageError: Int) {
+    private fun matchesNotIsDisplayed(idMessageError: String) {
         onView(withText(idMessageError))
-            .check(matches(not(isDisplayed()))
-        )
+            .check(
+                matches(not(isDisplayed()))
+            )
     }
 
-    private fun matchesIsDisplayed(idMessageError: Int) {
+    private fun matchesIsDisplayed(idMessageError: String) {
         onView(withText(idMessageError))
             .check(matches(isDisplayed()))
     }
