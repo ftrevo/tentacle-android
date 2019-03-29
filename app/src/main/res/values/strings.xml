@@ -257,4 +257,8 @@
 
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
+    <string name="delete_dialog_title_reservation">Excluir Reserva</string>
+    <string name="delete_dialog_message_reservation">A reserva do jogo %1$s sairá da lista de \"Minhas Reservas\", mas você poderá adicioná-lo
+    novamente no futuro.</string>
+    <string name="remove">Remover</string>
 </resources>

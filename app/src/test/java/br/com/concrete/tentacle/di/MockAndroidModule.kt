@@ -6,6 +6,5 @@ import org.koin.dsl.module.module
 
 val mockAndroidModule = module {
 
-
     single { SharedPrefRepositoryMock() as SharedPrefRepositoryContract }
 }

@@ -39,13 +39,16 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initObservable() {
-        homeViewModel.getHomeGames().observe(this, Observer { base ->
-            when (base.status) {
-                ViewStateModel.Status.SUCCESS -> {
-                    base.model?.let { loadRecyclerView(it) }
-                }
-                ViewStateModel.Status.ERROR -> {
-                    callError(base)
+        homeViewModel.getHomeGames().observe(this, Observer { stateModel ->
+            stateModel.getContentIfNotHandler()?.let { state ->
+                when (state.status) {
+                    ViewStateModel.Status.LOADING -> {}
+                    ViewStateModel.Status.SUCCESS -> {
+                        state.model?.let { loadRecyclerView(it) }
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        callError(state)
+                    }
                 }
             }
         })

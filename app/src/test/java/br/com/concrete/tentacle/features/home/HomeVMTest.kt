@@ -13,10 +13,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.koin.standalone.inject
 
-class HomeVMTest : BaseViewModelTest()    {
+class HomeVMTest : BaseViewModelTest() {
 
     val homeViewModel by inject<HomeViewModel>()
-
 
     @Test
     fun `when HomeViewModel calls getHomeGames should return error message for 401`() {

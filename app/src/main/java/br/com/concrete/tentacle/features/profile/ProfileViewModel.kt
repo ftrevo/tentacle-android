@@ -46,12 +46,12 @@ class ProfileViewModel(
         }
     }
 
-    private fun loadUserFromServer(){
+    private fun loadUserFromServer() {
         disposables.add(
             userRepository.getProfile().subscribe({
-                sharedPrefRepository.saveUser(PREFS_KEY_USER,it.data)
+                sharedPrefRepository.saveUser(PREFS_KEY_USER, it.data)
                 viewStateProfile.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data))
-            },{
+            }, {
                 LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
             })
         )
@@ -103,8 +103,8 @@ class ProfileViewModel(
         )
     }
 
-    private fun updateCurrentUser(currentUser: User, userRequest: UserRequest){
-        var newState : State? = null
+    private fun updateCurrentUser(currentUser: User, userRequest: UserRequest) {
+        var newState: State? = null
         userRequest.stateObj?.let {
             newState = it
         } ?: run {
