@@ -1,7 +1,6 @@
 package br.com.concrete.tentacle.base
 
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
@@ -9,16 +8,18 @@ import br.com.concrete.tentacle.utils.DEFAULT_EXCEPTION_STATUS_CODE
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
 import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection
 
 open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
 
+    private val publisher: Publisher by inject()
+
     protected val disposables = CompositeDisposable()
-    private val sessionStatus: MutableLiveData<Int> = MutableLiveData()
-    fun getSessionStatus() = sessionStatus
 
     protected fun notKnownError(error: Throwable): ErrorResponse {
 
@@ -35,7 +36,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
                         )
                     }
                     HttpURLConnection.HTTP_UNAUTHORIZED -> {
-                        sessionStatus.postValue(HttpURLConnection.HTTP_UNAUTHORIZED)
+                        publisher.publish(HttpURLConnection.HTTP_UNAUTHORIZED)
                     }
                     HttpURLConnection.HTTP_NOT_FOUND -> {
                         errorResponse = gson.fromJson(
@@ -55,6 +56,10 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
         }
 
         return errorResponse
+    }
+
+    fun subscribe(publishContract: () -> Consumer<Any>) {
+        disposables.add(publisher.subscribe(publishContract))
     }
 
     override fun onCleared() {
