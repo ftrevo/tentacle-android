@@ -84,6 +84,7 @@
     <string name="toolbar_title_lend_game">Detalhes do jogo</string>
     <string name="toolbar_title_my_reservations">Minhas Reservas</string>
     <string name="toolbar_title_my_reservations_detail">Detalhes da reserva</string>
+    <string name="toolbar_title_about">Sobre</string>
 
     <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles
         aparecerem aqui!
@@ -251,6 +252,7 @@
 
     <string name="profile">Perfil</string>
     <string name="exit">Sair</string>
+    <string name="about">Sobre</string>
     <string name="version">versão %1$s</string>
 
     <string name="drawer_open">Open drawer</string>
