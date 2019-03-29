@@ -105,7 +105,7 @@ class MenuFragment : Fragment() {
         )
     }
 
-    private fun goToAbout(){
+    private fun goToAbout() {
         activity?.launchActivity<AboutActivity>(
             animation = ActivityAnimation.TRANSLATE_UP
         )

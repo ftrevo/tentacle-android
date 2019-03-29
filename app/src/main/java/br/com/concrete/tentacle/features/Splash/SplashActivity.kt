@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.login.LoginActivity
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -13,5 +13,4 @@ class SplashActivity: AppCompatActivity() {
         launchActivity<LoginActivity>()
         finish()
     }
-
 }
