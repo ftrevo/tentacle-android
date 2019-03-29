@@ -148,6 +148,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="library_loan_text1">Qual a plataforma que você quer reservar?</string>
+    <string name="library_loan_register">Qual a plataforma que você quer cadastrar?</string>
     <string name="library_loan_text2">Escolha de quem você quer emprestado</string>
 
     <string name="library_loan_user_list_hint">Selecione</string>
