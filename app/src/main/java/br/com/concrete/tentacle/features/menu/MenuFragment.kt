@@ -1,11 +1,16 @@
 package br.com.concrete.tentacle.features.menu
 
+import android.Manifest
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.concrete.tentacle.BuildConfig
@@ -31,6 +36,9 @@ import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
 
+private const val REQUEST_CODE_READ_EXTERNAL = 0
+private const val REQUEST_CODE_WRITE_EXTERNAL = 1
+
 class MenuFragment : Fragment() {
 
     private val menuViewModel: MenuViewModel by viewModel()
@@ -52,12 +60,14 @@ class MenuFragment : Fragment() {
 
     private fun initObservable() {
         menuViewModel.getUser().observe(this, Observer { base ->
-            when (base.status) {
-                ViewStateModel.Status.SUCCESS -> {
-                    base.model?.let { updateUI(it) }
-                }
-                else -> base.errors?.message?.let {
-                    LogWrapper.log("A problem happens", it[0])
+            base.getContentIfNotHandler()?.let { stateModel ->
+                when (stateModel.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        stateModel.model?.let { updateUI(it) }
+                    }
+                    else -> stateModel.errors?.message?.let {
+                        LogWrapper.log("A problem happens", it[0])
+                    }
                 }
             }
         })
@@ -70,6 +80,7 @@ class MenuFragment : Fragment() {
         profile.setOnClickListener { goToProfile() }
         version.text = String.format(getString(R.string.version), BuildConfig.VERSION_NAME)
         configCamera()
+        setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, REQUEST_CODE_READ_EXTERNAL)
     }
 
     private fun configCamera() {
@@ -80,6 +91,7 @@ class MenuFragment : Fragment() {
             .saveInRootPicturesDirectory()
 
         camera.setOnClickListener {
+            setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, REQUEST_CODE_WRITE_EXTERNAL)
             EasyImage.openChooserWithGallery(this, getString(R.string.select_hint), EasyImage.REQ_SOURCE_CHOOSER)
         }
     }
@@ -99,7 +111,8 @@ class MenuFragment : Fragment() {
 
     private fun loadPhotoFile() {
         try {
-            val file = File(user.internalImage)
+            val file = File(menuViewModel.getPathPhotoUser(user._id))
+            setUpImage(file)
             file?.let {
                 setUpImage(it)
             }
@@ -137,6 +150,7 @@ class MenuFragment : Fragment() {
 
         EasyImage.handleActivityResult(requestCode, resultCode, data, activity, object : DefaultCallback() {
             override fun onImagePicked(imageFile: File?, source: EasyImage.ImageSource?, type: Int) {
+                menuViewModel.savePathUserPhoto(user._id, imageFile?.path!!)
                 setUpImage(imageFile)
             }
 
@@ -161,6 +175,32 @@ class MenuFragment : Fragment() {
                 menuViewModel.updateUser(user)
                 LogWrapper.log("PATH: ", it.absolutePath)
             }
+        }
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CODE_READ_EXTERNAL -> externalPermission(grantResults, permissions)
+            REQUEST_CODE_WRITE_EXTERNAL -> externalPermission(grantResults, permissions)
+        }
+    }
+
+    private fun externalPermission(grantResults: IntArray, permissions: Array<out String>) {
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            LogWrapper.log("TAG", "Permission: " + permissions[0] + "was " + grantResults[0])
+        }
+    }
+
+    private fun setPermissions(permissions: String, requestCode: Int): Boolean {
+        return if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(activity!!, permissions) == PackageManager.PERMISSION_GRANTED) {
+                true
+            } else {
+                ActivityCompat.requestPermissions(activity!!, arrayOf(permissions), requestCode)
+                false
+            }
+        } else {
+            true
         }
     }
 }
