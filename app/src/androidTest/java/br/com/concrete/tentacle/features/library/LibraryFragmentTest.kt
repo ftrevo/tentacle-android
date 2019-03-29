@@ -3,8 +3,10 @@ package br.com.concrete.tentacle.features.library
 import android.widget.EditText
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
@@ -226,6 +228,16 @@ class LibraryFragmentTest : BaseFragmentTest() {
             .setResponseCode(200)
             .setBody(response)
         )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(responseSecond)
+        )
 
         onView(withId(R.id.recyclerListView))
             .perform(isDisplayed().waitUntil())
@@ -239,23 +251,12 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(ViewMatchers.isAssignableFrom(EditText::class.java))
             .perform(ViewActions.typeText("FIFA"))
 
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(response)
-        )
-
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(responseSecond)
-        )
 
         val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!!
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LibraryViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
 
         onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LibraryViewHolder>(oldCount))
-
+        pressBack()
         onView(withRecyclerView(R.id.recyclerListView).atPosition(0))
             .check(matches(hasDescendant(withText("JOGO FIRST"))))
     }
