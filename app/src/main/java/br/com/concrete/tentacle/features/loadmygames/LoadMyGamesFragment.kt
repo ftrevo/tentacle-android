@@ -173,7 +173,8 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
                             list.setErrorMessage(R.string.load_games_error_not_know)
                             list.setButtonTextError(R.string.load_again)
                             list.setActionError {
-                                viewModelLoadMyGames.loadMyGames(queryParameters)
+                                viewModelLoadMyGames.queryParameters = queryParameters
+                                viewModelLoadMyGames.loadMyGames()
                             }
                         }
                         list.updateUi<Media>(null)
@@ -260,7 +261,8 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
     override fun sizeElements() = lMedia.size
 
     override fun loadMore() {
-        viewModelLoadMyGames.loadGamePage(queryParameters)
+        viewModelLoadMyGames.queryParameters = queryParameters
+        viewModelLoadMyGames.loadGamePage()
         lMedia.add(null)
         loadMoreItems = false
 
@@ -282,7 +284,8 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
 
         queryParameters = QueryUtils.assemblefilterQuery(selectedFilterItems)
         updateListBeforeFilter()
-        viewModelLoadMyGames.loadMyGames(queryParameters)
+        viewModelLoadMyGames.queryParameters = queryParameters
+        viewModelLoadMyGames.loadMyGames()
     }
 
     private fun updateListBeforeFilter() {

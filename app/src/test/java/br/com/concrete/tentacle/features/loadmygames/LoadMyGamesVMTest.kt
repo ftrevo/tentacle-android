@@ -101,7 +101,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
             actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
-        loadMyGamesViewModel.loadGamePage(null)
+        loadMyGamesViewModel.queryParameters = null
+        loadMyGamesViewModel.loadGamePage()
         assertEquals(expected, actual)
     }
 
@@ -126,7 +127,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
                 ViewStateModel(status = it.peekContent().status, model = null, errors = it.peekContent().errors)
         }
 
-        loadMyGamesViewModel.loadGamePage(null)
+        loadMyGamesViewModel.queryParameters = null
+        loadMyGamesViewModel.loadGamePage()
         assertEquals(expected, actual)
     }
 
@@ -138,8 +140,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
             .setResponseCode(200)
         mockServer.enqueue(mockResponse)
 
-        val queryParameters = QueryParameters(active = false)
-        loadMyGamesViewModel.loadMyGames(queryParameters)
+        loadMyGamesViewModel.queryParameters = QueryParameters(active = false)
+        loadMyGamesViewModel.loadMyGames()
 
         val requestedPath = mockServer.takeRequest().path
         assertEquals(expectedPath, requestedPath)
@@ -161,11 +163,11 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
         mockServer.enqueue(mockResponse)
 
-        val queryParameters = QueryParameters(active = false)
-        loadMyGamesViewModel.loadGamePage(queryParameters)
-        loadMyGamesViewModel.loadGamePage(queryParameters)
-        loadMyGamesViewModel.loadGamePage(queryParameters)
-        loadMyGamesViewModel.loadGamePage(queryParameters)
+        loadMyGamesViewModel.queryParameters = QueryParameters(active = false)
+        loadMyGamesViewModel.loadGamePage()
+        loadMyGamesViewModel.loadGamePage()
+        loadMyGamesViewModel.loadGamePage()
+        loadMyGamesViewModel.loadGamePage()
 
         mockServer.takeRequest()
         mockServer.takeRequest()
