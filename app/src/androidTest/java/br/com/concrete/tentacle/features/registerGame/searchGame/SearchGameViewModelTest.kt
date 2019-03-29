@@ -20,6 +20,7 @@ import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.util.RecyclerPositionViewMatcher.Companion.withRecyclerViewAndViewId
 import br.com.concrete.tentacle.extensions.waitUntil
 import br.com.concrete.tentacle.matchers.RecyclerViewMatcher
+import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
 import kotlinx.android.synthetic.main.list_custom.*
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers
@@ -133,8 +134,8 @@ class SearchGameViewModelTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListView))
             .perform(isDisplayed().waitUntil())
 
-        onView(withRecyclerViewAndViewId(R.id.recyclerListView, 0, R.id.game_name))
-            .check(matches(withText("JOGO 1")))
+        onView(withRecyclerView(R.id.recyclerListView).atPosition(0))
+            .check(matches(ViewMatchers.hasDescendant(withText("Jogo 01"))))
     }
 
     @Test
@@ -169,7 +170,7 @@ class SearchGameViewModelTest : BaseFragmentTest() {
 
         Thread.sleep(2600)
 
-        onView(RecyclerViewMatcher.withRecyclerView(R.id.recyclerListView).atPosition(oldCount))
+        onView(withRecyclerView(R.id.recyclerListView).atPosition(oldCount))
             .check(matches(ViewMatchers.hasDescendant(withText("JOGO FIRST"))))
     }
 }

@@ -63,7 +63,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
                 }
                 ViewStateModel.Status.ERROR -> {
                     enableProgress(false)
-                    loadMessageErrorLoading(gameModel.model as ViewStateModel<ArrayList<Game>>)
+                    loadMessageErrorLoading()
                 }
             }
         })
@@ -124,13 +124,11 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
         })
     }
 
-    private fun loadMessageErrorLoading(gameModel: ViewStateModel<ArrayList<Game>>) {
-        gameModel.errors?.let {
-            listCustom.setErrorMessage(R.string.load_games_error_not_know)
-            listCustom.setButtonTextError(R.string.load_again)
-            listCustom.setActionError {
-                getSearchGame(getQuerySearchView())
-            }
+    private fun loadMessageErrorLoading() {
+        listCustom.setErrorMessage(R.string.load_games_error_not_know)
+        listCustom.setButtonTextError(R.string.load_again)
+        listCustom.setActionError {
+            getSearchGame(getQuerySearchView())
         }
         listCustom.updateUi<Game>(null)
         listCustom.setLoading(false)
