@@ -18,6 +18,9 @@ object QueryUtils {
                 "Status do jogo" -> {
                     queries.active = !"unavailable".equals(subItem.queryParameter.toLowerCase())
                 }
+                "Histórico" -> {
+                    queries.showHistory = ("unavailable" == subItem.queryParameter.toLowerCase())
+                }
             }
         }
 

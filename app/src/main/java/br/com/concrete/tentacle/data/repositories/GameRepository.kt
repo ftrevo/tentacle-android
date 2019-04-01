@@ -74,8 +74,8 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadMyLoans(page: Int = 0): Observable<BaseModel<LoansListResponse>> {
-        return apiRest.getMyLoans(page = page)
+    fun loadMyLoans(page: Int = 0, queries: QueryParameters): Observable<BaseModel<LoansListResponse>> {
+        return apiRest.getMyLoans(page = page, showHistory = queries.showHistory)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
