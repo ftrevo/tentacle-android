@@ -70,5 +70,4 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     fun resetPage() {
         this.page = 1
     }
-
 }

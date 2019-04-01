@@ -39,7 +39,6 @@ class MenuViewModel(
             userRepository.getProfile().subscribe({
                 sharedPrefRepository.saveUser(PREFS_KEY_USER, it.data)
                 stateModel.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data)))
-
             }, {
                 LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
             })

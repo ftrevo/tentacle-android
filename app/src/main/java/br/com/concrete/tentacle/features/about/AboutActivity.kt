@@ -19,7 +19,7 @@ class AboutActivity : BaseActivity() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
         setupToolbar(R.string.toolbar_title_about, R.drawable.ic_close)
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
