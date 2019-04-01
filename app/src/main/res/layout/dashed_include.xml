@@ -5,4 +5,5 @@
     app:srcCompat="@drawable/dashed_shape"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_10"
-    android:layerType="software"/>
+    android:layerType="software"
+    android:background="@android:color/transparent"/>

@@ -52,6 +52,7 @@ class ProfileViewModel(
                 sharedPrefRepository.saveUser(PREFS_KEY_USER, it.data)
                 viewStateProfile.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data))
             }, {
+                viewStateProfile.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
                 LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
             })
         )

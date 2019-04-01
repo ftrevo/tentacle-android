@@ -30,7 +30,6 @@ class HostActivityTest {
         selectedView(R.id.action_library, false)
         selectedView(R.id.action_games, false)
         selectedView(R.id.action_reservation, false)
-        selectedView(R.id.action_events, false)
     }
 
     @Test
@@ -42,7 +41,6 @@ class HostActivityTest {
         selectedView(R.id.action_library, true)
         selectedView(R.id.action_games, false)
         selectedView(R.id.action_reservation, false)
-        selectedView(R.id.action_events, false)
     }
 
     @Test
@@ -54,7 +52,6 @@ class HostActivityTest {
         selectedView(R.id.action_library, false)
         selectedView(R.id.action_games, true)
         selectedView(R.id.action_reservation, false)
-        selectedView(R.id.action_events, false)
     }
 
     @Test
@@ -66,19 +63,6 @@ class HostActivityTest {
         selectedView(R.id.action_library, false)
         selectedView(R.id.action_games, false)
         selectedView(R.id.action_reservation, true)
-        selectedView(R.id.action_events, false)
-    }
-
-    @Test
-    fun bottomBarNavigationEvents() {
-
-        onView(withId(R.id.action_events)).perform(click())
-
-        selectedView(R.id.action_home, false)
-        selectedView(R.id.action_library, false)
-        selectedView(R.id.action_games, false)
-        selectedView(R.id.action_reservation, false)
-        selectedView(R.id.action_events, true)
     }
 
     private fun selectedView(viewId: Int, shouldBeVisible: Boolean) {
