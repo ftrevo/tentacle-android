@@ -9,6 +9,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import br.com.concrete.tentacle.R
+import br.com.concrete.tentacle.features.login.LoginActivity
 
 enum class ActivityAnimation {
     TRANSLATE_LEFT, TRANSLATE_RIGHT, TRANSLATE_UP, TRANSLATE_DOWN, TRANSLATE_FADE
@@ -147,6 +148,15 @@ fun Activity.showKeyboard() {
     view?.let {
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
+}
+
+fun Activity.logout() {
+    this.launchActivity<LoginActivity>(
+        animation = ActivityAnimation.TRANSLATE_UP,
+        intentFlags = (Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                Intent.FLAG_ACTIVITY_SINGLE_TOP or
+                Intent.FLAG_ACTIVITY_CLEAR_TASK))
+    this.finish()
 }
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
