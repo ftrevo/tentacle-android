@@ -31,7 +31,7 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) : SharedP
 
     override fun getStoredUser(key: String): User? {
         val user = mSharedPref.get(key, "")
-        return if (user != "") {
+        return if (user != "{}") {
             Gson().fromJson<User>(user)
         } else {
             null

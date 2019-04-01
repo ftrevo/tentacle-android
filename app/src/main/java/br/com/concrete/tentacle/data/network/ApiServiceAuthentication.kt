@@ -20,22 +20,22 @@ import retrofit2.http.Path
 
 interface ApiServiceAuthentication {
 
-    @POST("/users")
+    @POST("users")
     fun registerUser(@Body userRequest: UserRequest): Observable<BaseModel<Session>>
 
-    @GET("/states")
+    @GET("states")
     fun getStates(): Observable<BaseModel<StateResponse>>
 
-    @GET("/states/{id}/cities")
+    @GET("states/{id}/cities")
     fun getCities(@Path("id") stateId: String): Observable<BaseModel<CityResponse>>
 
     @POST("login")
     fun loginUser(@Body login: RequestLogin): Flowable<BaseModel<Session>>
 
-    @POST("/users/forgot-password")
+    @POST("users/forgot-password")
     fun forgotPassword(@Body forgetPass: ForgotPassword): Observable<BaseModel<User>>
 
-    @POST("/users/restore-password")
+    @POST("users/restore-password")
     fun restorePassword(@Body passwordRecovery: PasswordRecovery): Flowable<BaseModel<Session>>
 
     @POST("/refresh-token")

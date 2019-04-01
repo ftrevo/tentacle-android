@@ -3,10 +3,12 @@ package br.com.concrete.tentacle.features.library
 import android.widget.EditText
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -17,6 +19,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.extensions.waitUntil
+import br.com.concrete.tentacle.features.registerGame.searchGame.SearchGameViewHolder
 import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import okhttp3.mockwebserver.MockResponse
@@ -220,12 +223,28 @@ class LibraryFragmentTest : BaseFragmentTest() {
     fun showListStateAfterSearchAndScrollingToEndSuccess() {
         val response = "mockjson/library/get_library_success.json".getJson()
         val responseSecond = "mockjson/library/get_library_success_second.json".getJson()
-
         mockWebServer.enqueue(
             MockResponse()
-            .setResponseCode(200)
-            .setBody(response)
+                .setResponseCode(200)
+                .setBody(response)
         )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(responseSecond)
+        )
+
+        onView(withId(R.id.action_search)).perform(click())
+
+        onView(ViewMatchers.isAssignableFrom(EditText::class.java))
+            .perform(ViewActions.typeText("jo"))
+
+        pressBack()
 
         onView(withId(R.id.recyclerListView))
             .perform(isDisplayed().waitUntil())
@@ -234,29 +253,18 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.recyclerListError))
             .check(ViewAssertions.matches(CoreMatchers.not(isDisplayed())))
 
-        onView(withId(R.id.action_search)).perform(click())
-
-        onView(ViewMatchers.isAssignableFrom(EditText::class.java))
-            .perform(ViewActions.typeText("FIFA"))
-
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(response)
-        )
-
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(responseSecond)
-        )
-
         val oldCount: Int = testFragment.recyclerListView.adapter?.itemCount!!
-        onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LibraryViewHolder>(testFragment.recyclerListView.adapter?.itemCount!! - 1))
+        onView(withId(R.id.recyclerListView)).perform(
+            RecyclerViewActions.scrollToPosition<LibraryViewHolder>(
+                testFragment.recyclerListView.adapter?.itemCount!! - 1
+            )
+        )
 
-        onView(withId(R.id.recyclerListView)).perform(scrollToPosition<LibraryViewHolder>(oldCount))
+        onView(withId(R.id.recyclerListView)).perform(RecyclerViewActions.scrollToPosition<SearchGameViewHolder>(oldCount))
+
+        Thread.sleep(2600)
 
         onView(withRecyclerView(R.id.recyclerListView).atPosition(0))
-            .check(matches(hasDescendant(withText("JOGO FIRST"))))
+            .check(matches(ViewMatchers.hasDescendant(withText("JOGO FIRST"))))
     }
 }
