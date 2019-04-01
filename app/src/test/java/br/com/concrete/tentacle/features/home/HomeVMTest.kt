@@ -32,7 +32,7 @@ class HomeVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         homeViewModel.getHomeGames().observeForever {
-            actual = ViewStateModel(model = it.model as ArrayList<Game>?, status = it.status, errors = it.errors)
+            actual = ViewStateModel(model = it.peekContent().model as ArrayList<Game>?, status = it.peekContent().status, errors = it.peekContent().errors)
         }
         homeViewModel.loadHomeGames()
         assertEquals(expected, actual)
@@ -55,7 +55,7 @@ class HomeVMTest : BaseViewModelTest() {
         mockResponseError400()
 
         homeViewModel.getHomeGames().observeForever {
-            actual = ViewStateModel(model = it.model as ArrayList<Game>?, status = it.status, errors = it.errors)
+            actual = ViewStateModel(model = it.peekContent().model as ArrayList<Game>?, status = it.peekContent().status, errors = it.peekContent().errors)
         }
         homeViewModel.loadHomeGames()
         assertEquals(expected.status, actual.status)
@@ -84,7 +84,7 @@ class HomeVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         homeViewModel.getHomeGames().observeForever {
-            actual = ViewStateModel(model = it.model as ArrayList<Game>?, status = it.status)
+            actual = ViewStateModel(model = it.peekContent().model as ArrayList<Game>?, status = it.peekContent().status)
         }
         homeViewModel.loadHomeGames()
         assertEquals(expected, actual)
