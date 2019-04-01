@@ -1,6 +1,7 @@
 package br.com.concrete.tentacle.features.home
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.library.loan.LoanActivity
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_home.listHome
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
@@ -22,7 +24,11 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment() {
 
+    private val DELAY_BETWEEN_TRANSITION = 5000L
+
     private val homeViewModel: HomeViewModel by viewModel()
+    private val publisher : PublishSubject<Boolean> = PublishSubject.create()
+    private var isFragmentVisible = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +38,17 @@ class HomeFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onStart() {
+        super.onStart()
+        isFragmentVisible = true
+        startAnimation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        isFragmentVisible = false
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -39,13 +56,16 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initObservable() {
-        homeViewModel.getHomeGames().observe(this, Observer { base ->
-            when (base.status) {
-                ViewStateModel.Status.SUCCESS -> {
-                    base.model?.let { loadRecyclerView(it) }
-                }
-                ViewStateModel.Status.ERROR -> {
-                    callError(base)
+        homeViewModel.getHomeGames().observe(this, Observer { stateModel ->
+            stateModel.getContentIfNotHandler()?.let { state ->
+                when (state.status) {
+                    ViewStateModel.Status.LOADING -> {}
+                    ViewStateModel.Status.SUCCESS -> {
+                        state.model?.let { loadRecyclerView(it) }
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        callError(state)
+                    }
                 }
             }
         })
@@ -71,7 +91,7 @@ class HomeFragment : BaseFragment() {
                 model,
                 R.layout.item_home_game,
                 { view ->
-                    HomeViewHolder(view)
+                    HomeViewHolder(view, publisher)
                 }, { holder, element ->
                     HomeViewHolder.callBack(holder = holder, element = element) { game ->
                         val extras = Bundle()
@@ -87,6 +107,15 @@ class HomeFragment : BaseFragment() {
 
         listHome.updateUi(model)
         listHome.setLoading(false)
+    }
+
+    private fun startAnimation(){
+        if(isFragmentVisible){
+            Handler().postDelayed({
+                publisher.onNext(true)
+                startAnimation()
+            }, DELAY_BETWEEN_TRANSITION)
+        }
     }
 
     private fun initView() {

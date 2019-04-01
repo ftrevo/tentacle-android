@@ -25,6 +25,10 @@
         <item name="android:screenOrientation">portrait</item>
     </style>
 
+    <style name="SplashTheme" parent="AppTheme.FullScreen">
+        <item name="android:windowBackground">@drawable/bg_splash_screen</item>
+    </style>
+
     <style name="Translucent" parent="AppTheme.FullScreen">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>

@@ -1,12 +1,12 @@
-package br.com.concrete.tentacle.viewmodel
+package br.com.concrete.tentacle.features.loadmygames
 
 import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.features.loadmygames.LoadMyGamesViewModel
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
 import okhttp3.mockwebserver.MockResponse
@@ -101,6 +101,7 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
             actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
 
+        loadMyGamesViewModel.queryParameters = null
         loadMyGamesViewModel.loadGamePage()
         assertEquals(expected, actual)
     }
@@ -126,7 +127,52 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
                 ViewStateModel(status = it.peekContent().status, model = null, errors = it.peekContent().errors)
         }
 
+        loadMyGamesViewModel.queryParameters = null
         loadMyGamesViewModel.loadGamePage()
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loadMyGamesViewModel calls loadMyGames with filters should assemble right path`() {
+        val expectedPath = "/media-loan?limit=15&page=0&active=false"
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+        mockServer.enqueue(mockResponse)
+
+        loadMyGamesViewModel.queryParameters = QueryParameters(active = false)
+        loadMyGamesViewModel.loadMyGames()
+
+        val requestedPath = mockServer.takeRequest().path
+        assertEquals(expectedPath, requestedPath)
+    }
+
+    @Test
+    fun `when loadMyGamesViewModel calls loadMoreGames with filters should assemble right path`() {
+        val responseJson = getJson(
+            "mockjson/loadmygames/load_my_games_success.json"
+        )
+        val expectedPath = "/media-loan?limit=15&page=4&active=false"
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+        mockServer.enqueue(mockResponse)
+        mockServer.enqueue(mockResponse)
+        mockServer.enqueue(mockResponse)
+
+        loadMyGamesViewModel.queryParameters = QueryParameters(active = false)
+        loadMyGamesViewModel.loadGamePage()
+        loadMyGamesViewModel.loadGamePage()
+        loadMyGamesViewModel.loadGamePage()
+        loadMyGamesViewModel.loadGamePage()
+
+        mockServer.takeRequest()
+        mockServer.takeRequest()
+        mockServer.takeRequest()
+        val requestedPath = mockServer.takeRequest().path
+        assertEquals(expectedPath, requestedPath)
     }
 }

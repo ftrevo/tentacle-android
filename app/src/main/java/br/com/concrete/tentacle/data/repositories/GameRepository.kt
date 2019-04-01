@@ -8,6 +8,7 @@ import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
@@ -23,8 +24,10 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadMyGames(page: Int = 0): Observable<BaseModel<MediaResponse>> {
-        return apiRest.getRegisteredGames(page = page)
+    fun loadMyGames(queries: QueryParameters = QueryParameters()): Observable<BaseModel<MediaResponse>> {
+        return apiRest.getRegisteredGames(
+            page = queries.page,
+            active = queries.active)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
