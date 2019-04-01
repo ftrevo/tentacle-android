@@ -3,7 +3,7 @@ package br.com.concrete.tentacle.features.filter
 import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.models.library.filter.FilterItem
+import br.com.concrete.tentacle.data.models.filter.FilterItem
 import br.com.concrete.tentacle.data.repositories.FilterRepository
 
 class FilterViewModel(private val filterRepository: FilterRepository) : BaseViewModel() {

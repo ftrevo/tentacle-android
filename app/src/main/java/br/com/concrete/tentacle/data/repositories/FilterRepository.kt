@@ -1,7 +1,7 @@
 package br.com.concrete.tentacle.data.repositories
 
 import android.content.res.Resources
-import br.com.concrete.tentacle.data.models.library.filter.FilterItem
+import br.com.concrete.tentacle.data.models.filter.FilterItem
 import br.com.concrete.tentacle.extensions.fromJson
 import com.google.gson.Gson
 import io.reactivex.Observable
