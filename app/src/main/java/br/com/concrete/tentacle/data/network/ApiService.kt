@@ -58,10 +58,8 @@ interface ApiService {
 
     @GET("/media-loan")
     fun getRegisteredGames(
-        @Query("limit")
-        limit: Int = LIMIT_PAGE,
-        @Query("page")
-        page: Int,
+        @Query("limit") limit: Int = LIMIT_PAGE,
+        @Query("page") page: Int,
         @Query("active") active: Boolean = true
     ): Observable<BaseModel<MediaResponse>>
 

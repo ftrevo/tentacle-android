@@ -186,6 +186,7 @@ class MyReservationActivity : BaseActivity() {
             val gameName = String.format(getString(R.string.delete_dialog_message_reservation), loanResponse.game.name)
 
             DialogUtils.showDialog(
+                contentView = R.layout.custom_dialog_error,
                 context = this,
                 title = getString(R.string.delete_dialog_title_reservation),
                 message = gameName,
