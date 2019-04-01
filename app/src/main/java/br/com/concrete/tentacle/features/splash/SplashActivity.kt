@@ -1,4 +1,4 @@
-package br.com.concrete.tentacle.features.Splash
+package br.com.concrete.tentacle.features.splash
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
