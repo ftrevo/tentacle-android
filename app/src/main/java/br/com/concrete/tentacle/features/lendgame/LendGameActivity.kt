@@ -241,6 +241,7 @@ class LendGameActivity : BaseActivity() {
             val gameName = String.format(getString(R.string.delete_dialog_message), media.game?.name ?: "")
 
             DialogUtils.showDialog(
+                contentView = R.layout.custom_dialog_error,
                 context = this,
                 title = getString(R.string.delete_dialog_title),
                 message = gameName,
