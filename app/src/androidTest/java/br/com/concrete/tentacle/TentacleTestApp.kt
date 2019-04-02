@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.AsyncTask
 import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
 import br.com.concrete.tentacle.di.androidModule
+import br.com.concrete.tentacle.di.eventsModule
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
@@ -25,7 +26,8 @@ class TentacleTestApp : Application() {
             listOf(androidModule,
                 networkModule,
                 viewModelModule,
-                repositoryModule
+                repositoryModule,
+                eventsModule
             ),
 
             extraProperties = mapOf(PROPERTY_BASE_URL to LOCALHOST_URL))

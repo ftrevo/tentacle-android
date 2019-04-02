@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
 import br.com.concrete.tentacle.di.mockAndroidModule
 import br.com.concrete.tentacle.di.networkModule
+import br.com.concrete.tentacle.di.refreshTokenRequestTestModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
 import br.com.concrete.tentacle.rules.RxImmediateSchedulerRule
@@ -35,7 +36,8 @@ open class BaseViewModelTest : KoinTest {
                 networkModule,
                 viewModelModule,
                 repositoryModule,
-                mockAndroidModule
+                mockAndroidModule,
+                refreshTokenRequestTestModule
             ), properties = KoinProperties(extraProperties = mapOf(PROPERTY_BASE_URL to "http://localhost:8080/"))
         )
 
@@ -81,6 +83,13 @@ open class BaseViewModelTest : KoinTest {
         val mockResponse = MockResponse()
             .setResponseCode(HttpURLConnection.HTTP_NOT_FOUND)
             .setBody(getJson("mockjson/errors/error_404.json"))
+        mockServer.enqueue(mockResponse)
+    }
+
+    fun mockResponseError401() {
+        val mockResponse = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_UNAUTHORIZED)
+            .setBody(getJson("mockjson/errors/error_401.json"))
         mockServer.enqueue(mockResponse)
     }
 }
