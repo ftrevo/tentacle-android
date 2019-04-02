@@ -129,7 +129,6 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(removeGame)
         )
         mockWebServer.enqueue(
             MockResponse()
@@ -139,23 +138,13 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
-                .setBody(removeGame)
         )
 
         onView(withId(R.id.recyclerListView))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.recyclerListView))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.recyclerListError))
-            .check(matches(not(isDisplayed())))
-        onView(withRecyclerView(R.id.recyclerListView)
-            .atPosition(0))
-            .check(matches(isDisplayed()))
-            .check(matches(hasDescendant(withText("TEST"))))
-            .check(matches(hasDescendant(withText("PS4"))))
+            .perform(isDisplayed().waitUntil())
         onView(
-            withRecyclerView(R.id.recyclerListView)
-                .atPosition(0))
+            withRecyclerView(R.id.recyclerListView).atPosition(0))
+            .perform(isDisplayed().waitUntil())
             .check(matches(isDisplayed()))
             .perform(longClick())
 
