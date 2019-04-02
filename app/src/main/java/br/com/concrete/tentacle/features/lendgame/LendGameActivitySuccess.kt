@@ -54,7 +54,7 @@ class LendGameActivitySuccess : BaseActivity() {
         btOk.setOnClickListener {
             finish()
             action?.let {
-                HostActivity.fragment.value = if (it == LOAN_ACTION_LEND) R.id.navigate_to_library else R.id.navigate_to_my_games
+                HostActivity.fragment.value = R.id.navigate_to_my_games
             }
         }
     }
@@ -64,7 +64,7 @@ class LendGameActivitySuccess : BaseActivity() {
             val args = intent.getParcelableExtra<LoanResponse>(LOAN_EXTRA)
             args.estimatedReturnDate?.let {
                 tvText.text = String.format(getString(R.string.lend_success), args.requestedBy.name, it.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT))
-                btOk.setButtonName(getString(R.string.back_to_library))
+                btOk.setButtonName(getString(R.string.back_to_my_games))
             }
         }
     }

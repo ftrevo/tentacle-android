@@ -25,11 +25,12 @@ import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.Library
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
-import br.com.concrete.tentacle.data.models.library.filter.SubItem
+import br.com.concrete.tentacle.data.models.filter.SubItem
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
-import br.com.concrete.tentacle.features.library.filter.FilterDialogFragment
+import br.com.concrete.tentacle.features.filter.FilterDialogFragment
 import br.com.concrete.tentacle.features.library.loan.LoanActivity
+import br.com.concrete.tentacle.utils.MOCK_FILTER_LIBRARY
 import br.com.concrete.tentacle.utils.QueryUtils
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import io.reactivex.Observable
@@ -47,6 +48,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
     private val viewModelLibrary: LibraryViewModel by viewModel()
     private var recyclerViewAdapter: BaseAdapter<Library>? = null
     private var libraries = ArrayList<Library?>()
+
     private val selectedFilterItems = ArrayList<SubItem>()
     private var queryParameters: QueryParameters? = null
 
@@ -248,7 +250,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.filterMenuId) {
-            FilterDialogFragment.showDialog(this, selectedFilterItems)
+            FilterDialogFragment.showDialog(this, selectedFilterItems, MOCK_FILTER_LIBRARY)
             true
         } else super.onOptionsItemSelected(item)
     }

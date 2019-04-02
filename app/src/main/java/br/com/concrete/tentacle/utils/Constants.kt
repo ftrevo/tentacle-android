@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.utils
 const val EMPTY_STRING = ""
 const val PREFS_KEY_USER_SESSION = "USER_SESSION"
 const val PREFS_KEY_USER = "USER"
+const val PREFS_KEY_PATH_PHOTO = "PATH_PHOTO"
 const val DEFAULT_INVALID_RESOURCE = -1
 const val DEFAULT_INVALID_RESOURCE_BOOLEAN = false
 const val BLANk_SPACE_STRING = " "
@@ -57,3 +58,7 @@ const val DEFAULT_PENULTIMATE_DAY = 1
 
 const val DEFAULT_LANGUAGE = "pt"
 const val DEFAULT_COUNTRY = "BR"
+
+const val MOCK_FILTER_LIBRARY = "dummy_filter_itens_library.json"
+const val MOCK_FILTER_MY_GAMES = "dummy_fiter_itens_my_games.json"
+const val MOCK_FILTER_MY_GAMES_MY_RESERVATION = "dummy_fiter_itens_my_reservation_show_history.json"

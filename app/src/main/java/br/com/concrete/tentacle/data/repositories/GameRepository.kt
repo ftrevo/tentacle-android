@@ -8,7 +8,9 @@ import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaResponse
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
+import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.data.network.ApiService
 import io.reactivex.Observable
@@ -22,8 +24,10 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadMyGames(page: Int = 0): Observable<BaseModel<MediaResponse>> {
-        return apiRest.getRegisteredGames(page = page)
+    fun loadMyGames(query: QueryParameters = QueryParameters()): Observable<BaseModel<MediaResponse>> {
+        return apiRest.getRegisteredGames(
+            page = query.page,
+            active = query.active)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
@@ -70,8 +74,8 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadMyLoans(page: Int = 0): Observable<BaseModel<LoansListResponse>> {
-        return apiRest.getMyLoans(page = page)
+    fun loadMyLoans(page: Int = 0, queries: QueryParameters): Observable<BaseModel<LoansListResponse>> {
+        return apiRest.getMyLoans(page = page, showHistory = queries.showHistory)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
@@ -90,6 +94,12 @@ class GameRepository(private val apiRest: ApiService) {
 
     fun deleteMedia(mediaId: String): Observable<BaseModel<Media>> {
         return apiRest.deleteMedia(mediaId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
+
+    fun deleteLoan(idLoan: String): Observable<BaseModel<LoanDeleteResponse>> {
+        return apiRest.deleteLoan(idLoan)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

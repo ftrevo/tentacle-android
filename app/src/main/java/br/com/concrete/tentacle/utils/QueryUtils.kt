@@ -1,7 +1,7 @@
 package br.com.concrete.tentacle.utils
 
 import br.com.concrete.tentacle.data.models.QueryParameters
-import br.com.concrete.tentacle.data.models.library.filter.SubItem
+import br.com.concrete.tentacle.data.models.filter.SubItem
 
 object QueryUtils {
 
@@ -16,7 +16,10 @@ object QueryUtils {
                     }
                 }
                 "Status do jogo" -> {
-                    queries.status = subItem.queryParameter
+                    queries.active = "unavailable" != subItem.queryParameter.toLowerCase()
+                }
+                "Histórico" -> {
+                    queries.showHistory = ("unavailable" == subItem.queryParameter.toLowerCase())
                 }
             }
         }

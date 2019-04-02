@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.extensions
 
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import br.com.concrete.tentacle.di.GlideApp
 
@@ -9,9 +10,10 @@ fun ImageView.loadImage(imageResource: Int) {
         .into(this)
 }
 
-fun ImageView.loadImageUrl(imageUrl: String) {
+fun ImageView.loadImageUrl(imageUrl: String, drawablePlaceholder: Drawable? = null) {
     GlideApp.with(this)
         .load(imageUrl)
+        .placeholder(drawablePlaceholder)
         .centerCrop()
         .into(this)
 }

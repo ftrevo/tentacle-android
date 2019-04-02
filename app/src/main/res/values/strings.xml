@@ -84,6 +84,7 @@
     <string name="toolbar_title_lend_game">Detalhes do jogo</string>
     <string name="toolbar_title_my_reservations">Minhas Reservas</string>
     <string name="toolbar_title_my_reservations_detail">Detalhes da reserva</string>
+    <string name="toolbar_title_about">Sobre</string>
 
     <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles
         aparecerem aqui!
@@ -148,6 +149,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="library_loan_text1">Qual a plataforma que você quer reservar?</string>
+    <string name="library_loan_register">Qual a plataforma que você quer cadastrar?</string>
     <string name="library_loan_text2">Escolha de quem você quer emprestado</string>
 
     <string name="library_loan_user_list_hint">Selecione</string>
@@ -251,8 +253,13 @@
 
     <string name="profile">Perfil</string>
     <string name="exit">Sair</string>
+    <string name="about">Sobre</string>
     <string name="version">versão %1$s</string>
 
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
+    <string name="delete_dialog_title_reservation">Excluir Reserva</string>
+    <string name="delete_dialog_message_reservation">A reserva do jogo %1$s sairá da lista de \"Minhas Reservas\", mas você poderá adicioná-lo
+    novamente no futuro.</string>
+    <string name="remove">Remover</string>
 </resources>

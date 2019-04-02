@@ -1,0 +1,106 @@
+{
+  "data": {
+    "_id": "5c93d5ca3e379400232111f2",
+    "id": 5471,
+    "aggregated_rating": 76.25,
+    "aggregated_rating_count": 8,
+    "cover": {
+      "id": 6576,
+      "height": 805,
+      "image_id": "lu8auuzna0umyezck32z",
+      "width": 646
+    },
+    "first_release_date": "2014-04-15T00:00:00.000Z",
+    "game_modes": [
+      {
+        "id": 1,
+        "name": "Single player",
+        "slug": "single-player"
+      },
+      {
+        "id": 2,
+        "name": "Multiplayer",
+        "slug": "multiplayer"
+      },
+      {
+        "id": 4,
+        "name": "Split screen",
+        "slug": "split-screen"
+      }
+    ],
+    "genres": [
+      {
+        "id": 14,
+        "name": "Sport",
+        "slug": "sport"
+      }
+    ],
+    "name": "Jogo XPTO",
+    "screenshots": [
+      {
+        "id": 22467,
+        "height": 1079,
+        "image_id": "llnspsijream7wmcg169",
+        "width": 1920
+      },
+      {
+        "id": 22468,
+        "height": 1080,
+        "image_id": "isapun9yabn4qtrctnfm",
+        "width": 1920
+      },
+      {
+        "id": 22469,
+        "height": 1080,
+        "image_id": "qxkhag1idi8rhtpul3ns",
+        "width": 1920
+      },
+      {
+        "id": 22470,
+        "height": 1080,
+        "image_id": "hzaqviom8der9nvn2vm5",
+        "width": 1920
+      },
+      {
+        "id": 22471,
+        "height": 1080,
+        "image_id": "doqkft3opih5eanhv84o",
+        "width": 1920
+      }
+    ],
+    "slug": "2014-fifa-world-cup-brazil",
+    "summary": "Lead your country to World Cup glory while experiencing all the fun, excitement, and drama of Football's greatest event.",
+    "url": "https://www.igdb.com/games/2014-fifa-world-cup-brazil",
+    "videos": [
+      {
+        "id": 2310,
+        "name": "Trailer",
+        "video_id": "uO1HNUoDzxQ"
+      }
+    ],
+    "formattedReleaseDate": "15/04/2014",
+    "createdBy": "5c815f1a349f31002315fcd9",
+    "createdAt": "2019-03-21T18:19:54.885Z",
+    "updatedAt": "2019-03-21T18:19:54.885Z",
+    "mediaPs3": [],
+    "mediaPs4": [
+      {
+        "_id": "5c9b9e5bb297ed0023e8ff51",
+        "owner": "5c8267812e75f4002361813f",
+        "ownerName": "John Doe",
+        "ownerState": "5a107a691592ca19f7b4a860",
+        "ownerCity": "Recife"
+      }
+    ],
+    "mediaXbox360": [],
+    "mediaXboxOne": [],
+    "mediaNintendo3ds": [],
+    "mediaNintendoSwitch": [],
+    "mediaPs3Count": 0,
+    "mediaPs4Count": 1,
+    "mediaXbox360Count": 0,
+    "mediaXboxOneCount": 0,
+    "mediaNintendo3dsCount": 0,
+    "mediaNintendoSwitchCount": 0
+  }
+}

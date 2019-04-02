@@ -35,7 +35,12 @@ class RemoteGameFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun shouldShowProperTitle() {
+    fun shouldShowProperTitleToobar() {
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody("mockjson/registerMedia/game.json".getJson())
+        )
         onView(allOf(
             instanceOf(TextView::class.java),
             withParent(withResourceName("action_bar"))))

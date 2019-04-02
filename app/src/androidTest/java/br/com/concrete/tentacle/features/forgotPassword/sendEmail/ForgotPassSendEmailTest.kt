@@ -15,7 +15,6 @@ import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
-import org.hamcrest.CoreMatchers
 import org.hamcrest.Matchers
 import org.junit.Rule
 import org.junit.Test
@@ -89,21 +88,25 @@ class ForgotPassSendEmailTest : BaseInstrumentedTest() {
 
     @Test
     fun sendEmailForgotPasswordError400() {
-        checkFields(400)
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(400)
+                .setBody("mockjson/errors/error_400.json".getJson())
+        )
+        checkFields()
     }
 
     @Test
     fun sendEmailForgotPasswordError404() {
-        checkFields(404)
-    }
-
-    private fun checkFields(code: Int) {
         mockWebServer.enqueue(
             MockResponse()
-                .setResponseCode(code)
-                .setBody("mockjson/errors/error_400.json".getJson())
+                .setResponseCode(404)
+                .setBody("mockjson/errors/error_404.json".getJson())
         )
+        checkFields()
+    }
 
+    private fun checkFields() {
         onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.edt),
@@ -117,9 +120,7 @@ class ForgotPassSendEmailTest : BaseInstrumentedTest() {
         )
 
         clickButton()
-
-        onView(withId(android.R.id.message))
-            .check(matches(CoreMatchers.allOf(withText("ERROR MESSAGE."), isDisplayed())))
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
     private fun clickButton() {

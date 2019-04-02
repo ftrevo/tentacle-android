@@ -9,7 +9,7 @@ import br.com.concrete.tentacle.data.models.State
 import br.com.concrete.tentacle.data.models.User
 import br.com.concrete.tentacle.data.models.UserRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
-import br.com.concrete.tentacle.data.repositories.SharedPrefRepository
+import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.data.repositories.UserLoggedRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.utils.LogWrapper
@@ -19,7 +19,7 @@ import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 class ProfileViewModel(
     private val userLoggedRepository: UserLoggedRepository,
     private val userRepository: UserRepository,
-    private val sharedPrefRepository: SharedPrefRepository
+    private val sharedPrefRepository: SharedPrefRepositoryContract
 ) : BaseViewModel() {
 
     private val viewStateProfile: MutableLiveData<ViewStateModel<User>> = MutableLiveData()
@@ -46,12 +46,13 @@ class ProfileViewModel(
         }
     }
 
-    private fun loadUserFromServer(){
+    private fun loadUserFromServer() {
         disposables.add(
             userRepository.getProfile().subscribe({
-                sharedPrefRepository.saveUser(PREFS_KEY_USER,it.data)
+                sharedPrefRepository.saveUser(PREFS_KEY_USER, it.data)
                 viewStateProfile.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data))
-            },{
+            }, {
+                viewStateProfile.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
                 LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
             })
         )
@@ -103,8 +104,8 @@ class ProfileViewModel(
         )
     }
 
-    private fun updateCurrentUser(currentUser: User, userRequest: UserRequest){
-        var newState : State? = null
+    private fun updateCurrentUser(currentUser: User, userRequest: UserRequest) {
+        var newState: State? = null
         userRequest.stateObj?.let {
             newState = it
         } ?: run {
