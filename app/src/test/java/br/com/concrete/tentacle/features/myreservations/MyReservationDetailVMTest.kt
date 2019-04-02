@@ -10,7 +10,6 @@ import br.com.concrete.tentacle.features.myreservations.detail.MyReservationDeta
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import okhttp3.mockwebserver.MockResponse
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.koin.standalone.inject

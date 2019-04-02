@@ -10,7 +10,6 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
 import okhttp3.mockwebserver.MockResponse
-import org.junit.Assert
 import org.junit.Test
 import org.koin.standalone.inject
 import org.junit.Assert.assertEquals

@@ -6,5 +6,4 @@ import org.koin.dsl.module.module
 val refreshTokenRequestTestModule = module {
 
     single { RefreshTokenRequestMock(get()) }
-
 }

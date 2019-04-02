@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.di
 
 import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.data.models.RequestRefreshToken
-import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.network.ApiService
 import br.com.concrete.tentacle.data.network.ApiServiceAuthentication
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
@@ -18,7 +17,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
 private const val CONNECTION_TIMEOUT = 30L
 private const val READ_TIMEOUT = 30L
 private const val TOKEN_AUTHORIZATION = "Authorization"
@@ -30,14 +28,14 @@ const val PROPERTY_BASE_URL = "PROPERTY_BASE_URL"
 
 val networkModule = module {
 
-    single{
+    single {
         val auth = Authenticator { route, response ->
             val prefs: SharedPrefRepositoryContract = get()
             val userSession =
                 prefs.getStoredSession(PREFS_KEY_USER_SESSION)
 
             userSession?.let {
-                if (!response.request().header("Authorization").equals("${userSession.tokenType} ${userSession.accessToken}")){
+                if (!response.request().header("Authorization").equals("${userSession.tokenType} ${userSession.accessToken}")) {
                     null
                 }
 
@@ -59,7 +57,7 @@ val networkModule = module {
                         prefs.removeUser()
                         null
                     }
-                }else{
+                } else {
                     prefs.removeSession()
                     prefs.removeUser()
                     null

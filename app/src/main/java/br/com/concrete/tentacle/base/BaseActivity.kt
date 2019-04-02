@@ -35,7 +35,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     private fun getEventObserver() = Consumer<Any> {
-        when(it) {
+        when (it) {
             is Int -> {
                 if (it == HttpURLConnection.HTTP_UNAUTHORIZED) {
                     logout()
