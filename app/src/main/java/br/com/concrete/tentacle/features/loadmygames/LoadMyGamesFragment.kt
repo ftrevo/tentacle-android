@@ -213,6 +213,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
         val gameName = String.format(getString(R.string.delete_dialog_message), media.game?.name ?: "")
         activity?.let {
             DialogUtils.showDialog(
+                contentView = R.layout.custom_dialog_error,
                 context = it,
                 title = getString(R.string.delete_dialog_title),
                 message = gameName,
