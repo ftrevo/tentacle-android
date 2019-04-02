@@ -5,14 +5,13 @@ import androidx.lifecycle.ViewModel
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.utils.DEFAULT_EXCEPTION_STATUS_CODE
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection
-
-private const val HTTP_UPGRADE_REQUIRED = 426
 
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
