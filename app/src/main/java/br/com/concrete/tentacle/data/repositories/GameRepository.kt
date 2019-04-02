@@ -24,10 +24,10 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadMyGames(queries: QueryParameters = QueryParameters()): Observable<BaseModel<MediaResponse>> {
+    fun loadMyGames(query: QueryParameters = QueryParameters()): Observable<BaseModel<MediaResponse>> {
         return apiRest.getRegisteredGames(
-            page = queries.page,
-            active = queries.active)
+            page = query.page,
+            active = query.active)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }
@@ -74,8 +74,8 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun loadMyLoans(page: Int = 0): Observable<BaseModel<LoansListResponse>> {
-        return apiRest.getMyLoans(page = page)
+    fun loadMyLoans(page: Int = 0, queries: QueryParameters): Observable<BaseModel<LoansListResponse>> {
+        return apiRest.getMyLoans(page = page, showHistory = queries.showHistory)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

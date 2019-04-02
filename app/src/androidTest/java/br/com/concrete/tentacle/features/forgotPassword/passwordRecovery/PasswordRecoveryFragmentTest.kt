@@ -15,7 +15,6 @@ import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
 import okhttp3.mockwebserver.MockResponse
-import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 import org.junit.Test
 
@@ -110,9 +109,7 @@ class PasswordRecoveryFragmentTest : BaseFragmentTest() {
         setInputField(R.id.newPassEditText, "123456")
         setInputField(R.id.newPassConfirmationEditText, "123456")
         performClickButton()
-
-        onView(withId(android.R.id.message))
-            .check(matches(allOf(withText("ERROR MESSAGE."), isDisplayed())))
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
     private fun setInputField(resId: Int, text: String) {

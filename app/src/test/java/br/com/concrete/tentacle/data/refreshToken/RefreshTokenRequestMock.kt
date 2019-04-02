@@ -39,5 +39,4 @@ class RefreshTokenRequestMock(private val userRepository: UserRepository) {
             })
         )
     }
-
 }

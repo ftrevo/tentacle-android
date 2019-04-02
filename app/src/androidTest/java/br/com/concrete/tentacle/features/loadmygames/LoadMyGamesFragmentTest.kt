@@ -52,6 +52,11 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
                 .setResponseCode(200)
                 .setBody(response)
         )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
 
         onView(withId(R.id.recyclerListView))
             .perform(isDisplayed().waitUntil())

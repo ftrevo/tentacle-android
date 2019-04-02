@@ -4,12 +4,12 @@ import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.LoansListResponse
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
 import okhttp3.mockwebserver.MockResponse
-import org.junit.Assert
 import org.junit.Test
 import org.koin.standalone.inject
 import org.junit.Assert.assertEquals
@@ -17,26 +17,6 @@ import org.junit.Assert.assertEquals
 class MyReservationVMTest : BaseViewModelTest() {
 
     val myReservationViewModel: MyReservationViewModel by inject()
-
-    @Test
-    fun `when myReservationViewModel calls getHomeGames should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoansListResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        myReservationViewModel.getMyReservations().observeForever {
-            actual = it
-        }
-        myReservationViewModel.loadMyReservations()
-        Assert.assertEquals(expected, actual)
-    }
 
     @Test
     fun `when myReservationViewModel calls getHomeGames should return error message for 400`() {
@@ -126,26 +106,6 @@ class MyReservationVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `when myReservationViewModel calls delete should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoanDeleteResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoanDeleteResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        myReservationViewModel.getStateDeleteLoan().observeForever {
-            actual = it
-        }
-        myReservationViewModel.deleteLoan("id_loan")
-        Assert.assertEquals(expected, actual)
-    }
-
-    @Test
     fun `when myReservationViewModel calls delete should return error message for 400`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
@@ -166,5 +126,45 @@ class MyReservationVMTest : BaseViewModelTest() {
         }
         myReservationViewModel.deleteLoan("id_loan")
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when myReservationViewModel calls myReservations should return success with showHistory equals false`() {
+        val responseJson = getJson(
+            "mockjson/myreservations/load_my_reservations_success.json"
+        )
+
+        val expectedPath = "/loans?mineOnly=true&limit=15&page=0&showHistory=false"
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+        val queryParameters = QueryParameters(showHistory = false)
+        myReservationViewModel.myReservations(queryParameters)
+
+        val requestedPath = mockServer.takeRequest().path
+        assertEquals(expectedPath, requestedPath)
+    }
+
+    @Test
+    fun `when myReservationViewModel calls myReservations should return success with showHistory equals true`() {
+        val responseJson = getJson(
+            "mockjson/myreservations/load_my_reservations_success.json"
+        )
+
+        val expectedPath = "/loans?mineOnly=true&limit=15&page=0&showHistory=true"
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+        val queryParameters = QueryParameters(showHistory = true)
+        myReservationViewModel.myReservations(queryParameters)
+
+        val requestedPath = mockServer.takeRequest().path
+        assertEquals(expectedPath, requestedPath)
     }
 }

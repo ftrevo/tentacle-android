@@ -3,7 +3,7 @@ package br.com.concrete.tentacle.base
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.data.eventPublisher.EventPublisher
+import br.com.concrete.tentacle.data.eventPublisher.EventPublisherContract
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.utils.DEFAULT_EXCEPTION_STATUS_CODE
 import br.com.concrete.tentacle.utils.LogWrapper
@@ -18,7 +18,7 @@ import java.net.HttpURLConnection
 
 open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
 
-    private val eventPublisher: EventPublisher by inject()
+    private val eventPublisher: EventPublisherContract by inject()
 
     protected val disposables = CompositeDisposable()
 

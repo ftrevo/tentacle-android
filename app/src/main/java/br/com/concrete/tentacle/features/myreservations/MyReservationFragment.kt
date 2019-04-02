@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -15,38 +16,45 @@ import br.com.concrete.tentacle.base.BaseActivity
 import br.com.concrete.tentacle.base.BaseAdapter
 import br.com.concrete.tentacle.base.BaseFragment
 import br.com.concrete.tentacle.custom.ListCustom
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.data.models.filter.SubItem
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.features.filter.FilterDialogFragment
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
 import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.MOCK_FILTER_MY_GAMES_MY_RESERVATION
+import br.com.concrete.tentacle.utils.QueryUtils
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
-import kotlinx.android.synthetic.main.progress_include.*
-import kotlinx.android.synthetic.main.progress_include.view.*
+import kotlinx.android.synthetic.main.progress_include.view.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
+class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener, FilterDialogFragment.OnFilterListener {
 
     private val myReservationViewModel: MyReservationViewModel by viewModel()
-    private val myReservationList = ArrayList<LoanResponse?>()
+    private var myReservationList = ArrayList<LoanResponse?>()
 
     private var recyclerViewAdapter: BaseAdapter<LoanResponse>? = null
 
     private var count = 0
     private var loadMoreItems = true
 
+    private var queryParameters: QueryParameters? = null
+    private val selectedFilterItems = ArrayList<SubItem>()
+
     override fun getToolbarTitle(): Int {
         return R.string.toolbar_title_my_reservations
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.clear()
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -164,7 +172,10 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
                             holder.itemView.setOnClickListener {
                                 val bundle = Bundle()
                                 bundle.putString(MyReservationActivity.LOAN_EXTRA_ID, element._id)
-                                activity?.launchActivity<MyReservationActivity>(extras = bundle, animation = ActivityAnimation.TRANSLATE_UP)
+                                activity?.launchActivity<MyReservationActivity>(
+                                    extras = bundle,
+                                    animation = ActivityAnimation.TRANSLATE_UP
+                                )
                             }
                         }, {
                             showDialogDelete(it)
@@ -206,7 +217,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
     override fun sizeElements() = myReservationList.size
 
     override fun loadMore() {
-        myReservationViewModel.loadMyReservationsPage()
+        myReservationViewModel.loadMyReservationsPage(queryParameters)
         myReservationList.add(null)
         loadMoreItems = false
 
@@ -235,5 +246,49 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener {
                 }
             )
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        setupOptionMenu(menu, inflater)
+    }
+
+    private fun setupOptionMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_load_my_games, menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.findItem(R.id.filterMenuId).let {
+            val iconRes = if (selectedFilterItems.isEmpty()) R.drawable.ic_filter_off else R.drawable.ic_filter_on
+            it.setIcon(iconRes)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.filterMenuId) {
+            FilterDialogFragment.showDialog(this, selectedFilterItems, MOCK_FILTER_MY_GAMES_MY_RESERVATION)
+            true
+        } else super.onOptionsItemSelected(item)
+    }
+
+    override fun onFilterListener(filters: List<SubItem>) {
+        activity?.invalidateOptionsMenu()
+        selectedFilterItems.clear()
+        selectedFilterItems.addAll(filters)
+
+        if (filters.isEmpty()) {
+            (activity as BaseActivity).setupToolbar(false)
+        }
+
+        queryParameters = QueryUtils.assemblefilterQuery(selectedFilterItems)
+        updateListBeforeFilter()
+        myReservationViewModel.myReservations(queryParameters)
+    }
+
+    private fun updateListBeforeFilter() {
+        myReservationViewModel.resetPage()
+        myReservationList = ArrayList()
+        recyclerViewAdapter?.notifyDataSetChanged()
     }
 }

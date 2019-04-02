@@ -1,7 +1,4 @@
 {
-  "message": [
-    "Jogo encontrado"
-  ],
   "data": {
     "_id": "5c93d5ca3e379400232111f2",
     "id": 5471,
@@ -84,6 +81,34 @@
     "formattedReleaseDate": "15/04/2014",
     "createdBy": "5c815f1a349f31002315fcd9",
     "createdAt": "2019-03-21T18:19:54.885Z",
-    "updatedAt": "2019-03-21T18:19:54.885Z"
+    "updatedAt": "2019-03-21T18:19:54.885Z",
+    "mediaPs3": [],
+    "mediaPs4": [
+      {
+        "_id": "5c9b9e5bb297ed0023e8ff51",
+        "owner": "5c8267812e75f4002361813f",
+        "ownerName": "John Doe",
+        "ownerState": "5a107a691592ca19f7b4a860",
+        "ownerCity": "Recife"
+      }
+    ],
+    "mediaXbox360": [],
+    "mediaXboxOne": [],
+    "mediaNintendo3ds": [
+      {
+        "_id": "5c93d60a3e379400232111f3",
+        "owner": "5c815f1a349f31002315fcd9",
+        "ownerName": "Yara Taciane",
+        "ownerState": "5a107a681592ca19f7b4a854",
+        "ownerCity": "Itaubal"
+      }
+    ],
+    "mediaNintendoSwitch": [],
+    "mediaPs3Count": 0,
+    "mediaPs4Count": 1,
+    "mediaXbox360Count": 0,
+    "mediaXboxOneCount": 0,
+    "mediaNintendo3dsCount": 1,
+    "mediaNintendoSwitchCount": 0
   }
 }

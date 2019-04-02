@@ -8,7 +8,7 @@ import org.junit.Test
 import org.koin.standalone.inject
 import java.net.HttpURLConnection
 
-class RefreshTokenTest: BaseViewModelTest() {
+class RefreshTokenTest : BaseViewModelTest() {
 
     private val refreshTokenRequestMock: RefreshTokenRequestMock by inject()
 

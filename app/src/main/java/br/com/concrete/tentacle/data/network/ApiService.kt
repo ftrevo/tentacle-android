@@ -32,54 +32,56 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("/games")
+    @GET("games")
     fun getSearchGames(
         @Query("name") name: String,
         @Query("limit") limit: Int = LIMIT_PAGE,
         @Query("page") page: Int = 0
     ): Observable<BaseModel<GameResponse>>
 
-    @POST("/device-token")
+    @POST("device-token")
     fun sendToken(
         @Body
         deviceToken: RequestUpdateToken
     ): Observable<BaseModel<MessageReturn>>
 
-    @POST("/games")
+    @POST("games")
     fun registerNewGame(
         @Body
         game: GameRequest
     ): Observable<BaseModel<Game>>
 
-    @DELETE("/media/{id}")
+    @DELETE("media/{id}")
     fun deleteMedia(
         @Path("id") mediaId: String
     ): Observable<BaseModel<Media>>
 
-    @GET("/media-loan")
+    @GET("media-loan")
     fun getRegisteredGames(
         @Query("limit") limit: Int = LIMIT_PAGE,
         @Query("page") page: Int,
         @Query("active") active: Boolean = true
     ): Observable<BaseModel<MediaResponse>>
 
-    @GET("/loans")
+    @GET("loans")
     fun getMyLoans(
         @Query("mineOnly")
         mineOnly: Boolean = true,
         @Query("limit")
         limit: Int = LIMIT_PAGE,
         @Query("page")
-        page: Int
+        page: Int,
+        @Query("showHistory")
+        showHistory: Boolean
     ): Observable<BaseModel<LoansListResponse>>
 
-    @GET("/loans/{loanId}")
+    @GET("loans/{loanId}")
     fun getMyLoan(@Path("loanId") loanId: String): Observable<BaseModel<LoanResponse>>
 
-    @POST("/media")
+    @POST("media")
     fun registerMedia(@Body media: MediaRequest): Observable<BaseModel<Media>>
 
-    @GET("/games")
+    @GET("games")
     fun loadHomeGames(): Observable<BaseModel<GameResponse>>
 
     @GET("games/remote")
@@ -121,7 +123,7 @@ interface ApiService {
     @GET("games/{id}")
     fun getDetailsGame(@Path("id") idGame: String): Observable<BaseModel<Game>>
 
-    @GET("/library/home")
+    @GET("library/home")
     fun loadHome(): Observable<BaseModel<GameResponse>>
 
     @GET("users/profile")

@@ -177,8 +177,19 @@ class RegisterFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
+                .setBody("mockjson/token/token_update_success.json".getJson())
+        )
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
                 .setBody("mockjson/home/load_home_games_success.json".getJson())
         )
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody("mockjson/profile/get_profile_success.json".getJson()))
 
         presetValidForm()
         selectState()
@@ -205,8 +216,7 @@ class RegisterFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         selectState()
         selectCity()
         callButtonClick()
-        onView(withId(android.R.id.message))
-            .check(matches(allOf(withText("ERROR MESSAGE."), isDisplayed())))
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
     private fun selectState() {

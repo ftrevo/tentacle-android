@@ -7,5 +7,4 @@ import org.koin.dsl.module.module
 val eventsModule = module {
 
     single { EventPublisher() as EventPublisherContract }
-
 }

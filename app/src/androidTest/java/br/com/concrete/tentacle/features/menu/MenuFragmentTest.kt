@@ -3,7 +3,6 @@ package br.com.concrete.tentacle.features.menu
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
@@ -36,31 +35,9 @@ class MenuFragmentTest : BaseFragmentTest() {
 
     @Test
     fun checkLogout() {
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody("mockjson/login/login_success.json".getJson())
-        )
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody("mockjson/profile/get_profile_success_another_user.json".getJson())
-        )
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody("mockjson/home/load_home_games_success.json".getJson())
-        )
-
         onView(withId(R.id.logout)).perform(click())
         onView(withText("OK")).perform(click())
-        setField("test@tes.com", R.id.edtEmail)
-        setField("123456", R.id.edtPassword)
-        onView(withId(R.id.btLogin)).perform(click())
-
-        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        onView(withId(R.id.name)).check(matches(withText("Damiana dos SOL")))
-        onView(withId(R.id.state)).check(matches(withText("Ceará")))
+        assert(activityRule.activity.isFinishing)
     }
 
     @Test
