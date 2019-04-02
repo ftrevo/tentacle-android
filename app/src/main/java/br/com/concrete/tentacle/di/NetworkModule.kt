@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit
 private const val CONNECTION_TIMEOUT = 30L
 private const val READ_TIMEOUT = 30L
 private const val TOKEN_AUTHORIZATION = "Authorization"
+private const val APP_VERSION = "app-version"
 
 const val API_WITHOUT_TOKEN = "apiWithoutToken"
 const val API_WITH_TOKEN = "apiWithToken"
@@ -39,12 +40,13 @@ val networkModule = module {
         val tokenInterceptor = Interceptor { chain ->
             val prefs: SharedPrefRepositoryContract = get()
             val userSession =
-                    prefs.getStoredSession(PREFS_KEY_USER_SESSION)
+                prefs.getStoredSession(PREFS_KEY_USER_SESSION)
 
             if (userSession != null) {
                 val newRequest = chain.request()
                     .newBuilder()
                     .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
+                    .header(APP_VERSION, BuildConfig.VERSION_CODE.toString())
                     .build()
                 chain.proceed(newRequest)
             } else {
@@ -84,10 +86,19 @@ val networkModule = module {
             httpLogInterceptor.level = HttpLoggingInterceptor.Level.NONE
         }
 
+        val tokenInterceptor = Interceptor { chain ->
+            val newRequest = chain.request()
+                .newBuilder()
+                .header(APP_VERSION, BuildConfig.VERSION_CODE.toString())
+                .build()
+            chain.proceed(newRequest)
+        }
+
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(httpLogInterceptor)
+            .addInterceptor(tokenInterceptor)
             .build()
     }
 

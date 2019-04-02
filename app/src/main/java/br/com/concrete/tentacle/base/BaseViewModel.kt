@@ -12,6 +12,8 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection
 
+private const val HTTP_UPGRADE_REQUIRED = 426
+
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     protected val disposables = CompositeDisposable()
@@ -26,13 +28,19 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 when (error.code()) {
                     HttpURLConnection.HTTP_BAD_REQUEST -> errorResponse = gson.fromJson(
                         error.response().errorBody()?.charStream(),
-                        ErrorResponse::class.java)
+                        ErrorResponse::class.java
+                    )
                     HttpURLConnection.HTTP_UNAUTHORIZED -> {
                         // TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
                     }
                     HttpURLConnection.HTTP_NOT_FOUND -> errorResponse = gson.fromJson(
                         error.response().errorBody()?.charStream(),
-                        ErrorResponse::class.java)
+                        ErrorResponse::class.java
+                    )
+                    HTTP_UPGRADE_REQUIRED -> errorResponse = gson.fromJson(
+                        error.response().errorBody()?.charStream(),
+                        ErrorResponse::class.java
+                    )
                     else -> errorResponse.messageInt.add(R.string.unknow_error)
                 }
                 errorResponse.statusCode = error.code()
