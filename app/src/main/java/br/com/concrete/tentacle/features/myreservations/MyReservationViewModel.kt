@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.models.LoansListResponse
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import br.com.concrete.tentacle.data.repositories.GameRepository
@@ -24,26 +25,64 @@ class MyReservationViewModel(private val gameRepository: GameRepository) : BaseV
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun loadMyReservations() {
+        myReservations()
+    }
+
+    fun myReservations(queryParameters: QueryParameters? = null) {
+        val queries = queryParameters ?: QueryParameters()
+
         viewStateGame.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
-        disposables.add(gameRepository.loadMyLoans()
-            .subscribe({ baseModel ->
-                viewStateGame.postValue(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data))
-            }, {
-                viewStateGame.postValue(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it)))
-            })
+        disposables.add(
+            getDisposable(queries)
         )
     }
 
-    fun loadMyReservationsPage() {
-        disposables.add(gameRepository.loadMyLoans(page)
-            .subscribe({ baseModel ->
-                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
-                page += 1
-            }, {
-                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
-            })
+    private fun getDisposable(queryParameters: QueryParameters) = gameRepository.loadMyLoans(queries = queryParameters)
+        .subscribe({ baseModel ->
+            viewStateGame.postValue(
+                ViewStateModel(
+                    status = ViewStateModel.Status.SUCCESS,
+                    model = baseModel.data
+                )
+            )
+        }, {
+            viewStateGame.postValue(
+                ViewStateModel(
+                    status = ViewStateModel.Status.ERROR,
+                    errors = notKnownError(it)
+                )
+            )
+        })
+
+    fun loadMyReservationsPage(queryParameters: QueryParameters?) {
+        val queries = queryParameters ?: QueryParameters()
+        disposables.add(
+            getDisposablePage(queries)
         )
     }
+
+    private fun getDisposablePage(queryParameters: QueryParameters) =
+        gameRepository.loadMyLoans(page, queries = queryParameters)
+            .subscribe({ baseModel ->
+                viewStateGamePage.postValue(
+                    Event(
+                        ViewStateModel(
+                            status = ViewStateModel.Status.SUCCESS,
+                            model = baseModel.data
+                        )
+                    )
+                )
+                page += 1
+            }, {
+                viewStateGamePage.postValue(
+                    Event(
+                        ViewStateModel(
+                            status = ViewStateModel.Status.ERROR,
+                            errors = notKnownError(it)
+                        )
+                    )
+                )
+            })
 
     fun deleteLoan(idLoan: String) {
         viewStateDeleteLoan.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
@@ -65,5 +104,9 @@ class MyReservationViewModel(private val gameRepository: GameRepository) : BaseV
                     )
                 })
         )
+    }
+
+    fun resetPage() {
+        this.page = 1
     }
 }
