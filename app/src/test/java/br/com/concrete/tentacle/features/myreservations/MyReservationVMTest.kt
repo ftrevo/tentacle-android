@@ -19,26 +19,6 @@ class MyReservationVMTest : BaseViewModelTest() {
     val myReservationViewModel: MyReservationViewModel by inject()
 
     @Test
-    fun `when myReservationViewModel calls getHomeGames should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoansListResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        myReservationViewModel.getMyReservations().observeForever {
-            actual = it
-        }
-        myReservationViewModel.loadMyReservations()
-        Assert.assertEquals(expected, actual)
-    }
-
-    @Test
     fun `when myReservationViewModel calls getHomeGames should return error message for 400`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
@@ -123,26 +103,6 @@ class MyReservationVMTest : BaseViewModelTest() {
         assertEquals(expected.status, actual.status)
         assertEquals(expected.errors, actual.errors)
         assertEquals(expected.filtering, actual.filtering)
-    }
-
-    @Test
-    fun `when myReservationViewModel calls delete should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoanDeleteResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoanDeleteResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        myReservationViewModel.getStateDeleteLoan().observeForever {
-            actual = it
-        }
-        myReservationViewModel.deleteLoan("id_loan")
-        Assert.assertEquals(expected, actual)
     }
 
     @Test

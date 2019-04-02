@@ -52,26 +52,6 @@ class LoanVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `when loanViewModel calls loadLibrary should return error message for 401`() {
-        val expected =
-            ViewStateModel<Library>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<Library>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        loanViewModel.getLibrary().observeForever {
-            actual = it
-        }
-        loanViewModel.loadLibrary("someId")
-        Assert.assertEquals(expected, actual)
-    }
-
-    @Test
     fun `when loanViewModel calls loadLibrary should return error message for 400`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
@@ -123,26 +103,6 @@ class LoanVMTest : BaseViewModelTest() {
             actual = it
         }
 
-        loanViewModel.performLoad("someId")
-        Assert.assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `when loanViewModel calls performLoan should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoanResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        loanViewModel.getLoan().observeForever {
-            actual = it
-        }
         loanViewModel.performLoad("someId")
         Assert.assertEquals(expected, actual)
     }

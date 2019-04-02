@@ -51,30 +51,6 @@ class MyReservationDetailVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `when MyReservationDetailViewModel calls loadMyLoan should return message for 401`() {
-        val expected =
-                ViewStateModel(
-                    status = ViewStateModel.Status.ERROR,
-                    model = null,
-                    errors = ErrorResponse(statusCode = 401)
-                )
-
-        var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        myReservationDetail.getViewState().observeForever {
-            actual = it
-        }
-
-        myReservationDetail.loadMyLoan("id")
-        assertEquals(expected, actual)
-    }
-
-    @Test
     fun `when MyReservationDetailViewModel calls loadMyLoan should return message for 400`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
@@ -131,26 +107,6 @@ class MyReservationDetailVMTest : BaseViewModelTest() {
         assertEquals(expected.status, actual.status)
         assertEquals(expected.errors, actual.errors)
         assertEquals(expected.filtering, actual.filtering)
-    }
-
-    @Test
-    fun `when myReservationDetail calls delete should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoanDeleteResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoanDeleteResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        myReservationDetail.getStateDeleteLoan().observeForever {
-            actual = it
-        }
-        myReservationDetail.deleteLoan("id_loan")
-        Assert.assertEquals(expected, actual)
     }
 
     @Test

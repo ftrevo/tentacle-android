@@ -52,26 +52,6 @@ class LibraryVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `when LibraryViewModel calls loadLibrary should return error message for 401`() {
-        val expected =
-            ViewStateModel<ArrayList<Library>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        libraryViewModel.getLibrary().observeForever {
-            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status, errors = it.peekContent().errors)
-        }
-        libraryViewModel.loadLibrary()
-        Assert.assertEquals(expected, actual)
-    }
-
-    @Test
     fun `when LibraryViewModel calls loadLibrary should return error message for 400`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
@@ -312,15 +292,10 @@ class LibraryVMTest : BaseViewModelTest() {
             .setBody(responseJson)
 
         mockServer.enqueue(mockResponse)
-//        mockServer.enqueue(mockResponse)
 
         libraryViewModel.getLibraryMore().observeForever {
             actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
         }
-
-//        libraryViewModel.getLibraryMore().observeForever {
-//            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status)
-//        }
 
         libraryViewModel.loadLibraryMore()
         Assert.assertEquals(expected, actual)
@@ -348,25 +323,5 @@ class LibraryVMTest : BaseViewModelTest() {
 
         libraryViewModel.loadLibraryMore()
         Assert.assertEquals(expectedError, actualError)
-    }
-
-    @Test
-    fun `when LibraryViewModel calls loadLibrary should of Library endLessRecyclerView return error message for 401`() {
-        val expected =
-            ViewStateModel<ArrayList<Library>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<ArrayList<Library>>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        libraryViewModel.getLibraryMore().observeForever {
-            actual = ViewStateModel(model = it.peekContent().model?.list, status = it.peekContent().status, errors = it.peekContent().errors)
-        }
-        libraryViewModel.loadLibraryMore()
-        Assert.assertEquals(expected, actual)
     }
 }

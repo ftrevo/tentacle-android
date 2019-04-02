@@ -161,7 +161,7 @@ class RegisterFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
     }
 
     @Test
-    fun registerSuccess() {
+    fun  registerSuccess() {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
