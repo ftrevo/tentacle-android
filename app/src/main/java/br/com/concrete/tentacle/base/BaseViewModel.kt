@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.utils.DEFAULT_EXCEPTION_STATUS_CODE
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
 import io.reactivex.disposables.CompositeDisposable
@@ -26,13 +27,19 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 when (error.code()) {
                     HttpURLConnection.HTTP_BAD_REQUEST -> errorResponse = gson.fromJson(
                         error.response().errorBody()?.charStream(),
-                        ErrorResponse::class.java)
+                        ErrorResponse::class.java
+                    )
                     HttpURLConnection.HTTP_UNAUTHORIZED -> {
                         // TODO RELOAD SESSION - 401 IS UNAUTHORIZED BECAUSE THE SESSION HAS EXPIRED
                     }
                     HttpURLConnection.HTTP_NOT_FOUND -> errorResponse = gson.fromJson(
                         error.response().errorBody()?.charStream(),
-                        ErrorResponse::class.java)
+                        ErrorResponse::class.java
+                    )
+                    HTTP_UPGRADE_REQUIRED -> errorResponse = gson.fromJson(
+                        error.response().errorBody()?.charStream(),
+                        ErrorResponse::class.java
+                    )
                     else -> errorResponse.messageInt.add(R.string.unknow_error)
                 }
                 errorResponse.statusCode = error.code()

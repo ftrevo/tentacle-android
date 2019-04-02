@@ -62,3 +62,5 @@ const val DEFAULT_COUNTRY = "BR"
 const val MOCK_FILTER_LIBRARY = "dummy_filter_itens_library.json"
 const val MOCK_FILTER_MY_GAMES = "dummy_fiter_itens_my_games.json"
 const val MOCK_FILTER_MY_GAMES_MY_RESERVATION = "dummy_fiter_itens_my_reservation_show_history.json"
+
+const val HTTP_UPGRADE_REQUIRED = 426

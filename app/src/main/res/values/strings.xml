@@ -262,4 +262,5 @@
     <string name="delete_dialog_message_reservation">A reserva do jogo %1$s sairá da lista de \"Minhas Reservas\", mas você poderá adicioná-lo
     novamente no futuro.</string>
     <string name="remove">Remover</string>
+    <string name="update">Atualizar</string>
 </resources>

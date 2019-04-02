@@ -1,7 +1,9 @@
 package br.com.concrete.tentacle.base
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.DrawableRes
@@ -13,6 +15,7 @@ import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 
 abstract class BaseActivity : AppCompatActivity() {
     companion object {
@@ -83,19 +86,38 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected open fun showError(errors: ErrorResponse?, title: String = "Erro") {
+        var positiveButton = getString(R.string.ok)
+        var negativeButton: String? = null
+
         errors?.let { errorResponse ->
             errorResponse.messageInt.map { error ->
                 errorResponse.message.add(getString(error))
             }
 
             val ers = errorResponse.toString()
+            var positive = DialogInterface.OnClickListener { _, _ -> }
+
+            if (errors.statusCode == HTTP_UPGRADE_REQUIRED) {
+                positiveButton = getString(R.string.update)
+                negativeButton = getString(R.string.not_delete)
+                positive = DialogInterface.OnClickListener { _, _ ->
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW, Uri.parse(
+                                errors.updateUrl
+                            )
+                        )
+                    )
+                }
+            }
 
             DialogUtils.showDialog(
                 context = this,
                 title = if (title == "Erro") getString(R.string.something_happened) else title,
                 message = ers,
-                positiveText = getString(R.string.ok),
-                positiveListener = DialogInterface.OnClickListener { _, _ -> },
+                positiveText = positiveButton,
+                positiveListener = positive,
+                negativeText = negativeButton,
                 contentView = R.layout.custom_dialog_error
             )
         }
