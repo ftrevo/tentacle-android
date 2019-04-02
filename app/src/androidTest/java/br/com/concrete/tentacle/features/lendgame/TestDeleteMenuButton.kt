@@ -11,6 +11,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.extensions.waitUntil
 import br.com.concrete.tentacle.features.loadmygames.LoadMyGamesFragment
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Test
@@ -53,7 +54,9 @@ class TestDeleteMenuButton : BaseFragmentTest() {
 
         onView(withText("TEST")).perform(click())
         onView(withId(R.id.delete)).perform(click())
-        onView(withText("EXCLUIR")).perform(click())
+        onView(withText("EXCLUIR"))
+            .perform(isDisplayed().waitUntil())
+            .perform(click())
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
