@@ -26,36 +26,37 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun preLoadMyGames() {
+        viewStateGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
         loadMyGames()
     }
 
     fun loadMyGames() {
-        val queries = queryParameters ?: QueryParameters()
-
-        viewStateGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
-        disposables.add(gameRepository.loadMyGames(queries)
-            .subscribe({ baseModel ->
-                viewStateGame.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
-            }, {
-                viewStateGame.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
-            })
-        )
-        disposables.add(getObservable())
+        val query = queryParameters ?: QueryParameters()
+        query.page = page
+        disposables.add(getObservable(query))
     }
 
-    fun loadGamePage() {
-        val queries = queryParameters ?: QueryParameters()
-        queries.page = page
-
-        disposables.add(gameRepository.loadMyGames(queries)
-            .subscribe({ baseModel ->
-                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
-                page += 1
-            }, {
-                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
-            })
-        )
-    }
+    private fun getObservable(query: QueryParameters = QueryParameters()) = gameRepository.loadMyGames(query)
+        .subscribe({ baseModel ->
+            viewStateGame.postValue(
+                Event(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.SUCCESS,
+                        model = baseModel.data
+                    )
+                )
+            )
+            page += 1
+        }, {
+            viewStateGame.postValue(
+                Event(
+                    ViewStateModel(
+                        status = ViewStateModel.Status.ERROR,
+                        errors = notKnownError(it)
+                    )
+                )
+            )
+        })
 
     fun deleteGame(id: String) {
         disposables.add(
@@ -83,6 +84,6 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     }
 
     fun resetPage() {
-        this.page = 1
+        this.page = 0
     }
 }

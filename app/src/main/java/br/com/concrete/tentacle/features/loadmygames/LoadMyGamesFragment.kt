@@ -96,6 +96,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
         list.recyclerListView.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(context)
         list.recyclerListView.layoutManager = layoutManager
+        lMedia.clear()
 
         viewModelLoadMyGames.getMyGames().observe(this, Observer { stateModel ->
             stateModel.getContentIfNotHandler()?.let {
@@ -154,7 +155,6 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
         val mediaResponse = it.model
         val medias = mediaResponse?.list as ArrayList<Media?>
         count = mediaResponse.count
-        lMedia.clear()
         medias.let {
             if (lMedia.isEmpty()) {
                 lMedia.addAll(medias)
@@ -262,7 +262,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
 
     override fun loadMore() {
         viewModelLoadMyGames.queryParameters = queryParameters
-        viewModelLoadMyGames.loadGamePage()
+        viewModelLoadMyGames.loadMyGames()
         lMedia.add(null)
         loadMoreItems = false
 
