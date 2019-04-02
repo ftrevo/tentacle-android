@@ -17,10 +17,10 @@ class HomeAdapter(private val imageList: List<String>) : PagerAdapter() {
     }
 
     override fun getCount(): Int {
-        return if(imageList.isEmpty()) 0 else imageList.size + 2
+        return if (imageList.isEmpty()) 0 else imageList.size + 2
     }
 
-    fun getRealCount(): Int{
+    fun getRealCount(): Int {
         return imageList.size
     }
 
@@ -36,21 +36,20 @@ class HomeAdapter(private val imageList: List<String>) : PagerAdapter() {
             )
         )
 
-        container.addView(imageView,0)
+        container.addView(imageView, 0)
         return imageView
     }
 
-    private fun mapPagerPositionToModelPosition(pagerPosition: Int) : Int {
-        if(pagerPosition == 0){
+    private fun mapPagerPositionToModelPosition(pagerPosition: Int): Int {
+        if (pagerPosition == 0) {
             return getRealCount() - 1
         }
 
-        if(pagerPosition == getRealCount() + 1){
-            return  0
+        if (pagerPosition == getRealCount() + 1) {
+            return 0
         }
         return pagerPosition - 1
     }
-
 
     override fun destroyItem(container: ViewGroup, position: Int, view: Any) {
         container.removeView(view as View)
