@@ -54,7 +54,7 @@ class LendGameActivitySuccess : BaseActivity() {
         btOk.setOnClickListener {
             finish()
             action?.let {
-                HostActivity.fragment.value = if (it == LOAN_ACTION_LEND) R.id.navigate_to_my_games else R.id.navigate_to_library
+                HostActivity.fragment.value = R.id.navigate_to_my_games
             }
         }
     }

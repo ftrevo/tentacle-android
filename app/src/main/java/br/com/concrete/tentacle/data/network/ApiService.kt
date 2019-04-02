@@ -70,7 +70,9 @@ interface ApiService {
         @Query("limit")
         limit: Int = LIMIT_PAGE,
         @Query("page")
-        page: Int
+        page: Int,
+        @Query("showHistory")
+        showHistory: Boolean
     ): Observable<BaseModel<LoansListResponse>>
 
     @GET("loans/{loanId}")

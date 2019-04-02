@@ -7,9 +7,7 @@ import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.refreshTokenRequestTestModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
+import br.com.concrete.tentacle.rules.RxImmediateSchedulerRule
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -27,12 +25,12 @@ open class BaseViewModelTest : KoinTest {
     @get:Rule
     var rule = InstantTaskExecutorRule()
 
+    @get:Rule
+    var rxRule = RxImmediateSchedulerRule()
+
     @Before
     @Throws fun setUp() {
-        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+
         StandAloneContext.startKoin(
             listOf(
                 networkModule,
@@ -50,8 +48,6 @@ open class BaseViewModelTest : KoinTest {
     @Throws fun tearDown() {
         StandAloneContext.stopKoin()
         mockServer.shutdown()
-        RxJavaPlugins.reset()
-        RxAndroidPlugins.reset()
     }
 
     fun getJson(path: String): String? {

@@ -4,6 +4,7 @@ import br.com.concrete.tentacle.base.BaseViewModelTest
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.LoansListResponse
+import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import com.google.common.reflect.TypeToken
@@ -126,5 +127,45 @@ class MyReservationVMTest : BaseViewModelTest() {
         }
         myReservationViewModel.deleteLoan("id_loan")
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when myReservationViewModel calls myReservations should return success with showHistory equals false`() {
+        val responseJson = getJson(
+            "mockjson/myreservations/load_my_reservations_success.json"
+        )
+
+        val expectedPath = "/loans?mineOnly=true&limit=15&page=0&showHistory=false"
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+        val queryParameters = QueryParameters(showHistory = false)
+        myReservationViewModel.myReservations(queryParameters)
+
+        val requestedPath = mockServer.takeRequest().path
+        assertEquals(expectedPath, requestedPath)
+    }
+
+    @Test
+    fun `when myReservationViewModel calls myReservations should return success with showHistory equals true`() {
+        val responseJson = getJson(
+            "mockjson/myreservations/load_my_reservations_success.json"
+        )
+
+        val expectedPath = "/loans?mineOnly=true&limit=15&page=0&showHistory=true"
+
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+        val queryParameters = QueryParameters(showHistory = true)
+        myReservationViewModel.myReservations(queryParameters)
+
+        val requestedPath = mockServer.takeRequest().path
+        assertEquals(expectedPath, requestedPath)
     }
 }

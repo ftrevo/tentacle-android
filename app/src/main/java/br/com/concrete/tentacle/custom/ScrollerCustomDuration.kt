@@ -11,7 +11,7 @@ class ScrollerCustomDuration(
 
     private var mScrollFactor: Double = 1.0
 
-    fun setScrollDurationFactor(scrollFactor: Double){
+    fun setScrollDurationFactor(scrollFactor: Double) {
         mScrollFactor = scrollFactor
     }
 

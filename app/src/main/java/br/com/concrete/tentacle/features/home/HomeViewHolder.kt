@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.item_home_game.view.tvONE
 import kotlinx.android.synthetic.main.item_home_game.view.tvPS3
 import kotlinx.android.synthetic.main.item_home_game.view.tvPS4
 
-
 class HomeViewHolder(
     private val mLinearLayout: View,
     private val observable: Observable<Boolean>,
@@ -40,7 +39,7 @@ class HomeViewHolder(
                         val homeAdapter = HomeAdapter(it)
                         var jumpPosition = -1
 
-                        val onPageChange  = object : ViewPager.SimpleOnPageChangeListener() {
+                        val onPageChange = object : ViewPager.SimpleOnPageChangeListener() {
                             override fun onPageScrollStateChanged(state: Int) {
                                 if (jumpPosition >= 0) {
                                     itemView.homeItemBackground.setCurrentItem(jumpPosition, false)
