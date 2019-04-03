@@ -6,6 +6,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.eventPublisher.EventPublisherContract
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.utils.DEFAULT_EXCEPTION_STATUS_CODE
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
 import io.reactivex.disposables.CompositeDisposable
@@ -39,6 +40,14 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
                     HttpURLConnection.HTTP_UNAUTHORIZED -> {
                         eventPublisher.publish(HttpURLConnection.HTTP_UNAUTHORIZED)
                     }
+                    HttpURLConnection.HTTP_NOT_FOUND -> errorResponse = gson.fromJson(
+                        error.response().errorBody()?.charStream(),
+                        ErrorResponse::class.java
+                    )
+                    HTTP_UPGRADE_REQUIRED -> errorResponse = gson.fromJson(
+                        error.response().errorBody()?.charStream(),
+                        ErrorResponse::class.java
+                    )
                     HttpURLConnection.HTTP_NOT_FOUND -> {
                         errorResponse = gson.fromJson(
                             error.response().errorBody()?.charStream(),
