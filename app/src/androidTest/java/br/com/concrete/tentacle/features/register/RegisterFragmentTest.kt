@@ -15,6 +15,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentNoActionBarNoBottomBarTest
 import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.extensions.waitUntil
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -271,7 +272,10 @@ class RegisterFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
     }
 
     private fun callButtonClick() {
-        onView(withId(R.id.btnCreateAccount)).perform(scrollTo()).perform(click())
+        onView(withId(R.id.btnCreateAccount))
+            .perform(isDisplayed().waitUntil())
+            .perform(scrollTo())
+            .perform(click())
     }
 
     private fun matchesNotIsDisplayed(idMessageError: Int) {
