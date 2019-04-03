@@ -185,5 +185,4 @@ class HomeFragmentTest : BaseFragmentTest() {
 
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
-
 }

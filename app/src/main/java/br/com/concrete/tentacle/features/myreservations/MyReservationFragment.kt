@@ -24,7 +24,11 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.filter.FilterDialogFragment
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
-import br.com.concrete.tentacle.utils.*
+import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
+import br.com.concrete.tentacle.utils.MOCK_FILTER_MY_GAMES_MY_RESERVATION
+import br.com.concrete.tentacle.utils.QueryUtils
+import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
