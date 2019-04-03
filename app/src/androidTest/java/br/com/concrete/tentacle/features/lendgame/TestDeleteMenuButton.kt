@@ -3,6 +3,7 @@ package br.com.concrete.tentacle.features.lendgame
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -39,25 +40,15 @@ class TestDeleteMenuButton : BaseFragmentTest() {
         ).childAtPosition(0)).perform(click())
 
         onView(withId(R.id.delete)).perform(click())
-        onView(withText("EXCLUIR")).perform(click())
+
+        onView(withId(android.R.id.button1))
+            .inRoot(RootMatchers.isDialog())
+            .check(matches(isDisplayed()))
+            .perform(click())
+
         onView(withId(R.id.recyclerListView).childAtPosition(
             0
         ).childAtPosition(0)).check(matches(hasDescendant(withText("FIFA 06: Road to FIFA World Cup"))))
-    }
-
-    @Test
-    fun testDeleteGameError() {
-        setResponse("mockjson/loadmygames/load_my_games_success.json".getJson(), 200)
-        setResponse("mockjson/loadmygames/load_my_games_success_second.json".getJson(), 200)
-        setResponse("mockjson/library/loan/lend_response_success.json".getJson(), 200)
-        setResponse("mockjson/errors/error_400.json".getJson(), 400)
-
-        onView(withText("TEST")).perform(click())
-        onView(withId(R.id.delete)).perform(click())
-        onView(withText("EXCLUIR"))
-            .perform(isDisplayed().waitUntil())
-            .perform(click())
-        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
     private fun setResponse(json: String, code: Int) {
