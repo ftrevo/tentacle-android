@@ -4,6 +4,7 @@ import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withClassName
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -14,6 +15,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentNoActionBarNoBottomBarTest
 import br.com.concrete.tentacle.extensions.childAtPosition
 import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.extensions.waitUntil
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -270,7 +272,10 @@ class RegisterFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
     }
 
     private fun callButtonClick() {
-        onView(withId(R.id.btnCreateAccount)).perform(click())
+        onView(withId(R.id.btnCreateAccount))
+            .perform(isDisplayed().waitUntil())
+            .perform(scrollTo())
+            .perform(click())
     }
 
     private fun matchesNotIsDisplayed(idMessageError: Int) {
