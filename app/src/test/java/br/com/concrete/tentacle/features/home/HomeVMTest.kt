@@ -18,27 +18,6 @@ class HomeVMTest : BaseViewModelTest() {
     val homeViewModel by inject<HomeViewModel>()
 
     @Test
-    fun `when HomeViewModel calls getHomeGames should return error message for 401`() {
-
-        val expected =
-            ViewStateModel<ArrayList<Game>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        homeViewModel.getHomeGames().observeForever {
-            actual = ViewStateModel(model = it.peekContent().model as ArrayList<Game>?, status = it.peekContent().status, errors = it.peekContent().errors)
-        }
-        homeViewModel.loadHomeGames()
-        assertEquals(expected, actual)
-    }
-
-    @Test
     fun `when HomeViewModel calls getHomeGames should return error message for 400`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
@@ -55,7 +34,10 @@ class HomeVMTest : BaseViewModelTest() {
         mockResponseError400()
 
         homeViewModel.getHomeGames().observeForever {
-            actual = ViewStateModel(model = it.peekContent().model as ArrayList<Game>?, status = it.peekContent().status, errors = it.peekContent().errors)
+            actual = ViewStateModel(
+                model = it.peekContent().model as ArrayList<Game>?,
+                status = it.peekContent().status,
+                errors = it.peekContent().errors)
         }
         homeViewModel.loadHomeGames()
         assertEquals(expected.status, actual.status)
@@ -84,7 +66,9 @@ class HomeVMTest : BaseViewModelTest() {
         mockServer.enqueue(mockResponse)
 
         homeViewModel.getHomeGames().observeForever {
-            actual = ViewStateModel(model = it.peekContent().model as ArrayList<Game>?, status = it.peekContent().status)
+            actual = ViewStateModel(
+                model = it.peekContent().model as ArrayList<Game>?,
+                status = it.peekContent().status)
         }
         homeViewModel.loadHomeGames()
         assertEquals(expected, actual)

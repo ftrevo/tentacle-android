@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.di
 
+import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.features.forgotPassword.passwordRecovery.PasswordRecoveryViewModel
 import br.com.concrete.tentacle.features.forgotPassword.sendEmail.ForgotPassSendEmailViewModel
 import br.com.concrete.tentacle.features.home.HomeViewModel
@@ -22,6 +23,7 @@ import org.koin.dsl.module.module
 
 val viewModelModule = module {
 
+    viewModel { BaseViewModel() }
     viewModel { RegisterUserViewModel(get(), get(), get()) }
     viewModel { LoginViewModel(get(), get(), get()) }
     viewModel { SearchGameViewModel(get()) }

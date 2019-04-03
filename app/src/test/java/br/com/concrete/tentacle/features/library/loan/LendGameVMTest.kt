@@ -54,27 +54,6 @@ class LendGameVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `when lendGameViewModel calls fetchMediaLoan should return error message for 401`() {
-        val expected =
-            ViewStateModel<Media>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<Media>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        lendGameViewModel.getMediaViewState().observeForever {
-            actual = it
-        }
-
-        lendGameViewModel.fetchMediaLoan("someId")
-        Assert.assertEquals(expected, actual)
-    }
-
-    @Test
     fun `when lendGameViewModel calls fetchMediaLoan should return error message for 400`() {
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
@@ -120,27 +99,6 @@ class LendGameVMTest : BaseViewModelTest() {
         val mockResponse = MockResponse()
             .setResponseCode(200)
             .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
-
-        lendGameViewModel.getUpdateLoanViewState().observeForever {
-            actual = it
-        }
-
-        lendGameViewModel.updateMediaLoan("someId", LoanActionRequest(LOAN_ACTION_LEND))
-        Assert.assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `when lendGameViewModel calls updateMediaLoan should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoanResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
 
         mockServer.enqueue(mockResponse)
 

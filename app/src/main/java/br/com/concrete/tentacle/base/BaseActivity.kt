@@ -13,11 +13,18 @@ import androidx.appcompat.widget.Toolbar
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.logout
 import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.utils.DialogUtils
+import io.reactivex.functions.Consumer
+import org.koin.android.viewmodel.ext.android.viewModel
+import java.net.HttpURLConnection
 import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    private val baseViewModel: BaseViewModel by viewModel()
+
     companion object {
         const val INVALID_ICON = -1
         const val INVALID_TITLE = -1
@@ -26,6 +33,18 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        baseViewModel.subscribe(::getEventObserver)
+    }
+
+    private fun getEventObserver() = Consumer<Any> {
+        when (it) {
+            is Int -> {
+                if (it == HttpURLConnection.HTTP_UNAUTHORIZED) {
+                    logout()
+                }
+            }
+        }
     }
 
     fun setupToolbar() {

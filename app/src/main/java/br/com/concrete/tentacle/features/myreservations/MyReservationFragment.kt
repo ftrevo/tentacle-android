@@ -286,7 +286,6 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener, Filte
         myReservationViewModel.myReservations(queryParameters)
     }
 
-
     private fun updateListBeforeFilter() {
         myReservationViewModel.resetPage()
         myReservationList = ArrayList()

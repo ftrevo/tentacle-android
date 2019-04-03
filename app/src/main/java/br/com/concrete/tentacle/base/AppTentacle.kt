@@ -9,6 +9,7 @@ import br.com.concrete.tentacle.BuildConfig
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
 import br.com.concrete.tentacle.di.androidModule
+import br.com.concrete.tentacle.di.eventsModule
 import br.com.concrete.tentacle.di.networkModule
 import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
@@ -35,7 +36,8 @@ class AppTentacle : Application() {
             listOf(androidModule,
                 networkModule,
                 viewModelModule,
-                repositoryModule),
+                repositoryModule,
+                eventsModule),
 
             extraProperties = mapOf(PROPERTY_BASE_URL to BuildConfig.BASE_URL))
 

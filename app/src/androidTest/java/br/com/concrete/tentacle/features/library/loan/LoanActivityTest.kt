@@ -136,31 +136,6 @@ class LoanActivityTest {
         Intents.release()
     }
 
-    @Test
-    fun showDetailAndClickVideoAndOpenYouTube() {
-        Intents.init()
-        checkDetails()
-
-        onView(withRecyclerView(R.id.recyclerView).atPosition(0))
-            .perform(click())
-
-        Thread.sleep(2000)
-
-        intended(
-            allOf(
-                hasAction(
-                    Intent.ACTION_VIEW
-                ),
-                hasData("http://www.youtube.com/watch?v=uO1HNUoDzxQ"),
-                toPackage(
-                    "com.google.android.youtube"
-                )
-            )
-        )
-
-        Intents.release()
-    }
-
     private fun checkDetails() {
         setResponse()
 

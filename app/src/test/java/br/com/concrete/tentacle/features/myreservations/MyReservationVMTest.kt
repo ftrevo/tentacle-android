@@ -10,7 +10,6 @@ import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
 import okhttp3.mockwebserver.MockResponse
-import org.junit.Assert
 import org.junit.Test
 import org.koin.standalone.inject
 import org.junit.Assert.assertEquals
@@ -18,26 +17,6 @@ import org.junit.Assert.assertEquals
 class MyReservationVMTest : BaseViewModelTest() {
 
     val myReservationViewModel: MyReservationViewModel by inject()
-
-    @Test
-    fun `when myReservationViewModel calls getHomeGames should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoansListResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoansListResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        myReservationViewModel.getMyReservations().observeForever {
-            actual = it
-        }
-        myReservationViewModel.loadMyReservations()
-        Assert.assertEquals(expected, actual)
-    }
 
     @Test
     fun `when myReservationViewModel calls getHomeGames should return error message for 400`() {
@@ -124,26 +103,6 @@ class MyReservationVMTest : BaseViewModelTest() {
         assertEquals(expected.status, actual.status)
         assertEquals(expected.errors, actual.errors)
         assertEquals(expected.filtering, actual.filtering)
-    }
-
-    @Test
-    fun `when myReservationViewModel calls delete should return error message for 401`() {
-        val expected =
-            ViewStateModel<LoanDeleteResponse>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = ErrorResponse(statusCode = 401)
-            )
-        var actual = ViewStateModel<LoanDeleteResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(401)
-
-        mockServer.enqueue(mockResponse)
-
-        myReservationViewModel.getStateDeleteLoan().observeForever {
-            actual = it
-        }
-        myReservationViewModel.deleteLoan("id_loan")
-        Assert.assertEquals(expected, actual)
     }
 
     @Test

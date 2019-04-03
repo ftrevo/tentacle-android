@@ -9,24 +9,23 @@ import java.lang.reflect.Field
 
 class NoSwipeViewPager(context: Context, attributeSet: AttributeSet) : ViewPager(context, attributeSet) {
 
-    private var mScroller : ScrollerCustomDuration? = null
+    private var mScroller: ScrollerCustomDuration? = null
 
     init {
         try {
             val scroller = ViewPager::class.java.getDeclaredField("mScroller")
             scroller.isAccessible = true
-            val interpolator : Field = ViewPager::class.java.getDeclaredField("sInterpolator")
+            val interpolator: Field = ViewPager::class.java.getDeclaredField("sInterpolator")
             interpolator.isAccessible = true
 
-            mScroller =  ScrollerCustomDuration(context, interpolator.get(null) as Interpolator)
+            mScroller = ScrollerCustomDuration(context, interpolator.get(null) as Interpolator)
             scroller.set(this, mScroller)
-
-        }catch (ex: Exception){
+        } catch (ex: Exception) {
             ex.printStackTrace()
         }
     }
 
-    fun setScrollDurationFactor(scrollFactor: Double){
+    fun setScrollDurationFactor(scrollFactor: Double) {
         mScroller?.setScrollDurationFactor(scrollFactor)
     }
 
