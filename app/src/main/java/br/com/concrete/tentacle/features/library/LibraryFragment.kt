@@ -29,6 +29,7 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.filter.FilterDialogFragment
 import br.com.concrete.tentacle.features.library.loan.LoanActivity
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import br.com.concrete.tentacle.utils.MOCK_FILTER_LIBRARY
 import br.com.concrete.tentacle.utils.QueryUtils
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
@@ -137,6 +138,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
                             list.setActionError {
                                 viewModelLibrary.loadLibrary(queryParameters)
                             }
+                            if (it.statusCode == HTTP_UPGRADE_REQUIRED) showError(it, getString(R.string.was_some_mistake))
                         }
                         list.updateUi<Library>(null)
                         list.setLoading(false)
@@ -164,6 +166,7 @@ class LibraryFragment : BaseFragment(), FilterDialogFragment.OnFilterListener, L
                     }
                     ViewStateModel.Status.LOADING -> {}
                     ViewStateModel.Status.ERROR -> {
+                        if (it.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(it.errors, getString(R.string.was_some_mistake))
                         loadMoreItems = true
                     }
                 }

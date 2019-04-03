@@ -8,10 +8,7 @@ import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
-import androidx.test.espresso.intent.matcher.IntentMatchers.toPackage
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
@@ -24,7 +21,6 @@ import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.matchers.RecyclerViewMatcher.Companion.withRecyclerView
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Assert
@@ -165,6 +161,23 @@ class LoanActivityTest {
         onView(withText("Sport")).check(matches(ViewMatchers.isDisplayed()))
         onView(withText("Single player")).check(matches(ViewMatchers.isDisplayed()))
         onView(withText("Multiplayer")).check(matches(ViewMatchers.isDisplayed()))
+    }
+
+    @Test
+    fun checkButtonStateError426() {
+        setResponse()
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(426)
+                .setBody("mockjson/errors/error_400.json".getJson())
+        )
+        onView(withId(R.id.chipPs4)).perform(scrollTo()).perform(click())
+        onView(withId(R.id.spOwners)).perform(scrollTo())
+        onView(withId(R.id.spOwners)).check(matches(withText("John Doe")))
+        onView(withId(R.id.btPerformLoan)).check(matches(isEnabled())).perform(scrollTo()).perform(click())
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
     private fun setResponse() {

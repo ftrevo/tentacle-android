@@ -11,7 +11,6 @@ import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
-import br.com.concrete.tentacle.utils.Utils
 import org.jetbrains.annotations.TestOnly
 
 abstract class BaseFragment : Fragment() {

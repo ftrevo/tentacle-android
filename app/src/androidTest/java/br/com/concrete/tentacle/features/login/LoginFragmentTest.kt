@@ -97,11 +97,26 @@ class LoginFragmentTest : BaseFragmentNoActionBarNoBottomBarTest() {
         callButtonClick()
         matchesIsDisplayed(R.string.password_error)
     }
+
     @Test
     fun checkValidPassword() {
         setField("123456", R.id.edtPassword)
         callButtonClick()
         matchesNotIsDisplayed(R.string.password_error)
+    }
+
+    @Test
+    fun loginError426() {
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(426)
+                .setBody("mockjson/errors/error_400.json".getJson())
+        )
+
+        setField("teste@test.com", R.id.edtEmail)
+        setField("123456", R.id.edtPassword)
+        callButtonClick()
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
     private fun callButtonClick() {

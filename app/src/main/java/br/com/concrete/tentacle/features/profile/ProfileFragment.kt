@@ -18,6 +18,7 @@ import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.extensions.digits
 import br.com.concrete.tentacle.extensions.validateEmail
 import br.com.concrete.tentacle.extensions.visible
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import kotlinx.android.synthetic.main.fragment_menu.state
 import kotlinx.android.synthetic.main.fragment_profile.citySearchSpinner
 import kotlinx.android.synthetic.main.fragment_profile.emailEditText
@@ -74,6 +75,7 @@ class ProfileFragment : BaseFragment() {
                     }
                 }
                 ViewStateModel.Status.ERROR -> {
+                    if (profileViewState.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(profileViewState.errors, getString(R.string.was_some_mistake))
                     showProgress(false)
                     showLoadError(true)
                 }
@@ -105,6 +107,7 @@ class ProfileFragment : BaseFragment() {
                     enableField(true)
                 }
                 ViewStateModel.Status.ERROR -> {
+                    if (viewState.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(viewState.errors, getString(R.string.was_some_mistake))
                     progressButton(false)
                     enableField(true)
                 }
@@ -131,6 +134,7 @@ class ProfileFragment : BaseFragment() {
                     enableField(true)
                 }
                 ViewStateModel.Status.ERROR -> {
+                    if (viewState.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(viewState.errors, getString(R.string.was_some_mistake))
                     enableField(true)
                 }
             }

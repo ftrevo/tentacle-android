@@ -124,6 +124,34 @@ class LendGameActivityTest : BaseInstrumentedTest() {
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
+    @Test
+    fun testLoadLendSuccessWithoutReservationClickButtonError426() {
+        setResponse("mockjson/library/loan/lend_response_success.json".getJson(), 200)
+
+        onView(withId(R.id.ivGameCover)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Super Meat Boy")))
+        onView(withId(R.id.tvReservado)).check(matches(withText("Solicitado por")))
+        onView(withId(R.id.tvRequestedBy)).check(matches(withText("Daivid Vasconcelos Leal")))
+        onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
+        onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
+        onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.btLendGame)).perform(scrollTo())
+        onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
+
+        setResponse("mockjson/errors/error_400.json".getJson(), 426)
+
+        onView(withId(R.id.btLendGame)).check(matches(isDisplayed())).perform(click())
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun testLoadLendError426() {
+        setResponse("mockjson/errors/error_400.json".getJson(), 426)
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
+
     private fun setResponse(json: String, code: Int) {
         mockWebServer.enqueue(
             MockResponse()

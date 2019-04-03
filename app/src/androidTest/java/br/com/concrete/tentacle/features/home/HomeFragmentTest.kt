@@ -174,4 +174,15 @@ class HomeFragmentTest : BaseFragmentTest() {
             .check(matches(hasDescendant(withText("God of War III"))))
             .check(matches(hasDescendant(withText("Winner of over 200 game of the year awards"))))
     }
+
+    @Test
+    fun showRecycleViewWithItemsError426() {
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(426)
+                .setBody("mockjson/errors/error_400.json".getJson())
+        )
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
 }
