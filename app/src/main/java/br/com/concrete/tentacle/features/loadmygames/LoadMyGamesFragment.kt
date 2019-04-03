@@ -28,14 +28,15 @@ import br.com.concrete.tentacle.features.filter.FilterDialogFragment
 import br.com.concrete.tentacle.features.lendgame.LendGameActivity
 import br.com.concrete.tentacle.features.registerGame.RegisterGameHostActivity
 import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import br.com.concrete.tentacle.utils.MOCK_FILTER_MY_GAMES
 import br.com.concrete.tentacle.utils.QueryUtils
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_game_list.list
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
-import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
-import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
+import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
 import kotlinx.android.synthetic.main.list_error_custom.view.buttonNameError
 import kotlinx.android.synthetic.main.progress_include.view.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -124,6 +125,9 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
                     ViewStateModel.Status.LOADING -> {
                     }
                     ViewStateModel.Status.ERROR -> {
+                        if (it.errors?.statusCode == HTTP_UPGRADE_REQUIRED) {
+                            showError(it.errors, getString(R.string.was_some_mistake))
+                        }
                         loadMoreItems = false
                     }
                 }
@@ -169,13 +173,14 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
                     }
 
                     ViewStateModel.Status.ERROR -> {
-                        it.errors?.let {
+                        it.errors?.let { error ->
                             list.setErrorMessage(R.string.load_games_error_not_know)
                             list.setButtonTextError(R.string.load_again)
                             list.setActionError {
                                 viewModelLoadMyGames.queryParameters = queryParameters
                                 viewModelLoadMyGames.loadMyGames()
                             }
+                            if (error.statusCode == HTTP_UPGRADE_REQUIRED) showError(error, getString(R.string.was_some_mistake))
                         }
                         list.updateUi<Media>(null)
                         list.setLoading(false)

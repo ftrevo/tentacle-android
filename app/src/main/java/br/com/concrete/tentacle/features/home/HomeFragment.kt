@@ -15,6 +15,7 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.library.loan.LoanActivity
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_home.listHome
 import kotlinx.android.synthetic.main.list_custom.recyclerListView
@@ -64,6 +65,7 @@ class HomeFragment : BaseFragment() {
                         state.model?.let { loadRecyclerView(it) }
                     }
                     ViewStateModel.Status.ERROR -> {
+                        if (state.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(state.errors, getString(R.string.was_some_mistake))
                         callError(state)
                     }
                 }
