@@ -267,4 +267,18 @@ class LibraryFragmentTest : BaseFragmentTest() {
         onView(withRecyclerView(R.id.recyclerListView).atPosition(0))
             .check(matches(ViewMatchers.hasDescendant(withText("JOGO FIRST"))))
     }
+
+
+    @Test
+    fun showEmptyErrorError426() {
+        val response = "mockjson/errors/error_400.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(426)
+                .setBody(response)
+        )
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
+
 }

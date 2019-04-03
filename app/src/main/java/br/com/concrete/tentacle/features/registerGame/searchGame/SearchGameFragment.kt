@@ -15,6 +15,7 @@ import br.com.concrete.tentacle.base.BaseSearchFragment
 import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_search_game.listCustom
 import kotlinx.android.synthetic.main.list_custom.view.buttonAction
@@ -62,6 +63,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
                     count = gameModel.model?.count
                 }
                 ViewStateModel.Status.ERROR -> {
+                    if (gameModel.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(gameModel.errors, getString(R.string.was_some_mistake))
                     enableProgress(false)
                     loadMessageErrorLoading()
                 }
@@ -117,6 +119,7 @@ class SearchGameFragment : BaseSearchFragment(), View.OnClickListener, ListCusto
                         }
                     }
                     ViewStateModel.Status.ERROR -> {
+                        if (it.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(it.errors, getString(R.string.was_some_mistake))
                         loadMoreItems = false
                     }
                 }

@@ -16,6 +16,7 @@ import br.com.concrete.tentacle.custom.ListCustom
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.utils.EMPTY_STRING
+import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
 import kotlinx.android.synthetic.main.fragment_remote_game.listCustom
 import kotlinx.android.synthetic.main.list_custom.*
@@ -73,6 +74,7 @@ class RemoteGameFragment : BaseFragment(), ListCustom.OnScrollListener {
                     showList(remoteGamesViewState.model as ArrayList<Game?>)
                 }
                 ViewStateModel.Status.ERROR -> {
+                    if (remoteGamesViewState.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(remoteGamesViewState.errors, getString(R.string.was_some_mistake))
                     enableProgress(false)
                     loadMessageErrorLoading(remoteGamesViewState)
                 }
@@ -118,6 +120,7 @@ class RemoteGameFragment : BaseFragment(), ListCustom.OnScrollListener {
                     }
                 }
                 ViewStateModel.Status.ERROR -> {
+                    if (remoteGamesViewState.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(remoteGamesViewState.errors, getString(R.string.was_some_mistake))
                     finishLoadMore()
                 }
             }

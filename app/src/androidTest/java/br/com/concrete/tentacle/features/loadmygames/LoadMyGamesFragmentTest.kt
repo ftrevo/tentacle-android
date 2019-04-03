@@ -162,4 +162,16 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
             .check(matches(hasDescendant(not(withText("TEST")))))
             .check(matches(hasDescendant(not(withText("PS4")))))
     }
+
+    @Test
+    fun showEmptyErrorError426() {
+        val response = "mockjson/errors/error_400.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(426)
+                .setBody(response)
+        )
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
 }

@@ -167,6 +167,23 @@ class LoanActivityTest {
         onView(withText("Multiplayer")).check(matches(ViewMatchers.isDisplayed()))
     }
 
+    @Test
+    fun checkButtonStateError426() {
+        setResponse()
+
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(426)
+                .setBody("mockjson/errors/error_400.json".getJson())
+        )
+        onView(withId(R.id.chipPs4)).perform(scrollTo()).perform(click())
+        onView(withId(R.id.spOwners)).perform(scrollTo())
+        onView(withId(R.id.spOwners)).check(matches(withText("John Doe")))
+        onView(withId(R.id.btPerformLoan)).check(matches(isEnabled())).perform(scrollTo()).perform(click())
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
+
     private fun setResponse() {
         mockWebServer.enqueue(MockResponse()
             .setResponseCode(200)

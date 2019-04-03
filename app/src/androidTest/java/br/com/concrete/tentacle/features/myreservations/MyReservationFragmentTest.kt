@@ -269,6 +269,13 @@ class MyReservationFragmentTest : BaseFragmentTest() {
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
 
+    @Test
+    fun showRecycleViewWithItemsError426() {
+        setResponse("mockjson/errors/error_400.json".getJson(), 426)
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
+
     private fun setResponse(json: String, code: Int) {
         mockWebServer.enqueue(
             MockResponse()

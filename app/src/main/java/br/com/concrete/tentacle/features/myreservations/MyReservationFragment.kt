@@ -24,10 +24,7 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.features.filter.FilterDialogFragment
 import br.com.concrete.tentacle.features.myreservations.detail.MyReservationActivity
-import br.com.concrete.tentacle.utils.DialogUtils
-import br.com.concrete.tentacle.utils.MOCK_FILTER_MY_GAMES_MY_RESERVATION
-import br.com.concrete.tentacle.utils.QueryUtils
-import br.com.concrete.tentacle.utils.TIME_PROGRESS_LOAD
+import br.com.concrete.tentacle.utils.*
 import kotlinx.android.synthetic.main.fragment_my_reservation.listMyReservations
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListError
 import kotlinx.android.synthetic.main.list_custom.view.recyclerListView
@@ -89,6 +86,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener, Filte
                     }
                 }
                 ViewStateModel.Status.ERROR -> {
+                    if (base.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(base.errors, getString(R.string.was_some_mistake))
                     callError(
                         ViewStateModel(
                             status = base.status
@@ -121,6 +119,7 @@ class MyReservationFragment : BaseFragment(), ListCustom.OnScrollListener, Filte
                     ViewStateModel.Status.LOADING -> {
                     }
                     ViewStateModel.Status.ERROR -> {
+                        if (it.errors?.statusCode == HTTP_UPGRADE_REQUIRED) showError(it.errors, getString(R.string.was_some_mistake))
                         loadMoreItems = false
                     }
                 }
