@@ -27,7 +27,7 @@ class HomeFragment : BaseFragment() {
     private val DELAY_BETWEEN_TRANSITION = 5000L
 
     private val homeViewModel: HomeViewModel by viewModel()
-    private val publisher : PublishSubject<Boolean> = PublishSubject.create()
+    private val publisher: PublishSubject<Boolean> = PublishSubject.create()
     private var isFragmentVisible = false
 
     override fun onCreateView(
@@ -109,8 +109,8 @@ class HomeFragment : BaseFragment() {
         listHome.setLoading(false)
     }
 
-    private fun startAnimation(){
-        if(isFragmentVisible){
+    private fun startAnimation() {
+        if (isFragmentVisible) {
             Handler().postDelayed({
                 publisher.onNext(true)
                 startAnimation()
