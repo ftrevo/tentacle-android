@@ -5,6 +5,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -15,6 +16,7 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.extensions.waitUntil
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.Matchers.not
 import org.junit.Assert.assertTrue
@@ -120,6 +122,22 @@ class LendGameActivityTest : BaseInstrumentedTest() {
         setResponse("mockjson/errors/error_400.json".getJson(), 400)
 
         onView(withId(R.id.btLendGame)).check(matches(isDisplayed())).perform(click())
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun testDeleteGameError() {
+        setResponse("mockjson/library/loan/lend_response_success.json".getJson(), 200)
+        setResponse("mockjson/errors/error_400.json".getJson(), 400)
+
+        onView(withId(R.id.delete)).perform(click())
+
+        onView(withId(android.R.id.button1))
+            .inRoot(isDialog())
+            .check(matches(isDisplayed()))
+            .perform(click())
+
 
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
