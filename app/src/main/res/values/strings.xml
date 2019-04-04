@@ -182,6 +182,7 @@
     <string name="confirm_game">Você confirma que %1$s existe para a plataforma %2$s?</string>
     <string name="back">Voltar</string>
     <string name="confirm">Confirmar</string>
+    <string name="session_expired_text">"A sua sessão expirou, efetue o login novamente."</string>
 
     <string name="pending">Pendente</string>
 
