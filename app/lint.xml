@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Disable resource type check in this project -->
+    <issue id="ResourceType" severity="ignore"/>
+
+    <issue id="InvalidPackage" severity="warning"/>
+
+    <issue id="UnusedResources" severity="warning">
+        <ignore regexp=".*google-services.*" />
+        <!-- Ignore what google services generates -->
+        <ignore path="**/google-services/**" />
+    </issue>
+
+</lint>

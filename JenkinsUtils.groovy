@@ -122,9 +122,9 @@ def testsKtlint() {
 def lintDebug() {
     try {
         // padrao nome de JOB: xx-xx-xx/xx-xx-xx-xx-xx/PR-<ID>
-        def bitbucketID = env.JOB_NAME.split('-')[7]
+//        def bitbucketID = env.JOB_NAME.split('-')[7]
         sh "./gradlew lintDebug"
-        sh "./gradlew addCommentsForPR -DpullRequestId=${bitbucketID}"
+//        sh "./gradlew addCommentsForPR -DpullRequestId=${bitbucketID}"
         publishHtmlProject('app/build/reports/lint/', 'Lint Debug')
     } catch(err) {
         publishHtmlProject('app/build/reports/lint/', 'Lint Debug')
