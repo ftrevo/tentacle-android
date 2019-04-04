@@ -41,7 +41,16 @@ abstract class BaseActivity : AppCompatActivity() {
         when (it) {
             is Int -> {
                 if (it == HttpURLConnection.HTTP_UNAUTHORIZED) {
-                    logout()
+                    DialogUtils.showDialog(
+                        context = this,
+                        title = getString(R.string.something_happened),
+                        message = getString(R.string.session_expired_text),
+                        positiveText = getString(R.string.ok),
+                        contentView = R.layout.custom_dialog_error,
+                        positiveListener = DialogInterface.OnClickListener { _, _ ->
+                            logout()
+                        }
+                    )
                 }
             }
         }

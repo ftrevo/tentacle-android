@@ -16,7 +16,6 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.getJson
-import br.com.concrete.tentacle.extensions.waitUntil
 import okhttp3.mockwebserver.MockResponse
 import org.hamcrest.Matchers.not
 import org.junit.Assert.assertTrue
@@ -137,7 +136,6 @@ class LendGameActivityTest : BaseInstrumentedTest() {
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
             .perform(click())
-
 
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
