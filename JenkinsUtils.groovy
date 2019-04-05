@@ -157,7 +157,7 @@ def killEmulator() {
     sh '''
     /Users/macmini-recife/homebrew/bin/adb devices -l |grep emulator-5554
     if [[ $? -eq 0 ]]; then
-        PROCESS=$(ps -ef |grep -v grep |grep Nexus5XAPI26 |awk '{print $2}')
+        PROCESS=$(ps -ef |grep -v grep |grep Nexus_5X_API_28 |awk '{print $2}')
         kill -9 ${PROCESS}
 
         sleep 5
@@ -168,7 +168,7 @@ def killEmulator() {
 def instrumentTests() {
     try {
         sh '''
-        /Library/Java/AndroidSDK/emulator/emulator -avd Nexus5XAPI26 -netdelay none -netspeed full &
+        /Library/Java/AndroidSDK/emulator/emulator -avd Nexus_5X_API_28 -netdelay none -netspeed full &
         sleep 120
 
         ./gradlew uninstallAll
