@@ -39,9 +39,9 @@ node('master') {
         utils.unitTests('Debug')
     }
 
-    stage('Instruments Tests') {
-        utils.instrumentTests()
-    }
+//    stage('Instruments Tests') {
+//        utils.instrumentTests()
+//    }
 
     stage('Jacoco Report') {
         utils.reportJacoco()
