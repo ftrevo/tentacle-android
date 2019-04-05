@@ -8,10 +8,10 @@ task ktlint(type: JavaExec, group: "verification") {
     main = "com.github.shyiko.ktlint.Main"
     args "src/**/*.kt"
     // to generate report in checkstyle format prepend following args:
-     args "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/reports/ktlint/ktlint.xml"
+//     args "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/reports/ktlint/ktlint.xml"
     // see https://github.com/shyiko/ktlint#usage for more
 //    args "--android=true"
-//    args "--reporter=html,artifact=com.github.mcassiano:ktlint-html-reporter:0.2.0,output=${buildDir}/reports/ktlint/ktlint.html"
+    args "--reporter=html,artifact=com.github.mcassiano:ktlint-html-reporter:0.2.0,output=${buildDir}/reports/ktlint/index.html"
 }
 check.dependsOn ktlint
 
