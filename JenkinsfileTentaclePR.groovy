@@ -35,13 +35,13 @@ node('master') {
         utils.buildApk('Debug')
     }
 
-     stage('Unit Tests') {
-         utils.unitTests('Debug')
-     }
-
-    stage('Instruments Tests') {
-        utils.instrumentTests()
-    }
+//    stage('Unit Tests') {
+//        utils.unitTests('Debug')
+//    }
+//
+//    stage('Instruments Tests') {
+//        utils.instrumentTests()
+//    }
 
     stage('Jacoco Report') {
         utils.reportJacoco()

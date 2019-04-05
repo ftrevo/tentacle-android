@@ -191,7 +191,7 @@ def instrumentTests() {
 
 def reportJacoco() { 
     try {
-        sh "./gradlew jacocoReport"
+        sh "./gradlew jacocoTestReport"
         publishHtmlProject('app/build/reports/jacoco/jacocoReport/html/', 'Code Coverage')
     }
     catch(err) {
