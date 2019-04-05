@@ -5,10 +5,4 @@
 
     <issue id="InvalidPackage" severity="warning"/>
 
-    <issue id="UnusedResources" severity="warning">
-        <ignore regexp=".*google-services.*" />
-        <!-- Ignore what google services generates -->
-        <ignore path="**/google-services/**" />
-    </issue>
-
 </lint>
