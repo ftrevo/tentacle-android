@@ -23,8 +23,8 @@ class LoginViewModel(
     private val repository: LoginRepository,
     private val sharedPrefRepository: SharedPrefRepositoryContract,
     private val tokenRepository: TokenRepository
-)
-    : BaseViewModel(), LifecycleObserver {
+) :
+    BaseViewModel(), LifecycleObserver {
 
     private val stateModel: MutableLiveData<Event<ViewStateModel<Session>>> = MutableLiveData()
 

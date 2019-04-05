@@ -115,6 +115,7 @@ def testsKtlint() {
         archivesProject("app/build/reports/ktlint/index.html")
         publishHtmlProject('app/build/reports/ktlint/', 'Ktlint')
     } catch (err) {
+        archivesProject("app/build/reports/ktlint/index.html")
         publishHtmlProject('app/build/reports/ktlint/', 'Ktlint')
         sendFailedNotify('ktlint Tests', err)
     }
