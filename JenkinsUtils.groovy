@@ -170,9 +170,9 @@ def instrumentTests() {
         sh '''
         /Library/Java/AndroidSDK/emulator/emulator -avd Nexus_5X_API_28 -wipe-data -netdelay none -netspeed full &
         sleep 120
-        adb shell settings put global window_animation_scale 0
-        adb shell settings put global transition_animation_scale 0
-        adb shell settings put global animator_duration_scale 0
+        which adb shell settings put global window_animation_scale 0
+        which adb shell settings put global transition_animation_scale 0
+        which adb shell settings put global animator_duration_scale 0
 
         ./gradlew uninstallAll
         ./gradlew connectedDebugAndroidTest
