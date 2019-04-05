@@ -22,28 +22,32 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     args "-F", "src/**/*.kt"
 }
 
-task jacocoTestReport(type: JacocoReport,
-        dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport) {
 
     reports {
         xml.enabled = true
         html.enabled = true
     }
 
-    def fileFilter = [ '/br/com/concrete/tentacle/*',
-                       '**/R.class', '**/R$*.class', '**/BuildConfig.*',
-                       '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*' ]
+    def androidExclusion = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/BuildConfig.*',
+            '**/Manifest*.*'
+    ]
 
-    def debugTree =
-            fileTree(
-                    dir: "$project.buildDir/tmp/kotlin-classes/debug",
-                    excludes: fileFilter)
+    def debugTree = (file("$project.buildDir/tmp/kotlin-classes/debug").exists()
+                    ? fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: androidExclusion)
+                    : fileTree(dir: "$project.buildDir/classes", excludes: androidExclusion))
+
 
     def mainSrc = "$project.projectDir/src/main/java"
 
     sourceDirectories = files([mainSrc])
     classDirectories = files([debugTree])
     executionData = fileTree(dir: project.buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+            'jacoco/testDebugUnitTest.exec'
     ])
 }
