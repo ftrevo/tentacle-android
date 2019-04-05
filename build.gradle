@@ -9,7 +9,7 @@ buildscript {
     ext.canarinho = '2.0.1'
     ext.searchableSpinner = '1.9'
     ext.material = '1.1.0-alpha02'
-    ext.ktLintVersion = '0.31.0'
+    ext.ktLintVersion = '0.20.0'
     ext.androidGradlePlugin = '3.3.2'
     ext.fabricPlugin = '1.25.4'
     ext.crashlyticsVersion = '2.9.1'
