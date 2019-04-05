@@ -11,7 +11,7 @@ import br.com.concrete.tentacle.di.PROPERTY_BASE_URL
 import br.com.concrete.tentacle.di.androidModule
 import br.com.concrete.tentacle.di.eventsModule
 import br.com.concrete.tentacle.di.networkModule
-import br.com.concrete.tentacle.di.*
+import br.com.concrete.tentacle.di.repositoryModule
 import br.com.concrete.tentacle.di.viewModelModule
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.crashlytics.android.Crashlytics
