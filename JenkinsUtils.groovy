@@ -112,6 +112,7 @@ def testsKtlint() {
         ./gradlew wrapper
         ./gradlew ktlint
         """
+        archivesProject("app/build/reports/ktlint/index.html")
         publishHtmlProject('app/build/reports/ktlint/', 'Ktlint')
     } catch (err) {
         publishHtmlProject('app/build/reports/ktlint/', 'Ktlint')
