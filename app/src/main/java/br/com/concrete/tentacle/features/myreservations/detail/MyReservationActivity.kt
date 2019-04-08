@@ -13,9 +13,13 @@ import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
+import kotlinx.android.synthetic.main.activity_host.menuFragment
+import kotlinx.android.synthetic.main.activity_host.toolbar
 import kotlinx.android.synthetic.main.activity_my_reservations_details.gameView
 import kotlinx.android.synthetic.main.activity_my_reservations_details.group
 import kotlinx.android.synthetic.main.activity_my_reservations_details.tvGameOwner
@@ -28,12 +32,14 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Date
 import java.util.concurrent.TimeUnit
 
+
 class MyReservationActivity : BaseActivity() {
 
     companion object {
         const val LOAN_EXTRA_ID = "loanExtraId"
     }
 
+    private var menu: Menu? = null
     private var loan: LoanResponse? = null
 
     private val viewModel: MyReservationDetailViewModel by viewModel()
@@ -122,11 +128,20 @@ class MyReservationActivity : BaseActivity() {
             val color = ContextCompat.getColor(this@MyReservationActivity, loanColor)
             ivGameStatus.setColorFilter(color)
             tvLoanInfo.setTextColor(color)
+            updateUIAlreadyLend(data)
             group.visibility = View.VISIBLE
         } ?: run {
             val error = ErrorResponse()
             error.messageInt.add(R.string.load_error)
             showError(error, getString(R.string.unknow_error))
+        }
+    }
+
+    private fun updateUIAlreadyLend(data: LoanResponse?){
+        data?.returnDate?.let {
+            tvGameStatus.text = String.format(getString(R.string.returned_date), it.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT))
+            tvLoanInfo.visibility = View.GONE
+            this.menu?.getItem(0)?.setVisible(false)
         }
     }
 
@@ -167,6 +182,7 @@ class MyReservationActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_game_detail, menu)
+        this.menu = menu
         return super.onCreateOptionsMenu(menu)
     }
 
