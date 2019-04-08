@@ -153,6 +153,7 @@ class MyReservationActivity : BaseActivity() {
             val ers = errorResponse.toString()
 
             DialogUtils.showDialog(
+                contentView = R.layout.custom_dialog_error,
                 context = this@MyReservationActivity,
                 title = title,
                 message = ers,
