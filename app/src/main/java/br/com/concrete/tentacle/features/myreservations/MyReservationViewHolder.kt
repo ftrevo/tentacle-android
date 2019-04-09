@@ -64,6 +64,10 @@ class MyReservationViewHolder(
                         visibility = View.VISIBLE
                         setColorStatus(holder.itemView, R.color.loan_state_expired)
                     }
+                    LoanResponse.LoanState.INACTIVE -> {
+                        holder.layout.ivGameStatus.visibility = View.GONE
+                        holder.layout.statusLayout.visibility = View.GONE
+                    }
                 }
 
                 text?.let {
@@ -73,11 +77,6 @@ class MyReservationViewHolder(
                     holder.layout.dateImage.visibility = visibility
                 }
                 loanClick(loanResponse)
-
-                loanResponse.returnDate?.let {
-                    holder.layout.ivGameStatus.visibility = View.GONE
-                    holder.layout.statusLayout.visibility = View.GONE
-                }
             }
         }
 

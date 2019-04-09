@@ -116,6 +116,11 @@ class MyReservationActivity : BaseActivity() {
                     loanColor = R.color.loan_state_pending
                     loanInfoText = getString(R.string.loan_info_pending)
                 }
+                LoanResponse.LoanState.INACTIVE -> {
+                    tvGameStatus.text = String.format(getString(R.string.returned_date), loanResponse.returnDate?.toDate()?.format(SIMPLE_DATE_OUTPUT_FORMAT))
+                    tvLoanInfo.visibility = View.GONE
+                    invalidateOptionsMenu()
+                }
             }
 
             loanText?.let {
@@ -125,23 +130,16 @@ class MyReservationActivity : BaseActivity() {
             loanInfoText?.let {
                 tvLoanInfo.text = loanInfoText
             }
-            val color = ContextCompat.getColor(this@MyReservationActivity, loanColor)
-            ivGameStatus.setColorFilter(color)
-            tvLoanInfo.setTextColor(color)
-            updateUIAlreadyLend(data)
+            loanColor?.let {
+                val color = ContextCompat.getColor(this@MyReservationActivity, loanColor)
+                ivGameStatus.setColorFilter(color)
+                tvLoanInfo.setTextColor(color)
+            }
             group.visibility = View.VISIBLE
         } ?: run {
             val error = ErrorResponse()
             error.messageInt.add(R.string.load_error)
             showError(error, getString(R.string.unknow_error))
-        }
-    }
-
-    private fun updateUIAlreadyLend(data: LoanResponse?){
-        data?.returnDate?.let {
-            tvGameStatus.text = String.format(getString(R.string.returned_date), it.toDate().format(SIMPLE_DATE_OUTPUT_FORMAT))
-            tvLoanInfo.visibility = View.GONE
-            this.menu?.getItem(0)?.setVisible(false)
         }
     }
 
@@ -180,9 +178,13 @@ class MyReservationActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_game_detail, menu)
-        this.menu = menu
+        loan?.let {
+            if(it.getLoanState() != LoanResponse.LoanState.INACTIVE){
+                val inflater = menuInflater
+                inflater.inflate(R.menu.menu_game_detail, menu)
+                this.menu = menu
+            }
+        }
         return super.onCreateOptionsMenu(menu)
     }
 

@@ -22,18 +22,22 @@ data class LoanResponse(
 ) : Parcelable {
 
     enum class LoanState {
-        PENDING, EXPIRED, ACTIVE
+        PENDING, EXPIRED, ACTIVE, INACTIVE
     }
 
     fun getLoanState(): LoanState {
         val estimated = estimatedReturnDate?.toDate()?.timeInMillis
         val now = Date().time
-        loanDate?.let {
-            estimated?.let {
-                return if (now > it) LoanState.EXPIRED else LoanState.ACTIVE
-            }
+        returnDate?.let {
+            return LoanState.INACTIVE
         } ?: run {
-            return LoanState.PENDING
+            loanDate?.let {
+                estimated?.let {
+                    return if (now > it) LoanState.EXPIRED else LoanState.ACTIVE
+                }
+            } ?: run {
+                return LoanState.PENDING
+            }
         }
     }
 }
