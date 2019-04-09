@@ -151,6 +151,7 @@ def buildAPkRelease(){
         ./Library/Java/AndroidSDK/build-tools/28.0.3/zipalign -v -p 4 app/build/outputs/apk/release/app-release-unsigned.apk app-release-unsigned-aligned.apk
         ./Library/Java/AndroidSDK/build-tools/28.0.3/apksigner sign -ks /Users/Shared/Jenkins/Home/tentackeFiles/assinaturaApp/tentacle_keystore.jks --ks-key-alias Tentacle --ks-pass file:/Users/Shared/Jenkins/Home/tentackeFiles/assinaturaApp/key_pass --key-pass file:/Users/Shared/Jenkins/Home/tentackeFiles/assinaturaApp/alias_pass --out tentacle-release.apk /app/build/outputs/apk/release/app-release-unsigned-aligned.apk
         """
+        archivesProject("/app/build/outputs/apk/release/app-release-unsigned-aligned.apk")
     }catch(err) {
         sendFailedNotify('Build APK Release', err)
     }
