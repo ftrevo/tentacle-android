@@ -7,6 +7,7 @@ import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
+import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
@@ -100,6 +101,12 @@ class GameRepository(private val apiRest: ApiService) {
 
     fun deleteLoan(idLoan: String): Observable<BaseModel<LoanDeleteResponse>> {
         return apiRest.deleteLoan(idLoan)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+    }
+
+    fun activeMedia(idMedia: String, media: MediaRequest, active: Boolean): Observable<BaseModel<Media>> {
+        return apiRest.activeMedia(idMedia, media, active)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

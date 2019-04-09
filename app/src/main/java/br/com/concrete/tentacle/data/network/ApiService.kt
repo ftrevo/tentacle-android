@@ -137,4 +137,11 @@ interface ApiService {
 
     @DELETE("loans/{id}")
     fun deleteLoan(@Path("id") idLoan: String): Observable<BaseModel<LoanDeleteResponse>>
+
+    @PATCH("media/{id}")
+    fun activeMedia(
+        @Path("id") id: String,
+        @Body media: MediaRequest,
+        @Query("active") active: Boolean = true
+    ): Observable<BaseModel<Media>>
 }
