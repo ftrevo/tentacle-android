@@ -27,13 +27,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/gameView"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp_24"/>
 
             <include
                     android:id="@+id/dashed"
                     layout="@layout/dashed_include"
                     app:layout_constraintTop_toBottomOf="@id/gameView"
-                    android:layout_marginTop="@dimen/dp_24"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_10"/>
 
