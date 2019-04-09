@@ -26,9 +26,9 @@ node('master') {
         utils.buildAPkRelease()
     }
 
-    stage('Release') {
+    /*stage('Release') {
         utils.releaseAndroidAPKToCrashlytics('Release')
-    }
+    }*/
 
     stage('Inform Build OK') {
         utils.sendSucessNotify('Job success')
