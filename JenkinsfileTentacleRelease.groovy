@@ -11,7 +11,7 @@ node('master') {
     def utils = load('JenkinsUtils.groovy')
     
     stage('cp Arquivos') {
-        utils.cpArquivoFirebaseJson()
+        utils.cpArquivos()
     }
     
     stage('clean') {
@@ -22,8 +22,8 @@ node('master') {
         utils.upgradeVersionName()
     }*/
 
-    stage('Build APK') {
-        utils.buildApk('Release')
+    stage('Build APK Release') {
+        utils.buildAPkRelease('Release')
     }
 
     stage('Release') {
