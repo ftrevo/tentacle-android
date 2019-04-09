@@ -228,7 +228,7 @@ def gradleClean() {
 }
 
 def cpArquivos() {
-    sh "cp /Users/Shared/Jenkins/Home/tentackeFiles/jsonFirebaseTentacle/google-services.json /Users/Shared/Jenkins/Home/workspace/tentacle-frontend-android-PR/app"
+    sh "cp /Users/Shared/Jenkins/Home/tentackeFiles/jsonFirebaseTentacle/google-services.json /Users/Shared/Jenkins/Home/workspace/tentacle-frontend-android-release-build/app"
 }
 
 return this
