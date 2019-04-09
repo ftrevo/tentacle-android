@@ -18,8 +18,6 @@ import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
-import kotlinx.android.synthetic.main.activity_host.menuFragment
-import kotlinx.android.synthetic.main.activity_host.toolbar
 import kotlinx.android.synthetic.main.activity_my_reservations_details.gameView
 import kotlinx.android.synthetic.main.activity_my_reservations_details.group
 import kotlinx.android.synthetic.main.activity_my_reservations_details.tvGameOwner
@@ -31,7 +29,6 @@ import kotlinx.android.synthetic.main.progress_include.progressBarList
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Date
 import java.util.concurrent.TimeUnit
-
 
 class MyReservationActivity : BaseActivity() {
 
@@ -180,7 +177,7 @@ class MyReservationActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         loan?.let {
-            if(it.getLoanState() != LoanResponse.LoanState.INACTIVE){
+            if (it.getLoanState() != LoanResponse.LoanState.INACTIVE) {
                 val inflater = menuInflater
                 inflater.inflate(R.menu.menu_game_detail, menu)
                 this.menu = menu
