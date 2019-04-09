@@ -23,7 +23,7 @@ node('master') {
     }*/
 
     stage('Build APK Release') {
-        utils.buildAPkRelease('Release')
+        utils.buildAPkRelease()
     }
 
     stage('Release') {
