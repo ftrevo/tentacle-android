@@ -12,7 +12,7 @@ node('master') {
     def utils = load('JenkinsUtils.groovy')
     
     stage('cp Arquivos') {
-        utils.cpArquivoFirebaseJson()
+        utils.cpArquivos()
     }
     
     stage('clean') {
