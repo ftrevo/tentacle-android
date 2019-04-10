@@ -13,9 +13,11 @@ import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.extensions.visible
 import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
 import kotlinx.android.synthetic.main.activity_my_reservations_details.gameView
 import kotlinx.android.synthetic.main.activity_my_reservations_details.group
 import kotlinx.android.synthetic.main.activity_my_reservations_details.tvGameOwner
@@ -34,6 +36,7 @@ class MyReservationActivity : BaseActivity() {
         const val LOAN_EXTRA_ID = "loanExtraId"
     }
 
+    private var menu: Menu? = null
     private var loan: LoanResponse? = null
 
     private val viewModel: MyReservationDetailViewModel by viewModel()
@@ -110,6 +113,11 @@ class MyReservationActivity : BaseActivity() {
                     loanColor = R.color.loan_state_pending
                     loanInfoText = getString(R.string.loan_info_pending)
                 }
+                LoanResponse.LoanState.INACTIVE -> {
+                    tvGameStatus.text = String.format(getString(R.string.returned_date), loanResponse.returnDate?.toDate()?.format(SIMPLE_DATE_OUTPUT_FORMAT))
+                    tvLoanInfo.visibility = View.GONE
+                    invalidateOptionsMenu()
+                }
             }
 
             loanText?.let {
@@ -119,9 +127,11 @@ class MyReservationActivity : BaseActivity() {
             loanInfoText?.let {
                 tvLoanInfo.text = loanInfoText
             }
-            val color = ContextCompat.getColor(this@MyReservationActivity, loanColor)
-            ivGameStatus.setColorFilter(color)
-            tvLoanInfo.setTextColor(color)
+            loanColor?.let {
+                val color = ContextCompat.getColor(this@MyReservationActivity, loanColor)
+                ivGameStatus.setColorFilter(color)
+                tvLoanInfo.setTextColor(color)
+            }
             group.visibility = View.VISIBLE
         } ?: run {
             val error = ErrorResponse()
@@ -166,8 +176,13 @@ class MyReservationActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_game_detail, menu)
+        loan?.let {
+            if (it.getLoanState() != LoanResponse.LoanState.INACTIVE) {
+                val inflater = menuInflater
+                inflater.inflate(R.menu.menu_game_detail, menu)
+                this.menu = menu
+            }
+        }
         return super.onCreateOptionsMenu(menu)
     }
 

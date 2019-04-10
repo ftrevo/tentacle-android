@@ -27,8 +27,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/gameView"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dp_24"/>
+                    android:layout_height="wrap_content"/>
 
             <include
                     android:id="@+id/dashed"
