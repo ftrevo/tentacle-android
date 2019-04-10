@@ -25,7 +25,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
     protected fun notKnownError(error: Throwable): ErrorResponse? {
 
         val gson = GsonBuilder().create()
-        var errorResponse:ErrorResponse? = null
+        var errorResponse: ErrorResponse? = null
         val msgsInt = ArrayList<Int>()
 
         when (error) {

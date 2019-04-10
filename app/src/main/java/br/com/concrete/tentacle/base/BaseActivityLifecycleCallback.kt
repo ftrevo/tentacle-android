@@ -9,7 +9,7 @@ import io.reactivex.functions.Consumer
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
-class BaseActivityLifecycleCallback: Application.ActivityLifecycleCallbacks, KoinComponent {
+class BaseActivityLifecycleCallback : Application.ActivityLifecycleCallbacks, KoinComponent {
 
     private val eventPublisher: EventPublisherContract by inject()
 
@@ -35,7 +35,6 @@ class BaseActivityLifecycleCallback: Application.ActivityLifecycleCallbacks, Koi
     }
 
     override fun onActivityDestroyed(activity: Activity?) {
-
     }
 
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
@@ -46,5 +45,4 @@ class BaseActivityLifecycleCallback: Application.ActivityLifecycleCallbacks, Koi
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
     }
-
 }
