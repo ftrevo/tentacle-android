@@ -10,16 +10,16 @@ import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 
 class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
-    private val viewStateGame: MutableLiveData<Event<ViewStateModel<MediaResponse>>> = MutableLiveData()
-    private val viewStateGameDelete: MutableLiveData<Event<ViewStateModel<Media>>> = MutableLiveData()
-    private val viewStateGamePage: MutableLiveData<Event<ViewStateModel<MediaResponse>>> = MutableLiveData()
-    fun getMyGames(): LiveData<Event<ViewStateModel<MediaResponse>>> = viewStateGame
-    fun getMyGamesPage(): LiveData<Event<ViewStateModel<MediaResponse>>> = viewStateGamePage
-    fun deleteMedia(): LiveData<Event<ViewStateModel<Media>>> = viewStateGameDelete
+    private val viewStateGame: MutableLiveData<SingleEvent<ViewStateModel<MediaResponse>>> = MutableLiveData()
+    private val viewStateGameDelete: MutableLiveData<SingleEvent<ViewStateModel<Media>>> = MutableLiveData()
+    private val viewStateGamePage: MutableLiveData<SingleEvent<ViewStateModel<MediaResponse>>> = MutableLiveData()
+    fun getMyGames(): LiveData<SingleEvent<ViewStateModel<MediaResponse>>> = viewStateGame
+    fun getMyGamesPage(): LiveData<SingleEvent<ViewStateModel<MediaResponse>>> = viewStateGamePage
+    fun deleteMedia(): LiveData<SingleEvent<ViewStateModel<Media>>> = viewStateGameDelete
 
     private var page: Int = 1
 
@@ -33,12 +33,12 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     fun loadMyGames() {
         val queries = queryParameters ?: QueryParameters()
 
-        viewStateGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
+        viewStateGame.postValue(SingleEvent(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(gameRepository.loadMyGames(queries)
             .subscribe({ baseModel ->
-                viewStateGame.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
+                viewStateGame.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
             }, {
-                viewStateGame.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
+                viewStateGame.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
             })
         )
     }
@@ -49,10 +49,10 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
 
         disposables.add(gameRepository.loadMyGames(queries)
             .subscribe({ baseModel ->
-                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
+                viewStateGamePage.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
                 page += 1
             }, {
-                viewStateGamePage.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
+                viewStateGamePage.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
             })
         )
     }
@@ -60,9 +60,9 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     fun deleteGame(id: String) {
         disposables.add(gameRepository.deleteMedia(id)
             .subscribe({ baseModel ->
-                viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
+                viewStateGameDelete.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
             }, {
-                viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
+                viewStateGameDelete.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
             })
         )
     }

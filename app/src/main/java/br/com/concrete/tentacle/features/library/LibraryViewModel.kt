@@ -8,12 +8,12 @@ import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.data.repositories.LibraryRepository
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 
 class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseViewModel() {
 
-    private val viewStateLibrary: MutableLiveData<Event<ViewStateModel<LibraryResponse>>> = MutableLiveData()
-    private val libraryMore: MutableLiveData<Event<ViewStateModel<LibraryResponse>>> = MutableLiveData()
+    private val viewStateLibrary: MutableLiveData<SingleEvent<ViewStateModel<LibraryResponse>>> = MutableLiveData()
+    private val libraryMore: MutableLiveData<SingleEvent<ViewStateModel<LibraryResponse>>> = MutableLiveData()
 
     fun getLibrary() = viewStateLibrary
     fun getLibraryMore() = libraryMore
@@ -28,12 +28,12 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
     fun loadLibrary(queryParameters: QueryParameters? = null, search: String? = null, filtering: Boolean = false) {
         val query = queryParameters ?: QueryParameters()
 
-        viewStateLibrary.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
+        viewStateLibrary.postValue(SingleEvent(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(
             libraryRepository.getLibrary(query, search)
             .subscribe({ baseModel ->
                 viewStateLibrary.postValue(
-                    Event(
+                    SingleEvent(
                         ViewStateModel(
                             status = ViewStateModel.Status.SUCCESS,
                             model = baseModel.data,
@@ -43,7 +43,7 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
                 )
             }, {
                 viewStateLibrary.postValue(
-                    Event(
+                    SingleEvent(
                         ViewStateModel(
                             status = ViewStateModel.Status.ERROR,
                             errors = notKnownError(it)
@@ -67,7 +67,7 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
             libraryRepository.getLibrary(query, search)
                 .subscribe({ baseModel ->
                     libraryMore.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.SUCCESS,
                                 model = baseModel.data,
@@ -78,7 +78,7 @@ class LibraryViewModel(private val libraryRepository: LibraryRepository) : BaseV
                     page += 1
                 }, {
                     libraryMore.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.ERROR,
                                 errors = notKnownError(it)

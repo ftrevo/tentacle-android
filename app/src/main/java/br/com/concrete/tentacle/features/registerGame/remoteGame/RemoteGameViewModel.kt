@@ -6,14 +6,14 @@ import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 import br.com.concrete.tentacle.utils.LogWrapper
 
 class RemoteGameViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
     val remoteGamesViewState = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
     val remoteGamesMoreViewState = MutableLiveData<ViewStateModel<ArrayList<Game>>>()
-    val gameViewState = MutableLiveData< Event<ViewStateModel<Game>>>()
+    val gameViewState = MutableLiveData< SingleEvent<ViewStateModel<Game>>>()
 
     var name: String = ""
     var page = 1
@@ -43,18 +43,18 @@ class RemoteGameViewModel(private val gameRepository: GameRepository) : BaseView
     }
 
     fun registerRemoteGame(gameId: Int) {
-        gameViewState.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
+        gameViewState.postValue(SingleEvent(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(
             gameRepository.registerRemoteGame(GameRequest(id = gameId)).subscribe({ base ->
                 gameViewState.postValue(
-                    Event(ViewStateModel(
+                    SingleEvent(ViewStateModel(
                         status = ViewStateModel.Status.SUCCESS,
                         model = base.data)
                     )
                 )
             }, {
                 gameViewState.postValue(
-                    Event(ViewStateModel(
+                    SingleEvent(ViewStateModel(
                         status = ViewStateModel.Status.ERROR,
                         errors = notKnownError(it))
                     )

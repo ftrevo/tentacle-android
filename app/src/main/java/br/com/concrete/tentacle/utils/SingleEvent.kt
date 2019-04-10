@@ -1,6 +1,6 @@
 package br.com.concrete.tentacle.utils
 
-open class Event<out T>(private val content: T) {
+open class SingleEvent<out T>(private val content: T) {
 
     var hasBeenHandled = false
         private set

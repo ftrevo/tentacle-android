@@ -16,14 +16,12 @@ import br.com.concrete.tentacle.extensions.ActivityAnimation
 import br.com.concrete.tentacle.extensions.logout
 import br.com.concrete.tentacle.features.HostActivity
 import br.com.concrete.tentacle.utils.DialogUtils
+import br.com.concrete.tentacle.utils.SingleEvent
 import io.reactivex.functions.Consumer
-import org.koin.android.viewmodel.ext.android.viewModel
 import java.net.HttpURLConnection
 import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 
-abstract class BaseActivity : AppCompatActivity() {
-
-    private val baseViewModel: BaseViewModel by viewModel()
+abstract class BaseActivity : AppCompatActivity(), Consumer<SingleEvent<Any>> {
 
     companion object {
         const val INVALID_ICON = -1
@@ -33,24 +31,24 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-
-        baseViewModel.subscribe(::getEventObserver)
     }
 
-    private fun getEventObserver() = Consumer<Any> {
-        when (it) {
-            is Int -> {
-                if (it == HttpURLConnection.HTTP_UNAUTHORIZED) {
-                    DialogUtils.showDialog(
-                        context = this,
-                        title = getString(R.string.something_happened),
-                        message = getString(R.string.session_expired_text),
-                        positiveText = getString(R.string.ok),
-                        contentView = R.layout.custom_dialog_error,
-                        positiveListener = DialogInterface.OnClickListener { _, _ ->
-                            logout()
-                        }
-                    )
+    override fun accept(consumer: SingleEvent<Any>) {
+        consumer.getContentIfNotHandler()?.let {
+            when (it) {
+                is Int -> {
+                    if (it == HttpURLConnection.HTTP_UNAUTHORIZED) {
+                        DialogUtils.showDialog(
+                            context = this,
+                            title = getString(R.string.something_happened),
+                            message = getString(R.string.session_expired_text),
+                            positiveText = getString(R.string.ok),
+                            contentView = R.layout.custom_dialog_error,
+                            positiveListener = DialogInterface.OnClickListener { _, _ ->
+                                logout()
+                            }
+                        )
+                    }
                 }
             }
         }
@@ -113,7 +111,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected open fun showError(errors: ErrorResponse?, title: String = "Erro") {
+    open fun showError(errors: ErrorResponse?, title: String = "Erro") {
         var positiveButton = getString(R.string.ok)
         var negativeButton: String? = null
 

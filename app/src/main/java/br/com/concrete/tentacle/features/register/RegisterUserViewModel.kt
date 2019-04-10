@@ -14,9 +14,8 @@ import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.data.repositories.TokenRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 import br.com.concrete.tentacle.utils.LogWrapper
-import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
 class RegisterUserViewModel(
     private val userRepository: UserRepository,
@@ -27,9 +26,9 @@ class RegisterUserViewModel(
 
     private val viewStateState: MutableLiveData<ViewStateModel<ArrayList<State>>> = MutableLiveData()
     private val viewStateCity: MutableLiveData<ViewStateModel<ArrayList<String>>> = MutableLiveData()
-    private val viewStateUser: MutableLiveData<Event<ViewStateModel<Session>>> = MutableLiveData()
+    private val viewStateUser: MutableLiveData<SingleEvent<ViewStateModel<Session>>> = MutableLiveData()
 
-    fun getUser(): LiveData<Event<ViewStateModel<Session>>> = viewStateUser
+    fun getUser(): LiveData<SingleEvent<ViewStateModel<Session>>> = viewStateUser
     fun getStates() = viewStateState
     fun getCities() = viewStateCity
 
@@ -43,17 +42,17 @@ class RegisterUserViewModel(
             password = user.password
         )
 
-        viewStateUser.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
+        viewStateUser.postValue(SingleEvent(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(userRepository.registerUser(userRequest).subscribe({ base ->
-            sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, base.data)
-            viewStateUser.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data)))
+            sharedPrefRepository.saveSession(base.data)
+            viewStateUser.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = base.data)))
             disposables.add(tokenRepository.sendToken(AppTentacle.TOKEN).subscribe({
                 LogWrapper.log("TokenResponse: ", it.message[0])
             }, {
                 LogWrapper.log("TokenResponse: ", it.localizedMessage.toString())
             }))
         }, {
-            viewStateUser.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
+            viewStateUser.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
         }))
     }
 

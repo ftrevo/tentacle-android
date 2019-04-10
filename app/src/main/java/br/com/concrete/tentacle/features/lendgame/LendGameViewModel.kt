@@ -9,15 +9,15 @@ import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
 import br.com.concrete.tentacle.data.repositories.GameRepository
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 
 class LendGameViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
     private val viewState: MutableLiveData<ViewStateModel<Media>> = MutableLiveData()
     private val viewStateUpdateLoan: MutableLiveData<ViewStateModel<LoanResponse>> = MutableLiveData()
     private val viewStateRememberDelivery: MutableLiveData<ViewStateModel<RememberDeliveryResponse>> = MutableLiveData()
-    private val viewStateGameDelete: MutableLiveData<Event<ViewStateModel<Media>>> = MutableLiveData()
+    private val viewStateGameDelete: MutableLiveData<SingleEvent<ViewStateModel<Media>>> = MutableLiveData()
 
-    fun deleteMedia(): LiveData<Event<ViewStateModel<Media>>> = viewStateGameDelete
+    fun deleteMedia(): LiveData<SingleEvent<ViewStateModel<Media>>> = viewStateGameDelete
     fun getMediaViewState() = viewState
     fun getUpdateLoanViewState() = viewStateUpdateLoan
     fun getRememberDeliveryViewState() = viewStateRememberDelivery
@@ -68,9 +68,9 @@ class LendGameViewModel(private val gameRepository: GameRepository) : BaseViewMo
     fun deleteGame(id: String) {
         disposables.add(gameRepository.deleteMedia(id)
             .subscribe({ baseModel ->
-                viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
+                viewStateGameDelete.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = baseModel.data)))
             }, {
-                viewStateGameDelete.postValue(Event(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
+                viewStateGameDelete.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.ERROR, errors = notKnownError(it))))
             })
         )
     }

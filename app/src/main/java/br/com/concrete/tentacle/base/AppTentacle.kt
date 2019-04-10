@@ -65,5 +65,7 @@ class AppTentacle : Application() {
                 val msg = getString(R.string.msg_token_fmt, token)
                 LogWrapper.log("TAG", msg)
             })
+
+        registerActivityLifecycleCallbacks(BaseActivityLifecycleCallback())
     }
 }

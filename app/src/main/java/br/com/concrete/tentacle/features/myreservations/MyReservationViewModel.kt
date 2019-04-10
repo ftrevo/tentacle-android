@@ -10,12 +10,12 @@ import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanDeleteResponse
 import br.com.concrete.tentacle.data.repositories.GameRepository
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 
 class MyReservationViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
     private val viewStateGame: MutableLiveData<ViewStateModel<LoansListResponse>> = MutableLiveData()
-    private val viewStateGamePage: MutableLiveData<Event<ViewStateModel<LoansListResponse>>> = MutableLiveData()
+    private val viewStateGamePage: MutableLiveData<SingleEvent<ViewStateModel<LoansListResponse>>> = MutableLiveData()
     fun getMyReservations() = viewStateGame
     fun getMyReservationsPage() = viewStateGamePage
     private val viewStateDeleteLoan: MutableLiveData<ViewStateModel<LoanDeleteResponse>> = MutableLiveData()
@@ -65,7 +65,7 @@ class MyReservationViewModel(private val gameRepository: GameRepository) : BaseV
         gameRepository.loadMyLoans(page, queries = queryParameters)
             .subscribe({ baseModel ->
                 viewStateGamePage.postValue(
-                    Event(
+                    SingleEvent(
                         ViewStateModel(
                             status = ViewStateModel.Status.SUCCESS,
                             model = baseModel.data
@@ -75,7 +75,7 @@ class MyReservationViewModel(private val gameRepository: GameRepository) : BaseV
                 page += 1
             }, {
                 viewStateGamePage.postValue(
-                    Event(
+                    SingleEvent(
                         ViewStateModel(
                             status = ViewStateModel.Status.ERROR,
                             errors = notKnownError(it)

@@ -49,7 +49,7 @@ val networkModule = module {
 
                     refreshTokenResponse?.let {
                         val userSession = it.data
-                        prefs.saveSession(PREFS_KEY_USER_SESSION, it.data)
+                        prefs.saveSession(it.data)
                         response.request().newBuilder()
                             .header(TOKEN_AUTHORIZATION, "${userSession.tokenType} ${userSession.accessToken}")
                             .build()

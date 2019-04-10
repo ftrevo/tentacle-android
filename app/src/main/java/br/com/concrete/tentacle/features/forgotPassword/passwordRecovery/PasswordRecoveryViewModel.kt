@@ -23,7 +23,7 @@ class PasswordRecoveryViewModel(
             userRepository.restorePassword(passwordRecovery)
                 .subscribe(
                     { baseSession ->
-                        sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, baseSession.data)
+                        sharedPrefRepository.saveSession(baseSession.data)
                         stateModel.postValue(
                             ViewStateModel(
                                 status = ViewStateModel.Status.SUCCESS,

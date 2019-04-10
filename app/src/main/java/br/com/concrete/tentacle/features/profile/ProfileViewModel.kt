@@ -90,7 +90,7 @@ class ProfileViewModel(
         viewStateProfile.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(userLoggedRepository.updateProfile(currentUser._id, userRequest)
             .subscribe({ baseModel ->
-                sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, baseModel.data)
+                sharedPrefRepository.saveSession(baseModel.data)
                 viewStateUpdate.postValue(ViewStateModel(
                     status = ViewStateModel.Status.SUCCESS,
                     model = baseModel.data))

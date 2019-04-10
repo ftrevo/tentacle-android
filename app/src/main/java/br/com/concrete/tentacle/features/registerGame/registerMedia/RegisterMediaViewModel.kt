@@ -11,7 +11,7 @@ import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
 import br.com.concrete.tentacle.data.repositories.RegisterMediaRepository
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 import br.com.concrete.tentacle.utils.LogWrapper
 
 class RegisterMediaViewModel(
@@ -19,11 +19,11 @@ class RegisterMediaViewModel(
     private val gameRepository: GameRepository
 ) : BaseViewModel() {
 
-    val viewStatusModel = MutableLiveData<Event<ViewStateModel<Media>>>()
-    private val viewStateModelGame = MutableLiveData<Event<ViewStateModel<Game>>>()
+    val viewStatusModel = MutableLiveData<SingleEvent<ViewStateModel<Media>>>()
+    private val viewStateModelGame = MutableLiveData<SingleEvent<ViewStateModel<Game>>>()
 
     fun registerMedia(platform: String, game: Game) {
-        viewStatusModel.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
+        viewStatusModel.postValue(SingleEvent(ViewStateModel(ViewStateModel.Status.LOADING)))
 
         val mediaRequest = MediaRequest(platform, game._id)
 
@@ -31,7 +31,7 @@ class RegisterMediaViewModel(
             repository.registerMedia(mediaRequest)
                 .subscribe({
                     viewStatusModel.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 ViewStateModel.Status.SUCCESS, it.data
                             )
@@ -40,7 +40,7 @@ class RegisterMediaViewModel(
                 },
                     {
                         viewStatusModel.postValue(
-                            Event(
+                            SingleEvent(
                                 ViewStateModel(
                                     status = ViewStateModel.Status.ERROR,
                                     errors = notKnownError(it)
@@ -52,15 +52,15 @@ class RegisterMediaViewModel(
         )
     }
 
-    fun getRegisterMedia(): LiveData<Event<ViewStateModel<Media>>> = viewStatusModel
+    fun getRegisterMedia(): LiveData<SingleEvent<ViewStateModel<Media>>> = viewStatusModel
 
     fun getDetailsGame(idGame: String) {
-        viewStateModelGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
+        viewStateModelGame.postValue(SingleEvent(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(
             gameRepository.getDetailsGame(idGame)
                 .subscribe({
                     viewStateModelGame.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 ViewStateModel.Status.SUCCESS, it.data
                             )
@@ -69,7 +69,7 @@ class RegisterMediaViewModel(
                 },
                     {
                         viewStateModelGame.postValue(
-                            Event(
+                            SingleEvent(
                                 ViewStateModel(
                                     status = ViewStateModel.Status.ERROR,
                                     errors = notKnownError(it)
@@ -81,7 +81,7 @@ class RegisterMediaViewModel(
         )
     }
 
-    fun getDetailGame(): LiveData<Event<ViewStateModel<Game>>> = viewStateModelGame
+    fun getDetailGame(): LiveData<SingleEvent<ViewStateModel<Game>>> = viewStateModelGame
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     override fun onCleared() {
