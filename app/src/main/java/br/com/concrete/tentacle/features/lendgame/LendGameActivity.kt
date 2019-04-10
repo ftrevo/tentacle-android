@@ -2,6 +2,7 @@ package br.com.concrete.tentacle.features.lendgame
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -12,6 +13,7 @@ import br.com.concrete.tentacle.data.models.ActiveLoan
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.Media
+import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
@@ -61,6 +63,15 @@ class LendGameActivity : BaseActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_game_detail, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu?.findItem(R.id.delete).let { menuItem ->
+            media?.let {
+                if (!it.active) menuItem?.title = getString(R.string.reactivate)
+            }
+        }
+        return super.onPrepareOptionsMenu(menu)
     }
 
     private fun loadData() {
@@ -118,6 +129,19 @@ class LendGameActivity : BaseActivity() {
                     }
                     ViewStateModel.Status.LOADING -> showLoading(true)
                     ViewStateModel.Status.ERROR -> showError(it.errors)
+                }
+            }
+        })
+
+        viewModelLendGame.activeMediaState().observe(this, Observer {
+            it.getContentIfNotHandler()?.let { stateModel ->
+                when (stateModel.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        finish()
+                    }
+                    ViewStateModel.Status.LOADING -> showLoading(true)
+                    ViewStateModel.Status.ERROR -> {
+                    }
                 }
             }
         })
@@ -197,6 +221,8 @@ class LendGameActivity : BaseActivity() {
             tvDate.text = getString(R.string.date_return_prefix, returnDate.format(SIMPLE_DATE_OUTPUT_FORMAT))
         }
 
+        invalidateOptionsMenu()
+
         group.visibility = View.VISIBLE
     }
 
@@ -226,7 +252,7 @@ class LendGameActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.delete -> {
                 showDialogDelete()
                 return true
@@ -238,16 +264,29 @@ class LendGameActivity : BaseActivity() {
 
     private fun showDialogDelete() {
         media?.let { media ->
-            val gameName = String.format(getString(R.string.delete_dialog_message), media.game?.name ?: "")
+            val mediaActive = media.active
+            val gameName = String.format(
+                if (mediaActive) getString(R.string.delete_dialog_message)
+                else getString(R.string.reactivate_media_dialog_message), media.game?.name ?: ""
+            )
 
             DialogUtils.showDialog(
                 contentView = R.layout.custom_dialog_error,
                 context = this,
-                title = getString(R.string.delete_dialog_title),
+                title = if (mediaActive) getString(R.string.delete_dialog_title) else getString(R.string.reactivate_media),
                 message = gameName,
-                positiveText = getString(R.string.delete),
+                positiveText = if (mediaActive) getString(R.string.delete) else getString(R.string.reactivate),
                 positiveListener = DialogInterface.OnClickListener { _, _ ->
-                    viewModelLendGame.deleteGame(media._id)
+                    if (mediaActive) {
+                        viewModelLendGame.deleteGame(media._id)
+                    } else {
+                        media.game?.let {
+                            viewModelLendGame.activeMedia(
+                                media,
+                                true
+                            )
+                        }
+                    }
                 },
                 negativeText = getString(R.string.not_delete)
             )

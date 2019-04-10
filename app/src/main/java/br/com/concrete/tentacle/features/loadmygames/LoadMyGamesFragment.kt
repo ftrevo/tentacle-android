@@ -180,7 +180,10 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
                                 viewModelLoadMyGames.queryParameters = queryParameters
                                 viewModelLoadMyGames.loadMyGames()
                             }
-                            if (error.statusCode == HTTP_UPGRADE_REQUIRED) showError(error, getString(R.string.was_some_mistake))
+                            if (error.statusCode == HTTP_UPGRADE_REQUIRED) showError(
+                                error,
+                                getString(R.string.was_some_mistake)
+                            )
                         }
                         list.updateUi<Media>(null)
                         list.setLoading(false)
@@ -196,9 +199,24 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
             stateModel.getContentIfNotHandler()?.let {
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
-                        lMedia.removeAt(LoadMyGamesViewHolder.itemRemove)
-                        recyclerViewAdapter?.notifyItemRemoved(LoadMyGamesViewHolder.itemRemove)
+                        removeItem()
+                    }
+                    ViewStateModel.Status.LOADING -> {
+                        list.progressBarList.visibility = View.VISIBLE
+                    }
+                    ViewStateModel.Status.ERROR -> {
+                        showError(it.errors)
                         list.progressBarList.visibility = View.GONE
+                    }
+                }
+            }
+        })
+
+        viewModelLoadMyGames.activeMediaState().observe(this, Observer { stateModel ->
+            stateModel.getContentIfNotHandler()?.let {
+                when (it.status) {
+                    ViewStateModel.Status.SUCCESS -> {
+                        removeItem()
                     }
                     ViewStateModel.Status.LOADING -> {
                         list.progressBarList.visibility = View.VISIBLE
@@ -214,17 +232,32 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
         lifecycle.addObserver(viewModelLoadMyGames)
     }
 
+    private fun removeItem() {
+        lMedia.removeAt(LoadMyGamesViewHolder.itemRemove)
+        recyclerViewAdapter?.notifyItemRemoved(LoadMyGamesViewHolder.itemRemove)
+        list.progressBarList.visibility = View.GONE
+    }
+
     private fun showDialogDelete(media: Media) {
-        val gameName = String.format(getString(R.string.delete_dialog_message), media.game?.name ?: "")
+        val mediaActive = media.active
+        val gameName = String.format(
+            if (mediaActive) getString(R.string.delete_dialog_message)
+            else getString(R.string.reactivate_media_dialog_message), media.game?.name ?: ""
+        )
+
         activity?.let {
             DialogUtils.showDialog(
                 contentView = R.layout.custom_dialog_error,
                 context = it,
-                title = getString(R.string.delete_dialog_title),
+                title = if (mediaActive) getString(R.string.delete_dialog_title) else getString(R.string.reactivate_media),
                 message = gameName,
-                positiveText = getString(R.string.delete),
+                positiveText = if (mediaActive) getString(R.string.delete) else getString(R.string.reactivate),
                 positiveListener = DialogInterface.OnClickListener { _, _ ->
-                    viewModelLoadMyGames.deleteGame(media._id)
+                    if (mediaActive) {
+                        viewModelLoadMyGames.deleteGame(media._id)
+                    } else {
+                        viewModelLoadMyGames.activeMedia(media, true)
+                    }
                 },
                 negativeText = getString(R.string.not_delete)
             )
