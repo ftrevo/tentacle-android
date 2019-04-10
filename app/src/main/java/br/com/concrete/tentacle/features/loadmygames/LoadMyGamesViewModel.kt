@@ -155,20 +155,6 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
         )
     }
 
-    private fun getPlatform(platform: Platform): String {
-        return when (platform.platformName) {
-            PLATFORM_PS3_ABBREV -> PLATFORM_PS3_ABBREV
-            PLATFORM_PS4_ABBREV -> PLATFORM_PS4_ABBREV
-            PLATFORM_XBOX_ONE_ABBREV -> PLATFORM_XBOX_ONE
-            PLATFORM_XBOX_360_ABBREV -> PLATFORM_XBOX_360
-            PLATFORM_NINTENDO_SWITCH_ABBREV -> PLATFORM_NINTENDO_SWITCH
-            PLATFORM_NINTENDO_3DS_ABBREV -> PLATFORM_NINTENDO_3DS
-            else -> {
-                ""
-            }
-        }
-    }
-
     fun resetPage() {
         this.page = 1
     }
