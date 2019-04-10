@@ -137,7 +137,7 @@ class LendGameActivity : BaseActivity() {
             it.getContentIfNotHandler()?.let { stateModel ->
                 when (stateModel.status) {
                     ViewStateModel.Status.SUCCESS -> {
-
+                        finish()
                     }
                     ViewStateModel.Status.LOADING -> showLoading(true)
                     ViewStateModel.Status.ERROR -> {

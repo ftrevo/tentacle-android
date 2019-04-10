@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.data.repositories
 
+import br.com.concrete.tentacle.data.models.ActiveMedia
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
@@ -105,8 +106,8 @@ class GameRepository(private val apiRest: ApiService) {
             .observeOn(Schedulers.io())
     }
 
-    fun activeMedia(idMedia: String, media: MediaRequest, active: Boolean): Observable<BaseModel<Media>> {
-        return apiRest.activeMedia(idMedia, media, active)
+    fun activeMedia(idMedia: String, activeMedia: ActiveMedia): Observable<BaseModel<Media>> {
+        return apiRest.activeMedia(idMedia, activeMedia)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
     }

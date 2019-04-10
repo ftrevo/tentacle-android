@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.enums.Platform
+import br.com.concrete.tentacle.data.models.ActiveMedia
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
@@ -17,6 +18,8 @@ import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS_ABBREV
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH
 import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH_ABBREV
+import br.com.concrete.tentacle.utils.PLATFORM_PS3_ABBREV
+import br.com.concrete.tentacle.utils.PLATFORM_PS4_ABBREV
 import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360
 import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360_ABBREV
 import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE
@@ -126,10 +129,10 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     }
 
     fun activeMedia(media: Media, active: Boolean) {
-        val mediaRequest = MediaRequest(getPlatform(media.platform), media.game?._id!!)
+        val activeMedia = ActiveMedia(active)
 
         disposables.add(
-            gameRepository.activeMedia(media._id, mediaRequest, active)
+            gameRepository.activeMedia(media._id, activeMedia)
                 .subscribe({ baseModel ->
                     viewStateGameActive.postValue(
                         Event(
@@ -154,6 +157,8 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
 
     private fun getPlatform(platform: Platform): String {
         return when (platform.platformName) {
+            PLATFORM_PS3_ABBREV -> PLATFORM_PS3_ABBREV
+            PLATFORM_PS4_ABBREV -> PLATFORM_PS4_ABBREV
             PLATFORM_XBOX_ONE_ABBREV -> PLATFORM_XBOX_ONE
             PLATFORM_XBOX_360_ABBREV -> PLATFORM_XBOX_360
             PLATFORM_NINTENDO_SWITCH_ABBREV -> PLATFORM_NINTENDO_SWITCH

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.concrete.tentacle.base.BaseViewModel
 import br.com.concrete.tentacle.data.enums.Platform
+import br.com.concrete.tentacle.data.models.ActiveMedia
 import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.Media
 import br.com.concrete.tentacle.data.models.MediaRequest
@@ -121,10 +122,10 @@ class LendGameViewModel(private val gameRepository: GameRepository) : BaseViewMo
     }
 
     fun activeMedia(media: Media, active: Boolean) {
-        val mediaRequest = MediaRequest(getPlatform(media.platform), media.game?._id!!)
+        val activeMedia = ActiveMedia(active)
 
         disposables.add(
-            gameRepository.activeMedia(media._id, mediaRequest, active)
+            gameRepository.activeMedia(media._id, activeMedia)
                 .subscribe({ baseModel ->
                     viewStateGameActive.postValue(
                         Event(
@@ -145,17 +146,5 @@ class LendGameViewModel(private val gameRepository: GameRepository) : BaseViewMo
                     )
                 })
         )
-    }
-
-    private fun getPlatform(platform: Platform): String {
-        return when (platform.platformName) {
-            PLATFORM_XBOX_ONE_ABBREV -> PLATFORM_XBOX_ONE
-            PLATFORM_XBOX_360_ABBREV -> PLATFORM_XBOX_360
-            PLATFORM_NINTENDO_SWITCH_ABBREV -> PLATFORM_NINTENDO_SWITCH
-            PLATFORM_NINTENDO_3DS_ABBREV -> PLATFORM_NINTENDO_3DS
-            else -> {
-                ""
-            }
-        }
     }
 }

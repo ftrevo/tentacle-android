@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.data.network
 
+import br.com.concrete.tentacle.data.models.ActiveMedia
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
@@ -141,7 +142,6 @@ interface ApiService {
     @PATCH("media/{id}")
     fun activeMedia(
         @Path("id") id: String,
-        @Body media: MediaRequest,
-        @Query("active") active: Boolean = true
+        @Body activeMedia: ActiveMedia
     ): Observable<BaseModel<Media>>
 }

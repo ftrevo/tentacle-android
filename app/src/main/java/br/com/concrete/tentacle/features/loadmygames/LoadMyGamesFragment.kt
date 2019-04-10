@@ -199,9 +199,7 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
             stateModel.getContentIfNotHandler()?.let {
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
-                        lMedia.removeAt(LoadMyGamesViewHolder.itemRemove)
-                        recyclerViewAdapter?.notifyItemRemoved(LoadMyGamesViewHolder.itemRemove)
-                        list.progressBarList.visibility = View.GONE
+                        removeItem()
                     }
                     ViewStateModel.Status.LOADING -> {
                         list.progressBarList.visibility = View.VISIBLE
@@ -218,19 +216,26 @@ class LoadMyGamesFragment : BaseFragment(), ListCustom.OnScrollListener, FilterD
             stateModel.getContentIfNotHandler()?.let {
                 when (it.status) {
                     ViewStateModel.Status.SUCCESS -> {
-
+                        removeItem()
                     }
                     ViewStateModel.Status.LOADING -> {
-
+                        list.progressBarList.visibility = View.VISIBLE
                     }
                     ViewStateModel.Status.ERROR -> {
-
+                        showError(it.errors)
+                        list.progressBarList.visibility = View.GONE
                     }
                 }
             }
         })
 
         lifecycle.addObserver(viewModelLoadMyGames)
+    }
+
+    private fun removeItem() {
+        lMedia.removeAt(LoadMyGamesViewHolder.itemRemove)
+        recyclerViewAdapter?.notifyItemRemoved(LoadMyGamesViewHolder.itemRemove)
+        list.progressBarList.visibility = View.GONE
     }
 
     private fun showDialogDelete(media: Media) {
