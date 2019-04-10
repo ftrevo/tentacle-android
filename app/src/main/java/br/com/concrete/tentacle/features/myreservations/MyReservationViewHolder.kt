@@ -11,13 +11,13 @@ import br.com.concrete.tentacle.extensions.toDate
 import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_COVER_SMALL
 import br.com.concrete.tentacle.utils.SIMPLE_DATE_OUTPUT_FORMAT
 import br.com.concrete.tentacle.utils.Utils
-import kotlinx.android.synthetic.main.game_view_header_layout.ivGameStatus
 import kotlinx.android.synthetic.main.item_my_reservation.view.dateImage
 import kotlinx.android.synthetic.main.item_my_reservation.view.game_name
 import kotlinx.android.synthetic.main.item_my_reservation.view.game_owner
 import kotlinx.android.synthetic.main.item_my_reservation.view.ivGameStatus
 import kotlinx.android.synthetic.main.item_my_reservation.view.mediaImageView
 import kotlinx.android.synthetic.main.item_my_reservation.view.status
+import kotlinx.android.synthetic.main.item_my_reservation.view.statusLayout
 
 class MyReservationViewHolder(
     private val layout: View
@@ -63,6 +63,10 @@ class MyReservationViewHolder(
                         text = loanResponse.estimatedReturnDate?.toDate()?.format(SIMPLE_DATE_OUTPUT_FORMAT) ?: ""
                         visibility = View.VISIBLE
                         setColorStatus(holder.itemView, R.color.loan_state_expired)
+                    }
+                    LoanResponse.LoanState.INACTIVE -> {
+                        holder.layout.ivGameStatus.visibility = View.GONE
+                        holder.layout.statusLayout.visibility = View.GONE
                     }
                 }
 

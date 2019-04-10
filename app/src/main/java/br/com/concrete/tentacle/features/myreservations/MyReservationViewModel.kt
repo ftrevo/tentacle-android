@@ -23,7 +23,7 @@ class MyReservationViewModel(private val gameRepository: GameRepository) : BaseV
 
     var page: Int = 1
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun loadMyReservations() {
         myReservations()
     }

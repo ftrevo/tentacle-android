@@ -256,6 +256,7 @@
     <string name="exit">Sair</string>
     <string name="about">Sobre</string>
     <string name="version">versão %1$s</string>
+    <string name="returned_date">Devolvido em %1$s</string>
 
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
