@@ -23,7 +23,7 @@ class SharedPrefRepositoryMock : SharedPrefRepositoryContract {
     }
 
     override fun getStoredUser(key: String): User? {
-        return User(_id = "", email = "", phone = "", city = "", state = State("", "", ""), password = "", name = "")
+        return User(_id = "1", email = "mock@mock.com", phone = "123456", city = "Recife", state = State("1", "PE", "Pernambuco"), password = "", name = "")
     }
 
     override fun updateUser(user: User) {

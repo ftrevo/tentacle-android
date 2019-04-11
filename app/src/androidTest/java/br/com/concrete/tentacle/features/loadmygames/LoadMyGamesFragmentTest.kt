@@ -142,8 +142,9 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
 
         onView(withId(R.id.recyclerListView))
             .perform(isDisplayed().waitUntil())
+
         onView(
-            withRecyclerView(R.id.recyclerListView).atPosition(0))
+            withText("TEST"))
             .perform(isDisplayed().waitUntil())
             .check(matches(isDisplayed()))
             .perform(longClick())

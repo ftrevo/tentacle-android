@@ -223,53 +223,6 @@ class MyReservationFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun testDeleteGameSuccess() {
-        setResponse("mockjson/myreservations/load_my_reservations_success.json".getJson(), 200)
-        setResponse("mockjson/myreservations/detail/load_pending_reservation.json".getJson(), 200)
-        setResponse("mockjson/myreservations/delete_my_reservation_success.json".getJson(), 200)
-        setResponse("mockjson/myreservations/load_my_reservations_success_after_remove.json".getJson(), 200)
-
-        onView(withRecyclerView(R.id.recyclerListView)
-            .atPosition(0))
-            .check(matches(isDisplayed()))
-            .check(matches(hasDescendant(withText("Eeee"))))
-        onView(
-            withRecyclerView(R.id.recyclerListView)
-                .atPosition(0))
-            .check(matches(isDisplayed()))
-            .perform(ViewActions.click())
-
-        onView(withId(R.id.delete)).perform(click())
-        onView(withText("REMOVER")).perform(click())
-
-        onView(withRecyclerView(R.id.recyclerListView)
-            .atPosition(0))
-            .check(matches(isDisplayed()))
-            .check(matches(hasDescendant(not((withText("Eeee"))))))
-    }
-
-    @Test
-    fun testDeleteGameError() {
-        setResponse("mockjson/myreservations/load_my_reservations_success.json".getJson(), 200)
-        setResponse("mockjson/myreservations/detail/load_pending_reservation.json".getJson(), 200)
-        setResponse("mockjson/errors/error_400.json".getJson(), 400)
-
-        onView(withRecyclerView(R.id.recyclerListView)
-            .atPosition(0))
-            .check(matches(isDisplayed()))
-            .check(matches(hasDescendant(withText("Eeee"))))
-        onView(
-            withRecyclerView(R.id.recyclerListView)
-                .atPosition(0))
-            .check(matches(isDisplayed()))
-            .perform(ViewActions.click())
-
-        onView(withId(R.id.delete)).perform(click())
-        onView(withText("REMOVER")).perform(click())
-        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
-    }
-
-    @Test
     fun showRecycleViewWithItemsError426() {
         setResponse("mockjson/errors/error_400.json".getJson(), 426)
 
