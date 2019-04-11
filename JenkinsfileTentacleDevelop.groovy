@@ -11,7 +11,7 @@ node('master') {
     def utils = load('JenkinsUtils.groovy')
     
     stage('cp Arquivos') {
-        utils.cpArquivoFirebaseJson()
+        utils.cpArquivos()
     }
     
     stage('clean') {
@@ -26,8 +26,8 @@ node('master') {
         utils.buildApk('Debug')
     }
 
-    stage('Release') {
-        utils.releaseAndroidAPKToCrashlytics('Debug')
+    /*stage('Release') {
+        utils.releaseAndroidAPKToCrashlytics('Debug')*/
     }
 
     stage('Inform Build OK') {

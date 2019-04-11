@@ -142,6 +142,20 @@ def buildApk(String buildType) {
     }
 }
 
+def buildAPkRelease(){
+    try{
+        sh '''
+        ./gradlew assemble --stacktrace --info --profile
+        /Library/Java/AndroidSDK/build-tools/28.0.3/zipalign -v -p 4 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release-unsigned-aligned.apk
+        /Library/Java/AndroidSDK/build-tools/28.0.3/apksigner sign -ks /Users/Shared/Jenkins/Home/tentacleFiles/assinaturaApp/tentacle_keystore.jks --ks-key-alias Tentacle --ks-pass file:/Users/Shared/Jenkins/Home/tentacleFiles/assinaturaApp/key_pass --key-pass file:/Users/Shared/Jenkins/Home/tentacleFiles/assinaturaApp/alias_pass --out tentacle-release.apk app/build/outputs/apk/release/app-release-unsigned-aligned.apk
+        '''
+        archivesProject("app/build/outputs/apk/release/app-release-unsigned-aligned.apk")
+    }catch(err) {
+        sendFailedNotify('Build APK Release', err)
+    }
+
+}
+
 def unitTests(String buildType) {
     try {
         sh "./gradlew test${buildType}UnitTest"
@@ -209,8 +223,8 @@ def gradleClean() {
     sh "./gradlew clean"
 }
 
-def cpArquivoFirebaseJson() {
-    sh "cp /Users/Shared/Jenkins/Home/jsonFirebaseTentacle/google-services.json /Users/Shared/Jenkins/Home/workspace/tentacle-frontend-android-debug-build/app"
+def cpArquivos() {
+    sh "cp /Users/Shared/Jenkins/Home/tentacleFiles/jsonFirebaseTentacle/google-services.json /Users/Shared/Jenkins/Home/workspace/tentacle-frontend-android-release-build/app"
 }
 
 return this
