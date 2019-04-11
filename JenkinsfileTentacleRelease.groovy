@@ -27,8 +27,8 @@ node('master') {
     }
 
     /*stage('Release') {
-        utils.releaseAndroidAPKToCrashlytics('Release')*/
-    }
+        utils.releaseAndroidAPKToCrashlytics('Release')
+    }*/
 
     stage('Inform Build OK') {
         utils.sendSucessNotify('Job success')
