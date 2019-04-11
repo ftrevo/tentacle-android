@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.data.network
 
+import br.com.concrete.tentacle.data.models.ActiveMedia
 import br.com.concrete.tentacle.data.models.BaseModel
 import br.com.concrete.tentacle.data.models.Game
 import br.com.concrete.tentacle.data.models.GameRequest
@@ -137,4 +138,10 @@ interface ApiService {
 
     @DELETE("loans/{id}")
     fun deleteLoan(@Path("id") idLoan: String): Observable<BaseModel<LoanDeleteResponse>>
+
+    @PATCH("media/{id}")
+    fun activeMedia(
+        @Path("id") id: String,
+        @Body activeMedia: ActiveMedia
+    ): Observable<BaseModel<Media>>
 }

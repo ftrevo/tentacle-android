@@ -248,7 +248,9 @@
     </string>
 
     <string name="profile_title">Perfil</string>
-    <string name="profile_state_city_warning">Ao alterar o Estado/Cidade, você só conseguirá ver os jogos disponíveis na Concrete desta localidade.</string>
+    <string name="profile_state_city_warning">Ao alterar o Estado/Cidade, você só conseguirá ver os jogos disponíveis na
+        Concrete desta localidade.
+    </string>
     <string name="profile_save_button">Salvar alterações</string>
     <string name="profile_changed_success">O seu perfil foi alterado com sucesso.</string>
 
@@ -261,8 +263,13 @@
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
     <string name="delete_dialog_title_reservation">Excluir Reserva</string>
-    <string name="delete_dialog_message_reservation">A reserva do jogo %1$s sairá da lista de \"Minhas Reservas\", mas você poderá adicioná-lo
-    novamente no futuro.</string>
+    <string name="delete_dialog_message_reservation">A reserva do jogo %1$s sairá da lista de \"Minhas Reservas\", mas
+        você poderá adicioná-lo
+        novamente no futuro.
+    </string>
     <string name="remove">Remover</string>
     <string name="update">Atualizar</string>
+    <string name="reactivate">Reativar</string>
+    <string name="reactivate_media">Reativar mídia</string>
+    <string name="reactivate_media_dialog_message">O jogo %1$s será reativado e será exibido novamente na lista de \"Meus jogos\".</string>
 </resources>
