@@ -21,6 +21,7 @@ class LoginVMTest : BaseViewModelTest() {
     @Test
     fun `when LoginViewModel calls login should return error message for 401`() {
         val error = ErrorResponse()
+        error.statusCode = 401
         error.messageInt.add(R.string.user_or_password_error)
         val expected =
             ViewStateModel<Session>(
@@ -67,6 +68,12 @@ class LoginVMTest : BaseViewModelTest() {
         val responseJson = getJson(
             "mockjson/login/login_success.json"
             )
+        mockServer.enqueue(MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson))
+        mockServer.enqueue(MockResponse()
+            .setResponseCode(200)
+            .setBody(getJson("mockjson/token/token_update_success.json")))
 
         val collectionType = object : TypeToken<BaseModel<Session>>() {}.type
         val responseObject: BaseModel<Session> =
@@ -77,12 +84,6 @@ class LoginVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.SUCCESS,
                 model = responseObject.data)
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(200)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
 
         loginViewMock.getStateModel().observeForever {
             actual = it.peekContent()

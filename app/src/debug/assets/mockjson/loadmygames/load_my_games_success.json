@@ -11,7 +11,8 @@
         "gameData": {
           "_id": "5c816b27349f31002315fcf0",
           "name": "TEST"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c891084624e3f0023d3a5ae",
@@ -23,7 +24,8 @@
         "gameData": {
           "_id": "5c8255c92e75f40023618138",
           "name": "FIFA 09"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c891092624e3f0023d3a5af",
@@ -35,7 +37,8 @@
         "gameData": {
           "_id": "5c7938f1ef995f00239a0cfe",
           "name": "FIFA 12"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c8910a1624e3f0023d3a5b0",
@@ -47,7 +50,8 @@
         "gameData": {
           "_id": "5c7939e7ef995f00239a0d00",
           "name": "FIFA 13"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c8252af2e75f40023618134",
@@ -60,7 +64,8 @@
         "gameData": {
           "_id": "5c8252a72e75f40023618133",
           "name": "FIFA 18"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c8910bf624e3f0023d3a5b1",
@@ -72,7 +77,8 @@
         "gameData": {
           "_id": "5c8252a72e75f40023618133",
           "name": "FIFA 18"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c8910cb624e3f0023d3a5b2",
@@ -84,7 +90,8 @@
         "gameData": {
           "_id": "5c816449349f31002315fced",
           "name": "FIFA Street"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c8256162e75f40023618139",
@@ -97,7 +104,8 @@
         "gameData": {
           "_id": "5c8197b6349f31002315fd08",
           "name": "Super Meat Boy"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c819031349f31002315fcff",
@@ -110,7 +118,8 @@
         "gameData": {
           "_id": "5c8162a1349f31002315fce9",
           "name": "The Amazing Spider-Man"
-        }
+        },
+        "active": true
       },
       {
         "_id": "5c81598e349f31002315fcd6",
@@ -123,7 +132,8 @@
         "gameData": {
           "_id": "5c66feafdf4b530023a72773",
           "name": "The Last of Us Remastered"
-        }
+        },
+        "active": true
       }
     ],
     "count": 20

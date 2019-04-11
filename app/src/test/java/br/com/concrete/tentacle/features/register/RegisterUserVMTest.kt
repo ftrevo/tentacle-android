@@ -90,6 +90,16 @@ class RegisterUserVMTest : BaseViewModelTest() {
             "mockjson/login/login_success.json"
         )
 
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(responseJson)
+
+        mockServer.enqueue(mockResponse)
+
+        mockServer.enqueue(MockResponse()
+            .setResponseCode(200)
+            .setBody(getJson("mockjson/token/token_update_success.json")))
+
         val collectionType = object : TypeToken<BaseModel<Session>>() {}.type
         val responseObject: BaseModel<Session> =
             GsonBuilder().create().fromJson(responseJson, collectionType)
@@ -99,12 +109,6 @@ class RegisterUserVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.SUCCESS,
                 model = responseObject.data)
         var actual = ViewStateModel<Session>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(200)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
 
         registerUserViewModelTest.getUser().observeForever {
             actual = it.peekContent()
