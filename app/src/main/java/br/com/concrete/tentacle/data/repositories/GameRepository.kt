@@ -8,7 +8,6 @@ import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.LoansListResponse
 import br.com.concrete.tentacle.data.models.Media
-import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse

@@ -2,7 +2,6 @@ package br.com.concrete.tentacle.features.lendgame
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,7 +12,6 @@ import br.com.concrete.tentacle.data.models.ActiveLoan
 import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.data.models.LoanActionRequest
 import br.com.concrete.tentacle.data.models.Media
-import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.RememberDeliveryResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.models.library.loan.LoanResponse
