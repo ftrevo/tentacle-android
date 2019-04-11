@@ -22,7 +22,7 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
 
 task jacocoTestReport(type: JacocoReport,
         dependsOn: ['testDebugUnitTest',
-                    //'createDebugCoverageReport',
+                    'createDebugCoverageReport',
                     'jacocoTestCoverageVerification']) {
 
     reports {
@@ -35,18 +35,18 @@ task jacocoTestReport(type: JacocoReport,
                        '/br/com/concrete/tentacle/data/**',
                        '/br/com/concrete/tentacle/di/GlideModule',
                        '/br/com/concrete/tentacle/extensions/**',
-                       '/br/com/concrete/tentacle/base/**',
+                       '/br/com/concrete/tentacle/base/',
                        '/br/com/concrete/tentacle/custom/**']
 
     def debugTree =
             fileTree(
                     dir: "$project.buildDir/tmp/kotlin-classes/debug",
                     excludes: fileFilter)
+    classDirectories = files([debugTree])
 
     def mainSrc = "$project.projectDir/src/main/java"
-
     sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
+
     executionData = fileTree(dir: project.buildDir, includes: [
             'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
     ])
@@ -60,13 +60,9 @@ task jacocoTestCoverageVerification(type: JacocoCoverageVerification) {
                             '/br/com/concrete/tentacle/data/**',
                             '/br/com/concrete/tentacle/di/GlideModule',
                             '/br/com/concrete/tentacle/extensions/**',
-                            '/br/com/concrete/tentacle/base/**',
+                            '/br/com/concrete/tentacle/base/',
                             '/br/com/concrete/tentacle/custom/**'
                     ])
         })
-
-        executionData = fileTree(dir: project.buildDir, includes: [
-                'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
-        ])
     }
 }
