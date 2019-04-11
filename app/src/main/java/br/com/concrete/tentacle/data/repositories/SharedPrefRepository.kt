@@ -15,7 +15,7 @@ class SharedPrefRepository(private val mSharedPref: SharedPreferences) : SharedP
 
     override fun saveString(key: String, value: String) = mSharedPref.put(key, value)
 
-    override fun saveSession(key: String, session: Session) = mSharedPref.put(key, Gson().toJson(session))
+    override fun saveSession(session: Session) = mSharedPref.put(PREFS_KEY_USER_SESSION, Gson().toJson(session))
 
     override fun removeSession() = mSharedPref.remove(PREFS_KEY_USER_SESSION)
     override fun removeUser() = mSharedPref.remove(PREFS_KEY_USER)

@@ -10,7 +10,6 @@ import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
 import br.com.concrete.tentacle.utils.LogWrapper
 import com.google.gson.GsonBuilder
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 import retrofit2.HttpException
@@ -23,10 +22,11 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
 
     protected val disposables = CompositeDisposable()
 
-    protected fun notKnownError(error: Throwable): ErrorResponse {
+    protected fun notKnownError(error: Throwable): ErrorResponse? {
 
         val gson = GsonBuilder().create()
-        var errorResponse = ErrorResponse()
+        var errorResponse: ErrorResponse? = null
+        val msgsInt = ArrayList<Int>()
 
         when (error) {
             is HttpException -> {
@@ -48,28 +48,23 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
                         error.response().errorBody()?.charStream(),
                         ErrorResponse::class.java
                     )
-                    HttpURLConnection.HTTP_NOT_FOUND -> {
-                        errorResponse = gson.fromJson(
-                            error.response().errorBody()?.charStream(),
-                            ErrorResponse::class.java
-                        )
+                    else -> {
+                        msgsInt.add(R.string.unknow_error)
+                        errorResponse = ErrorResponse(messageInt = msgsInt)
                     }
-                    else -> errorResponse.messageInt.add(R.string.unknow_error)
                 }
-                errorResponse.statusCode = error.code()
+                errorResponse?.statusCode = error.code()
             }
             is IOException -> {
-                errorResponse.statusCode = DEFAULT_EXCEPTION_STATUS_CODE
-                errorResponse.messageInt.add(R.string.no_internet_connection)
+                msgsInt.add(R.string.no_internet_connection)
+                errorResponse = ErrorResponse(
+                    statusCode = DEFAULT_EXCEPTION_STATUS_CODE,
+                    messageInt = msgsInt)
                 LogWrapper.log("ERROR TAG: ", "No Internet Connection.")
             }
         }
 
         return errorResponse
-    }
-
-    fun subscribe(publishContract: () -> Consumer<Any>) {
-        disposables.add(eventPublisher.subscribe(publishContract))
     }
 
     override fun onCleared() {

@@ -7,7 +7,7 @@ interface SharedPrefRepositoryContract {
 
     fun saveString(key: String, value: String)
 
-    fun saveSession(key: String, session: Session)
+    fun saveSession(session: Session)
 
     fun removeSession()
 

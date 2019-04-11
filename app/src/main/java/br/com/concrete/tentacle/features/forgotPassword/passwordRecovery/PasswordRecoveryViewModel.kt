@@ -7,7 +7,6 @@ import br.com.concrete.tentacle.data.models.Session
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.data.repositories.UserRepository
-import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
 class PasswordRecoveryViewModel(
     private val userRepository: UserRepository,
@@ -23,7 +22,7 @@ class PasswordRecoveryViewModel(
             userRepository.restorePassword(passwordRecovery)
                 .subscribe(
                     { baseSession ->
-                        sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, baseSession.data)
+                        sharedPrefRepository.saveSession(baseSession.data)
                         stateModel.postValue(
                             ViewStateModel(
                                 status = ViewStateModel.Status.SUCCESS,

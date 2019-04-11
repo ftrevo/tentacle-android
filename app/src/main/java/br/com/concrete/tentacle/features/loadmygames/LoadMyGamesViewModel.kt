@@ -5,37 +5,24 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import br.com.concrete.tentacle.base.BaseViewModel
-import br.com.concrete.tentacle.data.enums.Platform
 import br.com.concrete.tentacle.data.models.ActiveMedia
 import br.com.concrete.tentacle.data.models.Media
-import br.com.concrete.tentacle.data.models.MediaRequest
 import br.com.concrete.tentacle.data.models.MediaResponse
 import br.com.concrete.tentacle.data.models.QueryParameters
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
-import br.com.concrete.tentacle.utils.Event
-import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS
-import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_3DS_ABBREV
-import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH
-import br.com.concrete.tentacle.utils.PLATFORM_NINTENDO_SWITCH_ABBREV
-import br.com.concrete.tentacle.utils.PLATFORM_PS3_ABBREV
-import br.com.concrete.tentacle.utils.PLATFORM_PS4_ABBREV
-import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360
-import br.com.concrete.tentacle.utils.PLATFORM_XBOX_360_ABBREV
-import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE
-import br.com.concrete.tentacle.utils.PLATFORM_XBOX_ONE_ABBREV
+import br.com.concrete.tentacle.utils.SingleEvent
 
 class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseViewModel() {
 
-    private val viewStateGame: MutableLiveData<Event<ViewStateModel<MediaResponse>>> = MutableLiveData()
-    private val viewStateGameDelete: MutableLiveData<Event<ViewStateModel<Media>>> = MutableLiveData()
-    private val viewStateGamePage: MutableLiveData<Event<ViewStateModel<MediaResponse>>> = MutableLiveData()
-    private val viewStateGameActive: MutableLiveData<Event<ViewStateModel<Media>>> = MutableLiveData()
-
-    fun getMyGames(): LiveData<Event<ViewStateModel<MediaResponse>>> = viewStateGame
-    fun getMyGamesPage(): LiveData<Event<ViewStateModel<MediaResponse>>> = viewStateGamePage
-    fun deleteMedia(): LiveData<Event<ViewStateModel<Media>>> = viewStateGameDelete
-    fun activeMediaState(): LiveData<Event<ViewStateModel<Media>>> = viewStateGameActive
+    private val viewStateGame: MutableLiveData<SingleEvent<ViewStateModel<MediaResponse>>> = MutableLiveData()
+    private val viewStateGameDelete: MutableLiveData<SingleEvent<ViewStateModel<Media>>> = MutableLiveData()
+    private val viewStateGamePage: MutableLiveData<SingleEvent<ViewStateModel<MediaResponse>>> = MutableLiveData()
+    private val viewStateGameActive: MutableLiveData<SingleEvent<ViewStateModel<Media>>> = MutableLiveData()
+    fun getMyGames(): LiveData<SingleEvent<ViewStateModel<MediaResponse>>> = viewStateGame
+    fun getMyGamesPage(): LiveData<SingleEvent<ViewStateModel<MediaResponse>>> = viewStateGamePage
+    fun deleteMedia(): LiveData<SingleEvent<ViewStateModel<Media>>> = viewStateGameDelete
+    fun activeMediaState(): LiveData<SingleEvent<ViewStateModel<Media>>> = viewStateGameActive
 
     private var page: Int = 1
 
@@ -49,12 +36,12 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
     fun loadMyGames() {
         val queries = queryParameters ?: QueryParameters()
 
-        viewStateGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
+        viewStateGame.postValue(SingleEvent(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(
             gameRepository.loadMyGames(queries)
                 .subscribe({ baseModel ->
                     viewStateGame.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.SUCCESS,
                                 model = baseModel.data
@@ -63,7 +50,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
                     )
                 }, {
                     viewStateGame.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.ERROR,
                                 errors = notKnownError(it)
@@ -82,7 +69,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
             gameRepository.loadMyGames(queries)
                 .subscribe({ baseModel ->
                     viewStateGamePage.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.SUCCESS,
                                 model = baseModel.data
@@ -92,7 +79,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
                     page += 1
                 }, {
                     viewStateGamePage.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.ERROR,
                                 errors = notKnownError(it)
@@ -108,7 +95,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
             gameRepository.deleteMedia(id)
                 .subscribe({ baseModel ->
                     viewStateGameDelete.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.SUCCESS,
                                 model = baseModel.data
@@ -117,7 +104,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
                     )
                 }, {
                     viewStateGameDelete.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.ERROR,
                                 errors = notKnownError(it)
@@ -135,7 +122,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
             gameRepository.activeMedia(media._id, activeMedia)
                 .subscribe({ baseModel ->
                     viewStateGameActive.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.SUCCESS,
                                 model = baseModel.data
@@ -144,7 +131,7 @@ class LoadMyGamesViewModel(private val gameRepository: GameRepository) : BaseVie
                     )
                 }, {
                     viewStateGameActive.postValue(
-                        Event(
+                        SingleEvent(
                             ViewStateModel(
                                 status = ViewStateModel.Status.ERROR,
                                 errors = notKnownError(it)

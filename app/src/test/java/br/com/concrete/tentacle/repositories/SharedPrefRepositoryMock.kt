@@ -9,7 +9,7 @@ class SharedPrefRepositoryMock : SharedPrefRepositoryContract {
     override fun saveString(key: String, value: String) {
     }
 
-    override fun saveSession(key: String, session: Session) {
+    override fun saveSession(session: Session) {
     }
 
     override fun removeSession() {

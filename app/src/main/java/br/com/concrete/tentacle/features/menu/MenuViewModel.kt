@@ -10,7 +10,7 @@ import br.com.concrete.tentacle.data.repositories.SharedPrefRepositoryContract
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.extensions.fromJson
 import br.com.concrete.tentacle.extensions.toJson
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 import br.com.concrete.tentacle.utils.LogWrapper
 import br.com.concrete.tentacle.utils.PREFS_KEY_PATH_PHOTO
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER
@@ -21,14 +21,14 @@ class MenuViewModel(
     private val userRepository: UserRepository
 ) : BaseViewModel() {
 
-    private val stateModel: MutableLiveData<Event<ViewStateModel<User>>> = MutableLiveData()
+    private val stateModel: MutableLiveData<SingleEvent<ViewStateModel<User>>> = MutableLiveData()
     fun getUser() = stateModel
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun loadUser() {
         val user = sharedPrefRepository.getStoredUser(PREFS_KEY_USER)
         user?.let {
-            stateModel.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it)))
+            stateModel.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it)))
         } ?: run {
             loadUserFromServer()
         }
@@ -38,7 +38,7 @@ class MenuViewModel(
         disposables.add(
             userRepository.getProfile().subscribe({
                 sharedPrefRepository.saveUser(PREFS_KEY_USER, it.data)
-                stateModel.postValue(Event(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data)))
+                stateModel.postValue(SingleEvent(ViewStateModel(status = ViewStateModel.Status.SUCCESS, model = it.data)))
             }, {
                 LogWrapper.log("UserProfile: ", it.localizedMessage.toString())
             })

@@ -14,7 +14,6 @@ import br.com.concrete.tentacle.data.repositories.UserLoggedRepository
 import br.com.concrete.tentacle.data.repositories.UserRepository
 import br.com.concrete.tentacle.utils.LogWrapper
 import br.com.concrete.tentacle.utils.PREFS_KEY_USER
-import br.com.concrete.tentacle.utils.PREFS_KEY_USER_SESSION
 
 class ProfileViewModel(
     private val userLoggedRepository: UserLoggedRepository,
@@ -90,7 +89,7 @@ class ProfileViewModel(
         viewStateProfile.postValue(ViewStateModel(ViewStateModel.Status.LOADING))
         disposables.add(userLoggedRepository.updateProfile(currentUser._id, userRequest)
             .subscribe({ baseModel ->
-                sharedPrefRepository.saveSession(PREFS_KEY_USER_SESSION, baseModel.data)
+                sharedPrefRepository.saveSession(baseModel.data)
                 viewStateUpdate.postValue(ViewStateModel(
                     status = ViewStateModel.Status.SUCCESS,
                     model = baseModel.data))

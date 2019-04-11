@@ -69,6 +69,7 @@ object DialogUtils {
         }
 
         dialog.setCanceledOnTouchOutside(false)
+        dialog.setCancelable(false)
         dialog.show()
         val color = ContextCompat.getColor(context, R.color.colorAccent)
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(color)

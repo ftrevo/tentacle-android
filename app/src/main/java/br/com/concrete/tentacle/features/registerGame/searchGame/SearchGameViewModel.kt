@@ -9,7 +9,7 @@ import br.com.concrete.tentacle.data.models.GameRequest
 import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import br.com.concrete.tentacle.data.repositories.GameRepository
-import br.com.concrete.tentacle.utils.Event
+import br.com.concrete.tentacle.utils.SingleEvent
 
 class SearchGameViewModel(
     private val gameRepository: GameRepository
@@ -17,10 +17,10 @@ class SearchGameViewModel(
     LifecycleObserver {
 
     private val viewSearchGame = MutableLiveData<ViewStateModel<GameResponse>>()
-    private val viewGame = MutableLiveData<Event<ViewStateModel<Game>>>()
-    private val viewGameMore = MutableLiveData<Event<ViewStateModel<GameResponse>>>()
+    private val viewGame = MutableLiveData<SingleEvent<ViewStateModel<Game>>>()
+    private val viewGameMore = MutableLiveData<SingleEvent<ViewStateModel<GameResponse>>>()
 
-    val game: LiveData<Event<ViewStateModel<Game>>>
+    val game: LiveData<SingleEvent<ViewStateModel<Game>>>
         get() = viewGame
 
     private var page = 1
@@ -48,14 +48,14 @@ class SearchGameViewModel(
         })
 
     fun registerNewGame(name: String) {
-        viewGame.postValue(Event(ViewStateModel(ViewStateModel.Status.LOADING)))
+        viewGame.postValue(SingleEvent(ViewStateModel(ViewStateModel.Status.LOADING)))
         disposables.add(obsRegisterGame(name))
     }
 
     private fun obsRegisterGame(name: String) =
         gameRepository.registerNewGame(GameRequest(name = name)).subscribe({ base ->
             viewGame.postValue(
-                Event(
+                SingleEvent(
                     ViewStateModel(
                         status = ViewStateModel.Status.SUCCESS,
                         model = base.data
@@ -64,7 +64,7 @@ class SearchGameViewModel(
             )
         }, {
             viewGame.postValue(
-                Event(
+                SingleEvent(
                     ViewStateModel(
                         status = ViewStateModel.Status.ERROR,
                         errors = notKnownError(it)
@@ -80,7 +80,7 @@ class SearchGameViewModel(
     private fun obsSearchGameMore(title: String) =
         gameRepository.getSearchGames(title, page).subscribe({ base ->
             viewGameMore.postValue(
-                Event(
+                SingleEvent(
                     ViewStateModel(
                         status = ViewStateModel.Status.SUCCESS,
                         model = base.data
@@ -90,7 +90,7 @@ class SearchGameViewModel(
             page += 1
         }, {
             viewGameMore.postValue(
-                Event(
+                SingleEvent(
                     ViewStateModel(
                         status = ViewStateModel.Status.ERROR,
                         errors = notKnownError(it)
@@ -100,8 +100,8 @@ class SearchGameViewModel(
         })
 
     fun getSearchGame(): LiveData<ViewStateModel<GameResponse>> = viewSearchGame
-    fun getRegisteredGame(): LiveData<Event<ViewStateModel<Game>>> = viewGame
-    fun getSearchMoreGame(): LiveData<Event<ViewStateModel<GameResponse>>> = viewGameMore
+    fun getRegisteredGame(): LiveData<SingleEvent<ViewStateModel<Game>>> = viewGame
+    fun getSearchMoreGame(): LiveData<SingleEvent<ViewStateModel<GameResponse>>> = viewGameMore
     fun onePage() {
         page = 1
     }

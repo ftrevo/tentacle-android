@@ -11,6 +11,7 @@ import br.com.concrete.tentacle.data.models.ErrorResponse
 import br.com.concrete.tentacle.extensions.callSnackbar
 import br.com.concrete.tentacle.utils.DialogUtils
 import br.com.concrete.tentacle.utils.HTTP_UPGRADE_REQUIRED
+import io.reactivex.functions.Consumer
 import org.jetbrains.annotations.TestOnly
 
 abstract class BaseFragment : Fragment() {
@@ -22,7 +23,17 @@ abstract class BaseFragment : Fragment() {
         if (context is CallBack) callback = context
     }
 
+    private fun getEventObserver() = Consumer<Any> {
+    }
+
     protected fun showError(errors: ErrorResponse?, title: String = "Erro") {
+        activity?.let {
+            if (it is BaseActivity) {
+                it.showError(errors, title)
+                return
+            }
+        }
+
         var positiveButton = getString(R.string.ok)
         var negativeButton: String? = null
 
