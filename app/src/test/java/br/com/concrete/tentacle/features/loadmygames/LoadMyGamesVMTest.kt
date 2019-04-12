@@ -32,7 +32,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         val expected =
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data.list)
+                model = responseObject.data.list
+            )
         var actual = ViewStateModel<ArrayList<Media>>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
@@ -60,7 +61,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
 
         val expected =
             ViewStateModel<ArrayList<Media>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
+                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject
+            )
         var actual = ViewStateModel<ArrayList<Media>>(status = ViewStateModel.Status.LOADING)
 
         mockResponseError400()
@@ -88,7 +90,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         val expected =
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data.list)
+                model = responseObject.data.list
+            )
         var actual = ViewStateModel<ArrayList<Media>>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
@@ -117,7 +120,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
 
         val expected =
             ViewStateModel<ArrayList<Media>>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
+                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject
+            )
         var actual = ViewStateModel<ArrayList<Media>>(status = ViewStateModel.Status.LOADING)
 
         mockResponseError400()
@@ -190,7 +194,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         val expected =
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data.list)
+                model = responseObject.data.list
+            )
         var actual = ViewStateModel<ArrayList<Media>>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
@@ -222,7 +227,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         val expected =
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data)
+                model = responseObject.data
+            )
         var actual = ViewStateModel<Media>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
@@ -232,6 +238,32 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
 
         loadMyGamesViewModel.deleteMedia().observeForever {
             actual = ViewStateModel(model = it.peekContent().model, status = it.peekContent().status)
+        }
+
+        loadMyGamesViewModel.deleteGame("id")
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loadMyGamesViewModel calls deleteMedia error 404`() {
+        val responseJson = getJson(
+            "mockjson/errors/error_400.json"
+        )
+
+        val responseObject: ErrorResponse =
+            GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.ERROR,
+                model = null, errors = responseObject
+            )
+        var actual = ViewStateModel<Media>(status = ViewStateModel.Status.LOADING)
+
+        mockResponseError400()
+
+        loadMyGamesViewModel.deleteMedia().observeForever {
+            actual = ViewStateModel(status = it.peekContent().status, model = null, errors = it.peekContent().errors)
         }
 
         loadMyGamesViewModel.deleteGame("id")
@@ -252,7 +284,8 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
         val expected =
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data)
+                model = responseObject.data
+            )
         var actual = ViewStateModel<Media>(status = ViewStateModel.Status.LOADING)
 
         val mockResponse = MockResponse()
@@ -266,7 +299,34 @@ class LoadMyGamesVMTest : BaseViewModelTest() {
 
         val media = Media.getEmptyMedia()
 
-        loadMyGamesViewModel.activeMedia(media,false)
+        loadMyGamesViewModel.activeMedia(media, false)
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `when loadMyGamesViewModel calls activeMedia error 404`() {
+        val responseJson = getJson(
+            "mockjson/errors/error_400.json"
+        )
+
+        val responseObject: ErrorResponse =
+            GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
+
+        val expected =
+            ViewStateModel(
+                status = ViewStateModel.Status.ERROR,
+                model = null, errors = responseObject
+            )
+        var actual = ViewStateModel<Media>(status = ViewStateModel.Status.LOADING)
+
+        mockResponseError400()
+
+        loadMyGamesViewModel.activeMediaState().observeForever {
+            actual = ViewStateModel(status = it.peekContent().status, model = null, errors = it.peekContent().errors)
+        }
+
+        val media = Media.getEmptyMedia()
+        loadMyGamesViewModel.activeMedia(media, false)
         assertEquals(expected, actual)
     }
 }
