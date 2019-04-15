@@ -216,5 +216,11 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
             .check(matches(isDisplayed()))
             .perform(ViewActions.click())
 
+        onView(withRecyclerView(R.id.recyclerListView)
+            .atPosition(0))
+            .check(matches(isDisplayed()))
+            .check(matches(hasDescendant(not(withText("TEST")))))
+            .check(matches(hasDescendant(not(withText("PS4")))))
+
     }
 }
