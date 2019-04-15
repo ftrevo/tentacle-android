@@ -175,4 +175,46 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
 
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }
+
+    @Test
+    fun enableMedia() {
+        val response = "mockjson/loadmygames/load_my_games_success_disabled.json".getJson()
+        val removeGame = "mockjson/loadmygames/load_my_games_enable_success.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(removeGame)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+        )
+
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
+
+        onView(
+            withText("TEST"))
+            .perform(isDisplayed().waitUntil())
+            .check(matches(isDisplayed()))
+            .perform(longClick())
+
+        onView(withText("O jogo TEST será reativado e será exibido novamente na lista de \"Meus jogos\""))
+
+        onView(withText("Reativar"))
+            .check(matches(isDisplayed()))
+            .inRoot(RootMatchers.isDialog())
+            .check(matches(isDisplayed()))
+            .perform(ViewActions.click())
+
+    }
 }
