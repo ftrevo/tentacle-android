@@ -177,7 +177,7 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
     }
 
     @Test
-    fun enableMedia() {
+    fun showRecycleViewWithItemsDisabledAndEnablingMedia() {
         val response = "mockjson/loadmygames/load_my_games_success_disabled.json".getJson()
         val removeGame = "mockjson/loadmygames/load_my_games_enable_success.json".getJson()
         mockWebServer.enqueue(
@@ -221,6 +221,50 @@ class LoadMyGamesFragmentTest : BaseFragmentTest() {
             .check(matches(isDisplayed()))
             .check(matches(hasDescendant(not(withText("TEST")))))
             .check(matches(hasDescendant(not(withText("PS4")))))
+
+    }
+
+    @Test
+    fun showRecycleViewWithItemsDisabledClickEnableError404() {
+        val response = "mockjson/loadmygames/load_my_games_success_disabled.json".getJson()
+        val removeGame = "mockjson/errors/error_400.json".getJson()
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(response)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(404)
+                .setBody(removeGame)
+        )
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+        )
+
+        onView(withId(R.id.recyclerListView))
+            .perform(isDisplayed().waitUntil())
+
+        onView(
+            withText("TEST"))
+            .perform(isDisplayed().waitUntil())
+            .check(matches(isDisplayed()))
+            .perform(longClick())
+
+        onView(withText("O jogo TEST será reativado e será exibido novamente na lista de \"Meus jogos\""))
+
+        onView(withText("Reativar"))
+            .check(matches(isDisplayed()))
+            .inRoot(RootMatchers.isDialog())
+            .check(matches(isDisplayed()))
+            .perform(ViewActions.click())
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
 
     }
 }
