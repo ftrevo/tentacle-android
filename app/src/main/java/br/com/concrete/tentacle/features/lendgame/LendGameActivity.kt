@@ -139,6 +139,7 @@ class LendGameActivity : BaseActivity() {
                     }
                     ViewStateModel.Status.LOADING -> showLoading(true)
                     ViewStateModel.Status.ERROR -> {
+                        showError(stateModel.errors)
                     }
                 }
             }

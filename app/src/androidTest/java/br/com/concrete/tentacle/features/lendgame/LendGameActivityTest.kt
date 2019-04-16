@@ -2,9 +2,11 @@ package br.com.concrete.tentacle.features.lendgame
 
 import android.content.Intent
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -16,7 +18,9 @@ import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.extensions.format
 import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.matchers.RecyclerViewMatcher
 import okhttp3.mockwebserver.MockResponse
+import org.hamcrest.CoreMatchers
 import org.hamcrest.Matchers.not
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -164,6 +168,62 @@ class LendGameActivityTest : BaseInstrumentedTest() {
     @Test
     fun testLoadLendError426() {
         setResponse("mockjson/errors/error_400.json".getJson(), 426)
+
+        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun testEnableMedia() {
+        setResponse("mockjson/library/loan/lend_response_success_disabled.json".getJson(), 200)
+        setResponse("mockjson/library/loan/lend_response_success_enabled.json".getJson(), 200)
+
+        onView(withId(R.id.ivGameCover)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Super Meat Boy")))
+        onView(withId(R.id.tvReservado)).check(matches(withText("Solicitado por")))
+        onView(withId(R.id.tvRequestedBy)).check(matches(withText("Daivid Vasconcelos Leal")))
+        onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
+        onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
+        onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.btLendGame)).perform(scrollTo())
+        onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.delete))
+            .check(matches(withText("Reativar")))
+            .perform(click())
+
+        onView(withText("O jogo Super Meat Boy será reativado e será exibido novamente na lista de \"Meus jogos\""))
+
+        onView(withId(android.R.id.button1))
+            .inRoot(isDialog())
+            .check(matches(isDisplayed()))
+            .perform(click())
+    }
+
+    @Test
+    fun testEnableMediaError400() {
+        setResponse("mockjson/library/loan/lend_response_success_disabled.json".getJson(), 200)
+        setResponse("mockjson/errors/error_400.json".getJson(), 400)
+
+        onView(withId(R.id.ivGameCover)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvGameName)).check(matches(withText("Super Meat Boy")))
+        onView(withId(R.id.tvReservado)).check(matches(withText("Solicitado por")))
+        onView(withId(R.id.tvRequestedBy)).check(matches(withText("Daivid Vasconcelos Leal")))
+        onView(withId(R.id.tvTempoReservaLabel)).check(matches(withText("Tempo de reserva")))
+        onView(withId(R.id.tvTempoReserva)).check(matches(withText("2 Semanas")))
+        onView(withId(R.id.tvDate)).check(matches(withText(date)))
+        onView(withId(R.id.btLendGame)).perform(scrollTo())
+        onView(withId(R.id.btLendGame)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.delete))
+            .check(matches(withText("Reativar")))
+            .perform(click())
+
+        onView(withText("O jogo Super Meat Boy será reativado e será exibido novamente na lista de \"Meus jogos\""))
+
+        onView(withId(android.R.id.button1))
+            .inRoot(isDialog())
+            .check(matches(isDisplayed()))
+            .perform(click())
 
         onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
     }

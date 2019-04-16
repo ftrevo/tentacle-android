@@ -1,0 +1,61 @@
+{
+  "message": [
+    "Mídia encontrada"
+  ],
+  "data": {
+    "_id": "5c829d4173caf20023d68034",
+    "active": false,
+    "game": "5c8197b6349f31002315fd08",
+    "platform": "NINTENDO3DS",
+    "owner": "5c8148ef349f31002315fcca",
+    "createdAt": "2019-03-08T16:50:09.239Z",
+    "updatedAt": "2019-03-08T16:50:09.239Z",
+    "activeLoan": {
+      "_id": "5c8ae22f1994610023bf0476",
+      "requestedBy": "5c815595349f31002315fccf",
+      "requestedAt": "2019-03-14T23:22:23.193Z",
+      "requestedByName": "Daivid Vasconcelos Leal",
+      "requestedByState": "5a107a691592ca19f7b4a860",
+      "requestedByCity": "Paulista"
+    },
+    "gameData": {
+      "_id": "5c8197b6349f31002315fd08",
+      "id": 885,
+      "aggregated_rating": 85.25,
+      "cover": {
+        "id": 65991,
+        "height": 600,
+        "image_id": "htvoqoyhppqlrjto0ixz",
+        "width": 479
+      },
+      "first_release_date": "2010-10-20T00:00:00.000Z",
+      "game_modes": [
+        {
+          "id": 1,
+          "name": "Single player",
+          "slug": "single-player"
+        }
+      ],
+      "genres": [
+        {
+          "id": 8,
+          "name": "Platform",
+          "slug": "platform"
+        },
+        {
+          "id": 31,
+          "name": "Adventure",
+          "slug": "adventure"
+        },
+        {
+          "id": 32,
+          "name": "Indie",
+          "slug": "indie"
+        }
+      ],
+      "name": "Super Meat Boy",
+      "summary": "Super Meat Boy is a tough as nails platformer where you play as an animated cube of meat who's trying to save his girlfriend (who happens to be made of bandages) from an evil fetus in a jar wearing a tux.",
+      "formattedReleaseDate": "20/10/2010"
+    }
+  }
+}
