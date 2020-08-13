@@ -1,0 +1,275 @@
+<resources>
+    <string name="app_name">Tentacle</string>
+
+    <string name="register_name_hint">nome</string>
+    <string name="register_ddd_phone_hint">DDD + telefone</string>
+
+    <string name="create_account">Criar conta</string>
+    <string name="create_account_title">Criar uma conta</string>
+    <string name="state_hint">estado</string>
+    <string name="city_hint">cidade</string>
+
+    <string name="email_error">Digite um e-mail válido</string>
+    <string name="name_error">O campo nome é de preenchimento obrigatório</string>
+    <string name="password_error">O campo password precisa ter no mínimo 6 digitos</string>
+    <string name="password_confirmation_error">Os campos senha e comfirmação de senha não coincidem</string>
+    <string name="phone_error">Forneça um número de telefone válido</string>
+    <string name="state_error">Selecione um estado</string>
+    <string name="city_error">Selecione uma cidade</string>
+    <string name="load_error">Desculpe, não foi possível carregar os dados!</string>
+    <string name="token_error">O campo token é de preenchimento obrigatório</string>
+
+    <string name="ok">Ok</string>
+    <string name="error_dialog_title">Erro</string>
+
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="login">Login</string>
+    <string name="ola_novamente">Olá novamente :)</string>
+    <string name="entre_e_veja_os_novos_jogos_adicionados">Entre e veja os novos jogos adicionados!</string>
+    <string name="verificar_campos_login">Por favor, verifique os campos obrigatórios.</string>
+    <string name="button">Button</string>
+    <string name="register_account">Registrar conta</string>
+
+    <string name="token">Token</string>
+    <string name="new_password">Crie sua nova senha</string>
+    <string name="new_password_confirmation">Confimar senha</string>
+    <string name="confirmation_button">Confimar</string>
+
+    <string name="password_recovery_title">Recuperar senha</string>
+    <string name="password_recovery_subtitle">Adicione o token que enviamos para seu email</string>
+    <string name="password_recovery_new_pass_text">Crie uma nova senha para acessar o Tentacle.</string>
+
+    <string name="state_dialog_text">Selecione ou pesquise o estado</string>
+    <string name="city_dialog_text">Selecione ou pesquise a cidade</string>
+    <string name="dialog_close">Fechar</string>
+    <string name="select_hint">Selecione</string>
+    <string name="user_or_password_error">Usuário ou senha inválidos!</string>
+
+    <string name="unknow_error">Ocorreu um erro inesperado</string>
+    <string name="no_internet_connection">Parece que você está sem conexão com a internet</string>
+
+    <string name="search">Pesquisar</string>
+
+    <string name="add_new_game">Adicionar novo jogo</string>
+    <string name="add_new_game_compact">+ Adicionar</string>
+    <string name="no_game_registered">Você ainda não tem nenhum jogo cadastrado :(</string>
+    <string name="load_games_error_not_know">Ocorreu um erro ao carregar os jogos. Por favor, tente novamente.</string>
+    <string name="load_again">Carregar Novamente</string>
+
+    <string name="game_name">Nome do Jogo</string>
+    <string name="media">mídia</string>
+    <string name="first_game_register">Parece que você é o primeiro a buscar esse jogo!</string>
+
+    <string name="remote_game_not_found_description">Jogo não encontrado</string>
+    <string name="remote_game_not_found_action_button">Retornar para pesquisa</string>
+
+    <string name="register_media_group_title">Selecione a plataforma:</string>
+    <string name="register_media_ps3_radio_button_title">Playstation 3</string>
+    <string name="register_media_ps4_radio_button_title">Playstation 4</string>
+    <string name="register_media_xbox360_radio_button_title">XBox 360</string>
+    <string name="register_media_xboxone_radio_button_title">XBox One</string>
+    <string name="register_media_3ds_radio_button_title">Nintendo 3DS</string>
+    <string name="register_media_switch_radio_button_title">Nintendo Switch</string>
+    <string name="register_media_button">Cadastrar</string>
+
+    <string name="register_media_success_test">Jogo cadastrado com sucesso</string>
+    <string name="register_media_generic_error_test">Ocorreu um erro</string>
+    <string name="register_media_no_selection_error">Necessário escolher a plataforma do jogo</string>
+
+    <string name="toolbar_title_home">Novos jogos</string>
+    <string name="toolbar_title_my_games">Meus jogos</string>
+    <string name="toolbar_title_search_game">Cadastrar jogo</string>
+    <string name="toolbar_title_loan_game">Reservar jogo</string>
+    <string name="toolbar_title_lend_game">Detalhes do jogo</string>
+    <string name="toolbar_title_my_reservations">Minhas Reservas</string>
+    <string name="toolbar_title_my_reservations_detail">Detalhes da reserva</string>
+    <string name="toolbar_title_about">Sobre</string>
+
+    <string name="no_game_in_home">A Home ainda não possui jogos novos cadastrados. Comece a cadastrar para eles
+        aparecerem aqui!
+    </string>
+
+    <string name="did_not_find_what_you_wanted">Não encontrou o que queria?</string>
+    <string name="field_search_no_empty">O campo de pesquisa não pode ficar vázio</string>
+    <string name="toolbar_title_library">Biblioteca</string>
+
+    <string name="no_library_error">Nossa biblioteca ainda não tem\nnenhum jogo cadastrado. Seja o\nprimeiro a
+        cadastrar.
+    </string>
+    <string name="load_library_error_not_know">Ocorreu um erro ao carregar a bilioteca de jogos.\nPor favor, tente
+        novamente.
+    </string>
+
+    <string name="bullet_ps3">PS3</string>
+    <string name="bullet_ps4">PS4</string>
+    <string name="bullet_360">360</string>
+    <string name="bullet_ONE">ONE</string>
+    <string name="bullet_3DS">3DS</string>
+    <string name="bullet_NS">NS</string>
+
+    <string name="chip_ps3">PS3</string>
+    <string name="chip_ps4">PS4</string>
+    <string name="chip_360">X360</string>
+    <string name="chip_one">XOne</string>
+    <string name="chip_3ds">3DS</string>
+    <string name="chip_ns">Switch</string>
+
+    <string name="filter_toolbar_title">Filtro</string>
+    <string name="filter_button_text">Filtrar</string>
+    <string name="filter_clear_button_text">Limpar filtro</string>
+    <!-- These strings below will no longer needed once all the data starts to come from the api -->
+    <string name="filter_item_platforms">Plataformas</string>
+    <string name="filter_item_status">Status do jogo</string>
+    <string name="filter_subitem_games_availability">Mostrar jogos indisponíveis</string>
+    <!-- end here -->
+
+    <string name="logout_title">Logout</string>
+    <string name="logout_question">Tem certeza que deseja efetuar o logout?</string>
+
+    <string name="filter">Filtro</string>
+
+    <string name="loremText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+        been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
+    </string>
+    <string name="reserved_by">Reservado por</string>
+    <string name="requested_by">Solicitado por</string>
+    <string name="nome_sobrenome">Nome Sobrenome</string>
+    <string name="date_return_prefix">até %1$s</string>
+    <string name="date_requested_prefix">em %1$s</string>
+    <string name="tempo_reserva">Tempo de reserva</string>
+    <string name="lendGame">Jogo entregue</string>
+    <string name="gameReturned">Jogo devolvido</string>
+    <string name="requestReturn">Solicitar devolução</string>
+
+    <string name="cancel">Cancelar</string>
+
+    <string name="library_loan_text1">Qual a plataforma que você quer reservar?</string>
+    <string name="library_loan_register">Qual a plataforma que você quer cadastrar?</string>
+    <string name="library_loan_text2">Escolha de quem você quer emprestado</string>
+
+    <string name="library_loan_user_list_hint">Selecione</string>
+    <string name="library_loan_perform_loan">Reservar</string>
+
+    <string name="loan_success">Você acabou de reservar %1$s, aguarde o dono te entregar para começar a curtir o game!
+    </string>
+    <string name="loan_button_success">Acompanhar suas reservas</string>
+    <string name="two_weeks">2 Semanas</string>
+
+    <string name="lend_success">O jogo foi entregue a %1$s e a reserva termina em %2$s.</string>
+    <string name="return_success">O jogo foi devolvido e já está disponível novamente na Biblioteca.</string>
+    <string name="remember_success">Um email foi enviado para %1$s solicitando a devolução do jogo.</string>
+    <string name="back_to_library">Voltar para Biblioteca</string>
+    <string name="back_to_my_games">Voltar para Meus Jogos</string>
+
+    <string name="msg_empty_list">Ops! A sua busca não retornou nenhum resultado</string>
+    <string name="already_account">Já tem uma conta?</string>
+    <string name="was_some_mistake">Opa! Parece que ocorreu algum engano.</string>
+    <string name="generic_fail_text">Ops! Parece que aconteceu alguma coisa.</string>
+
+    <string name="text_game_info">Informações do jogo</string>
+    <string name="text_game_gender">Gênero</string>
+    <string name="text_game_platform">Plataforma</string>
+    <string name="text_game_owner">Dono do jogo</string>
+    <string name="text_game_single_player">Single Player</string>
+    <string name="text_game_multi_player">Multiplayer online</string>
+
+    <string name="game_already_registered">Ops! Parece que já cadastrou esse jogo.</string>
+    <string name="confirm_game">Você confirma que %1$s existe para a plataforma %2$s?</string>
+    <string name="back">Voltar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="session_expired_text">"A sua sessão expirou, efetue o login novamente."</string>
+
+    <string name="pending">Pendente</string>
+
+    <string name="load_reservations_error_not_know">Ocorreu um erro ao carregas as reservas. Por favor, tente
+        novamente.
+    </string>
+    <string name="load_reservations_empty_list">Você ainda não possui nenhum pedido de reserva.</string>
+    <string name="btn_reservation_error_empty">Ir para a biblioteca</string>
+
+    <string name="my_reservation_owner_name">Dono: %1$s</string>
+
+    <string name="loan_state_pending">Pendente</string>
+    <string name="loan_state_active_plural">Faltam %1$d dias</string>
+    <string name="loan_state_active_singular">Falta %1$d dia</string>
+    <string name="loan_state_expired">Expirado</string>
+    <string name="loan_state_expired_lower_case">expirado</string>
+
+    <string name="loan_info_expired">Seu prazo de reserva acabou. Entregue o jogo ao dono para que outra pessoa consiga
+        reservar :)
+    </string>
+    <string name="loan_info_pending">Aguardando o jogo ser entregue pelo dono para que sua reserva seja liberada.
+    </string>
+    <string name="title_activity_pinch_to_zoom">PinchToZoomActivity</string>
+    <string name="forgot_password">Esquece a senha?</string>
+    <string name="title_activity_forgot_pass_send_email">ForgotPassSendEmailActivity</string>
+    <string name="recover_password">Recuperar senha</string>
+    <string name="add_email_receive_code">Adicione o email para receber o \n código de verificação</string>
+    <string name="send">Enviar</string>
+    <string name="alreadyHaveToken">Já possui o token?</string>
+    <string name="ops_ocorreu_erro">Ops!</string>
+
+    <string name="delete_dialog_title">Excluir Jogo</string>
+    <string name="delete_dialog_message">O jogo %1$s sairá da lista de \"Meus Jogos\", mas você poderá adicioná-lo
+        novamente no futuro.
+    </string>
+    <string name="delete_dialog_error">Ocorreu um erro ao tentar deletar o jogo, por favor tente novamente mais tarde!
+    </string>
+    <string name="delete">Excluir</string>
+    <string name="not_delete">Agora não</string>
+
+    <string name="quickstart_message">Click the SUBSCRIBE TO WEATHER button below to subscribe to the
+        weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logs the
+        InstanceID token to logcat.
+    </string>
+    <string name="subscribe_to_weather">Subscribe To Weather</string>
+    <string name="log_token">Log Token</string>
+
+    <string name="msg_subscribed">Subscribed to weather topic</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">Weather</string>
+    <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
+    <string name="fcm_message">Nova Mensagem</string>
+    <string name="midias_title">Mídias</string>
+    <string name="something_happened">Ops! Parece que algo aconteceu!</string>
+    <string name="exampleMessage">O jogo sairá da lista de ‘’Meus jogos’’. Mas você poderá adicioná-lo novamente no
+        futuro.
+    </string>
+
+    <string name="profile_title">Perfil</string>
+    <string name="profile_state_city_warning">Ao alterar o Estado/Cidade, você só conseguirá ver os jogos disponíveis na
+        Concrete desta localidade.
+    </string>
+    <string name="profile_save_button">Salvar alterações</string>
+    <string name="profile_changed_success">O seu perfil foi alterado com sucesso.</string>
+
+    <string name="profile">Perfil</string>
+    <string name="exit">Sair</string>
+    <string name="about">Sobre</string>
+    <string name="version">versão %1$s</string>
+    <string name="returned_date">Devolvido em %1$s</string>
+
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+    <string name="delete_dialog_title_reservation">Excluir Reserva</string>
+    <string name="delete_dialog_message_reservation">A reserva do jogo %1$s sairá da lista de \"Minhas Reservas\", mas
+        você poderá adicioná-lo
+        novamente no futuro.
+    </string>
+    <string name="remove">Remover</string>
+    <string name="update">Atualizar</string>
+    <string name="reactivate">Reativar</string>
+    <string name="reactivate_media">Reativar mídia</string>
+    <string name="reactivate_media_dialog_message">O jogo %1$s será reativado e será exibido novamente na lista de \"Meus jogos\".</string>
+</resources>

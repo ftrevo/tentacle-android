@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/nav_register_game_host"
+        app:startDestination="@+id/searchGame">
+
+    <fragment
+        android:id="@+id/searchGame"
+        android:name="br.com.concrete.tentacle.features.registerGame.searchGame.SearchGameFragment"
+        android:label="@string/toolbar_title_search_game"
+        tools:layout="@layout/fragment_search_game">
+
+        <action
+            android:id="@+id/navigate_to_register_platform"
+            app:destination="@id/mediaRegisterGame"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/navigate_to_remote_game"
+            app:destination="@id/remoteGame"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/remoteGame"
+        android:name="br.com.concrete.tentacle.features.registerGame.remoteGame.RemoteGameFragment"
+        android:label="@string/add_new_game"
+        tools:layout="@layout/fragment_remote_game">
+
+        <argument
+            android:name="game_name"
+            app:argType="java.lang.String"/>
+
+        <action
+                android:id="@+id/navigate_to_register_platform_from_remote"
+                app:destination="@id/mediaRegisterGame"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+
+    <fragment
+            android:id="@+id/mediaRegisterGame"
+            android:name="br.com.concrete.tentacle.features.registerGame.registerMedia.RegisterMediaFragment"
+            android:label="@string/toolbar_title_search_game"
+            tools:layout="@layout/fragment_register_media">
+
+        <argument
+            android:name="game_argument"
+            app:argType="string"/>
+    </fragment>
+
+</navigation>

@@ -1,0 +1,141 @@
+{
+  "data": {
+    "list": [
+      {
+        "_id": "5a107a681592ca19f7b4a851",
+        "initials": "AC",
+        "name": "Acre"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a852",
+        "initials": "AL",
+        "name": "Alagoas"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a854",
+        "initials": "AP",
+        "name": "Amapá"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a853",
+        "initials": "AM",
+        "name": "Amazonas"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a855",
+        "initials": "BA",
+        "name": "Bahia"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a856",
+        "initials": "CE",
+        "name": "Ceará"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a857",
+        "initials": "DF",
+        "name": "Distrito Federal"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a858",
+        "initials": "ES",
+        "name": "Espírito Santo"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a859",
+        "initials": "GO",
+        "name": "Goiás"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a85a",
+        "initials": "MA",
+        "name": "Maranhão"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a85d",
+        "initials": "MT",
+        "name": "Mato Grosso"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a85c",
+        "initials": "MS",
+        "name": "Mato Grosso do Sul"
+      },
+      {
+        "_id": "5a107a681592ca19f7b4a85b",
+        "initials": "MG",
+        "name": "Minas Gerais"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a862",
+        "initials": "PR",
+        "name": "Paraná"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a85f",
+        "initials": "PB",
+        "name": "Paraíba"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a85e",
+        "initials": "PA",
+        "name": "Pará"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a860",
+        "initials": "PE",
+        "name": "Pernambuco"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a861",
+        "initials": "PI",
+        "name": "Piauí"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a864",
+        "initials": "RN",
+        "name": "Rio Grande do Norte"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a867",
+        "initials": "RS",
+        "name": "Rio Grande do Sul"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a863",
+        "initials": "RJ",
+        "name": "Rio de Janeiro"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a865",
+        "initials": "RO",
+        "name": "Rondônia"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a866",
+        "initials": "RR",
+        "name": "Roraima"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a868",
+        "initials": "SC",
+        "name": "Santa Catarina"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a869",
+        "initials": "SE",
+        "name": "Sergipe"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a86a",
+        "initials": "SP",
+        "name": "São Paulo"
+      },
+      {
+        "_id": "5a107a691592ca19f7b4a86b",
+        "initials": "TO",
+        "name": "Tocantins"
+      }
+    ]
+  }
+}

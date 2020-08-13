@@ -1,0 +1,16 @@
+{
+  "data": {
+    "list": [
+      {
+        "_id": "1",
+        "initials": "INITIALS 01",
+        "name": "NAME 01"
+      },
+      {
+        "_id": "2",
+        "initials": "INITALS 02",
+        "name": "NAME 02"
+      }
+    ]
+  }
+}

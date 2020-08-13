@@ -1,0 +1,174 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: "de.mannodermaus.android-junit5"
+
+apply plugin: 'kotlin-allopen'
+
+apply plugin: 'kotlin-kapt'
+
+apply from: 'tasks.gradle'
+
+apply plugin: 'io.fabric'
+
+apply plugin: 'jacoco'
+
+apply plugin: 'androidx.navigation.safeargs'
+
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'br.com.concrete.tentacle.testing.OpenClass'
+}
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "br.com.concrete.tentacle"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 106
+        versionName "1.0.6"
+        testInstrumentationRunner "br.com.concrete.tentacle.util.TentacleTestRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", '"https://tentacle-backend-dev.herokuapp.com/"'
+            applicationIdSuffix ".debug"
+            testCoverageEnabled true
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", '"https://tentacle-backend.herokuapp.com/"'
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
+        }
+    }
+
+    sourceSets.test.resources.srcDirs += ["src/debug/assets"]
+}
+
+androidExtensions {
+    experimental = true
+}
+
+configurations {
+    ktlint
+}
+
+jacoco {
+    toolVersion = "$jacobVersion"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "com.google.android.material:material:$material"
+    implementation "androidx.appcompat:appcompat:$appCompat"
+    implementation "androidx.constraintlayout:constraintlayout:$constraitLayout"
+
+    //UI Components
+    //https://github.com/MdFarhanRaja/SearchableSpinner
+    implementation "com.github.MdFarhanRaja:SearchableSpinner:$searchableSpinner"
+
+    //firebase
+    implementation "com.google.firebase:firebase-core:$firebaseCore"
+    implementation "com.google.firebase:firebase-messaging:$firebaseMessaging"
+    implementation "com.google.firebase:firebase-iid:$firebaseIid"
+    implementation "com.firebase:firebase-jobdispatcher:$firebaseDispatcher"
+
+    //Test
+    implementation "androidx.legacy:legacy-support-v4:$legacySupport"
+    implementation "androidx.recyclerview:recyclerview:$legacySupport"
+    testImplementation "junit:junit:$junit"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5"
+    androidTestImplementation "androidx.test:runner:$runner"
+    androidTestImplementation "androidx.test:rules:$androidxTest"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$expresso"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
+    testImplementation "org.robolectric:robolectric:$robolectric"
+    testImplementation "android.arch.core:core-testing:$coreTesting"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoAndroid"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTest"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoIntent"
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$espressoContrib") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
+
+    //Koin
+    implementation "org.koin:koin-core:$koinVersion"
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$koinVersion"
+    testImplementation "org.koin:koin-test:$koinVersion"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$retrofitLogging"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterRxJava"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3"
+
+    //Observable
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJava"
+
+    //AndroidX ViewModel/LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "com.google.android.material:material:$androidMaterial"
+
+    //Utils
+    implementation "br.com.concrete:canarinho:$canarinho"
+
+    //Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigation"
+
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion@aar") {
+        transitive = true
+    }
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide"
+    kapt "com.github.bumptech.glide:compiler:$glide"
+
+    ktlint "com.github.shyiko:ktlint:$ktLintVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinReflection"
+
+    //https://github.com/jaredrummler/MaterialSpinner
+    implementation "com.jaredrummler:material-spinner:$materialSpinner"
+
+    //PinchToZoom
+    implementation "com.github.chrisbanes:PhotoView:$pinchZoom"
+
+    //takePicture
+    implementation 'com.github.jkwiecien:EasyImage:1.3.1'
+
+    implementation 'com.github.santalu:auto-viewpager:1.0.8'
+}
+
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'

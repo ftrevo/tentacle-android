@@ -1,0 +1,32 @@
+[
+  {
+    "title":"Plataformas",
+    "icon":"ic_game",
+    "subItems":[
+      {
+        "queryParameter":"PS3",
+        "name":"Playstation 3"
+      },
+      {
+        "queryParameter":"PS4",
+        "name":"Playstation 4"
+      },
+      {
+        "queryParameter":"XBOX360",
+        "name":"XBox 360"
+      },
+      {
+        "queryParameter":"XBOXONE",
+        "name":"XBox One"
+      },
+      {
+        "queryParameter":"NINTENDO3DS",
+        "name":"Nintendo 3DS"
+      },
+      {
+        "queryParameter":"NINTENDOSWITCH",
+        "name":"Nintendo Switch"
+      }
+    ]
+  }
+]

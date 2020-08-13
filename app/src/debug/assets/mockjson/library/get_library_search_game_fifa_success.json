@@ -1,0 +1,457 @@
+{
+  "data": {
+    "list": [
+      {
+        "_id": "5c64438f352d58002358f362",
+        "title": "Fifa 2015",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-13T16:19:27.658Z",
+        "updatedAt": "2019-02-15T03:04:59.593Z",
+        "name": "Fifa 2015",
+        "mediaPs3": [
+          {
+            "_id": "5c66fc6a9321750023d9998f",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaPs4": [
+          {
+            "_id": "5c644392352d58002358f363",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          },
+          {
+            "_id": "5c66fc739321750023d99990",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaXbox360": [
+          {
+            "_id": "5c66fc829321750023d99991",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaXboxOne": [
+          {
+            "_id": "5c66fc8f9321750023d99992",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c66fc989321750023d99993",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaPs3Count": 1,
+        "mediaPs4Count": 2,
+        "mediaXbox360Count": 1,
+        "mediaXboxOneCount": 1,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 1
+      },
+      {
+        "_id": "5c644387352d58002358f360",
+        "title": "Fifa 2016",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-13T16:19:19.355Z",
+        "updatedAt": "2019-02-15T03:04:59.593Z",
+        "name": "Fifa 2016",
+        "mediaPs3": [],
+        "mediaPs4": [],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [
+          {
+            "_id": "5c644389352d58002358f361",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 0,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 1,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c64437e352d58002358f35e",
+        "title": "Fifa 2018",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-13T16:19:10.059Z",
+        "updatedAt": "2019-02-15T03:04:59.593Z",
+        "name": "Fifa 2018",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c644380352d58002358f35f",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c644374352d58002358f35c",
+        "title": "Fifa 2017",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-02-13T16:19:00.173Z",
+        "updatedAt": "2019-02-15T03:04:59.593Z",
+        "name": "Fifa 2017",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c644376352d58002358f35d",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c5dbabbcc06180023fd7df9",
+        "title": "Fifa 19",
+        "createdBy": "5c5dba8ccc06180023fd7df7",
+        "createdAt": "2019-02-08T17:22:03.801Z",
+        "updatedAt": "2019-02-15T03:04:59.592Z",
+        "name": "Fifa 19",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c5dbac2cc06180023fd7dfa",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [
+          {
+            "_id": "5c5dbf6ecc06180023fd7e0c",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaNintendo3ds": [
+          {
+            "_id": "5c5dbf63cc06180023fd7e0b",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c5dbf59cc06180023fd7e09",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 1,
+        "mediaNintendo3dsCount": 1,
+        "mediaNintendoSwitchCount": 1
+      },
+      {
+        "_id": "5c49cbaf0124e4002334b1be",
+        "title": "fifa 12",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-01-24T14:29:03.388Z",
+        "updatedAt": "2019-02-15T03:04:59.454Z",
+        "name": "fifa 12",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c49eb396d40b70023ca6318",
+            "owner": "5c49e7766d40b70023ca6316",
+            "ownerName": "E-MAIL 4",
+            "ownerState": "5a107a681592ca19f7b4a853",
+            "ownerCity": "Amaturá"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [
+          {
+            "_id": "5c49fe806d40b70023ca631d",
+            "owner": "5c49fe556d40b70023ca631b",
+            "ownerName": "EMAIL 5",
+            "ownerState": "5a107a681592ca19f7b4a854",
+            "ownerCity": "Cutias"
+          }
+        ],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 1,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c460f9df2cb790023617ab6",
+        "title": "FIFA",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-01-21T18:29:49.058Z",
+        "updatedAt": "2019-02-15T03:04:59.453Z",
+        "name": "FIFA",
+        "mediaPs3": [
+          {
+            "_id": "5c5059d5aa9b7a00236f58e4",
+            "owner": "5c5059a5aa9b7a00236f58e2",
+            "ownerName": "LEO MALKES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          },
+          {
+            "_id": "5c66fc269321750023d9998a",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaPs4": [
+          {
+            "_id": "5c50948329d7100023ebb769",
+            "owner": "5c505219aa9b7a00236f58e0",
+            "ownerName": "MAHERBSON DANTAS",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          },
+          {
+            "_id": "5c66fc319321750023d9998b",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaXbox360": [
+          {
+            "_id": "5c5352e0906fb50023e50738",
+            "owner": "5c1ab15c7c0f4f002272357f",
+            "ownerName": "DAIVID V. LEAL",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          },
+          {
+            "_id": "5c66fc3a9321750023d9998c",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaXboxOne": [
+          {
+            "_id": "5c66f8529321750023d99989",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaNintendo3ds": [
+          {
+            "_id": "5c66fc489321750023d9998d",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c66fc509321750023d9998e",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaPs3Count": 2,
+        "mediaPs4Count": 2,
+        "mediaXbox360Count": 2,
+        "mediaXboxOneCount": 1,
+        "mediaNintendo3dsCount": 1,
+        "mediaNintendoSwitchCount": 1
+      },
+      {
+        "_id": "5c38d24bef33b700234351dd",
+        "title": "Fifa 18",
+        "createdBy": "5c1ab12e7c0f4f002272357e",
+        "createdAt": "2019-01-11T17:28:43.975Z",
+        "updatedAt": "2019-02-15T03:04:59.605Z",
+        "name": "Fifa 18",
+        "mediaPs3": [],
+        "mediaPs4": [
+          {
+            "_id": "5c5dbad6cc06180023fd7dfb",
+            "owner": "5c5dba8ccc06180023fd7df7",
+            "ownerName": "FELIPE TREVISAN",
+            "ownerState": "5a107a691592ca19f7b4a867",
+            "ownerCity": "Santa Rosa"
+          }
+        ],
+        "mediaXbox360": [],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [],
+        "mediaPs3Count": 0,
+        "mediaPs4Count": 1,
+        "mediaXbox360Count": 0,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 0
+      },
+      {
+        "_id": "5c38c18bdd09c90023fad1a7",
+        "title": "FIFA 2019",
+        "createdBy": "5c1ab15c7c0f4f002272357f",
+        "createdAt": "2019-01-11T16:17:15.215Z",
+        "updatedAt": "2019-02-15T03:04:59.605Z",
+        "name": "FIFA 2019",
+        "mediaPs3": [
+          {
+            "_id": "5c3cb3e6098fab0023f6b0d1",
+            "owner": "5c1ab15c7c0f4f002272357f",
+            "ownerName": "DAIVID V. LEAL",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          },
+          {
+            "_id": "5c586104f8e6ef002376a5d5",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaPs4": [
+          {
+            "_id": "5c3cb70f098fab0023f6b0d4",
+            "owner": "5c1ab15c7c0f4f002272357f",
+            "ownerName": "DAIVID V. LEAL",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          },
+          {
+            "_id": "5c49e53e6d40b70023ca6313",
+            "owner": "5c49d1220104540023701195",
+            "ownerName": "EMAIL EMAIL",
+            "ownerState": "5a107a681592ca19f7b4a853",
+            "ownerCity": "Anori"
+          },
+          {
+            "_id": "5c51da3d5da9790023080d68",
+            "owner": "5c505219aa9b7a00236f58e0",
+            "ownerName": "MAHERBSON DANTAS",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          },
+          {
+            "_id": "5c53274cbe36dd0023ea2c32",
+            "owner": "5c2d129dd957060023385a1b",
+            "ownerName": "RWYEG",
+            "ownerState": "5a107a681592ca19f7b4a854",
+            "ownerCity": "Cutias"
+          },
+          {
+            "_id": "5c66f3d29321750023d99981",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaXbox360": [
+          {
+            "_id": "5c5860f7f8e6ef002376a5d4",
+            "owner": "5c58603ff8e6ef002376a5d2",
+            "ownerName": "YARA",
+            "ownerState": "5a107a691592ca19f7b4a861",
+            "ownerCity": "Campinas do Piauí"
+          }
+        ],
+        "mediaXboxOne": [],
+        "mediaNintendo3ds": [],
+        "mediaNintendoSwitch": [
+          {
+            "_id": "5c4a0a556d40b70023ca6333",
+            "owner": "5c4a096a6d40b70023ca632f",
+            "ownerName": "LETICIA GUEDIX",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          },
+          {
+            "_id": "5c5dbe60cc06180023fd7e06",
+            "owner": "5c1ab12e7c0f4f002272357e",
+            "ownerName": "JOAO DAS NEVES",
+            "ownerState": "5a107a691592ca19f7b4a860",
+            "ownerCity": "Recife"
+          }
+        ],
+        "mediaPs3Count": 2,
+        "mediaPs4Count": 5,
+        "mediaXbox360Count": 1,
+        "mediaXboxOneCount": 0,
+        "mediaNintendo3dsCount": 0,
+        "mediaNintendoSwitchCount": 2
+      }
+    ],
+    "count": 9
+  }
+}

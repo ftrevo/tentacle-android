@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/gameViewHeader"
+        android:background="@android:color/transparent"
+        tools:background="@color/colorPrimary">
+
+    <ImageView
+        android:background="@color/activateIcon"
+        android:id="@+id/ivGameCover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="@dimen/game_icon_width"
+        android:layout_height="@dimen/game_icon_height"/>
+
+    <TextView
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:id="@+id/tvGameName"
+        tools:text="Nome do Jogo"
+        app:layout_constraintStart_toEndOf="@id/ivGameCover"
+        app:layout_constraintEnd_toStartOf="@id/ivGameStatus"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextHeavy.24sp"
+        android:textColor="@color/textColor"/>
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/rbGame"
+        style="?android:attr/ratingBarStyleSmall"
+        android:theme="@style/StyleRatingBar"
+        android:numStars="@integer/ratingStarNumber"
+        tools:progress="50"
+        app:layout_constraintTop_toBottomOf="@id/tvGameName"
+        app:layout_constraintStart_toStartOf="@id/tvGameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvGameReleaseYear"
+        tools:text="2018"
+        android:textColor="@color/textColor"
+        android:textAppearance="@style/TextMedium.14sp"
+        app:layout_constraintTop_toTopOf="@id/rbGame"
+        app:layout_constraintBottom_toBottomOf="@id/rbGame"
+        app:layout_constraintStart_toEndOf="@id/rbGame"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvGameReleaseYear"
+        android:textColor="@color/textColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Pendente"
+        android:id="@+id/tvGameStatus"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/ivGameStatus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvGameStatus"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:src="@drawable/ic_game_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupStatus"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tvGameStatus,ivGameStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

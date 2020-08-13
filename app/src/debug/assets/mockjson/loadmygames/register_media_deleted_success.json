@@ -1,0 +1,20 @@
+{
+  "message": [
+    "Mídia atualizada"
+  ],
+  "data": {
+    "active": false,
+    "_id": "5c93b77613ee2200238e15b8",
+    "game": {
+      "_id": "5c794f6e169826002349874b",
+      "name": "Anthem"
+    },
+    "platform": "PS4",
+    "owner": {
+      "_id": "5c810617647c2c0023ccdb28",
+      "name": "Usuário"
+    },
+    "createdAt": "2019-03-21T16:10:30.987Z",
+    "updatedAt": "2019-04-11T17:50:47.602Z"
+  }
+}

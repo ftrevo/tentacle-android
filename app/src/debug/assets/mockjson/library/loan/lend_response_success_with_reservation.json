@@ -1,0 +1,68 @@
+{
+  "message": [
+    "Mídia encontrada"
+  ],
+  "data": {
+    "_id": "5c8199a2349f31002315fd0a",
+    "active": true,
+    "game": "5c81997d349f31002315fd09",
+    "platform": "PS4",
+    "owner": "5c8148ef349f31002315fcca",
+    "createdAt": "2019-03-07T22:22:26.829Z",
+    "updatedAt": "2019-03-07T22:22:26.829Z",
+    "activeLoan": {
+      "_id": "5c826c1f2e75f40023618147",
+      "requestedBy": "5c815595349f31002315fccf",
+      "requestedAt": "2019-03-08T13:20:31.145Z",
+      "estimatedReturnDate": "2019-03-22T18:05:35.551Z",
+      "loanDate": "2019-03-08T18:05:35.551Z",
+      "requestedByName": "Daivid Vasconcelos Leal",
+      "requestedByState": "5a107a691592ca19f7b4a860",
+      "requestedByCity": "Paulista"
+    },
+    "gameData": {
+      "_id": "5c81997d349f31002315fd09",
+      "id": 55174,
+      "aggregated_rating": 63,
+      "cover": {
+        "id": 34441,
+        "height": 426,
+        "image_id": "w1higiwm5juqyprhn9ct",
+        "width": 843
+      },
+      "first_release_date": "2017-11-02T00:00:00.000Z",
+      "game_modes": [
+        {
+          "id": 1,
+          "name": "Single player",
+          "slug": "single-player"
+        },
+        {
+          "id": 2,
+          "name": "Multiplayer",
+          "slug": "multiplayer"
+        },
+        {
+          "id": 4,
+          "name": "Split screen",
+          "slug": "split-screen"
+        }
+      ],
+      "genres": [
+        {
+          "id": 7,
+          "name": "Music",
+          "slug": "music"
+        },
+        {
+          "id": 14,
+          "name": "Sport",
+          "slug": "sport"
+        }
+      ],
+      "name": "Super Beat Sports",
+      "summary": "A rhythm sports game for Switch.",
+      "formattedReleaseDate": "02/11/2017"
+    }
+  }
+}

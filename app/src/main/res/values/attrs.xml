@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ButtonView">
+        <attr name="buttonName" format="string"/>
+        <attr name="progressBarColor" format="string"/>
+        <attr name="textColorButton" format="string"/>
+        <attr name="textSizeButton" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="TentacleLabeledWidget">
+        <attr name="label" format="reference"/>
+        <attr name="errorLabel" format="reference"/>
+        <attr name="android:imeOptions"/>
+        <attr name="android:inputType"/>
+        <attr name="android:gravity"/>
+        <attr name="android:maxLength"/>
+    </declare-styleable>
+
+    <declare-styleable name="IconBottomBar">
+        <attr name="iconBottomBar" format="reference"/>
+        <attr name="selected" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="BottomBar">
+        <attr name="defaultSelectedPosition" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ListError">
+        <attr name="iconError" format="reference"/>
+        <attr name="errorTextDescription" format="reference"/>
+        <attr name="buttonNameTextError" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ListCustom">
+        <attr name="icon" format="reference"/>
+        <attr name="errorDescription" format="reference"/>
+        <attr name="buttonNameError" format="reference"/>
+        <attr name="buttonNameAction" format="reference"/>
+        <attr name="endLessScroll" format="boolean"/>
+        <attr name="emptyListMessage" format="reference"/>
+    </declare-styleable>
+
+</resources>

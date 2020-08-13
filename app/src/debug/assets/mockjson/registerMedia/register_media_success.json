@@ -1,0 +1,20 @@
+{
+  "message": [
+    "Mídia salva"
+  ],
+  "data": {
+    "active": true,
+    "_id": "5c4630bccd1df100236a6b2c",
+    "platform": "PS3",
+    "game": {
+      "_id": "5c3cb881098fab0023f6b0d5",
+      "title": "Battlefield V"
+    },
+    "owner": {
+      "_id": "5c1ab12e7c0f4f002272357e",
+      "name": "JOAO DAS NEVES"
+    },
+    "createdAt": "2019-01-21T20:51:08.405Z",
+    "updatedAt": "2019-01-21T20:51:08.405Z"
+  }
+}

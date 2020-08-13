@@ -1,0 +1,181 @@
+{
+  "data": {
+    "_id": "5c794f6e169826002349874b",
+    "id": 36950,
+    "aggregated_rating": 65,
+    "aggregated_rating_count": 9,
+    "cover": {
+      "id": 71030,
+      "height": 960,
+      "image_id": "co1it2",
+      "width": 677
+    },
+    "first_release_date": "2019-02-22T00:00:00.000Z",
+    "game_modes": [
+      {
+        "id": 2,
+        "name": "Multiplayer",
+        "slug": "multiplayer"
+      }
+    ],
+    "genres": [
+      {
+        "id": 5,
+        "name": "Shooter",
+        "slug": "shooter"
+      },
+      {
+        "id": 12,
+        "name": "Role-playing (RPG)",
+        "slug": "role-playing-rpg"
+      },
+      {
+        "id": 31,
+        "name": "Adventure",
+        "slug": "adventure"
+      }
+    ],
+    "name": "Anthem",
+    "screenshots": [
+      {
+        "id": 44213,
+        "height": 1080,
+        "image_id": "bwjri6c8g1n94haoztgm",
+        "width": 1920
+      },
+      {
+        "id": 44214,
+        "height": 1080,
+        "image_id": "nknebu6mov0enphbwxib",
+        "width": 1920
+      },
+      {
+        "id": 44215,
+        "height": 1080,
+        "image_id": "opsyuak5nsg11p9wvqcj",
+        "width": 1920
+      },
+      {
+        "id": 44216,
+        "height": 1080,
+        "image_id": "ta5m1c6vp6226kdblwge",
+        "width": 1920
+      },
+      {
+        "id": 44217,
+        "height": 1080,
+        "image_id": "uols5jinxtna1w9dgxdw",
+        "width": 1920
+      },
+      {
+        "id": 213489,
+        "height": 744,
+        "image_id": "f1pvnnlhyqvbtstk3zbj",
+        "width": 1324
+      },
+      {
+        "id": 213490,
+        "height": 716,
+        "image_id": "tp3tsdlzfkdp1hhofmb1",
+        "width": 1276
+      }
+    ],
+    "slug": "anthem",
+    "summary": "Anthem is a shared-world action RPG, where players can delve into a vast landscape teeming with amazing technology and forgotten treasures. This is a world where Freelancers are called upon to defeat savage beasts, ruthless marauders, and forces plotting to conquer humanity.",
+    "url": "https://www.igdb.com/games/anthem",
+    "videos": [
+      {
+        "id": 14281,
+        "name": "Teaser",
+        "video_id": "wi0Uq7QmKm4"
+      },
+      {
+        "id": 14303,
+        "name": "Gameplay video",
+        "video_id": "cyJMA0-3i4U"
+      },
+      {
+        "id": 20444,
+        "name": "Trailer",
+        "video_id": "ZFwylDNpgFc"
+      },
+      {
+        "id": 20994,
+        "name": "Gameplay video",
+        "video_id": "p-nKttWT7JM"
+      },
+      {
+        "id": 21987,
+        "name": "Trailer",
+        "video_id": "lPBUlFOhFks"
+      },
+      {
+        "id": 23650,
+        "name": "Trailer",
+        "video_id": "jZizDqnz7oY"
+      },
+      {
+        "id": 24034,
+        "name": "Trailer",
+        "video_id": "yJo19lIZWJY"
+      },
+      {
+        "id": 24247,
+        "name": "Trailer",
+        "video_id": "lWfDwyvbkpk"
+      },
+      {
+        "id": 24248,
+        "name": "Gameplay video",
+        "video_id": "2drI_iT4NUg"
+      },
+      {
+        "id": 24748,
+        "name": "Trailer",
+        "video_id": "oh2RHMcfHkg"
+      },
+      {
+        "id": 24796,
+        "name": "Trailer",
+        "video_id": "DPf-EATqFng"
+      },
+      {
+        "id": 24953,
+        "name": "Trailer",
+        "video_id": "wka5RovFEo8"
+      }
+    ],
+    "formattedReleaseDate": "22/02/2019",
+    "createdBy": "5c5dba8ccc06180023fd7df7",
+    "createdAt": "2019-03-01T15:27:42.437Z",
+    "updatedAt": "2019-03-01T15:27:42.437Z",
+    "mediaPs3": [],
+    "mediaPs4": [
+      {
+        "_id": "5c8270952e75f4002361814e",
+        "owner": "5c818df8349f31002315fcfc",
+        "ownerName": "Trevisan",
+        "ownerState": "5a107a681592ca19f7b4a851",
+        "ownerCity": "Acrelândia"
+      }
+    ],
+    "mediaXbox360": [],
+    "mediaXboxOne": [
+      {
+        "_id": "5c82aaee73caf20023d6803a",
+        "owner": "5c818df8349f31002315fcfc",
+        "ownerName": "Trevisan",
+        "ownerState": "5a107a681592ca19f7b4a851",
+        "ownerCity": "Acrelândia"
+      }
+    ],
+    "mediaNintendo3ds": [],
+    "mediaNintendoSwitch": [],
+    "mediaPs3Count": 0,
+    "mediaPs4Count": 1,
+    "mediaXbox360Count": 0,
+    "mediaXboxOneCount": 1,
+    "mediaNintendo3dsCount": 0,
+    "mediaNintendoSwitchCount": 0
+  }
+}
