@@ -40,9 +40,10 @@ class LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
             )
 
             item.setOnClickListener {
-                val extras = Bundle()
-                extras.putString(PinchToZoomActivity.ID, video.video_id)
-                extras.putString(PinchToZoomActivity.TYPE, PinchToZoomActivity.VIDEO)
+                val extras = Bundle().apply {
+                    putString(PinchToZoomActivity.ID, video.video_id)
+                    putString(PinchToZoomActivity.TYPE, PinchToZoomActivity.VIDEO)
+                }
                 startPinchActivity(item.context, extras)
             }
         }
@@ -60,9 +61,10 @@ class LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
                 )
             )
             item.setOnClickListener {
-                val extras = Bundle()
-                extras.putString(PinchToZoomActivity.ID, idImage)
-                extras.putString(PinchToZoomActivity.TYPE, PinchToZoomActivity.IMAGE)
+                val extras = Bundle().apply {
+                    putString(PinchToZoomActivity.ID, idImage)
+                    putString(PinchToZoomActivity.TYPE, PinchToZoomActivity.IMAGE)
+                }
                 startPinchActivity(item.context, extras)
             }
             item.imageView.visible(false)
