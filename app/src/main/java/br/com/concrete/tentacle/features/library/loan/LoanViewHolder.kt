@@ -1,5 +1,6 @@
 package br.com.concrete.tentacle.features.library.loan
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -8,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.data.models.game.Screenshot
 import br.com.concrete.tentacle.data.models.library.Video
-import br.com.concrete.tentacle.extensions.ActivityAnimation
-import br.com.concrete.tentacle.extensions.launchActivity
 import br.com.concrete.tentacle.extensions.loadImageUrl
 import br.com.concrete.tentacle.extensions.visible
+import br.com.concrete.tentacle.extensions.launchActivity
+import br.com.concrete.tentacle.extensions.ActivityAnimation
+import br.com.concrete.tentacle.extensions.startActivityWithoutAnimation
 import br.com.concrete.tentacle.utils.IMAGE_SIZE_TYPE_LOGO_MED
 import br.com.concrete.tentacle.utils.Utils
 import kotlinx.android.synthetic.main.item_game_video.view.imageView
@@ -41,7 +43,7 @@ class LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
                 val extras = Bundle()
                 extras.putString(PinchToZoomActivity.ID, video.video_id)
                 extras.putString(PinchToZoomActivity.TYPE, PinchToZoomActivity.VIDEO)
-                startPinchActivity(item.context as AppCompatActivity, extras)
+                startPinchActivity(item.context, extras)
             }
         }
 
@@ -61,16 +63,17 @@ class LoanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
                 val extras = Bundle()
                 extras.putString(PinchToZoomActivity.ID, idImage)
                 extras.putString(PinchToZoomActivity.TYPE, PinchToZoomActivity.IMAGE)
-                startPinchActivity(item.context as AppCompatActivity, extras)
+                startPinchActivity(item.context, extras)
             }
             item.imageView.visible(false)
         }
 
-        private fun startPinchActivity(activity: AppCompatActivity, extras: Bundle) {
-            activity.launchActivity<PinchToZoomActivity>(
+        private fun startPinchActivity(context: Context, extras: Bundle) {
+            (context as? AppCompatActivity)?.launchActivity<PinchToZoomActivity>(
                 extras = extras,
                 animation = ActivityAnimation.TRANSLATE_UP
             )
+                ?: context.startActivityWithoutAnimation<PinchToZoomActivity>(extras)
         }
 
     }
