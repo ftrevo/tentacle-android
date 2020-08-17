@@ -86,7 +86,7 @@ class PinchToZoomActivity : YouTubeBaseActivity() {
             override fun onInitializationSuccess(
                 provider: YouTubePlayer.Provider?,
                 youtubePlayer: YouTubePlayer?,
-                p2: Boolean
+                wasRestored: Boolean
             ) {
                 youtubePlayer?.loadVideo(videoId)
             }
