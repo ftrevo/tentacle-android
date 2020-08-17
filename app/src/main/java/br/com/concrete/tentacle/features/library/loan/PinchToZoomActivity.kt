@@ -18,8 +18,6 @@ import kotlinx.android.synthetic.main.activity_pinch_to_zoom.btClose
 
 class PinchToZoomActivity : YouTubeBaseActivity() {
 
-    private lateinit var onInitializedListener: YouTubePlayer.OnInitializedListener
-
     companion object {
         const val VIDEO = "VIDEO"
         const val IMAGE = "IMAGE"
@@ -84,7 +82,7 @@ class PinchToZoomActivity : YouTubeBaseActivity() {
     }
 
     private fun initializeVideo(videoId: String) {
-        onInitializedListener = object : YouTubePlayer.OnInitializedListener {
+        val onInitializedListener = object : YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(
                 provider: YouTubePlayer.Provider?,
                 youtubePlayer: YouTubePlayer?,
