@@ -1,7 +1,10 @@
 package br.com.concrete.tentacle.extensions
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.TypedArray
+import android.os.Bundle
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
@@ -33,4 +36,14 @@ fun Context.getFloatFromRes(resource: Int): Float {
     val typedValue = TypedValue()
     resources.getValue(R.dimen.defaultTextSize, typedValue, true)
     return typedValue.float
+}
+
+inline fun <reified T: Activity> Context.startActivityWithoutAnimation(
+    extras: Bundle? = null
+){
+    val intent = Intent(this, T::class.java)
+    extras?.let {
+        intent.putExtras(it)
+    }
+    startActivity(intent)
 }
