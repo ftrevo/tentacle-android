@@ -19,36 +19,42 @@ class HomeVMTest : BaseViewModelTest() {
 
     @Test
     fun `when HomeViewModel calls getHomeGames should return error message for 400`() {
+
+        // arrange
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
         )
-
+        mockResponseError400()
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
 
         val expected =
             ViewStateModel<ArrayList<Game>>(
                 status = ViewStateModel.Status.ERROR, model = null, errors = responseObject)
+
         var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
-
-        mockResponseError400()
-
         homeViewModel.getHomeGames().observeForever {
             actual = ViewStateModel(
-                model = it.peekContent().model as ArrayList<Game>?,
+                model = it.peekContent().model as? ArrayList<Game>?,
                 status = it.peekContent().status,
                 errors = it.peekContent().errors)
         }
+
+        // act
         homeViewModel.loadHomeGames()
+
+        //assert
         assertEquals(expected.status, actual.status)
     }
 
     @Test
     fun `when HomeViewModel calls getHomeGames should return success`() {
+
+        // arrange
         val responseJson = getJson(
             "mockjson/home/new_home_games_success.json"
         )
-
+        mockResponse200(responseJson)
         val collectionType = object : TypeToken<BaseModel<GameResponse>>() {}.type
         val responseObject: BaseModel<GameResponse> =
             GsonBuilder().create().fromJson(responseJson, collectionType)
@@ -57,20 +63,18 @@ class HomeVMTest : BaseViewModelTest() {
             ViewStateModel(
                 status = ViewStateModel.Status.SUCCESS,
                 model = responseObject.data.list)
+
         var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(200)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
-
         homeViewModel.getHomeGames().observeForever {
             actual = ViewStateModel(
                 model = it.peekContent().model as ArrayList<Game>?,
                 status = it.peekContent().status)
         }
+
+        // act
         homeViewModel.loadHomeGames()
+
+        // assert
         assertEquals(expected, actual)
     }
 }
