@@ -70,7 +70,7 @@ class LoginVMTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `GivenSuccessResponse whenLogin shouldReturnSuccess`() {
+    fun `givenSuccessResponse whenLogin shouldReturnSuccess`() {
         // arrange
         val responseJson = getJson("mockjson/login/login_success.json")
         mockResponse200(responseJson)
