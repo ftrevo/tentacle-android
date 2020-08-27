@@ -20,68 +20,64 @@ class MyReservationDetailVMTest : BaseViewModelTest() {
 
     @Test
     fun `when MyReservationDetailViewModel calls loadMyLoan should return the details of reservations with success`() {
+        // arrange
         val responseJson = getJson("mockjson/myreservations/myreservations_detail_success.json")
-
+        mockResponse200(responseJson)
         val collectionType = object : TypeToken<BaseModel<LoanResponse>>() {}.type
         val responseObject: BaseModel<LoanResponse> = GsonBuilder()
             .create()
             .fromJson(responseJson, collectionType)
-
         val expected =
-                ViewStateModel(
-                    status = ViewStateModel.Status.SUCCESS,
-                    model = responseObject.data
-                )
-
+            ViewStateModel(
+                status = ViewStateModel.Status.SUCCESS,
+                model = responseObject.data
+            )
         var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(200)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
-
         myReservationDetail.getViewState().observeForever {
             actual = it
         }
 
+        // act
         myReservationDetail.loadMyLoan("id")
+
+        // assert
         assertEquals(expected, actual)
     }
 
     @Test
     fun `when MyReservationDetailViewModel calls loadMyLoan should return message for 400`() {
+        // arrange
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
         )
+        mockResponseError400()
         val responseObject: ErrorResponse =
             GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
-
         val expected =
-                ViewStateModel(
-                    status = ViewStateModel.Status.ERROR,
-                    model = null,
-                    errors = responseObject
-                )
-
+            ViewStateModel(
+                status = ViewStateModel.Status.ERROR,
+                model = null,
+                errors = responseObject
+            )
         var actual = ViewStateModel<LoanResponse>(status = ViewStateModel.Status.LOADING)
-
-        mockResponseError400()
-
         myReservationDetail.getViewState().observeForever {
             actual = it
         }
 
+        // act
         myReservationDetail.loadMyLoan("id")
+
+        // assert
         assertEquals(expected, actual)
     }
 
     @Test
     fun `when myReservationDetail calls delete should return success`() {
+        // arrange
         val responseJson = getJson(
             "mockjson/myreservations/delete_my_reservation_success.json"
         )
-
+        mockResponse200(responseJson)
         val collectionType = object : com.google.common.reflect.TypeToken<BaseModel<LoanDeleteResponse>>() {}.type
         val responseObject: BaseModel<LoanDeleteResponse> =
             GsonBuilder().create().fromJson(responseJson, collectionType)
@@ -91,17 +87,14 @@ class MyReservationDetailVMTest : BaseViewModelTest() {
                 status = ViewStateModel.Status.SUCCESS,
                 model = responseObject.data)
         var actual = ViewStateModel<LoanDeleteResponse>(status = ViewStateModel.Status.LOADING)
-
-        val mockResponse = MockResponse()
-            .setResponseCode(200)
-            .setBody(responseJson)
-
-        mockServer.enqueue(mockResponse)
-
         myReservationDetail.getStateDeleteLoan().observeForever {
             actual = it
         }
+
+        // act
         myReservationDetail.deleteLoan("id_loan")
+
+        // assert
         assertEquals(expected.model, actual.model)
         assertEquals(expected.status, actual.status)
         assertEquals(expected.errors, actual.errors)
@@ -110,6 +103,7 @@ class MyReservationDetailVMTest : BaseViewModelTest() {
 
     @Test
     fun `when myReservationDetail calls delete should return error message for 400`() {
+        // arrange
         val responseJson = getJson(
             "mockjson/errors/error_400.json"
         )
@@ -127,7 +121,11 @@ class MyReservationDetailVMTest : BaseViewModelTest() {
         myReservationDetail.getStateDeleteLoan().observeForever {
             actual = it
         }
+
+        // act
         myReservationDetail.deleteLoan("id_loan")
+
+        // assert
         assertEquals(expected, actual)
     }
 }
