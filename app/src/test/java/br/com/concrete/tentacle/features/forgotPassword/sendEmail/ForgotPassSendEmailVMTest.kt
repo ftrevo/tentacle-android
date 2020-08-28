@@ -18,7 +18,7 @@ class ForgotPassSendEmailVMTest : BaseViewModelTest() {
     lateinit var actual: ViewStateModel<User>
 
     @BeforeEach
-    fun initializeValidationVariable(){
+    fun initializeValidationVariable() {
         actual = ViewStateModel(status = ViewStateModel.Status.LOADING)
     }
 

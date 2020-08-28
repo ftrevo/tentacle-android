@@ -8,7 +8,6 @@ import br.com.concrete.tentacle.data.models.GameResponse
 import br.com.concrete.tentacle.data.models.ViewStateModel
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.jupiter.api.BeforeEach
@@ -20,7 +19,7 @@ class HomeVMTest : BaseViewModelTest() {
     lateinit var actual: ViewStateModel<ArrayList<Game>>
 
     @BeforeEach
-    fun initializeValidationVariable(){
+    fun initializeValidationVariable() {
         actual = ViewStateModel(status = ViewStateModel.Status.LOADING)
     }
 
