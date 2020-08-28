@@ -12,7 +12,7 @@ import org.junit.Test
 import org.junit.jupiter.api.BeforeEach
 import org.koin.standalone.inject
 
-class ForgotPassSendEmailVMTeste : BaseViewModelTest() {
+class ForgotPassSendEmailVMTest : BaseViewModelTest() {
 
     private val forgotPassSendEmailViewModel: ForgotPassSendEmailViewModel by inject()
     lateinit var actual: ViewStateModel<User>
