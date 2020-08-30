@@ -17,168 +17,153 @@ class SearchViewModelTest : BaseViewModelTest() {
     private val searchGameViewModel: SearchGameViewModel by inject()
 
     @Test
-    fun `when searchGameViewModel calls searchGame should return a list of Games`() {
-        val responseJson = getJson(
-            "mockjson/searchgame/list_game_success.json"
-        )
-
-        val collectionType = object : TypeToken<BaseModel<GameResponse>>() {}.type
-        val responseObject: BaseModel<GameResponse> = GsonBuilder().create().fromJson(responseJson, collectionType)
-
-        val expected =
-            ViewStateModel(
-                status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data.list
-            )
-        var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
-
+    fun `givenSuccessfulResponse whenSearchGame shouldReturnListOfGames`() {
+        // arrange
+        val responseJson = getJson("mockjson/searchgame/list_game_success.json")
         mockResponse200(responseJson)
-
-        searchGameViewModel.getSearchGame().observeForever {
-            actual = ViewStateModel(model = it.model?.list, status = ViewStateModel.Status.SUCCESS)
-        }
-
-        searchGameViewModel.searchGame("Fifa")
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `when searchGameViewModel calls searchGame should return a list of Games empty`() {
-        val responseJson = getJson(
-            "mockjson/searchgame/list_game_empty_success.json"
-        )
-
         val collectionType = object : TypeToken<BaseModel<GameResponse>>() {}.type
         val responseObject: BaseModel<GameResponse> = GsonBuilder()
             .create()
             .fromJson(responseJson, collectionType)
-
-        val expected =
-            ViewStateModel(
-                status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data.list
-            )
+        val expected = ViewStateModel(
+            status = ViewStateModel.Status.SUCCESS,
+            model = responseObject.data.list
+        )
         var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
-
-        mockResponse200(responseJson)
-
         searchGameViewModel.getSearchGame().observeForever {
             actual = ViewStateModel(model = it.model?.list, status = ViewStateModel.Status.SUCCESS)
         }
 
+        // act
         searchGameViewModel.searchGame("Fifa")
+
+        // assert
         assertEquals(expected, actual)
     }
 
     @Test
-    fun `when searchGameViewModel calls searchGame should return a list of Games error404`() {
-        val responseJson = getJson(
-            "mockjson/errors/error_400.json"
+    fun `givenSuccessfulResponse whenSearchGame shouldReturnEmptyList`() {
+        // arrange
+        val responseJson = getJson("mockjson/searchgame/list_game_empty_success.json")
+        mockResponse200(responseJson)
+        val collectionType = object : TypeToken<BaseModel<GameResponse>>() {}.type
+        val responseObject: BaseModel<GameResponse> = GsonBuilder()
+            .create()
+            .fromJson(responseJson, collectionType)
+        val expected = ViewStateModel(
+            status = ViewStateModel.Status.SUCCESS,
+            model = responseObject.data.list
         )
-
-        val responseObject: ErrorResponse =
-            GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
-
-        val expected =
-            ViewStateModel<ArrayList<Game>>(
-                status = ViewStateModel.Status.ERROR, model = null
-            )
         var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
+        searchGameViewModel.getSearchGame().observeForever {
+            actual = ViewStateModel(model = it.model?.list, status = ViewStateModel.Status.SUCCESS)
+        }
 
+        // act
+        searchGameViewModel.searchGame("Fifa")
+
+        // assert
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `givenErrorResponse whenSearchGame shouldReturnErroState`() {
+        // arrange
+        val responseJson = getJson("mockjson/errors/error_400.json")
         mockResponseError400()
-
+        val responseObject: ErrorResponse = GsonBuilder()
+            .create()
+            .fromJson(responseJson, ErrorResponse::class.java)
+        val expected = ViewStateModel<ArrayList<Game>>(
+            status = ViewStateModel.Status.ERROR,
+            model = null
+        )
+        var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
         searchGameViewModel.getSearchGame().observeForever {
             actual = ViewStateModel(model = it.model?.list, status = it.status)
         }
 
+        // act
         searchGameViewModel.searchGame("Fifa")
+
+        // assert
         assertEquals(expected, actual)
     }
 
     @Test
-    fun `when searchGameViewModel calls registerNewGame should return a object Game`() {
-        val responseJson = getJson(
-            "mockjson/searchgame/register_game_success.json"
-        )
-
+    fun `givenSuccessfulResponse whenRegisterNewGame shouldReturnSuccessState`() {
+        // arrange
+        val responseJson = getJson("mockjson/searchgame/register_game_success.json")
+        mockResponse201(responseJson)
         val collectionType = object : TypeToken<BaseModel<Game>>() {}.type
         val responseObject: BaseModel<Game> = GsonBuilder()
             .create()
             .fromJson(responseJson, collectionType)
-
-        val expected =
-                ViewStateModel(
-                    status = ViewStateModel.Status.SUCCESS,
-                    model = responseObject.data
-                )
-
-        var actual =
-            ViewStateModel<Game>(
-                status = ViewStateModel.Status.LOADING
-            )
-
-        mockResponse201(responseJson)
-
+        val expected = ViewStateModel(
+            status = ViewStateModel.Status.SUCCESS,
+            model = responseObject.data
+        )
+        var actual = ViewStateModel<Game>(status = ViewStateModel.Status.LOADING)
         searchGameViewModel.getRegisteredGame().observeForever {
             actual = it.peekContent()
         }
 
+        // act
         searchGameViewModel.registerNewGame("Fallout 76")
+
+        // assert
         assertEquals(expected, actual)
     }
 
     @Test
-    fun `when searchGameViewModel calls registerNewGame should return a object of Games error404`() {
-        val responseJson = getJson(
-            "mockjson/errors/error_400.json"
-        )
-
-        val responseObject: ErrorResponse =
-            GsonBuilder().create().fromJson(responseJson, ErrorResponse::class.java)
-
-        val expected =
-            ViewStateModel<Game>(
-                status = ViewStateModel.Status.ERROR, model = null, errors = responseObject
-            )
-
-        var actual =
-            ViewStateModel<Game>(
-                status = ViewStateModel.Status.LOADING
-            )
-
+    fun `givenErrorResponse whenRegisterNewGame shouldReturnErrorState`() {
+        // arrange
+        val responseJson = getJson("mockjson/errors/error_400.json")
         mockResponseError400()
-
+        val responseObject: ErrorResponse = GsonBuilder()
+            .create()
+            .fromJson(responseJson, ErrorResponse::class.java)
+        val expected = ViewStateModel<Game>(
+            status = ViewStateModel.Status.ERROR,
+            model = null,
+            errors = responseObject
+        )
+        var actual = ViewStateModel<Game>(
+            status = ViewStateModel.Status.LOADING
+        )
         searchGameViewModel.getRegisteredGame().observeForever {
             actual = it.peekContent()
         }
 
+        // act
         searchGameViewModel.registerNewGame("Fallout 76")
+
+        // assert
         assertEquals(expected, actual)
     }
 
     @Test
-    fun `when searchGameViewModel calls searchMoreGame should return a list of Games`() {
-        val responseJson = getJson(
-            "mockjson/searchgame/list_game_success.json"
-        )
-
-        val collectionType = object : TypeToken<BaseModel<GameResponse>>() {}.type
-        val responseObject: BaseModel<GameResponse> = GsonBuilder().create().fromJson(responseJson, collectionType)
-
-        val expected =
-            ViewStateModel(
-                status = ViewStateModel.Status.SUCCESS,
-                model = responseObject.data.list
-            )
-        var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
-
+    fun `givenSuccessfulResponse whenSearchMoreGame shouldReturnListOfGames`() {
+        // arrange
+        val responseJson = getJson("mockjson/searchgame/list_game_success.json")
         mockResponse200(responseJson)
-
+        val collectionType = object : TypeToken<BaseModel<GameResponse>>() {}.type
+        val responseObject: BaseModel<GameResponse> = GsonBuilder()
+            .create()
+            .fromJson(responseJson, collectionType)
+        val expected = ViewStateModel(
+            status = ViewStateModel.Status.SUCCESS,
+            model = responseObject.data.list
+        )
+        var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
         searchGameViewModel.getSearchMoreGame().observeForever {
             actual = ViewStateModel(model = it.peekContent().model?.list, status = ViewStateModel.Status.SUCCESS)
         }
 
+        // act
         searchGameViewModel.searchGameMore("Fifa")
+
+        // assert
         assertEquals(expected, actual)
     }
 }
