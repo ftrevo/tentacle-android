@@ -80,7 +80,7 @@ class LoanActivityTest {
     @Test
     fun checkVisibleChips() {
         setResponse()
-
+        onView(withId(R.id.chipPs4)).perform(scrollTo())
         onView(withId(R.id.chipPs4)).check(matches(isDisplayed()))
         onView(withId(R.id.chipPs3)).check(matches(not(isDisplayed())))
         onView(withId(R.id.chip360)).check(matches(not(isDisplayed())))
