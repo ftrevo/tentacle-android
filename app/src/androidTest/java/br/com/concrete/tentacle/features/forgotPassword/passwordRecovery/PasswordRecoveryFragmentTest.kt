@@ -133,6 +133,6 @@ class PasswordRecoveryFragmentTest : BaseFragmentTest() {
 
     private fun performClickButton() {
         onView(withId(R.id.recoveryPasswordButton))
-            .perform(click())
+            .perform(scrollTo(), click())
     }
 }
