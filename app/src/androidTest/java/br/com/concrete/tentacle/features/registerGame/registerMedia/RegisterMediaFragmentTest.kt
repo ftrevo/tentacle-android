@@ -18,6 +18,7 @@ import br.com.concrete.tentacle.extensions.fromJson
 import br.com.concrete.tentacle.extensions.getJson
 import com.google.gson.Gson
 import okhttp3.mockwebserver.MockResponse
+import org.hamcrest.Matchers.not
 import org.junit.Assert
 import org.junit.Test
 
@@ -63,7 +64,7 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
         onView(withId(R.id.mediaRegisterButton))
-            .check(matches(isEnabled()))
+            .check(matches(not(isEnabled())))
     }
 
     @Test
@@ -85,6 +86,8 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
             .perform(scrollTo())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
+        onView(withId(R.id.chipPs3))
+            .perform(click())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isEnabled()))
         onView(withId(R.id.mediaRegisterButton))
@@ -119,6 +122,8 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isDisplayed()))
 
+        onView(withId(R.id.chipPs3))
+            .perform(click())
         onView(withId(R.id.mediaRegisterButton))
             .check(matches(isEnabled()))
 
@@ -157,18 +162,17 @@ class RegisterMediaFragmentTest : BaseFragmentTest() {
         onView(withText("Multiplayer")).check(matches(isDisplayed()))
         onView(withText("Co-operative")).check(matches(isDisplayed()))
 
-        onView(withId(R.id.chipPs3))
-            .check(matches(isDisplayed()))
-            .perform(click())
-        onView(withId(R.id.chipPs4))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.chip360))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.chipOne))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.chipOne))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.chip3ds))
+        checkIsDisplayedById(R.id.chipPs3)
+        checkIsDisplayedById(R.id.chipPs4)
+        checkIsDisplayedById(R.id.chip360)
+        checkIsDisplayedById(R.id.chipOne)
+        checkIsDisplayedById(R.id.chip3ds)
+        checkIsDisplayedById(R.id.chipSwitch)
+    }
+
+    fun checkIsDisplayedById(id: Int) {
+        onView(withId(id))
+            .perform(scrollTo())
             .check(matches(isDisplayed()))
     }
 }
