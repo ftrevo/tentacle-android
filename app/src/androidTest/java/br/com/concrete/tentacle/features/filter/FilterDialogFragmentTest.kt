@@ -11,8 +11,6 @@ import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.extensions.getJson
 import br.com.concrete.tentacle.extensions.waitUntil
 import br.com.concrete.tentacle.features.library.LibraryFragment
-import okhttp3.mockwebserver.MockResponse
-import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Test
@@ -25,95 +23,62 @@ class FilterDialogFragmentTest : BaseFragmentTest() {
 
     @Before
     fun setFragment() {
-        mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody("mockjson/library/get_library_success.json".getJson()))
+        mockResponse200("mockjson/library/get_library_success.json".getJson())
         onView(withId(R.id.filterMenuId)).perform(click())
     }
 
     @Test
-    fun btnClearFilterIsDisplayed() {
-        mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody("mockjson/library/get_library_success.json".getJson()))
-        onView(
-            withId(R.id.filterContent)
-        ).perform(isDisplayed().waitUntil())
+    fun givenFilter_whenListItemClicked_shouldDisplayClearButton() {
+        // arrange
+        onView(withId(R.id.filterContent)).perform(isDisplayed().waitUntil())
 
-        onView(
-            allOf(
-                withText("Playstation 3")
-                ))
-            .perform(click())
+        // act
+        onView(withText("Playstation 3")).perform(click())
 
-        onView(withId(R.id.filterClearButtonView))
-            .check(matches(isDisplayed()))
+        // assert
+        onView(withId(R.id.filterClearButtonView)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun btnClearFilterDisappear() {
-        onView(
-            withId(R.id.filterContent)
-        ).perform(isDisplayed().waitUntil())
+    fun givenFilterClearButtonDisplayed_whenListItemsUnmarked_shouldDisappearClearButton() {
+        // arrange
+        onView(withId(R.id.filterContent)).perform(isDisplayed().waitUntil())
+        onView(withText("Playstation 3")).perform(click())
 
-        onView(
-            allOf(
-                withText("Playstation 3")
-            ))
-            .perform(click())
+        // act
+        onView(withText("Playstation 3")).perform(click())
 
-        onView(withId(R.id.filterClearButtonView))
-            .check(matches(isDisplayed()))
-
-        onView(
-            allOf(
-                withText("Playstation 3")
-            ))
-            .perform(click())
-
-        onView(withId(R.id.filterClearButtonView))
-            .check(matches(not(isDisplayed())))
+        // assert
+        onView(withId(R.id.filterClearButtonView)).check(matches(not(isDisplayed())))
     }
 
     @Test
-    fun btnClearFilterSuccess() {
-        mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody("mockjson/library/get_library_success.json".getJson()))
-        onView(
-            withId(R.id.filterContent)
-        ).perform(isDisplayed().waitUntil())
+    fun givenFilterWithClickedItems_whenClearFilterButtonPressed_shouldReturnToMainListing() {
+        // arrange
+        mockResponse200("mockjson/library/get_library_success.json".getJson())
+        onView(withId(R.id.filterContent)).perform(isDisplayed().waitUntil())
+        onView(withText("Playstation 3")).perform(click())
+        onView(withText("Playstation 4")).perform(click())
 
-        onView(
-            allOf(
-                withText("Playstation 3")
-            ))
-            .perform(click())
-
-        onView(
-            allOf(
-                withText("Playstation 4")
-            ))
-            .perform(click())
-
+        // act
         onView(withId(R.id.filterClearButtonView)).perform(click())
+
+        // assert
         onView(withId(R.id.list)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun btnFilterSuccess() {
-        mockWebServer.enqueue(MockResponse().setResponseCode(200).setBody("mockjson/library/get_library_success.json".getJson()))
-        onView(
-            withId(R.id.filterContent)
-        ).perform(isDisplayed().waitUntil())
+    fun givenFilterWithClickedItems_whenFilterButtonPressed_shouldReturnToMainFilteredListing() {
+        // arrange
+        mockResponse200("mockjson/library/get_library_success.json".getJson())
+        onView(withId(R.id.filterContent)).perform(isDisplayed().waitUntil())
+        onView(withText("Playstation 3")).perform(click())
+        onView(withText("Playstation 4")).perform(click())
 
-        onView(
-            allOf(
-                withText("Playstation 3")
-            ))
-            .perform(click())
-
-        onView(
-            allOf(
-                withText("Playstation 4")
-            ))
-            .perform(click())
-
+        // act
         onView(withId(R.id.filterButtonView)).perform(click())
+
+        // assert
         onView(withId(R.id.list)).check(matches(isDisplayed()))
     }
 }
