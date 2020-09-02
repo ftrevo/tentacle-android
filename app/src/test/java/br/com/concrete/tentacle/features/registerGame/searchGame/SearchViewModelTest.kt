@@ -157,7 +157,10 @@ class SearchViewModelTest : BaseViewModelTest() {
         )
         var actual = ViewStateModel<ArrayList<Game>>(status = ViewStateModel.Status.LOADING)
         searchGameViewModel.getSearchMoreGame().observeForever {
-            actual = ViewStateModel(model = it.peekContent().model?.list, status = ViewStateModel.Status.SUCCESS)
+            actual = ViewStateModel(
+                model = it.peekContent().model?.list,
+                status = ViewStateModel.Status.SUCCESS
+            )
         }
 
         // act

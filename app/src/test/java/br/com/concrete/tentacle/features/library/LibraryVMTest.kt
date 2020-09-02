@@ -11,7 +11,6 @@ import br.com.concrete.tentacle.data.models.library.LibraryResponse
 import br.com.concrete.tentacle.utils.QueryUtils
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
-import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.jupiter.api.BeforeEach

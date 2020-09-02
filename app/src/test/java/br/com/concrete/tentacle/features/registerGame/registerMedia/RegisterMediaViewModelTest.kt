@@ -24,7 +24,7 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
         val gameJson = getJson("mockjson/registerMedia/detail_game_success.json")
         val classType = object : TypeToken<BaseModel<Game>>() {}.type
         requestGame = GsonBuilder()
-        .create()
+            .create()
             .fromJson(gameJson, classType)
     }
 
@@ -99,7 +99,10 @@ class RegisterMediaViewModelTest : BaseViewModelTest() {
         )
         var actual = ViewStateModel<Game>(status = ViewStateModel.Status.LOADING)
         registerMediaViewModel.getDetailGame().observeForever {
-            actual = ViewStateModel(model = it.peekContent().model, status = it.peekContent().status)
+            actual = ViewStateModel(
+                model = it.peekContent().model,
+                status = it.peekContent().status
+            )
         }
 
         // act
