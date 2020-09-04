@@ -1,6 +1,5 @@
 package br.com.concrete.tentacle.features.filter
 
-import br.com.concrete.tentacle.R
 import br.com.concrete.tentacle.base.BaseFragmentTest
 import br.com.concrete.tentacle.features.library.LibraryFragment
 import org.junit.Before
@@ -16,34 +15,32 @@ class FilterDialogFragmentTest : BaseFragmentTest() {
     fun setFragment() {
         filterArrange {
             mockResponse(mockWebServer)
-            click(R.id.filterMenuId)
+        }
+        filterAct{
+            clickMenu()
         }
     }
 
     @Test
     fun givenFilter_whenListItemClicked_shouldDisplayClearButton() {
-        filterArrange {
-            waitToDisplay(R.id.filterContent)
-        }
         filterAct {
-            click("Playstation 3")
+            waitFilterDisplay()
+            clickPS3()
         }
         filterAssert {
-            isDisplayed(R.id.filterClearButtonView)
+            clearButtonIsDisplayed()
         }
     }
 
     @Test
     fun givenFilterClearButtonDisplayed_whenListItemsUnmarked_shouldDisappearClearButton() {
-        filterArrange {
-            waitToDisplay(R.id.filterContent)
-            click("Playstation 3")
-        }
         filterAct {
-            click("Playstation 3")
+            waitFilterDisplay()
+            clickPS3()
+            clickPS3()
         }
         filterAssert {
-            isNotDisplayed(R.id.filterClearButtonView)
+            clearButtonIsNotDisplayed()
         }
     }
 
@@ -51,15 +48,16 @@ class FilterDialogFragmentTest : BaseFragmentTest() {
     fun givenFilterWithClickedItems_whenClearFilterButtonPressed_shouldReturnToMainListing() {
         filterArrange {
             mockResponse(mockWebServer)
-            waitToDisplay(R.id.filterContent)
-            click("Playstation 3")
-            click("Playstation 4")
         }
         filterAct {
-            click(R.id.filterClearButtonView)
+            waitFilterDisplay()
+            clickPS3()
+            clickPS4()
+            clickClearButton()
+
         }
         filterAssert {
-            isDisplayed(R.id.list)
+            listIsDisplayed()
         }
     }
 
@@ -67,15 +65,15 @@ class FilterDialogFragmentTest : BaseFragmentTest() {
     fun givenFilterWithClickedItems_whenFilterButtonPressed_shouldReturnToMainFilteredListing() {
         filterArrange {
             mockResponse(mockWebServer)
-            waitToDisplay(R.id.filterContent)
-            click("Playstation 3")
-            click("Playstation 4")
         }
         filterAct {
-            click(R.id.filterButtonView)
+            waitFilterDisplay()
+            clickPS3()
+            clickPS4()
+            clickFilterButton()
         }
         filterAssert {
-            isDisplayed(R.id.list)
+            listIsDisplayed()
         }
     }
 }
