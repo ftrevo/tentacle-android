@@ -1,39 +1,40 @@
 package br.com.concrete.tentacle.features.filter
 
-import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.extensions.getJson
+import br.com.concrete.tentacle.data.models.filter.SubItem
 import br.com.concrete.tentacle.extensions.waitUntil
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.Matchers.not
 
-class filterArrange(action: filterArrange.() -> Unit) {
+val fragment = MyFragment()
 
-    init {
-        action.invoke(this)
-    }
+fun FilterDialogFragmentTest.arrange(action: FilterArrange.() -> Unit) {
+    FilterArrange().apply(action)
+}
 
-    fun mockResponse(mockWebServer: MockWebServer) {
-        val mockResponse = MockResponse()
-            .setResponseCode(200)
-            .setBody("mockjson/library/get_library_success.json".getJson())
-        mockWebServer.enqueue(mockResponse)
+fun FilterDialogFragmentTest.act(action: FilterAct.() -> Unit) {
+    FilterAct().apply(action)
+}
+
+fun FilterDialogFragmentTest.assert(action: FilterAssert.() -> Unit) {
+    FilterAssert().apply(action)
+}
+
+class FilterArrange {
+
+    fun initFragment() {
+        FilterDialogFragment.showDialog(fragment, ArrayList(), "dummy_filter_itens_library.json")
     }
 
 }
 
-class filterAct(action: filterAct.() -> Unit) {
-
-    init {
-        action.invoke(this)
-    }
+class FilterAct {
 
     fun clickPS3() {
         onView(withText("Playstation 3")).perform(click())
@@ -51,39 +52,33 @@ class filterAct(action: filterAct.() -> Unit) {
         onView(withId(R.id.filterClearButtonView)).perform(click())
     }
 
-    fun clickMenu() {
-        onView(withId(R.id.filterMenuId)).perform(click())
-    }
-
     fun waitFilterDisplay() {
-        onView(withId(R.id.filterContent)).perform(ViewMatchers.isDisplayed().waitUntil())
+        onView(withId(R.id.filterContent)).perform(isDisplayed().waitUntil())
     }
 
 }
 
-class filterAssert(action: filterAssert.() -> Unit) {
-
-    init {
-        action.invoke(this)
-    }
-
-    private fun isDisplayed(@StringRes id: Int) {
-        onView(withId(id))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
-
-    fun listIsDisplayed() {
-        isDisplayed(R.id.list)
-    }
+class FilterAssert {
 
     fun clearButtonIsDisplayed() {
-        isDisplayed(R.id.filterClearButtonView)
+        onView(withId(R.id.filterClearButtonView))
+            .check(matches(isDisplayed()))
     }
 
     fun clearButtonIsNotDisplayed() {
         onView(withId(R.id.filterClearButtonView))
-            .check(ViewAssertions.matches(not(ViewMatchers.isDisplayed())))
+            .check(matches(not(isDisplayed())))
+    }
+
+    fun isDialogDismissed() {
+        onView(withText("Tentacle"))
+            .check(matches(isDisplayed()))
     }
 
 }
 
+class MyFragment : Fragment(), FilterDialogFragment.OnFilterListener {
+
+    override fun onFilterListener(filters: List<SubItem>) {}
+
+}
