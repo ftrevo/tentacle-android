@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -14,15 +15,15 @@ import org.hamcrest.Matchers.not
 
 val fragment = MyFragment()
 
-fun FilterDialogFragmentTest.arrange(action: FilterArrange.() -> Unit) {
+fun arrange(action: FilterArrange.() -> Unit) {
     FilterArrange().apply(action)
 }
 
-fun FilterDialogFragmentTest.act(action: FilterAct.() -> Unit) {
+fun act(action: FilterAct.() -> Unit) {
     FilterAct().apply(action)
 }
 
-fun FilterDialogFragmentTest.assert(action: FilterAssert.() -> Unit) {
+fun assert(action: FilterAssert.() -> Unit) {
     FilterAssert().apply(action)
 }
 
@@ -46,6 +47,10 @@ class FilterAct {
 
     fun clickFilterButton() {
         onView(withId(R.id.filterButtonView)).perform(click())
+    }
+
+    fun clickCloseButton() {
+        onView(withId(R.id.filterCloseButton)).perform(click())
     }
 
     fun clickClearButton() {
@@ -72,7 +77,11 @@ class FilterAssert {
 
     fun isDialogDismissed() {
         onView(withText("Tentacle"))
-            .check(matches(isDisplayed()))
+            .check(
+                matches(
+                    isDisplayed()
+                )
+            )
     }
 
 }

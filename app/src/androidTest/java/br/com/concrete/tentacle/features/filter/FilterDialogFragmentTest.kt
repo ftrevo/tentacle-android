@@ -1,12 +1,21 @@
 package br.com.concrete.tentacle.features.filter
 
+import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.base.BaseFragmentTest
+import br.com.concrete.tentacle.base.BaseInstrumentedTest
+import br.com.concrete.tentacle.testing.SingleFragmentTestActivity
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
-class FilterDialogFragmentTest : BaseFragmentTest() {
+class FilterDialogFragmentTest {
 
-    override fun setupFragment() {
-        testFragment = fragment
+    @get:Rule
+    val activityRule = ActivityTestRule(SingleFragmentTestActivity::class.java)
+
+    @Before
+    fun initFragment(){
+        activityRule.activity.setFragment(fragment)
     }
 
     @Test
@@ -70,4 +79,19 @@ class FilterDialogFragmentTest : BaseFragmentTest() {
             isDialogDismissed()
         }
     }
+
+    @Test
+    fun givenFilter_whenCloseButtonPressed_shouldReturnToMainListing() {
+        arrange {
+            initFragment()
+        }
+        act {
+            waitFilterDisplay()
+            clickCloseButton()
+        }
+        assert {
+            isDialogDismissed()
+        }
+    }
+
 }
