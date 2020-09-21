@@ -1,16 +1,6 @@
 package br.com.concrete.tentacle.features.forgotPassword.sendEmail
 
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.replaceText
-import androidx.test.espresso.action.ViewActions.scrollTo
-import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
-import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.extensions.childAtPosition
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
@@ -35,95 +25,51 @@ class ForgotPassSendEmailTest {
     }
 
     @Test
-    fun checkValidEmailInvalid() {
-        act {}
-        assert {}
-        onView(
-            withId(R.id.edtEmail)
-                .childAtPosition(0)
-                .childAtPosition(1)
-        ).perform(
-            scrollTo(),
-            replaceText("teste@teste")
-        )
-
-        clickButton()
-        onView(withText("Digite um e-mail válido")).check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun checkValidEmailInvalidEmpty() {
-        act {}
-        assert {}
-        onView(
-            withId(R.id.edtEmail)
-                .childAtPosition(0)
-                .childAtPosition(1)
-        ).perform(
-            scrollTo(),
-            replaceText("")
-        )
-
-        clickButton()
-        onView(withText("Digite um e-mail válido")).check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun sendEmailForgotPassword() {
-        arrange {
-            mockSuccess(mockWebServer)
+    fun givenInvalidEmail_whenClickSendButton_shouldDisplayInvalidEmailError() {
+        act {
+            typeInvalidEmail()
+            clickSendButton()
         }
-        act {}
-        assert {}
-        onView(
-            withId(R.id.edtEmail)
-                .childAtPosition(0)
-                .childAtPosition(1)
-        ).perform(
-            scrollTo(),
-            replaceText("teste@teste.com")
-        )
-
-        clickButton()
+        assert {
+            isInvalidEmailErrorDisplayed()
+        }
     }
 
     @Test
-    fun sendEmailForgotPasswordError400() {
+    fun givenSuccessfulResponse_whenClickSendButton_shouldGoToPasswordRecoveryActivity() {
         arrange {
-            mockError(mockWebServer)
+            mockSuccessResponse(mockWebServer)
         }
-        act {}
-        assert {}
-        checkFields()
+        act {
+            typeValidEmail()
+            clickSendButton()
+        }
+        assert {
+            checkGoToPassRecovery()
+        }
     }
 
     @Test
-    fun sendEmailForgotPasswordError404() {
+    fun givenErrorResponse_whenClickSendButton_shouldShowErrorDialog() {
         arrange {
-            mockError(mockWebServer)
+            mockErrorResponse(mockWebServer)
         }
-        act {}
-        assert {}
-        checkFields()
+        act {
+            typeValidEmail()
+            clickSendButton()
+        }
+        assert {
+            showGenericError()
+        }
     }
 
-    private fun checkFields() {
-        onView(
-            withId(R.id.edtEmail)
-                .childAtPosition(0)
-                .childAtPosition(1)
-        ).perform(
-            scrollTo(),
-            replaceText("teste@teste.com")
-        )
-
-        clickButton()
-        onView(withText("ERROR MESSAGE.")).check(matches(isDisplayed()))
-    }
-
-    private fun clickButton() {
-        onView(withId(R.id.btSend))
-            .check(matches(isDisplayed()))
-            .perform(click())
+    @Test
+    fun givenTokenAlreadyReceived_whenClickTokenText_shouldGoToPasswordRecoveryActivity() {
+        act {
+            clickTokenText()
+        }
+        assert {
+            checkGoToPassRecovery()
+        }
     }
 }
