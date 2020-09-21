@@ -1,44 +1,50 @@
 package br.com.concrete.tentacle.features.forgotPassword.sendEmail
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.replaceText
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
 import br.com.concrete.tentacle.R
-import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.extensions.childAtPosition
-import br.com.concrete.tentacle.extensions.getJson
-import okhttp3.mockwebserver.MockResponse
-import org.hamcrest.Matchers
+import okhttp3.mockwebserver.MockWebServer
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-class ForgotPassSendEmailTest : BaseInstrumentedTest() {
+class ForgotPassSendEmailTest {
+
+    val mockWebServer = MockWebServer()
 
     @get:Rule
-    var activityTestRule =
-        object : ActivityTestRule<ForgotPassSendEmailActivity>(ForgotPassSendEmailActivity::class.java) {}
+    var activityTestRule = IntentsTestRule(ForgotPassSendEmailActivity::class.java)
+
+    @Before
+    fun startServer() {
+        mockWebServer.start(8080)
+    }
+
+    @After
+    fun shutdownServer() {
+        mockWebServer.shutdown()
+    }
 
     @Test
     fun checkValidEmailInvalid() {
+        act {}
+        assert {}
         onView(
-            Matchers.allOf(
-                ViewMatchers.withId(R.id.edt),
-                ViewMatchers.withId(R.id.edtEmail)
-                    .childAtPosition(0)
-                    .childAtPosition(1)
-            )
+            withId(R.id.edtEmail)
+                .childAtPosition(0)
+                .childAtPosition(1)
         ).perform(
-            ViewActions.scrollTo(),
-            ViewActions.replaceText("teste@teste")
+            scrollTo(),
+            replaceText("teste@teste")
         )
 
         clickButton()
@@ -47,16 +53,15 @@ class ForgotPassSendEmailTest : BaseInstrumentedTest() {
 
     @Test
     fun checkValidEmailInvalidEmpty() {
+        act {}
+        assert {}
         onView(
-            Matchers.allOf(
-                ViewMatchers.withId(R.id.edt),
-                ViewMatchers.withId(R.id.edtEmail)
-                    .childAtPosition(0)
-                    .childAtPosition(1)
-            )
+            withId(R.id.edtEmail)
+                .childAtPosition(0)
+                .childAtPosition(1)
         ).perform(
-            ViewActions.scrollTo(),
-            ViewActions.replaceText("")
+            scrollTo(),
+            replaceText("")
         )
 
         clickButton()
@@ -65,22 +70,18 @@ class ForgotPassSendEmailTest : BaseInstrumentedTest() {
 
     @Test
     fun sendEmailForgotPassword() {
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody("mockjson/forgotPassword/sendEmail/user.json".getJson())
-        )
-
+        arrange {
+            mockSuccess(mockWebServer)
+        }
+        act {}
+        assert {}
         onView(
-            Matchers.allOf(
-                ViewMatchers.withId(R.id.edt),
-                ViewMatchers.withId(R.id.edtEmail)
-                    .childAtPosition(0)
-                    .childAtPosition(1)
-            )
+            withId(R.id.edtEmail)
+                .childAtPosition(0)
+                .childAtPosition(1)
         ).perform(
-            ViewActions.scrollTo(),
-            ViewActions.replaceText("teste@teste.com")
+            scrollTo(),
+            replaceText("teste@teste.com")
         )
 
         clickButton()
@@ -88,35 +89,32 @@ class ForgotPassSendEmailTest : BaseInstrumentedTest() {
 
     @Test
     fun sendEmailForgotPasswordError400() {
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(400)
-                .setBody("mockjson/errors/error_400.json".getJson())
-        )
+        arrange {
+            mockError(mockWebServer)
+        }
+        act {}
+        assert {}
         checkFields()
     }
 
     @Test
     fun sendEmailForgotPasswordError404() {
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(404)
-                .setBody("mockjson/errors/error_404.json".getJson())
-        )
+        arrange {
+            mockError(mockWebServer)
+        }
+        act {}
+        assert {}
         checkFields()
     }
 
     private fun checkFields() {
         onView(
-            Matchers.allOf(
-                ViewMatchers.withId(R.id.edt),
-                ViewMatchers.withId(R.id.edtEmail)
-                    .childAtPosition(0)
-                    .childAtPosition(1)
-            )
+            withId(R.id.edtEmail)
+                .childAtPosition(0)
+                .childAtPosition(1)
         ).perform(
-            ViewActions.scrollTo(),
-            ViewActions.replaceText("teste@teste.com")
+            scrollTo(),
+            replaceText("teste@teste.com")
         )
 
         clickButton()
