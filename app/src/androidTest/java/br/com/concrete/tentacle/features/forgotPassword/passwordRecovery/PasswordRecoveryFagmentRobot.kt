@@ -38,19 +38,18 @@ class PasswordRecoveryArrange {
         intentRule.activity.setFragment(fragment)
     }
 
-    fun initFragmentWithEmailParameter(intentRule: IntentsTestRule<SingleFragmentTestActivity>){
+    fun initFragmentWithEmailParameter(intentRule: IntentsTestRule<SingleFragmentTestActivity>) {
         val fragment = PasswordRecoveryFragment.newInstance("test@test.com")
         intentRule.activity.setFragment(fragment)
     }
 
-    fun mockErrorResponse(mockWebServer: MockWebServer){
+    fun mockErrorResponse(mockWebServer: MockWebServer) {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(400)
                 .setBody("mockjson/errors/error_400.json".getJson())
         )
     }
-
 }
 
 class PasswordRecoveryAct {
@@ -98,7 +97,6 @@ class PasswordRecoveryAct {
             replaceText(text)
         )
     }
-
 }
 
 class PasswordRecoveryAssert {
@@ -116,7 +114,7 @@ class PasswordRecoveryAssert {
             )
     }
 
-    fun isTokenEmpty(){
+    fun isTokenEmpty() {
         isFieldEmpty(R.id.tokenEditText)
     }
 
@@ -197,5 +195,4 @@ class PasswordRecoveryAssert {
                 )
             )
     }
-
 }
