@@ -24,7 +24,7 @@ class GameViewTest : BaseInstrumentedTest() {
     }
 
     @Test
-    fun givenGameLoaded_whenStartActivity_shouldDisplayFieldsProperly(){
+    fun givenGameLoaded_whenStartActivity_shouldDisplayFieldsProperly() {
         assert {
             areGameModesCorrectlyDisplayed()
             isGameRateDisplayed()
