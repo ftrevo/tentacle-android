@@ -24,15 +24,21 @@ class GameViewTest : BaseInstrumentedTest() {
     }
 
     @Test
+    fun givenGameLoaded_whenStartActivity_shouldDisplayFieldsProperly(){
+        assert {
+            areGameModesCorrectlyDisplayed()
+            isGameRateDisplayed()
+            isGameNameCorrect()
+            isRealeaseDateCorrect()
+        }
+    }
+
+    @Test
     fun givenHiddenGameStatus_wnehloadGame_shouldNotDisplayIt() {
         arrange {
             hideGameStatus(activityTestRule)
         }
         assert {
-            isGameRateDisplayed()
-            areGameModesCorrectlyDisplayed()
-            isGameNameCorrect()
-            isRealeaseDateCorrect()
             areStatusNotDisplayed()
         }
     }
@@ -46,10 +52,6 @@ class GameViewTest : BaseInstrumentedTest() {
             setStatusText()
         }
         assert {
-            isGameRateDisplayed()
-            areGameModesCorrectlyDisplayed()
-            isGameNameCorrect()
-            isRealeaseDateCorrect()
             areStatusDisplayed()
         }
     }
