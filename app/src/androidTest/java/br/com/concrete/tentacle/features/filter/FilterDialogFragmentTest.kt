@@ -1,8 +1,6 @@
 package br.com.concrete.tentacle.features.filter
 
 import androidx.test.rule.ActivityTestRule
-import br.com.concrete.tentacle.base.BaseFragmentTest
-import br.com.concrete.tentacle.base.BaseInstrumentedTest
 import br.com.concrete.tentacle.testing.SingleFragmentTestActivity
 import org.junit.Before
 import org.junit.Rule
@@ -14,7 +12,7 @@ class FilterDialogFragmentTest {
     val activityRule = ActivityTestRule(SingleFragmentTestActivity::class.java)
 
     @Before
-    fun initFragment(){
+    fun initFragment() {
         activityRule.activity.setFragment(fragment)
     }
 
